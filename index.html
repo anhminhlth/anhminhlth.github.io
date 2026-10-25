@@ -87,16 +87,16 @@
     <div id="tab3" class="tab-content">
         <h2 class="header-title">Kho Món Đa Dạng Để Lựa Chọn</h2>
         
-        <details open><summary>☀️ Nhóm Món Sáng (Khô & Gọn)</summary><div class="detail-content">Bánh mì (chảo), Mì gói xào bò cải thìa, Hủ tiếu Nam Vang, Bột chiên trứng, Cơm tấm sườn nướng, Bánh bao thịt, Bánh cuốn mộc nhĩ, Phở bò tái nạc, Dimsum.</div></details>
+        <details open><summary>☀️ Nhóm Món Sáng (Khô & Gọn)</summary><div class="detail-content">Bánh mì (chảo), Mì gói xào bò cải thìa, Hủ tiếu Nam Vang, Bột chiên trứng, Cơm tấm sườn nướng, Bánh bao thịt, Bánh cuốn/Bánh ướt, Phở bò tái nạc, Dimsum, Cháo trứng muối, Súp.</div></details>
         
-        <details open><summary>🍲 Nhóm Món Mặn (Tối Ngày Thường)</summary><div class="detail-content">Cá hồi áp chảo bơ tỏi, Đậu hũ nhồi thịt, Tôm rim nước dừa, Cá lóc/cá hú kho tộ, Trứng chiên hàu sữa, Bò lúc lắc hành tây, Gà kho gừng sả.</div></details>
+        <details open><summary>🍲 Nhóm Món Mặn (Tối Ngày Thường)</summary><div class="detail-content">Cá hồi áp chảo bơ tỏi, Đậu hũ nhồi thịt, Tôm rim nước dừa, Cá lóc/cá hú kho tộ, Trứng chiên hàu sữa, Bò lúc lắc hành tây, Gà kho gừng sả, Vịt quay, Heo quay, Cơm chiên, Bánh tráng cuốn thịt/cá.</div></details>
         
-        <details open><summary>🥣 Nhóm Canh & Rau (Tối Ngày Thường)</summary><div class="detail-content">Canh cà chua nấu trứng, Canh bí đỏ hầm, Canh cua đồng rau đay, Canh rong biển, Canh chua cá lóc.<br><br>Cải bó xôi xào tỏi, Bông cải xanh luộc, Rau muống/Rau dền luộc.</div></details>
+        <details open><summary>🥣 Nhóm Canh & Rau (Tối Ngày Thường)</summary><div class="detail-content">Canh cà chua nấu trứng, Canh bí đỏ hầm, Canh cua đồng rau đay, Canh rong biển, Canh chua cá lóc, Canh khoai mỡ.<br><br>Cải bó xôi xào tỏi, Bông cải xanh luộc, Rau muống/Rau dền luộc.</div></details>
         
         <details open><summary>🌟 Hải Sản & Ăn Ngoài (Tối Cuối Tuần)</summary>
             <div class="detail-content">
                 <p style="margin-top:0; font-size:1rem;"><i>* Danh sách món ăn ngoài, dán thẻ HTML liền mạch:</i></p>
-                <div id="outdoor-seafood"><span>Cua rang me</span><span>Ghẹ hấp sả</span><span>Ốc hương xào bơ tỏi</span><span>Ốc len xào dừa</span><span>Nghêu hấp sả</span><span>Ốc móng tay xào rau muống</span><span>Sò huyết cháy tỏi</span><span>Sủi cảo Hà Tôn Quyền</span><span>Cháo trắng hột vịt muối</span></div>
+                <div id="outdoor-seafood"><span>Cua rang</span><span>Ghẹ hấp</span><span>Ốc hương xào bơ tỏi</span><span>Nghêu hấp sả</span><span>Ốc móng tay xào rau muống</span><span>Sò huyết cháy tỏi</span><span>Sủi cảo Hà Tôn Quyền</span><span>Phá lấu</span><span>Cháo trắng hột vịt muối</span></div>
             </div>
         </details>
     </div>
@@ -127,21 +127,31 @@
         // Kho dữ liệu để Vòng xoay bốc thăm
         const menuData = {
             'Sáng': [
-                'Bánh mì chảo (Trứng ốp la, Xúc xích, Pate)', 
-                'Mì gói xào khô thịt bò & rau cải thìa', 
+                'Trứng luộc', 
+                'Bánh mì (chảo) (Ốp la, Xúc xích, Pate)', 
+                'Mì gói xào khô thịt bò & cải thìa', 
                 'Hủ tiếu Nam Vang (Tôm, Thịt băm, Trứng cút)', 
                 'Bột chiên trứng gà ăn kèm gỏi đu đủ', 
-                'Bánh bao nhân thịt & 1 hộp Sữa chua', 
-                'Phở bò tái nạc', 
-                'Cơm tấm sườn nướng mỡ hành'
+                'Bánh bao/bánh giò/Bánh dày & 1 hộp Sữa chua', 
+                'Phở bò tái-nạc', 
+                'Cơm tấm sườn nướng mỡ hành',
+				'Mì Quảng',
+				'Bánh cuốn/Bánh ướt'
+				'Cháo trứng muối'
             ],
             'Trưa': [
-                'Gà rán KFC / Lotte & Salad bắp cải', 
-                'Pizza Domino ngập phô mai', 
-                'Cơm bò Nhật Bản Yoshinoya', 
+                'KFC / Lotteria', 
+                'Pizza Domino phô mai', 
+                'Cơm Nhật Bản Yoshinoya', 
                 'Bún đậu mắm tôm', 
-                'Cơm chảo nóng Papasot', 
-                'Bánh tráng cuốn thịt luộc Trảng Bàng'
+                'Cơm chảo Papasot', 
+                'Bánh tráng cuốn thịt luộc Trảng Bàng',
+				'iSushi',
+				'Gogi',
+				'Bánh xèo',
+				'Cá/Thịt cuốn bánh tráng',
+				'Bò né CMT8',
+				'Dimsum Iris, Ái Huê'
             ],
             'Chiều': [
                 'Cá lóc kho tộ + Canh cà chua trứng + Rau muống luộc',
@@ -150,15 +160,17 @@
                 'Đậu hũ nhồi thịt + Canh khoai mỡ + Rau lang luộc',
                 'Gà kho sả gừng + Canh nghêu mồng tơi + Cải bó xôi xào',
                 'Bò lúc lắc + Canh rong biển đậu hũ non + Salad',
-                'Cá hồi áp chảo bơ tỏi + Canh cua đồng rau đay'
+                'Cá hồi áp chảo bơ tỏi + Canh cua đồng rau đay',
+				'Cháo vịt + Canh khoai mỡ'
             ],
             'Tối CT': [
-                'Mua Cua rang me / Ghẹ hấp sả ăn tại nhà', 
-                'Ra quán ăn Ốc hương, Nghêu, Sò huyết', 
+                'Mua Cua rang / Ghẹ hấp Đầm Sen ăn tại nhà', 
+                'Ra quán gần nhà Ốc hương, Nghêu, Sò huyết', 
                 'Sủi cảo tôm thịt Hà Tôn Quyền', 
                 'Bánh xèo miền Tây nhiều rau xanh', 
                 'Cơm chiên hải sản', 
-                'Cháo trắng hột vịt muối (Nhẹ bụng)'
+                'Cháo trắng hột vịt muối (Nhẹ bụng)',
+				'Bột chiên, Cơm chiên LĐHành, Cơm gà Kim Hương'
             ]
         };
 
