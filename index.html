@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ngân Hàng Thực Đơn Gia Đình</title>
+    <style>
+        /* CSS tuân thủ Responsive và chuẩn UX Lão Khoa */
+        body { font-family: 'Roboto', sans-serif; background: #F4F6F8; color: #111827; margin: 0; padding: 12px; font-size: 1.15rem; line-height: 1.5; }
+        
+        /* Kiến trúc Tabs */
+        .tabs { display: flex; overflow-x: auto; background: #1E3A8A; border-radius: 8px; margin-bottom: 15px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+        .tabs::-webkit-scrollbar { display: none; }
+        .tab-btn { flex: 1; padding: 14px 12px; text-align: center; color: rgba(255,255,255,0.8); background: none; border: none; font-size: 1.05rem; cursor: pointer; white-space: nowrap; font-weight: bold; transition: 0.3s; }
+        .tab-btn.active { background: #3B82F6; color: white; }
+        
+        .tab-content { display: none; background: white; padding: 16px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.05); min-height: 60vh; }
+        .tab-content.active { display: block; animation: fadeIn 0.3s ease; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+        /* UI Nút bấm và Checkbox Tab 1 */
+        .header-title { color: #1E3A8A; margin-top: 0; font-size: 1.4rem; border-bottom: 2px solid #E5E7EB; padding-bottom: 8px; }
+        .checkbox-group label { display: flex; align-items: center; margin-bottom: 12px; font-size: 1.15rem; background: #F9FAFB; padding: 10px; border-radius: 6px; border: 1px solid #E5E7EB; }
+        input[type="checkbox"] { transform: scale(1.4); margin-right: 12px; accent-color: #3B82F6; }
+        .btn-spin { background: #F59E0B; color: white; border: none; padding: 14px; font-size: 1.25rem; border-radius: 8px; width: 100%; font-weight: bold; margin-top: 10px; cursor: pointer; box-shadow: 0 4px 6px rgba(245,158,11,0.3); transition: 0.2s; }
+        .btn-spin:active { transform: scale(0.98); }
+        
+        /* Hiển thị kết quả quay */
+        .result-box { margin-top: 20px; padding: 15px; background: #EFF6FF; border-left: 5px solid #3B82F6; border-radius: 4px; font-size: 1.15rem; }
+        .result-item { margin-bottom: 12px; padding-bottom: 12px; border-bottom: 1px dashed #BFDBFE; }
+        .result-item:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+
+        /* Danh sách dạng ẩn hiện Tab 2 & 3 */
+        details { background: #F8FAFC; border: 1px solid #E5E7EB; margin-bottom: 12px; border-radius: 8px; }
+        summary { padding: 14px; font-weight: bold; cursor: pointer; font-size: 1.15rem; color: #111827; list-style-type: none; position: relative; }
+        summary::after { content: "▼"; position: absolute; right: 15px; color: #6B7280; font-size: 0.9rem; }
+        details[open] summary::after { content: "▲"; color: #3B82F6; }
+        .detail-content { padding: 14px; border-top: 1px solid #E5E7EB; color: #4B5563; font-size: 1.1rem; }
+
+        /* Inline tags cho món ăn ngoài dễ dán code */
+        #outdoor-seafood span { display: inline-block; background: #FEF3C7; color: #92400E; padding: 6px 10px; margin: 4px 4px 4px 0; border-radius: 6px; font-weight: bold; font-size: 1rem; border: 1px solid #FDE68A; }
+    </style>
+</head>
+<body>
+
+    <!-- THỂ ĐIỀU HƯỚNG TABS -->
+    <div class="tabs">
+        <button class="tab-btn active" onclick="openTab('tab1')">Hôm Nay</button>
+        <button class="tab-btn" onclick="openTab('tab2')">Lịch Tuần</button>
+        <button class="tab-btn" onclick="openTab('tab3')">Kho Món</button>
+        <button class="tab-btn" onclick="openTab('tab4')">Thông Tin</button>
+    </div>
+
+    <!-- TAB 1: GỢI Ý & QUAY NGẪU NHIÊN -->
+    <div id="tab1" class="tab-content active">
+        <h2 id="today-date" class="header-title"></h2>
+        <p style="color: #4B5563; font-weight: 500;">Chọn các bữa cần gợi ý món ăn cho ngày tiếp theo (có thể chọn nhiều):</p>
+        
+        <div class="checkbox-group">
+            <label><input type="checkbox" id="chk-sang" value="Sáng"> Bữa Sáng (Nhanh, Khô)</label>
+            <label><input type="checkbox" id="chk-trua" value="Trưa"> Bữa Trưa (Cuối tuần ăn chung)</label>
+            <label><input type="checkbox" id="chk-chieu" value="Chiều"> Bữa Tối (Ngày thường: Mặn, Canh, Rau)</label>
+            <label><input type="checkbox" id="chk-toi-ct" value="Tối CT"> Bữa Tối (Cuối tuần: Tự do, Cua ghẹ, Ốc)</label>
+        </div>
+        
+        <button class="btn-spin" onclick="spinMenu()">🎲 Xoay Đề Xuất Món (F5)</button>
+        <div id="spin-result" class="result-box" style="display:none;"></div>
+    </div>
+
+    <!-- TAB 2: LỊCH TUẦN CỐ ĐỊNH T2 - T7 -->
+    <div id="tab2" class="tab-content">
+        <h2 class="header-title">Khung Lịch Cố Định (T2 - Chủ Nhật)</h2>
+        
+        <details><summary>Thứ 2</summary><div class="detail-content"><b>Sáng:</b> Bánh mì chảo (Trứng ốp la, Pate)<br><br><b>Tối:</b> Cá lóc kho tộ, Rau muống luộc, Canh cà chua trứng.</div></details>
+        <details><summary>Thứ 3</summary><div class="detail-content"><b>Sáng:</b> Hủ tiếu Nam Vang khô<br><br><b>Tối:</b> Thịt ba chỉ kho hột vịt, Đậu que xào, Canh bí đỏ hầm sườn.</div></details>
+        <details><summary>Thứ 4</summary><div class="detail-content"><b>Sáng:</b> Mì gói xào khô thịt bò & Cải thìa<br><br><b>Tối:</b> Tôm rim mặn ngọt, Bắp cải xào, Canh cải bẹ xanh nấu thịt băm.</div></details>
+        <details><summary>Thứ 5</summary><div class="detail-content"><b>Sáng:</b> Bánh bao trứng cút & Sữa chua<br><br><b>Tối:</b> Đậu hũ nhồi thịt sốt cà, Rau lang luộc, Canh khoai mỡ.</div></details>
+        <details><summary>Thứ 6</summary><div class="detail-content"><b>Sáng:</b> Bột chiên trứng & Gỏi đu đủ<br><br><b>Tối:</b> Gà kho sả gừng, Cải thìa xào, Canh nghêu mồng tơi.</div></details>
+        <details><summary>Thứ 7 (Năng lượng cao)</summary><div class="detail-content"><b>Sáng:</b> Phở bò nạc mềm<br><br><b>Trưa:</b> Gà rán KFC / Lotte hoặc Pizza Domino, Cơm bò Yoshinoya.<br><br><b>Tối:</b> Ăn ngoài Sủi cảo / Ốc / Cua ghẹ.</div></details>
+        <details><summary>Chủ Nhật (Truyền thống)</summary><div class="detail-content"><b>Sáng:</b> Dimsum hoặc Bánh cuốn<br><br><b>Trưa:</b> Bún đậu mắm tôm / Cơm gà xối mỡ / Cơm chảo Papasot.<br><br><b>Tối:</b> Bánh xèo miền Tây / Mì Quảng / Ốc.</div></details>
+    </div>
+
+    <!-- TAB 3: DANH SÁCH TOÀN BỘ MÓN ĂN -->
+    <div id="tab3" class="tab-content">
+        <h2 class="header-title">Kho Món Đa Dạng Để Lựa Chọn</h2>
+        
+        <details><summary>☀️ Nhóm Món Sáng (Khô & Gọn)</summary><div class="detail-content">Bánh mì chảo, Mì gói xào bò cải thìa, Hủ tiếu Nam Vang, Bột chiên trứng, Cơm tấm sườn nướng, Bánh bao thịt, Bánh cuốn mộc nhĩ, Phở bò tái nạc, Dimsum.</div></details>
+        
+        <details><summary>🍲 Nhóm Món Mặn (Tối Ngày Thường)</summary><div class="detail-content">Cá hồi áp chảo bơ tỏi, Đậu hũ nhồi thịt, Tôm rim nước dừa, Cá lóc/cá hú kho tộ, Trứng chiên hàu sữa, Bò lúc lắc hành tây, Gà kho gừng sả.</div></details>
+        
+        <details><summary>🥣 Nhóm Canh & Rau (Tối Ngày Thường)</summary><div class="detail-content">Canh cà chua nấu trứng, Canh bí đỏ hầm, Canh cua đồng rau đay, Canh rong biển, Canh chua cá lóc.<br><br>Cải bó xôi xào tỏi, Bông cải xanh luộc, Rau muống/Rau dền luộc.</div></details>
+        
+        <details open><summary>🌟 Hải Sản & Ăn Ngoài (Tối Cuối Tuần)</summary>
+            <div class="detail-content">
+                <p style="margin-top:0; font-size:1rem;"><i>* Danh sách món ăn ngoài, dán thẻ HTML liền mạch:</i></p>
+                <div id="outdoor-seafood"><span>Cua rang me</span><span>Ghẹ hấp sả</span><span>Ốc hương xào bơ tỏi</span><span>Ốc len xào dừa</span><span>Nghêu hấp sả</span><span>Ốc móng tay xào rau muống</span><span>Sò huyết cháy tỏi</span><span>Sủi cảo Hà Tôn Quyền</span><span>Cháo trắng hột vịt muối</span></div>
+            </div>
+        </details>
+    </div>
+
+    <!-- TAB 4: THÔNG TIN DINH DƯỠNG -->
+    <div id="tab4" class="tab-content">
+        <h2 class="header-title">Nguyên Tắc Dinh Dưỡng Gia Đình</h2>
+        <ul style="padding-left: 20px; color: #374151;">
+            <li style="margin-bottom: 10px;"><b>👦 Trẻ 15 tuổi (Tăng chiều cao):</b> Ưu tiên siêu thực phẩm chứa Canxi (Tôm, Cua, Ghẹ, Sữa), Vitamin D3 (Trứng gà, Cá hồi), Vitamin K2 (Phô mai), Kẽm (Hàu, Ốc, Thịt bò). <i>Nên ăn nhiều khối lượng thịt, tinh bột hơn.</i></li>
+            <li><b>👵 Người 70 tuổi (Dễ tiêu hóa):</b> Ưu tiên thức ăn ninh mềm, kho rục. Giảm muối tối đa để bảo vệ huyết áp. Ăn hải sản hoặc ốc cần nhai rất kỹ, ăn lượng vừa phải để tránh đầy hơi lúc ngủ. Uống đủ 1.5 - 2 lít nước mỗi ngày.</li>
+        </ul>
+    </div>
+
+    <!-- KHỐI LỆNH JAVASCRIPT -->
+    <script>
+        // Hàm chuyển Tab
+        function openTab(tabId) {
+            document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+            document.getElementById(tabId).classList.add('active');
+            event.currentTarget.classList.add('active');
+        }
+
+        // Lấy ngày hôm nay
+        const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+        document.getElementById('today-date').innerText = "Hôm nay: " + new Date().toLocaleDateString('vi-VN', options);
+
+        // Kho dữ liệu để Vòng xoay bốc thăm
+        const menuData = {
+            'Sáng': [
+                'Bánh mì chảo (Trứng ốp la, Xúc xích, Pate)', 
+                'Mì gói xào khô thịt bò & rau cải thìa', 
+                'Hủ tiếu Nam Vang (Tôm, Thịt băm, Trứng cút)', 
+                'Bột chiên trứng gà ăn kèm gỏi đu đủ', 
+                'Bánh bao nhân thịt & 1 hộp Sữa chua', 
+                'Phở bò tái nạc', 
+                'Cơm tấm sườn nướng mỡ hành'
+            ],
+            'Trưa': [
+                'Gà rán KFC / Lotte & Salad bắp cải', 
+                'Pizza Domino ngập phô mai', 
+                'Cơm bò Nhật Bản Yoshinoya', 
+                'Bún đậu mắm tôm', 
+                'Cơm chảo nóng Papasot', 
+                'Bánh tráng cuốn thịt luộc Trảng Bàng'
+            ],
+            'Chiều': [
+                'Cá lóc kho tộ + Canh cà chua trứng + Rau muống luộc',
+                'Thịt kho hột vịt + Canh bí đỏ hầm sườn + Đậu que xào',
+                'Tôm rim nước dừa + Canh cải bẹ xanh + Bắp cải xào tỏi',
+                'Đậu hũ nhồi thịt + Canh khoai mỡ + Rau lang luộc',
+                'Gà kho sả gừng + Canh nghêu mồng tơi + Cải bó xôi xào',
+                'Bò lúc lắc + Canh rong biển đậu hũ non + Salad',
+                'Cá hồi áp chảo bơ tỏi + Canh cua đồng rau đay'
+            ],
+            'Tối CT': [
+                'Mua Cua rang me / Ghẹ hấp sả ăn tại nhà', 
+                'Ra quán ăn Ốc hương, Nghêu, Sò huyết', 
+                'Sủi cảo tôm thịt Hà Tôn Quyền', 
+                'Bánh xèo miền Tây nhiều rau xanh', 
+                'Cơm chiên hải sản', 
+                'Cháo trắng hột vịt muối (Nhẹ bụng)'
+            ]
+        };
+
+        // Hàm xáo trộn mảng ngẫu nhiên và lấy N phần tử
+        function getRandomItems(arr, num) {
+            const shuffled = [...arr].sort(() => 0.5 - Math.random());
+            return shuffled.slice(0, num);
+        }
+
+        // Hàm xoay vòng
+        function spinMenu() {
+            const checks = document.querySelectorAll('.checkbox-group input:checked');
+            const resBox = document.getElementById('spin-result');
+            
+            if(checks.length === 0) {
+                resBox.innerHTML = "<b style='color:#DC2626;'>Vui lòng chọn ít nhất 1 bữa để hệ thống xoay!</b>";
+                resBox.style.display = "block";
+                return;
+            }
+            
+            let html = "<h3 style='margin-top:0; color:#1E3A8A; border-bottom:1px solid #BFDBFE; padding-bottom:8px;'>✨ Đề xuất ngon miệng cho bạn:</h3>";
+            
+            checks.forEach(chk => {
+                const list = menuData[chk.value];
+                // Lấy 3 lựa chọn ngẫu nhiên cho mỗi bữa
+                const suggestions = getRandomItems(list, 3);
+                
+                html += `<div class='result-item'>
+                            <b style='color:#047857; font-size: 1.2rem;'>Đề xuất ${chk.parentNode.innerText.trim()}:</b>
+                            <ul style='margin-top:8px; padding-left: 20px; color:#1F2937;'>`;
+                suggestions.forEach(item => {
+                    html += `<li style='margin-bottom:6px;'>${item}</li>`;
+                });
+                html += `</ul></div>`;
+            });
+            
+            resBox.innerHTML = html;
+            resBox.style.display = "block";
+        }
+    </script>
+</body>
+</html>
