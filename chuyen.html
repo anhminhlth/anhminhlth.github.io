@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+<html lang="vi" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Internal Work Notes - Q4/2026</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Custom styles for discrete/stealth viewing and smooth mobile interactions */
+        * {
+            -webkit-tap-highlight-color: transparent;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            transition: background-color 0.2s ease, color 0.2s ease;
+        }
+        /* Stealth mode reduces font size, lowers contrast, and hides bright badges */
+        body.stealth-mode {
+            font-size: 0.82rem !important;
+            line-height: 1.35 !important;
+            letter-spacing: -0.01em;
+        }
+        body.stealth-mode .stealth-dim {
+            opacity: 0.65 !important;
+            filter: saturate(0.25) !important;
+        }
+        body.stealth-mode .card-box {
+            padding: 0.65rem !important;
+            margin-bottom: 0.5rem !important;
+        }
+        body.stealth-mode h2, body.stealth-mode h3 {
+            font-size: 0.9rem !important;
+        }
+        /* Hide scrollbars for clean mobile tabs */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 dark:bg-slate-950 dark:text-slate-200 min-h-screen pb-24 selection:bg-slate-300 dark:selection:bg-slate-700">
+
+    <!-- TOP STICKY BAR (Discreet Header + Quick Controls) -->
+    <header class="sticky top-0 z-40 bg-white/95 dark:bg-slate-900/95 backdrop-blur border-b border-slate-200 dark:border-slate-800 transition-colors">
+        <div class="max-w-3xl mx-auto px-3 py-2 flex items-center justify-between">
+            <div class="flex items-center space-x-2">
+                <span class="w-2 h-2 rounded-full bg-emerald-500 stealth-dim"></span>
+                <span class="text-xs font-semibold tracking-wider uppercase text-slate-500 dark:text-slate-400">Memo // ODS-SIS 2027</span>
+            </div>
+
+            <div class="flex items-center space-x-1.5">
+                <!-- Stealth / Low-Profile Toggle -->
+                <button id="btnStealth" onclick="toggleStealth()" class="px-2.5 py-1 rounded text-xs font-medium bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-slate-700 flex items-center space-x-1 active:scale-95 transition">
+                    <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029m5.858.908a3 3 0 114.243 4.243M9.878 9.878l4.242 4.242M9.88 9.88l-3.29-3.29m7.532 7.532l3.29 3.29M3 3l3.59 3.59m0 0A9.953 9.953 0 0112 5c4.478 0 8.268 2.943 9.543 7a10.025 10.025 0 01-4.132 5.411m0 0L21 21"/></svg>
+                    <span id="stealthLabel">Kín đáo: Tắt</span>
+                </button>
+
+                <!-- Theme Toggle -->
+                <button onclick="toggleTheme()" class="p-1.5 rounded bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-slate-700 active:scale-95 transition" title="Đổi giao diện Sáng/Tối">
+                    <svg id="iconSun" class="w-4 h-4 hidden dark:block" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
+                    <svg id="iconMoon" class="w-4 h-4 block dark:hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/></svg>
+                </button>
+            </div>
+        </div>
+
+        <!-- STICKY NAVIGATION TABS (Thumb-friendly) -->
+        <nav class="max-w-3xl mx-auto px-2 overflow-x-auto no-scrollbar border-t border-slate-100 dark:border-slate-800/80">
+            <div class="flex space-x-1 py-1.5 min-w-max">
+                <button onclick="switchTab('tab2')" id="nav-tab2" class="tab-btn px-3 py-1.5 rounded-md text-xs font-semibold transition whitespace-nowrap bg-slate-800 text-white dark:bg-slate-200 dark:text-slate-900">
+                    🎯 1. Chiều gặp A.Thế Anh
+                </button>
+                <button onclick="switchTab('tab1')" id="nav-tab1" class="tab-btn px-3 py-1.5 rounded-md text-xs font-medium transition whitespace-nowrap text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800">
+                    📊 2. Tổng hợp & Hướng xử lý
+                </button>
+                <button onclick="switchTab('tab3')" id="nav-tab3" class="tab-btn px-3 py-1.5 rounded-md text-xs font-medium transition whitespace-nowrap text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800">
+                    👥 3. Nhân sự 1-1 (CFR)
+                </button>
+                <button onclick="switchTab('tab4')" id="nav-tab4" class="tab-btn px-3 py-1.5 rounded-md text-xs font-medium transition whitespace-nowrap text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800">
+                    🔑 4. Keyword Sếp khác
+                </button>
+                <button onclick="switchTab('tab5')" id="nav-tab5" class="tab-btn px-3 py-1.5 rounded-md text-xs font-medium transition whitespace-nowrap text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800">
+                    📋 5. Tin nhắn & Tâm thư
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <!-- MAIN CONTENT CONTAINER -->
+    <main class="max-w-3xl mx-auto px-3 pt-3">
+
+        <!-- ==========================================
+             TAB 2: CHIỀU NAY GẶP A. THẾ ANH (MẶC ĐỊNH MỞ ĐẦU TIÊN ĐỂ TÁC CHIẾN NGAY)
+             ========================================== -->
+        <section id="tab2" class="tab-content space-y-3">
+            
+            <!-- Alert Box: Lưu ý ngầm về Tuấn SIS -->
+            <div class="card-box p-3 rounded-lg bg-amber-500/10 border border-amber-500/30 text-amber-900 dark:text-amber-200 stealth-dim">
+                <div class="flex items-start space-x-2">
+                    <span class="text-sm mt-0.5">⚡</span>
+                    <div class="text-xs leading-relaxed">
+                        <strong class="uppercase tracking-wide block mb-0.5 text-amber-700 dark:text-amber-300">Lưu ý ngầm cốt tử (Vị thế Tuấn SIS):</strong>
+                        • <strong>Tuấn SIS đã đồng ý nhận</strong> nếu các sếp/các bên hỏi tới, <strong>NHƯNG chỉ gật đầu khi được hỏi chứ KHÔNG chủ động đứng ra xin người</strong> (tránh tiếng kéo bè cánh).<br>
+                        • <strong>Cách đánh:</strong> Minh phải <strong>chủ động 100% đề xuất</strong> với A. Thế Anh, nêu rõ nỗi đau quá tải Ops/SLA bên SIS và <strong>xin A. Thế Anh thông cảm mở lời trước</strong>. Khi A. Thế Anh / A. Dương hỏi sang, Tuấn SIS sẽ khớp lệnh ngay.
+                    </div>
+                </div>
+            </div>
+
+            <!-- Mục tiêu cốt lõi chiều nay -->
+            <div class="card-box bg-white dark:bg-slate-900 p-3.5 rounded-lg border border-slate-200 dark:border-slate-800 shadow-sm">
+                <h2 class="text-xs font-bold uppercase tracking-wider text-slate-400 dark:text-slate-500 mb-2">Mục tiêu cốt lõi buổi gặp chiều nay</h2>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs">
+                    <div class="p-2.5 rounded bg-slate-50 dark:bg-slate-800/60 border border-slate-200/60 dark:border-slate-700/60">
+                        <span class="font-bold text-emerald-600 dark:text-emerald-400 block mb-0.5">1. An toàn công việc chung</span>
+                        Chốt phương án KD3 B2B (<strong>CAPEX = 0đ</strong>, sạch 100% DMCA) để anh yên tâm di sản Fshare đã có khung tự vận hành vững chắc.
+                    </div>
+                    <div class="p-2.5 rounded bg-slate-50 dark:bg-slate-800/60 border border-slate-200/60 dark:border-slate-700/60">
+                        <span class="font-bold text-sky-600 dark:text-sky-400 block mb-0.5">2. Xin chuyển trước & Thông cảm lộ trình</span>
+                        Xin phép <strong>chuyển cá nhân Minh sang FTISIS trước</strong> + Xin anh <strong>thông cảm lộ trình chuyển tiếp tuần tự (trước - sau)</strong> cho từng anh em còn lại.
+                    </div>
+                </div>
+            </div>
+
+            <!-- 4 Bước Mở Lời Tuần Tự -->
+            <div class="space-y-2.5">
+                <h2 class="text-xs font-bold uppercase tracking-wider text-slate-400 dark:text-slate-500 px-1">Trình tự 4 bước trao đổi (Liếc 3 giây)</h2>
+
+                <!-- Bước 1 -->
+                <div class="card-box bg-white dark:bg-slate-900 p-3.5 rounded-lg border-l-4 border-l-emerald-500 border border-slate-200 dark:border-slate-800">
+                    <div class="flex justify-between items-center mb-1.5">
+                        <h3 class="text-sm font-bold text-slate-900 dark:text-white">Bước 1: Báo cáo chốt an toàn Fshare B2B</h3>
+                        <span class="text-[10px] px-2 py-0.5 rounded bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 font-semibold stealth-dim">An tâm sếp</span>
+                    </div>
+                    <div class="flex flex-wrap gap-1.5 mb-2">
+                        <span class="px-2 py-0.5 text-[11px] font-medium rounded bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300">Đóng B2C 01/01/2027</span>
+                        <span class="px-2 py-0.5 text-[11px] font-medium rounded bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300">2.8PB Server cũ • CAPEX = 0đ</span>
+                        <span class="px-2 py-0.5 text-[11px] font-medium rounded bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300">Private Share by Email (0% DMCA)</span>
+                        <span class="px-2 py-0.5 text-[11px] font-medium rounded bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300">38 Server 4U cứu 66 KH FDrive</span>
+                        <span class="px-2 py-0.5 text-[11px] font-medium rounded bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300">Bundle 0đ kèm Leased Line</span>
+                    </div>
+                    <p class="text-xs text-slate-600 dark:text-slate-400 italic">
+                        "Báo cáo anh, phương án B2B của KD3 tuân thủ 100% chỉ đạo của anh: Cắt B2C sạch sẽ, tận dụng 2.8PB server hết khấu hao (0đ CAPEX) làm gói Bundle hỗ trợ Kênh truyền và cứu 66 KH FDrive. Chuyển sang Private Share theo Email định danh nên triệt tiêu 100% DMCA, chuẩn NĐ 13/53."
+                    </p>
+                </div>
+
+                <!-- Bước 2 -->
+                <div class="card-box bg-white dark:bg-slate-900 p-3.5 rounded-lg border-l-4 border-l-sky-500 border border-slate-200 dark:border-slate-800">
+                    <div class="flex justify-between items-center mb-1.5">
+                        <h3 class="text-sm font-bold text-slate-900 dark:text-white">Bước 2: Đặt vấn đề xin chuyển Minh sang FTISIS trước</h3>
+                        <span class="text-[10px] px-2 py-0.5 rounded bg-sky-500/10 text-sky-600 dark:text-sky-400 font-semibold stealth-dim">Mở đường</span>
+                    </div>
+                    <ul class="text-xs space-y-1 text-slate-700 dark:text-slate-300 list-disc pl-4">
+                        <li><strong>Đúng chỗ khuyết tại SIS:</strong> B2C dừng, thế mạnh quản lý quy trình/giao tiếp của em hợp nhất để sang FTISIS làm <strong>lá chắn IT Ops, quản lý luồng Ticket & SLA sự cố</strong> (giải phóng Dev/QA khỏi việc xung đột liên phòng ban).</li>
+                        <li><strong>Cam kết trách nhiệm kép:</strong> Em <strong>vẫn kiêm nhiệm đầu mối duy trì tệp Fshare B2B đến hết 2028</strong> (chi phí = 0đ, không đứt gãy).</li>
+                        <li><strong>Tối ưu định biên:</strong> <strong>Không làm tăng headcount FTI</strong>, giảm gánh nặng quỹ lương B2C cho ODS.</li>
+                    </ul>
+                </div>
+
+                <!-- Bước 3 -->
+                <div class="card-box bg-white dark:bg-slate-900 p-3.5 rounded-lg border-l-4 border-l-indigo-500 border border-slate-200 dark:border-slate-800">
+                    <div class="flex justify-between items-center mb-1.5">
+                        <h3 class="text-sm font-bold text-slate-900 dark:text-white">Bước 3: Xin thông cảm lộ trình "Trước - Sau" cho anh em KD3</h3>
+                        <span class="text-[10px] px-2 py-0.5 rounded bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 font-semibold stealth-dim">Êm thấm</span>
+                    </div>
+                    <p class="text-xs text-slate-700 dark:text-slate-300 mb-2">
+                        Xin anh thông cảm cho em <strong>bước sang trước để thiết lập đầu cầu mới</strong>, và <strong>trước sau sẽ lần lượt điều chuyển êm đẹp cho các thành viên còn lại</strong> theo đúng sở trường & hoàn cảnh, không ai bị bỏ rơi:
+                    </p>
+                    <div class="grid grid-cols-2 gap-1.5 text-[11px]">
+                        <div class="p-2 rounded bg-slate-50 dark:bg-slate-800/70">
+                            <strong>• Châu (UX/UI):</strong> Kéo sang FTISIS chuẩn hóa giao diện sản phẩm B2B cùng Minh.
+                        </div>
+                        <div class="p-2 rounded bg-slate-50 dark:bg-slate-800/70">
+                            <strong>• Huy (Marketing):</strong> Chi viện chạy Lead Digital cho PKD1/2 cày KPI 130 tỷ.
+                        </div>
+                        <div class="p-2 rounded bg-slate-50 dark:bg-slate-800/70">
+                            <strong>• Vân & Thủy (CSKH):</strong> Giữ ổn định văn phòng, lo PO/Đối soát & CSKH B2B tập trung.
+                        </div>
+                        <div class="p-2 rounded bg-slate-50 dark:bg-slate-800/70">
+                            <strong>• Tuấn NM (Phó phòng):</strong> Bàn giao B2C, kết nối Direct Sales & Co-sale B2B.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Bước 4 -->
+                <div class="card-box bg-white dark:bg-slate-900 p-3.5 rounded-lg border-l-4 border-l-amber-500 border border-slate-200 dark:border-slate-800">
+                    <div class="flex justify-between items-center mb-1.5">
+                        <h3 class="text-sm font-bold text-slate-900 dark:text-white">Bước 4: Chốt hướng mở lời sang Tuấn SIS (Key chốt hạ)</h3>
+                        <span class="text-[10px] px-2 py-0.5 rounded bg-amber-500/10 text-amber-600 dark:text-amber-400 font-semibold stealth-dim">Khớp lệnh</span>
+                    </div>
+                    <div class="p-2.5 rounded bg-slate-100 dark:bg-slate-800 text-xs text-slate-800 dark:text-slate-200 leading-relaxed border border-slate-200 dark:border-slate-700">
+                        "Em đã tìm hiểu kỹ bài toán vận hành bên SIS và có trao đổi tâm tư với Tuấn. Phía Tuấn rất cần người gánh mảng Ops/SLA và UX/UI, <strong>Tuấn đã đồng ý nhận nếu các sếp có ý kiến</strong>, nhưng vì mới nhận nhiệm vụ GĐ trung tâm nên Tuấn ngại chủ động đứng ra xin người từ ODS. <strong>Nếu được anh Thế Anh thông cảm gật đầu chủ trương trước và hỏi ý kiến Tuấn một tiếng</strong> thì anh em bên dưới dễ bề triển khai ngay ạ. Bản thân em cũng tự nguyện nhận <strong>thử thách 2 tháng</strong> để chứng minh hiệu quả."
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==========================================
+             TAB 1: TỔNG HỢP & HƯỚNG XỬ LÝ (EXECUTIVE SUMMARY)
+             ========================================== -->
+        <section id="tab1" class="tab-content hidden space-y-3">
+            
+            <!-- 1. Bản chất vấn đề (Pain Points) -->
+            <div class="card-box bg-white dark:bg-slate-900 p-3.5 rounded-lg border border-slate-200 dark:border-slate-800">
+                <h2 class="text-xs font-bold uppercase tracking-wider text-rose-500 mb-2">1. Bản chất vấn đề (3 Pain Points cốt lõi)</h2>
+                <ul class="text-xs space-y-2 text-slate-700 dark:text-slate-300">
+                    <li class="flex items-start space-x-2">
+                        <span class="font-bold text-rose-500">•</span>
+                        <span><strong>B2C dừng hẳn (01/01/2027):</strong> Đóng cổng thanh toán T12/2026 để cắt lỗ, bỏ chi phí vận hành thấp, triệt tiêu <strong>100% rủi ro bản quyền DMCA</strong> & tuân thủ <strong>NĐ 13/2023, NĐ 53/2022</strong>.</span>
+                    </li>
+                    <li class="flex items-start space-x-2">
+                        <span class="font-bold text-rose-500">•</span>
+                        <span><strong>Áp lực số ảo tại ODS:</strong> KPI 2026 giao <strong>22 tỷ</strong>, thực tế B2C chỉ đạt <strong>~7 tỷ</strong>. BGĐ ODS đang phải <em>"cân số / bù số"</em> để duy trì >80%/tháng. Không thể kéo dài KPI ảo gây áp lực tâm lý & rủi ro tài chính.</span>
+                    </li>
+                    <li class="flex items-start space-x-2">
+                        <span class="font-bold text-rose-500">•</span>
+                        <span><strong>Áp lực toàn FTI 2027:</strong> PKD1, PKD2 tăng chỉ tiêu 20–30% (lên <strong>110 – 130 tỷ/phòng</strong>, Sales gánh 3–8 tỷ/tháng). BĐH lo lắng nhân sự KD3 hẫng hụt khi B2C về 0.</span>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- 2. Chiến lược xử lý 3 Mũi Nhọn -->
+            <div class="card-box bg-white dark:bg-slate-900 p-3.5 rounded-lg border border-slate-200 dark:border-slate-800 space-y-3">
+                <h2 class="text-xs font-bold uppercase tracking-wider text-emerald-500">2. Giải pháp 3 Mũi Nhọn (Win - Win - Win)</h2>
+
+                <!-- Mũi 1: Mô hình 2 chân B2B -->
+                <div class="p-2.5 rounded bg-slate-50 dark:bg-slate-800/60 border border-slate-200/70 dark:border-slate-700/70 space-y-2">
+                    <div class="flex justify-between items-center">
+                        <span class="text-xs font-bold text-slate-900 dark:text-white">Mũi 1: Chốt Kinh doanh KD3 "2 Chân" (Về giá trị thực)</span>
+                        <span class="text-[11px] font-semibold text-emerald-600 dark:text-emerald-400">Tuyển mới 02 Sales B2B</span>
+                    </div>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs">
+                        <div class="p-2 rounded bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800">
+                            <strong class="block text-slate-800 dark:text-slate-200 mb-1">Chân 1: FshareStorage B2B (0,5 Tỷ)</strong>
+                            • Thu hồi <strong>42 server cũ (2.0–2.8PB)</strong> hết khấu hao -> <strong>CAPEX = 0đ</strong>.<br>
+                            • Giữ <strong>6 server</strong> cho VIP cũ đến 31/12/2028 (giảm 90% bồi hoàn).<br>
+                            • Dùng <strong>38 server 4U</strong> Backup 1-1 giải cứu <strong>66 KH FDrive</strong>.<br>
+                            • Bán sỉ <strong>200k/TB/tháng</strong> & Bundle 0đ kèm Leased Line/Camera.<br>
+                            • <strong>100% Private Share by Identity (Email)</strong> -> Sạch DMCA.
+                        </div>
+                        <div class="p-2 rounded bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800">
+                            <strong class="block text-slate-800 dark:text-slate-200 mb-1">Chân 2: B2B Chủ lực (9,5 Tỷ)</strong>
+                            • Làm đại lý bán trực tiếp <strong>Microsoft 365 (MS365)</strong> cho SMB/Enterprise.<br>
+                            • Kinh doanh <strong>HiGIO Cloud, FPT Cloud</strong> lưu trữ/xử lý dữ liệu lớn.<br>
+                            • <strong>Co-sale Kênh truyền:</strong> Bán kèm Leased Line, Internet DN, Starlink, FPT Camera cùng PKD1, PKD2.<br>
+                            • Đề xuất tuyển mới <strong>02 Sales B2B chuyên trách</strong>.
+                        </div>
+                    </div>
+
+                    <!-- Bảng lộ trình doanh số 2027-2029 -->
+                    <div class="overflow-x-auto pt-1">
+                        <table class="w-full text-left text-[11px] border-collapse">
+                            <thead>
+                                <tr class="border-b border-slate-200 dark:border-slate-700 text-slate-500 dark:text-slate-400">
+                                    <th class="py-1 px-2">Hạng mục</th>
+                                    <th class="py-1 px-2">2027 (Bản lề)</th>
+                                    <th class="py-1 px-2">2028 (Tăng tốc)</th>
+                                    <th class="py-1 px-2">2029 (Quy mô)</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-slate-200/60 dark:divide-slate-800">
+                                <tr>
+                                    <td class="py-1 px-2">FshareStorage B2B</td>
+                                    <td class="py-1 px-2 font-medium">0,5 Tỷ</td>
+                                    <td class="py-1 px-2 font-medium">2,0 Tỷ</td>
+                                    <td class="py-1 px-2 font-medium">5,0 Tỷ</td>
+                                </tr>
+                                <tr>
+                                    <td class="py-1 px-2">MS365, Cloud & Co-sale</td>
+                                    <td class="py-1 px-2 font-medium">9,5 Tỷ</td>
+                                    <td class="py-1 px-2 font-medium">28,0 Tỷ</td>
+                                    <td class="py-1 px-2 font-medium">45,0 Tỷ</td>
+                                </tr>
+                                <tr class="bg-emerald-500/10 font-bold text-emerald-700 dark:text-emerald-300">
+                                    <td class="py-1 px-2">TỔNG KD3</td>
+                                    <td class="py-1 px-2">10,0 Tỷ</td>
+                                    <td class="py-1 px-2">30,0 Tỷ</td>
+                                    <td class="py-1 px-2">50,0 Tỷ</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Mũi 2 & Mũi 3 -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs">
+                    <div class="p-2.5 rounded bg-slate-50 dark:bg-slate-800/60 border border-slate-200/70 dark:border-slate-700/70">
+                        <strong class="block text-slate-900 dark:text-white mb-1">Mũi 2: Tái cấu trúc Nhân sự êm thấm</strong>
+                        Giải phóng <strong>100% gánh nặng định biên B2C</strong> cho ODS. Phân bổ nhân sự chi viện đúng chỗ PKD1/PKD2 đang khát quân cày 130 tỷ & bổ sung UX/UI cho FTISIS.
+                    </div>
+                    <div class="p-2.5 rounded bg-slate-50 dark:bg-slate-800/60 border border-slate-200/70 dark:border-slate-700/70">
+                        <strong class="block text-slate-900 dark:text-white mb-1">Mũi 3: Chuyển dịch Cá nhân (Minh -> FTISIS)</strong>
+                        Làm Trưởng nhóm Điều phối Vận hành (<strong>IT Ops & SLA >99%</strong>) bọc lót cho Tuấn SIS + <strong>Kiêm nhiệm 0đ</strong> duy trì tệp B2B Fshare cho ODS đến 2028.
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==========================================
+             TAB 3: MA TRẬN NHÂN SỰ & KỊCH BẢN 1-1 (CFR NHÂN VIÊN)
+             ========================================== -->
+        <section id="tab3" class="tab-content hidden space-y-2.5">
+            <div class="px-1 flex items-center justify-between">
+                <h2 class="text-xs font-bold uppercase tracking-wider text-slate-400 dark:text-slate-500">Chạm vào từng người để mở kịch bản CFR 1-1</h2>
+                <span class="text-[11px] text-slate-400">6 thành viên</span>
+            </div>
+
+            <!-- 1. Châu UX/UI -->
+            <div class="card-box bg-white dark:bg-slate-900 rounded-lg border border-slate-200 dark:border-slate-800 overflow-hidden">
+                <button onclick="toggleAccordion('acc-chau')" class="w-full p-3 text-left flex items-center justify-between">
+                    <div>
+                        <span class="text-xs font-bold text-slate-900 dark:text-white">1. ChauPTM3 (Châu - UX/UI Design)</span>
+                        <span class="block text-[11px] text-sky-600 dark:text-sky-400 font-medium">➔ Điều chuyển sang FTISIS (Chuẩn hóa UI/UX sản phẩm B2B)</span>
+                    </div>
+                    <span class="text-xs text-slate-400">▼</span>
+                </button>
+                <div id="acc-chau" class="px-3 pb-3 pt-1 text-xs space-y-2 border-t border-slate-100 dark:border-slate-800">
+                    <div class="flex flex-wrap gap-1">
+                        <span class="px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-[11px]">Cứng tay (Research 22 tính năng)</span>
+                        <span class="px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-[11px]">Rất quý A.Minh • Hợp rơ</span>
+                        <span class="px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-[11px]">Thoát việc hành chính vặt</span>
+                    </div>
+                    <div class="p-2.5 rounded bg-slate-50 dark:bg-slate-800/80 text-slate-700 dark:text-slate-300 italic leading-relaxed">
+                        <strong>Lời thoại 1-1:</strong> "Châu này, anh sẽ thuyên chuyển sang khối Kỹ thuật FTISIS để hỗ trợ Tuấn làm mảng Điều phối Vận hành. Bên SIS đang cực kỳ khát một người làm UX/UI sản phẩm B2B chuẩn chỉ như em. Anh đã trao đổi để em sang phối hợp làm Thiết kế Giao diện & Trải nghiệm cho các dự án B2B của SIS. Em vẫn làm việc sát cánh cùng anh, đúng đam mê thiết kế chuyên sâu mà không bị phân tán bởi việc hành chính vặt."
+                    </div>
+                </div>
+            </div>
+
+            <!-- 2. Huy Marketing -->
+            <div class="card-box bg-white dark:bg-slate-900 rounded-lg border border-slate-200 dark:border-slate-800 overflow-hidden">
+                <button onclick="toggleAccordion('acc-huy')" class="w-full p-3 text-left flex items-center justify-between">
+                    <div>
+                        <span class="text-xs font-bold text-slate-900 dark:text-white">2. HuyDM16 (Huy - Digital Marketing / Seeding)</span>
+                        <span class="block text-[11px] text-emerald-600 dark:text-emerald-400 font-medium">➔ Chi viện Marketing/Lead-gen cho PKD1, PKD2 (Cày số 130 tỷ)</span>
+                    </div>
+                    <span class="text-xs text-slate-400">▼</span>
+                </button>
+                <div id="acc-huy" class="hidden px-3 pb-3 pt-1 text-xs space-y-2 border-t border-slate-100 dark:border-slate-800">
+                    <div class="flex flex-wrap gap-1">
+                        <span class="px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-[11px]">Trẻ • Yêu môi trường FTI</span>
+                        <span class="px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-[11px]">Khao khát bứt phá</span>
+                        <span class="px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-[11px]">Thưởng chiến dịch lớn</span>
+                    </div>
+                    <div class="p-2.5 rounded bg-slate-50 dark:bg-slate-800/80 text-slate-700 dark:text-slate-300 italic leading-relaxed">
+                        <strong>Lời thoại 1-1:</strong> "Huy là nhân tố trẻ rất có năng khiếu mảng Digital Seeding. B2C dừng lại chính là cơ hội để em bứt phá. Anh đề xuất xếp em sang chi viện mảng Marketing/Lead-gen cho PKD1, PKD2 để em gánh các chiến dịch lớn kéo Lead Leased Line và Cloud B2B. Đây là sân chơi lớn để em ghi nhận công trạng thực tế, giúp các phòng cày chỉ tiêu 130 tỷ. Làm tốt em sẽ có thưởng chiến dịch rất lớn và cơ hội thăng tiến rõ ràng."
+                    </div>
+                </div>
+            </div>
+
+            <!-- 3. Vân CSKH -->
+            <div class="card-box bg-white dark:bg-slate-900 rounded-lg border border-slate-200 dark:border-slate-800 overflow-hidden">
+                <button onclick="toggleAccordion('acc-van')" class="w-full p-3 text-left flex items-center justify-between">
+                    <div>
+                        <span class="text-xs font-bold text-slate-900 dark:text-white">3. VanNT (Vân - CSKH & Đối soát)</span>
+                        <span class="block text-[11px] text-amber-600 dark:text-amber-400 font-medium">➔ Giữ lại KD3 chăm HĐ B2B cũ + Chi viện CSKH B2B PKD1/2</span>
+                    </div>
+                    <span class="text-xs text-slate-400">▼</span>
+                </button>
+                <div id="acc-van" class="hidden px-3 pb-3 pt-1 text-xs space-y-2 border-t border-slate-100 dark:border-slate-800">
+                    <div class="flex flex-wrap gap-1">
+                        <span class="px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-[11px]">Có 3 con nhỏ</span>
+                        <span class="px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-[11px]">Cần an toàn, ổn định văn phòng</span>
+                        <span class="px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-[11px]">Không đi thị trường</span>
+                    </div>
+                    <div class="p-2.5 rounded bg-slate-50 dark:bg-slate-800/80 text-slate-700 dark:text-slate-300 italic leading-relaxed">
+                        <strong>Lời thoại 1-1:</strong> "Vân ơi, anh biết em có 3 con nhỏ nên sự ổn định công việc và giờ giấc văn phòng là ưu tiên số 1. Mảng B2C dừng là xu hướng chung của FTI, nhưng anh đã làm việc với các Sếp để xếp cho em một vị trí cực kỳ an toàn: Em ở lại KD3 gánh mảng B2B, xử lý hợp đồng và chi viện CSKH B2B cho PKD1/PKD2. Em vẫn ngồi văn phòng cũ, làm đúng kỹ năng CSKH chu đáo, không phải đi thị trường. Anh cam kết tạo điều kiện linh hoạt giờ giấc khi con ốm đau, miễn là em kiểm soát tốt chỉ số SLA chăm sóc khách hàng."
+                    </div>
+                </div>
+            </div>
+
+            <!-- 4. Thủy CSKH (Nghỉ sinh) -->
+            <div class="card-box bg-white dark:bg-slate-900 rounded-lg border border-slate-200 dark:border-slate-800 overflow-hidden">
+                <button onclick="toggleAccordion('acc-thuy')" class="w-full p-3 text-left flex items-center justify-between">
+                    <div>
+                        <span class="text-xs font-bold text-slate-900 dark:text-white">4. ThuyNTT204 (Thủy - Nghỉ sinh, T4/2027 đi làm lại)</span>
+                        <span class="block text-[11px] text-purple-600 dark:text-purple-400 font-medium">➔ Bố trí khung Admin PO / Đối soát tập trung FTI</span>
+                    </div>
+                    <span class="text-xs text-slate-400">▼</span>
+                </button>
+                <div id="acc-thuy" class="hidden px-3 pb-3 pt-1 text-xs space-y-2 border-t border-slate-100 dark:border-slate-800">
+                    <div class="flex flex-wrap gap-1">
+                        <span class="px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-[11px]">Mới sinh con</span>
+                        <span class="px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-[11px]">Giữ chỗ an toàn T4/2027</span>
+                        <span class="px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-[11px]">Thuần túy tại bàn</span>
+                    </div>
+                    <div class="p-2.5 rounded bg-slate-50 dark:bg-slate-800/80 text-slate-700 dark:text-slate-300 italic leading-relaxed">
+                        <strong>Lời thoại 1-1:</strong> "Thủy cứ yên tâm nghỉ ngơi chăm bé cho tốt nhé. Công ty và anh đã chuẩn bị sẵn bộ khung công việc ổn định cho em khi quay lại vào tháng 4/2027. Em sẽ nằm trong đội ngũ CSKH B2B tập trung / Đối soát Admin PO của FTI. Vị trí của em hoàn toàn được giữ an toàn, công việc đúng chuyên môn đối soát dữ liệu em đã làm rất chuẩn trước đây."
+                    </div>
+                </div>
+            </div>
+
+            <!-- 5. Tuấn NM (Phó phòng) -->
+            <div class="card-box bg-white dark:bg-slate-900 rounded-lg border border-slate-200 dark:border-slate-800 overflow-hidden">
+                <button onclick="toggleAccordion('acc-tuannm')" class="w-full p-3 text-left flex items-center justify-between">
+                    <div>
+                        <span class="text-xs font-bold text-slate-900 dark:text-white">5. TuanNM (Phó phòng KD3)</span>
+                        <span class="block text-[11px] text-slate-500 dark:text-slate-400 font-medium">➔ Bàn giao kỹ thuật B2C Soft Close + Đẩy Co-sale B2B</span>
+                    </div>
+                    <span class="text-xs text-slate-400">▼</span>
+                </button>
+                <div id="acc-tuannm" class="hidden px-3 pb-3 pt-1 text-xs space-y-1.5 border-t border-slate-100 dark:border-slate-800 text-slate-700 dark:text-slate-300">
+                    <p>• <strong>Vai trò:</strong> Phụ trách kỹ thuật nghiệp vụ B2C giai đoạn Soft Close; phối hợp Direct Sales FTI và PKD1, PKD2 đẩy mạnh Co-sale các gói Bundle Storage và Kênh truyền.</p>
+                    <p>• <strong>Tâm lý:</strong> Đồng hành lâu năm, giữ vững uy tín và vị thế quản lý tại phòng.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==========================================
+             TAB 4: KEYWORD TRAO ĐỔI CÁC SẾP KHÁC
+             ========================================== -->
+        <section id="tab4" class="tab-content hidden space-y-3">
+            
+            <!-- 1. Anh Sơn & Anh Chiến (ODS) -->
+            <div class="card-box bg-white dark:bg-slate-900 p-3.5 rounded-lg border border-slate-200 dark:border-slate-800">
+                <div class="flex items-center justify-between mb-2">
+                    <h3 class="text-xs font-bold uppercase tracking-wider text-sky-500">1. Anh Sơn & Anh Chiến (Quản lý ODS)</h3>
+                    <span class="text-[10px] px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-slate-500">Xin đồng cảm & CC Email</span>
+                </div>
+                <div class="flex flex-wrap gap-1.5 mb-2">
+                    <span class="px-2 py-0.5 text-[11px] font-semibold rounded bg-sky-500/10 text-sky-600 dark:text-sky-400 stealth-dim">Cắt KPI B2C ảo -> Về thực chất 10 Tỷ</span>
+                    <span class="px-2 py-0.5 text-[11px] font-semibold rounded bg-sky-500/10 text-sky-600 dark:text-sky-400 stealth-dim">Cắt 100% gánh nặng định biên B2C</span>
+                    <span class="px-2 py-0.5 text-[11px] font-semibold rounded bg-sky-500/10 text-sky-600 dark:text-sky-400 stealth-dim">Thu dòng tiền B2B (0,5-5 tỷ) tốn 0 Headcount</span>
+                </div>
+                <p class="text-xs text-slate-600 dark:text-slate-300 italic bg-slate-50 dark:bg-slate-800/60 p-2.5 rounded">
+                    "Báo cáo Sếp, em hiểu việc bù số không thể kéo dài. Em chủ động đề xuất phương án tái cấu trúc: Chuyển giao lực lượng CSKH/Marketing hỗ trợ PKD1/2 cày số 130 tỷ; bản thân em và Châu sang SIS hỗ trợ vận hành. ODS cắt được quỹ lương mà vẫn thu được dòng tiền B2B Fshare 0,5 - 5 tỷ/năm mà không tốn 1 headcount nào."
+                </p>
+            </div>
+
+            <!-- 2. Chủ tịch Dương & Anh DũngHT -->
+            <div class="card-box bg-white dark:bg-slate-900 p-3.5 rounded-lg border border-slate-200 dark:border-slate-800">
+                <div class="flex items-center justify-between mb-2">
+                    <h3 class="text-xs font-bold uppercase tracking-wider text-emerald-500">2. Chủ tịch Dương & Anh DũngHT (FTISIS & FTI)</h3>
+                    <span class="text-[10px] px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-slate-500">Tối ưu nguồn lực</span>
+                </div>
+                <ul class="text-xs space-y-1.5 text-slate-700 dark:text-slate-300 list-disc pl-4">
+                    <li><strong>Lá chắn IT Ops chuẩn ITIL:</strong> Quản lý luồng Ticket và kiểm soát SLA sự cố (>99%) cho Tuấn SIS, giải phóng đội Dev/QA lõi.</li>
+                    <li><strong>Không tăng Headcount FTI:</strong> Tối ưu hóa nguồn lực quản lý sẵn có từ ODS sang khâu vận hành đang khuyết tại FTISIS.</li>
+                    <li><strong>Cam kết thử thách:</strong> Tự nguyện thử thách <strong>2 tháng</strong>, nếu không đáp ứng được kỳ vọng sẽ tự rút lui.</li>
+                </ul>
+            </div>
+
+            <!-- 3. Đặng Minh Tuấn (Tuấn SIS) -->
+            <div class="card-box bg-white dark:bg-slate-900 p-3.5 rounded-lg border border-slate-200 dark:border-slate-800">
+                <div class="flex items-center justify-between mb-2">
+                    <h3 class="text-xs font-bold uppercase tracking-wider text-amber-500">3. Đặng Minh Tuấn (GĐ FTISIS)</h3>
+                    <span class="text-[10px] px-2 py-0.5 rounded bg-amber-500/10 text-amber-600 dark:text-amber-400 font-semibold stealth-dim">Đã gật đầu ngầm</span>
+                </div>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-1.5 text-xs">
+                    <div class="p-2 rounded bg-slate-50 dark:bg-slate-800/60">
+                        <strong>• Cánh tay phải:</strong> Gọi nghe - Không cãi - Không lấn quyền Tech.
+                    </div>
+                    <div class="p-2 rounded bg-slate-50 dark:bg-slate-800/60">
+                        <strong>• Lá chắn vòng ngoài:</strong> Ôm hết Ticket, SLA, cãi nhau liên phòng ban.
+                    </div>
+                    <div class="p-2 rounded bg-slate-50 dark:bg-slate-800/60">
+                        <strong>• Quà tặng nhân sự:</strong> Kéo Châu UX/UI cực cứng sang làm đẹp sản phẩm B2B.
+                    </div>
+                    <div class="p-2 rounded bg-slate-50 dark:bg-slate-800/60">
+                        <strong>• Quỹ ngoại giao:</strong> Tự nguyện dùng quỹ cá nhân hỗ trợ giao lưu nội bộ.
+                    </div>
+                </div>
+                <div class="mt-2 p-2 rounded bg-amber-500/10 border border-amber-500/20 text-xs text-amber-900 dark:text-amber-200 stealth-dim">
+                    <strong>• Exit Clause 2 tháng (Rủi ro = 0 cho Tuấn):</strong> Minh tự làm đơn đề xuất (Tuấn chỉ gật đầu khi Sếp hỏi, không mang tiếng kéo bạn). Sau 2 tháng nếu Sếp hoặc Tuấn thấy không hợp, Minh tự nộp đơn nghỉ.
+                </div>
+            </div>
+        </section>
+
+        <!-- ==========================================
+             TAB 5: MẪU TIN NHẮN & TÂM THƯ (COPY 1 CHẠM)
+             ========================================== -->
+        <section id="tab5" class="tab-content hidden space-y-3">
+            
+            <!-- Mẫu 1: Tin nhắn rào đón A.Sơn / A.Chiến -->
+            <div class="card-box bg-white dark:bg-slate-900 p-3.5 rounded-lg border border-slate-200 dark:border-slate-800">
+                <div class="flex items-center justify-between mb-2">
+                    <h3 class="text-xs font-bold text-slate-900 dark:text-white">1. Tin nhắn rào đón gửi Anh Sơn / Anh Chiến (ODS)</h3>
+                    <button onclick="copyText('msg-ods', this)" class="px-2.5 py-1 rounded text-xs font-semibold bg-slate-800 text-white dark:bg-slate-200 dark:text-slate-900 active:scale-95 transition">
+                        Sao chép
+                    </button>
+                </div>
+                <pre id="msg-ods" class="text-xs whitespace-pre-wrap font-sans text-slate-700 dark:text-slate-300 bg-slate-50 dark:bg-slate-800/70 p-2.5 rounded border border-slate-200/60 dark:border-slate-700/60 leading-relaxed">Em chào anh Sơn / anh Chiến,
+
+Dạo này em trăn trở nhiều về định hướng cá nhân trong bối cảnh mảng B2C Fshare dừng hẳn từ ngày 01/01/2027. Để phù hợp với định hướng phát triển mới và phát huy tốt nhất năng lực quản lý điều phối, em đang dự định xin phép các sếp cho em được điều chuyển sang khối Kỹ thuật (chỗ Tuấn SIS) để hỗ trợ công tác vận hành hệ thống.
+
+Tuy nhiên, em cam kết vẫn sẽ tiếp tục làm đầu mối cá nhân trực tiếp chăm sóc và duy trì tệp khách hàng Fshare B2B hiện hữu đến năm 2028 để đảm bảo dịch vụ thông suốt. Nhân sự trong team em cũng đã có phương án phối hợp chi viện cho các phòng kinh doanh khác cày số.
+
+Em muốn chia sẻ trước với anh để mong nhận được sự đồng cảm và ủng hộ từ anh. Khi em gửi email đề xuất chính thức lên anh Thế Anh và anh Dương, em xin phép được cc anh vào để các sếp thấy anh em mình luôn chủ động phối hợp vì công việc chung ạ.</pre>
+            </div>
+
+            <!-- Mẫu 2: Kịch bản chốt trực tiếp với Tuấn SIS -->
+            <div class="card-box bg-white dark:bg-slate-900 p-3.5 rounded-lg border border-slate-200 dark:border-slate-800">
+                <div class="flex items-center justify-between mb-2">
+                    <h3 class="text-xs font-bold text-slate-900 dark:text-white">2. Lời thoại chốt với Tuấn SIS</h3>
+                    <button onclick="copyText('msg-tuansis', this)" class="px-2.5 py-1 rounded text-xs font-semibold bg-slate-800 text-white dark:bg-slate-200 dark:text-slate-900 active:scale-95 transition">
+                        Sao chép
+                    </button>
+                </div>
+                <pre id="msg-tuansis" class="text-xs whitespace-pre-wrap font-sans text-slate-700 dark:text-slate-300 bg-slate-50 dark:bg-slate-800/70 p-2.5 rounded border border-slate-200/60 dark:border-slate-700/60 leading-relaxed">Tuấn này, chuyện hôm trước anh em mình nói, tao đã suy nghĩ rất kỹ. Tao biết mày vừa nhận nhiệm vụ GĐ SIS, áp lực các dự án B2B cực kỳ lớn, mà dân kỹ thuật như mày với anh em Dev/QA thường rất ngại việc đi giao tiếp, xử lý xung đột với các TTKD khác hay giải trình sự cố.
+
+Tao xác định qua bên mày là làm trợ thủ đắc lực, là cánh tay phải của mày, gọi nghe - không cãi, không lấn quyền tech. Tao sẽ làm lá chắn vòng ngoài: ôm hết việc vận hành, Ticket, kiểm soát SLA, đứng ra xoa dịu các bên để team Tech của mày rảnh tay làm chuyên môn.
+
+Mày khát mảng Design/UX-UI thì bên ODS tao có bạn Châu làm rất cứng. Tao sẽ chủ động chia sẻ, tạo điều kiện tốt nhất để bạn ấy vui vẻ đồng thuận sang phối hợp cùng team mày. Hàng tháng, khối có nhu cầu giao lưu, teambuilding hay ngoại giao phòng ban, tao cam kết tự nguyện dùng quỹ cá nhân đồng hành cùng mày, mày không phải lo ngân sách.
+
+Quan trọng nhất: Tao sẽ tự làm email đề xuất lên anh Thế Anh, anh Dương xin điều chuyển hỗ trợ vận hành kiêm duy trì Fshare B2B. Mày không phải tự đứng ra đề xuất nên không lo bị mang tiếng 'kéo bạn bè'. Tao cam kết với mày: Trong vòng 2 tháng, nếu các sếp check thấy không ổn, hoặc mày thấy tao không đáp ứng được công việc, chỉ cần báo 1 tiếng, tao sẽ tự động nộp đơn nghỉ. Mày hoàn toàn không phải ngại hay gánh bất kỳ rủi ro nào. Mày thấy hướng này ổn thì ủng hộ tao nhé!</pre>
+            </div>
+
+            <!-- Mẫu 3: Văn bản Tâm thư chính thức trình BĐH -->
+            <div class="card-box bg-white dark:bg-slate-900 p-3.5 rounded-lg border border-slate-200 dark:border-slate-800">
+                <div class="flex items-center justify-between mb-2">
+                    <h3 class="text-xs font-bold text-slate-900 dark:text-white">3. Tâm thư chính thức trình Chủ tịch Dương & A. Thế Anh</h3>
+                    <button onclick="copyText('msg-tamthu', this)" class="px-2.5 py-1 rounded text-xs font-semibold bg-slate-800 text-white dark:bg-slate-200 dark:text-slate-900 active:scale-95 transition">
+                        Sao chép
+                    </button>
+                </div>
+                <pre id="msg-tamthu" class="text-xs whitespace-pre-wrap font-sans text-slate-700 dark:text-slate-300 bg-slate-50 dark:bg-slate-800/70 p-2.5 rounded border border-slate-200/60 dark:border-slate-700/60 leading-relaxed">Tiêu đề: [Đề xuất cá nhân] Thuyên chuyển vị trí công tác - Hỗ trợ Vận hành FTISIS & Duy trì Fshare B2B
+
+Kính gửi:
+- Chủ tịch Dương
+- Anh Chu Thế Anh - Giám đốc Cấp cao FTI
+Đồng kính gửi (Cc):
+- Anh DũngHT - Giám đốc Cấp cao FTISIS
+- Anh Đặng Minh Tuấn - Giám đốc FTISIS
+- Anh Sơn & Anh Chiến - Quản lý ODS
+
+Kính gửi Chủ tịch Dương, anh Thế Anh và các anh trong Ban Giám Đốc,
+
+Lời đầu tiên, em xin chân thành cảm ơn Chủ tịch và các anh Ban Giám Đốc đã luôn tin tưởng, tạo điều kiện và đồng hành cùng em trong suốt chặng đường gắn bó với FPT Telecom International và trung tâm ODS. Sự dìu dắt của các anh là tựa lưng vững chắc giúp em trưởng thành qua nhiều giai đoạn phát triển của công ty.
+
+Cùng với sự chuyển dịch chiến lược chung của FTI khi mảng B2C Fshare dừng hoạt động từ 01/01/2027, em đã dành nhiều thời gian nhìn nhận lại bản thân với mong muốn tìm kiếm một hướng đi mới có thể đóng góp năng lực cá nhân một cách hiệu quả nhất cho tổ chức.
+
+Qua tìm hiểu thực tế tại Trung tâm Giải pháp Phần mềm & Hệ thống Thông tin (FTISIS), em nhận thấy trung tâm sau sáp nhập đang gánh vác khối lượng dự án B2B rất lớn. Đội ngũ kỹ thuật lõi đang bị quá tải bởi các công việc điều phối vận hành, quản lý quy trình Ticket, kiểm soát chỉ số cam kết chất lượng dịch vụ (SLA) và giao tiếp liên phòng ban.
+
+Với kinh nghiệm nhiều năm làm công tác quản lý nghiệp vụ, am hiểu luồng dịch vụ và kỹ năng giao tiếp nội bộ, em nhận thấy mình có độ phù hợp cao để đảm nhận vai trò cầu nối này. Em xin phép Ban Giám Đốc trình phương án thuyên chuyển công tác với các nội dung cụ thể như sau:
+
+1. Hỗ trợ toàn diện công tác Vận hành tại FTISIS:
+- Em xin phép điều chuyển sang FTISIS để hỗ trợ Tuấn (GĐ SIS) trong công tác quản lý vận hành (IT Operations): trực tiếp điều phối luồng Ticket, kiểm soát SLA sự cố, làm đầu mối tiếp nhận và xử lý yêu cầu từ các Trung tâm Kinh doanh khác.
+- Việc em đảm nhận vai trò điều phối vòng ngoài sẽ giúp giải phóng thời gian để Giám đốc trung tâm và đội ngũ chuyên gia kỹ thuật (Dev/QA) tập trung 100% sức lực vào chuyên môn công nghệ lõi.
+- Đồng thời, em sẽ chủ động làm việc, tạo điều kiện tốt nhất để nhân sự mảng Design/UX-UI (bạn Châu) đồng thuận sang phối hợp cùng FTISIS, giúp nâng cao trải nghiệm giao diện cho các sản phẩm B2B của trung tâm.
+
+2. Đảm bảo tính liên tục cho di sản Fshare B2B:
+- Dù thuyên chuyển sang đơn vị mới, em cam kết cá nhân vẫn tiếp tục kiêm nhiệm, làm đầu mối trực tiếp quản lý, chăm sóc và duy trì tệp khách hàng Fshare B2B hiện hữu đến năm 2028, đảm bảo không gây ra bất kỳ sự gián đoạn nào về mặt dịch vụ và trải nghiệm của khách hàng.
+
+3. Tối ưu hóa nguồn lực tổ chức:
+- Phương án này giúp công ty linh hoạt sắp xếp bộ máy, bổ sung đúng nhân sự có tính cam kết cao cho khâu vận hành đang khuyết thiếu tại FTISIS mà không làm phát sinh thêm định biên (headcount) mới của FTI.
+
+Kính thưa các anh, đây là tâm huyết và sự chủ động thay đổi bản thân của em với mong muốn tiếp tục cống hiến lâu dài cho FTI. Em rất mong nhận được sự đồng cảm, chia sẻ và tạo điều kiện từ Chủ tịch Dương, anh Thế Anh và Ban Giám Đốc để em được thử sức ở chặng đường mới này.
+
+Em xin trân trọng cảm ơn các anh đã dành thời gian đọc thư!
+
+Kính thư,
+Đặng Thái Anh Minh
+Trưởng phòng ODS KD3 - FPT Telecom International</pre>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- TOAST NOTIFICATION FOR COPY -->
+    <div id="toast" class="fixed bottom-4 left-1/2 -translate-x-1/2 px-4 py-2 rounded-full bg-slate-900 dark:bg-slate-100 text-white dark:text-slate-900 text-xs font-semibold shadow-lg opacity-0 pointer-events-none transition-opacity duration-200 z-50">
+        Đã sao chép vào bộ nhớ tạm!
+    </div>
+
+    <script>
+        // Switch Tabs Instantly
+        function switchTab(tabId) {
+            document.querySelectorAll('.tab-content').forEach(el => {
+                el.classList.add('hidden');
+            });
+            document.getElementById(tabId).classList.remove('hidden');
+
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.className = 'tab-btn px-3 py-1.5 rounded-md text-xs font-medium transition whitespace-nowrap text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800';
+            });
+            const activeBtn = document.getElementById('nav-' + tabId);
+            if (activeBtn) {
+                activeBtn.className = 'tab-btn px-3 py-1.5 rounded-md text-xs font-semibold transition whitespace-nowrap bg-slate-800 text-white dark:bg-slate-200 dark:text-slate-900';
+            }
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Toggle Accordion for CFR 1-1 Cards
+        function toggleAccordion(id) {
+            const content = document.getElementById(id);
+            if (content.classList.contains('hidden')) {
+                content.classList.remove('hidden');
+            } else {
+                content.classList.add('hidden');
+            }
+        }
+
+        // Toggle Stealth / Low-Profile Mode
+        function toggleStealth() {
+            const body = document.body;
+            const label = document.getElementById('stealthLabel');
+            body.classList.toggle('stealth-mode');
+            if (body.classList.contains('stealth-mode')) {
+                label.textContent = 'Kín đáo: Bật';
+            } else {
+                label.textContent = 'Kín đáo: Tắt';
+            }
+        }
+
+        // Toggle Dark/Light Mode
+        function toggleTheme() {
+            const html = document.documentElement;
+            html.classList.toggle('dark');
+        }
+
+        // Reliable Copy to Clipboard (works inside iframes and mobile browsers)
+        function copyText(elementId, btnElement) {
+            const text = document.getElementById(elementId).innerText;
+            const textarea = document.createElement('textarea');
+            textarea.value = text;
+            textarea.style.position = 'fixed';
+            textarea.style.opacity = '0';
+            document.body.appendChild(textarea);
+            textarea.select();
+            try {
+                document.execCommand('copy');
+                const originalText = btnElement.innerText;
+                btnElement.innerText = 'Đã chép ✓';
+                showToast();
+                setTimeout(() => {
+                    btnElement.innerText = originalText;
+                }, 1800);
+            } catch (err) {
+                console.error('Copy failed', err);
+            }
+            document.body.removeChild(textarea);
+        }
+
+        function showToast() {
+            const toast = document.getElementById('toast');
+            toast.classList.remove('opacity-0');
+            setTimeout(() => {
+                toast.classList.add('opacity-0');
+            }, 1800);
+        }
+    </script>
+</body>
+</html>
