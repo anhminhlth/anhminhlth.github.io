@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Tổng Hợp Tài Liệu - anhminhlth</title>
+  <style>
+    :root {
+      --bg: #0f172a;
+      --card: #1e293b;
+      --card-hover: #334155;
+      --text: #f8fafc;
+      --muted: #94a3b8;
+      --accent: #38bdf8;
+      --border: #334155;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* Giao diện Menu Chính */
+    #menu-view {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 20px 16px;
+    }
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 16px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--border);
+    }
+    .header h1 {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--accent);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .btn {
+      background: var(--card);
+      color: var(--text);
+      border: 1px solid var(--border);
+      padding: 8px 12px;
+      border-radius: 8px;
+      font-size: 0.85rem;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      text-decoration: none;
+      transition: 0.15s;
+    }
+    .btn:hover, .btn:active {
+      background: var(--card-hover);
+      border-color: var(--accent);
+    }
+
+    .search-box {
+      width: 100%;
+      padding: 11px 14px;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      background: var(--card);
+      color: var(--text);
+      font-size: 0.92rem;
+      margin-bottom: 14px;
+      outline: none;
+    }
+    .search-box:focus { border-color: var(--accent); }
+
+    .status {
+      font-size: 0.78rem;
+      color: var(--muted);
+      margin-bottom: 12px;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .link-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .link-item {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 13px 15px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      cursor: pointer;
+      transition: 0.15s;
+    }
+    .link-item:hover, .link-item:active {
+      background: var(--card-hover);
+      border-color: var(--accent);
+      transform: translateY(-1px);
+    }
+    .item-left {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      overflow: hidden;
+    }
+    .item-icon {
+      font-size: 1.3rem;
+      flex-shrink: 0;
+    }
+    .item-info { overflow: hidden; }
+    .item-title {
+      font-weight: 600;
+      font-size: 0.95rem;
+      color: var(--text);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .item-sub {
+      font-size: 0.78rem;
+      color: var(--muted);
+      margin-top: 2px;
+    }
+    .item-arrow {
+      color: var(--accent);
+      font-weight: bold;
+      font-size: 1rem;
+      flex-shrink: 0;
+      margin-left: 8px;
+    }
+
+    /* Giao diện Xem Trang Con (Có nút Back cố định) */
+    #viewer-view {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: #fff;
+      z-index: 9999;
+      flex-direction: column;
+    }
+    .viewer-bar {
+      height: 46px;
+      background: #0f172a;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 10px;
+      flex-shrink: 0;
+    }
+    .btn-back {
+      background: #0284c7;
+      color: #fff;
+      border: none;
+      padding: 7px 12px;
+      border-radius: 6px;
+      font-weight: 600;
+      font-size: 0.85rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+    .viewer-title {
+      font-size: 0.82rem;
+      color: var(--muted);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      max-width: 45%;
+    }
+    #content-frame {
+      flex: 1;
+      width: 100%;
+      border: none;
+      background: #fff;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- MÀN HÌNH 1: MENU TỔNG HỢP -->
+  <div id="menu-view">
+    <div class="header">
+      <h1>📁 Menu Tổng Hợp</h1>
+      <button class="btn" onclick="fetchFiles(true)">🔄 Làm mới</button>
+    </div>
+
+    <input type="text" id="search" class="search-box" placeholder="Tìm nhanh tên file..." oninput="renderList()">
+
+    <div class="status">
+      <span id="status-msg">Đang đồng bộ từ GitHub...</span>
+      <span id="count-msg"></span>
+    </div>
+
+    <div id="list-container" class="link-list"></div>
+  </div>
+
+  <!-- MÀN HÌNH 2: KHUNG XEM TRANG CON + NÚT BACK -->
+  <div id="viewer-view">
+    <div class="viewer-bar">
+      <button class="btn-back" onclick="closeViewer()">⬅ Quay lại Menu</button>
+      <span id="current-file" class="viewer-title"></span>
+      <a id="open-raw" href="#" target="_blank" class="btn" style="padding: 5px 9px; font-size: 0.78rem;">Mở tab riêng ↗</a>
+    </div>
+    <iframe id="content-frame" src="about:blank"></iframe>
+  </div>
+
+  <script>
+    const GITHUB_USER = 'anhminhlth';
+    const GITHUB_REPO = 'anhminhlth.github.io';
+    const CURRENT_PAGE = ['th.html', 'th'];
+
+    // Nhãn gợi nhớ cho các file quen thuộc (file mới up lên vẫn tự động hiện tên gốc)
+    const FILE_LABELS = {
+      'chuyen.html': { title: 'Kịch bản Chuyển tiếp & Sổ tay 1-1', icon: '🎯' },
+      'dexuat-final.html': { title: 'Đề xuất Tái cấu trúc KD3 (Bản Final)', icon: '⭐' },
+      'dexuat.html': { title: 'Phương án Đề xuất KD3 (Bản 1)', icon: '📊' },
+      'dexuat2.html': { title: 'Phương án Đề xuất KD3 (Bản 2)', icon: '📈' },
+      'index.html': { title: 'Trang chủ (Index)', icon: '🏠' },
+      'thucdon.html': { title: 'Thực đơn / Menu (Thucdon)', icon: '📋' }
+    };
+
+    // Danh sách dự phòng khi mất mạng hoặc GitHub giới hạn API
+    const FALLBACK_FILES = [
+      'chuyen.html',
+      'dexuat-final.html',
+      'dexuat2.html',
+      'dexuat.html',
+      'index.html',
+      'thucdon.html'
+    ];
+
+    let allFiles = [];
+
+    async function fetchFiles(force = false) {
+      const statusEl = document.getElementById('status-msg');
+      statusEl.textContent = 'Đang quét danh sách file từ GitHub...';
+
+      try {
+        const url = `https://api.github.com/repos/${GITHUB_USER}/${GITHUB_REPO}/contents/${force ? '?t=' + Date.now() : ''}`;
+        const res = await fetch(url);
+        if (!res.ok) throw new Error('API Rate Limit');
+        const data = await res.json();
+
+        // Lọc tự động tất cả các file .html trừ chính trang th.html
+        allFiles = data
+          .filter(item => item.type === 'file' && item.name.endsWith('.html') && !CURRENT_PAGE.includes(item.name.toLowerCase()))
+          .map(item => item.name);
+
+        statusEl.textContent = '✅ Đã tự động đồng bộ mới nhất từ GitHub';
+      } catch (err) {
+        allFiles = FALLBACK_FILES;
+        statusEl.textContent = '⚡ Đang dùng danh sách mặc định';
+      }
+
+      renderList();
+      checkHashRoute();
+    }
+
+    function renderList() {
+      const container = document.getElementById('list-container');
+      const keyword = document.getElementById('search').value.toLowerCase().trim();
+      container.innerHTML = '';
+
+      const filtered = allFiles.filter(name => {
+        const label = FILE_LABELS[name]?.title?.toLowerCase() || '';
+        return name.toLowerCase().includes(keyword) || label.includes(keyword);
+      });
+
+      document.getElementById('count-msg').textContent = `${filtered.length} trang`;
+
+      filtered.forEach(name => {
+        const meta = FILE_LABELS[name] || { title: name.replace('.html', ''), icon: '📄' };
+        const div = document.createElement('div');
+        div.className = 'link-item';
+        div.onclick = () => openViewer(name);
+        div.innerHTML = `
+          <div class="item-left">
+            <span class="item-icon">${meta.icon}</span>
+            <div class="item-info">
+              <div class="item-title">${meta.title}</div>
+              <div class="item-sub">${name}</div>
+            </div>
+          </div>
+          <span class="item-arrow">➔</span>
+        `;
+        container.appendChild(div);
+      });
+    }
+
+    function openViewer(fileName) {
+      const targetUrl = `https://${GITHUB_USER}.github.io/${fileName}`;
+      document.getElementById('current-file').textContent = fileName;
+      document.getElementById('open-raw').href = targetUrl;
+      document.getElementById('content-frame').src = targetUrl;
+      document.getElementById('viewer-view').style.display = 'flex';
+      window.location.hash = encodeURIComponent(fileName);
+    }
+
+    function closeViewer() {
+      document.getElementById('viewer-view').style.display = 'none';
+      document.getElementById('content-frame').src = 'about:blank';
+      history.pushState("", document.title, window.location.pathname + window.location.search);
+    }
+
+    // Hỗ trợ nút Back vật lý trên điện thoại & trình duyệt
+    window.addEventListener('hashchange', checkHashRoute);
+
+    function checkHashRoute() {
+      const hash = decodeURIComponent(window.location.hash.replace('#', ''));
+      if (hash && hash.endsWith('.html')) {
+        openViewer(hash);
+      } else {
+        document.getElementById('viewer-view').style.display = 'none';
+        document.getElementById('content-frame').src = 'about:blank';
+      }
+    }
+
+    fetchFiles();
+  </script>
+</body>
+</html>
