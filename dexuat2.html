@@ -1,0 +1,1475 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kế Hoạch Kinh Doanh B2B & Định Vị KD3 (2027–2029) - Bản 50% Tinh Gọn</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Chart.js CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Inter', 'sans-serif'] },
+                    colors: {
+                        brand: {
+                            50: '#f0f9ff',
+                            100: '#e0f2fe',
+                            500: '#0284c7',
+                            600: '#0369a1',
+                            700: '#075985',
+                            800: '#0c4a6e',
+                            900: '#082f49',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .chart-container {
+            position: relative;
+            width: 100%;
+            height: 260px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 290px;
+            }
+        }
+        /* High-Contrast Navigation Tabs */
+        .tab-btn {
+            border-top-left-radius: 0.5rem;
+            border-top-right-radius: 0.5rem;
+            transition: all 0.15s ease-in-out;
+            color: #cbd5e1;
+            background-color: transparent;
+            border-bottom: 3px solid transparent;
+            white-space: nowrap;
+        }
+        .tab-btn:hover:not(.active) {
+            background-color: #1e293b;
+            color: #38bdf8;
+            border-bottom: 3px solid #475569;
+        }
+        .tab-btn.active {
+            background-color: #f8fafc;
+            color: #0369a1;
+            font-weight: 700;
+            border-top: 3px solid #0284c7;
+            box-shadow: 0 -2px 6px rgba(0, 0, 0, 0.08);
+        }
+        .tab-btn.leg1-tab.active {
+            color: #b45309;
+            border-top: 3px solid #f59e0b;
+        }
+        .slide-deck-container {
+            min-height: 460px;
+        }
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f5f9;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #94a3b8;
+            border-radius: 3px;
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 font-sans antialiased min-h-screen flex flex-col selection:bg-brand-600 selection:text-white">
+
+    <!-- TOP HEADER -->
+    <header class="bg-slate-900 text-white sticky top-0 z-50 shadow-md border-b border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 py-2.5 flex flex-col lg:flex-row lg:items-center lg:justify-between gap-2">
+            <div class="flex items-center space-x-3">
+                <div class="w-9 h-9 rounded-lg bg-brand-600 flex items-center justify-center font-black text-base tracking-wider text-white shadow">
+                    KD3
+                </div>
+                <div>
+                    <div class="flex items-center gap-2">
+                        <span class="text-[10px] font-bold uppercase tracking-widest text-sky-400">FPT Telecom International (FTI)</span>
+                        <span class="text-slate-600">|</span>
+                        <span class="text-[10px] text-amber-400 font-semibold">Bản Định Hướng Kinh Doanh Tinh Gọn (50%)</span>
+                    </div>
+                    <h1 class="text-sm md:text-base font-extrabold text-white">
+                        Kế Hoạch Chuyển Đổi Kinh Doanh B2B Phòng KD3 Giai Đoạn 2027–2029
+                    </h1>
+                </div>
+            </div>
+            <div class="flex flex-wrap items-center gap-2 text-[11px]">
+                <span class="px-2.5 py-1 rounded bg-slate-800 text-emerald-400 border border-emerald-500/30 font-semibold">
+                    Định hướng: 10 Tỷ (2027) &#8594; 30 Tỷ (2028) &#8594; 50 Tỷ (2029)
+                </span>
+                <span class="px-2.5 py-1 rounded bg-slate-800 text-sky-300 border border-sky-500/30 font-semibold">
+                    Chủ đạo: MS365 & HiGIO Cloud + Co-sale FTI
+                </span>
+            </div>
+        </div>
+
+        <!-- 8-TAB NAVIGATION BAR -->
+        <nav class="bg-slate-950 px-3 sm:px-6 overflow-x-auto pt-1.5 border-t border-slate-800">
+            <div class="max-w-7xl mx-auto flex space-x-1 min-w-max">
+                <button onclick="switchTab('tab1')" id="btn-tab1" class="tab-btn active px-3 py-2 text-xs font-medium">
+                    &#128202; 1. Tổng Quan 2 Chân
+                </button>
+                <button onclick="switchTab('tab2')" id="btn-tab2" class="tab-btn leg1-tab px-3 py-2 text-xs font-medium">
+                    &#128737; 2. Định Hướng Chân 1 (Storage)
+                </button>
+                <button onclick="switchTab('tab3')" id="btn-tab3" class="tab-btn leg1-tab px-3 py-2 text-xs font-medium">
+                    &#9889; 3. Khai Thác & Triển Khai Chân 1
+                </button>
+                <button onclick="switchTab('tab4')" id="btn-tab4" class="tab-btn px-3 py-2 text-xs font-medium">
+                    &#127919; 4. Sản Phẩm Chân 2 (MS365 & HiGIO)
+                </button>
+                <button onclick="switchTab('tab5')" id="btn-tab5" class="tab-btn px-3 py-2 text-xs font-medium">
+                    &#128101; 5. Nhân Sự Gọn & Khách Hàng
+                </button>
+                <button onclick="switchTab('tab6')" id="btn-tab6" class="tab-btn px-3 py-2 text-xs font-medium">
+                    &#128200; 6. Lộ Trình 10–30–50 Tỷ
+                </button>
+                <button onclick="switchTab('tab7')" id="btn-tab7" class="tab-btn px-3 py-2 text-xs font-medium">
+                    &#128203; 7. Business Canvas
+                </button>
+                <button onclick="switchTab('tab8')" id="btn-tab8" class="tab-btn px-3 py-2 text-xs font-medium">
+                    &#128187; 8. Slide Trình Bày (10 Slides)
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <!-- MAIN WORKSPACE -->
+    <main class="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 py-5 space-y-5">
+
+        <!-- =========================================================================
+             TAB 1: TỔNG QUAN MÔ HÌNH 2 CHÂN (GIỮ NGUYÊN BỐ CỤC CHUẨN, NGÔN NGỮ THỰC TẾ)
+             ========================================================================= -->
+        <section id="tab1" class="tab-content space-y-4">
+            <div class="bg-white p-4 md:p-5 rounded-xl border border-slate-200 shadow-sm">
+                <div class="flex flex-col md:flex-row md:items-center justify-between border-b border-slate-100 pb-2 mb-2 gap-2">
+                    <h2 class="text-base font-bold text-slate-900 flex items-center gap-2">
+                        <span class="text-brand-600">&#9670;</span> Định Hướng Chuyển Đổi KD3 Từ Cuộc Họp Ban Giám Đốc (19/10/2026)
+                    </h2>
+                    <span class="text-xs font-semibold px-2.5 py-0.5 rounded bg-brand-50 text-brand-700 border border-brand-200">
+                        Đóng B2C từ 01/01/2027 • Chuyển sang B2B thực chất
+                    </span>
+                </div>
+                <p class="text-xs md:text-sm text-slate-600 leading-relaxed">
+                    Qua rà soát cùng Ban Giám đốc (ông Sơn, ông Chiến), nếu KD3 chỉ bán gói lưu trữ FshareStorage (200k–300k/TB) trên dàn máy chủ cũ thì doanh thu năm đầu chỉ đạt khoảng 350–500 triệu VNĐ, không đủ bù chi phí vận hành 5 tủ rack và quỹ lương, đồng thời thiết bị cũ cũng khó đáp ứng ngay các yêu cầu khắt khe của khách hàng lớn. Vì vậy, KD3 định hướng mô hình <strong>"Đi bằng 2 chân"</strong>: vừa tận dụng hạ tầng sẵn có ở mức hợp lý để giữ tệp khách cũ (Chân 1), vừa tập trung nguồn lực bán các dịch vụ B2B chủ lực của FTI là <strong>Microsoft 365 & HiGIO Cloud</strong> (Chân 2).
+                </p>
+            </div>
+
+            <!-- 4 KPI Cards -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3.5">
+                <div class="bg-white p-3.5 rounded-xl border border-slate-200 shadow-sm">
+                    <span class="text-[11px] font-bold uppercase text-slate-500">Mục Tiêu Dự Kiến 2027</span>
+                    <div class="mt-1 flex items-baseline justify-between">
+                        <span class="text-2xl font-black text-brand-600">10.0 Tỷ</span>
+                        <span class="text-[11px] font-bold text-sky-700 bg-sky-50 px-2 py-0.5 rounded">~9.5 Tỷ Chân 2</span>
+                    </div>
+                    <p class="text-xs text-slate-500 mt-1">Chân 1: ~0,5 Tỷ | Chân 2: ~9,5 Tỷ</p>
+                </div>
+
+                <div class="bg-white p-3.5 rounded-xl border border-slate-200 shadow-sm">
+                    <span class="text-[11px] font-bold uppercase text-slate-500">Định Hướng 2028 – 2029</span>
+                    <div class="mt-1 flex items-baseline justify-between">
+                        <span class="text-2xl font-black text-slate-900">30T &#8594; 50T</span>
+                        <span class="text-[11px] font-bold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded">Chuẩn PKD FTI</span>
+                    </div>
+                    <p class="text-xs text-slate-500 mt-1">Tăng trưởng nhờ cộng dồn gia hạn B2B</p>
+                </div>
+
+                <div class="bg-white p-3.5 rounded-xl border border-slate-200 shadow-sm">
+                    <span class="text-[11px] font-bold uppercase text-slate-500">Giảm Nợ Bồi Hoàn B2C</span>
+                    <div class="mt-1 flex items-baseline justify-between">
+                        <span class="text-2xl font-black text-emerald-600">-90% Nợ</span>
+                        <span class="text-[11px] font-bold text-slate-700 bg-slate-100 px-2 py-0.5 rounded">Tiết kiệm 6,45 Tỷ</span>
+                    </div>
+                    <p class="text-xs text-slate-500 mt-1">Từ 7,15 tỷ xuống ~700 triệu (cuối 2028)</p>
+                </div>
+
+                <div class="bg-white p-3.5 rounded-xl border border-slate-200 shadow-sm">
+                    <span class="text-[11px] font-bold uppercase text-slate-500">Hạ Tầng Thu Hồi (31/10)</span>
+                    <div class="mt-1 flex items-baseline justify-between">
+                        <span class="text-2xl font-black text-amber-600">42 Server</span>
+                        <span class="text-[11px] font-bold text-amber-800 bg-amber-50 px-2 py-0.5 rounded">~2.1 PB (CAPEX = 0đ)</span>
+                    </div>
+                    <p class="text-xs text-slate-500 mt-1">Giữ 6 máy (~700TB) duy trì hậu kỳ B2C</p>
+                </div>
+            </div>
+
+            <!-- Two Pillars Summary & Chart -->
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-4">
+                <div class="lg:col-span-7 bg-white p-4 md:p-5 rounded-xl border border-slate-200 shadow-sm space-y-3 text-xs">
+                    <h3 class="text-sm font-bold text-slate-900 border-b pb-2">Phân Vai Thực Tế Trong Mô Hình "Đi Bằng 2 Chân"</h3>
+
+                    <div class="p-3.5 rounded-lg bg-sky-50/80 border border-sky-300 space-y-1.5">
+                        <div class="flex items-center justify-between font-extrabold text-sky-950">
+                            <span>&#128640; CHÂN 2 (Trọng tâm doanh số): Kinh Doanh Dịch Vụ B2B FTI</span>
+                            <span class="px-2 py-0.5 rounded bg-sky-600 text-white text-[10px]">84% – 95% Doanh Thu</span>
+                        </div>
+                        <p class="text-slate-700 leading-relaxed">
+                            • <strong>Sản phẩm chủ đạo số 1 (MS365 & HiGIO Cloud):</strong> Mảng được khách hàng hỏi nhiều nhất, cá nhân anh Tuấn đã vào nhiều lead lớn trong năm 2026 (quy mô vài trăm license/lead, đã có HĐ ~1 tỷ chuyển qua PKD2), đội nhà và các sếp trình bày rất mượt.<br>
+                            • <strong>Mở rộng Co-sale FTI:</strong> Bán chéo Kênh truyền Leased Line, FPT Camera AI, Voice Center (1900/Cloud PBX/ZNS) và Starlink B2B.
+                        </p>
+                    </div>
+
+                    <div class="p-3.5 rounded-lg bg-amber-50/80 border border-amber-300 space-y-1.5">
+                        <div class="flex items-center justify-between font-extrabold text-amber-950">
+                            <span>&#128737; CHÂN 1 (Duy trì & Phối hợp giải pháp): FshareStorage & Solution Storage</span>
+                            <span class="px-2 py-0.5 rounded bg-amber-500 text-white text-[10px]">5% – 16% Doanh Thu</span>
+                        </div>
+                        <p class="text-slate-700 leading-relaxed">
+                            • <strong>Ngắn hạn (Làm ngay):</strong> Đóng băng B2C êm đẹp; tận dụng 42 máy chủ thu hồi làm gói <strong>FshareStorage B2B cơ bản (200k–300k/TB)</strong> cho tệp 1.649 VIP cũ lưu &gt;10GB, giữ các HĐ B2B hiện hữu (Tổng cục Thuế, Việt Ba, Vinama) và làm quà tặng kèm hỗ trợ chốt deal Chân 2.<br>
+                            • <strong>Hướng mở rộng (Phối hợp kỹ thuật):</strong> Với các khách hàng lớn/Ngân hàng có nhu cầu lưu trữ dài hạn, phòng sẽ phối hợp cùng đội Kỹ thuật và hãng khảo sát xây dựng giải pháp phù hợp theo từng dự án thực tế.
+                        </p>
+                    </div>
+
+                    <div class="p-3 bg-slate-100 rounded-lg border border-slate-200 text-slate-700 flex flex-col sm:flex-row justify-between gap-2">
+                        <div><strong>• Anh Tuấn (TuấnNM):</strong> Phụ trách Kế hoạch Kinh doanh & Thương mại B2B (MS365, HiGIO, Kênh truyền, Co-sale PKD2).</div>
+                        <div><strong>• Minh (MinhDTA):</strong> Phụ trách Giải pháp & Sản phẩm (Đầu mối làm việc với Kỹ thuật về Cloud, Storage & dự án tích hợp).</div>
+                    </div>
+                </div>
+
+                <div class="lg:col-span-5 bg-white p-4 md:p-5 rounded-xl border border-slate-200 shadow-sm flex flex-col justify-between">
+                    <div>
+                        <h3 class="text-sm font-bold text-slate-900 border-b pb-2">Định Hướng Doanh Thu B2B & Giảm Nợ Bồi Hoàn</h3>
+                        <p class="text-xs text-slate-500 mt-1">Đơn vị: Tỷ VNĐ • Dừng hoàn toàn B2C từ 01/01/2027</p>
+                    </div>
+                    <div class="chart-container my-auto">
+                        <canvas id="chartOverview"></canvas>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- =========================================================================
+             TAB 2: ĐỊNH HƯỚNG CHÂN 1 (NHÌN NHẬN HẠ TẦNG, NHU CẦU THỊ TRƯỜNG & CANVAS SƠ LƯỢC)
+             ========================================================================= -->
+        <section id="tab2" class="tab-content hidden space-y-4">
+            <!-- 1. Nhìn nhận thực tế điểm nghẽn hạ tầng cũ (Góc độ Kinh doanh) -->
+            <div class="bg-white p-4 md:p-5 rounded-xl border border-slate-200 shadow-sm space-y-3">
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between border-b pb-2 gap-2">
+                    <h2 class="text-base font-bold text-slate-900 flex items-center gap-2">
+                        <span class="text-amber-600">&#9888;</span> 1. Nhìn Nhận Thực Tế Về Hạ Tầng 50 Máy Chủ Hiện Hữu & Khoảng Cách Với B2B Lớn
+                    </h2>
+                    <span class="text-xs font-semibold px-2.5 py-0.5 rounded bg-red-50 text-red-700 border border-red-200">
+                        Cần đánh giá đúng thực trạng để không cam kết quá sức
+                    </span>
+                </div>
+                <p class="text-xs text-slate-600 leading-relaxed">
+                    Theo danh sách kiểm kê tại <strong>DC5 EPZ1</strong> và <strong>DC7 EPZ1</strong>, toàn bộ 50 máy chủ của Fshare đều được đầu tư từ giai đoạn <strong>2012–2018</strong> (trong đó có 2 máy từ 2012, 30 máy từ 2013) và từ 2018 đến nay không mua thiết bị mới. Hệ thống đang có những hạn chế vật lý rất rõ ràng:
+                </p>
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs">
+                    <div class="p-3 rounded-lg bg-red-50/70 border border-red-200">
+                        <strong class="text-red-900 block mb-1">• Thiết bị cũ & Thiếu linh kiện dự phòng:</strong>
+                        38/50 máy chủ dùng cổng mạng 1GbE cũ và chưa được thay card điều khiển RAID; kho không có sẵn mainboard, ổ 6TB hay SSD 480GB dự phòng; trung bình mỗi tháng hỏng khoảng 5 ổ cứng 2TB.
+                    </div>
+                    <div class="p-3 rounded-lg bg-amber-50/70 border border-amber-200">
+                        <strong class="text-amber-900 block mb-1">• Rủi ro nếu chạy độc lập từng máy:</strong>
+                        Tháng 4/2025 từng xảy ra sự cố hỏng Server 034 làm mất 40TB dữ liệu. Do đó, hạ tầng nguyên trạng chỉ phù hợp chạy gói lưu trữ cơ bản hoặc làm kho lưu trữ phụ, chưa thể cam kết ngay tiêu chuẩn khắt khe của Ngân hàng nếu chưa có giải pháp kỹ thuật bọc lót.
+                    </div>
+                    <div class="p-3 rounded-lg bg-sky-50/70 border border-sky-200">
+                        <strong class="text-sky-900 block mb-1">• Điểm sáng có thể tận dụng bước đầu:</strong>
+                        Sau khi giữ 6 máy (~700TB) cho hậu kỳ B2C, trong 42 máy thu hồi (~2,1 PB) vẫn có <strong>nhóm máy tại DC7 (đời 2017–2018)</strong> đã được nâng cấp ổ cứng 6TB/8TB + SSD và có cổng mạng 10GbE có thể tận dụng làm thử nghiệm trước.
+                    </div>
+                </div>
+            </div>
+
+            <!-- 2. Nhu cầu thị trường Lưu trữ B2B & So sánh mức giá -->
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-4">
+                <div class="lg:col-span-7 bg-white p-4 md:p-5 rounded-xl border border-slate-200 shadow-sm space-y-3 text-xs">
+                    <h3 class="text-sm font-bold text-slate-900 border-b pb-2">2. Các Nhóm Khách Hàng Có Nhu Cầu Lưu Trữ Thực Tế Trên Thị Trường</h3>
+                    <div class="space-y-2.5">
+                        <div class="p-3 rounded bg-slate-50 border border-slate-200">
+                            <strong class="text-brand-800 block">Nhóm 1 – Khối Ngân hàng, Tài chính & Kế toán (Nhu cầu theo quy định pháp luật):</strong>
+                            • Ngân hàng Nhà nước có các quy định bắt buộc (như <strong>Thông tư 09/2020/TT-NHNN</strong> yêu cầu sao lưu dữ liệu hàng ngày ra thiết bị lưu trữ tách biệt và lưu log hệ thống 1 năm; <strong>Thông tư 04/2025 & 37/2026/TT-NHNN</strong> yêu cầu lưu hồ sơ tín dụng, thanh toán, eKYC từ 5–20 năm).<br>
+                            • Các doanh nghiệp nói chung cũng phải lưu chứng từ kế toán, hóa đơn tối thiểu <strong>10 năm (Nghị định 174)</strong> và lưu dữ liệu tại Việt Nam <strong>(Nghị định 53 & Luật BVDLCN)</strong>.
+                        </div>
+                        <div class="p-3 rounded bg-slate-50 border border-slate-200">
+                            <strong class="text-brand-800 block">Nhóm 2 – Khối Y tế, Chuỗi Camera, Xây dựng (AEC) & Media (Nhu cầu dung lượng lớn giá rẻ):</strong>
+                            • Bệnh viện cần lưu ảnh chụp CT/MRI (PACS) lâu dài; chuỗi bán lẻ/nhà xưởng cần lưu video Camera 90–365 ngày; công ty Xây dựng/Studio cần kho lưu và gửi bản vẽ BIM/Video 4K tốc độ nội địa nhanh.
+                        </div>
+                        <div class="p-3 rounded bg-amber-50 border border-amber-200">
+                            <strong class="text-amber-950 block">Cơ hội về Giá cho FTI nếu phối hợp làm được giải pháp:</strong>
+                            • Hiện gói FPT Cloud Object Storage tiêu chuẩn đang có giá khá cao (<strong>1.000.000 – 1.750.000đ/TB/tháng</strong>, phù hợp dữ liệu nóng), còn AWS Glacier quốc tế tuy lưu rẻ nhưng khi rút dữ liệu về lại bị phạt phí rất đắt (~2,87 triệu/TB). Nếu KD3 phối hợp kỹ thuật tạo được gói lưu trữ dự phòng/lưu trữ lạnh ở mức <strong>450.000 – 850.000đ/TB</strong> (miễn phí rút dữ liệu nội địa) thì sẽ rất dễ chào bán kèm Cloud và Kênh truyền.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Biểu đồ so sánh giá đơn giản -->
+                <div class="lg:col-span-5 bg-white p-4 md:p-5 rounded-xl border border-slate-200 shadow-sm flex flex-col justify-between">
+                    <div>
+                        <h3 class="text-sm font-bold text-slate-900 border-b pb-2">Khoảng Trống Giá Lưu Trữ Trên Thị Trường</h3>
+                        <p class="text-xs text-slate-500 mt-1">Đơn vị: Nghìn VNĐ / TB / Tháng</p>
+                    </div>
+                    <div class="chart-container my-auto">
+                        <canvas id="chartPriceGap"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 3. Solution Canvas sơ lược cho Chân 1 -->
+            <div class="bg-white p-4 md:p-5 rounded-xl border border-slate-200 shadow-sm space-y-2.5 text-xs">
+                <h3 class="text-sm font-bold text-slate-900 border-b pb-1.5">3. Tóm Tắt Khung Mô Hình Kinh Doanh Dự Tính Cho Chân 1 (Storage Canvas)</h3>
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-3">
+                    <div class="p-3 rounded bg-slate-50 border border-slate-200">
+                        <strong class="text-amber-900 block mb-1">1. Sản Phẩm Dự Tính</strong>
+                        • <strong>Gói cơ bản (200k–300k/TB):</strong> FshareStorage B2B Private cho khách VIP cũ & SME.<br>
+                        • <strong>Gói nâng cao (450k–850k/TB):</strong> Phối hợp kỹ thuật làm kho sao lưu/lưu trữ dài hạn khi có dự án.
+                    </div>
+                    <div class="p-3 rounded bg-slate-50 border border-slate-200">
+                        <strong class="text-amber-900 block mb-1">2. Đối Tượng Khách Hàng</strong>
+                        • Tệp 1.649 VIP B2C cũ (&gt;10GB) & HĐ Whitelist (TC Thuế, Việt Ba, Vinama).<br>
+                        • Khách hàng mua kèm MS365, HiGIO Cloud, Camera AI và các đơn vị cần lưu trữ dự phòng.
+                    </div>
+                    <div class="p-3 rounded bg-slate-50 border border-slate-200">
+                        <strong class="text-amber-900 block mb-1">3. Đơn Vị Phối Hợp Nội Bộ</strong>
+                        • <strong>Kinh doanh & CSKH:</strong> Minh, Vân, Huy.<br>
+                        • <strong>Kỹ thuật & Hạ tầng:</strong> Phối hợp đội SIS, Tech SST, anh TạiCV và khối FPT Cloud.
+                    </div>
+                    <div class="p-3 rounded bg-slate-50 border border-slate-200">
+                        <strong class="text-amber-900 block mb-1">4. Nguyên Tắc Đầu Tư An Toàn</strong>
+                        • Tận dụng máy thu hồi sẵn có (CAPEX = 0đ).<br>
+                        • Chỉ đề xuất mua vật tư dự phòng nhỏ lẻ hoặc đầu tư đối ứng khi đã có hợp đồng khách hàng chắc chắn.
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- =========================================================================
+             TAB 3: KHAI THÁC & TRIỂN KHAI CHÂN 1 (CÁCH LÀM SƠ LƯỢC, KHÔNG CHÉM GIÓ KỸ THUẬT)
+             ========================================================================= -->
+        <section id="tab3" class="tab-content hidden space-y-4">
+            <div class="bg-white p-4 md:p-5 rounded-xl border border-slate-200 shadow-sm space-y-3">
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between border-b pb-2 gap-2">
+                    <h2 class="text-base font-bold text-slate-900">1. Dự Tính Cách Phân Nhóm 42 Máy Chủ Thu Hồi & Phối Hợp Đơn Vị Kỹ Thuật</h2>
+                    <span class="text-xs font-semibold px-2.5 py-0.5 rounded bg-amber-50 text-amber-800 border border-amber-200">
+                        Làm từng bước theo khả năng đáp ứng của Hạ tầng
+                    </span>
+                </div>
+                <p class="text-xs text-slate-600 leading-relaxed">
+                    Với góc nhìn thực tế từ phía Kinh doanh, KD3 không tự cam kết các giải pháp kỹ thuật vượt quá năng lực phần cứng hiện tại, mà đề xuất lập nhóm làm việc chung với các bộ phận Kỹ thuật (<strong>SIS, Tech SST, bộ phận hạ tầng anh TạiCV và FPT Cloud</strong>) để phân loại và khai thác theo 3 mức độ từ dễ đến khó:
+                </p>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-3.5 text-xs">
+                    <div class="p-3.5 rounded-xl bg-emerald-50/70 border border-emerald-200 space-y-1.5">
+                        <span class="px-2 py-0.5 rounded bg-emerald-600 text-white font-bold text-[10px]">Mức 1 • Làm Ngay Từ 01/01/2027</span>
+                        <strong class="text-slate-900 block text-xs md:text-sm">Khai Thác Gói FshareStorage B2B Cơ Bản (200k–300k/TB)</strong>
+                        <p class="text-slate-700 leading-relaxed">
+                            • <strong>Cách làm:</strong> Sử dụng nhóm 38 máy chủ ổ 2TB sẵn có; nhờ đội Kỹ thuật cấu hình cơ chế tự động sao lưu dự phòng chéo giữa các máy (và tận dụng linh kiện từ các máy hỏng mainboard làm đồ dự phòng) để tránh mất dữ liệu khi hỏng ổ cứng.<br>
+                            • <strong>Giao diện & Vận hành:</strong> Đổi sang giao diện B2B ("Két sắt dữ liệu DN"), mặc định 100% file tải lên là Private, chỉ chia sẻ qua Email để triệt tiêu hoàn toàn rủi ro bản quyền DMCA.
+                        </p>
+                    </div>
+
+                    <div class="p-3.5 rounded-xl bg-sky-50/70 border border-sky-200 space-y-1.5">
+                        <span class="px-2 py-0.5 rounded bg-sky-600 text-white font-bold text-[10px]">Mức 2 • Phối Hợp Thử Nghiệm (Q1–Q2/2027)</span>
+                        <strong class="text-slate-900 block text-xs md:text-sm">Thử Nghiệm Cụm Lưu Trữ Sao Lưu An Toàn Trên Nhóm Máy Tốt Nhất</strong>
+                        <p class="text-slate-700 leading-relaxed">
+                            • <strong>Cách làm:</strong> Tách riêng 4–5 máy chủ đời mới nhất tại DC7 (đời 2017–2018 có mạng 10GbE, ổ 6TB/8TB + SSD); phối hợp đội Kỹ thuật cài đặt phần mềm quản lý lưu trữ chuẩn doanh nghiệp (như giải pháp kết nối sao lưu Veeam / S3 khóa dữ liệu chống mã độc).<br>
+                            • <strong>Ngân sách dự trù nhỏ:</strong> Chỉ đề xuất xin mua bổ sung một số lượng nhỏ ổ cứng dự phòng (spare) và vật tư cần thiết (dự kiến khoảng vài chục đến ~100–150 triệu VNĐ tùy khảo sát của kỹ thuật) để đảm bảo chạy ổn định.
+                        </p>
+                    </div>
+
+                    <div class="p-3.5 rounded-xl bg-amber-50/70 border border-amber-200 space-y-1.5">
+                        <span class="px-2 py-0.5 rounded bg-amber-600 text-white font-bold text-[10px]">Mức 3 • Chỉ Làm Khi Có Hợp Đồng Lớn</span>
+                        <strong class="text-slate-900 block text-xs md:text-sm">Hợp Tác Hãng Đầu Tư Đối Ứng Cho Khách Hàng Ngân Hàng / Tập Đoàn</strong>
+                        <p class="text-slate-700 leading-relaxed">
+                            • <strong>Cách làm:</strong> Khi tiếp cận được các Ngân hàng hoặc Tổ chức lớn có nhu cầu thuê lưu trữ hồ sơ 10–20 năm nhưng yêu cầu thiết bị mới 100% có bảo hành chính hãng, KD3 tuyệt đối không lấy máy đời 2013 ra chào.<br>
+                            • <strong>Nguyên tắc an toàn vốn:</strong> Phối hợp cùng FPT Cloud và các hãng phần cứng lớn xây dựng phương án <em>Đầu tư đối ứng (Back-to-Back)</em> — chỉ mua/thuê thiết bị mới khi khách hàng đã ký hợp đồng cam kết dài hạn.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 2. Các bước hành động thực hiện khóa sổ B2C & chuyển sang B2B -->
+            <div class="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden">
+                <div class="p-3.5 bg-slate-50 border-b border-slate-200 font-bold text-slate-900 text-xs md:text-sm">
+                    2. Các Bước Công Việc Cụ Thể Để Xử Lý Êm Đẹp Chân 1 (Từ Tháng 10/2026 Đến 2028)
+                </div>
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left text-xs border-collapse">
+                        <thead class="bg-slate-100 text-slate-700 uppercase font-bold border-b border-slate-200">
+                            <tr>
+                                <th class="p-3 w-[18%]">Mốc Thời Gian</th>
+                                <th class="p-3 w-[30%]">Công Việc Trọng Tâm Cần Xử Lý</th>
+                                <th class="p-3 w-[24%]">Người / Đơn Vị Thực Hiện</th>
+                                <th class="p-3 w-[28%]">Cách Xử Lý Các Vấn Đề Phát Sinh (Nếu Có)</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-slate-200">
+                            <tr class="hover:bg-slate-50">
+                                <td class="p-3 font-bold text-red-700">1. Cuối T10/2026 (Mốc 31/10/2026)</td>
+                                <td class="p-3 text-slate-700">
+                                    • Khóa toàn bộ 131 tài khoản Uploader cộng đồng.<br>
+                                    • Dọn dữ liệu rác, gom dữ liệu khách VIP còn hạn (~700TB) về 6 máy tại DC7 và thu hồi 42 máy chủ (~2,1 PB).
+                                </td>
+                                <td class="p-3 text-slate-700">
+                                    • Vân (Làm việc với Uploader)<br>
+                                    • Anh TạiCV & Tech SST (Dọn & gom server)
+                                </td>
+                                <td class="p-3 text-slate-600">
+                                    Trao đổi trước với các Uploader lớn để ổn định tâm lý; Huy theo dõi sát các hội nhóm/MXH để xử lý ngay nếu có thắc mắc, không để lan truyền thông tin tiêu cực.
+                                </td>
+                            </tr>
+                            <tr class="hover:bg-slate-50">
+                                <td class="p-3 font-bold text-amber-700">2. Tháng 11 – 12/2026 (Mốc 31/12/2026)</td>
+                                <td class="p-3 text-slate-700">
+                                    • Đổi giao diện web sang FshareStorage B2B.<br>
+                                    • Hạ toàn bộ cổng thanh toán ví điện tử cá nhân (MoMo, ShopeePay, VNPAY) và thay bằng Form đăng ký B2B trên `fshare.vn`.
+                                </td>
+                                <td class="p-3 text-slate-700">
+                                    • Châu (Thiết kế UI/UX & Form)<br>
+                                    • Thủy (Hạ cổng ví & đối soát)<br>
+                                    • Vân (Liên hệ 1.649 VIP cũ)
+                                </td>
+                                <td class="p-3 text-slate-600">
+                                    Với khách VIP B2C cũ còn hạn dài, giữ nguyên quyền lưu trữ riêng tư trên 6 máy DC7; nếu khách có nhu cầu dùng cho công ty thì hướng dẫn ký hợp đồng PO xuất hóa đơn VAT.
+                                </td>
+                            </tr>
+                            <tr class="hover:bg-slate-50">
+                                <td class="p-3 font-bold text-brand-700">3. Trong Năm 2027 – 2028</td>
+                                <td class="p-3 text-slate-700">
+                                    • Khai thác thương mại gói FshareStorage B2B và dùng làm gói tặng kèm hỗ trợ chốt MS365/HiGIO Cloud.<br>
+                                    • Phối hợp đội Kỹ thuật khảo sát các yêu cầu lưu trữ nâng cao; kết thúc ân hạn B2C vào 31/12/2028.
+                                </td>
+                                <td class="p-3 text-slate-700">
+                                    • Minh, Vân & Huy<br>
+                                    • Đội Kỹ thuật SIS / Tech / FPT Cloud
+                                </td>
+                                <td class="p-3 text-slate-600">
+                                    Do máy chủ đã khấu hao hết nên chi phí duy trì hàng tháng thấp; bán đến đâu chắc đến đó và kéo giảm dần nghĩa vụ nợ bồi hoàn B2C từ 7,15 tỷ xuống ~700 triệu vào cuối 2028.
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- =========================================================================
+             TAB 4: KẾ HOẠCH CHÂN 2 (ƯU TIÊN SỐ 1: MS365 & HIGIO CLOUD + MỞ RỘNG CO-SALE)
+             ========================================================================= -->
+        <section id="tab4" class="tab-content hidden space-y-4">
+            <div class="bg-white p-4 md:p-5 rounded-xl border border-slate-200 shadow-sm">
+                <div class="flex flex-col md:flex-row md:items-center justify-between border-b pb-2 mb-2 gap-2">
+                    <h2 class="text-base font-bold text-slate-900 flex items-center gap-2">
+                        <span class="text-brand-600">&#9670;</span> Kế Hoạch Kinh Doanh Chân 2: Tập Trung Chủ Đạo Microsoft 365 & HiGIO Cloud
+                    </h2>
+                    <span class="text-xs font-semibold px-2.5 py-0.5 rounded bg-emerald-50 text-emerald-700 border border-emerald-200">
+                        Không chia cứng số từng SP • Ưu tiên mảng dễ bán & giá trị lớn nhất
+                    </span>
+                </div>
+                <p class="text-xs md:text-sm text-slate-600 leading-relaxed">
+                    Để đạt mục tiêu doanh số B2B (9,5 tỷ năm 2027), KD3 không dàn trải mà đặt <strong>Microsoft 365 (MS365) và HiGIO Cloud lên ưu tiên số 1</strong>. Thực tế tại ODS đây là 2 mảng được khách hàng hỏi nhiều nhất; trong năm 2026 cá nhân anh Tuấn đã trực tiếp vào nhiều lead lớn (quy mô vài trăm license/lead, đã có hợp đồng ~1 tỷ VNĐ chuyển qua PKD2), đồng thời đội ngũ nhà, PKD2 và các sếp đã có sẵn kỹ năng trình bày rất mượt. Các dịch vụ khác của FTI được khai thác bổ sung qua hình thức bán chéo và Co-sale.
+                </p>
+            </div>
+
+            <!-- Filter & Product Table -->
+            <div class="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden">
+                <div class="p-3 bg-slate-50 border-b border-slate-200 flex flex-wrap items-center justify-between gap-2">
+                    <span class="font-bold text-slate-800 text-xs">Lọc Xem Nhóm Sản Phẩm:</span>
+                    <div class="flex flex-wrap gap-1.5">
+                        <button onclick="filterProd50('all')" id="flt-all" class="px-3 py-1 text-xs font-bold rounded-lg bg-brand-600 text-white">Tất Cả (6 Nhóm)</button>
+                        <button onclick="filterProd50('CORE')" id="flt-CORE" class="px-3 py-1 text-xs font-semibold rounded-lg bg-slate-200 text-slate-700 hover:bg-slate-300">Ưu Tiên Số 1: Chủ Đạo (MS365 & HiGIO)</button>
+                        <button onclick="filterProd50('COSALE')" id="flt-COSALE" class="px-3 py-1 text-xs font-semibold rounded-lg bg-slate-200 text-slate-700 hover:bg-slate-300">Ưu Tiên 2: Mở Rộng & Co-sale FTI</button>
+                    </div>
+                </div>
+
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left text-xs border-collapse">
+                        <thead class="bg-slate-100 text-slate-700 uppercase font-bold border-b border-slate-200">
+                            <tr>
+                                <th class="p-3 w-[18%]">Sản Phẩm / Dịch Vụ</th>
+                                <th class="p-3 w-[12%] text-center">Độ Ưu Tiên & Tự Tin</th>
+                                <th class="p-3 w-[24%]">Thực Trạng Am Hiểu & Cơ Sở Thực Tế Tại ODS</th>
+                                <th class="p-3 w-[23%]">Lý Do Tự Tin & Lợi Thế Khi Đi Bán</th>
+                                <th class="p-3 w-[23%]">Kỳ Vọng Quy Mô Deal & Khách Hàng Đối Tượng</th>
+                            </tr>
+                        </thead>
+                        <tbody id="prodTableBody50" class="divide-y divide-slate-200">
+                            <!-- Populated by JS -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Chart & Bundling Box -->
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
+                <div class="bg-white p-4 rounded-xl border border-slate-200 shadow-sm">
+                    <h3 class="text-xs md:text-sm font-bold text-slate-900 border-b pb-1.5 mb-2">
+                        Mức Độ Tự Tin & Sẵn Sàng Khai Thác Của Đội Ngũ KD3
+                    </h3>
+                    <div class="chart-container" style="height: 230px;">
+                        <canvas id="chartReadiness50"></canvas>
+                    </div>
+                </div>
+
+                <div class="bg-white p-4 rounded-xl border border-slate-200 shadow-sm flex flex-col justify-between text-xs space-y-2">
+                    <h3 class="text-xs md:text-sm font-bold text-slate-900 border-b pb-1.5">
+                        Cách Kết Hợp Giữa Chân 2 (Bán B2B) Và Chân 1 (Hạ Tầng Lưu Trữ)
+                    </h3>
+                    <div class="p-3 rounded bg-emerald-50 border border-emerald-200">
+                        <strong class="text-emerald-950 block">1. Bán MS365 & HiGIO Cloud tặng kèm dung lượng FshareStorage:</strong>
+                        Khi khách hàng doanh nghiệp mua vài trăm license MS365 hoặc thuê máy chủ ảo HiGIO Cloud, KD3 dùng dung lượng FshareStorage sẵn có (chi phí vốn = 0đ) làm quà tặng kèm để khách lưu file nặng/backup nội địa, giúp dễ chốt hợp đồng hơn.
+                    </div>
+                    <div class="p-3 rounded bg-sky-50 border border-sky-200">
+                        <strong class="text-sky-950 block">2. Bán FPT Camera AI & Kênh truyền kèm lưu trữ dài hạn:</strong>
+                        Hỗ trợ các chuỗi cửa hàng, kho xưởng lưu trữ video camera 90–365 ngày trên hạ tầng của KD3 với chi phí tiết kiệm hơn so với mua Cloud Camera thông thường.
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- =========================================================================
+             TAB 5: NHÂN SỰ GỌN GÀNG & DANH SÁCH KHÁCH HÀNG MỤC TIÊU CỤ THỂ
+             ========================================================================= -->
+        <section id="tab5" class="tab-content hidden space-y-4">
+            <!-- 1. Bảng Nhân sự gọn gàng, hợp lý -->
+            <div class="bg-white p-4 md:p-5 rounded-xl border border-slate-200 shadow-sm space-y-3">
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between border-b pb-2 gap-2">
+                    <h2 class="text-base font-bold text-slate-900">1. Phương Án Sắp Xếp Nhân Sự Hợp Lý & Gọn Gàng</h2>
+                    <span class="text-xs font-semibold px-2.5 py-0.5 rounded bg-brand-50 text-brand-700">
+                        Giữ 2 bạn làm FshareStorage • Cơ cấu 2 bạn • Tuyển 2 Sale B2B mới
+                    </span>
+                </div>
+                <p class="text-xs text-slate-600">
+                    Do 4 nhân sự vận hành hiện tại (Vân, Châu, Thủy, Huy) thuần B2C, KD3 đề xuất giữ <strong>02 bạn (Vân, Huy)</strong> làm tiếp mảng FshareStorage; <strong>02 bạn còn lại (Châu, Thủy)</strong> nhờ Ban Giám đốc cơ cấu/luân chuyển phù hợp sở trường; đồng thời <strong>tuyển mới 02 Sale chuyên B2B</strong>:
+                </p>
+
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left text-xs border-collapse border border-slate-200">
+                        <thead class="bg-slate-100 text-slate-700 uppercase font-bold border-b border-slate-200">
+                            <tr>
+                                <th class="p-2.5 w-[22%]">Nhóm / Thành Viên</th>
+                                <th class="p-2.5 w-[33%]">Năng Lực Thực Tế Hiện Tại (Tóm Tắt Gọn)</th>
+                                <th class="p-2.5 w-[45%]">Phân Vai & Đề Xuất Sắp Xếp Từ Năm 2027</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-slate-200">
+                            <tr class="bg-sky-50/40">
+                                <td class="p-2.5 font-extrabold text-sky-950">Anh Tuấn (TuấnNM)<br><span class="text-[11px] font-normal text-slate-500">Kế hoạch KD & Thương mại</span></td>
+                                <td class="p-2.5 text-slate-700">Nắm vững kế hoạch kinh doanh; năm 2026 đã trực tiếp vào nhiều lead lớn về MS365 (hàng trăm license, HĐ ~1 tỷ) & HiGIO Cloud.</td>
+                                <td class="p-2.5 text-slate-800"><strong>Chủ trì Kế hoạch Kinh doanh & Thương mại B2B:</strong> Trực tiếp dẫn dắt mảng chủ đạo MS365, HiGIO Cloud, Kênh truyền, quản lý đội Sales và điều phối Co-sale cùng PKD2.</td>
+                            </tr>
+                            <tr class="bg-sky-50/40">
+                                <td class="p-2.5 font-extrabold text-sky-950">Minh (MinhDTA)<br><span class="text-[11px] font-normal text-slate-500">Giải pháp & Sản phẩm</span></td>
+                                <td class="p-2.5 text-slate-700">Hiểu sâu sản phẩm, hạ tầng máy chủ lưu trữ và cách tích hợp các giải pháp Cloud / công nghệ cho doanh nghiệp.</td>
+                                <td class="p-2.5 text-slate-800"><strong>Chủ trì Giải pháp & Sản phẩm:</strong> Làm đầu mối phối hợp với đội Kỹ thuật về FshareStorage / Solution Storage, làm Pre-sales cho HiGIO Cloud, Starlink và chốt các dự án giải pháp.</td>
+                            </tr>
+                            <tr class="bg-sky-50/40">
+                                <td class="p-2.5 font-extrabold text-emerald-800">Tuyển Mới 02 Sale B2B<br><span class="text-[11px] font-normal text-slate-500">Bổ sung lực lượng săn số</span></td>
+                                <td class="p-2.5 text-slate-700">Tuyển nhân sự đã có kinh nghiệm bán B2B thực chiến (MS365, Cloud, Leased Line, Camera/Voice) và có sẵn tệp khách hàng.</td>
+                                <td class="p-2.5 text-slate-800"><strong>Chuyên viên Kinh doanh B2B trực tiếp:</strong> Tập trung ưu tiên đánh MS365 & HiGIO Cloud để ra doanh số nhanh, kết hợp bán chéo các dịch vụ FTI.</td>
+                            </tr>
+                            <tr>
+                                <td class="p-2.5 font-bold text-slate-900">Vân (VanNT)<br><span class="text-[11px] font-semibold text-emerald-700">KPI 2025: 73,6%</span></td>
+                                <td class="p-2.5 text-slate-700">Quản lý cộng đồng đối tác tốt (6,36 tỷ năm 2025) và <strong>đã hoàn thành 100% thủ tục gia hạn HĐ B2B của phòng năm 2025</strong>.</td>
+                                <td class="p-2.5 text-slate-800"><span class="px-2 py-0.5 rounded bg-amber-100 text-amber-900 font-bold text-[10px]">Giữ làm tiếp FshareStorage</span> &#8594; Chuyển sang làm <strong>Sale B2B FshareStorage</strong>: Chăm sóc HĐ B2B cũ, khai thác tệp 1.649 VIP B2C (&gt;10GB), nhận Lead từ web `fshare.vn` và bán kèm MS365 cơ bản.</td>
+                            </tr>
+                            <tr>
+                                <td class="p-2.5 font-bold text-slate-900">Huy (HuyDM16)<br><span class="text-[11px] font-semibold text-emerald-700">KPI 2025: 84,5%</span></td>
+                                <td class="p-2.5 text-slate-700">Quen vận hành các kênh trực tuyến, hỗ trợ người dùng nhanh và theo dõi thông tin mạng xã hội.</td>
+                                <td class="p-2.5 text-slate-800"><span class="px-2 py-0.5 rounded bg-amber-100 text-amber-900 font-bold text-[10px]">Giữ làm tiếp FshareStorage</span> &#8594; Dừng việc seeding B2C; chuyển sang phụ trách <strong>CSKH FshareStorage B2B</strong> (hỗ trợ khách hàng, trực ticket) và kiểm soát thông tin MXH kỳ đóng B2C.</td>
+                            </tr>
+                            <tr>
+                                <td class="p-2.5 font-bold text-slate-900">Châu (ChauPTM3)<br><span class="text-[11px] font-semibold text-emerald-700">KPI 2025: 82,25%</span></td>
+                                <td class="p-2.5 text-slate-700">Mạnh về thiết kế UI/UX, vẽ luồng tính năng, viết tài liệu order kỹ thuật (Tech SST) và phân tích dữ liệu GA.</td>
+                                <td class="p-2.5 text-slate-800"><span class="px-2 py-0.5 rounded bg-purple-100 text-purple-900 font-bold text-[10px]">Nhờ BGĐ cơ cấu phù hợp</span> &#8594; Sau khi hoàn tất giao diện B2B cho FshareStorage, đề xuất chuyển Châu qua <strong>Đội Kỹ thuật SIS (làm Product / UI-UX)</strong> đúng sở trường.</td>
+                            </tr>
+                            <tr>
+                                <td class="p-2.5 font-bold text-slate-900">Thủy (ThuyNTT204)<br><span class="text-[11px] font-semibold text-emerald-700">KPI 2025: 90,0%</span></td>
+                                <td class="p-2.5 text-slate-700">Hoàn thành 100% đối soát doanh thu, nắm vững tạo mã SCM/xuất hóa đơn và xử lý khiếu nại khách hàng.</td>
+                                <td class="p-2.5 text-slate-800"><span class="px-2 py-0.5 rounded bg-purple-100 text-purple-900 font-bold text-[10px]">Nhờ BGĐ cơ cấu phù hợp</span> &#8594; Xin ý kiến BGĐ giữ làm <strong>Admin hợp đồng PO & xử lý giảm nợ B2C</strong> cho phòng, hoặc điều chuyển sang <strong>Khối BO Kế toán / Đối soát FTI</strong>.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- 2. Bảng Khách hàng mục tiêu (Các công ty chưa dùng SP) -->
+            <div class="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden">
+                <div class="p-3.5 bg-slate-50 border-b border-slate-200 font-bold text-slate-900 text-xs md:text-sm">
+                    2. Danh Sách Các Nhóm Công Ty Mục Tiêu Khả Thi (Chưa Dùng MS365 / HiGIO / Dịch Vụ Mới FTI) & Cách Tiếp Cận
+                </div>
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left text-xs border-collapse">
+                        <thead class="bg-slate-100 text-slate-700 uppercase font-bold border-b border-slate-200">
+                            <tr>
+                                <th class="p-3 w-[19%]">Loại Hình Công Ty & Dấu Hiệu</th>
+                                <th class="p-3 w-[25%]">Tên Các Công Ty Điển Hình Có Thể Tiếp Cận</th>
+                                <th class="p-3 w-[18%]">Sản Phẩm Chào Bán</th>
+                                <th class="p-3 w-[14%]">Đơn Vị Phối Hợp</th>
+                                <th class="p-3 w-[24%]">Cách Làm Thực Tế</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-slate-200">
+                            <tr class="hover:bg-slate-50 bg-sky-50/30">
+                                <td class="p-3 align-top font-bold text-brand-800">
+                                    1. Công ty Sản xuất, Thương mại & Dược (200–1.500 nhân sự)<br>
+                                    <span class="font-normal text-[11px] text-slate-500">Đang dùng Mail cũ (Zimbra/MDaemon), Office lẻ, Server vật lý tại văn phòng.</span>
+                                </td>
+                                <td class="p-3 align-top text-slate-700">
+                                    • Nhựa Bình Minh, Nhựa Tiền Phong, Gỗ An Cường, Tôn Đông Á, Dệt may TCM, May Sông Hồng.<br>
+                                    • Dược Hậu Giang (DHG), Traphaco, Imexpharm, Cholimex, Bibica + Các khách trong luồng lead 2026 của anh Tuấn.
+                                </td>
+                                <td class="p-3 align-top font-semibold text-slate-800">
+                                    • <strong>Microsoft 365</strong> (100–1.000 license)<br>
+                                    • <strong>HiGIO Cloud</strong><br>
+                                    • Tặng kèm FshareStorage.
+                                </td>
+                                <td class="p-3 align-top text-slate-700">
+                                    • BGĐ FTI & PKD2<br>
+                                    • Khối FPT Cloud (HiGIO)<br>
+                                    • Microsoft Vietnam
+                                </td>
+                                <td class="p-3 align-top text-slate-700">
+                                    Rà soát các công ty đang dùng mail cũ; tổ chức buổi trình bày giải pháp lên MS365 + HiGIO Cloud (do đội nhà và các sếp trình bày mượt trực tiếp tham gia) kèm hỗ trợ chuyển dữ liệu.
+                                </td>
+                            </tr>
+
+                            <tr class="hover:bg-slate-50 bg-sky-50/30">
+                                <td class="p-3 align-top font-bold text-brand-800">
+                                    2. Công ty Xây dựng (AEC), BĐS, Thiết kế & Media Studio<br>
+                                    <span class="font-normal text-[11px] text-slate-500">Cần cộng tác công trường – văn phòng và gửi bản vẽ BIM/Video 4K nặng.</span>
+                                </td>
+                                <td class="p-3 align-top text-slate-700">
+                                    • Pháp nhân công ty lọc từ <strong>1.649 VIP B2C cũ</strong> (&gt;10GB) + Đối tác hiện hữu (<strong>Việt Ba, Vinama</strong>).<br>
+                                    • Xây dựng Hòa Bình, Ricons, Newtecons, Central, Đất Xanh, Nam Long, Điền Quân, BHD.
+                                </td>
+                                <td class="p-3 align-top font-semibold text-slate-800">
+                                    • <strong>MS365 & HiGIO Cloud</strong><br>
+                                    • <strong>FshareStorage B2B (200k–300k/TB)</strong><br>
+                                    • <strong>Kênh truyền Leased Line</strong>.
+                                </td>
+                                <td class="p-3 align-top text-slate-700">
+                                    • Vân & Anh Tuấn<br>
+                                    • Đội Kỹ thuật SIS/Tech
+                                </td>
+                                <td class="p-3 align-top text-slate-700">
+                                    Vân liên hệ tệp 1.649 VIP cũ chuyển sang ký PO FshareStorage B2B; sau đó Anh Tuấn & Sale B2B chào nâng cấp lên gói MS365, HiGIO Cloud và đường truyền Leased Line.
+                                </td>
+                            </tr>
+
+                            <tr class="hover:bg-slate-50">
+                                <td class="p-3 align-top font-bold text-slate-900">
+                                    3. Chuỗi Bán lẻ, Kho vận Logistics, Phòng khám & KCN FDI<br>
+                                    <span class="font-normal text-[11px] text-slate-500">Đang dùng đầu ghi camera rời rạc lưu ngắn ngày; thiếu tổng đài đa kênh.</span>
+                                </td>
+                                <td class="p-3 align-top text-slate-700">
+                                    • Chuỗi BiboMart, KidsPlaza, Guardian, Phúc Long, Nha khoa Kim, GHN, GHTK.<br>
+                                    • Các nhà máy FDI mới mở rộng tại KCN VSIP, Kinh Bắc, Quế Võ, Hiệp Phước.
+                                </td>
+                                <td class="p-3 align-top font-semibold text-slate-800">
+                                    • <strong>FPT Camera AI</strong> + Lưu trữ dài hạn<br>
+                                    • <strong>Voice Center (1900/ZNS)</strong><br>
+                                    • <strong>MS365 & Leased Line</strong>.
+                                </td>
+                                <td class="p-3 align-top text-slate-700">
+                                    • FTI Voice Center<br>
+                                    • Khối FPT Camera<br>
+                                    • PKD2 (Tệp SME)
+                                </td>
+                                <td class="p-3 align-top text-slate-700">
+                                    Dùng gói Voice (1900/Cloud PBX/ZNS) và Camera AI kèm lưu trữ dài hạn giá rẻ để chốt hợp đồng nhanh trong 2–3 tuần mở mã khách hàng, sau đó bán thêm MS365 và Leased Line.
+                                </td>
+                            </tr>
+
+                            <tr class="hover:bg-slate-50">
+                                <td class="p-3 align-top font-bold text-slate-900">
+                                    4. Vận tải biển, Thủy điện vùng sâu, Ngân hàng & Khối Công<br>
+                                    <span class="font-normal text-[11px] text-slate-500">Vùng lõm sóng cáp quang hoặc đơn vị cần lưu trữ dự phòng theo quy định.</span>
+                                </td>
+                                <td class="p-3 align-top text-slate-700">
+                                    • Hàng hải & Thủy điện: Vosco, Hải An, VIMC, Cát Hải, Thủy điện Bắc Hà, VSH, PC1.<br>
+                                    • Ngân hàng & Khối Công: VietABank, BVBank, OCB, KienlongBank, SHS + <strong>Tổng cục Thuế</strong>.
+                                </td>
+                                <td class="p-3 align-top font-semibold text-slate-800">
+                                    • <strong>Starlink B2B (LEO)</strong><br>
+                                    • <strong>HiGIO Cloud & Leased Line</strong><br>
+                                    • <strong>Giải pháp Lưu trữ B2B</strong>.
+                                </td>
+                                <td class="p-3 align-top text-slate-700">
+                                    • BGĐ FTI (Đẩy dự án)<br>
+                                    • TT Giải pháp Phi mặt đất<br>
+                                    • PKD2 & Đội Kỹ thuật
+                                </td>
+                                <td class="p-3 align-top text-slate-700">
+                                    Nhờ BGĐ kết nối dự án Starlink cho đội tàu/thủy điện; phối hợp Co-sale cùng PKD2 và đội Kỹ thuật khảo sát cung cấp gói lưu trữ dự phòng khi khách có nhu cầu thực tế.
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- =========================================================================
+             TAB 6: LỘ TRÌNH 10–30–50 TỶ, CÁCH LẤY LEAD & BIỂU ĐỒ MÙA VỤ THAM KHẢO
+             ========================================================================= -->
+        <section id="tab6" class="tab-content hidden space-y-4">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-4">
+                <!-- Bảng Kế hoạch 3 năm 10-30-50 Tỷ -->
+                <div class="lg:col-span-7 bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden flex flex-col justify-between">
+                    <div>
+                        <div class="p-3.5 bg-slate-50 border-b border-slate-200 font-bold text-slate-900 text-xs md:text-sm flex justify-between">
+                            <span>1. Kế Hoạch Doanh Thu Dự Kiến 3 Năm (2027 – 2029)</span>
+                            <span class="text-brand-700">Đơn vị: Tỷ VNĐ</span>
+                        </div>
+                        <div class="overflow-x-auto">
+                            <table class="w-full text-xs text-left border-collapse">
+                                <thead class="bg-slate-100 text-slate-700 uppercase font-bold border-b border-slate-200">
+                                    <tr>
+                                        <th class="p-3">Hạng Mục / Vị Trí Phụ Trách</th>
+                                        <th class="p-3 text-right">Năm 2027</th>
+                                        <th class="p-3 text-right">Năm 2028</th>
+                                        <th class="p-3 text-right">Năm 2029</th>
+                                        <th class="p-3">Trọng Tâm Thực Hiện</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="divide-y divide-slate-200">
+                                    <tr class="hover:bg-slate-50">
+                                        <td class="p-3 font-bold text-slate-900">1. Chân 2: MS365, HiGIO Cloud & Co-sale FTI</td>
+                                        <td class="p-3 text-right font-extrabold text-brand-600">9,5 Tỷ</td>
+                                        <td class="p-3 text-right font-extrabold text-brand-600">26,5 Tỷ</td>
+                                        <td class="p-3 text-right font-extrabold text-brand-600">42,0 Tỷ</td>
+                                        <td class="p-3 text-slate-600">Chốt các HĐ MS365 trăm license, HiGIO Cloud & bán chéo dịch vụ FTI.</td>
+                                    </tr>
+                                    <tr class="hover:bg-slate-50">
+                                        <td class="p-3 font-bold text-slate-900">2. Chân 1: FshareStorage B2B & Lưu trữ</td>
+                                        <td class="p-3 text-right font-bold text-amber-600">0,5 Tỷ</td>
+                                        <td class="p-3 text-right font-bold text-amber-600">3,5 Tỷ</td>
+                                        <td class="p-3 text-right font-bold text-amber-600">8,0 Tỷ</td>
+                                        <td class="p-3 text-slate-600">Chuyển đổi VIP cũ (200k–300k/TB) & phối hợp kỹ thuật mở rộng dự án.</td>
+                                    </tr>
+                                    <tr class="bg-slate-50 font-semibold text-slate-800 border-t-2 border-slate-200">
+                                        <td class="p-2.5 pl-3">• Anh Tuấn (Kế hoạch KD & Thương mại B2B)</td>
+                                        <td class="p-2.5 text-right text-emerald-700 font-bold">3,5 Tỷ</td>
+                                        <td class="p-2.5 text-right text-emerald-700 font-bold">8,0 Tỷ</td>
+                                        <td class="p-2.5 text-right text-emerald-700 font-bold">12,0 Tỷ</td>
+                                        <td class="p-2.5 text-slate-600">Dẫn dắt MS365, HiGIO, Kênh truyền & Co-sale PKD2.</td>
+                                    </tr>
+                                    <tr class="bg-slate-50 font-semibold text-slate-800">
+                                        <td class="p-2.5 pl-3">• Minh (Giải pháp & Sản phẩm)</td>
+                                        <td class="p-2.5 text-right text-brand-700 font-bold">3,0 Tỷ</td>
+                                        <td class="p-2.5 text-right text-brand-700 font-bold">6,5 Tỷ</td>
+                                        <td class="p-2.5 text-right text-brand-700 font-bold">10,0 Tỷ</td>
+                                        <td class="p-2.5 text-slate-600">Tư vấn giải pháp Cloud, Storage B2B & Starlink.</td>
+                                    </tr>
+                                    <tr class="bg-slate-50 font-semibold text-slate-800">
+                                        <td class="p-2.5 pl-3">• 02 Sale B2B Mới & Vân (FshareStorage)</td>
+                                        <td class="p-2.5 text-right font-bold">3,5 Tỷ</td>
+                                        <td class="p-2.5 text-right font-bold">15,5 Tỷ</td>
+                                        <td class="p-2.5 text-right font-bold">28,0 Tỷ</td>
+                                        <td class="p-2.5 text-slate-600">Mở rộng đội ngũ Sales theo đà tăng trưởng thực tế.</td>
+                                    </tr>
+                                    <tr class="bg-slate-900 text-white font-black">
+                                        <td class="p-3">TỔNG MỤC TIÊU DỰ KIẾN PHÒNG KD3</td>
+                                        <td class="p-3 text-right text-amber-400">10,0 Tỷ</td>
+                                        <td class="p-3 text-right text-amber-400">30,0 Tỷ</td>
+                                        <td class="p-3 text-right text-amber-400">50,0 Tỷ</td>
+                                        <td class="p-3 text-sky-300 text-[11px]">Giảm 90% nợ bồi hoàn B2C (tiết kiệm 6,45 tỷ)</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="p-3 bg-slate-50 border-t border-slate-200 text-xs text-slate-600">
+                        <strong>Cơ sở thực tế của mốc 10 Tỷ (2027):</strong> Chỉ cần chốt khoảng <strong>6–8 hợp đồng MS365 & HiGIO Cloud quy mô vừa và lớn</strong> (tương tự các lead vài trăm license đến 1 tỷ VNĐ mà anh Tuấn đã vào năm 2026) cộng với các hợp đồng Co-sale và chuyển đổi khách VIP cũ.
+                    </div>
+                </div>
+
+                <!-- Cách làm nguồn Lead & Công việc -->
+                <div class="lg:col-span-5 bg-white p-4 md:p-5 rounded-xl border border-slate-200 shadow-sm space-y-2.5 text-xs">
+                    <h3 class="text-sm font-bold text-slate-900 border-b pb-1.5">2. Cách Khai Thác Lead & Phối Hợp Nội Bộ</h3>
+                    <div class="p-3 rounded bg-sky-50 border border-sky-200">
+                        <strong class="text-sky-950 block mb-0.5">1. Giữ trực tiếp luồng Lead MS365 & HiGIO Cloud tại KD3:</strong>
+                        Từ 2027, các lead khách hàng hỏi MS365 và HiGIO Cloud do anh Tuấn và đội ngũ khai thác được giữ lại trực tiếp báo giá, ký hợp đồng và ghi nhận doanh số tại KD3 (không chuyển hết qua PKD2 như năm 2026).
+                    </div>
+                    <div class="p-3 rounded bg-emerald-50 border border-emerald-200">
+                        <strong class="text-emerald-950 block mb-0.5">2. Nhờ Ban Giám đốc (Sếp Sơn, Sếp Chiến) hỗ trợ đẩy dự án:</strong>
+                        Xin BGĐ bảo trợ cơ chế 2 năm bản lề (2027–2028) và hỗ trợ giới thiệu/phân bổ một số đầu mối dự án B2B từ mối quan hệ của BGĐ về cho KD3 triển khai.
+                    </div>
+                    <div class="p-3 rounded bg-amber-50 border border-amber-200">
+                        <strong class="text-amber-950 block mb-0.5">3. Phối hợp Co-sale cùng PKD2:</strong>
+                        Khi gặp các gói thầu lớn cần thêm chuyên gia, KD3 phối hợp cùng PKD2 để tăng tỷ lệ thắng; bán chéo Camera, Starlink, Storage trên tập khách hàng kênh truyền của PKD2 và nhận chăm sóc lại các Lead SME tồn đọng.
+                    </div>
+                </div>
+            </div>
+
+            <!-- Biểu đồ phân rã tháng để phía dưới dạng hình thức tham khảo -->
+            <div class="bg-white p-4 rounded-xl border border-slate-200 shadow-sm space-y-2">
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b pb-2">
+                    <div>
+                        <span id="seasonalTitle50" class="text-xs font-bold text-slate-700 block">Biểu Đồ Mô Phỏng Xu Hướng Doanh Số Theo Tháng Năm 2027 (Tham Khảo Hình Thức)</span>
+                        <span class="text-[11px] text-slate-400">Do hợp đồng B2B phụ thuộc chu kỳ giải ngân thực tế của khách hàng, biểu đồ tháng dưới đây mang tính chất mô phỏng xu hướng mùa vụ</span>
+                    </div>
+                    <div class="flex gap-1.5">
+                        <button onclick="updateSeasonal50(2027)" id="sbtn-2027" class="px-2.5 py-1 text-xs font-bold rounded bg-brand-600 text-white">2027 (10 Tỷ)</button>
+                        <button onclick="updateSeasonal50(2028)" id="sbtn-2028" class="px-2.5 py-1 text-xs font-semibold rounded bg-slate-200 text-slate-700">2028 (30 Tỷ)</button>
+                        <button onclick="updateSeasonal50(2029)" id="sbtn-2029" class="px-2.5 py-1 text-xs font-semibold rounded bg-slate-200 text-slate-700">2029 (50 Tỷ)</button>
+                    </div>
+                </div>
+                <div class="chart-container" style="height: 210px;">
+                    <canvas id="chartSeasonal50"></canvas>
+                </div>
+            </div>
+        </section>
+
+        <!-- =========================================================================
+             TAB 7: BUSINESS MODEL CANVAS TỔNG THỂ (VIẾT GỌN, RÕ Ý KINH DOANH)
+             ========================================================================= -->
+        <section id="tab7" class="tab-content hidden space-y-4">
+            <div class="bg-white p-4 md:p-5 rounded-xl border border-slate-200 shadow-sm">
+                <h2 class="text-base font-bold text-slate-900 border-b pb-2 mb-2">
+                    Mô Hình Business Model Canvas Tổng Thể Phòng KD3 (Đồng Bộ Chân 1 & Chân 2)
+                </h2>
+                <p class="text-xs text-slate-600">
+                    Tổng hợp 9 trụ cột vận hành kinh doanh B2B của Phòng KD3 theo hướng thực tế, lấy MS365 & HiGIO Cloud làm chủ đạo và khai thác hợp lý 42 máy chủ sẵn có.
+                </p>
+
+                <div class="grid grid-cols-1 lg:grid-cols-5 gap-3 mt-3 text-xs">
+                    <!-- 1. Đối tác chính -->
+                    <div class="p-3.5 bg-slate-50 border border-slate-200 rounded-xl space-y-1.5">
+                        <strong class="text-brand-800 block border-b pb-1">1. ĐỐI TÁC PHỐI HỢP</strong>
+                        <p class="text-slate-700 leading-relaxed">
+                            • <strong>Ban Giám đốc FTI:</strong> Sếp Dương, anh Thế Anh, sếp Sơn, sếp Chiến (Bảo trợ cơ chế bản lề & đẩy dự án).<br>
+                            • <strong>Phòng Kinh doanh 2 (PKD2):</strong> Phối hợp Co-sale các gói thầu lớn & chia sẻ tệp khách hàng.<br>
+                            • <strong>Khối FPT Cloud (HiGIO) & Microsoft VN:</strong> Hỗ trợ Pre-sales, demo và giá dự án MS365.<br>
+                            • <strong>Các đơn vị FTI:</strong> TT Starlink, Voice Center, FPT Camera, Đội kỹ thuật SIS/Tech/TạiCV.
+                        </p>
+                    </div>
+
+                    <!-- 2. Hoạt động & 6. Nguồn lực -->
+                    <div class="space-y-3 flex flex-col justify-between">
+                        <div class="p-3.5 bg-slate-50 border border-slate-200 rounded-xl space-y-1 flex-1">
+                            <strong class="text-brand-800 block border-b pb-1">2. HOẠT ĐỘNG CHÍNH</strong>
+                            <p class="text-slate-700 leading-relaxed">
+                                • Tìm kiếm và chốt các hợp đồng <strong>MS365 & HiGIO Cloud</strong>.<br>
+                                • Bán chéo Kênh truyền, Camera, Voice, Starlink.<br>
+                                • Chuyển đổi 1.649 VIP cũ sang B2B và đóng băng êm đẹp B2C.
+                            </p>
+                        </div>
+                        <div class="p-3.5 bg-slate-50 border border-slate-200 rounded-xl space-y-1 flex-1">
+                            <strong class="text-brand-800 block border-b pb-1">6. NGUỒN LỰC CỐT LÕI</strong>
+                            <p class="text-slate-700 leading-relaxed">
+                                • Luồng lead và kinh nghiệm trình bày mượt MS365/HiGIO.<br>
+                                • 42 máy chủ thu hồi (~2,1 PB, CAPEX = 0đ).<br>
+                                • Đội Sales B2B (Tuấn, Minh + 2 Sale mới) & nhóm Storage (Vân, Huy).
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- 3. Giải pháp giá trị -->
+                    <div class="p-3.5 bg-sky-50 border-2 border-brand-500 rounded-xl space-y-1.5">
+                        <strong class="text-brand-900 block border-b border-brand-200 pb-1">3. GIẢI PHÁP GIÁ TRỊ</strong>
+                        <p class="text-slate-800 leading-relaxed">
+                            • <strong>Chuyển đổi số văn phòng & hạ tầng trọn gói:</strong> Cung cấp bản quyền MS365 và máy chủ ảo HiGIO Cloud chuẩn nội địa, hỗ trợ chuyển dữ liệu miễn phí.<br>
+                            • <strong>Két sắt lưu trữ nội địa giá tốt:</strong> FshareStorage B2B (200k–300k/TB) tốc độ LAN nội địa nhanh, mặc định Private 100%, dùng làm quà tặng/bán kèm tăng sức cạnh tranh cho các gói Cloud, Camera và Kênh truyền.<br>
+                            • <strong>Giải pháp lưu trữ dự phòng phối hợp:</strong> Khảo sát và thiết kế theo nhu cầu thực tế của khách hàng lớn.
+                        </p>
+                    </div>
+
+                    <!-- 4. Quan hệ KH & 7. Kênh bán -->
+                    <div class="space-y-3 flex flex-col justify-between">
+                        <div class="p-3.5 bg-slate-50 border border-slate-200 rounded-xl space-y-1 flex-1">
+                            <strong class="text-brand-800 block border-b pb-1">4. CHĂM SÓC & GIA HẠN</strong>
+                            <p class="text-slate-700 leading-relaxed">
+                                • Ký hợp đồng PO doanh nghiệp, chăm sóc xuyên suốt để giữ tỷ lệ tái ký hàng năm &gt;90%.<br>
+                                • Huy trực hỗ trợ CSKH FshareStorage; đội kỹ thuật FTI hỗ trợ hạ tầng 24/7.
+                            </p>
+                        </div>
+                        <div class="p-3.5 bg-slate-50 border border-slate-200 rounded-xl space-y-1 flex-1">
+                            <strong class="text-brand-800 block border-b pb-1">7. KÊNH TIẾP CẬN</strong>
+                            <p class="text-slate-700 leading-relaxed">
+                                • Đội Sales B2B trực tiếp săn khách hàng.<br>
+                                • Kênh dự án từ BGĐ & Co-sale cùng PKD2.<br>
+                                • Form đăng ký B2B trên `fshare.vn` & tệp 1.649 VIP cũ.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- 5. Phân khúc khách hàng -->
+                    <div class="p-3.5 bg-slate-50 border border-slate-200 rounded-xl space-y-1.5">
+                        <strong class="text-brand-800 block border-b pb-1">5. KHÁCH HÀNG MỤC TIÊU</strong>
+                        <p class="text-slate-700 leading-relaxed">
+                            • <strong>Sản xuất, Thương mại & Dược:</strong> Nhựa Bình Minh, Tiền Phong, An Cường, Tôn Đông Á, TCM, DHG, Traphaco, Cholimex... (Mua MS365 & HiGIO).<br>
+                            • <strong>Xây dựng, BĐS & Media:</strong> Hòa Bình, Ricons, Central, Đất Xanh, Điền Quân + 1.649 VIP cũ & HĐ Whitelist (TC Thuế, Việt Ba, Vinama).<br>
+                            • <strong>Chuỗi bán lẻ, KCN, Hàng hải & Ngân hàng:</strong> BiboMart, Guardian, VSIP, Vosco, Hải An, Thủy điện PC1, Ngân hàng TMCP.
+                        </p>
+                    </div>
+
+                    <!-- 8. Cấu trúc chi phí & 9. Dòng doanh thu -->
+                    <div class="lg:col-span-2 p-3.5 bg-amber-50/70 border border-amber-200 rounded-xl">
+                        <strong class="text-amber-950 block border-b border-amber-200 pb-1 mb-1">8. CẤU TRÚC CHI PHÍ (AN TOÀN, KHÔNG ĐẦU TƯ DÀN TRẢI)</strong>
+                        <p class="text-slate-700">
+                            • <strong>CAPEX mua máy chủ = 0 VNĐ:</strong> Tận dụng 42 server thu hồi; chỉ đề xuất mua vật tư dự phòng nhỏ lẻ hoặc đầu tư đối ứng khi có hợp đồng lớn đảm bảo.<br>
+                            • <strong>Tinh gọn quỹ lương:</strong> Chuyển Châu qua SIS, cơ cấu Thủy làm Admin/qua BO; tuyển 02 Sale B2B. Tiết kiệm 6,45 tỷ nợ bồi hoàn B2C.
+                        </p>
+                    </div>
+
+                    <div class="lg:col-span-3 p-3.5 bg-emerald-50/70 border border-emerald-200 rounded-xl">
+                        <strong class="text-emerald-950 block border-b border-emerald-200 pb-1 mb-1">9. DÒNG DOANH THU DỰ KIẾN (10 TỶ &#8594; 30 TỶ &#8594; 50 TỶ VNĐ)</strong>
+                        <p class="text-slate-700">
+                            • <strong>Chân 2 (9,5 Tỷ năm 2027 &#8594; 26,5 Tỷ năm 2028 &#8594; 42,0 Tỷ năm 2029):</strong> Hợp đồng bản quyền MS365, thuê bao HiGIO Cloud, Kênh truyền Leased Line, Camera AI, Voice Center và Starlink B2B.<br>
+                            • <strong>Chân 1 (0,5 Tỷ năm 2027 &#8594; 3,5 Tỷ năm 2028 &#8594; 8,0 Tỷ năm 2029):</strong> Gói FshareStorage B2B (200k–300k/TB) và các dự án lưu trữ phối hợp cùng đội Kỹ thuật.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- =========================================================================
+             TAB 8: SLIDE TRÌNH BÀY BĐH (10 SLIDES NGẮN GỌN, THỰC TẾ, KHÔNG CHÉM GIÓ)
+             ========================================================================= -->
+        <section id="tab8" class="tab-content hidden space-y-3.5">
+            <div class="bg-slate-900 text-white p-3 rounded-xl shadow flex flex-col sm:flex-row sm:items-center justify-between gap-2.5">
+                <div class="flex items-center gap-2.5">
+                    <span class="px-2.5 py-1 rounded bg-brand-600 text-xs font-extrabold uppercase" id="sBadge50">Slide 1 / 10</span>
+                    <span class="text-xs md:text-sm font-bold text-slate-200 truncate" id="sTitle50">Định Hướng Chuyển Đổi KD3</span>
+                </div>
+                <div class="flex items-center gap-2">
+                    <button onclick="prevS50()" class="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-xs font-bold border border-slate-700">&#8592; Trước</button>
+                    <select id="sSelect50" onchange="goS50(parseInt(this.value))" class="bg-slate-800 text-white text-xs font-semibold px-2.5 py-1.5 rounded-lg border border-slate-700"></select>
+                    <button onclick="nextS50()" class="px-3 py-1.5 rounded-lg bg-brand-600 hover:bg-brand-500 text-xs font-bold shadow">Tiếp &#8594;</button>
+                </div>
+            </div>
+
+            <div id="sStage50" class="slide-deck-container bg-white rounded-2xl border-2 border-slate-200 shadow-lg p-6 md:p-8 flex flex-col justify-between"></div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-slate-900 text-slate-400 text-xs border-t border-slate-800 py-3 mt-6">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 flex flex-col sm:flex-row justify-between items-center gap-2">
+            <span>© 2026 Phòng Kinh Doanh 3 (KD3/ODS) – FPT Telecom International (FTI) • Bản Định Hướng 50%</span>
+            <span class="text-slate-300 font-medium">Kế hoạch Kinh doanh: Anh Tuấn (TuấnNM) • Giải pháp & Sản phẩm: Minh (MinhDTA)</span>
+        </div>
+    </footer>
+
+    <!-- JAVASCRIPT LOGIC -->
+    <script>
+        // DATA CHO TAB 4: SẢN PHẨM CHÂN 2
+        const prodList50 = [
+            {
+                group: "CORE",
+                name: "1. Microsoft 365 (MS365 Business / Enterprise & Copilot)",
+                sub: "Chân 2 • Chủ đạo Số 1",
+                conf: "Rất Tự Tin (95%)",
+                confCls: "bg-emerald-100 text-emerald-800 border-emerald-300",
+                prio: "Ưu Tiên Số 1",
+                status: "• Mảng khách hàng hỏi nhiều nhất tại ODS.<br>• Năm 2026 cá nhân anh Tuấn đã trực tiếp vào nhiều lead lớn (vài trăm license/lead, đã có HĐ ~1 tỷ VNĐ chuyển qua PKD2).<br>• Đội ngũ nhà, PKD2 và các sếp trình bày giải pháp rất mượt.",
+                usp: "• Từ 2027 KD3 trực tiếp giữ lead, báo giá và chốt hợp đồng.<br>• Tặng kèm kho lưu trữ nội địa FshareStorage (CAPEX = 0đ) và hỗ trợ chuyển đổi (Migration) dữ liệu để tăng tỷ lệ thắng thầu.",
+                target: "• <strong>Quy mô:</strong> 100 – 1.000 license/HĐ (250tr – 1,5 tỷ/HĐ), tỷ lệ gia hạn &gt;95%/năm.<br>• <strong>Khách hàng:</strong> Công ty Sản xuất, Thương mại, Dược, Xây dựng đang dùng mail cũ (Zimbra, MDaemon) hoặc Office lẻ."
+            },
+            {
+                group: "CORE",
+                name: "2. HiGIO Cloud (FPT Cloud IaaS / Máy chủ ảo VM)",
+                sub: "Chân 2 • Chủ đạo Số 1",
+                conf: "Rất Tự Tin (90%)",
+                confCls: "bg-emerald-100 text-emerald-800 border-emerald-300",
+                prio: "Ưu Tiên Số 1",
+                status: "• Sản phẩm chủ đạo luôn đi cặp cùng MS365 khi khách hàng hỏi dịch vụ.<br>• Minh nắm vững giải pháp Cloud/Storage; đội Pre-sales nhà FTI và các sếp hỗ trợ demo, tư vấn rất thuyết phục.",
+                usp: "• Hạ tầng Cloud đặt tại FPT Data Center Việt Nam, đáp ứng quy định bảo mật dữ liệu nội địa.<br>• Kết hợp linh hoạt với kho lưu trữ dự phòng của KD3 giúp khách hàng tiết kiệm chi phí.",
+                target: "• <strong>Quy mô:</strong> 150 triệu – trên 1 tỷ/năm (thuê bao trả đều hàng tháng/quý).<br>• <strong>Khách hàng:</strong> Doanh nghiệp cần đưa ERP, Kế toán, Quản trị sản xuất từ server vật lý cũ lên Cloud."
+            },
+            {
+                group: "COSALE",
+                name: "3. Kênh Truyền Leased Line / MPLS / MetroWAN",
+                sub: "Chân 2 • Bán chéo & Co-sale",
+                conf: "Tự Tin Cao (85%)",
+                confCls: "bg-sky-100 text-sky-800 border-sky-300",
+                prio: "Ưu Tiên 2 (Mở rộng)",
+                status: "• Dịch vụ cốt lõi tạo dòng tiền lặp lại ổn định của FTI.<br>• Anh Tuấn nắm rõ quy trình thương mại; tuyển thêm 02 Sale B2B có kinh nghiệm bán kênh truyền để khai thác ngay.",
+                usp: "• Bán kèm tự nhiên khi khách hàng triển khai MS365 & HiGIO Cloud (cần đường truyền ổn định để kết nối Cloud và họp Teams).<br>• Khảo sát hiện trường nhanh trong 2h, tặng kèm IP tĩnh.",
+                target: "• <strong>Quy mô:</strong> 100 – 350 triệu/tuyến/năm (tỷ lệ gia hạn &gt;90%).<br>• <strong>Khách hàng:</strong> Nhà máy KCN FDI (VSIP, Kinh Bắc), Tòa nhà văn phòng, Ngân hàng, Công ty Xây dựng/Media."
+            },
+            {
+                group: "COSALE",
+                name: "4. FPT Camera AI & Dịch Vụ Voice Center (1900/Cloud PBX/ZNS)",
+                sub: "Chân 2 • Mở mã khách hàng nhanh",
+                conf: "Rất Tự Tin (90%)",
+                confCls: "bg-emerald-100 text-emerald-800 border-emerald-300",
+                prio: "Ưu Tiên 2 (Đánh nhanh)",
+                status: "• Sản phẩm trực quan, dễ tư vấn nhất cho đội ngũ Sales khi tiếp cận khách hàng chuỗi và SME.<br>• Phối hợp trực tiếp cùng FTI Voice Center và Khối FPT Camera.",
+                usp: "• <strong>Camera AI:</strong> Bán kèm gói lưu trữ dài hạn 90–365 ngày giá rẻ trên máy chủ của KD3.<br>• <strong>Voice Center:</strong> Triển khai trong 48h, dùng làm 'mồi câu' mở mã khách hàng doanh nghiệp trong 1–3 tuần.",
+                target: "• <strong>Quy mô:</strong> 40 – 250 triệu/HĐ.<br>• <strong>Khách hàng:</strong> Chuỗi bán lẻ (BiboMart, Guardian), Phòng khám, Kho vận Logistics (GHN, GHTK), Nhà xưởng."
+            },
+            {
+                group: "COSALE",
+                name: "5. Internet Vệ Tinh Starlink B2B (LEO 550km)",
+                sub: "Chân 2 • Co-sale Đại dương xanh",
+                conf: "Tự Tin Khá – Cao (85%)",
+                confCls: "bg-sky-100 text-sky-800 border-sky-300",
+                prio: "Ưu Tiên 2 (Theo dự án)",
+                status: "• Sản phẩm mới của FTI vừa nghiệm thu thực tế 10 trạm tại đặc khu Cát Hải – Hải Phòng (10/2026).<br>• Phối hợp Co-sale cùng Trung tâm Giải pháp Phi mặt đất (ông Hàn Đức Biên).",
+                usp: "• Không bị đụng chạm tệp cáp quang cũ.<br>• Giải quyết kết nối cho vùng lõm sóng (tàu biển, đảo, thủy điện vùng sâu) hoặc làm đường truyền dự phòng cho Ngân hàng.",
+                target: "• <strong>Quy mô:</strong> 200 – 600 triệu/điểm hoặc đội tàu.<br>• <strong>Khách hàng:</strong> Đội tàu biển (Vosco, Hải An, VIMC), Cảng biển, Thủy điện (PC1, VSH) & Ngân hàng."
+            },
+            {
+                group: "COSALE",
+                name: "6. FshareStorage B2B (200k–300k/TB) & Lưu Trữ Phối Hợp",
+                sub: "Chân 1 • Khai thác hạ tầng sẵn",
+                conf: "Làm Chủ (100%)",
+                confCls: "bg-amber-100 text-amber-900 border-amber-300",
+                prio: "Ưu Tiên 3 (Duy trì Chân 1)",
+                status: "• Sẵn có 42 máy chủ thu hồi (CAPEX = 0đ) và tệp khách cũ; giao Vân (Sale B2B) và Huy (CSKH) trực tiếp phụ trách.<br>• Các yêu cầu lưu trữ nâng cao sẽ phối hợp đội Kỹ thuật khảo sát theo dự án.",
+                usp: "• Mặc định 100% file Private (0% rủi ro DMCA), tốc độ tải nội địa nhanh.<br>• Vừa bán thu tiền trực tiếp từ khách cũ, vừa dùng làm quà tặng kèm hỗ trợ chốt các hợp đồng Chân 2.",
+                target: "• <strong>Quy mô:</strong> Dự kiến ~350–500 triệu năm 2027.<br>• <strong>Khách hàng:</strong> Tệp 1.649 VIP B2C cũ (&gt;10GB), HĐ Whitelist (TC Thuế, Việt Ba, Vinama), Công ty Media/AEC."
+            }
+        ];
+
+        // DATA CHO BIỂU ĐỒ MÙA VỤ THAM KHẢO (TAB 6)
+        const seasonalData50 = {
+            2027: {
+                title: "Biểu Đồ Mô Phỏng Xu Hướng Doanh Số Theo Tháng Năm 2027 (Tổng Dự Kiến: 10,0 Tỷ VNĐ)",
+                c2: [330, 350, 590, 650, 710, 810, 860, 980, 1010, 1060, 1070, 1080],
+                c1: [15, 20, 25, 35, 35, 45, 45, 55, 55, 55, 55, 60]
+            },
+            2028: {
+                title: "Biểu Đồ Mô Phỏng Xu Hướng Doanh Số Theo Tháng Năm 2028 (Tổng Dự Kiến: 30,0 Tỷ VNĐ)",
+                c2: [1350, 1450, 1800, 1950, 2100, 2250, 2350, 2500, 2600, 2680, 2720, 2750],
+                c1: [150, 150, 200, 250, 250, 300, 320, 350, 360, 380, 390, 400]
+            },
+            2029: {
+                title: "Biểu Đồ Mô Phỏng Xu Hướng Doanh Số Theo Tháng Năm 2029 (Tổng Dự Kiến: 50,0 Tỷ VNĐ)",
+                c2: [2400, 2500, 2950, 3150, 3350, 3550, 3700, 3900, 4000, 4100, 4180, 4220],
+                c1: [400, 420, 500, 580, 620, 680, 720, 760, 800, 820, 840, 860]
+            }
+        };
+
+        // DATA CHO 10 SLIDES TRÌNH BÀY BĐH (TAB 8 - NGẮN GỌN, THỰC TẾ, KHÔNG CHÉM KỸ THUẬT)
+        const slidesData50 = [
+            {
+                tag: "Slide 1 • Chủ Trương Chuyển Đổi",
+                title: "Định Hướng Chuyển Đổi Kinh Doanh B2B Phòng KD3 (2027–2029): Mô Hình 'Đi Bằng 2 Chân'",
+                takeaway: "Dừng hoàn toàn B2C từ 01/01/2027; khai thác vừa sức 42 server sẵn có ở Chân 1 và tập trung bán B2B (MS365, HiGIO Cloud & Co-sale FTI) ở Chân 2.",
+                leftTitle: "3 Định Hướng Trọng Tâm Trình Ban Điều Hành",
+                leftItems: [
+                    "<strong>1. Đóng băng B2C an toàn & Giảm 90% nợ bồi hoàn:</strong> Đưa doanh thu B2C về 0đ từ 01/01/2027; kéo giảm nghĩa vụ bồi hoàn từ 7,15 tỷ xuống ~700 triệu vào cuối 2028 (tiết kiệm 6,45 tỷ VNĐ).",
+                    "<strong>2. Chân 1 (Tận dụng hạ tầng sẵn có):</strong> Chạy gói FshareStorage B2B cơ bản (200k–300k/TB) cho tệp khách cũ; các yêu cầu lưu trữ nâng cao sẽ phối hợp đội Kỹ thuật khảo sát theo từng dự án thực tế.",
+                    "<strong>3. Chân 2 (Động cơ doanh số chính):</strong> Trực tiếp kinh doanh <strong>MS365 & HiGIO Cloud</strong> (mảng khách hỏi nhiều nhất, đã có lead HĐ ~1 tỷ) kết hợp bán chéo dịch vụ FTI."
+                ],
+                rightTitle: "Các Cột Mốc Dự Kiến",
+                cards: [
+                    { k: "Lộ trình Mục tiêu 3 Năm", v: "10T -> 30T -> 50T", s: "2027: 10 tỷ | 2028: 30 tỷ | 2029: 50 tỷ" },
+                    { k: "Sản phẩm Mũi nhọn Số 1", v: "MS365 & HiGIO Cloud", s: "Đội nhà & các sếp trình bày mượt nhất" },
+                    { k: "Chi phí Đầu tư Server Mới", v: "0 VNĐ", s: "Tận dụng 42 máy chủ thu hồi ngày 31/10" }
+                ]
+            },
+            {
+                tag: "Slide 2 • Nhìn Nhận Thực Tế Hạ Tầng Cũ",
+                title: "Thực Trạng 50 Máy Chủ Fshare & Lý Do Không Đầu Tư Dàn Trải Trên Thiết Bị Cũ",
+                takeaway: "Nhìn nhận thẳng thắn hạn chế của dàn máy chủ đầu tư từ 2012–2018 để chọn cách khai thác vừa sức, tránh rủi ro.",
+                leftTitle: "Thực Trạng Hạ Tầng & Điểm Nghẽn",
+                leftItems: [
+                    "<strong>1. Thiết bị đã hết khấu hao từ 2018:</strong> Trong 50 máy chủ tại DC5 và DC7, có 32 máy từ đời 2012–2013; 38 máy chỉ có cổng mạng 1GbE chưa thay card RAID, thiếu linh kiện dự phòng và trung bình hỏng 5 ổ 2TB/tháng.",
+                    "<strong>2. Bài học sự cố Server 034 (T4/2025):</strong> Việc hỏng phần cứng từng làm mất 40TB dữ liệu, cho thấy nếu giữ nguyên trạng thì chỉ chạy được lưu trữ cơ bản, chưa thể đáp ứng ngay yêu cầu khắt khe của Ngân hàng lớn.",
+                    "<strong>3. Quy hoạch thu hồi ngày 31/10/2026:</strong> Giữ lại 6 máy (~700TB) tại DC7 duy trì cho khách B2C còn hạn đến 2028; giải phóng 42 máy (~2,1 PB) chuyển sang phục vụ B2B."
+                ],
+                rightTitle: "Quy Hoạch 50 Máy Chủ",
+                cards: [
+                    { k: "Giữ duy trì hậu kỳ B2C", v: "06 Server (~700 TB)", s: "Duy trì đến 31/12/2028 để giảm nợ bồi hoàn" },
+                    { k: "Thu hồi chuyển sang B2B", v: "42 Server (~2,1 PB)", s: "38 máy ổ 2TB + 4 máy 10GbE ổ 6TB/SSD" },
+                    { k: "Nguyên tắc khai thác", v: "An Toàn & Vừa Sức", s: "Không cam kết quá khả năng phần cứng" }
+                ]
+            },
+            {
+                tag: "Slide 3 • Định Hướng Chân 1 (Storage)",
+                title: "Định Hướng Chân 1: Khai Thác FshareStorage Cơ Bản & Phối Hợp Kỹ Thuật Theo Dự Án",
+                takeaway: "Làm chắc gói FshareStorage 200k–300k/TB cho khách cũ và phối hợp cùng đội Kỹ thuật khảo sát khi có nhu cầu lưu trữ nâng cao.",
+                leftTitle: "2 Hướng Khai Thác Chân 1 Thực Tế",
+                leftItems: [
+                    "<strong>Hướng 1 – Làm ngay gói FshareStorage B2B (200.000 – 300.000đ/TB):</strong> Đổi giao diện sang B2B (mặc định Private 100%, không còn rủi ro DMCA), nhờ kỹ thuật cấu hình sao lưu chéo tránh mất file; tập trung chuyển đổi tệp 1.649 VIP cũ (>10GB) và giữ các HĐ Whitelist (Tổng cục Thuế, Việt Ba, Vinama).",
+                    "<strong>Hướng 2 – Phối hợp khảo sát làm Solution Storage (450.000 – 850.000đ/TB):</strong> Thị trường Ngân hàng, Tài chính, Y tế có nhu cầu lưu trữ dự phòng dài hạn theo quy định (TT 09/2020, TT 04/2025, NĐ 174). KD3 sẽ phối hợp đội Kỹ thuật (SIS, Tech, FPT Cloud) thử nghiệm trên nhóm máy tốt nhất tại DC7, hoặc hợp tác hãng đầu tư đối ứng khi có hợp đồng thực tế."
+                ],
+                rightTitle: "Kỳ Vọng Chân 1",
+                cards: [
+                    { k: "Mục tiêu Dự kiến 2027", v: "~500 Triệu VNĐ", s: "Từ tệp 1.649 VIP cũ, Web Lead & HĐ hiện hữu" },
+                    { k: "Vai trò Hỗ trợ Chân 2", v: "Quà Tặng / Bán Kèm", s: "Tặng kèm khi khách mua MS365, HiGIO, Camera" },
+                    { k: "Định hướng 2028 – 2029", v: "3,5 Tỷ -> 8,0 Tỷ", s: "Mở rộng dần khi giải pháp phối hợp ổn định" }
+                ]
+            },
+            {
+                tag: "Slide 4 • Kế Hoạch Chân 2 (Sản Phẩm Chủ Đạo)",
+                title: "Kế Hoạch Chân 2: Đưa Microsoft 365 & HiGIO Cloud Lên Ưu Tiên Cao Nhất",
+                takeaway: "Tập trung vào MS365 và HiGIO Cloud – hai mảng khách hàng hỏi nhiều nhất, đội ngũ tự tin nhất và có giá trị hợp đồng lớn.",
+                leftTitle: "Lý Do Đặt MS365 & HiGIO Cloud Làm Mũi Nhọn Số 1",
+                leftItems: [
+                    "<strong>1. Nhu cầu thực tế cao & Đã có Lead hợp đồng tiền tỷ:</strong> Là 2 mảng được hỏi nhiều nhất tại ODS. Năm 2026 cá nhân anh Tuấn đã trực tiếp vào nhiều lead vài trăm license (đã có HĐ ~1 tỷ VNĐ chuyển qua PKD2). Từ 2027, KD3 giữ lead trực tiếp báo giá và chốt doanh số.",
+                    "<strong>2. Kỹ năng trình bày và tư vấn rất mượt:</strong> Đội ngũ ODS, PKD2 và các sếp đã có sẵn kinh nghiệm thực chiến dày dạn với MS365 & HiGIO Cloud.",
+                    "<strong>3. Mở rộng bán chéo & Co-sale dịch vụ FTI:</strong> Khi khách hàng đã mua MS365 & HiGIO Cloud, đội Sales dễ dàng chào thêm Kênh truyền Leased Line, FPT Camera AI, Voice Center (1900/ZNS) và Starlink B2B."
+                ],
+                rightTitle: "Thứ Tự Ưu Tiên Bán Hàng",
+                cards: [
+                    { k: "Ưu tiên Số 1 (Chủ đạo)", v: "MS365 & HiGIO Cloud", s: "Quy mô 150tr – 1,5 tỷ/HĐ • Tái ký >95%/năm" },
+                    { k: "Ưu tiên 2 (Bán chéo & Co-sale)", v: "Leased Line, Cam, Voice", s: "Mở mã khách hàng nhanh & tạo cước thu đều" },
+                    { k: "Ưu tiên 2 (Theo dự án ngách)", v: "Starlink B2B (LEO)", s: "Đánh tàu biển, đảo, thủy điện & kênh dự phòng" }
+                ]
+            },
+            {
+                tag: "Slide 5 • Khách Hàng Mục Tiêu & Nguồn Lead",
+                title: "Nhóm Công Ty Mục Tiêu (Chưa Dùng SP) & Cơ Chế Phối Hợp Lấy Lead (BGĐ & PKD2)",
+                takeaway: "Nhắm vào các công ty đang dùng hệ thống Mail/Server cũ để chào MS365 & HiGIO Cloud, kết hợp nhận dự án từ BGĐ và Co-sale cùng PKD2.",
+                leftTitle: "Các Nhóm Công Ty Mục Tiêu Khả Thi",
+                leftItems: [
+                    "<strong>1. Công ty Sản xuất, Thương mại & Dược (200–1.500 nhân sự):</strong> Đang dùng mail Zimbra/MDaemon cũ và server vật lý tại văn phòng (VD: Nhựa Bình Minh, Tiền Phong, Gỗ An Cường, Tôn Đông Á, TCM, DHG, Traphaco, Cholimex...).",
+                    "<strong>2. Công ty Xây dựng (AEC), BĐS & Media:</strong> Hòa Bình, Ricons, Central, Đất Xanh, Điền Quân + Pháp nhân lọc từ 1.649 VIP B2C cũ (cần MS365, HiGIO Cloud & FshareStorage truyền bản vẽ nặng).",
+                    "<strong>3. Chuỗi bán lẻ, KCN, Hàng hải & Ngân hàng:</strong> BiboMart, Guardian, KCN VSIP/Kinh Bắc (Camera, Voice, Line); Vosco, Hải An, Thủy điện PC1, Ngân hàng TMCP (Starlink & Lưu trữ)."
+                ],
+                rightTitle: "3 Kênh Khai Thác Lead",
+                cards: [
+                    { k: "1. Nguồn Lead Tự Chủ Của KD3", v: "Lead MS365/HiGIO & Web", s: "Giữ trực tiếp lead của anh Tuấn & Form fshare.vn" },
+                    { k: "2. Nguồn Hỗ Trợ Từ BGĐ", v: "Đẩy Dự Án Top-down", s: "Xin sếp Sơn, sếp Chiến giới thiệu dự án phù hợp" },
+                    { k: "3. Nguồn Phối Hợp PKD2", v: "Co-sale Cùng Thắng", s: "Bán chéo SP mới & nhận chăm sóc tệp SME" }
+                ]
+            },
+            {
+                tag: "Slide 6 • Phương Án Nhân Sự Gọn Gàng",
+                title: "Tổ Chức Nhân Sự: Giữ 02 Bạn Làm FshareStorage, Cơ Cấu 02 Bạn & Tuyển 02 Sale B2B",
+                takeaway: "Sắp xếp nhân sự gọn gàng, đúng sở trường thực tế của từng thành viên và bổ sung đúng lực lượng Sale chuyên B2B.",
+                leftTitle: "Phân Công Cụ Thể Từng Nhóm",
+                leftItems: [
+                    "<strong>1. Đội ngũ Kinh doanh B2B chủ lực (Chân 2):</strong> <strong>Anh Tuấn</strong> (Phụ trách Kế hoạch KD & Thương mại B2B) + <strong>Minh</strong> (Phụ trách Giải pháp & Sản phẩm) + <strong>Tuyển mới 02 Sale chuyên B2B</strong> (ưu tiên người có kinh nghiệm bán MS365, Cloud, Telco).",
+                    "<strong>2. Giữ 02 bạn hiện hữu làm tiếp FshareStorage (Chân 1):</strong> <strong>Vân</strong> (làm Sale B2B FshareStorage, chăm sóc gia hạn HĐ B2B cũ & khai thác tệp 1.649 VIP) và <strong>Huy</strong> (phụ trách CSKH FshareStorage & hỗ trợ đóng B2C).",
+                    "<strong>3. Nhờ BGĐ cơ cấu 02 bạn còn lại:</strong> <strong>Châu</strong> (mạnh về Product/UI-UX &#8594; đề xuất chuyển qua Đội kỹ thuật SIS) và <strong>Thủy</strong> (mạnh về đối soát/hóa đơn &#8594; giữ làm Admin PO hoặc cơ cấu sang BO Kế toán FTI)."
+                ],
+                rightTitle: "Tóm Tắt Bộ Máy Mới",
+                cards: [
+                    { k: "Lực lượng Săn Số B2B", v: "Tuấn + Minh + 02 Sale Mới", s: "Chuyên trách MS365, HiGIO Cloud & Dịch vụ FTI" },
+                    { k: "Nhóm Duy Trì FshareStorage", v: "Vân (Sale) + Huy (CSKH)", s: "Khai thác 42 server & giữ khách B2B hiện hữu" },
+                    { k: "Nhóm Điều Chuyển / Admin", v: "Châu (SIS) & Thủy (Admin/BO)", s: "Phát huy đúng chuyên môn, tối ưu quỹ lương" }
+                ]
+            },
+            {
+                tag: "Slide 7 • Lộ Trình 10 – 30 – 50 Tỷ",
+                title: "Lộ Trình Doanh Thu Dự Kiến 3 Năm (2027–2029) & Phân Bổ Thực Thi",
+                takeaway: "Xây dựng lộ trình tăng trưởng từng bước dựa trên các hợp đồng lớn MS365, HiGIO Cloud và doanh thu gia hạn lặp lại hàng năm.",
+                leftTitle: "Định Hướng Mục Tiêu 3 Năm",
+                leftItems: [
+                    "<strong>Năm 2027 (Mục tiêu dự kiến ~10,0 Tỷ VNĐ):</strong> Chân 2 (MS365, HiGIO Cloud & Co-sale FTI) đạt ~9,5 tỷ; Chân 1 (FshareStorage) đạt ~0,5 tỷ. Tập trung chốt 6–8 hợp đồng MS365/HiGIO quy mô vừa và lớn cùng các hợp đồng Co-sale.",
+                    "<strong>Năm 2028 (Mục tiêu dự kiến ~30,0 Tỷ VNĐ):</strong> Cộng dồn doanh thu gia hạn hợp đồng từ năm 2027 (>90%), mở rộng đội ngũ Sales B2B và triển khai các dự án lưu trữ phối hợp cùng kỹ thuật.",
+                    "<strong>Năm 2029 (Mục tiêu dự kiến ~50,0 Tỷ VNĐ):</strong> Đạt quy mô chuẩn của một Phòng Kinh doanh B2B độc lập tại FTI."
+                ],
+                rightTitle: "Phân Bổ Mục Tiêu Dự Kiến",
+                cards: [
+                    { k: "Anh Tuấn (Kế hoạch KD & Thương mại)", v: "3,5T -> 8,0T -> 12,0T", s: "Năm 2027: 3,5 tỷ | 2028: 8,0 tỷ | 2029: 12,0 tỷ" },
+                    { k: "Minh (Giải pháp & Sản phẩm)", v: "3,0T -> 6,5T -> 10,0T", s: "Năm 2027: 3,0 tỷ | 2028: 6,5 tỷ | 2029: 10,0 tỷ" },
+                    { k: "02 Sale Mới & FshareStorage (Vân)", v: "3,5T -> 15,5T -> 28,0T", s: "Tăng dần theo quy mô mở rộng nhân sự Sales" }
+                ]
+            },
+            {
+                tag: "Slide 8 • Tóm Tắt Business Model Canvas",
+                title: "Khung Mô Hình Kinh Doanh (Business Model Canvas) Phòng KD3",
+                takeaway: "Kết hợp thế mạnh bán MS365 & HiGIO Cloud với lợi thế hạ tầng lưu trữ sẵn có (0đ CAPEX) để tối ưu hiệu quả kinh doanh.",
+                leftTitle: "Giải Pháp Giá Trị & Kênh Bán Hàng",
+                leftItems: [
+                    "<strong>Giải pháp Giá trị:</strong> Cung cấp trọn gói bản quyền MS365 và hạ tầng HiGIO Cloud với đội ngũ tư vấn/demo mượt mà, tặng kèm kho lưu trữ nội địa FshareStorage (200k–300k/TB) giúp khách hàng tối ưu chi phí.",
+                    "<strong>Kênh Tiếp cận & Chăm sóc:</strong> Săn khách hàng trực tiếp (Tuấn, Minh, 2 Sale mới) + Nhận dự án từ BGĐ & Co-sale cùng PKD2 + Khai thác tệp 1.649 VIP cũ & Form đăng ký trên web fshare.vn (Vân & Huy phụ trách)."
+                ],
+                rightTitle: "Kiểm Soát Chi Phí & Dòng Tiền",
+                cards: [
+                    { k: "Chi phí Mua Máy Chủ Mới", v: "0 VNĐ", s: "Tận dụng 42 server sẵn có • Chỉ đầu tư theo HĐ" },
+                    { k: "Tỷ lệ Gia hạn Hợp đồng B2B", v: "> 90% / Năm", s: "Dòng tiền lặp lại ổn định từ MS365, Cloud, Line" },
+                    { k: "Tiết kiệm Nợ Bồi hoàn B2C", v: "6,45 Tỷ VNĐ", s: "Giảm 90% nghĩa vụ nợ cũ đến cuối năm 2028" }
+                ]
+            },
+            {
+                tag: "Slide 9 • Lộ Trình Công Việc Thực Hiện",
+                title: "Các Bước Công Việc Triển Khai Từ Quý IV/2026 Đến Năm 2027",
+                takeaway: "Làm gọn từng bước từ khóa sổ B2C, chuẩn bị công cụ bán hàng đến xuất quân chốt số MS365 và HiGIO Cloud.",
+                leftTitle: "Lộ Trình Công Việc Trọng Tâm",
+                leftItems: [
+                    "<strong>Tháng 10 – 12/2026 (Khóa sổ B2C & Chuẩn bị B2B):</strong> Khóa Uploader và thu hồi 42 server (31/10); hoàn thiện giao diện FshareStorage B2B, hạ cổng ví cá nhân và bật Form đăng ký B2B trên web (31/12); tuyển dụng 02 Sale chuyên B2B.",
+                    "<strong>Quý I/2027 (Ra số nhanh từ MS365, HiGIO & VIP cũ):</strong> Anh Tuấn, Minh và 2 Sale mới tập trung chốt ngay các lead MS365 & HiGIO Cloud đang chăm sóc; Vân liên hệ chuyển đổi tệp 1.649 VIP cũ sang hợp đồng PO.",
+                    "<strong>Từ Quý II/2027 trở đi:</strong> Đẩy mạnh Co-sale cùng PKD2; phối hợp đội Kỹ thuật khảo sát các dự án lưu trữ nâng cao và hoàn tất điều chuyển nhân sự (Châu qua SIS, cơ cấu Thủy)."
+                ],
+                rightTitle: "Mốc Thời Gian Chính",
+                cards: [
+                    { k: "Mốc 31/10/2026", v: "Khóa Uploader & Thu 42 Máy", s: "Giữ 6 máy (~700TB) duy trì hậu kỳ B2C" },
+                    { k: "Mốc 31/12/2026", v: "Đóng Cổng Ví Cá Nhân B2C", s: "Chuyển hoàn toàn sang ký hợp đồng B2B" },
+                    { k: "Từ Quý I/2027", v: "Đánh Mạnh MS365 & HiGIO", s: "Giữ trực tiếp luồng lead B2B tại KD3" }
+                ]
+            },
+            {
+                tag: "Slide 10 • Kiến Nghị Phê Duyệt",
+                title: "Kiến Nghị Ban Điều Hành Phê Duyệt Chủ Trương & Cơ Chế Hỗ Trợ Cho KD3",
+                takeaway: "Kính trình Ban Điều hành phê duyệt 4 nội dung thực tế để Phòng KD3 bắt tay triển khai ngay.",
+                leftTitle: "4 Kiến Nghị Trình Ban Điều Hành",
+                leftItems: [
+                    "<strong>1. Phê duyệt cơ chế 2 năm bản lề (2027–2028):</strong> Tạo điều kiện cho KD3 chuyển đổi từ B2C sang B2B với định hướng mục tiêu 10 tỷ (2027) &#8594; 30 tỷ (2028) &#8594; 50 tỷ (2029).",
+                    "<strong>2. Phê duyệt cơ chế kinh doanh MS365, HiGIO Cloud & Co-sale FTI:</strong> Cho phép KD3 trực tiếp giữ lead, báo giá và ghi nhận doanh số MS365, HiGIO Cloud cùng các dịch vụ FTI; BGĐ hỗ trợ giới thiệu dự án và cơ chế phối hợp với PKD2.",
+                    "<strong>3. Phê duyệt phương án khai thác 42 máy chủ thu hồi:</strong> Chạy gói FshareStorage B2B cơ bản (200k–300k/TB) và phối hợp cùng đội Kỹ thuật khảo sát các dự án lưu trữ nâng cao theo nhu cầu thực tế.",
+                    "<strong>4. Phê duyệt phương án nhân sự:</strong> Tuyển mới 02 Sale chuyên B2B; giữ Vân và Huy làm tiếp FshareStorage; hỗ trợ điều chuyển Châu qua SIS và cơ cấu Thủy làm Admin/qua BO."
+                ],
+                rightTitle: "Mục Tiêu Đạt Được",
+                cards: [
+                    { k: "An toàn Pháp lý & Tài chính", v: "0% DMCA • Giảm 6,45 Tỷ Nợ", s: "Đóng B2C êm đẹp, không phát sinh khủng hoảng" },
+                    { k: "Kinh doanh B2B Thực chất", v: "Chủ Đạo MS365 & HiGIO", s: "Phát huy đúng thế mạnh sẵn có của đội ngũ" },
+                    { k: "Bộ máy Nhân sự Hợp lý", v: "Tinh Gọn & Đúng Việc", s: "Ổn định tâm lý nhân sự trong kỳ chuyển đổi" }
+                ]
+            }
+        ];
+
+        // CHART INSTANCES & STATE
+        let chartOverviewInst = null;
+        let chartPriceGapInst = null;
+        let chartReadinessInst = null;
+        let chartSeasonalInst = null;
+        let curSlide50 = 0;
+
+        document.addEventListener('DOMContentLoaded', () => {
+            renderProdTable50('all');
+            initChartOverview();
+            initChartPriceGap();
+            initChartReadiness();
+            updateSeasonal50(2027);
+            initSlideDeck50();
+
+            document.addEventListener('keydown', (e) => {
+                if (!document.getElementById('tab8').classList.contains('hidden')) {
+                    if (e.key === 'ArrowRight') nextS50();
+                    if (e.key === 'ArrowLeft') prevS50();
+                }
+            });
+        });
+
+        function switchTab(tabId) {
+            document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
+            document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
+
+            document.getElementById(tabId).classList.remove('hidden');
+            document.getElementById('btn-' + tabId).classList.add('active');
+
+            setTimeout(() => {
+                if (tabId === 'tab1' && chartOverviewInst) chartOverviewInst.resize();
+                if (tabId === 'tab2' && chartPriceGapInst) chartPriceGapInst.resize();
+                if (tabId === 'tab4' && chartReadinessInst) chartReadinessInst.resize();
+                if (tabId === 'tab6' && chartSeasonalInst) chartSeasonalInst.resize();
+            }, 50);
+        }
+
+        // TAB 1 CHART
+        function initChartOverview() {
+            const ctx = document.getElementById('chartOverview').getContext('2d');
+            chartOverviewInst = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['2026 (B2C cũ)', '2027 (Bản lề 1)', '2028 (Bản lề 2)', '2029 (Mục tiêu)'],
+                    datasets: [
+                        { label: 'Chân 2: MS365, HiGIO & Co-sale FTI', data: [0, 9.5, 26.5, 42.0], backgroundColor: '#0284c7', stack: 's', borderRadius: 4 },
+                        { label: 'Chân 1: FshareStorage & Lưu trữ B2B', data: [0, 0.5, 3.5, 8.0], backgroundColor: '#f59e0b', stack: 's', borderRadius: 4 },
+                        { label: 'Doanh thu B2C cũ', data: [6.8, 0, 0, 0], backgroundColor: '#94a3b8', stack: 's', borderRadius: 4 },
+                        { type: 'line', label: 'Dư nợ bồi hoàn B2C (Tỷ VNĐ)', data: [7.15, 2.8, 0.7, 0], borderColor: '#dc2626', borderWidth: 2.5, pointRadius: 4, tension: 0.2 }
+                    ]
+                },
+                options: {
+                    responsive: true, maintainAspectRatio: false,
+                    plugins: { legend: { position: 'bottom', labels: { font: { size: 11 }, boxWidth: 12 } } },
+                    scales: { x: { stacked: true, grid: { display: false } }, y: { stacked: true, beginAtZero: true, title: { display: true, text: 'Tỷ VNĐ', font: { size: 11 } } } }
+                }
+            });
+        }
+
+        // TAB 2 CHART
+        function initChartPriceGap() {
+            const ctx = document.getElementById('chartPriceGap').getContext('2d');
+            chartPriceGapInst = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: [
+                        'FshareStorage B2B (200k-300k)',
+                        'Gói Lưu trữ Phối hợp (Dự kiến 450k-850k)',
+                        'FPT Cloud S3 Gói 10TB (OS-03)',
+                        'FPT Cloud S3 Gói 2TB (OS-01)',
+                        'AWS Glacier (Khi rút 1TB về VN)'
+                    ],
+                    datasets: [{
+                        label: 'Nghìn VNĐ / TB / Tháng',
+                        data: [250, 650, 1000, 1750, 2870],
+                        backgroundColor: ['#10b981', '#f59e0b', '#94a3b8', '#64748b', '#dc2626'],
+                        borderRadius: 4
+                    }]
+                },
+                options: {
+                    indexAxis: 'y',
+                    responsive: true, maintainAspectRatio: false,
+                    plugins: { legend: { display: false } },
+                    scales: { x: { beginAtZero: true, title: { display: true, text: 'Nghìn VNĐ / TB / Tháng', font: { size: 10 } } } }
+                }
+            });
+        }
+
+        // TAB 4 TABLE & CHART
+        function renderProdTable50(filter) {
+            const tbody = document.getElementById('prodTableBody50');
+            tbody.innerHTML = '';
+            const list = filter === 'all' ? prodList50 : prodList50.filter(x => x.group === filter);
+
+            list.forEach(item => {
+                const tr = document.createElement('tr');
+                tr.className = item.group === 'CORE' ? "bg-sky-50/40 hover:bg-sky-50/80" : "hover:bg-slate-50";
+                tr.innerHTML = `
+                    <td class="p-3 align-top">
+                        <span class="font-extrabold text-slate-900 block">${item.name}</span>
+                        <span class="inline-block mt-1 px-2 py-0.5 rounded text-[10px] font-bold bg-brand-100 text-brand-800">${item.sub}</span>
+                    </td>
+                    <td class="p-3 align-top text-center">
+                        <span class="inline-block px-2 py-0.5 rounded text-[11px] font-bold border ${item.confCls}">${item.conf}</span>
+                        <span class="block mt-1 font-bold text-slate-700 text-[11px]">${item.prio}</span>
+                    </td>
+                    <td class="p-3 align-top text-slate-700 leading-relaxed">${item.status}</td>
+                    <td class="p-3 align-top text-slate-700 leading-relaxed">${item.usp}</td>
+                    <td class="p-3 align-top text-slate-700 leading-relaxed">${item.target}</td>
+                `;
+                tbody.appendChild(tr);
+            });
+
+            ['all', 'CORE', 'COSALE'].forEach(k => {
+                const b = document.getElementById('flt-' + k);
+                if (b) {
+                    b.className = k === filter
+                        ? "px-3 py-1 text-xs font-bold rounded-lg bg-brand-600 text-white"
+                        : "px-3 py-1 text-xs font-semibold rounded-lg bg-slate-200 text-slate-700 hover:bg-slate-300";
+                }
+            });
+        }
+
+        function filterProd50(f) { renderProdTable50(f); }
+
+        function initChartReadiness() {
+            const ctx = document.getElementById('chartReadiness50').getContext('2d');
+            chartReadinessInst = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: [
+                        '1. Microsoft 365 (Ưu tiên Số 1)',
+                        '2. HiGIO Cloud (Ưu tiên Số 1)',
+                        '3. FshareStorage B2B (200k-300k)',
+                        '4. FPT Camera AI & Voice 1900/ZNS',
+                        '5. Kênh truyền Leased Line / MPLS',
+                        '6. Internet Vệ tinh Starlink LEO'
+                    ],
+                    datasets: [{
+                        label: 'Độ tự tin & sẵn sàng khai thác (%)',
+                        data: [95, 90, 100, 90, 85, 85],
+                        backgroundColor: ['#059669', '#10b981', '#f59e0b', '#0284c7', '#0369a1', '#38bdf8'],
+                        borderRadius: 4
+                    }]
+                },
+                options: {
+                    indexAxis: 'y',
+                    responsive: true, maintainAspectRatio: false,
+                    plugins: { legend: { display: false } },
+                    scales: { x: { min: 0, max: 100, title: { display: true, text: 'Mức độ tự tin thương mại (%)', font: { size: 10 } } } }
+                }
+            });
+        }
+
+        // TAB 6 SEASONAL CHART
+        function updateSeasonal50(yr) {
+            const d = seasonalData50[yr];
+            document.getElementById('seasonalTitle50').innerText = d.title;
+
+            [2027, 2028, 2029].forEach(y => {
+                const b = document.getElementById('sbtn-' + y);
+                if (b) {
+                    b.className = y === yr
+                        ? "px-2.5 py-1 text-xs font-bold rounded bg-brand-600 text-white"
+                        : "px-2.5 py-1 text-xs font-semibold rounded bg-slate-200 text-slate-700";
+                }
+            });
+
+            const ctx = document.getElementById('chartSeasonal50').getContext('2d');
+            if (chartSeasonalInst) chartSeasonalInst.destroy();
+            chartSeasonalInst = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['T1', 'T2', 'T3', 'T4', 'T5', 'T6', 'T7', 'T8', 'T9', 'T10', 'T11', 'T12'],
+                    datasets: [
+                        { label: 'Chân 2: MS365, HiGIO & Dịch vụ FTI (Triệu VNĐ)', data: d.c2, backgroundColor: '#0284c7', stack: 'm' },
+                        { label: 'Chân 1: FshareStorage & Lưu trữ (Triệu VNĐ)', data: d.c1, backgroundColor: '#f59e0b', stack: 'm' }
+                    ]
+                },
+                options: {
+                    responsive: true, maintainAspectRatio: false,
+                    plugins: { legend: { position: 'bottom', labels: { font: { size: 10 } } } },
+                    scales: { x: { stacked: true, grid: { display: false } }, y: { stacked: true, beginAtZero: true } }
+                }
+            });
+        }
+
+        // TAB 8 SLIDE DECK
+        function initSlideDeck50() {
+            const sel = document.getElementById('sSelect50');
+            sel.innerHTML = '';
+            slidesData50.forEach((s, i) => {
+                const opt = document.createElement('option');
+                opt.value = i;
+                opt.innerText = s.tag;
+                sel.appendChild(opt);
+            });
+            renderS50();
+        }
+
+        function renderS50() {
+            const s = slidesData50[curSlide50];
+            document.getElementById('sBadge50').innerText = `Slide ${curSlide50 + 1} / ${slidesData50.length}`;
+            document.getElementById('sTitle50').innerText = s.title;
+            document.getElementById('sSelect50').value = curSlide50;
+
+            document.getElementById('sStage50').innerHTML = `
+                <div class="border-b pb-3">
+                    <div class="flex items-center justify-between">
+                        <span class="px-2.5 py-0.5 rounded-full bg-brand-50 text-brand-700 text-xs font-bold uppercase border border-brand-200">${s.tag}</span>
+                        <span class="text-[11px] font-bold text-slate-400">FPT TELECOM INTERNATIONAL • PHÒNG KD3</span>
+                    </div>
+                    <h2 class="text-lg md:text-xl font-black text-slate-900 mt-1.5">${s.title}</h2>
+                    <p class="mt-2 p-2.5 rounded bg-amber-50 border-l-4 border-amber-500 text-xs text-amber-950 font-medium">
+                        <strong>Ý chính:</strong> ${s.takeaway}
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-5 my-4 flex-grow items-center">
+                    <div class="lg:col-span-7 space-y-2.5">
+                        <h3 class="text-xs font-extrabold uppercase tracking-wider text-brand-800 border-b pb-1">${s.leftTitle}</h3>
+                        <ul class="space-y-2 text-xs md:text-sm text-slate-700 leading-relaxed">
+                            ${s.leftItems.map(item => `<li class="p-3 rounded-lg bg-slate-50 border border-slate-200">${item}</li>`).join('')}
+                        </ul>
+                    </div>
+                    <div class="lg:col-span-5 space-y-2.5">
+                        <h3 class="text-xs font-extrabold uppercase tracking-wider text-emerald-800 border-b pb-1">${s.rightTitle}</h3>
+                        <div class="space-y-2.5">
+                            ${s.cards.map(c => `
+                                <div class="p-3.5 rounded-xl bg-slate-900 text-white flex items-center justify-between shadow-sm">
+                                    <div>
+                                        <span class="text-[11px] uppercase text-sky-300 font-bold block">${c.k}</span>
+                                        <span class="text-xs text-slate-300 mt-0.5 block">${c.s}</span>
+                                    </div>
+                                    <span class="text-sm font-black text-amber-400 ml-3 shrink-0">${c.v}</span>
+                                </div>
+                            `).join('')}
+                        </div>
+                    </div>
+                </div>
+
+                <div class="border-t pt-2.5 flex justify-between text-[11px] text-slate-400">
+                    <span>Báo cáo Ban Điều Hành FTI • Bản Định Hướng Kinh Doanh Tinh Gọn (50%)</span>
+                    <span>Trang ${curSlide50 + 1} / ${slidesData50.length}</span>
+                </div>
+            `;
+        }
+
+        function nextS50() { curSlide50 = (curSlide50 + 1) % slidesData50.length; renderS50(); }
+        function prevS50() { curSlide50 = (curSlide50 - 1 + slidesData50.length) % slidesData50.length; renderS50(); }
+        function goS50(i) { curSlide50 = i; renderS50(); }
+    </script>
+</body>
+</html>
