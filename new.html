@@ -3,871 +3,1005 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-  <title>Cẩm Nang Quán Ăn & Cafe Quanh 384 Lý Thái Tổ (Bán Kính 5km)</title>
+  <title>Hệ Thống Quán Ăn & Cafe Hiện Đại (Bán Kính 6km Từ 384 Lý Thái Tổ)</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
     body {
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-      background-color: #f8fafc;
+      background-color: #f1f5f9;
       color: #0f172a;
       -webkit-tap-highlight-color: transparent;
     }
     .no-scrollbar::-webkit-scrollbar { display: none; }
     .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
-    .tab-active {
-      background-color: #0f172a;
-      color: #ffffff;
-      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+
+    /* FIX TRIỆT ĐỂ LỖI MÀU MENU TAB KHI CLICK / HOVER */
+    .tab-btn {
+      background-color: transparent;
+      color: #334155;
+      transition: all 0.15s ease-in-out;
     }
-    .filter-active {
-      background-color: #2563eb !important;
+    .tab-btn:hover:not(.tab-active) {
+      background-color: #e2e8f0;
+      color: #0f172a;
+    }
+    .tab-btn.tab-active,
+    .tab-btn.tab-active:hover,
+    .tab-btn.tab-active:focus,
+    .tab-btn.tab-active:active {
+      background-color: #1d4ed8 !important;
       color: #ffffff !important;
-      border-color: #2563eb !important;
+      box-shadow: 0 2px 6px rgba(29, 78, 216, 0.35);
+    }
+
+    /* FIX MÀU NÚT CHIP FILTER KHI CLICK / HOVER */
+    .chip-btn {
+      background-color: #ffffff;
+      color: #334155;
+      border: 1px solid #cbd5e1;
+      transition: all 0.15s ease;
+    }
+    .chip-btn:hover:not(.chip-active) {
+      background-color: #f8fafc;
+      border-color: #94a3b8;
+      color: #0f172a;
+    }
+    .chip-btn.chip-active,
+    .chip-btn.chip-active:hover,
+    .chip-btn.chip-active:focus {
+      background-color: #0f766e !important;
+      color: #ffffff !important;
+      border-color: #0f766e !important;
     }
   </style>
 </head>
-<body class="min-h-screen pb-12">
+<body class="min-h-screen pb-14">
 
-  <!-- Header cố định trên điện thoại -->
+  <!-- HEADER CỐ ĐỊNH GỌN GÀNG TRÊN ĐIỆN THOẠI -->
   <header class="sticky top-0 z-30 bg-white/95 backdrop-blur border-b border-slate-200 shadow-sm">
-    <div class="max-w-6xl mx-auto px-3 sm:px-6 py-3">
-      <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
+    <div class="max-w-6xl mx-auto px-3 py-2.5">
+      <div class="flex items-center justify-between gap-2">
         <div>
-          <span class="inline-block text-[11px] font-bold uppercase tracking-wider px-2 py-0.5 rounded bg-blue-100 text-blue-800 mb-1">
-            Tâm điểm: 384 Lý Thái Tổ, P. Vườn Lài (Q.10) • Bán kính ≤ 5km
+          <span class="inline-block text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded bg-blue-50 text-blue-700 border border-blue-200">
+            Tâm: 384 Lý Thái Tổ (Q.10) • Bán kính ≤ 6km
           </span>
-          <h1 class="text-lg sm:text-xl font-bold text-slate-900 leading-tight">
-            Hệ Thống Quán Ăn &amp; Cafe Hiện Đại (Đang Hoạt Động)
+          <h1 class="text-base sm:text-lg font-extrabold text-slate-900 leading-snug mt-0.5">
+            Cẩm Nang Quán Ăn &amp; Cafe Hiện Đại (46 Địa Điểm)
           </h1>
         </div>
-        <div class="text-xs text-slate-500">
-          Chuẩn đối chiếu: <b>Rita Võ Cafe</b> &amp; <b>The Running Bean</b>
-        </div>
-      </div>
-
-      <!-- Thanh chuyển 4 Tab -->
-      <div class="grid grid-cols-2 sm:grid-cols-4 gap-1.5 mt-3 bg-slate-100 p-1 rounded-xl">
-        <button onclick="switchTab('tab1')" id="btn-tab1" class="tab-btn tab-active text-xs sm:text-sm font-semibold py-2 px-2.5 rounded-lg transition text-center">
-          1. Ăn &amp; Uống (9)
-        </button>
-        <button onclick="switchTab('tab2')" id="btn-tab2" class="tab-btn text-slate-600 hover:text-slate-900 text-xs sm:text-sm font-semibold py-2 px-2.5 rounded-lg transition text-center">
-          2. Cafe Uống (13)
-        </button>
-        <button onclick="switchTab('tab3')" id="btn-tab3" class="tab-btn text-slate-600 hover:text-slate-900 text-xs sm:text-sm font-semibold py-2 px-2.5 rounded-lg transition text-center">
-          3. Quán Ăn (16)
-        </button>
-        <button onclick="switchTab('tab4')" id="btn-tab4" class="tab-btn text-slate-600 hover:text-slate-900 text-xs sm:text-sm font-semibold py-2 px-2.5 rounded-lg transition text-center">
-          4. Gợi Ý Món &amp; Chuẩn
+        <button onclick="resetAllFilters()" class="text-[11px] font-semibold text-blue-700 bg-blue-50 hover:bg-blue-100 px-2.5 py-1 rounded-lg border border-blue-200 shrink-0">
+          Đặt lại lọc
         </button>
       </div>
 
-      <!-- Bộ lọc nhanh & Tìm kiếm (Ẩn khi ở Tab 4) -->
-      <div id="filter-bar" class="mt-2.5 flex flex-col sm:flex-row gap-2 sm:items-center justify-between">
-        <div class="flex items-center gap-1.5 overflow-x-auto no-scrollbar pb-1 sm:pb-0">
-          <button onclick="toggleFilter('all')" id="flt-all" class="flt-btn filter-active shrink-0 text-xs font-medium px-2.5 py-1 rounded-full border border-slate-300 bg-white text-slate-700">
-            Tất cả
-          </button>
-          <button onclick="toggleFilter('car')" id="flt-car" class="flt-btn shrink-0 text-xs font-medium px-2.5 py-1 rounded-full border border-slate-300 bg-white text-slate-700">
-            🚗 Có chỗ đỗ ô tô
-          </button>
-          <button onclick="toggleFilter('late')" id="flt-late" class="flt-btn shrink-0 text-xs font-medium px-2.5 py-1 rounded-full border border-slate-300 bg-white text-slate-700">
-            🌙 Mở trễ ≥ 23h / 24h
-          </button>
-          <button onclick="toggleFilter('spacious')" id="flt-spacious" class="flt-btn shrink-0 text-xs font-medium px-2.5 py-1 rounded-full border border-slate-300 bg-white text-slate-700">
-            🏛️ Rộng rãi
-          </button>
-          <button onclick="toggleFilter('near')" id="flt-near" class="flt-btn shrink-0 text-xs font-medium px-2.5 py-1 rounded-full border border-slate-300 bg-white text-slate-700">
-            📍 Gần ≤ 2km
-          </button>
-        </div>
-        <div class="relative w-full sm:w-64">
+      <!-- 4 TAB MENU (ĐÃ SỬA LỖI MÀU HOVER) -->
+      <div class="grid grid-cols-4 gap-1 mt-2 bg-slate-100 p-1 rounded-xl border border-slate-200">
+        <button onclick="switchTab('tab1')" id="btn-tab1" class="tab-btn tab-active text-[11px] sm:text-xs font-bold py-2 px-1.5 rounded-lg text-center leading-tight">
+          1. Ăn &amp; Uống (11)
+        </button>
+        <button onclick="switchTab('tab2')" id="btn-tab2" class="tab-btn text-[11px] sm:text-xs font-bold py-2 px-1.5 rounded-lg text-center leading-tight">
+          2. Cafe Uống (15)
+        </button>
+        <button onclick="switchTab('tab3')" id="btn-tab3" class="tab-btn text-[11px] sm:text-xs font-bold py-2 px-1.5 rounded-lg text-center leading-tight">
+          3. Quán Ăn (20)
+        </button>
+        <button onclick="switchTab('tab4')" id="btn-tab4" class="tab-btn text-[11px] sm:text-xs font-bold py-2 px-1.5 rounded-lg text-center leading-tight">
+          4. Bảng Món
+        </button>
+      </div>
+
+      <!-- KHU VỰC FILTER & SORT CHI TIẾT -->
+      <div id="filter-section" class="mt-2 space-y-2">
+        <!-- Hàng 1: Tìm kiếm + Sort + Quận + Diện tích + Khoảng cách -->
+        <div class="grid grid-cols-2 sm:grid-cols-5 gap-1.5">
           <input
             type="text"
             id="search-input"
             oninput="renderVenues()"
-            placeholder="Tìm tên quán, đường, món ăn..."
-            class="w-full text-xs sm:text-sm bg-slate-100 border border-slate-300 rounded-lg px-3 py-1.5 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            placeholder="🔍 Tìm quán, đường, món..."
+            class="col-span-2 sm:col-span-1 text-xs bg-slate-50 border border-slate-300 rounded-lg px-2.5 py-1.5 focus:outline-none focus:ring-2 focus:ring-blue-600"
           />
+          <select id="sort-select" onchange="renderVenues()" class="text-xs bg-slate-50 border border-slate-300 rounded-lg px-2 py-1.5 font-medium text-slate-800">
+            <option value="score">⚡ Xếp: Phù hợp nhất</option>
+            <option value="dist">📍 Xếp: Gần → Xa</option>
+            <option value="area">📐 Xếp: Rộng → Nhỏ</option>
+            <option value="close">🌙 Xếp: Đóng trễ nhất</option>
+            <option value="priceAsc">💰 Xếp: Giá thấp → cao</option>
+          </select>
+          <select id="dist-select" onchange="renderVenues()" class="text-xs bg-slate-50 border border-slate-300 rounded-lg px-2 py-1.5 font-medium text-slate-800">
+            <option value="all">🗺️ Tất cả Quận (≤6km)</option>
+            <option value="Q.10">Quận 10</option>
+            <option value="Q.3">Quận 3</option>
+            <option value="Q.5">Quận 5</option>
+            <option value="Q.1">Quận 1</option>
+            <option value="Khác">Phú Nhuận / Tân Bình / Bình Thạnh</option>
+          </select>
+          <select id="area-select" onchange="renderVenues()" class="text-xs bg-slate-50 border border-slate-300 rounded-lg px-2 py-1.5 font-medium text-slate-800">
+            <option value="all">📐 Mọi diện tích</option>
+            <option value="large">Rất rộng (≥ 350m²)</option>
+            <option value="medium">Rộng vừa (180 – 340m²)</option>
+            <option value="small">Nhỏ / Vừa (&lt; 180m²)</option>
+          </select>
+          <select id="rad-select" onchange="renderVenues()" class="col-span-2 sm:col-span-1 text-xs bg-slate-50 border border-slate-300 rounded-lg px-2 py-1.5 font-medium text-slate-800">
+            <option value="6">🎯 Bán kính ≤ 6.0 km</option>
+            <option value="1.5">Rất gần ≤ 1.5 km</option>
+            <option value="2.5">Gần ≤ 2.5 km</option>
+            <option value="4.0">Vừa ≤ 4.0 km</option>
+          </select>
+        </div>
+
+        <!-- Hàng 2: Nút bật/tắt tiêu chí nhanh (Có thể chọn nhiều tiêu chí cùng lúc) -->
+        <div class="flex items-center gap-1.5 overflow-x-auto no-scrollbar pb-0.5">
+          <button onclick="toggleQuickFlag('car')" id="chip-car" class="chip-btn shrink-0 text-[11px] font-semibold px-2.5 py-1 rounded-full">
+            🚗 Có chỗ đỗ ô tô
+          </button>
+          <button onclick="toggleQuickFlag('late')" id="chip-late" class="chip-btn shrink-0 text-[11px] font-semibold px-2.5 py-1 rounded-full">
+            🌙 Mở ≥ 23h / 24/24
+          </button>
+          <button onclick="toggleQuickFlag('food')" id="chip-food" class="chip-btn shrink-0 text-[11px] font-semibold px-2.5 py-1 rounded-full">
+            🍽️ Có món ăn mặn
+          </button>
+          <button onclick="toggleQuickFlag('vip')" id="chip-vip" class="chip-btn shrink-0 text-[11px] font-semibold px-2.5 py-1 rounded-full">
+            🏛️ Biệt thự / Sân vườn / VIP
+          </button>
         </div>
       </div>
     </div>
   </header>
 
-  <!-- Nội dung chính -->
-  <main class="max-w-6xl mx-auto px-3 sm:px-6 pt-4">
+  <!-- NỘI DUNG CHÍNH -->
+  <main class="max-w-6xl mx-auto px-3 pt-3">
+    <div id="result-bar" class="text-xs text-slate-600 mb-2.5 flex items-center justify-between"></div>
 
-    <!-- Thông báo số lượng kết quả -->
-    <div id="result-count" class="text-xs text-slate-500 mb-3 font-medium"></div>
+    <!-- DANH SÁCH QUÁN (TAB 1, 2, 3) -->
+    <div id="venues-container">
+      <!-- Thẻ rút gọn tối ưu cho màn hình Điện Thoại -->
+      <div id="mobile-cards" class="grid grid-cols-1 sm:grid-cols-2 gap-2.5 lg:hidden"></div>
 
-    <!-- Khu vực hiển thị danh sách quán (Tab 1, 2, 3) -->
-    <div id="venues-wrapper">
-      <!-- Giao diện Điện Thoại (Card View) -->
-      <div id="mobile-cards" class="grid grid-cols-1 gap-3 md:hidden"></div>
-
-      <!-- Giao diện Máy Tính / Tablet ngang (Table View) -->
-      <div class="hidden md:block bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden">
-        <div class="overflow-x-auto">
-          <table class="w-full text-left border-collapse text-xs lg:text-sm">
-            <thead>
-              <tr class="bg-slate-900 text-white">
-                <th class="py-3 px-3 font-semibold w-16">Hạng</th>
-                <th class="py-3 px-3 font-semibold w-48">Tên quán &amp; Địa chỉ</th>
-                <th class="py-3 px-3 font-semibold w-32">Giờ mở cửa</th>
-                <th class="py-3 px-3 font-semibold w-64">Độ rộng &amp; Thực tế không gian / hạn chế</th>
-                <th class="py-3 px-3 font-semibold w-64">Món ăn / Thức uống nổi bật</th>
-                <th class="py-3 px-3 font-semibold w-44">Chỗ đỗ ô tô</th>
-                <th class="py-3 px-3 font-semibold w-32">Giá &amp; Đánh giá</th>
-              </tr>
-            </thead>
-            <tbody id="desktop-table-body" class="divide-y divide-slate-200"></tbody>
-          </table>
-        </div>
+      <!-- Bảng đầy đủ cho màn hình Máy Tính -->
+      <div class="hidden lg:block bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden">
+        <table class="w-full text-left border-collapse text-xs">
+          <thead>
+            <tr class="bg-slate-900 text-white">
+              <th class="py-2.5 px-3 font-semibold w-16">Điểm</th>
+              <th class="py-2.5 px-3 font-semibold w-52">Tên quán &amp; Địa chỉ</th>
+              <th class="py-2.5 px-3 font-semibold w-36">Diện tích &amp; Quy mô</th>
+              <th class="py-2.5 px-3 font-semibold w-32">Giờ mở cửa</th>
+              <th class="py-2.5 px-3 font-semibold w-64">Thực đơn Món ăn &amp; Thức uống</th>
+              <th class="py-2.5 px-3 font-semibold w-44">Đỗ ô tô &amp; Lưu ý</th>
+              <th class="py-2.5 px-3 font-semibold w-28">Giá &amp; Đánh giá</th>
+            </tr>
+          </thead>
+          <tbody id="desktop-tbody" class="divide-y divide-slate-200"></tbody>
+        </table>
       </div>
     </div>
 
-    <!-- Khu vực Tab 4: Bảng Gợi Ý Món & Đối Chiếu Tiêu Chí -->
-    <div id="tab4-content" class="hidden space-y-6">
-      <!-- Bảng chuẩn đối chiếu -->
-      <div class="bg-white rounded-xl p-4 shadow-sm border border-slate-200">
-        <h2 class="text-base font-bold text-slate-900 mb-2">1. Bảng Chuẩn Tham Chiếu Ban Đầu</h2>
-        <div class="overflow-x-auto">
-          <table class="w-full text-left border-collapse text-xs sm:text-sm">
-            <thead>
-              <tr class="bg-slate-100 text-slate-800 border-b border-slate-200">
-                <th class="p-2.5 font-semibold">Tên quán mẫu</th>
-                <th class="p-2.5 font-semibold">Địa chỉ &amp; Trạng thái</th>
-                <th class="p-2.5 font-semibold">Giờ mở cửa</th>
-                <th class="p-2.5 font-semibold">Đặc trưng cốt lõi</th>
-                <th class="p-2.5 font-semibold">Giá tham khảo</th>
-              </tr>
-            </thead>
-            <tbody class="divide-y divide-slate-200">
-              <tr>
-                <td class="p-2.5 font-bold text-slate-900">Rita Võ Cafe</td>
-                <td class="p-2.5">211 Nguyễn Văn Cừ, Q.5 <span class="text-red-600 font-semibold">(Đã đóng cửa)</span></td>
-                <td class="p-2.5">07:00 – 23:00</td>
-                <td class="p-2.5">Rộng rãi, lịch sự, đỗ ô tô dễ, kết hợp ăn sáng/trưa/tối &amp; cafe, nhạc Acoustic</td>
-                <td class="p-2.5">30.000 – 77.000đ</td>
-              </tr>
-              <tr>
-                <td class="p-2.5 font-bold text-slate-900">The Running Bean</td>
-                <td class="p-2.5">115 Hồ Tùng Mậu &amp; 33 Mạc Thị Bưởi, Q.1 <span class="text-emerald-600 font-semibold">(Đang mở)</span></td>
-                <td class="p-2.5">07:30 – 22:00 (23:00)</td>
-                <td class="p-2.5">Gu trẻ hiện đại (trắng - xanh olive), mạnh về All-day Brunch Âu &amp; Specialty Coffee</td>
-                <td class="p-2.5">50.000 – 200.000đ</td>
-              </tr>
-              <tr>
-                <td class="p-2.5 font-bold text-slate-900">Cà Phê New</td>
-                <td class="p-2.5">212 Độc Lập, Q. Tân Phú <span class="text-emerald-600 font-semibold">(Chuẩn tối thiểu)</span></td>
-                <td class="p-2.5">06:30 – 22:30</td>
-                <td class="p-2.5">Mặt tiền rộng thoáng, ngồi thoải mái, phục vụ đồ uống &amp; điểm tâm nhẹ</td>
-                <td class="p-2.5">30.000 – 75.000đ</td>
-              </tr>
-            </tbody>
-          </table>
+    <!-- TAB 4: BẢNG TỔNG HỢP GỢI Ý MÓN THEO NHÓM -->
+    <div id="tab4-container" class="hidden space-y-4">
+      <div class="bg-white rounded-xl p-3.5 shadow-sm border border-slate-200">
+        <h2 class="text-sm font-bold text-slate-900 mb-2">📌 Tóm Tắt Chọn Nhanh (Từ 384 Lý Thái Tổ)</h2>
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-2.5 text-xs">
+          <div class="p-2.5 rounded-lg bg-blue-50 border border-blue-200">
+            <b class="text-blue-900 block mb-1">1. Vừa Ăn Vừa Uống + Đỗ Ô Tô + Mở 23h</b>
+            • <b>Sargon Bistro</b> (382/25 NTMK, Q.3 - 450m², 4 tầng)<br>
+            • <b>RuNam d'Or</b> (03 Công Xã Paris, Q.1 - 500m²)<br>
+            • <b>Link Bistro</b> (264 NKKN, Q.3 - hầm ô tô)
+          </div>
+          <div class="p-2.5 rounded-lg bg-teal-50 border border-teal-200">
+            <b class="text-teal-900 block mb-1">2. Cafe Mở 23h–24/24 + Rộng + Đỗ Ô Tô</b>
+            • <b>Lupis Coffee</b> (288B An Dương Vương, Q.5 - 24/24)<br>
+            • <b>The O'Palm</b> (25A Tú Xương, Q.3 - biệt thự 300m²)<br>
+            • <b>Three O'Clock</b> &amp; <b>The Coffee Lab</b> (24/24)
+          </div>
+          <div class="p-2.5 rounded-lg bg-amber-50 border border-amber-200">
+            <b class="text-amber-900 block mb-1">3. Nhà Hàng Đặc Sản + Đỗ Ô Tô + Mở Trễ</b>
+            • <b>Việt Phố</b> (45 Lê Quý Đôn - 1000m², tới 2h sáng)<br>
+            • <b>Cơm Niêu Sài Gòn</b> (27 Tú Xương - tới 23h)<br>
+            • <b>Phố 79</b>, <b>Rạn Biển</b>, <b>TukTuk Thai</b>, <b>Đông Hồ Eden</b>
+          </div>
         </div>
       </div>
 
-      <!-- Bảng tóm tắt chọn nhanh theo nhu cầu -->
-      <div class="bg-white rounded-xl p-4 shadow-sm border border-slate-200">
-        <h2 class="text-base font-bold text-slate-900 mb-3">2. Gợi Ý Chọn Nhanh Theo Tình Huống Thực Tế</h2>
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 text-xs sm:text-sm">
-          <div class="p-3 rounded-lg bg-blue-50 border border-blue-200">
-            <div class="font-bold text-blue-900 mb-1">🎯 Giống Rita Võ &amp; Running Bean nhất (Có Ô tô + Ăn &amp; Uống + Mở 23h)</div>
-            <p class="text-slate-700"><b>Sargon Bistro &amp; Coffee</b> (382/25 Nguyễn Thị Minh Khai, Q.3) hoặc <b>Link Bistro Cafe</b> (264 Nam Kỳ Khởi Nghĩa, Q.3 - đỗ xe hầm khách sạn).</p>
-          </div>
-          <div class="p-3 rounded-lg bg-emerald-50 border border-emerald-200">
-            <div class="font-bold text-emerald-900 mb-1">🚗 Đi Ô Tô Uống Cafe Khuya (23h – 24/24) + Quán Rộng</div>
-            <p class="text-slate-700"><b>Lupis Coffee &amp; Tea</b> (288B An Dương Vương, Q.5 - mở 24/24, đỗ ô tô tại quán) hoặc <b>The O'Palm Cafe</b> (25A Tú Xương, Q.3 - mở tới 23h30).</p>
-          </div>
-          <div class="p-3 rounded-lg bg-amber-50 border border-amber-200">
-            <div class="font-bold text-amber-900 mb-1">🍲 Ăn Tối Gia Đình / Tiếp Khách Lịch Sự + Mở Tới 23h–02h Sáng</div>
-            <p class="text-slate-700"><b>Nhà hàng Việt Phố</b> (45–49 Lê Quý Đôn), <b>Phố 79</b> (5 Phạm Ngọc Thạch), <b>Cơm Niêu Sài Gòn</b> (27 Tú Xương) hoặc <b>TukTuk Thai Bistro</b> (6A Ngô Thời Nhiệm).</p>
-          </div>
-        </div>
+      <div class="bg-white rounded-xl p-3.5 shadow-sm border border-slate-200 overflow-x-auto">
+        <h2 class="text-sm font-bold text-slate-900 mb-2">🍽️ Bảng Tra Cứu Nhanh Món Ngon Đặc Trưng Theo Quán</h2>
+        <table class="w-full text-left border-collapse text-xs">
+          <thead>
+            <tr class="bg-slate-100 text-slate-800 border-b border-slate-200">
+              <th class="p-2 font-semibold">Tên quán</th>
+              <th class="p-2 font-semibold">Diện tích</th>
+              <th class="p-2 font-semibold">Món ăn mặn / Bánh ngọt</th>
+              <th class="p-2 font-semibold">Thức uống đặc trưng</th>
+            </tr>
+          </thead>
+          <tbody id="dish-summary-tbody" class="divide-y divide-slate-200"></tbody>
+        </table>
       </div>
     </div>
-
   </main>
 
   <script>
     const venues = [
-      // TAB 1: ĂN & UỐNG KẾT HỢP (9 địa điểm)
+      // ================= TAB 1: ĂN & UỐNG KẾT HỢP (11 ĐỊA ĐIỂM) =================
       {
-        tab: "tab1", rank: 1, score: "9.5/10",
+        tab: "tab1", score: 9.6,
         name: "Sargon Bistro & Coffee",
-        address: "382/25 Nguyễn Thị Minh Khai, P. 5, Quận 3",
-        dist: 1.8,
-        hours: "Cafe: 07:00 – 23:00 | Bếp: 10:00–14:00 & 17:00–22:00",
-        spaceTag: "Rất rộng (4 tầng, 200 khách)",
-        menuTag: "Đầy đủ món Âu + Trà/Cafe",
-        spaceNote: "Tòa nhà 4 tầng tông trắng hiện đại. Lưu ý: Bếp món chính nghỉ 14h–17h và đóng bếp lúc 22h (khách vẫn ngồi uống nước đến 23h).",
-        dishes: "Hokubee Rib Eye (488k), Bò Úc cuộn bacon sốt gan ngỗng, Sò điệp Nhật áp chảo, Gan ngỗng Pháp, Vẹm sốt kem, Mỳ Ý cá hồi, Trà chiều, Cocktail.",
-        parking: "Đỗ ô tô miễn phí ngay trước cửa nhà hàng",
-        price: "45.000 – 488.000đ", rating: "4.1/5 Google",
-        hasCar: true, isLate: true, isSpacious: true
+        addr: "382/25 Nguyễn Thị Minh Khai, P.5, Q.3", district: "Q.3", dist: 1.8,
+        areaM2: 450, areaText: "~450m² (4 tầng, 200 khách)",
+        hours: "Cafe: 07:00–23:00 | Bếp: 10–14h & 17–22h", closeHour: 23,
+        foods: "Hokubee Rib Eye (488k), Bò Úc cuộn bacon sốt gan ngỗng, Bò Mỹ sốt Pháp, Gan ngỗng sốt phúc bồn tử/chocolate, Sò điệp Nhật, Vẹm sốt kem, Burrata, Hải sản Cajun, Cá hồi đút lò, Mỳ Ý cá hồi, Gà đút lò.",
+        drinks: "Cafe máy, Trà chiều, Mocktail, Mojito, Cocktail.",
+        parking: "Đỗ ô tô miễn phí trước cửa",
+        note: "Rất rộng, tông trắng hiện đại. Bếp nghỉ 14h–17h.",
+        priceStr: "45k – 488k", minP: 45, rating: "4.1★ Google",
+        hasCar: true, isLate: true, hasSavoryFood: true, isVip: true
       },
       {
-        tab: "tab1", rank: 2, score: "9.2/10",
+        tab: "tab1", score: 9.4,
+        name: "RuNam d'Or",
+        addr: "03 Công Xã Paris, P. Bến Nghé, Q.1", district: "Q.1", dist: 3.6,
+        areaM2: 500, areaText: "~500m² (Biệt thự Pháp & sân vườn)",
+        hours: "07:30 – 23:00", closeHour: 23,
+        foods: "Điểm tâm, Bít tết Âu, Hải sản, Món Việt cao cấp, Bánh ngọt & Set trà chiều.",
+        drinks: "Cà phê RuNam, Cà phê trứng, Trà nguyên lá, Rượu vang.",
+        parking: "Thuận tiện đỗ xe ô tô",
+        note: "Biệt thự Pháp cổ sang trọng ngay Nhà Thờ Đức Bà.",
+        priceStr: "120k – 550k", minP: 120, rating: "Đẳng cấp 5★",
+        hasCar: true, isLate: true, hasSavoryFood: true, isVip: true
+      },
+      {
+        tab: "tab1", score: 9.3,
         name: "Link Bistro Cafe",
-        address: "264 Nam Kỳ Khởi Nghĩa, P. 8, Quận 3",
-        dist: 2.8,
-        hours: "07:00 – 22:30 (Phục vụ cả ngày)",
-        spaceTag: "Rộng rãi, lịch sự (Khách sạn)",
-        menuTag: "Đầy đủ món Việt & Âu + Cafe",
-        spaceNote: "Kiến trúc Tân cổ điển sang trọng, yên tĩnh, rất giống phong cách tiếp khách lịch sự của Rita Võ.",
-        dishes: "Gỏi bò kéo pháo, Canh chua cá hú, Khổ qua xào trứng, Gan ngỗng sốt táo, Mực nhồi kiểu Napoli, Trà chiều & Cà phê.",
-        parking: "Miễn phí đỗ ô tô và xe máy dưới tầng hầm khách sạn",
-        price: "60.000 – 450.000đ", rating: "Đánh giá cao",
-        hasCar: true, isLate: false, isSpacious: true
+        addr: "264 Nam Kỳ Khởi Nghĩa, P.8, Q.3", district: "Q.3", dist: 2.8,
+        areaM2: 350, areaText: "~350m² (Sảnh khách sạn rộng)",
+        hours: "07:00 – 22:30 (Cả ngày)", closeHour: 22.5,
+        foods: "Gỏi bò kéo pháo, Canh chua cá hú, Khổ qua xào trứng, Gan ngỗng sốt táo, Mực nhồi kiểu Napoli.",
+        drinks: "Cà phê, Set tiệc trà chiều, Nước ép tươi.",
+        parking: "Miễn phí đỗ ô tô hầm khách sạn",
+        note: "Tân cổ điển sang trọng, rất giống chất lịch sự Rita Võ.",
+        priceStr: "60k – 450k", minP: 60, rating: "Dịch vụ cao cấp",
+        hasCar: true, isLate: false, hasSavoryFood: true, isVip: true
       },
       {
-        tab: "tab1", rank: 3, score: "9.0/10",
+        tab: "tab1", score: 9.1,
         name: "The Running Bean (Chuẩn đối chiếu)",
-        address: "115 Hồ Tùng Mậu & 33 Mạc Thị Bưởi, Quận 1",
-        dist: 3.9,
-        hours: "07:30 – 22:00 (có khung tới 22:30/23:00)",
-        spaceTag: "Khá rộng (Trong nhà & Ngoài trời)",
-        menuTag: "Chuyên Brunch Âu & Cafe",
-        spaceNote: "Tông trắng – xanh olive hiện đại. Hạn chế: Không bán món cơm Việt, cuối tuần rất đông.",
-        dishes: "Bánh mì nướng (Toast), Pancake, Sandwich, Bánh ngọt, Cà phê trứng (85k), Specialty Coffee.",
-        parking: "Đỗ tại quán hạn chế; gửi bãi tư nhân thu phí sát bên",
-        price: "50.000 – 200.000đ", rating: "Chuẩn tham chiếu",
-        hasCar: true, isLate: false, isSpacious: true
+        addr: "115 Hồ Tùng Mậu & 33 Mạc Thị Bưởi, Q.1", district: "Q.1", dist: 3.8,
+        areaM2: 280, areaText: "~280m² (Trong nhà & Ngoài trời)",
+        hours: "07:30 – 22:00 (23:00)", closeHour: 22.5,
+        foods: "All-day Brunch Âu: Bánh mì nướng (Toast), Pancake, Sandwich, Bánh ngọt.",
+        drinks: "Cà phê trứng (85k), Specialty Coffee, Cold Brew, Trà.",
+        parking: "Đỗ hạn chế + Bãi thu phí sát bên",
+        note: "Gu trẻ hiện đại. Không bán món cơm Việt; cuối tuần đông.",
+        priceStr: "50k – 200k", minP: 50, rating: "Chuẩn mẫu",
+        hasCar: true, isLate: false, hasSavoryFood: true, isVip: false
       },
       {
-        tab: "tab1", rank: 4, score: "8.8/10",
-        name: "Là Việt Coffee Saigon (3 Chi Nhánh)",
-        address: "583 Sư Vạn Hạnh (Q.10) | 57A Tú Xương (Q.3) | 191-193 Hai Bà Trưng (Q.3)",
-        dist: 0.9,
-        hours: "07:00 – 22:00 (Tú Xương 07:00 – 21:00/22:00)",
-        spaceTag: "Rộng rãi (Kiểu xưởng Industrial)",
-        menuTag: "Ít món mặn (Cơm trưa + Bánh Croissant)",
-        spaceNote: "CN Hai Bà Trưng & Tú Xương rộng thoáng. Hạn chế: Chỉ CN 57A Tú Xương có Cơm gà mắm nhĩ buổi trưa, còn lại chỉ bán bánh Croissant/bánh ngọt; chỗ gửi xe Tú Xương hơi xa.",
-        dishes: "Cơm gà mắm nhĩ (~75k), Croissant bơ tỏi/trứng muối/miso (50-55k), Bánh táo (55k); Cafe muối (50k), Bơ nữ hoàng cafe (60k), Cafe Phở (60k), Mont Blanc (60k).",
-        parking: "Gửi bãi lân cận (Sư Vạn Hạnh / Hai Bà Trưng tiện hơn Tú Xương)",
-        price: "35.000 – 125.000đ", rating: "4.5/5 Google | 5.0 beFood",
-        hasCar: false, isLate: false, isSpacious: true
-      },
-      {
-        tab: "tab1", rank: 5, score: "8.6/10",
+        tab: "tab1", score: 8.9,
         name: "L'Usine (Lê Thánh Tôn)",
-        address: "19 Lê Thánh Tôn, P. Bến Nghé, Quận 1",
-        dist: 4.2,
-        hours: "07:00 / 07:30 – 22:30",
-        spaceTag: "Rộng rãi (Tổ hợp Cafe & Concept Store)",
-        menuTag: "Đầy đủ Brunch, Pasta, Burger & Cafe",
-        spaceNote: "Không gian Đông Dương hiện đại trần cao, sang trọng. Hạn chế: Cách Ngã Bảy ~4.2km, đóng cửa 22:30.",
-        dishes: "All-day Brunch kiểu Âu, Sandwich, Pasta, Burger, Bánh ngọt Pháp, Cà phê & Trà chiều.",
-        parking: "Gửi tại các bãi đỗ xe ô tô dọc trục Lê Thánh Tôn",
-        price: "40.000 – 250.000đ", rating: "Thương hiệu uy tín",
-        hasCar: true, isLate: false, isSpacious: true
+        addr: "19 Lê Thánh Tôn, P. Bến Nghé, Q.1", district: "Q.1", dist: 4.2,
+        areaM2: 350, areaText: "~350m² (Bistro & Concept Store)",
+        hours: "07:00 – 22:30", closeHour: 22.5,
+        foods: "All-day Brunch, Toast, Pancake, Sandwich, Pasta, Burger, Bánh ngọt Pháp.",
+        drinks: "Cafe pha máy, Trà chiều, Nước ép, Cocktail nhẹ.",
+        parking: "Gửi bãi ô tô dọc Lê Thánh Tôn",
+        note: "Trần cao thoáng đãng, thực đơn món Tây rất đầy đủ.",
+        priceStr: "40k – 250k", minP: 40, rating: "Thương hiệu lớn",
+        hasCar: true, isLate: false, hasSavoryFood: true, isVip: false
       },
       {
-        tab: "tab1", rank: 6, score: "8.5/10",
+        tab: "tab1", score: 8.8,
+        name: "Là Việt Coffee Saigon (3 Chi Nhánh)",
+        addr: "583 Sư Vạn Hạnh (Q.10) | 57A Tú Xương (Q.3) | 191 Hai Bà Trưng (Q.3)", district: "Q.10", dist: 0.9,
+        areaM2: 300, areaText: "~250–350m² (Xưởng Industrial)",
+        hours: "07:00 – 22:00", closeHour: 22,
+        foods: "Cơm gà mắm nhĩ (75k - trưa tại Tú Xương), Croissant bơ tỏi/trứng muối/miso (50–55k), Bánh táo (55k), Bánh chocolate earlgrey (55k), Bánh chuối (40k).",
+        drinks: "Cafe muối gạo rang (50k), Bơ nữ hoàng cafe (60k), Cafe Phở (60k), Robusta Colada (55k), Sparkle Mazagran cam sành (60k), Mont Blanc (60k), Cafe oải hương (55k), Cafe trứng.",
+        parking: "Gửi bãi xe lân cận",
+        note: "Rộng thoáng. Ít món mặn (chỉ CN Tú Xương có cơm trưa).",
+        priceStr: "35k – 125k", minP: 35, rating: "4.5★ Google",
+        hasCar: false, isLate: false, hasSavoryFood: true, isVip: false
+      },
+      {
+        tab: "tab1", score: 8.6,
         name: "Cafe Bistro Kingdom",
-        address: "334 Tô Hiến Thành, P. 14, Quận 10",
-        dist: 1.8,
-        hours: "08:00 – 22:00",
-        spaceTag: "Khá rộng (Sân vườn xanh mát)",
-        menuTag: "Món Âu cơ bản + Cafe & Đồ uống có cồn",
-        spaceNote: "Không gian xanh mát ngay nội khu Quận 10. Hạn chế: Đóng cửa lúc 22:00.",
-        dishes: "Món Âu, đồ ăn nhanh, bữa ăn chính; Cafe muối Kingdom, Trà ngọc trai Himalaya, Matcha trân châu đường đen, Đồ uống có cồn.",
-        parking: "Mặt tiền Tô Hiến Thành rộng, thuận tiện dừng đỗ",
-        price: "45.000 – 180.000đ", rating: "Phân khúc $$",
-        hasCar: true, isLate: false, isSpacious: true
+        addr: "334 Tô Hiến Thành, P.14, Q.10", district: "Q.10", dist: 1.8,
+        areaM2: 250, areaText: "~250m² (Sân vườn xanh mát)",
+        hours: "08:00 – 22:00", closeHour: 22,
+        foods: "Món Âu cơ bản, Đồ ăn nhanh, Bữa ăn chính.",
+        drinks: "Cafe muối Kingdom, Cafe sữa tươi, Trà ngọc trai Himalaya, Trà sữa ô long lài/green, Matcha trân châu đường đen, Đồ uống có cồn.",
+        parking: "Mặt tiền Tô Hiến Thành dễ đỗ",
+        note: "Không gian xanh mát ngay nội khu Quận 10.",
+        priceStr: "45k – 180k", minP: 45, rating: "Tầm trung ($$)",
+        hasCar: true, isLate: false, hasSavoryFood: true, isVip: true
       },
       {
-        tab: "tab1", rank: 7, score: "8.3/10",
+        tab: "tab1", score: 8.5,
+        name: "Blue (Tân Sơn Nhất Hotel)",
+        addr: "202 Hoàng Văn Thụ, P. Đức Nhuận, Phú Nhuận", district: "Khác", dist: 4.8,
+        areaM2: 500, areaText: "~500m² (Khuôn viên khách sạn)",
+        hours: "08:00 – 22:00", closeHour: 22,
+        foods: "Gọi món Á – Âu, Điểm tâm & Buffet nướng lẩu BBQ Hàn Quốc.",
+        drinks: "Cà phê, Trà, Nước ép, Bia.",
+        parking: "Bãi đỗ ô tô miễn phí cực rộng",
+        note: "Rất rộng rãi, đỗ xe thoải mái; cách Ngã Bảy ~4.8km.",
+        priceStr: "250k – 400k", minP: 250, rating: "Khách sạn lớn",
+        hasCar: true, isLate: false, hasSavoryFood: true, isVip: true
+      },
+      {
+        tab: "tab1", score: 8.5,
+        name: "Manja Manja (Holiday Inn Airport)",
+        addr: "18E Cộng Hòa, Tân Bình", district: "Khác", dist: 5.2,
+        areaM2: 600, areaText: "~600m² (Sảnh khách sạn 5 sao)",
+        hours: "06:00 – 22:00 (All-day dining)", closeHour: 22,
+        foods: "Buffet sáng, All-day dining Á – Âu (10:30–22:00), Buffet Hải sản tối (18:00–22:00).",
+        drinks: "Cafe, Trà chiều, Rượu vang, Cocktail.",
+        parking: "Hầm đỗ xe ô tô khách sạn 5 sao",
+        note: "Cực kỳ lịch sự và rộng rãi; cách Ngã Bảy ~5.2km.",
+        priceStr: "250k – 700k", minP: 250, rating: "Chuẩn 5★",
+        hasCar: true, isLate: false, hasSavoryFood: true, isVip: true
+      },
+      {
+        tab: "tab1", score: 8.4,
+        name: "Chay Garden & Tiệm Cơm Cafe Hoa Giấy",
+        addr: "52 Võ Văn Tần & 19 Huỳnh Tịnh Của, Q.3", district: "Q.3", dist: 2.1,
+        areaM2: 320, areaText: "~250–350m² (Biệt thự sân vườn)",
+        hours: "07:00 / 10:00 – 22:00", closeHour: 22,
+        foods: "Chay Garden: Món chay tinh tế | Hoa Giấy: Cơm miền Trung & bánh ngọt.",
+        drinks: "Hồng trà sữa best-seller (Hoa Giấy), Trà thảo mộc, Cà phê.",
+        parking: "Có bãi gửi xe ô tô lân cận",
+        note: "Sân vườn yên tĩnh, lịch sự.",
+        priceStr: "50k – 250k", minP: 50, rating: "4.0★ PasGo",
+        hasCar: true, isLate: false, hasSavoryFood: true, isVip: true
+      },
+      {
+        tab: "tab1", score: 8.3,
         name: "Bakes Saigon (Hồ Con Rùa)",
-        address: "47B Trần Cao Vân, P. 6, Quận 3",
-        dist: 2.9,
-        hours: "08:00 – 21:00 / 22:00",
-        spaceTag: "Diện tích vừa phải (Hơi nhỏ)",
-        menuTag: "Thiên về Bánh ngọt Pháp & Brunch nhẹ",
-        spaceNote: "Thiết kế Pháp tông xám cực đẹp. Hạn chế: Mặt sàn không quá rộng, ít món ăn mặn no bụng.",
-        dishes: "Bánh ngọt nghệ thuật Pháp (French Pastry), Bánh nướng mặn, Brunch & Cà phê.",
-        parking: "Gửi xe khu vực Hồ Con Rùa / Trần Cao Vân lân cận",
-        price: "50.000 – 500.000đ", rating: "4.2/5 Google",
-        hasCar: false, isLate: false, isSpacious: false
-      },
-      {
-        tab: "tab1", rank: 8, score: "8.2/10",
-        name: "Chay Garden Restaurant & Coffee",
-        address: "52 Võ Văn Tần, P. Võ Thị Sáu, Quận 3",
-        dist: 2.1,
-        hours: "10:00 – 22:00",
-        spaceTag: "Rộng rãi (Biệt thự sân vườn)",
-        menuTag: "Chỉ phục vụ món Chay & Cafe",
-        spaceNote: "Sân vườn yên tĩnh, lịch sự. Hạn chế: Thuần đồ ăn chay và đóng cửa lúc 22:00.",
-        dishes: "Các món chay Việt – Á tinh tế, Lẩu nấm chay, Gỏi cuốn, Trà thảo mộc & Cà phê.",
-        parking: "Có bãi gửi ô tô lân cận trên đường Võ Văn Tần",
-        price: "100.000 – 250.000đ", rating: "4.0/5 PasGo",
-        hasCar: true, isLate: false, isSpacious: true
-      },
-      {
-        tab: "tab1", rank: 9, score: "8.0/10",
-        name: "Blue – Cafe, BBQ & À la carte",
-        address: "Khách sạn Tân Sơn Nhất, 202 Hoàng Văn Thụ, Phú Nhuận",
-        dist: 4.8,
-        hours: "08:00 – 22:00",
-        spaceTag: "Rất rộng (Khuôn viên khách sạn)",
-        menuTag: "Cafe kết hợp Gọi món & Buffet BBQ",
-        spaceNote: "Rộng rãi, lịch sự. Hạn chế: Cách 384 Lý Thái Tổ ~4.8km và đóng cửa lúc 22:00.",
-        dishes: "Cà phê, thức uống giải khát, Gọi món và Buffet nướng lẩu Hàn Quốc.",
-        parking: "Bãi đỗ ô tô miễn phí cực rộng trong khuôn viên khách sạn",
-        price: "250.000 – 400.000đ", rating: "Khách sạn 4-5 sao",
-        hasCar: true, isLate: false, isSpacious: true
+        addr: "47B Trần Cao Vân, P.6, Q.3", district: "Q.3", dist: 2.9,
+        areaM2: 150, areaText: "~150m² (Vừa phải, hơi nhỏ)",
+        hours: "08:00 – 22:00", closeHour: 22,
+        foods: "Bánh ngọt nghệ thuật Pháp (French Pastry), Bánh mặn, Brunch nhẹ.",
+        drinks: "Cà phê Specialty, Trà lạnh.",
+        parking: "Gửi bãi Hồ Con Rùa lân cận",
+        note: "Gu trẻ đẹp như Running Bean nhưng diện tích vừa phải, ít món ăn no.",
+        priceStr: "50k – 500k", minP: 50, rating: "4.2★ Google",
+        hasCar: false, isLate: false, hasSavoryFood: false, isVip: false
       },
 
-      // TAB 2: QUÁN CAFE CHUYÊN UỐNG (13 địa điểm)
+      // ================= TAB 2: CAFE CHUYÊN UỐNG (15 ĐỊA ĐIỂM) =================
       {
-        tab: "tab2", rank: 1, score: "9.5/10",
+        tab: "tab2", score: 9.5,
         name: "Lupis Coffee & Tea",
-        address: "288B An Dương Vương, Quận 5",
-        dist: 1.5,
-        hours: "Mở cửa 24/24 (Cả ngày)",
-        spaceTag: "Rất rộng (Nhiều tầng, mặt tiền lớn)",
-        menuTag: "Ít món ăn (Chỉ có nước & bánh ngọt)",
-        spaceNote: "Decor phi hành gia & tông xanh dương hiện đại, mở xuyên đêm. Hạn chế: Không bán đồ ăn mặn.",
-        dishes: "Cà phê pha máy, Trà trái cây nhiệt đới, Trà sữa, Bánh ngọt nhẹ.",
-        parking: "Có chỗ đậu ô tô rộng rãi ngay tại quán",
-        price: "25.000 – 50.000đ", rating: "Rất tốt (Lemon8)",
-        hasCar: true, isLate: true, isSpacious: true
+        addr: "288B An Dương Vương, Q.5", district: "Q.5", dist: 1.5,
+        areaM2: 350, areaText: "~350m² (Rất rộng, nhiều tầng)",
+        hours: "Mở cửa 24/24", closeHour: 24,
+        foods: "Bánh ngọt tủ kính (Không có đồ ăn mặn).",
+        drinks: "Cà phê pha máy, Trà trái cây nhiệt đới, Trà sữa, Đá xay.",
+        parking: "Có chỗ đậu ô tô rộng tại quán",
+        note: "Đáp ứng cả 3: Rộng + Đỗ ô tô + Mở 24/24. Ít món ăn.",
+        priceStr: "25k – 50k", minP: 25, rating: "Rất tốt",
+        hasCar: true, isLate: true, hasSavoryFood: false, isVip: false
       },
       {
-        tab: "tab2", rank: 2, score: "9.2/10",
+        tab: "tab2", score: 9.3,
         name: "The O'Palm Cafe",
-        address: "25A Tú Xương, P. Võ Thị Sáu, Quận 3",
-        dist: 2.2,
-        hours: "07:30 – 23:00 / 23:30",
-        spaceTag: "Rộng rãi (Biệt thự Địa Trung Hải)",
-        menuTag: "Ít món ăn (Chỉ có nước & bánh ngọt)",
-        spaceNote: "Kiến trúc ốc đảo Địa Trung Hải sang trọng, mở trễ tới 23h30. Hạn chế: Không có đồ ăn mặn, đông lúc 19h–20h.",
-        dishes: "Trà vải, Trà táo thanh mát, Cappuccino, Cà phê sữa, Bánh ngọt.",
-        parking: "Đường Tú Xương rộng, thuận tiện đỗ ô tô",
-        price: "50.000 – 125.000đ", rating: "4.2/5 Google",
-        hasCar: true, isLate: true, isSpacious: true
+        addr: "25A Tú Xương, P. Võ Thị Sáu, Q.3", district: "Q.3", dist: 2.2,
+        areaM2: 300, areaText: "~300m² (Biệt thự Địa Trung Hải)",
+        hours: "07:30 – 23:00 / 23:30", closeHour: 23.5,
+        foods: "Bánh ngọt nhẹ (Không có đồ ăn mặn).",
+        drinks: "Trà vải, Trà táo thanh mát, Cappuccino, Cà phê sữa.",
+        parking: "Đường Tú Xương dễ đỗ ô tô",
+        note: "Không gian ốc đảo sang chảnh, mở trễ tới 23h30.",
+        priceStr: "50k – 125k", minP: 50, rating: "4.2★ Google",
+        hasCar: true, isLate: true, hasSavoryFood: false, isVip: true
       },
       {
-        tab: "tab2", rank: 3, score: "9.0/10",
+        tab: "tab2", score: 9.1,
+        name: "Three O'Clock (4 Chi Nhánh)",
+        addr: "771 Trần Hưng Đạo (Q.5) | 130A NĐC (Q.3) | 36 Lữ Gia (Q.11) | 26 Nguyễn Gia Trí (Bình Thạnh)", district: "Q.5", dist: 1.8,
+        areaM2: 300, areaText: "~250–350m² (Nhiều tầng rộng)",
+        hours: "Mở cửa 24/24", closeHour: 24,
+        foods: "Bánh ngọt & Pastry tủ kính (Ít món ăn).",
+        drinks: "Trà sữa ô long, Trà trái cây, Cà phê pha máy, Americano.",
+        parking: "Hỗ trợ gửi xe / bãi sát quán",
+        note: "Tông đen xám hiện đại, mở 24/24, nhiều bàn làm việc khuya.",
+        priceStr: "28k – 60k", minP: 28, rating: "Chuỗi 24/7",
+        hasCar: true, isLate: true, hasSavoryFood: false, isVip: false
+      },
+      {
+        tab: "tab2", score: 9.0,
+        name: "THE COFFEE LAB (24/24)",
+        addr: "53 Nguyễn Du, P. Bến Nghé, Q.1", district: "Q.1", dist: 3.4,
+        areaM2: 250, areaText: "~250m² (Rộng thoáng trung tâm)",
+        hours: "Mở cửa 24/24", closeHour: 24,
+        foods: "Bánh ngọt châu Âu (Ít món ăn).",
+        drinks: "Cà phê trứng, Specialty Coffee, Cold Brew, Trà trái cây.",
+        parking: "Dừng đỗ Nguyễn Du / bãi gần",
+        note: "Mở xuyên đêm 24/24 ngay trung tâm Quận 1.",
+        priceStr: "~55k/ly", minP: 55, rating: "Đánh giá tốt",
+        hasCar: true, isLate: true, hasSavoryFood: false, isVip: false
+      },
+      {
+        tab: "tab2", score: 9.0,
         name: "Cheese Coffee (Sư Vạn Hạnh)",
-        address: "782 Sư Vạn Hạnh, P. Hòa Hưng, Quận 10",
-        dist: 1.1,
-        hours: "07:00 – 22:00",
-        spaceTag: "Rộng rãi, hiện đại gu trẻ",
-        menuTag: "Ít món ăn (Chỉ có nước & bánh ngọt)",
-        spaceNote: "Đông giới trẻ sành điệu. Hạn chế: Đóng cửa lúc 22:00 (không ngồi tới 23h), không có món ăn mặn.",
-        dishes: "Cà phê phô mai (Cheese Coffee signature), Trà cam quýt, Trà sữa nguyên lá, Bánh ngọt.",
-        parking: "Có bãi đậu xe hơi rộng rãi ngay tại quán",
-        price: "45.000 – 95.000đ", rating: "Top chuỗi giới trẻ",
-        hasCar: true, isLate: false, isSpacious: true
+        addr: "782 Sư Vạn Hạnh, P. Hòa Hưng, Q.10", district: "Q.10", dist: 1.1,
+        areaM2: 300, areaText: "~300m² (Rộng rãi, hiện đại)",
+        hours: "07:00 – 22:00", closeHour: 22,
+        foods: "Bánh ngọt theo mùa rất ngon (Không có món ăn mặn).",
+        drinks: "Cà phê phô mai signature, Bạc xỉu, Trà cam quýt, Trà sữa nguyên lá.",
+        parking: "Có bãi đậu xe hơi rộng tại quán",
+        note: "Đỗ ô tô cực tiện tại Q.10; hạn chế là đóng cửa lúc 22:00.",
+        priceStr: "45k – 95k", minP: 45, rating: "Top giới trẻ",
+        hasCar: true, isLate: false, hasSavoryFood: false, isVip: false
       },
       {
-        tab: "tab2", rank: 4, score: "8.9/10",
-        name: "KATINAT (Ngã 7 Lý Thái Tổ & Quận 10)",
-        address: "788 Điện Biên Phủ | 442 Cao Thắng | 533 Nguyễn Tri Phương | 10 Đường 3/2 (Q.10)",
-        dist: 0.2,
-        hours: "07:00 – 23:00",
-        spaceTag: "Mặt tiền 2-3 tầng (Bàn kê khá sát)",
-        menuTag: "Ít món ăn (Hơn 40 món nước + bánh nhẹ)",
-        spaceNote: "Ngay sát 384 Lý Thái Tổ (200m), mở đúng tới 23:00. Hạn chế: Giờ cao điểm tối đông và ồn, không có bãi ô tô riêng tại Ngã 7.",
-        dishes: "Bơ già dừa non, Trà sữa chôm chôm, Oolong tứ quý sữa, Cóc cóc đác đác (69k), Trà đào hồng đài (65k), Mê Xíu (39k), Latte hạt phỉ (56k).",
-        parking: "Giữ xe máy; ô tô phải gửi bãi lân cận",
-        price: "32.000 – 69.000đ", rating: "4.0/5 (250 đánh giá)",
-        hasCar: false, isLate: true, isSpacious: false
+        tab: "tab2", score: 8.9,
+        name: "KATINAT (Ngã 7 & 5 Chi Nhánh Lân Cận)",
+        addr: "788 Điện Biên Phủ | 442 Cao Thắng | 533 Nguyễn Tri Phương | 10 Đường 3/2 | QQ1 Ba Vì (Q.10) | Landmark 81", district: "Q.10", dist: 0.2,
+        areaM2: 220, areaText: "~200–300m² (2–3 tầng góc phố)",
+        hours: "07:00 – 23:00", closeHour: 23,
+        foods: "Bánh ngọt nhẹ, Tàu hũ (15k), Bánh flan (15k), Trân châu phô mai dẻo (Ít món ăn).",
+        drinks: "Bơ già dừa non, Trà sữa chôm chôm, Oolong tứ quý sữa, Cóc cóc đác đác (69k), Trà đào hồng đài (65k), Trà vải (55k), Mê Xíu (39k), Latte Hạt Phỉ/Baba Nana (56k).",
+        parking: "Xe máy (Ô tô gửi bãi ngoài / Landmark 81 có hầm)",
+        note: "Sát 384 Lý Thái Tổ (200m), mở tới 23h. Bàn kê hơi sát, tối đông.",
+        priceStr: "32k – 69k", minP: 32, rating: "4.0★ MoMo",
+        hasCar: false, isLate: true, hasSavoryFood: false, isVip: false
       },
       {
-        tab: "tab2", rank: 5, score: "8.8/10",
-        name: "Three O'Clock (3 Chi Nhánh Gần Q.10)",
-        address: "130A Nguyễn Đình Chiểu (Q.3) | 771-775 Trần Hưng Đạo (Q.5) | 36 Lữ Gia (Q.11)",
-        dist: 1.8,
-        hours: "Mở cửa 24/24 (Cả ngày)",
-        spaceTag: "Rộng thoáng (Nhiều tầng làm việc)",
-        menuTag: "Ít món ăn (Chỉ có nước & bánh tủ kính)",
-        spaceNote: "Tông đen – xám hiện đại, mở 24/24. Hạn chế: Đông sinh viên chạy deadline đêm, không có đồ ăn mặn.",
-        dishes: "Trà sữa ô long, Trà trái cây thanh mát, Cà phê pha máy, Bánh ngọt.",
-        parking: "Hỗ trợ gửi xe / bãi lân cận (Trần Hưng Đạo & Lữ Gia rộng hơn)",
-        price: "28.000 – 60.000đ", rating: "Chuỗi 24/7 phổ biến",
-        hasCar: true, isLate: true, isSpacious: true
-      },
-      {
-        tab: "tab2", rank: 6, score: "8.6/10",
+        tab: "tab2", score: 8.6,
         name: "The Coffee House (Cao Thắng)",
-        address: "Đường Cao Thắng, Quận 3 (giáp Quận 10)",
-        dist: 1.0,
-        hours: "07:00 – 22:00",
-        spaceTag: "Bên trong rất rộng và thoáng",
-        menuTag: "Ít món ăn (Đồ uống & bánh chuỗi)",
-        spaceNote: "Không gian rộng rãi, lịch sự, máy lạnh mát. Hạn chế: Đóng cửa lúc 22:00.",
-        dishes: "Trà đào cam sả, Cà phê sữa đá, Cold Brew, Bánh ngọt & Bánh mì hệ thống.",
+        addr: "Đường Cao Thắng, Q.3 (giáp Q.10)", district: "Q.3", dist: 1.0,
+        areaM2: 300, areaText: "~300m² (Rộng và thoáng mát)",
+        hours: "07:00 – 22:00", closeHour: 22,
+        foods: "Bánh ngọt & Bánh mì nhỏ hệ thống (Ít món ăn).",
+        drinks: "Trà đào cam sả, Cà phê sữa đá, Cold Brew, Matcha.",
         parking: "Có chỗ đậu xe ô tô thuận tiện",
-        price: "39.000 – 69.000đ", rating: "Chuẩn hệ thống",
-        hasCar: true, isLate: false, isSpacious: true
+        note: "Rộng rãi, lịch sự, có chỗ đỗ ô tô; đóng cửa lúc 22:00.",
+        priceStr: "39k – 69k", minP: 39, rating: "Chuẩn chuỗi",
+        hasCar: true, isLate: false, hasSavoryFood: false, isVip: false
       },
       {
-        tab: "tab2", rank: 7, score: "8.5/10",
+        tab: "tab2", score: 8.5,
         name: "S'Mores Saigon Caffè",
-        address: "123 Trần Hưng Đạo, Quận 5",
-        dist: 2.2,
-        hours: "08:00 – 22:00",
-        spaceTag: "Rộng rãi, nhiều tầng hiện đại",
-        menuTag: "Ít món ăn (Chỉ có nước & bánh ngọt)",
-        spaceNote: "Không gian đẹp, trẻ trung. Hạn chế: Đóng cửa lúc 22:00, không có món ăn mặn.",
-        dishes: "Cà phê pha máy, Trà trái cây, Đá xay & Bánh ngọt.",
-        parking: "Có thể đậu xe ô tô",
-        price: "39.000 – 75.000đ", rating: "Đánh giá tốt",
-        hasCar: true, isLate: false, isSpacious: true
+        addr: "123 Trần Hưng Đạo, Q.5", district: "Q.5", dist: 2.2,
+        areaM2: 250, areaText: "~250m² (Nhiều tầng hiện đại)",
+        hours: "08:00 – 22:00", closeHour: 22,
+        foods: "Bánh ngọt nhẹ (Không có món ăn mặn).",
+        drinks: "Cà phê pha máy, Trà trái cây, Đá xay.",
+        parking: "Có chỗ đậu xe ô tô",
+        note: "Không gian đẹp, đỗ được ô tô; đóng cửa lúc 22:00.",
+        priceStr: "39k – 75k", minP: 39, rating: "Đánh giá tốt",
+        hasCar: true, isLate: false, hasSavoryFood: false, isVip: false
       },
       {
-        tab: "tab2", rank: 8, score: "8.4/10",
+        tab: "tab2", score: 8.5,
         name: "Dabao Concept (Tú Xương)",
-        address: "18 Tú Xương, P. Võ Thị Sáu, Quận 3",
-        dist: 2.1,
-        hours: "07:00 – 21:00 / 22:00",
-        spaceTag: "Biệt thự Pháp cổ & sân vườn rất rộng",
-        menuTag: "Ít món (Chỉ có trà, cafe & bánh nhẹ)",
-        spaceNote: "Cây cổ thụ che mát quanh năm, rất tĩnh lặng. Hạn chế: Đóng cửa sớm (21h–22h), phong cách hoài niệm Đông Dương.",
-        dishes: "Trà cam quế (signature), Cà phê truyền thống & Pha máy.",
+        addr: "18 Tú Xương, P. Võ Thị Sáu, Q.3", district: "Q.3", dist: 2.1,
+        areaM2: 400, areaText: "~400m² (Biệt thự & sân vườn cổ thụ)",
+        hours: "07:00 – 22:00", closeHour: 22,
+        foods: "Bánh ngọt nhẹ (Ít món ăn).",
+        drinks: "Trà cam quế signature, Cà phê phin & pha máy.",
         parking: "Đường Tú Xương thuận lợi đỗ ô tô",
-        price: "40.000 – 109.000đ", rating: "3.8/5 Google",
-        hasCar: true, isLate: false, isSpacious: true
+        note: "Sân vườn biệt thự rất rộng và mát; đóng cửa 21h–22h.",
+        priceStr: "40k – 109k", minP: 40, rating: "3.8★ Google",
+        hasCar: true, isLate: false, hasSavoryFood: false, isVip: true
       },
       {
-        tab: "tab2", rank: 9, score: "8.3/10",
+        tab: "tab2", score: 8.4,
         name: "Sori Cafe & More",
-        address: "20 Tú Xương, P. Võ Thị Sáu, Quận 3",
-        dist: 2.1,
-        hours: "07:00 – 22:00",
-        spaceTag: "Biệt thự Tây Âu rộng và sang trọng",
-        menuTag: "Ít món ăn (Chuyên đồ uống & bánh)",
-        spaceNote: "Không gian biệt thự tinh tế, lịch sự. Hạn chế: Đóng cửa lúc 22:00.",
-        dishes: "Cà phê Specialty, Trà trái cây, Bánh ngọt.",
-        parking: "Mặt tiền Tú Xương dễ đỗ xe ô tô",
-        price: "49.000 – 85.000đ", rating: "4.0/5 Google",
-        hasCar: true, isLate: false, isSpacious: true
+        addr: "20 Tú Xương, P. Võ Thị Sáu, Q.3", district: "Q.3", dist: 2.1,
+        areaM2: 350, areaText: "~350m² (Biệt thự Tây Âu rộng)",
+        hours: "07:00 – 22:00", closeHour: 22,
+        foods: "Bánh ngọt dùng kèm trà (Ít món ăn).",
+        drinks: "Cà phê Specialty, Trà trái cây, Latte.",
+        parking: "Đường Tú Xương dễ đỗ ô tô",
+        note: "Biệt thự sang trọng, tinh tế; đóng cửa lúc 22:00.",
+        priceStr: "49k – 85k", minP: 49, rating: "4.0★ Google",
+        hasCar: true, isLate: false, hasSavoryFood: false, isVip: true
       },
       {
-        tab: "tab2", rank: 10, score: "8.2/10",
-        name: "ITune Coffee",
-        address: "573/10 Sư Vạn Hạnh, P. Hòa Hưng, Quận 10",
-        dist: 0.9,
-        hours: "07:00 – 22:00",
-        spaceTag: "Diện tích vừa phải, lịch sự",
-        menuTag: "Ít món (Chỉ có Specialty Cafe & bánh)",
-        spaceNote: "Điểm hẹn của dân mê xe hơi tại Quận 10. Hạn chế: Quán không quá đồ sộ, đóng cửa lúc 22:00.",
-        dishes: "Cà phê Specialty pha máy/thủ công, Bánh ngọt.",
-        parking: "Có chỗ đậu xe hơi thuận tiện trong hẻm lớn",
-        price: "45.000 – 85.000đ", rating: "Đánh giá tốt",
-        hasCar: true, isLate: false, isSpacious: false
+        tab: "tab2", score: 8.3,
+        name: "ITune Coffee (Sư Vạn Hạnh)",
+        addr: "573/10 Sư Vạn Hạnh, P. Hòa Hưng, Q.10", district: "Q.10", dist: 0.9,
+        areaM2: 160, areaText: "~160m² (Vừa phải, lịch sự)",
+        hours: "07:00 – 22:00", closeHour: 22,
+        foods: "Bánh ngọt (Ít món ăn).",
+        drinks: "Cà phê Specialty pha máy & Pour-over.",
+        parking: "Hẻm lớn có chỗ đậu xe hơi",
+        note: "Điểm hẹn dân mê xe hơi tại Q.10; diện tích vừa phải.",
+        priceStr: "45k – 85k", minP: 45, rating: "Đánh giá tốt",
+        hasCar: true, isLate: false, hasSavoryFood: false, isVip: false
       },
       {
-        tab: "tab2", rank: 11, score: "8.0/10",
-        name: "NHÂM Cafe",
-        address: "91/1 Hòa Hưng, P. 12, Quận 10",
-        dist: 1.8,
-        hours: "07:30 – 23:59",
-        spaceTag: "Trong hẻm, diện tích vừa phải",
-        menuTag: "Ít món ăn (Chuyên đồ uống)",
-        spaceNote: "Kệ sách lớn nghệ thuật, mở tới 23:59 tại Q.10. Hạn chế: Nằm trong hẻm Hòa Hưng, khó đỗ ô tô.",
-        dishes: "Cà phê, Trà trái cây, Trà sữa.",
+        tab: "tab2", score: 8.2,
+        name: "Chidori – Coffee in Bed",
+        addr: "796/2A Sư Vạn Hạnh, P. Hòa Hưng, Q.10", district: "Q.10", dist: 1.1,
+        areaM2: 180, areaText: "~180m² (Chia ô giường nằm ấm cúng)",
+        hours: "08:30 – 22:30", closeHour: 22.5,
+        foods: "Bánh ngọt nhẹ (Ít món ăn).",
+        drinks: "Trà trái cây, Sinh tố, Matcha, Cà phê.",
+        parking: "Gửi xe máy / bãi lân cận",
+        note: "Mô hình nằm nghỉ thư giãn độc đáo cho giới trẻ.",
+        priceStr: "45k – 90k", minP: 45, rating: "Trẻ trung",
+        hasCar: false, isLate: false, hasSavoryFood: false, isVip: false
+      },
+      {
+        tab: "tab2", score: 8.1,
+        name: "NHÂM Cafe (Hòa Hưng)",
+        addr: "91/1 Hòa Hưng, P.12, Q.10", district: "Q.10", dist: 1.8,
+        areaM2: 120, areaText: "~120m² (Trong hẻm, diện tích vừa)",
+        hours: "07:30 – 23:59", closeHour: 24,
+        foods: "Bánh ngọt nhẹ (Ít món ăn).",
+        drinks: "Cà phê phin/máy, Trà trái cây, Trà sữa.",
         parking: "Chủ yếu gửi xe máy",
-        price: "40.000 – 75.000đ", rating: "Yên tĩnh, nghệ thuật",
-        hasCar: false, isLate: true, isSpacious: false
+        note: "Tường sách nghệ thuật, mở tới nửa đêm tại Q.10 nhưng hẻm nhỏ.",
+        priceStr: "40k – 75k", minP: 40, rating: "Yên tĩnh",
+        hasCar: false, isLate: true, hasSavoryFood: false, isVip: false
       },
       {
-        tab: "tab2", rank: 12, score: "7.5/10",
-        name: "Oto Cafe Xưa",
-        address: "148EF Lý Chính Thắng, P. Võ Thị Sáu, Quận 3",
-        dist: 2.3,
-        hours: "07:00 – 18:00 (Chỉ mở ban ngày)",
-        spaceTag: "Sân rất rộng, có nhạc acoustic",
-        menuTag: "Ít món ăn (Chuyên nước uống)",
-        spaceNote: "Hạn chế lớn: Đóng cửa lúc 18:00 (không mở buổi tối), phong cách xưa cũ.",
-        dishes: "Cà phê truyền thống, Nước trái cây.",
-        parking: "Có sân lớn đỗ ô tô thoải mái",
-        price: "30.000 – 60.000đ", rating: "Hợp đi ban ngày",
-        hasCar: true, isLate: false, isSpacious: true
+        tab: "tab2", score: 8.0,
+        name: "Mơ Đi Hội & The Hideout Coffee",
+        addr: "145 Nguyễn Trãi (Q.1) & 16 Nguyễn Văn Thủ, Đa Kao (Q.1)", district: "Q.1", dist: 2.0,
+        areaM2: 150, areaText: "~150m² (Vừa phải, chill)",
+        hours: "07:30 – 22:00", closeHour: 22,
+        foods: "Bánh ngọt nhẹ (Ít món ăn).",
+        drinks: "Cà phê, Trà trái cây, Kombucha.",
+        parking: "Gửi xe máy / bãi ngoài",
+        note: "Gu trẻ nghệ thuật; diện tích vừa phải, đóng cửa 22:00.",
+        priceStr: "55k – 120k", minP: 55, rating: "Đánh giá tốt",
+        hasCar: false, isLate: false, hasSavoryFood: false, isVip: false
       },
       {
-        tab: "tab2", rank: 13, score: "7.4/10",
-        name: "Novo Café & Ador Cafe (Đường 3/2)",
-        address: "Novo: 606/72 Đường 3/2 | Ador: 118 Đường 3/2, Quận 10",
-        dist: 1.2,
-        hours: "07:00 – 21:00",
-        spaceTag: "Nhỏ / Vừa phải, có ghế sofa êm",
-        menuTag: "Ít món (Chỉ có nước & bánh nhẹ)",
-        spaceNote: "Hiện đại, yên tĩnh. Hạn chế lớn: Diện tích nhỏ, không có chỗ đỗ ô tô riêng và đóng cửa rất sớm (21:00).",
-        dishes: "Cà phê pha máy, Trà trái cây.",
-        parking: "Giữ xe máy trước quán; hạn chế ô tô",
-        price: "55.000 – 95.000đ", rating: "Ador 4.7/5 Google",
-        hasCar: false, isLate: false, isSpacious: false
+        tab: "tab2", score: 7.5,
+        name: "Oto Cafe Xưa, Novo Café & Ador Cafe",
+        addr: "148EF Lý Chính Thắng (Q.3) | 606/72 & 118 Đường 3/2 (Q.10)", district: "Q.10", dist: 1.2,
+        areaM2: 100, areaText: "Oto ~300m² | Novo/Ador ~90m² (Nhỏ)",
+        hours: "Oto: 07–18h | Novo/Ador: 07–21h", closeHour: 21,
+        foods: "Ít món (Chỉ bán nước uống).",
+        drinks: "Cà phê truyền thống, Trà trái cây.",
+        parking: "Oto có sân đỗ ô tô; Novo/Ador chỉ xe máy",
+        note: "Hạn chế: Oto đóng cửa 18h chiều; Novo & Ador nhỏ và đóng sớm 21h.",
+        priceStr: "30k – 95k", minP: 30, rating: "4.7★ (Ador)",
+        hasCar: false, isLate: false, hasSavoryFood: false, isVip: false
       },
 
-      // TAB 3: QUÁN ĂN & NHÀ HÀNG ĐẶC SẢN (16 địa điểm)
+      // ================= TAB 3: QUÁN ĂN & NHÀ HÀNG ĐẶC SẢN (20 ĐỊA ĐIỂM) =================
       {
-        tab: "tab3", rank: 1, score: "9.6/10",
+        tab: "tab3", score: 9.7,
         name: "Nhà hàng Việt Phố",
-        address: "45–47–49 Lê Quý Đôn, P. Xuân Hòa, Quận 3",
-        dist: 2.3,
-        hours: "09:00 – 23:00 (Khung đêm tới 02:00 sáng)",
-        spaceTag: "Cực rộng (3 mặt tiền, sân vườn, VIP)",
-        menuTag: "Thực đơn lớn: Hải sản & Món Việt – Á – Âu",
-        spaceNote: "Có cả khu sân vườn, sảnh tiệc và hệ thống phòng VIP riêng tư đẳng cấp tiếp khách, mở tới 2h sáng.",
-        dishes: "Hải sản tươi sống bắt tại hồ (Tôm hùm, Cua, Cá mú), Đặc sản Việt Nam & Món Á – Âu dùng chung.",
-        parking: "Thuận tiện đỗ ô tô ngay mặt tiền Lê Quý Đôn",
-        price: "400.000 – 700.000đ/người", rating: "Top nhà hàng Quận 3",
-        hasCar: true, isLate: true, isSpacious: true
+        addr: "45–47–49 Lê Quý Đôn, P. Xuân Hòa, Q.3", district: "Q.3", dist: 2.3,
+        areaM2: 1000, areaText: "~1.000m² (3 mặt tiền, sân vườn, VIP)",
+        hours: "09:00 – 02:00 sáng", closeHour: 26,
+        foods: "Hải sản tươi sống bắt tại hồ (Tôm hùm, Cua, Cá mú, Ốc hương), Món Việt 3 miền & Á – Âu cao cấp.",
+        drinks: "Rượu vang, Bia, Nước ép, Trà.",
+        parking: "Đỗ ô tô ngay mặt tiền Lê Quý Đôn",
+        note: "Cực rộng, nhiều phòng VIP tiếp khách sang trọng, mở tới 2h sáng.",
+        priceStr: "400k – 700k", minP: 400, rating: "Top Q.3",
+        hasCar: true, isLate: true, hasSavoryFood: true, isVip: true
       },
       {
-        tab: "tab3", rank: 2, score: "9.5/10",
-        name: "Cơm Niêu Sài Gòn (Tú Xương & Hồ Xuân Hương)",
-        address: "27 Tú Xương & 59 Hồ Xuân Hương, P. Võ Thị Sáu, Quận 3",
-        dist: 2.2,
-        hours: "06:00 – 22:00 (Tú Xương mở tới 23:00)",
-        spaceTag: "Biệt thự rộng rãi, ấm cúng, sang trọng",
-        menuTag: "Đa dạng đặc sản Cơm niêu & Món Việt",
-        spaceNote: "Có không gian trong nhà sang trọng và ngoài trời cây xanh, nhân viên phục vụ rất lịch sự.",
-        dishes: "Cơm niêu mềm dẻo, Cơm cháy/cơm đập siêu giòn, Sườn non sốt nhà làm, Gỏi xoài cá khô, Cá kho tộ, Canh chua.",
-        parking: "Đỗ ô tô thuận lợi trên đường Tú Xương & Hồ Xuân Hương",
-        price: "100.000 – 300.000đ/người", rating: "4.0–4.1/5 Google",
-        hasCar: true, isLate: true, isSpacious: true
+        tab: "tab3", score: 9.5,
+        name: "Cơm Niêu Sài Gòn (2 Chi Nhánh)",
+        addr: "27 Tú Xương & 59 Hồ Xuân Hương, P. Võ Thị Sáu, Q.3", district: "Q.3", dist: 2.2,
+        areaM2: 450, areaText: "~450m² (Biệt thự rộng & sân cây xanh)",
+        hours: "06:00 – 23:00 (Tú Xương tới 23h)", closeHour: 23,
+        foods: "Cơm niêu mềm dẻo, Cơm đập/cơm cháy siêu giòn, Sườn non sốt nhà làm, Gỏi xoài cá khô, Cá kho tộ, Canh chua.",
+        drinks: "Nước trái cây, Trà truyền thống, Bia.",
+        parking: "Đỗ ô tô thuận lợi trên đường Tú Xương",
+        note: "Thương hiệu lâu đời nổi tiếng TP.HCM, món Việt rất dễ ăn.",
+        priceStr: "100k – 300k", minP: 100, rating: "4.1★ Google",
+        hasCar: true, isLate: true, hasSavoryFood: true, isVip: true
       },
       {
-        tab: "tab3", rank: 3, score: "9.4/10",
+        tab: "tab3", score: 9.4,
         name: "Nhà hàng Phố 79",
-        address: "Số 5 Phạm Ngọc Thạch, P. Xuân Hòa, Quận 3",
-        dist: 2.8,
-        hours: "09:30 – 23:30",
-        spaceTag: "Tòa nhà lớn sang trọng, nhiều phòng VIP",
-        menuTag: "Thực đơn lớn: Món Việt cao cấp & Hải sản",
-        spaceNote: "Không gian sang trọng bậc nhất gần Hồ Con Rùa, mở qua 23:00, rất hợp tiếp khách và gia đình.",
-        dishes: "Ẩm thực Việt truyền thống nâng tầm, Đặc sản Bắc – Trung – Nam & Hải sản tươi sống.",
-        parking: "Thuận tiện đỗ ô tô mặt tiền Phạm Ngọc Thạch",
-        price: "399.000 – 699.000đ/người", rating: "Danh tiếng lâu năm",
-        hasCar: true, isLate: true, isSpacious: true
+        addr: "Số 5 Phạm Ngọc Thạch, P. Xuân Hòa, Q.3", district: "Q.3", dist: 2.8,
+        areaM2: 800, areaText: "~800m² (Tòa nhà lớn, nhiều phòng VIP)",
+        hours: "09:30 – 23:30", closeHour: 23.5,
+        foods: "Ẩm thực Việt truyền thống nâng tầm, Đặc sản Bắc – Trung – Nam & Hải sản tươi sống (>100 món).",
+        drinks: "Rượu vang, Bia, Nước ép.",
+        parking: "Có chỗ đỗ ô tô mặt tiền Phạm Ngọc Thạch",
+        note: "Không gian sang trọng bậc nhất gần Hồ Con Rùa, mở tới 23h30.",
+        priceStr: "399k – 699k", minP: 399, rating: "Danh tiếng",
+        hasCar: true, isLate: true, hasSavoryFood: true, isVip: true
       },
       {
-        tab: "tab3", rank: 4, score: "9.3/10",
+        tab: "tab3", score: 9.4,
+        name: "Nhà hàng Hải Sản Rạn Biển",
+        addr: "2–4–6 Hai Bà Trưng, P. Sài Gòn, Q.1", district: "Q.1", dist: 3.8,
+        areaM2: 800, areaText: "~800m² (Sảnh lớn & phòng VIP)",
+        hours: "10:00 – 23:00", closeHour: 23,
+        foods: "Hải sản tươi sống cỡ lớn (Cua King Crab, Tôm hùm Alaska, Cá mú nghệ, Ốc vòi voi).",
+        drinks: "Rượu vang, Bia, Nước giải khát.",
+        parking: "Bãi đỗ xe ô tô siêu rộng ngay tại quán",
+        note: "Nhà hàng hải sản cao cấp, bãi đỗ ô tô cực rộng.",
+        priceStr: "400k – 900k", minP: 400, rating: "Đánh giá cao",
+        hasCar: true, isLate: true, hasSavoryFood: true, isVip: true
+      },
+      {
+        tab: "tab3", score: 9.3,
         name: "TukTuk Thai Bistro",
-        address: "Số 6A Ngô Thời Nhiệm, P. Võ Thị Sáu, Quận 3",
-        dist: 2.2,
-        hours: "09:00 – 23:00",
-        spaceTag: "Rộng thoáng (100 khách, Sân ngoài & Trong nhà)",
-        menuTag: "Đa dạng đặc sản Thái Lan hiện đại",
-        spaceNote: "Thiết kế Bistro cá tính, trẻ trung, mở tới 23:00.",
-        dishes: "Pad Thái, Súp Tom Yum, Gỏi đu đủ Somtam, Cà ri Thái, Xôi xoài, Trà sữa Thái.",
-        parking: "Có chỗ đỗ ô tô ngay phía đối diện nhà hàng",
-        price: "150.000 – 250.000đ/người", rating: "4.0/5 PasGo",
-        hasCar: true, isLate: true, isSpacious: true
+        addr: "Số 6A Ngô Thời Nhiệm, P. Võ Thị Sáu, Q.3", district: "Q.3", dist: 2.2,
+        areaM2: 250, areaText: "~250m² (100 khách, Sân & Phòng lạnh)",
+        hours: "09:00 – 23:00", closeHour: 23,
+        foods: "Pad Thái, Súp Tom Yum, Gỏi đu đủ Somtam, Cà ri Thái, Cá chẽm sốt Thái, Xôi xoài.",
+        drinks: "Trà sữa Thái xanh/đỏ, Trà chanh sả, Bia Thái.",
+        parking: "Đỗ ô tô ngay phía đối diện nhà hàng",
+        note: "Thiết kế Bistro cá tính, món Thái đậm đà dễ ăn, mở tới 23h.",
+        priceStr: "150k – 250k", minP: 150, rating: "4.0★ PasGo",
+        hasCar: true, isLate: true, hasSavoryFood: true, isVip: false
       },
       {
-        tab: "tab3", rank: 5, score: "9.2/10",
+        tab: "tab3", score: 9.2,
         name: "Nhà hàng Út Cà Mau",
-        address: "215 Điện Biên Phủ, P. Xuân Hòa, Quận 3",
-        dist: 1.4,
-        hours: "10:00 – 22:30",
-        spaceTag: "Rất rộng (Sân vườn, phòng lạnh, phòng VIP 8-60 khách)",
-        menuTag: "Chuyên sâu Cua Cà Mau & Đặc sản miền Tây",
-        spaceNote: "Nằm ngay trục Điện Biên Phủ nối Ngã 7, có phòng riêng karaoke miễn phí cho gia đình/công ty.",
-        dishes: "Cua Cà Mau chính gốc Đất Mũi, Cá thòi lòi, Sò huyết cồ, Vọp rừng, Tôm đất, Lẩu mắm, Combo Xuôi Dòng Đất Mũi.",
-        parking: "Ô tô đỗ tại bãi xe 220 Pasteur sát bên; xe máy để tại quán",
-        price: "250.000 – 500.000đ/người", rating: "3.8/5 PasGo",
-        hasCar: true, isLate: false, isSpacious: true
+        addr: "215 Điện Biên Phủ, P. Xuân Hòa, Q.3", district: "Q.3", dist: 1.4,
+        areaM2: 600, areaText: "~600m² (Sân vườn, VIP 8–60 khách)",
+        hours: "10:00 – 22:30", closeHour: 22.5,
+        foods: "Cua Cà Mau chính gốc Đất Mũi, Cá thòi lòi, Sò huyết cồ, Vọp rừng, Tôm đất, Lẩu mắm, Combo Xuôi Dòng Đất Mũi.",
+        drinks: "Bia, Nước trái cây, Rượu dân tộc.",
+        parking: "Ô tô đỗ bãi 220 Pasteur sát bên",
+        note: "Cùng trục Điện Biên Phủ nối Ngã 7; phòng riêng có karaoke miễn phí.",
+        priceStr: "250k – 500k", minP: 250, rating: "3.8★ PasGo",
+        hasCar: true, isLate: false, hasSavoryFood: true, isVip: true
       },
       {
-        tab: "tab3", rank: 6, score: "9.1/10",
+        tab: "tab3", score: 9.1,
         name: "Vườn Ẩm Thực Đông Hồ Eden & Hải Sản 346",
-        address: "199 Cao Thắng & 183 Cao Thắng, P. Hòa Hưng, Quận 10",
-        dist: 1.0,
-        hours: "09:00 – 22:30",
-        spaceTag: "Sân vườn cực rộng ngay trung tâm Q.10",
-        menuTag: "Đa dạng món Việt, Hải sản & Tiệc",
-        spaceNote: "Có sân vườn thoáng mát và phòng riêng. Lưu ý: Giờ đông khách không khí khá náo nhiệt.",
-        dishes: "Hải sản tươi sống, Các món Việt 3 miền và thực đơn đãi tiệc/họp mặt đa dạng.",
-        parking: "Có bãi đậu ô tô rộng ngay trong khuôn viên (hỗ trợ giữ qua đêm)",
-        price: "200.000 – 400.000đ/người", rating: "4.0/5 (411 đánh giá)",
-        hasCar: true, isLate: false, isSpacious: true
+        addr: "199 Cao Thắng & 183 Cao Thắng, P. Hòa Hưng, Q.10", district: "Q.10", dist: 1.0,
+        areaM2: 1000, areaText: "~1.000m² (Sân vườn lớn & Phòng VIP)",
+        hours: "09:00 – 22:30", closeHour: 22.5,
+        foods: "Hải sản tươi sống, Các món nướng, Lẩu & Thực đơn món Việt đãi tiệc.",
+        drinks: "Bia, Rượu, Nước giải khát.",
+        parking: "Bãi đỗ ô tô rộng nội khu (giữ qua đêm)",
+        note: "Bãi đỗ ô tô lớn nhất ngay tại Quận 10; tối khá đông vui.",
+        priceStr: "200k – 400k", minP: 200, rating: "4.0★ (411 đánh giá)",
+        hasCar: true, isLate: false, hasSavoryFood: true, isVip: true
       },
       {
-        tab: "tab3", rank: 7, score: "9.0/10",
-        name: "The Street (Cách Mạng Tháng 8)",
-        address: "181C Cách Mạng Tháng 8, P. Bàn Cờ, Quận 3",
-        dist: 1.5,
-        hours: "11:00 – 02:00 sáng hôm sau",
-        spaceTag: "Rất rộng rãi, thoáng mát",
-        menuTag: "Đa dạng món Việt phố thị & Bia",
-        spaceNote: "Phong cách phố thị Việt Nam trẻ trung, mở tới 2h sáng. Lưu ý: Không khí sôi động, không hợp tiếp khách cần yên tĩnh.",
-        dishes: "Các món ăn Việt Nam hiện đại, món nướng, lẩu và đồ nhấm.",
-        parking: "Có bãi đỗ xe ô tô siêu rộng rãi ngay tại quán",
-        price: "150.000 – 350.000đ/người", rating: "Đánh giá tốt",
-        hasCar: true, isLate: true, isSpacious: true
+        tab: "tab3", score: 9.0,
+        name: "The Street (CMT8 & Nguyễn Thái Bình)",
+        addr: "181C Cách Mạng Tháng 8, Q.3 & 39 Nguyễn Thái Bình, Q.1", district: "Q.3", dist: 1.5,
+        areaM2: 500, areaText: "~500m² (Không gian mở rất rộng)",
+        hours: "11:00 – 02:00 sáng", closeHour: 26,
+        foods: "Món ăn & mồi nhậu phố thị Việt Nam hiện đại, Lẩu, Nướng, Hải sản.",
+        drinks: "Bia tươi, Bia thủ công, Nước giải khát.",
+        parking: "Có bãi đỗ xe ô tô siêu rộng tại quán",
+        note: "Gu trẻ phóng khoáng, mở tới 2h sáng; không khí sôi động.",
+        priceStr: "150k – 350k", minP: 150, rating: "Đánh giá tốt",
+        hasCar: true, isLate: true, hasSavoryFood: true, isVip: false
       },
       {
-        tab: "tab3", rank: 8, score: "8.9/10",
-        name: "Nhà hàng Khoái – Đặc Sản Nha Trang",
-        address: "Số 16 Lê Quý Đôn, P. Xuân Hòa, Quận 3",
-        dist: 2.3,
-        hours: "10:00 – 22:00",
-        spaceTag: "Không gian lịch sự, ấm cúng (Vừa phải)",
-        menuTag: "Chuyên sâu đặc sản Nha Trang dễ ăn",
-        spaceNote: "Nằm trên trục ẩm thực Lê Quý Đôn, món ăn thanh vị rất dễ thưởng thức. Đóng cửa lúc 22:00.",
-        dishes: "Nem nướng Ninh Hòa, Bún cá sứa, Bánh căn, Gỏi cá mai, Hải sản biển miền Trung.",
-        parking: "Hỗ trợ hướng dẫn đỗ ô tô trên trục Lê Quý Đôn",
-        price: "150.000 – 250.000đ/người", rating: "4.0/5 PasGo",
-        hasCar: true, isLate: false, isSpacious: false
-      },
-      {
-        tab: "tab3", rank: 9, score: "8.8/10",
-        name: "Cơm Quê Mười Khó & Quán Bụi",
-        address: "Mười Khó: 27 Trần Quốc Thảo (Q.3) | Quán Bụi: 254B1 Nguyễn Đình Chiểu (Q.3) & 19 Ngô Văn Năm (Q.1)",
-        dist: 2.1,
-        hours: "Mười Khó: 10:00–22:00 | Quán Bụi Q.1: 07:00–23:00",
-        spaceTag: "Rộng rãi, lịch sự, hoài cổ Việt Nam",
-        menuTag: "Đa dạng cơm Việt & Đặc sản miền Trung",
-        spaceNote: "Quán Bụi Q.3 nghỉ chiều 15h–17h; nếu muốn ngồi tới 23h có thể qua Quán Bụi 19 Ngô Văn Năm (Q.1).",
-        dishes: "Cơm niêu, Đặc sản Quảng Nam – miền Trung (Mười Khó) & Cơm gia đình Việt Nam 3 miền (Quán Bụi).",
-        parking: "Thuận tiện đỗ ô tô trên đường Trần Quốc Thảo & Ngô Văn Năm",
-        price: "50.000 – 300.000đ/người", rating: "4.1–4.2/5 Google",
-        hasCar: true, isLate: true, isSpacious: true
-      },
-      {
-        tab: "tab3", rank: 10, score: "8.8/10",
-        name: "Dim Tu Tac (Chuẩn Michelin Bib Gourmand)",
-        address: "16A Lê Hồng Phong, Quận 10",
-        dist: 0.6,
-        hours: "10:30 – 13:00 & 15:00 – 21:30",
-        spaceTag: "Sảnh nhà hàng rất rộng và sang trọng",
-        menuTag: "Đa dạng Dimsum & Món Quảng Đông",
-        spaceNote: "Ngay sát 384 Lý Thái Tổ (600m), đạt chuẩn Michelin. Hạn chế: Nghỉ giữa ca 13h–15h và đóng cửa sớm lúc 21:30.",
-        dishes: "Dimsum thượng hạng (Há cảo tôm, Xíu mại, Bánh bao kim sa), Vịt quay Bắc Kinh, Hải sản & Món Hoa.",
-        parking: "Thuận lợi đỗ ô tô tại khuôn viên đại lộ Lê Hồng Phong",
-        price: "250.000 – 500.000đ/người", rating: "Michelin Bib Gourmand",
-        hasCar: true, isLate: false, isSpacious: true
-      },
-      {
-        tab: "tab3", rank: 11, score: "8.7/10",
-        name: "Hoàng Ty & Ẩm Thực Quê Nhà",
-        address: "Hoàng Ty: 38 Mạc Đĩnh Chi (Q.1) | Quê Nhà: 28 Phạm Ngọc Thạch (Q.3)",
-        dist: 2.7,
-        hours: "10:00 – 22:00 / 22:30",
-        spaceTag: "Rất rộng rãi, lịch sự",
-        menuTag: "Đa dạng đặc sản Nam Bộ & Đồng quê 3 miền",
-        spaceNote: "Không gian rộng lớn, cực kỳ hợp đi ăn gia đình hoặc liên hoan nhóm.",
-        dishes: "Hoàng Ty: Bánh tráng phơi sương Trảng Bàng cuốn thịt luộc, Bò tơ | Quê Nhà: Đùi dê nướng, Gà nướng, Lẩu quê.",
-        parking: "Đỗ ô tô thuận lợi trên đường Phạm Ngọc Thạch & Mạc Đĩnh Chi",
-        price: "200.000 – 400.000đ/người", rating: "4.2–4.6/5 PasGo",
-        hasCar: true, isLate: false, isSpacious: true
-      },
-      {
-        tab: "tab3", rank: 12, score: "8.7/10",
-        name: "Indigo Japanese & Kobe Teppanyaki",
-        address: "Indigo: 232 Nguyễn Đình Chiểu (Q.3) | Kobe: 13A Tú Xương (Q.3)",
-        dist: 1.9,
-        hours: "10:30 – 22:00",
-        spaceTag: "Thanh lịch, yên tĩnh (Indigo 60 khách)",
-        menuTag: "Chuyên ẩm thực Nhật Bản & Bò Kobe",
-        spaceNote: "Cực kỳ lịch sự để tiếp đối tác. Lưu ý: Indigo quy mô 60 khách (phòng riêng 7 khách) nên cần đặt trước.",
-        dishes: "Sushi, Sashimi, Set ăn trưa/tối Nhật Bản truyền thống (Indigo) & Bò Kobe nướng Teppanyaki (Kobe).",
-        parking: "Có chỗ đậu xe ô tô trực tiếp tại nhà hàng",
-        price: "300.000 – 800.000đ/người", rating: "4.0/5 PasGo",
-        hasCar: true, isLate: false, isSpacious: false
-      },
-      {
-        tab: "tab3", rank: 13, score: "8.6/10",
-        name: "Lux 68 & Nam Phương Lầu",
-        address: "Lux 68: 175–177 Nguyễn Đình Chiểu (Q.3) | Nam Phương Lầu: 19 Nguyễn Thị Diệu (Q.3)",
-        dist: 2.0,
-        hours: "10:00 – 23:00",
-        spaceTag: "Rộng rãi, sang trọng, nhiều phòng VIP",
-        menuTag: "Đa dạng món Việt – Nhật – Hoa cao cấp",
-        spaceNote: "Phù hợp tiếp khách cần sự riêng tư và ngồi trễ tới 23:00.",
-        dishes: "Hải sản tươi sống, Gọi món Việt – Nhật – Hoa.",
+        tab: "tab3", score: 8.9,
+        name: "Lux 68 Restaurant & Nam Phương Lầu",
+        addr: "175–177 Nguyễn Đình Chiểu & 19 Nguyễn Thị Diệu, Q.3", district: "Q.3", dist: 2.0,
+        areaM2: 450, areaText: "~450m² (Sang trọng, nhiều phòng VIP)",
+        hours: "10:00 – 23:00", closeHour: 23,
+        foods: "Gọi món Việt – Nhật – Hoa cao cấp, Sashimi, Hải sản tươi sống, Món quay.",
+        drinks: "Rượu Sake, Rượu vang, Bia.",
         parking: "Có bãi đỗ xe ô tô thuận tiện",
-        price: "400.000 – 1.500.000đ/người", rating: "Phân khúc cao cấp",
-        hasCar: true, isLate: true, isSpacious: true
+        note: "Rất hợp tiếp khách cần phòng riêng lịch sự và ngồi tới 23:00.",
+        priceStr: "400k – 1.500k", minP: 400, rating: "Cao cấp",
+        hasCar: true, isLate: true, hasSavoryFood: true, isVip: true
       },
       {
-        tab: "tab3", rank: 14, score: "8.5/10",
+        tab: "tab3", score: 8.9,
+        name: "Thiên Hồng Phát II, Ngọc Sương & Quán 4K",
+        addr: "49 & 06 Hoàng Việt | 437 Hoàng Văn Thụ, Tân Bình", district: "Khác", dist: 4.3,
+        areaM2: 650, areaText: "~500–800m² (Hầm rượu / Sân vườn 300 khách)",
+        hours: "09:00 – 23:00 (Ngọc Sương tới 22:00)", closeHour: 23,
+        foods: "Hải sản tươi sống, Gỏi cá mai, Tôm sú đốt dừa (Ngọc Sương/Thiên Hồng Phát); Món Việt sân vườn (4K).",
+        drinks: "Rượu vang cao cấp, Bia tươi.",
+        parking: "Bãi đỗ ô tô miễn phí trong khuôn viên",
+        note: "Quy mô lớn, đỗ ô tô miễn phí; cách Ngã Bảy ~4.3km.",
+        priceStr: "250k – 1.500k", minP: 250, rating: "Lâu đời",
+        hasCar: true, isLate: true, hasSavoryFood: true, isVip: true
+      },
+      {
+        tab: "tab3", score: 8.8,
+        name: "Nhà hàng Khoái – Đặc Sản Nha Trang",
+        addr: "Số 16 Lê Quý Đôn, P. Xuân Hòa, Q.3", district: "Q.3", dist: 2.3,
+        areaM2: 250, areaText: "~250m² (Lịch sự, ấm cúng)",
+        hours: "10:00 – 22:00", closeHour: 22,
+        foods: "Nem nướng Nha Trang, Bún cá sứa, Bánh căn, Gỏi cá mai, Hải sản Khánh Hòa.",
+        drinks: "Nước mát miền Trung, Nước ép, Bia.",
+        parking: "Bảo vệ hướng dẫn đỗ ô tô Lê Quý Đôn",
+        note: "Đặc sản biển miền Trung thanh nhẹ, rất dễ ăn; đóng cửa 22:00.",
+        priceStr: "150k – 250k", minP: 150, rating: "4.0★ PasGo",
+        hasCar: true, isLate: false, hasSavoryFood: true, isVip: false
+      },
+      {
+        tab: "tab3", score: 8.8,
+        name: "Cơm Quê Mười Khó, Quán Bụi & Cơm Xưa",
+        addr: "27 Trần Quốc Thảo (Q.3) | 254B1 NĐC (Q.3) | 19 Ngô Văn Năm (Q.1) | 20 Trần Cao Vân (Q.1)", district: "Q.3", dist: 2.1,
+        areaM2: 300, areaText: "~250–350m² (Hoài cổ, lịch sự)",
+        hours: "10:00 – 22:00 (Quán Bụi Q.1 tới 23:00)", closeHour: 23,
+        foods: "Mì Quảng, Thịt luộc mắm nêm, Gà nướng, Cơm quê miền Trung (Mười Khó) & Cơm gia đình 3 miền (Quán Bụi).",
+        drinks: "Nước thảo mộc, Nước ép, Bia.",
+        parking: "Thuận lợi đỗ ô tô mặt tiền/bãi gần",
+        note: "Món cơm Việt dân dã trong không gian nhà hàng chỉn chu.",
+        priceStr: "50k – 300k", minP: 50, rating: "4.2★ Google",
+        hasCar: true, isLate: true, hasSavoryFood: true, isVip: true
+      },
+      {
+        tab: "tab3", score: 8.8,
+        name: "Dim Tu Tac (Chuẩn Michelin Bib Gourmand)",
+        addr: "16A Lê Hồng Phong, Q.10 & 268 Trương Công Định, Tân Bình", district: "Q.10", dist: 0.6,
+        areaM2: 450, areaText: "~450m² (Sảnh nhà hàng sang trọng)",
+        hours: "10:30–13:00 & 15:00–21:30", closeHour: 21.5,
+        foods: "Dimsum Quảng Đông (Há cảo tôm, Xíu mại, Chân gà tàu xì, Bánh bao kim sa), Vịt quay Bắc Kinh, Món Hoa.",
+        drinks: "Trà Hoa Cúc, Trà Phổ Nhĩ, Trà Thiết Quan Âm.",
+        parking: "Đỗ ô tô thuận lợi tại Lê Hồng Phong",
+        note: "Ngay sát 384 Lý Thái Tổ (600m); lưu ý đóng cửa sớm 21:30.",
+        priceStr: "250k – 500k", minP: 250, rating: "Michelin Guide",
+        hasCar: true, isLate: false, hasSavoryFood: true, isVip: true
+      },
+      {
+        tab: "tab3", score: 8.7,
+        name: "Hoàng Ty, Ẩm Thực Quê Nhà & Hoàng Yến Premier",
+        addr: "38 Mạc Đĩnh Chi (Q.1) | 28 Phạm Ngọc Thạch (Q.3) | 174A Nguyễn Đình Chiểu (Q.3)", district: "Q.3", dist: 2.5,
+        areaM2: 450, areaText: "~400–500m² (Rất rộng rãi)",
+        hours: "10:00 – 22:00", closeHour: 22,
+        foods: "Bánh tráng phơi sương cuốn thịt luộc (Hoàng Ty); Đùi dê nướng, Gà nướng (Quê Nhà); Buffet >60 món (Hoàng Yến).",
+        drinks: "Nước mía, Nước sâm, Bia.",
+        parking: "Đỗ ô tô thuận lợi mặt tiền/tòa nhà",
+        note: "Không gian rộng, món đặc sản rất dễ ăn cho gia đình.",
+        priceStr: "200k – 515k", minP: 200, rating: "4.6★ PasGo",
+        hasCar: true, isLate: false, hasSavoryFood: true, isVip: true
+      },
+      {
+        tab: "tab3", score: 8.7,
+        name: "D'Maris (Pico Plaza) & V-Senses (Menas Mall)",
+        addr: "20 Cộng Hòa (~4.9 km) & 60A Trường Sơn (~5.5 km), Tân Bình", district: "Khác", dist: 4.9,
+        areaM2: 1500, areaText: "~600–2.000m² (Đại sảnh TTTM cực rộng)",
+        hours: "10:00 / 11:30 – 22:00", closeHour: 22,
+        foods: "D'Maris: Buffet Quốc tế >200 món Á – Âu – Hàn – Nhật | V-Senses: Ẩm thực Việt truyền thống chuẩn vị.",
+        drinks: "Nước ép, Trà, Bia & Rượu vang.",
+        parking: "Hầm đỗ xe ô tô TTTM cực rộng",
+        note: "Phù hợp đi gia đình đông người, đỗ xe hầm TTTM an toàn.",
+        priceStr: "250k – 645k", minP: 250, rating: "Quy mô lớn",
+        hasCar: true, isLate: false, hasSavoryFood: true, isVip: true
+      },
+      {
+        tab: "tab3", score: 8.6,
+        name: "Sushi World, Lẩu Hồng Kông & Niêu Ta Lounge",
+        addr: "200–202 Hoàng Văn Thụ & 191/5 Hoàng Văn Thụ, Phú Nhuận", district: "Khác", dist: 4.7,
+        areaM2: 450, areaText: "~400–500m² (Khách sạn Tân Sơn Nhất)",
+        hours: "10:00 – 22:00", closeHour: 22,
+        foods: "Sushi & Sashimi Nhật (Sushi World); Buffet Lẩu Hồng Kông; Đặc sản Việt (Niêu Ta Lounge).",
+        drinks: "Rượu Sake, Trà Nhật, Bia.",
+        parking: "Miễn phí đỗ ô tô trong khuôn viên khách sạn",
+        note: "Phong cách Zen Nhật Bản tinh tế, có phòng riêng.",
+        priceStr: "150k – 500k", minP: 150, rating: "Đánh giá tốt",
+        hasCar: true, isLate: false, hasSavoryFood: true, isVip: true
+      },
+      {
+        tab: "tab3", score: 8.6,
+        name: "Indigo Japanese, Kobe Teppanyaki & Saigon 3",
+        addr: "232 Nguyễn Đình Chiểu | 13A & 9A Tú Xương, Q.3", district: "Q.3", dist: 2.0,
+        areaM2: 280, areaText: "~200–350m² (Biệt thự yên tĩnh)",
+        hours: "10:30 – 22:00", closeHour: 22,
+        foods: "Món Nhật truyền thống (Indigo); Bò Kobe nướng Teppanyaki (Kobe); Món Trung Hoa (Saigon 3).",
+        drinks: "Rượu Sake, Rượu vang, Trà.",
+        parking: "Có chỗ đậu xe ô tô tại nhà hàng",
+        note: "Tĩnh lặng, lịch sự. Indigo quy mô 60 khách nên đặt trước.",
+        priceStr: "300k – 800k", minP: 300, rating: "4.0★ PasGo",
+        hasCar: true, isLate: false, hasSavoryFood: true, isVip: true
+      },
+      {
+        tab: "tab3", score: 8.5,
+        name: "King BBQ, GoGi House & Yakimono",
+        addr: "254–256 Lê Văn Sỹ & 12 Lê Quý Đôn, Q.3", district: "Q.3", dist: 2.5,
+        areaM2: 300, areaText: "~250–300m² (Hiện đại, máy lạnh)",
+        hours: "10:00 – 22:00", closeHour: 22,
+        foods: "Thịt nướng BBQ Hàn – Nhật tại bàn, Cơm trộn, Mì lạnh, Canh kimchi, Lẩu.",
+        drinks: "Rượu Soju, Bia, Nước ngọt.",
+        parking: "Gửi bãi xe lân cận",
+        note: "Không khí trẻ trung, tương tác nướng thịt tại bàn.",
+        priceStr: "239k – 450k", minP: 239, rating: "Chuỗi uy tín",
+        hasCar: false, isLate: false, hasSavoryFood: true, isVip: false
+      },
+      {
+        tab: "tab3", score: 8.5,
         name: "Somtam Zaap & Lobster Bay",
-        address: "Somtam Zaap: 70 Nguyễn Thị Minh Khai (Q.3) | Lobster Bay: 10B Kỳ Đồng (Q.3)",
-        dist: 2.4,
-        hours: "10:00 – 22:00",
-        spaceTag: "Hiện đại, ấm cúng (Diện tích vừa phải)",
-        menuTag: "Chuyên món Thái Isan / Hải sản kiểu Mỹ",
-        spaceNote: "Trẻ trung, món ăn ngon có tiếng. Lưu ý: Mặt bằng vừa phải, đóng cửa lúc 22:00.",
-        dishes: "Somtam Zaap: Gỏi đu đủ Somtam & món Thái Isan | Lobster Bay: Tôm hùm Alaska & Hải sản sốt Cajun bơ tỏi.",
-        parking: "Hỗ trợ gửi xe bãi lân cận",
-        price: "200.000 – 500.000đ/người", rating: "4.0–4.3/5 PasGo",
-        hasCar: false, isLate: false, isSpacious: false
+        addr: "70 Nguyễn Thị Minh Khai & 10B Kỳ Đồng, Q.3", district: "Q.3", dist: 2.5,
+        areaM2: 200, areaText: "~200m² (Ấm cúng, trẻ trung)",
+        hours: "10:00 – 22:00", closeHour: 22,
+        foods: "Gỏi đu đủ Somtam & món Thái Isan (Somtam Zaap); Tôm hùm Alaska & Hải sản sốt Cajun (Lobster Bay).",
+        drinks: "Trà Thái, Nước ép, Bia.",
+        parking: "Hỗ trợ gửi xe bãi gần quán",
+        note: "Món ăn rất bắt vị, hợp gu giới trẻ; đóng cửa 22:00.",
+        priceStr: "200k – 500k", minP: 200, rating: "4.3★ PasGo",
+        hasCar: false, isLate: false, hasSavoryFood: true, isVip: false
       },
       {
-        tab: "tab3", rank: 15, score: "8.4/10",
-        name: "Hải Sản Ngọc Sương, Thiên Hồng Phát II & 4K",
-        address: "Ngọc Sương: 06 Hoàng Việt | Thiên Hồng Phát II: 49 Hoàng Việt | 4K: 437 Hoàng Văn Thụ (Tân Bình)",
-        dist: 4.3,
-        hours: "Thiên Hồng Phát II & 4K: 09:00 – 23:00 | Ngọc Sương: 10:00 – 22:00",
-        spaceTag: "Quy mô cực rộng (Hầm rượu / Sân vườn 300 khách)",
-        menuTag: "Đa dạng Hải sản cao cấp & Món Việt",
-        spaceNote: "Thương hiệu hải sản lâu đời tại TP.HCM. Lưu ý: Cách 384 Lý Thái Tổ ~4.3km.",
-        dishes: "Gỏi cá mai, Tôm sú đốt trái dừa, Hải sản tươi sống, Rượu vang (Thiên Hồng Phát II), Món Việt sân vườn (4K).",
-        parking: "Có bãi đỗ xe ô tô miễn phí rộng rãi ngay trong khuôn viên",
-        price: "250.000 – 1.500.000đ/người", rating: "Nổi tiếng lâu năm",
-        hasCar: true, isLate: true, isSpacious: true
-      },
-      {
-        tab: "tab3", rank: 16, score: "8.0/10",
-        name: "Phở Hà (Mở 24/24) & Bò Kho Ngô Gia Tự (Michelin)",
-        address: "Phở Hà: Trung tâm Quận 1 | Bò Kho: Chân chung cư Ngô Gia Tự, Sư Vạn Hạnh, Quận 10",
-        dist: 0.5,
-        hours: "Phở Hà: Mở 24/24 | Bò Kho: 07:00 – 22:00",
-        spaceTag: "Quán ăn truyền thống (Không phải nhà hàng lớn)",
-        menuTag: "Ít món (Chuyên Phở hoặc Bò Kho)",
-        spaceNote: "Lưu ý rõ: Dành cho bữa ăn nhanh/ăn đêm đặc sản ngon. Phở Hà sạch rộng có chỗ đỗ ô tô; Bò Kho Ngô Gia Tự ngồi bình dân dưới chung cư.",
-        dishes: "Phở bò truyền thống Sài Gòn (Phở Hà); Bò kho ăn kèm bánh mì, mì trứng đậm đà chuẩn Michelin (Bò Kho Ngô Gia Tự).",
-        parking: "Phở Hà có chỗ đậu xe ô tô; Bò Kho chỉ tiện xe máy",
-        price: "50.000 – 100.000đ/người", rating: "Michelin Guide (Bò Kho)",
-        hasCar: true, isLate: true, isSpacious: false
+        tab: "tab3", score: 8.2,
+        name: "Phở Hà (24/24), Hủ Tiếu Tài Anh, Bò Kho Ngô Gia Tự & Lão Trư",
+        addr: "Phở Hà (Q.1) | Tài Anh | Chung cư Ngô Gia Tự (Q.10) | 68 Phạm Ngọc Thạch (Q.3)", district: "Q.10", dist: 0.5,
+        areaM2: 150, areaText: "~100–250m² (Quán ăn đêm / Quán nhậu)",
+        hours: "Phở Hà: 24/24 | Tài Anh & Lão Trư: Tới 24:00", closeHour: 24,
+        foods: "Phở bò (Phở Hà); Hủ tiếu Nam Vang xí quách to (Tài Anh); Bò kho bánh mì chuẩn Michelin (Ngô Gia Tự); Mồi nhậu Á-Âu (Lão Trư).",
+        drinks: "Nước sâm, Trà đá, Bia (Lão Trư).",
+        parking: "Phở Hà có đỗ ô tô; Bò Kho đi xe máy",
+        note: "Dành cho nhu cầu ăn đêm nhanh hoặc nhậu trễ tới 24h.",
+        priceStr: "50k – 339k", minP: 50, rating: "Michelin (Bò Kho)",
+        hasCar: true, isLate: true, hasSavoryFood: true, isVip: false
       }
     ];
 
     let currentTab = "tab1";
-    let activeFilter = "all";
+    let flags = { car: false, late: false, food: false, vip: false };
 
     function switchTab(tabId) {
       currentTab = tabId;
-      document.querySelectorAll(".tab-btn").forEach(btn => {
-        btn.classList.remove("tab-active");
-        btn.classList.add("text-slate-600");
-      });
-      const activeBtn = document.getElementById("btn-" + tabId);
-      activeBtn.classList.add("tab-active");
-      activeBtn.classList.remove("text-slate-600");
+      document.querySelectorAll(".tab-btn").forEach(btn => btn.classList.remove("tab-active"));
+      document.getElementById("btn-" + tabId).classList.add("tab-active");
 
-      const filterBar = document.getElementById("filter-bar");
-      const venuesWrapper = document.getElementById("venues-wrapper");
-      const tab4Content = document.getElementById("tab4-content");
-      const resultCount = document.getElementById("result-count");
+      const filterSec = document.getElementById("filter-section");
+      const venuesCont = document.getElementById("venues-container");
+      const tab4Cont = document.getElementById("tab4-container");
+      const resBar = document.getElementById("result-bar");
 
       if (tabId === "tab4") {
-        filterBar.classList.add("hidden");
-        venuesWrapper.classList.add("hidden");
-        resultCount.classList.add("hidden");
-        tab4Content.classList.remove("hidden");
+        filterSec.classList.add("hidden");
+        venuesCont.classList.add("hidden");
+        resBar.classList.add("hidden");
+        tab4Cont.classList.remove("hidden");
+        renderDishSummary();
       } else {
-        filterBar.classList.remove("hidden");
-        venuesWrapper.classList.remove("hidden");
-        resultCount.classList.remove("hidden");
-        tab4Content.classList.add("hidden");
+        filterSec.classList.remove("hidden");
+        venuesCont.classList.remove("hidden");
+        resBar.classList.remove("hidden");
+        tab4Cont.classList.add("hidden");
         renderVenues();
       }
     }
 
-    function toggleFilter(filterType) {
-      activeFilter = filterType;
-      document.querySelectorAll(".flt-btn").forEach(btn => btn.classList.remove("filter-active"));
-      document.getElementById("flt-" + filterType).classList.add("filter-active");
+    function toggleQuickFlag(key) {
+      flags[key] = !flags[key];
+      const btn = document.getElementById("chip-" + key);
+      if (flags[key]) {
+        btn.classList.add("chip-active");
+      } else {
+        btn.classList.remove("chip-active");
+      }
+      renderVenues();
+    }
+
+    function resetAllFilters() {
+      document.getElementById("search-input").value = "";
+      document.getElementById("sort-select").value = "score";
+      document.getElementById("dist-select").value = "all";
+      document.getElementById("area-select").value = "all";
+      document.getElementById("rad-select").value = "6";
+      flags = { car: false, late: false, food: false, vip: false };
+      document.querySelectorAll(".chip-btn").forEach(b => b.classList.remove("chip-active"));
       renderVenues();
     }
 
     function renderVenues() {
-      const query = (document.getElementById("search-input").value || "").toLowerCase().trim();
-      const filtered = venues.filter(v => {
+      const q = (document.getElementById("search-input").value || "").toLowerCase().trim();
+      const sortBy = document.getElementById("sort-select").value;
+      const distVal = document.getElementById("dist-select").value;
+      const areaVal = document.getElementById("area-select").value;
+      const maxRad = parseFloat(document.getElementById("rad-select").value);
+
+      let list = venues.filter(v => {
         if (v.tab !== currentTab) return false;
-        if (activeFilter === "car" && !v.hasCar) return false;
-        if (activeFilter === "late" && !v.isLate) return false;
-        if (activeFilter === "spacious" && !v.isSpacious) return false;
-        if (activeFilter === "near" && v.dist > 2.0) return false;
-        if (query) {
-          const haystack = (v.name + " " + v.address + " " + v.dishes + " " + v.spaceNote).toLowerCase();
-          return haystack.includes(query);
+        if (v.dist > maxRad) return false;
+        if (distVal !== "all" && v.district !== distVal) return false;
+        if (areaVal === "large" && v.areaM2 < 350) return false;
+        if (areaVal === "medium" && (v.areaM2 < 180 || v.areaM2 >= 350)) return false;
+        if (areaVal === "small" && v.areaM2 >= 180) return false;
+        if (flags.car && !v.hasCar) return false;
+        if (flags.late && !v.isLate) return false;
+        if (flags.food && !v.hasSavoryFood) return false;
+        if (flags.vip && !v.isVip) return false;
+        if (q) {
+          const text = (v.name + " " + v.addr + " " + v.foods + " " + v.drinks + " " + v.note).toLowerCase();
+          return text.includes(q);
         }
         return true;
       });
 
-      const tabTitles = {
-        tab1: "Nhóm 1: Quán Kết Hợp Ăn & Uống (Cafe – Bistro – Brunch)",
-        tab2: "Nhóm 2: Quán Cafe Chuyên Uống (Gu Trẻ, Hiện Đại)",
-        tab3: "Nhóm 3: Quán Ăn & Nhà Hàng Đặc Sản, Lịch Sự"
-      };
-      document.getElementById("result-count").innerHTML =
-        `Đang hiển thị <b>${filtered.length}</b> địa điểm thuộc <b>${tabTitles[currentTab]}</b> (Xếp theo điểm phù hợp giảm dần)`;
+      // Sắp xếp (Sort)
+      list.sort((a, b) => {
+        if (sortBy === "dist") return a.dist - b.dist;
+        if (sortBy === "area") return b.areaM2 - a.areaM2;
+        if (sortBy === "close") return b.closeHour - a.closeHour;
+        if (sortBy === "priceAsc") return a.minP - b.minP;
+        return b.score - a.score;
+      });
 
-      // Render Mobile Cards
-      const mobileContainer = document.getElementById("mobile-cards");
-      mobileContainer.innerHTML = filtered.map(v => `
-        <div class="bg-white rounded-xl p-3.5 shadow-sm border border-slate-200 flex flex-col gap-2">
-          <div class="flex items-start justify-between gap-2">
+      document.getElementById("result-bar").innerHTML =
+        `<span>Hiển thị <b>${list.length}</b> địa điểm phù hợp (Bán kính ≤ ${maxRad}km)</span>` +
+        `<span class="text-[11px] text-slate-500">Chạm vào thẻ để xem gọn</span>`;
+
+      // Render Giao diện Điện Thoại (Gọn chữ, dễ đọc)
+      const mobileBox = document.getElementById("mobile-cards");
+      if (list.length === 0) {
+        mobileBox.innerHTML = `<div class="col-span-2 bg-white p-6 rounded-xl text-center text-xs text-slate-500 border border-slate-200">Không có quán nào khớp bộ lọc hiện tại. Hãy bấm <b>"Đặt lại lọc"</b> ở góc trên!</div>`;
+      } else {
+        mobileBox.innerHTML = list.map((v, idx) => `
+          <div class="bg-white rounded-xl p-3 shadow-sm border border-slate-200 flex flex-col justify-between gap-1.5">
             <div>
-              <span class="inline-block text-[11px] font-bold px-2 py-0.5 rounded bg-slate-900 text-white mr-1">
-                #${v.rank} • ${v.score}
-              </span>
-              <span class="inline-block text-[11px] font-semibold px-2 py-0.5 rounded bg-blue-50 text-blue-700 border border-blue-200">
-                Cách ~${v.dist} km
-              </span>
-              <h3 class="text-base font-bold text-slate-900 mt-1">${v.name}</h3>
-              <p class="text-xs text-slate-600">${v.address}</p>
-            </div>
-            <div class="text-right shrink-0">
-              <div class="text-xs font-bold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200">${v.rating}</div>
-              <div class="text-[11px] text-slate-500 mt-1">${v.price}</div>
-            </div>
-          </div>
+              <div class="flex items-center justify-between gap-1">
+                <div class="flex items-center gap-1 flex-wrap">
+                  <span class="text-[11px] font-extrabold px-1.5 py-0.5 rounded bg-slate-900 text-white">#${idx + 1} • ${v.score}đ</span>
+                  <span class="text-[11px] font-semibold px-1.5 py-0.5 rounded bg-blue-50 text-blue-700 border border-blue-200">${v.dist} km</span>
+                  <span class="text-[11px] font-semibold px-1.5 py-0.5 rounded bg-indigo-50 text-indigo-700 border border-indigo-200">📐 ${v.areaText}</span>
+                </div>
+                <span class="text-[11px] font-bold text-emerald-700 shrink-0">${v.priceStr}</span>
+              </div>
 
-          <div class="flex flex-wrap gap-1.5 text-[11px]">
-            <span class="px-2 py-0.5 rounded font-medium ${v.isSpacious ? 'bg-indigo-50 text-indigo-700 border border-indigo-200' : 'bg-amber-50 text-amber-800 border border-amber-200'}">
-              📐 ${v.spaceTag}
-            </span>
-            <span class="px-2 py-0.5 rounded font-medium bg-slate-100 text-slate-700">
-              🍽️ ${v.menuTag}
-            </span>
-          </div>
+              <h3 class="text-sm font-bold text-slate-900 mt-1 leading-snug">${v.name}</h3>
+              <p class="text-[11px] text-slate-500">${v.addr}</p>
 
-          <div class="text-xs space-y-1.5 pt-1 border-t border-slate-100 text-slate-700">
-            <div><b class="text-slate-900">⏰ Giờ mở cửa:</b> <span class="${v.isLate ? 'text-red-600 font-semibold' : ''}">${v.hours}</span></div>
-            <div><b class="text-slate-900">🚗 Đỗ ô tô:</b> <span class="${v.hasCar ? 'text-blue-700 font-semibold' : ''}">${v.parking}</span></div>
-            <div><b class="text-slate-900">🍜 Món gợi ý:</b> ${v.dishes}</div>
-            <div class="bg-slate-50 p-2 rounded-lg text-[11px] text-slate-600 border border-slate-200">
-              <b class="text-slate-800">Lưu ý thực tế:</b> ${v.spaceNote}
+              <div class="mt-1.5 flex flex-wrap gap-1 text-[11px]">
+                <span class="px-1.5 py-0.5 rounded ${v.isLate ? 'bg-red-50 text-red-700 font-bold border border-red-200' : 'bg-slate-100 text-slate-700'}">⏰ ${v.hours}</span>
+                <span class="px-1.5 py-0.5 rounded ${v.hasCar ? 'bg-teal-50 text-teal-800 font-semibold border border-teal-200' : 'bg-slate-100 text-slate-600'}">🚗 ${v.parking}</span>
+              </div>
+
+              <div class="mt-1.5 text-[11px] text-slate-700 space-y-0.5 leading-relaxed">
+                <div><b class="text-slate-900">🍽️ Món ăn:</b> ${v.foods}</div>
+                <div><b class="text-slate-900">🥤 Đồ uống:</b> ${v.drinks}</div>
+              </div>
+            </div>
+
+            <div class="mt-1 pt-1.5 border-t border-slate-100 flex items-center justify-between text-[11px] text-slate-500">
+              <span>💡 ${v.note}</span>
+              <span class="font-semibold text-slate-700 shrink-0 ml-1">${v.rating}</span>
             </div>
           </div>
-        </div>
-      `).join("");
+        `).join("");
+      }
 
-      // Render Desktop Table
-      const desktopBody = document.getElementById("desktop-table-body");
-      desktopBody.innerHTML = filtered.map(v => `
-        <tr class="hover:bg-slate-50 transition align-top">
-          <td class="py-3 px-3 font-bold text-slate-900">
-            <div class="inline-block px-2 py-0.5 rounded bg-slate-900 text-white text-xs">#${v.rank}</div>
-            <div class="text-[11px] text-blue-700 font-semibold mt-1">${v.score}</div>
+      // Render Bảng Desktop
+      const tbody = document.getElementById("desktop-tbody");
+      tbody.innerHTML = list.map((v, idx) => `
+        <tr class="hover:bg-slate-50 align-top">
+          <td class="py-2.5 px-3 font-bold">
+            <span class="px-1.5 py-0.5 rounded bg-slate-900 text-white text-[11px]">#${idx + 1}</span>
+            <div class="text-blue-700 mt-1">${v.score}/10</div>
           </td>
-          <td class="py-3 px-3">
+          <td class="py-2.5 px-3">
             <div class="font-bold text-slate-900 text-sm">${v.name}</div>
-            <div class="text-xs text-slate-600 mt-0.5">${v.address}</div>
-            <span class="inline-block mt-1 text-[11px] font-medium px-2 py-0.5 rounded bg-blue-50 text-blue-700">Cách 384 Lý Thái Tổ ~${v.dist} km</span>
+            <div class="text-slate-500 mt-0.5">${v.addr}</div>
+            <span class="inline-block mt-1 px-1.5 py-0.5 rounded bg-blue-50 text-blue-700 text-[11px] font-semibold">Cách ~${v.dist} km (${v.district})</span>
           </td>
-          <td class="py-3 px-3 text-xs">
-            <span class="${v.isLate ? 'text-red-600 font-bold' : 'text-slate-800 font-medium'}">${v.hours}</span>
+          <td class="py-2.5 px-3">
+            <div class="font-bold text-indigo-700">${v.areaText}</div>
+            <div class="text-slate-500 mt-0.5">${v.hasSavoryFood ? '✓ Có đồ ăn mặn' : '• Chuyên nước & bánh'}</div>
           </td>
-          <td class="py-3 px-3 text-xs">
-            <div class="font-semibold ${v.isSpacious ? 'text-indigo-700' : 'text-amber-700'} mb-1">• ${v.spaceTag}</div>
-            <div class="font-semibold text-slate-700 mb-1">• ${v.menuTag}</div>
-            <div class="text-slate-600 leading-relaxed">${v.spaceNote}</div>
+          <td class="py-2.5 px-3">
+            <span class="${v.isLate ? 'text-red-600 font-bold' : 'text-slate-800'}">${v.hours}</span>
           </td>
-          <td class="py-3 px-3 text-xs text-slate-700 leading-relaxed">${v.dishes}</td>
-          <td class="py-3 px-3 text-xs">
-            <span class="${v.hasCar ? 'text-blue-700 font-semibold' : 'text-slate-600'}">${v.parking}</span>
+          <td class="py-2.5 px-3 space-y-1">
+            <div><b>Ăn:</b> ${v.foods}</div>
+            <div><b>Uống:</b> ${v.drinks}</div>
           </td>
-          <td class="py-3 px-3 text-xs">
-            <div class="font-bold text-emerald-700">${v.rating}</div>
-            <div class="text-slate-600 mt-1">${v.price}</div>
+          <td class="py-2.5 px-3">
+            <div class="${v.hasCar ? 'text-teal-700 font-bold' : 'text-slate-600'}">${v.parking}</div>
+            <div class="text-slate-500 mt-1">${v.note}</div>
+          </td>
+          <td class="py-2.5 px-3">
+            <div class="font-bold text-emerald-700">${v.priceStr}</div>
+            <div class="text-slate-500 mt-0.5">${v.rating}</div>
           </td>
         </tr>
       `).join("");
     }
 
-    // Khởi tạo lần đầu
+    function renderDishSummary() {
+      const tbody = document.getElementById("dish-summary-tbody");
+      tbody.innerHTML = venues.map(v => `
+        <tr class="hover:bg-slate-50 align-top">
+          <td class="p-2 font-bold text-slate-900">${v.name}<div class="text-[11px] font-normal text-slate-500">${v.addr} (~${v.dist}km)</div></td>
+          <td class="p-2 text-indigo-700 font-semibold">${v.areaText}</td>
+          <td class="p-2 text-slate-700">${v.foods}</td>
+          <td class="p-2 text-slate-700">${v.drinks}</td>
+        </tr>
+      `).join("");
+    }
+
     renderVenues();
   </script>
 </body>
