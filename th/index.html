@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Danh sách Trang</title>
+    <style>
+        body { font-family: 'Roboto', sans-serif; background: #F4F6F8; padding: 20px; color: #111827; }
+        .container { max-width: 600px; margin: 0 auto; background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+        h2 { color: #1E3A8A; border-bottom: 2px solid #E5E7EB; padding-bottom: 10px; margin-top: 0; }
+        ul { list-style: none; padding: 0; }
+        li { margin-bottom: 10px; }
+        a { text-decoration: none; color: #3B82F6; font-size: 1.15rem; font-weight: bold; padding: 12px; display: block; background: #EFF6FF; border-radius: 6px; transition: 0.2s; border: 1px solid #BFDBFE; }
+        a:hover { background: #DBEAFE; transform: translateX(5px); }
+        .loading { font-style: italic; color: #6B7280; }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h2>Danh sách các trang hiện có</h2>
+        <ul id="page-list">
+            <li class="loading">Đang tự động quét danh sách trang...</li>
+        </ul>
+    </div>
+
+    <script>
+        // Gọi API của GitHub để lấy danh sách file trong kho lưu trữ của bạn
+        const repoUrl = 'https://api.github.com/repos/anhminhlth/anhminhlth.github.io/contents/';
+        
+        fetch(repoUrl)
+            .then(response => response.json())
+            .then(data => {
+                const list = document.getElementById('page-list');
+                list.innerHTML = ''; // Xóa dòng chữ Đang quét...
+                
+                data.forEach(file => {
+                    // Chỉ lấy các file .html và bỏ qua chính file index.html này
+                    if (file.name.endsWith('.html') && file.name !== 'index.html') {
+                        const pageName = file.name.replace('.html', ''); // Bỏ đuôi .html
+                        
+                        const link = document.createElement('a');
+                        link.href = `/${pageName}`;
+                        link.textContent = `🔗 /${pageName}`;
+                        
+                        const listItem = document.createElement('li');
+                        listItem.appendChild(link);
+                        list.appendChild(listItem);
+                    }
+                });
+            })
+            .catch(error => {
+                document.getElementById('page-list').innerHTML = '<li>Lỗi tải dữ liệu. Hãy tải lại trang.</li>';
+            });
+    </script>
+
+</body>
+</html>
