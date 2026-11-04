@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Danh sách Trang</title>
+    <style>
+        /* CSS chuẩn UX */
+        body { font-family: 'Roboto', sans-serif; background: #F4F6F8; padding: 15px; color: #111827; margin: 0; }
+        .container { max-width: 600px; margin: 0 auto; background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+        .header-flex { display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #E5E7EB; padding-bottom: 12px; margin-bottom: 15px; }
+        h2 { color: #1E3A8A; margin: 0; font-size: 1.3rem; }
+        
+        /* Nút quay lại */
+        .btn-back { background: #E5E7EB; color: #374151; padding: 8px 12px; border-radius: 6px; text-decoration: none; font-weight: bold; font-size: 0.95rem; display: none; transition: 0.2s; }
+        .btn-back:hover { background: #D1D5DB; }
+        
+        /* Danh sách link */
+        ul { list-style: none; padding: 0; margin: 0; }
+        li { margin-bottom: 10px; }
+        a.item-link { text-decoration: none; color: #1F2937; font-size: 1.05rem; padding: 12px; display: flex; align-items: center; background: #F9FAFB; border-radius: 6px; transition: 0.2s; border: 1px solid #E5E7EB; }
+        a.item-link:hover { background: #EFF6FF; border-color: #3B82F6; transform: translateX(5px); color: #1D4ED8; }
+        
+        /* Icon và text */
+        .icon { font-size: 1.4rem; margin-right: 12px; }
+        .title-text { font-weight: bold; }
+        .filename { font-size: 0.85rem; color: #9CA3AF; margin-left: auto; font-style: italic; }
+        .loading { font-style: italic; color: #6B7280; text-align: center; padding: 20px; }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="header-flex">
+            <h2 id="folder-name">Đang tải...</h2>
+            <!-- Nút Back mặc định ẩn, JS sẽ bật lên nếu không phải trang chủ -->
+            <a href="/" class="btn-back" id="btn-back">⬅️ Quay lại</a>
+        </div>
+        <ul id="page-list">
+            <li class="loading">Đang quét hệ thống...</li>
+        </ul>
+    </div>
+
+    <script>
+        // === CẤU HÌNH THÔNG TIN ===
+        const owner = 'anhminhlth';
+        const repo = 'anhminhlth.github.io';
+        
+        // 1. Nhận diện thư mục hiện tại
+        let currentPath = window.location.pathname.replace(/^\/|\/$/g, '');
+        // Nếu URL có chứa .html (do truy cập trực tiếp), cắt bỏ để lấy thư mục cha
+        if (currentPath.endsWith('.html')) {
+            currentPath = currentPath.substring(0, currentPath.lastIndexOf('/'));
+        }
+
+        const apiUrl = `https://api.github.com/repos/${owner}/${repo}/contents/${currentPath}`;
+        
+        // 2. Xử lý Header & Nút Back
+        const folderNameEl = document.getElementById('folder-name');
+        const btnBack = document.getElementById('btn-back');
+        
+        if (currentPath === '') {
+            folderNameEl.textContent = 'Trang Chủ Gốc';
+        } else {
+            folderNameEl.textContent = 'Thư mục: /' + currentPath;
+            btnBack.style.display = 'block'; // Hiển thị nút quay lại
+            
+            // Xử lý link quay lại (lùi 1 cấp)
+            let pathParts = currentPath.split('/');
+            if (pathParts.length > 1) {
+                pathParts.pop(); // Xóa cấp cuối cùng
+                btnBack.href = '/' + pathParts.join('/');
+            } else {
+                btnBack.href = '/'; // Về thẳng gốc
+            }
+        }
+
+        // 3. Gọi API GitHub để đọc danh sách
+        fetch(apiUrl)
+            .then(response => response.json())
+            .then(data => {
+                const list = document.getElementById('page-list');
+                list.innerHTML = ''; 
+                
+                if (data.message === "Not Found") {
+                    list.innerHTML = '<li>Không tìm thấy dữ liệu.</li>';
+                    return;
+                }
+
+                // Sắp xếp: Thư mục (dir) hiện lên trước, file (.html) hiện sau
+                let items = data.filter(item => !item.name.startsWith('.') && item.name !== 'index.html');
+                items.sort((a, b) => (a.type === b.type) ? 0 : (a.type === 'dir' ? -1 : 1));
+
+                items.forEach(file => {
+                    const listItem = document.createElement('li');
+                    const link = document.createElement('a');
+                    link.className = 'item-link';
+                    
+                    if (file.type === 'dir') {
+                        // NẾU LÀ THƯ MỤC CON
+                        link.href = `/${currentPath ? currentPath + '/' : ''}${file.name}/`;
+                        link.innerHTML = `<span class="icon">📁</span> <span class="title-text">${file.name}</span>`;
+                        listItem.appendChild(link);
+                        list.appendChild(listItem);
+                    } 
+                    else if (file.type === 'file' && file.name.endsWith('.html')) {
+                        // NẾU LÀ FILE HTML
+                        const cleanName = file.name.replace('.html', '');
+                        link.href = `/${currentPath ? currentPath + '/' : ''}${cleanName}`;
+                        
+                        // Khởi tạo hiển thị tạm thời bằng tên file
+                        link.innerHTML = `<span class="icon">📄</span> <span class="title-text">${cleanName}</span> <span class="filename">${file.name}</span>`;
+                        listItem.appendChild(link);
+                        list.appendChild(listItem);
+
+                        // Tự động load nội dung file để lấy tiêu đề <title>
+                        fetch(file.download_url)
+                            .then(res => res.text())
+                            .then(html => {
+                                const match = html.match(/<title>(.*?)<\/title>/);
+                                if (match && match[1]) {
+                                    // Thay thế text hiển thị bằng nội dung thẻ <title>
+                                    link.querySelector('.title-text').textContent = match[1];
+                                }
+                            }).catch(e => console.log('Lỗi lấy title:', e));
+                    }
+                });
+            })
+            .catch(error => {
+                document.getElementById('page-list').innerHTML = '<li>Lỗi tải dữ liệu.</li>';
+            });
+    </script>
+</body>
+</html>
