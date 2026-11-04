@@ -1,0 +1,1179 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cẩm Nang Điểm Đến & Di Chuyển TP. Hồ Chí Minh - Mốc 384 Lý Thái Tổ</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #2563eb;
+      --primary-hover: #1d4ed8;
+      --primary-soft: #eff6ff;
+      --emerald: #059669;
+      --emerald-soft: #ecfdf5;
+      --indigo: #4f46e5;
+      --bg: #f8fafc;
+      --surface: #ffffff;
+      --border: #e2e8f0;
+      --border-dark: #cbd5e1;
+      --text: #0f172a;
+      --text-muted: #64748b;
+      --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+      --shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+      --radius: 12px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.5;
+      padding-bottom: 40px;
+    }
+
+    /* Header */
+    .header {
+      background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+      color: #ffffff;
+      padding: 32px 20px 24px;
+      border-bottom: 1px solid #334155;
+    }
+    .header-container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .origin-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(37, 99, 235, 0.2);
+      border: 1px solid rgba(96, 165, 250, 0.4);
+      color: #93c5fd;
+      padding: 4px 12px;
+      border-radius: 9999px;
+      font-size: 13px;
+      font-weight: 600;
+      margin-bottom: 12px;
+    }
+    .header h1 {
+      font-size: 26px;
+      font-weight: 700;
+      margin-bottom: 8px;
+      letter-spacing: -0.02em;
+    }
+    .header p {
+      color: #94a3b8;
+      font-size: 14px;
+      max-width: 780px;
+    }
+
+    /* Layout */
+    .main-wrapper {
+      max-width: 1200px;
+      margin: 20px auto 0;
+      padding: 0 16px;
+    }
+
+    /* Tabs Navigation */
+    .tabs-nav {
+      display: flex;
+      gap: 8px;
+      border-bottom: 1px solid var(--border);
+      overflow-x: auto;
+      padding-bottom: 1px;
+      scrollbar-width: none;
+    }
+    .tabs-nav::-webkit-scrollbar {
+      display: none;
+    }
+    .tab-btn {
+      appearance: none;
+      background: none;
+      border: none;
+      padding: 12px 18px;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text-muted);
+      cursor: pointer;
+      border-bottom: 3px solid transparent;
+      white-space: nowrap;
+      transition: all 0.2s ease;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .tab-btn:hover {
+      color: var(--text);
+      background-color: var(--surface);
+      border-top-left-radius: 8px;
+      border-top-right-radius: 8px;
+    }
+    .tab-btn.active {
+      color: var(--primary);
+      border-bottom-color: var(--primary);
+      background-color: var(--surface);
+      border-top-left-radius: 8px;
+      border-top-right-radius: 8px;
+    }
+    .tab-badge {
+      background: var(--border);
+      color: var(--text);
+      font-size: 11px;
+      padding: 2px 7px;
+      border-radius: 9999px;
+    }
+    .tab-btn.active .tab-badge {
+      background: var(--primary-soft);
+      color: var(--primary);
+    }
+
+    /* Controls: Search & Tags */
+    .controls-panel {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 16px;
+      margin-top: 16px;
+      margin-bottom: 16px;
+      box-shadow: var(--shadow-sm);
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .search-row {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
+    .search-input {
+      flex: 1;
+      padding: 10px 14px;
+      border: 1px solid var(--border-dark);
+      border-radius: 8px;
+      font-size: 14px;
+      outline: none;
+      transition: border-color 0.2s;
+      background: var(--bg);
+      color: var(--text);
+    }
+    .search-input:focus {
+      border-color: var(--primary);
+      background: #ffffff;
+    }
+    .filter-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      align-items: center;
+    }
+    .filter-label {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text-muted);
+      margin-right: 4px;
+    }
+    .filter-chip {
+      appearance: none;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      padding: 5px 12px;
+      border-radius: 9999px;
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--text-muted);
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+    .filter-chip:hover {
+      border-color: var(--primary);
+      color: var(--primary);
+      background: var(--primary-soft);
+    }
+    .filter-chip.active {
+      background: var(--primary);
+      color: #ffffff;
+      border-color: var(--primary);
+    }
+
+    /* Tab Content Visibility */
+    .tab-content {
+      display: none;
+    }
+    .tab-content.active {
+      display: block;
+    }
+
+    /* Table & High Contrast Hover States */
+    .table-container {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow-x: auto;
+      box-shadow: var(--shadow-sm);
+      margin-bottom: 24px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+      font-size: 13.5px;
+    }
+    thead {
+      background: #f1f5f9;
+      border-bottom: 2px solid var(--border);
+    }
+    th {
+      padding: 12px 14px;
+      font-weight: 700;
+      color: #334155;
+      cursor: pointer;
+      user-select: none;
+      white-space: nowrap;
+      transition: background 0.15s;
+    }
+    th:hover {
+      background: #e2e8f0;
+    }
+    th .sort-icon {
+      margin-left: 4px;
+      font-size: 11px;
+      color: var(--text-muted);
+    }
+    td {
+      padding: 14px;
+      border-bottom: 1px solid var(--border);
+      color: var(--text);
+      vertical-align: top;
+    }
+    tbody tr:hover {
+      background-color: #f1f5f9 !important;
+    }
+    tbody tr:last-child td {
+      border-bottom: none;
+    }
+
+    /* Tags & Badges */
+    .badge-tag {
+      display: inline-block;
+      padding: 2px 8px;
+      border-radius: 6px;
+      font-size: 11px;
+      font-weight: 600;
+      margin-top: 4px;
+    }
+    .tag-blue { background: #dbeafe; color: #1e40af; }
+    .tag-green { background: #dcfce7; color: #166534; }
+    .tag-amber { background: #fef3c7; color: #92400e; }
+    .tag-purple { background: #f3e8ff; color: #6b21a8; }
+
+    .btn-maps {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      background: var(--emerald);
+      color: #ffffff !important;
+      text-decoration: none;
+      padding: 6px 10px;
+      border-radius: 6px;
+      font-size: 12px;
+      font-weight: 600;
+      white-space: nowrap;
+      transition: background 0.15s ease;
+      margin-top: 4px;
+    }
+    .btn-maps:hover {
+      background: #047857;
+    }
+
+    .highlight-fnb {
+      font-weight: 600;
+      color: #b45309;
+      background: #fffbeb;
+      padding: 3px 8px;
+      border-radius: 4px;
+      border: 1px dashed #fde68a;
+      display: inline-block;
+      margin-top: 4px;
+      font-size: 12.5px;
+    }
+
+    .section-title {
+      font-size: 18px;
+      font-weight: 700;
+      margin: 24px 0 12px;
+      color: var(--text);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .section-title::before {
+      content: '';
+      display: inline-block;
+      width: 4px;
+      height: 18px;
+      background: var(--primary);
+      border-radius: 2px;
+    }
+
+    /* Responsive Mobile Cards (< 620px) */
+    .cards-view {
+      display: none;
+      flex-direction: column;
+      gap: 12px;
+      margin-bottom: 24px;
+    }
+    .res-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 16px;
+      box-shadow: var(--shadow-sm);
+    }
+    .res-card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 8px;
+      gap: 10px;
+    }
+    .res-card-title {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--text);
+    }
+    .res-card-body {
+      font-size: 13px;
+      color: #475569;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .res-card-row {
+      display: flex;
+      justify-content: space-between;
+      border-top: 1px dashed var(--border);
+      padding-top: 6px;
+    }
+    .res-card-row span:first-child {
+      color: var(--text-muted);
+      font-weight: 500;
+    }
+    .res-card-row span:last-child {
+      font-weight: 600;
+      text-align: right;
+      color: var(--text);
+    }
+
+    @media (max-width: 620px) {
+      .table-container {
+        display: none;
+      }
+      .cards-view {
+        display: flex;
+      }
+      .header h1 {
+        font-size: 20px;
+      }
+      .tab-btn {
+        padding: 10px 14px;
+        font-size: 13px;
+      }
+      .search-row {
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Banner -->
+  <header class="header">
+    <div class="header-container">
+      <div class="origin-badge">
+        <span>📍 Điểm mốc cố định: 384 Lý Thái Tổ, Phường Vườn Lài (Quận 10 cũ)</span>
+      </div>
+      <h1>Cẩm Nang Trải Nghiệm Du Lịch, Mua Sắm & Điều Hướng Giao Thông</h1>
+      <p>Hệ thống hướng dẫn dành cho độ tuổi 20–40: Tích hợp tọa độ tham quan, tổ hợp bán lẻ phong cách sống, hoạt động đêm sau 22:00, biểu phí đa phương tiện (Metro số 1, Waterbus, Taxi công nghệ) và bãi đỗ ô tô quanh điểm mốc.</p>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="main-wrapper">
+    <!-- Navigation Tabs -->
+    <nav class="tabs-nav" id="mainTabsNav">
+      <button class="tab-btn active" data-tab="tab1">
+        🏛️ Điểm Du Lịch & Check-in <span class="tab-badge" id="count-tab1">0</span>
+      </button>
+      <button class="tab-btn" data-tab="tab2">
+        🛍️ TTTM & Mua Sắm Cao Cấp <span class="tab-badge" id="count-tab2">0</span>
+      </button>
+      <button class="tab-btn" data-tab="tab3">
+        🌙 Vui Chơi & Nightlife (≥22h) <span class="tab-badge" id="count-tab3">0</span>
+      </button>
+      <button class="tab-btn" data-tab="tab4">
+        🚗 Cẩm Nang Di Chuyển & Đỗ Xe <span class="tab-badge">3 Phần</span>
+      </button>
+    </nav>
+
+    <!-- Search & Filters (Tabs 1, 2, 3) -->
+    <div class="controls-panel" id="controlsPanel">
+      <div class="search-row">
+        <input type="text" id="searchInput" class="search-input" placeholder="🔍 Nhập từ khóa tìm kiếm (tên địa điểm, thương hiệu cafe, đường phố, chi phí...)...">
+      </div>
+      <div class="filter-tags" id="filterTagsContainer"></div>
+    </div>
+
+    <!-- TAB 1: DU LỊCH & CHECK-IN -->
+    <section id="tab1" class="tab-content active">
+      <div class="table-container">
+        <table>
+          <thead>
+            <tr>
+              <th onclick="sortTable('tab1', 0)">Địa Điểm & Phân Loại <span class="sort-icon">↕</span></th>
+              <th onclick="sortTable('tab1', 1)">Giờ Hoạt Động <span class="sort-icon">↕</span></th>
+              <th onclick="sortTable('tab1', 2)">Giá Vé Tham Quan <span class="sort-icon">↕</span></th>
+              <th onclick="sortTable('tab1', 3)">Chỗ Đỗ Xe Ô Tô <span class="sort-icon">↕</span></th>
+              <th onclick="sortTable('tab1', 4)">Cự Ly / Thời Gian <span class="sort-icon">↕</span></th>
+              <th>Chỉ Đường</th>
+            </tr>
+          </thead>
+          <tbody id="tbody-tab1"></tbody>
+        </table>
+      </div>
+      <div class="cards-view" id="cards-tab1"></div>
+    </section>
+
+    <!-- TAB 2: TTTM & MUA SẮM -->
+    <section id="tab2" class="tab-content">
+      <div class="table-container">
+        <table>
+          <thead>
+            <tr>
+              <th onclick="sortTable('tab2', 0)">Trung Tâm Thương Mại <span class="sort-icon">↕</span></th>
+              <th onclick="sortTable('tab2', 1)">Địa Chỉ & Cự Ly <span class="sort-icon">↕</span></th>
+              <th onclick="sortTable('tab2', 2)">Quy Mô Hầm & Biểu Phí Ô Tô <span class="sort-icon">↕</span></th>
+              <th>Chuỗi F&B & Quán Cà Phê Nổi Bật</th>
+              <th>Chỉ Đường</th>
+            </tr>
+          </thead>
+          <tbody id="tbody-tab2"></tbody>
+        </table>
+      </div>
+      <div class="cards-view" id="cards-tab2"></div>
+    </section>
+
+    <!-- TAB 3: NIGHTLIFE (>=22H) -->
+    <section id="tab3" class="tab-content">
+      <div class="table-container">
+        <table>
+          <thead>
+            <tr>
+              <th onclick="sortTable('tab3', 0)">Tên Điểm Hẹn Đêm <span class="sort-icon">↕</span></th>
+              <th onclick="sortTable('tab3', 1)">Loại Hình Không Gian <span class="sort-icon">↕</span></th>
+              <th onclick="sortTable('tab3', 2)">Khung Giờ Khuya <span class="sort-icon">↕</span></th>
+              <th onclick="sortTable('tab3', 3)">Mức Chi Phí Ước Tính <span class="sort-icon">↕</span></th>
+              <th onclick="sortTable('tab3', 4)">Cự Ly Từ Điểm Mốc <span class="sort-icon">↕</span></th>
+              <th>Chỉ Đường</th>
+            </tr>
+          </thead>
+          <tbody id="tbody-tab3"></tbody>
+        </table>
+      </div>
+      <div class="cards-view" id="cards-tab3"></div>
+    </section>
+
+    <!-- TAB 4: CẨM NANG PHƯƠNG TIỆN, LỘ TRÌNH & BÃI ĐỖ XE -->
+    <section id="tab4" class="tab-content">
+      
+      <!-- Mục 1: Bảng so sánh phương tiện -->
+      <h2 class="section-title">1. Biểu Phí Toàn Diện Mạng Lưới Phương Tiện Vận Chuyển</h2>
+      <div class="table-container">
+        <table>
+          <thead>
+            <tr>
+              <th>Phương Tiện / Nền Tảng</th>
+              <th>Biểu Phí Cơ Sở / Khởi Điểm</th>
+              <th>Đơn Giá Km Tiếp Theo</th>
+              <th>Quy Định Vận Hành & Phụ Phí</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Xanh SM Car</strong> (4 chỗ điện)</td>
+              <td>30.500đ / 2 km đầu</td>
+              <td>15.200đ/km (đến km 12)<br>14.700đ/km (km 13-25)<br>13.300đ/km (từ km 26)</td>
+              <td>Phụ phí đêm (22h-06h): 20.000đ/chuyến; phí chờ: 1.000đ/phút sau 10 phút đầu.</td>
+            </tr>
+            <tr>
+              <td><strong>Xanh SM Limo</strong> (7 chỗ điện)</td>
+              <td>39.500đ / 2 km đầu</td>
+              <td>18.900đ/km (đến km 12)<br>18.400đ/km (km 13-25)<br>16.500đ/km (từ km 26)</td>
+              <td>Dòng VF 8/VF 9 sang trọng; xe êm ái, thích hợp đoàn công tác hoặc gia đình.</td>
+            </tr>
+            <tr>
+              <td><strong>GrabCar 4 Chỗ</strong></td>
+              <td>29.000đ / 2 km đầu</td>
+              <td>10.000đ – 10.500đ / km</td>
+              <td>Cộng phí thời gian di chuyển ~450đ/phút; nhân giá linh hoạt vào giờ cao điểm.</td>
+            </tr>
+            <tr>
+              <td><strong>GrabCar 7 Chỗ</strong></td>
+              <td>34.000đ / 2 km đầu</td>
+              <td>13.000đ / km</td>
+              <td>Cộng phí thời gian ~550đ/phút; tối đa 6 hành khách + hành lý tiêu chuẩn.</td>
+            </tr>
+            <tr>
+              <td><strong>beCar 4 Chỗ</strong></td>
+              <td>31.500đ / 2 km đầu</td>
+              <td>10.500đ – 11.800đ / km</td>
+              <td>Giá cước minh bạch hiển thị trọn gói; tích hợp nhiều mã giảm giá theo khung giờ.</td>
+            </tr>
+            <tr>
+              <td><strong>Taxi Vinasun / Mai Linh (4 chỗ)</strong></td>
+              <td>16.000đ – 17.000đ / 500m</td>
+              <td>16.400đ – 18.200đ/km (đến km 25)<br>13.500đ – 15.900đ/km (từ km 26)</td>
+              <td>Đã bao gồm VAT 10%; xe 7 chỗ mở cửa 17.000đ, km tiếp theo 19.200đ/km.</td>
+            </tr>
+            <tr>
+              <td><strong>Thuê Ô Tô Tự Lái 4 Chỗ</strong></td>
+              <td>600.000đ – 1.000.000đ/ngày (Hạng B)<br>900.000đ – 1.200.000đ/ngày (Hạng C)</td>
+              <td>Phụ phí vượt quãng đường:<br>3.000đ – 5.000đ / km</td>
+              <td>Định mức 250 – 300 km/ngày; quá giờ 60.000đ – 100.000đ/giờ; lưu đêm: 250.000đ.</td>
+            </tr>
+            <tr>
+              <td><strong>Thuê Ô Tô Tự Lái 7 Chỗ</strong></td>
+              <td>800.000đ – 1.100.000đ/ngày (Xpander)<br>1.300.000đ – 2.000.000đ/ngày (Everest/Carnival)</td>
+              <td>Phụ phí vượt quãng đường:<br>4.000đ – 6.000đ / km</td>
+              <td>Cần CCCD gắn chip và tài sản bảo đảm (xe máy >15 triệu hoặc đặt cọc 15 triệu).</td>
+            </tr>
+            <tr>
+              <td><strong>Thuê Xe Riêng Kèm Tài Xế</strong></td>
+              <td>400.000đ – 700.000đ (Đón tiễn TSN)<br>1.200.000đ – 1.800.000đ/ngày (Nội thành 8h/100km)</td>
+              <td>Phát sinh ngoài giờ:<br>100.000đ/giờ; 6.000đ/km</td>
+              <td>Đã gồm nhiên liệu và lương tài xế; chưa bao gồm VAT và vé bến bãi, cầu đường.</td>
+            </tr>
+            <tr>
+              <td><strong>Tuyến Metro Số 1 (Bến Thành - Suối Tiên)</strong></td>
+              <td>6.000đ – 19.000đ / lượt (Ví điện tử/thẻ)<br>7.000đ – 20.000đ / lượt (Tiền mặt)</td>
+              <td>Đồng giá 6.000đ giữa 7 ga trung tâm</td>
+              <td>Vé 1 ngày: 40.000đ; vé 3 ngày: 90.000đ; vé tháng: 300.000đ (HSSV: 150.000đ).</td>
+            </tr>
+            <tr>
+              <td><strong>Saigon Waterbus (Buýt Sông)</strong></td>
+              <td>15.000đ / lượt / hành khách</td>
+              <td>30.000đ / vé khứ hồi</td>
+              <td>Tuyến Bạch Đằng – Bình An – Thanh Đa – Linh Đông; ngắm cảnh sông Sài Gòn.</td>
+            </tr>
+            <tr>
+              <td><strong>Saigon WaterGo (Buýt Sông 2 Tầng)</strong></td>
+              <td>179.000đ – 339.000đ / vé tùy khoang Cabin, River, Sky Seat</td>
+              <td>Chuyến hoàng hôn và cảnh đêm thành phố</td>
+              <td>Bao gồm đồ uống miễn phí, bảo hiểm và chương trình biểu diễn âm nhạc trên tàu.</td>
+            </tr>
+            <tr>
+              <td><strong>Xe Buýt 2 Tầng Hop-On Hop-Off</strong></td>
+              <td>145.000đ – 150.000đ (Tour 1 vòng 75 phút)</td>
+              <td>Tour 4 giờ: 200.000đ<br>Tour 24 giờ: 432.000đ – 475.000đ</td>
+              <td>Khởi hành từ Nhà hát Thành phố; xe mui trần ngắm cảnh đêm 360 độ kèm thuyết minh.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Mục 2: Ma trận lộ trình và chi phí di chuyển -->
+      <h2 class="section-title">2. Ma Trận Lộ Trình Và Chi Phí Dự Tính Từ Mốc 384 Lý Thái Tổ</h2>
+      <div class="table-container">
+        <table>
+          <thead>
+            <tr>
+              <th>Điểm Đến Trọng Yếu</th>
+              <th>Lộ Trình Tối Ưu Đề Xuất</th>
+              <th>Cự Ly & Thời Lượng</th>
+              <th>Ước Tính Xe 4 Chỗ (Grab/Xanh SM)</th>
+              <th>Ước Tính Xe 7 Chỗ</th>
+              <th>Chỉ Đường</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Sân bay Quốc tế Tân Sơn Nhất</strong></td>
+              <td>Lý Thái Tổ → Lê Hồng Phong → Hoàng Văn Thụ → Phan Đình Giót → Sân bay</td>
+              <td>6,8 km (~22 – 32 phút)</td>
+              <td>115.000đ – 145.000đ (đã gồm phí sân bay)</td>
+              <td>150.000đ – 185.000đ</td>
+              <td><a class="btn-maps" target="_blank" href="https://www.google.com/maps/dir/?api=1&origin=384+L%C3%BD+Th%C3%A1i+T%E1%BB%95,+Th%C3%A0nh+ph%E1%BB%91+H%E1%BB%93+Ch%C3%AD+Minh&destination=S%C3%A2n+bay+T%C3%A2n+S%C6%A1n+Nh%E1%BA%A5t">Mở Map</a></td>
+            </tr>
+            <tr>
+              <td><strong>Ga Ngầm Metro Bến Thành</strong></td>
+              <td>Lý Thái Tổ → Ngã 7 Dân Chủ → Cách Mạng Tháng 8 → Nguyễn Thị Nghĩa → Lê Lai</td>
+              <td>3,3 km (~10 – 15 phút)</td>
+              <td>55.000đ – 75.000đ</td>
+              <td>75.000đ – 95.000đ</td>
+              <td><a class="btn-maps" target="_blank" href="https://www.google.com/maps/dir/?api=1&origin=384+L%C3%BD+Th%C3%A1i+T%E1%BB%95,+Th%C3%A0nh+ph%E1%BB%91+H%E1%BB%93+Ch%C3%AD+Minh&destination=Ga+Metro+B%E1%BA%BFn+Th%C3%A0nh">Mở Map</a></td>
+            </tr>
+            <tr>
+              <td><strong>Công viên Bến Bạch Đằng & Waterbus</strong></td>
+              <td>Lý Thái Tổ → Điện Biên Phủ → Nam Kỳ Khởi Nghĩa → Hàm Nghi → Tôn Đức Thắng</td>
+              <td>4,2 km (~14 – 18 phút)</td>
+              <td>68.000đ – 88.000đ</td>
+              <td>88.000đ – 115.000đ</td>
+              <td><a class="btn-maps" target="_blank" href="https://www.google.com/maps/dir/?api=1&origin=384+L%C3%BD+Th%C3%A1i+T%E1%BB%95,+Th%C3%A0nh+ph%E1%BB%91+H%E1%BB%93+Ch%C3%AD+Minh&destination=B%E1%BA%BFn+B%E1%BA%A1ch+%C4%90%E1%BA%B1ng">Mở Map</a></td>
+            </tr>
+            <tr>
+              <td><strong>Vincom Center Landmark 81</strong></td>
+              <td>Lý Thái Tổ → Điện Biên Phủ qua Hàng Xanh → Cầu vượt Nguyễn Hữu Cảnh</td>
+              <td>6,8 km (~20 – 26 phút)</td>
+              <td>110.000đ – 140.000đ</td>
+              <td>140.000đ – 175.000đ</td>
+              <td><a class="btn-maps" target="_blank" href="https://www.google.com/maps/dir/?api=1&origin=384+L%C3%BD+Th%C3%A1i+T%E1%BB%95,+Th%C3%A0nh+ph%E1%BB%91+H%E1%BB%93+Ch%C3%AD+Minh&destination=Landmark+81">Mở Map</a></td>
+            </tr>
+            <tr>
+              <td><strong>Trung Tâm Hội Chợ SECC Phú Mỹ Hưng</strong></td>
+              <td>Lý Thái Tổ → Nguyễn Tri Phương → Cầu Chánh Hưng → Nguyễn Văn Linh</td>
+              <td>8,2 km (~22 – 30 phút)</td>
+              <td>125.000đ – 160.000đ</td>
+              <td>165.000đ – 205.000đ</td>
+              <td><a class="btn-maps" target="_blank" href="https://www.google.com/maps/dir/?api=1&origin=384+L%C3%BD+Th%C3%A1i+T%E1%BB%95,+Th%C3%A0nh+ph%E1%BB%91+H%E1%BB%93+Ch%C3%AD+Minh&destination=Trung+t%C3%A2m+H%E1%BB%99i+ch%E1%BB%A3+v%C3%A0+Tri%E1%BB%83n+l%C3%A3m+S%C3%A0i+G%C3%B2n">Mở Map</a></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Mục 3: Danh sách bãi gửi ô tô -->
+      <h2 class="section-title">3. Danh Sách Điểm Đỗ Xe Ô Tô Quanh Mốc 384 Lý Thái Tổ (Bán Kính &lt; 1,8 km)</h2>
+      <div class="table-container">
+        <table>
+          <thead>
+            <tr>
+              <th>Tên Bãi Giữ Xe</th>
+              <th>Vị Trí Cụ Thể</th>
+              <th>Khung Giờ Hoạt Động</th>
+              <th>Mức Phí Tham Khảo</th>
+              <th>Đặc Điểm & Lưu Ý</th>
+              <th>Chỉ Đường</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Hầm Đỗ Xe Vạn Hạnh Mall</strong></td>
+              <td>11 Sư Vạn Hạnh, Phường 12, Quận 10</td>
+              <td>08:00 – 22:30</td>
+              <td>25.000đ – 30.000đ / 4h đầu</td>
+              <td>Hầm B1 & B2 sức chứa lớn, an ninh cao, hệ thống chỉ báo chỗ đỗ tự động.</td>
+              <td><a class="btn-maps" target="_blank" href="https://www.google.com/maps/dir/?api=1&origin=384+L%C3%BD+Th%C3%A1i+T%E1%BB%95,+Th%C3%A0nh+ph%E1%BB%91+H%E1%BB%93+Ch%C3%AD+Minh&destination=V%E1%BA%A1n+H%E1%BA%A1nh+Mall">Mở Map</a></td>
+            </tr>
+            <tr>
+              <td><strong>Bãi Giữ Xe 177B Cao Thắng</strong></td>
+              <td>177B Cao Thắng (nối dài), P.12, Q.10</td>
+              <td>24/7 (Cả ngày & đêm)</td>
+              <td>30.000đ – 50.000đ/lượt; 120.000đ/đêm</td>
+              <td>Bãi ngoài trời có mái che; nhận xe 4 đến 7 chỗ gửi theo giờ hoặc qua đêm.</td>
+              <td><a class="btn-maps" target="_blank" href="https://www.google.com/maps/dir/?api=1&origin=384+L%C3%BD+Th%C3%A1i+T%E1%BB%95,+Th%C3%A0nh+ph%E1%BB%91+H%E1%BB%93+Ch%C3%AD+Minh&destination=177B+Cao+Th%E1%BA%AFng+Qu%E1%BA%ADn+10">Mở Map</a></td>
+            </tr>
+            <tr>
+              <td><strong>Bãi Xe Siêu Thị Sài Gòn (Satramart)</strong></td>
+              <td>460 Ba Tháng Hai, Phường 12, Quận 10</td>
+              <td>07:30 – 22:00</td>
+              <td>20.000đ – 30.000đ / block</td>
+              <td>Khuôn viên bãi đỗ trước siêu thị, cách điểm mốc chỉ khoảng 850m.</td>
+              <td><a class="btn-maps" target="_blank" href="https://www.google.com/maps/dir/?api=1&origin=384+L%C3%BD+Th%C3%A1i+T%E1%BB%95,+Th%C3%A0nh+ph%E1%BB%91+H%E1%BB%93+Ch%C3%AD+Minh&destination=Si%C3%AAu+Th%E1%BB%8B+S%C3%A0i+G%C3%B2n+460+Ba+Th%C3%A1ng+Hai">Mở Map</a></td>
+            </tr>
+            <tr>
+              <td><strong>Bãi Xe Bệnh Viện Nhi Đồng 1</strong></td>
+              <td>341 Sư Vạn Hạnh / Lý Thái Tổ, Q.10</td>
+              <td>24/7</td>
+              <td>Theo biểu phí bệnh viện</td>
+              <td>Khoảng cách rất gần (chỉ 450m); ưu tiên cho tình huống cấp thiết.</td>
+              <td><a class="btn-maps" target="_blank" href="https://www.google.com/maps/dir/?api=1&origin=384+L%C3%BD+Th%C3%A1i+T%E1%BB%95,+Th%C3%A0nh+ph%E1%BB%91+H%E1%BB%93+Ch%C3%AD+Minh&destination=B%E1%BB%87nh+Vi%E1%BB%87n+Nhi+%C4%90%E1%BB%93ng+1">Mở Map</a></td>
+            </tr>
+            <tr>
+              <td><strong>Bãi Xe Hẻm 133 Hòa Hưng</strong></td>
+              <td>Cuối hẻm 133 Hòa Hưng, P.12, Q.10</td>
+              <td>24/7</td>
+              <td>50.000đ/ngày; 120.000đ/đêm</td>
+              <td>Bãi tư nhân có bảo vệ thường trực, thích hợp để xe ô tô dài ngày.</td>
+              <td><a class="btn-maps" target="_blank" href="https://www.google.com/maps/dir/?api=1&origin=384+L%C3%BD+Th%C3%A1i+T%E1%BB%95,+Th%C3%A0nh+ph%E1%BB%91+H%E1%BB%93+Ch%C3%AD+Minh&destination=133+H%C3%B2a+H%C6%B0ng+Qu%E1%BA%ADn+10">Mở Map</a></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+    </section>
+  </main>
+
+  <!-- Script & Embedded Data -->
+  <script>
+    const ORIGIN_ADDRESS = "384 Lý Thái Tổ, Phường Vườn Lài, Thành phố Hồ Chí Minh";
+
+    // Dataset Tab 1: Du Lịch & Check-in
+    const DATA_TAB1 = [
+      {
+        name: "Công viên Bến Bạch Đằng & Bến Tàu Thủy",
+        cat: "Công viên / Bờ sông",
+        hours: "24/7 (Bến tàu: 07:00 - 22:30)",
+        ticket: "Miễn phí (Waterbus: 15.000đ)",
+        parking: "Bãi đỗ bến thủy & hầm khách sạn lân cận",
+        distance: "4,2 km (~14-18 phút)",
+        dest: "Bến Bạch Đằng, Tôn Đức Thắng, Quận 1"
+      },
+      {
+        name: "Bảo tàng Mỹ thuật TP. Hồ Chí Minh",
+        cat: "Nghệ thuật / Heritage",
+        hours: "08:00 - 17:00 hàng ngày",
+        ticket: "30.000đ / người lớn",
+        parking: "Hạn chế ô tô trong sân, gửi tại đường Hàm Nghi",
+        distance: "3,6 km (~12-15 phút)",
+        dest: "Bảo tàng Mỹ thuật TP.HCM, 97A Phó Đức Chính, Quận 1"
+      },
+      {
+        name: "Dinh Độc Lập (Di tích Lịch sử)",
+        cat: "Lịch sử / Biểu tượng",
+        hours: "08:00 - 16:30 hàng ngày",
+        ticket: "40.000đ - 65.000đ / người",
+        parking: "Khuôn viên bãi đỗ ô tô nội khu rất rộng",
+        distance: "3,1 km (~10-14 phút)",
+        dest: "Dinh Độc Lập, Nam Kỳ Khởi Nghĩa, Quận 1"
+      },
+      {
+        name: "Đài quan sát Landmark 81 SkyView",
+        cat: "Trải nghiệm cao tầng",
+        hours: "10:00 - 22:00 hàng ngày",
+        ticket: "420.000đ / người lớn",
+        parking: "3 tầng hầm B1, B2, B3 Landmark 81",
+        distance: "6,8 km (~20-26 phút)",
+        dest: "Vincom Center Landmark 81, Bình Thạnh"
+      },
+      {
+        name: "Saigon Skydeck (Bitexco Tower)",
+        cat: "Trải nghiệm cao tầng",
+        hours: "09:30 - 21:30 hàng ngày",
+        ticket: "240.000đ / khách",
+        parking: "Hầm tòa nhà Bitexco & bãi phố Hải Triều",
+        distance: "4,0 km (~13-17 phút)",
+        dest: "Bitexco Financial Tower, Quận 1"
+      },
+      {
+        name: "Bảo tàng Y Học Cổ Truyền (FITO)",
+        cat: "Bảo tàng độc bản",
+        hours: "08:30 - 17:00 hàng ngày",
+        ticket: "180.000đ / khách",
+        parking: "Đỗ xe ngắn hạn lòng đường có nhân viên điều phối",
+        distance: "1,4 km (~5-8 phút)",
+        dest: "Bảo tàng FITO, 41 Hoàng Dư Khương, Quận 10"
+      },
+      {
+        name: "Công viên Bờ sông Sài Gòn (Thủ Thiêm)",
+        cat: "Công viên / Bờ sông",
+        hours: "24/7 (Ngắm hoàng hôn đẹp nhất 17h)",
+        ticket: "Miễn phí",
+        parking: "Bãi đỗ ngoài trời tập trung dọc ven sông",
+        distance: "5,8 km (~16-22 phút)",
+        dest: "Công viên Bờ sông Sài Gòn, TP Thủ Đức"
+      },
+      {
+        name: "Boarc Gallery (Tranh Tăm Tre Đương Đại)",
+        cat: "Nghệ thuật / Check-in",
+        hours: "09:00 - 19:00 hàng ngày",
+        ticket: "68.000đ / khách",
+        parking: "Gửi xe tại các bãi tòa nhà đường Thi Sách",
+        distance: "4,4 km (~15-20 phút)",
+        dest: "Boarc Gallery, 6 Thi Sách, Bến Nghé, Quận 1"
+      }
+    ];
+
+    // Dataset Tab 2: TTTM & Mua Sắm
+    const DATA_TAB2 = [
+      {
+        name: "Vạn Hạnh Mall",
+        cat: "TTTM Quận 10",
+        address: "11 Sư Vạn Hạnh, P.12, Q.10",
+        distance: "1,2 km (~4-6 phút)",
+        parking: "2 hầm rộng rãi; 25.000đ - 30.000đ/4h đầu",
+        fnb: "Starbucks, Morico Contemporary, Haidilao Hotpot, Spicy Box, Highlands, Phúc Long",
+        dest: "Vạn Hạnh Mall, Sư Vạn Hạnh, Quận 10"
+      },
+      {
+        name: "Saigon Centre / Takashimaya",
+        cat: "TTTM Cao Cấp",
+        address: "92-94 Nam Kỳ Khởi Nghĩa, Bến Nghé, Q.1",
+        distance: "3,8 km (~13-17 phút)",
+        parking: "3 tầng hầm thông minh; 20.000đ - 30.000đ/giờ",
+        fnb: "% Arabica, RuNam Bistro, Pizza 4P's, Paul Bakery, TWG Tea, Haidilao; liền kề The Running Bean Hồ Tùng Mậu",
+        dest: "Saigon Centre, Nam Kỳ Khởi Nghĩa, Quận 1"
+      },
+      {
+        name: "Vincom Center Landmark 81",
+        cat: "TTTM Cao Cấp",
+        address: "720A Nguyễn Hữu Cảnh, P.22, Bình Thạnh",
+        distance: "6,8 km (~20-25 phút)",
+        parking: "3 hầm B1-B3; 15.000đ - 20.000đ/block 4 giờ",
+        fnb: "Blank Lounge, Starbucks Atelier, Haidilao, RuNam Boutique, Dookki, Capricciosa",
+        dest: "Vincom Landmark 81, Bình Thạnh"
+      },
+      {
+        name: "Thiso Mall Sala",
+        cat: "Tổ hợp Mới",
+        address: "10 Mai Chí Thọ, Đô thị Sala, Thủ Thiêm",
+        distance: "5,5 km (~16-20 phút)",
+        parking: "Hầm Emart siêu lớn; 20.000đ/4h, đêm 150k",
+        fnb: "Phê La, Starbucks Reserve, Pizza 4P's, Chang Kang Kung, Haidilao Hotpot",
+        dest: "Thiso Mall Sala, Mai Chí Thọ, TP Thủ Đức"
+      },
+      {
+        name: "Vincom Center Đồng Khởi",
+        cat: "TTTM Cao Cấp",
+        address: "72 Lê Thánh Tôn, Bến Nghé, Quận 1",
+        distance: "4,1 km (~14-18 phút)",
+        parking: "3 tầng hầm hiện đại; 30.000đ/giờ đầu",
+        fnb: "Starbucks, San Fu Lou, Seoul Garden, Dookki, Haidilao, chuỗi trà bánh cao cấp",
+        dest: "Vincom Center Đồng Khởi, Lê Thánh Tôn, Quận 1"
+      },
+      {
+        name: "Hùng Vương Plaza",
+        cat: "TTTM Lân Cận",
+        address: "126 Hồng Bàng, Phường 12, Quận 5",
+        distance: "2,4 km (~8-11 phút)",
+        parking: "2 tầng hầm thoáng; 25.000đ/4h đầu",
+        fnb: "Starbucks, Manwah Taiwanese Hotpot, Phúc Long Coffee, Gogi House, Kichi Kichi",
+        dest: "Hùng Vương Plaza, Hồng Bàng, Quận 5"
+      },
+      {
+        name: "The New Playground (Lê Lai)",
+        cat: "Tổ hợp Giới Trẻ",
+        address: "90 Lê Lai (Sense Market ngầm), Q.1",
+        distance: "3,0 km (~10-13 phút)",
+        parking: "Bãi đỗ xe ngầm công viên 23/9; 30k/lượt",
+        fnb: "Local brands thời trang nội địa, quán cafe phong cách công nghiệp cá tính",
+        dest: "The New Playground, Lê Lai, Quận 1"
+      }
+    ];
+
+    // Dataset Tab 3: Vui chơi & Nightlife (>=22h)
+    const DATA_TAB3 = [
+      {
+        name: "Chill Skybar & Dining",
+        cat: "Rooftop / Lounge",
+        hours: "17:30 – 02:00 sáng",
+        cost: "250.000đ – 600.000đ / người",
+        distance: "3,2 km (~10-14 phút)",
+        dest: "Chill Skybar, AB Tower, 76A Lê Lai, Quận 1"
+      },
+      {
+        name: "Shri Restaurant & Lounge",
+        cat: "Sky Dining / Chill",
+        hours: "16:30 – 00:00 đêm",
+        cost: "300.000đ – 800.000đ / người",
+        distance: "3,3 km (~11-15 phút)",
+        dest: "Shri Restaurant & Lounge, Centec Tower, Nguyễn Thị Minh Khai, Quận 3"
+      },
+      {
+        name: "Phố Đêm Chợ Hoa Hồ Thị Kỷ",
+        cat: "Phố ẩm thực / Chợ đêm",
+        hours: "Ẩm thực đến 23h; Chợ hoa 24/7 (đỉnh điểm 0h - 4h)",
+        cost: "30.000đ – 120.000đ / người",
+        distance: "0,6 km (Đi bộ 5-7 phút)",
+        dest: "Chợ hoa Hồ Thị Kỷ, Phường 1, Quận 10"
+      },
+      {
+        name: "Tour Đêm Xe Buýt 2 Tầng City Sightseeing",
+        cat: "Tour đêm ngắm cảnh",
+        hours: "Chuyến đêm 16:30 đến 22:30 / 23:00",
+        cost: "145.000đ – 150.000đ / vé",
+        distance: "4,2 km (Bến Nhà hát Lớn)",
+        dest: "Nhà Hát Thành Phố, Công trường Lam Sơn, Quận 1"
+      },
+      {
+        name: "Acoustic Bar (Ngô Thời Nhiệm)",
+        cat: "Live Music / Acoustic",
+        hours: "19:30 – 23:30 mỗi đêm",
+        cost: "150.000đ – 250.000đ (kèm đồ uống)",
+        distance: "2,7 km (~9-12 phút)",
+        dest: "Acoustic Bar, 6E Ngô Thời Nhiệm, Quận 3"
+      },
+      {
+        name: "Blank Lounge (Landmark 81)",
+        cat: "Rooftop / Panorama",
+        hours: "09:30 – 00:00 đêm",
+        cost: "250.000đ – 550.000đ / món nước",
+        distance: "6,8 km (~20-25 phút)",
+        dest: "Landmark 81, Nguyễn Hữu Cảnh, Bình Thạnh"
+      },
+      {
+        name: "Phố Đi Bộ Nguyễn Huệ & Chung Cư 42",
+        cat: "Phố đi bộ / Bar Speakeasy",
+        hours: "24/7 (Quán lounge/bar mở đến 01:00)",
+        cost: "40.000đ – 200.000đ / người",
+        distance: "4,0 km (~13-17 phút)",
+        dest: "Phố đi bộ Nguyễn Huệ, Quận 1"
+      },
+      {
+        name: "Saigon Art Cruise (Bến Bạch Đằng)",
+        cat: "Du thuyền ngắm cảnh",
+        hours: "17:30 – 22:30 đêm",
+        cost: "179.000đ – 380.000đ / vé",
+        distance: "4,3 km (Bến Bạch Đằng)",
+        dest: "Bến Tàu Thủy Bạch Đằng, Quận 1"
+      }
+    ];
+
+    // State Variables
+    let currentTab = 'tab1';
+    let currentFilter = 'All';
+    let currentSearch = '';
+    let sortState = { col: -1, asc: true };
+
+    const searchInput = document.getElementById('searchInput');
+    const filterTagsContainer = document.getElementById('filterTagsContainer');
+    const controlsPanel = document.getElementById('controlsPanel');
+
+    function getMapsUrl(destName) {
+      const origin = encodeURIComponent(ORIGIN_ADDRESS);
+      const destination = encodeURIComponent(destName);
+      return `https://www.google.com/maps/dir/?api=1&origin=${origin}&destination=${destination}`;
+    }
+
+    // Set count badges
+    document.getElementById('count-tab1').innerText = DATA_TAB1.length;
+    document.getElementById('count-tab2').innerText = DATA_TAB2.length;
+    document.getElementById('count-tab3').innerText = DATA_TAB3.length;
+
+    // Tab Switching
+    document.querySelectorAll('.tab-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+        document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+        
+        btn.classList.add('active');
+        currentTab = btn.getAttribute('data-tab');
+        document.getElementById(currentTab).classList.add('active');
+
+        currentFilter = 'All';
+        currentSearch = '';
+        searchInput.value = '';
+
+        if (currentTab === 'tab4') {
+          controlsPanel.style.display = 'none';
+        } else {
+          controlsPanel.style.display = 'flex';
+          renderFilterChips();
+          renderData();
+        }
+      });
+    });
+
+    // Render Tag Filters
+    function renderFilterChips() {
+      let data = [];
+      if (currentTab === 'tab1') data = DATA_TAB1;
+      else if (currentTab === 'tab2') data = DATA_TAB2;
+      else if (currentTab === 'tab3') data = DATA_TAB3;
+
+      const cats = ['Tất cả', ...new Set(data.map(item => item.cat))];
+      filterTagsContainer.innerHTML = `<span class="filter-label">Bộ lọc:</span>`;
+      cats.forEach(cat => {
+        const chip = document.createElement('button');
+        chip.className = `filter-chip ${ (currentFilter === 'All' && cat === 'Tất cả') || currentFilter === cat ? 'active' : '' }`;
+        chip.innerText = cat;
+        chip.onclick = () => {
+          currentFilter = (cat === 'Tất cả') ? 'All' : cat;
+          renderFilterChips();
+          renderData();
+        };
+        filterTagsContainer.appendChild(chip);
+      });
+    }
+
+    function getFilteredData() {
+      let raw = [];
+      if (currentTab === 'tab1') raw = [...DATA_TAB1];
+      else if (currentTab === 'tab2') raw = [...DATA_TAB2];
+      else if (currentTab === 'tab3') raw = [...DATA_TAB3];
+
+      return raw.filter(item => {
+        const matchesFilter = (currentFilter === 'All') || (item.cat === currentFilter);
+        const searchStr = (Object.values(item).join(' ')).toLowerCase();
+        const matchesSearch = !currentSearch || searchStr.includes(currentSearch.toLowerCase());
+        return matchesFilter && matchesSearch;
+      });
+    }
+
+    // Render Data to Table & Cards
+    function renderData() {
+      if (currentTab === 'tab4') return;
+      const data = getFilteredData();
+
+      if (currentTab === 'tab1') {
+        const tbody = document.getElementById('tbody-tab1');
+        const cards = document.getElementById('cards-tab1');
+        tbody.innerHTML = '';
+        cards.innerHTML = '';
+
+        data.forEach(item => {
+          const mapUrl = getMapsUrl(item.dest);
+          const tr = document.createElement('tr');
+          tr.innerHTML = `
+            <td>
+              <strong>${item.name}</strong><br>
+              <span class="badge-tag tag-blue">${item.cat}</span>
+            </td>
+            <td>${item.hours}</td>
+            <td><strong style="color:var(--emerald);">${item.ticket}</strong></td>
+            <td>${item.parking}</td>
+            <td><strong>${item.distance}</strong></td>
+            <td><a class="btn-maps" target="_blank" href="${mapUrl}">Chỉ Đường</a></td>
+          `;
+          tbody.appendChild(tr);
+
+          const card = document.createElement('div');
+          card.className = 'res-card';
+          card.innerHTML = `
+            <div class="res-card-header">
+              <div>
+                <div class="res-card-title">${item.name}</div>
+                <span class="badge-tag tag-blue">${item.cat}</span>
+              </div>
+              <a class="btn-maps" target="_blank" href="${mapUrl}">Chỉ Đường</a>
+            </div>
+            <div class="res-card-body">
+              <div class="res-card-row"><span>Giờ mở cửa:</span> <span>${item.hours}</span></div>
+              <div class="res-card-row"><span>Giá vé:</span> <span style="color:var(--emerald);">${item.ticket}</span></div>
+              <div class="res-card-row"><span>Đỗ ô tô:</span> <span>${item.parking}</span></div>
+              <div class="res-card-row"><span>Cự ly từ mốc:</span> <span>${item.distance}</span></div>
+            </div>
+          `;
+          cards.appendChild(card);
+        });
+      }
+      else if (currentTab === 'tab2') {
+        const tbody = document.getElementById('tbody-tab2');
+        const cards = document.getElementById('cards-tab2');
+        tbody.innerHTML = '';
+        cards.innerHTML = '';
+
+        data.forEach(item => {
+          const mapUrl = getMapsUrl(item.dest);
+          const tr = document.createElement('tr');
+          tr.innerHTML = `
+            <td>
+              <strong>${item.name}</strong><br>
+              <span class="badge-tag tag-purple">${item.cat}</span>
+            </td>
+            <td>${item.address}<br><strong>${item.distance}</strong></td>
+            <td>${item.parking}</td>
+            <td><span class="highlight-fnb">${item.fnb}</span></td>
+            <td><a class="btn-maps" target="_blank" href="${mapUrl}">Chỉ Đường</a></td>
+          `;
+          tbody.appendChild(tr);
+
+          const card = document.createElement('div');
+          card.className = 'res-card';
+          card.innerHTML = `
+            <div class="res-card-header">
+              <div>
+                <div class="res-card-title">${item.name}</div>
+                <span class="badge-tag tag-purple">${item.cat}</span>
+              </div>
+              <a class="btn-maps" target="_blank" href="${mapUrl}">Chỉ Đường</a>
+            </div>
+            <div class="res-card-body">
+              <div class="res-card-row"><span>Địa chỉ:</span> <span>${item.address}</span></div>
+              <div class="res-card-row"><span>Cự ly từ mốc:</span> <span>${item.distance}</span></div>
+              <div class="res-card-row"><span>Hầm ô tô:</span> <span>${item.parking}</span></div>
+              <div style="margin-top:6px;">
+                <span style="font-size:12px; color:var(--text-muted); font-weight:600;">F&B / Specialty Coffee:</span><br>
+                <span class="highlight-fnb">${item.fnb}</span>
+              </div>
+            </div>
+          `;
+          cards.appendChild(card);
+        });
+      }
+      else if (currentTab === 'tab3') {
+        const tbody = document.getElementById('tbody-tab3');
+        const cards = document.getElementById('cards-tab3');
+        tbody.innerHTML = '';
+        cards.innerHTML = '';
+
+        data.forEach(item => {
+          const mapUrl = getMapsUrl(item.dest);
+          const tr = document.createElement('tr');
+          tr.innerHTML = `
+            <td>
+              <strong>${item.name}</strong><br>
+              <span class="badge-tag tag-amber">${item.cat}</span>
+            </td>
+            <td>${item.cat}</td>
+            <td><strong style="color:#d97706;">${item.hours}</strong></td>
+            <td>${item.cost}</td>
+            <td><strong>${item.distance}</strong></td>
+            <td><a class="btn-maps" target="_blank" href="${mapUrl}">Chỉ Đường</a></td>
+          `;
+          tbody.appendChild(tr);
+
+          const card = document.createElement('div');
+          card.className = 'res-card';
+          card.innerHTML = `
+            <div class="res-card-header">
+              <div>
+                <div class="res-card-title">${item.name}</div>
+                <span class="badge-tag tag-amber">${item.cat}</span>
+              </div>
+              <a class="btn-maps" target="_blank" href="${mapUrl}">Chỉ Đường</a>
+            </div>
+            <div class="res-card-body">
+              <div class="res-card-row"><span>Giờ mở cửa:</span> <span style="color:#d97706;">${item.hours}</span></div>
+              <div class="res-card-row"><span>Chi phí ước tính:</span> <span>${item.cost}</span></div>
+              <div class="res-card-row"><span>Cự ly từ mốc:</span> <span>${item.distance}</span></div>
+            </div>
+          `;
+          cards.appendChild(card);
+        });
+      }
+    }
+
+    // Sorting Function
+    function sortTable(tabId, colIndex) {
+      let data = [];
+      if (tabId === 'tab1') data = DATA_TAB1;
+      else if (tabId === 'tab2') data = DATA_TAB2;
+      else if (tabId === 'tab3') data = DATA_TAB3;
+
+      if (sortState.col === colIndex) {
+        sortState.asc = !sortState.asc;
+      } else {
+        sortState.col = colIndex;
+        sortState.asc = true;
+      }
+
+      data.sort((a, b) => {
+        const valA = Object.values(a)[colIndex] || '';
+        const valB = Object.values(b)[colIndex] || '';
+        return sortState.asc 
+          ? valA.toString().localeCompare(valB.toString(), 'vi')
+          : valB.toString().localeCompare(valA.toString(), 'vi');
+      });
+
+      renderData();
+    }
+
+    // Live Search
+    searchInput.addEventListener('input', (e) => {
+      currentSearch = e.target.value.trim();
+      renderData();
+    });
+
+    // Startup Initialization
+    renderFilterChips();
+    renderData();
+  </script>
+</body>
+</html>
