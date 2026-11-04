@@ -1,0 +1,894 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+  <title>Hệ Thống Tra Cứu Quán Ăn Chất Lượng & Nhà Hàng Lịch Sự - Mốc 384 Lý Thái Tổ</title>
+  <style>
+    :root {
+      --bg-body: #f8fafc;
+      --bg-card: #ffffff;
+      --bg-header: #0f172a;
+      --text-main: #0f172a;
+      --text-muted: #475569;
+      --text-light: #f8fafc;
+      --primary: #1d4ed8;
+      --primary-hover: #1e40af;
+      --primary-soft: #eff6ff;
+      --accent-amber: #d97706;
+      --accent-amber-bg: #fef3c7;
+      --accent-green: #059669;
+      --accent-green-bg: #d1fae5;
+      --accent-purple: #7c3aed;
+      --accent-purple-bg: #ede9fe;
+      --accent-rose: #e11d48;
+      --accent-rose-bg: #ffe4e6;
+      --border-color: #e2e8f0;
+      --row-hover: #f1f5f9;
+      --shadow-sm: 0 1px 3px rgba(15, 23, 42, 0.08);
+      --shadow-md: 0 4px 12px rgba(15, 23, 42, 0.08);
+      --radius: 10px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      background-color: var(--bg-body);
+      color: var(--text-main);
+      line-height: 1.5;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* HEADER BANNER */
+    .hero-header {
+      background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 100%);
+      color: var(--text-light);
+      padding: 24px 16px;
+      border-bottom: 4px solid #3b82f6;
+    }
+
+    .container {
+      max-width: 1360px;
+      margin: 0 auto;
+      width: 100%;
+    }
+
+    .hero-title {
+      font-size: 1.45rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      margin-bottom: 8px;
+      color: #ffffff;
+    }
+
+    .hero-subtitle {
+      font-size: 0.92rem;
+      color: #cbd5e1;
+      margin-bottom: 16px;
+    }
+
+    .meta-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .meta-badge {
+      background: rgba(255, 255, 255, 0.12);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      color: #f8fafc;
+      padding: 5px 12px;
+      border-radius: 999px;
+      font-size: 0.8rem;
+      font-weight: 600;
+    }
+
+    /* NAVIGATION TABS */
+    .tabs-wrapper {
+      background: var(--bg-card);
+      border-bottom: 1px solid var(--border-color);
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .tabs-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 6px;
+      padding: 10px 16px;
+      max-width: 1360px;
+      margin: 0 auto;
+    }
+
+    .tab-btn {
+      appearance: none;
+      border: 1px solid var(--border-color);
+      background: #f8fafc;
+      color: var(--text-muted);
+      padding: 10px 12px;
+      border-radius: 8px;
+      font-size: 0.86rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background-color 0.18s ease, color 0.18s ease, border-color 0.18s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      text-align: center;
+    }
+
+    .tab-btn:hover {
+      background: #e2e8f0;
+      color: #0f172a;
+      border-color: #cbd5e1;
+    }
+
+    .tab-btn.active {
+      background: var(--primary);
+      color: #ffffff;
+      border-color: var(--primary);
+      box-shadow: 0 2px 6px rgba(29, 78, 216, 0.28);
+    }
+
+    .tab-count {
+      background: rgba(15, 23, 42, 0.12);
+      color: inherit;
+      padding: 2px 7px;
+      border-radius: 999px;
+      font-size: 0.75rem;
+    }
+
+    .tab-btn.active .tab-count {
+      background: rgba(255, 255, 255, 0.25);
+      color: #ffffff;
+    }
+
+    /* CONTROLS & FILTERS */
+    .controls-panel {
+      background: var(--bg-card);
+      margin: 16px auto;
+      padding: 16px;
+      border-radius: var(--radius);
+      border: 1px solid var(--border-color);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .controls-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr 1fr;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .control-group {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .control-label {
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+    }
+
+    .input-control, .select-control {
+      width: 100%;
+      padding: 9px 12px;
+      border: 1px solid #cbd5e1;
+      border-radius: 6px;
+      font-size: 0.88rem;
+      color: var(--text-main);
+      background-color: #ffffff;
+      outline: none;
+      transition: border-color 0.15s ease;
+    }
+
+    .input-control:focus, .select-control:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(29, 78, 216, 0.12);
+    }
+
+    .stats-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 12px;
+      padding-top: 12px;
+      border-top: 1px dashed var(--border-color);
+      font-size: 0.84rem;
+      color: var(--text-muted);
+    }
+
+    .reset-btn {
+      background: #f1f5f9;
+      color: #0f172a;
+      border: 1px solid #cbd5e1;
+      padding: 5px 12px;
+      border-radius: 6px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    .reset-btn:hover {
+      background: #e2e8f0;
+      color: #0f172a;
+    }
+
+    /* DATA TABLE (DESKTOP) */
+    .table-container {
+      background: var(--bg-card);
+      border-radius: var(--radius);
+      border: 1px solid var(--border-color);
+      box-shadow: var(--shadow-sm);
+      overflow: hidden;
+      margin-bottom: 24px;
+    }
+
+    table.venue-table {
+      width: 100%;
+      border-collapse: collapse;
+      table-layout: fixed;
+    }
+
+    table.venue-table thead th {
+      background: #f1f5f9;
+      color: #0f172a;
+      font-size: 0.78rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.02em;
+      padding: 12px 10px;
+      text-align: left;
+      border-bottom: 2px solid #cbd5e1;
+      cursor: pointer;
+      user-select: none;
+      transition: background-color 0.15s ease;
+    }
+
+    table.venue-table thead th:hover {
+      background: #e2e8f0;
+      color: #0f172a;
+    }
+
+    table.venue-table tbody tr {
+      border-bottom: 1px solid var(--border-color);
+      background-color: #ffffff;
+      transition: background-color 0.12s ease;
+    }
+
+    /* CHỐNG LỖI MÀU HOVER TUYỆT ĐỐI */
+    table.venue-table tbody tr:hover {
+      background-color: var(--row-hover);
+      color: var(--text-main);
+    }
+
+    table.venue-table td {
+      padding: 12px 10px;
+      vertical-align: top;
+      font-size: 0.85rem;
+      color: var(--text-main);
+      word-wrap: break-word;
+      overflow-wrap: break-word;
+    }
+
+    /* COLUMN WIDTHS */
+    .col-name { width: 17%; }
+    .col-fit  { width: 8%; text-align: center; }
+    .col-addr { width: 16%; }
+    .col-dist { width: 9%; }
+    .col-hour { width: 11%; }
+    .col-spac { width: 11%; }
+    .col-car  { width: 11%; }
+    .col-must { width: 10%; }
+    .col-pric { width: 7%; }
+
+    /* BADGES & TYPOGRAPHY */
+    .v-name {
+      font-weight: 800;
+      font-size: 0.94rem;
+      color: #0f172a;
+      margin-bottom: 4px;
+      display: block;
+    }
+
+    .v-cat-tag {
+      display: inline-block;
+      font-size: 0.72rem;
+      font-weight: 700;
+      padding: 2px 7px;
+      border-radius: 4px;
+      background: var(--primary-soft);
+      color: var(--primary);
+    }
+
+    .fit-pill {
+      display: inline-block;
+      font-weight: 800;
+      font-size: 0.82rem;
+      padding: 3px 8px;
+      border-radius: 6px;
+      background: var(--accent-green-bg);
+      color: var(--accent-green);
+      margin-bottom: 4px;
+    }
+
+    .star-box {
+      display: block;
+      font-weight: 700;
+      color: var(--accent-amber);
+      font-size: 0.82rem;
+    }
+
+    .dist-num {
+      font-weight: 700;
+      color: #0f172a;
+      display: block;
+    }
+
+    .time-sub {
+      font-size: 0.76rem;
+      color: var(--text-muted);
+    }
+
+    .hour-text {
+      font-weight: 600;
+      display: block;
+      margin-bottom: 4px;
+    }
+
+    .badge-late {
+      display: inline-block;
+      background: var(--accent-purple-bg);
+      color: var(--accent-purple);
+      font-size: 0.7rem;
+      font-weight: 700;
+      padding: 2px 6px;
+      border-radius: 4px;
+    }
+
+    .badge-day {
+      display: inline-block;
+      background: var(--accent-amber-bg);
+      color: var(--accent-amber);
+      font-size: 0.7rem;
+      font-weight: 700;
+      padding: 2px 6px;
+      border-radius: 4px;
+    }
+
+    .car-direct {
+      color: #047857;
+      font-weight: 700;
+      font-size: 0.8rem;
+    }
+
+    .car-nearby {
+      color: #1d4ed8;
+      font-weight: 600;
+      font-size: 0.8rem;
+    }
+
+    .price-val {
+      font-weight: 800;
+      color: #b91c1c;
+      font-size: 0.84rem;
+    }
+
+    /* TRANSIT & PARKING MATRIX (TAB 4 EXTRA SECTION) */
+    .transit-section {
+      background: var(--bg-card);
+      border: 2px solid #3b82f6;
+      border-radius: var(--radius);
+      padding: 16px;
+      margin-bottom: 20px;
+      box-shadow: var(--shadow-sm);
+      display: none;
+    }
+
+    .transit-section.visible {
+      display: block;
+    }
+
+    .transit-title {
+      font-size: 1.05rem;
+      font-weight: 800;
+      color: #1e3a8a;
+      margin-bottom: 10px;
+    }
+
+    .transit-cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+    }
+
+    .transit-card {
+      background: #f8fafc;
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      padding: 12px;
+    }
+
+    .transit-card h4 {
+      font-size: 0.92rem;
+      color: #0f172a;
+      margin-bottom: 6px;
+    }
+
+    .transit-card p {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      margin-bottom: 4px;
+    }
+
+    /* EMPTY STATE */
+    .empty-state {
+      text-align: center;
+      padding: 40px 16px;
+      color: var(--text-muted);
+      font-size: 0.95rem;
+    }
+
+    /* RESPONSIVE MOBILE: KHÔNG CUỘN NGANG, HIỂN THỊ DẠNG THẺ GỌN GÀNG */
+    @media (max-width: 992px) {
+      .controls-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+      .tabs-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+      .transit-cards {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .hero-title {
+        font-size: 1.2rem;
+      }
+      .controls-grid {
+        grid-template-columns: 1fr;
+      }
+      .tabs-grid {
+        grid-template-columns: 1fr;
+      }
+      table.venue-table thead {
+        display: none;
+      }
+      table.venue-table,
+      table.venue-table tbody,
+      table.venue-table tr,
+      table.venue-table td {
+        display: block;
+        width: 100%;
+      }
+      table.venue-table tbody tr {
+        margin-bottom: 12px;
+        border: 1px solid #cbd5e1;
+        border-radius: 8px;
+        padding: 10px;
+        box-shadow: var(--shadow-sm);
+      }
+      table.venue-table td {
+        padding: 6px 4px;
+        border-bottom: 1px dashed #e2e8f0;
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        gap: 10px;
+        text-align: right;
+      }
+      table.venue-table td:last-child {
+        border-bottom: none;
+      }
+      table.venue-table td::before {
+        content: attr(data-label);
+        font-weight: 700;
+        font-size: 0.76rem;
+        color: var(--text-muted);
+        text-transform: uppercase;
+        text-align: left;
+        flex: 0 0 38%;
+      }
+      .col-name, .col-fit, .col-addr, .col-dist, .col-hour, .col-spac, .col-car, .col-must, .col-pric {
+        width: 100%;
+        text-align: right;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="hero-header">
+    <div class="container">
+      <h1 class="hero-title">CHUYÊN BIỆT QUÁN ĂN CHẤT LƯỢNG & NHÀ HÀNG LỊCH SỰ (2025 - 2026)</h1>
+      <p class="hero-subtitle">Điểm mốc định vị: <strong>384 Lý Thái Tổ, Phường Vườn Lài, TP.HCM</strong> (Quận 10 cũ) • Tệp khách: 20 - 40 tuổi (Nhóm bạn, Gia đình trẻ, Tiếp khách)</p>
+      <div class="meta-badges">
+        <span class="meta-badge">✓ 84 Địa Điểm Xác Thực</span>
+        <span class="meta-badge">✓ Có Bãi Đỗ Ô Tô / Hầm TTTM (&lt;150m)</span>
+        <span class="meta-badge">✓ Không Gian Máy Lạnh &amp; Sân Vườn Thoáng</span>
+        <span class="meta-badge">✓ Phân Tách Giờ Mở Khuya (&gt;22h) &amp; Sáng/Trưa/Tối</span>
+      </div>
+    </div>
+  </header>
+
+  <nav class="tabs-wrapper">
+    <div class="tabs-grid">
+      <button class="tab-btn active" onclick="switchTab(1)" id="tabBtn1">
+        <span>1. Nhà Hàng &amp; Quán Việt Lịch Sự</span>
+        <span class="tab-count" id="count1">0</span>
+      </button>
+      <button class="tab-btn" onclick="switchTab(2)" id="tabBtn2">
+        <span>2. Lẩu, Nướng &amp; Hải Sản Tụ Tập</span>
+        <span class="tab-count" id="count2">0</span>
+      </button>
+      <button class="tab-btn" onclick="switchTab(3)" id="tabBtn3">
+        <span>3. Ẩm Thực Quốc Tế (Á - Âu - Hoa)</span>
+        <span class="tab-count" id="count3">0</span>
+      </button>
+      <button class="tab-btn" onclick="switchTab(4)" id="tabBtn4">
+        <span>4. Khu Ẩm Thực TTTM &amp; Di Chuyển</span>
+        <span class="tab-count" id="count4">0</span>
+      </button>
+    </div>
+  </nav>
+
+  <main class="container" style="padding: 0 12px;">
+    <!-- BẢNG PHƯƠNG ÁN DI CHUYỂN & BÃI ĐỖ Ô TÔ (HIỂN THỊ Ở TAB 4) -->
+    <section class="transit-section" id="transitBox">
+      <div class="transit-title">🚗 BẢNG PHƯƠNG ÁN DI CHUYỂN &amp; BÃI ĐỖ Ô TÔ TỪ MỐC 384 LÝ THÁI TỔ</div>
+      <div class="transit-cards">
+        <div class="transit-card">
+          <h4>1. Vạn Hạnh Mall (11 Sư Vạn Hạnh - Cách 1.2 km | 5 phút)</h4>
+          <p><strong>Lộ trình:</strong> 384 Lý Thái Tổ &rarr; Rẽ phải Sư Vạn Hạnh &rarr; Qua ngã tư 3/2 khoảng 200m.</p>
+          <p><strong>Bãi đỗ ô tô:</strong> Sức chứa 350 ô tô tại tầng lửng 3, tầng 4 và tầng 5 (đường dốc xoắn ốc) + 3.000 xe máy.</p>
+          <p><strong>Chi phí:</strong> Ô tô 20.000đ - 25.000đ/4 giờ đầu; Xe máy 4.000đ - 5.000đ/4 giờ đầu.</p>
+        </div>
+        <div class="transit-card">
+          <h4>2. Hùng Vương Plaza (126 Hồng Bàng - Cách 1.8 km | 8 phút)</h4>
+          <p><strong>Lộ trình:</strong> 384 Lý Thái Tổ &rarr; Nguyễn Tri Phương &rarr; Rẽ phải Hồng Bàng &rarr; Cổng đường Nguyễn Kim.</p>
+          <p><strong>Bãi đỗ ô tô:</strong> Hầm B1 (50 ô tô, 1.200 xe máy) + Bãi ngoài trời cổng Nguyễn Kim (06:00 - 23:00, không giữ qua đêm).</p>
+          <p><strong>Chi phí:</strong> Ô tô 20.000đ - 40.000đ/lượt. Dự phòng: Bãi xe 18 Nguyễn Kim hoặc 100Bis Hùng Vương.</p>
+        </div>
+        <div class="transit-card">
+          <h4>3. Saigon Centre / Takashimaya &amp; Vincom Q.1 (Cách 3.5 km | 15 phút)</h4>
+          <p><strong>Lộ trình:</strong> Lý Thái Tổ &rarr; Ngã 6 Cộng Hòa &rarr; Nguyễn Thị Minh Khai &rarr; Nam Kỳ Khởi Nghĩa &rarr; Lê Lợi.</p>
+          <p><strong>Bãi đỗ ô tô:</strong> Hầm B2 Saigon Centre chứa 405 ô tô (vào cổng Nam Kỳ Khởi Nghĩa hoặc 180 Lý Tự Trọng vắng hơn).</p>
+          <p><strong>Chi phí:</strong> 30.000đ/2h đầu (+20.000đ/h tiếp theo). Miễn phí gửi ô tô khi có hóa đơn mua sắm/ăn uống &gt; 1.000.000đ.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- BỘ LỌC & TÌM KIẾM -->
+    <section class="controls-panel">
+      <div class="controls-grid">
+        <div class="control-group">
+          <label class="control-label" for="searchInput">Tìm kiếm nhanh (Tên quán, Món ngon, Đường...)</label>
+          <input type="text" id="searchInput" class="input-control" placeholder="VD: vịt quay, cua, Sư Vạn Hạnh, phòng VIP..." oninput="renderTable()">
+        </div>
+        <div class="control-group">
+          <label class="control-label" for="timeFilter">Khung Giờ Hoạt Động</label>
+          <select id="timeFilter" class="select-control" onchange="renderTable()">
+            <option value="all">Tất cả khung giờ</option>
+            <option value="late">🌙 Mở khuya (Sau 22:00 - 03:00)</option>
+            <option value="morning">☀️ Mở ăn sáng sớm (Trước 08:00)</option>
+            <option value="fullday">🕒 Phục vụ Trưa &amp; Tối chuẩn</option>
+          </select>
+        </div>
+        <div class="control-group">
+          <label class="control-label" for="carFilter">Hạ Tầng Đỗ Ô Tô</label>
+          <select id="carFilter" class="select-control" onchange="renderTable()">
+            <option value="all">Tất cả phương án đỗ xe</option>
+            <option value="direct">🅿️ Đỗ trực tiếp / Hầm TTTM nội khu</option>
+            <option value="nearby">🚶 Bãi gửi ô tô lân cận (&lt;150m)</option>
+          </select>
+        </div>
+        <div class="control-group">
+          <label class="control-label" for="priceFilter">Mức Giá / Người</label>
+          <select id="priceFilter" class="select-control" onchange="renderTable()">
+            <option value="all">Mọi phân khúc giá</option>
+            <option value="low">Dưới 200.000 VNĐ</option>
+            <option value="mid">200.000 - 400.000 VNĐ</option>
+            <option value="high">Trên 400.000 VNĐ (Cao cấp/VIP)</option>
+          </select>
+        </div>
+        <div class="control-group">
+          <label class="control-label" for="sortSelect">Sắp Xếp Theo</label>
+          <select id="sortSelect" class="select-control" onchange="renderTable()">
+            <option value="fit_desc">Độ phù hợp: Cao &rarr; Thấp (%)</option>
+            <option value="dist_asc">Khoảng cách: Gần &rarr; Xa (km)</option>
+            <option value="star_desc">Đánh giá Sao: Cao &rarr; Thấp (★)</option>
+            <option value="price_asc">Giá trung bình: Thấp &rarr; Cao</option>
+            <option value="price_desc">Giá trung bình: Cao &rarr; Thấp</option>
+          </select>
+        </div>
+      </div>
+      <div class="stats-bar">
+        <span id="resultStatus">Đang hiển thị dữ liệu...</span>
+        <button class="reset-btn" onclick="resetFilters()">Đặt lại bộ lọc</button>
+      </div>
+    </section>
+
+    <!-- BẢNG DỮ LIỆU CHÍNH -->
+    <section class="table-container">
+      <table class="venue-table">
+        <thead>
+          <tr>
+            <th class="col-name" onclick="setSort('name')">Tên Nhà Hàng / Quán Ăn ↕</th>
+            <th class="col-fit" onclick="setSort('fit_desc')">Phù Hợp &amp; Sao ↕</th>
+            <th class="col-addr">Địa Chỉ (Phường Mới &amp; Cũ)</th>
+            <th class="col-dist" onclick="setSort('dist_asc')">Cách Mốc ↕</th>
+            <th class="col-hour">Giờ Mở - Đóng Cửa</th>
+            <th class="col-spac">Quy Mô Không Gian</th>
+            <th class="col-car">Chỗ Đỗ Ô Tô (&lt;150m)</th>
+            <th class="col-must">Món Ngon Phải Gọi</th>
+            <th class="col-pric" onclick="setSort('price_asc')">Giá/Người ↕</th>
+          </tr>
+        </thead>
+        <tbody id="tableBody"></tbody>
+      </table>
+      <div id="emptyState" class="empty-state" style="display:none;">
+        Không tìm thấy nhà hàng phù hợp với bộ lọc hiện tại. Vui lòng nhấn "Đặt lại bộ lọc".
+      </div>
+    </section>
+  </main>
+
+  <script>
+    // MẢNG JSON NÉN: 84 ĐỊA ĐIỂM ĂN UỐNG XÁC THỰC QUANH 384 LÝ THÁI TỔ (PHƯỜNG VƯỜN LÀI)
+    // t: Tab (1..4), n: Tên, c: Loại hình, f: Độ phù hợp (%), s: Sao, a: Địa chỉ, d: Khoảng cách (km), m: Thời gian (phút),
+    // h: Giờ mở cửa, l: Mở khuya (>22h), e: Mở sáng sớm, sc: Quy mô không gian, pk: Chi tiết đỗ ô tô, pt: Loại đỗ xe ('direct'|'nearby'),
+    // ms: Món ngon phải gọi, pr: Chuỗi giá, pMin: Giá min (nghìn), pMax: Giá max (nghìn)
+    const DB = [
+      // ==================== TAB 1: NHÀ HÀNG & QUÁN ĂN VIỆT LỊCH SỰ (21 ĐỊA ĐIỂM) ====================
+      {t:1, n:"Nhà Hàng Đông Hồ Eden", c:"Ẩm thực Việt & Yến tiệc", f:98, s:4.6, a:"16A Lê Hồng Phong (nối dài) / 99 Cao Thắng, P. Hòa Hưng (P.12, Q.10 cũ)", d:1.3, m:"5 phút", h:"10:00 – 22:00 (Trưa & Tối)", l:false, e:false, sc:"Khuôn viên sân vườn sinh thái cực rộng, sảnh tiệc & phòng lạnh lịch sự", pk:"Đỗ ô tô trực tiếp miễn phí trong khuôn viên nội khu rộng lớn", pt:"direct", ms:"Gà tiềm ớt hiểm, Hải sản sốt hoàng kim, Cá tầm nướng", pr:"200.000 – 600.000đ", pMin:200, pMax:600},
+      {t:1, n:"Nhà Hàng Đất Sét", c:"Món Việt & Nướng Đất Sét", f:96, s:4.5, a:"16 Lê Hồng Phong (nối dài), P. Hòa Hưng (P.12, Q.10 cũ)", d:1.3, m:"5 phút", h:"10:00 – 22:00 (Trưa & Tối)", l:false, e:false, sc:"Không gian sân vườn thoáng mát kết hợp phòng máy lạnh tiếp khách", pk:"Đỗ ô tô trực tiếp tại bãi xe nội khu mặt tiền Lê Hồng Phong", pt:"direct", ms:"Cá diêu hồng nướng đất sét, Gà nướng đất sét, Đùi heo muối, Tủy bò đút lò", pr:"150.000 – 530.000đ", pMin:150, pMax:530},
+      {t:1, n:"Nhà Hàng Việt Phố", c:"Ẩm thực Việt & Hải sản VIP", f:98, s:4.8, a:"45 - 47 - 49 Lê Quý Đôn, P. Xuân Hòa (P. Võ Thị Sáu, Q.3 cũ)", d:2.8, m:"11 phút", h:"08:00 – 23:00 (Sáng/Trưa/Tối/Khuya)", l:true, e:true, sc:"Sức chứa 400 khách, khu sân vườn, sảnh lạnh và hệ thống phòng VIP riêng", pk:"Có chỗ đỗ ô tô trực tiếp trước sảnh & nhân viên điều phối xe", pt:"direct", ms:"Tôm hùm sashimi, Cua Cà Mau, Gỏi cổ hũ dừa, Bò Wagyu nướng", pr:"400.000 – 1.000.000đ", pMin:400, pMax:1000},
+      {t:1, n:"Nhà Hàng Phố 79", c:"Ẩm thực Việt Tiếp Khách", f:97, s:4.7, a:"Số 5 Phạm Ngọc Thạch, P. Xuân Hòa (P. Võ Thị Sáu, Q.3 cũ)", d:3.1, m:"13 phút", h:"09:00 – 23:00 (Trưa/Tối/Khuya)", l:true, e:false, sc:"Sảnh tiệc 150 khách, sân thượng 100 khách, hệ thống phòng VIP sang trọng", pk:"Đỗ ô tô trực tiếp tại khuôn viên nhà hàng & bãi giữ xe Phạm Ngọc Thạch", pt:"direct", ms:"Cá lăng nướng muối ớt, Gà Đông Tảo, Lẩu cua đồng, Hải sản", pr:"399.000 – 1.000.000đ", pMin:399, pMax:1000},
+      {t:1, n:"Ẩm Thực Quê Nhà", c:"Đặc sản 3 Miền Bắc-Trung-Nam", f:96, s:4.6, a:"28 Phạm Ngọc Thạch, P. Xuân Hòa (P.6, Q.3 cũ)", d:3.0, m:"12 phút", h:"09:00 – 23:30 (Mở sau 22h)", l:true, e:false, sc:"Diện tích >2.000m2 mộc mạc mái tranh, có phòng VIP riêng đặt tiệc", pk:"Có bãi đỗ ô tô trực tiếp trước nhà hàng và bãi phụ <100m", pt:"direct", ms:"Cơm cháy kho quẹt Nam Bộ, Bò nướng ống tre Tây Nguyên, Đùi dê quay", pr:"200.000 – 350.000đ", pMin:200, pMax:350},
+      {t:1, n:"Nhà Hàng Út Cà Mau", c:"Đặc sản Đất Mũi & Cua", f:95, s:4.6, a:"215 Điện Biên Phủ, P. Xuân Hòa (P. Võ Thị Sáu, Q.3 cũ)", d:2.4, m:"9 phút", h:"09:00 – 23:00 (Mở sau 22h)", l:true, e:false, sc:"Sức chứa 200 khách, tầng trệt máy lạnh, sân thượng xanh, phòng VIP 8-60 khách", pk:"Gửi xe máy tại quán; Ô tô đỗ tại bãi xe 220 Pasteur (<120m)", pt:"nearby", ms:"Cua Cà Mau chính gốc, Cá thòi lòi, Vọp rừng, Lẩu mắm, Combo Xuôi Dòng Đất Mũi", pr:"250.000 – 500.000đ", pMin:250, pMax:500},
+      {t:1, n:"Nhà Hàng Hội Ngộ", c:"Món Việt & Hải Sản", f:94, s:4.5, a:"19B Nguyễn Thị Diệu, P. Xuân Hòa (P. Võ Thị Sáu, Q.3 cũ)", d:2.3, m:"9 phút", h:"10:00 – 23:15 (Mở sau 22h)", l:true, e:false, sc:"2 tầng mở kết hợp sân vườn, sảnh 100 khách, 15 phòng VIP thiết kế Nhật-Hàn", pk:"Có chỗ đỗ ô tô mặt tiền Nguyễn Thị Diệu & bãi gửi xe kế cận", pt:"direct", ms:"Hải sản tươi sống, Gỏi Hội Ngộ, Sườn heo nướng mật ong, Lẩu hải sản", pr:"250.000 – 500.000đ", pMin:250, pMax:500},
+      {t:1, n:"Mùa Vàng The Warehouse", c:"Ẩm thực Việt & Đông Nam Á", f:93, s:4.5, a:"268 Tô Hiến Thành, P. Hòa Hưng (P.15, Q.10 cũ)", d:2.1, m:"8 phút", h:"10:00 – 21:30 (Trưa & Tối)", l:false, e:false, sc:"Không gian thiết kế kiểu hầm rượu & nhà kho hiện đại, rộng rãi", pk:"Bãi đỗ ô tô cực rộng ngay trong khuôn viên số 268 Tô Hiến Thành", pt:"direct", ms:"Gà H'Mông tiềm sâm Maca, Đùi dê quay, Tôm sú hấp nước dừa", pr:"200.000 – 350.000đ", pMin:200, pMax:350},
+      {t:1, n:"Cơm Niêu Thiên Lý (Cửu Long)", c:"Cơm Niêu Việt Hiện Đại", f:94, s:4.5, a:"87A Cửu Long, P. Hòa Hưng (P.15, Q.10 cũ)", d:2.3, m:"9 phút", h:"10:00 – 14:30 & 16:00 – 21:30", l:false, e:false, sc:"Phòng máy lạnh 2 tầng lịch sự, trang trí ấm cúng cho gia đình trẻ", pk:"Đỗ ô tô dọc tuyến Cửu Long Khu Bắc Hải yên tĩnh, đường rộng", pt:"direct", ms:"Cơm cháy gà rôti, Cá hú kho tộ, Thịt kho tiêu, Canh chua", pr:"120.000 – 250.000đ", pMin:120, pMax:250},
+      {t:1, n:"Cột Điện Kitchen", c:"Món Việt & Fusion Hiện Đại", f:91, s:4.4, a:"Số 01 Đồng Nai, P. Hòa Hưng (P.15, Q.10 cũ)", d:2.2, m:"8 phút", h:"10:00 – 22:00 (Trưa & Tối)", l:false, e:false, sc:"Không gian trẻ trung khu cư xá Bắc Hải, máy lạnh & ban công thoáng", pk:"Có chỗ đỗ ô tô thuận tiện ngay góc đường Đồng Nai", pt:"direct", ms:"Bò lúc lắc, Giò heo muối chiên giòn, Lẩu riêu cua bắp bò", pr:"150.000 – 350.000đ", pMin:150, pMax:350},
+      {t:1, n:"Cơm Niêu Sài Gòn (Tú Xương)", c:"Cơm Niêu Truyền Thống", f:95, s:4.6, a:"27 Tú Xương, P. Xuân Hòa (P.7, Q.3 cũ)", d:2.3, m:"9 phút", h:"10:00 – 22:00 (Trưa & Tối)", l:false, e:false, sc:"Biệt thự cổ điển sang trọng, máy lạnh và sân vườn yên tĩnh", pk:"Có bãi đỗ ô tô trực tiếp tại khuôn viên biệt thự Tú Xương", pt:"direct", ms:"Cơm đập niêu đất, Cá bống kho tiêu, Cua lột chiên giòn", pr:"200.000 – 450.000đ", pMin:200, pMax:450},
+      {t:1, n:"Cơm Niêu Sài Gòn (Hồ Xuân Hương)", c:"Cơm Niêu & Món Việt", f:95, s:4.6, a:"59 Hồ Xuân Hương, P. Xuân Hòa (P.6, Q.3 cũ)", d:2.2, m:"8 phút", h:"10:00 – 22:00 (Trưa & Tối)", l:false, e:false, sc:"Không gian rộng rãi, lịch sự, chuyên đón đoàn gia đình & đối tác", pk:"Đỗ ô tô trực tiếp trước sảnh đường Hồ Xuân Hương", pt:"direct", ms:"Cơm cháy đập, Canh cua rau đay, Thịt luộc cà pháo, Cá kho", pr:"200.000 – 450.000đ", pMin:200, pMax:450},
+      {t:1, n:"Nhà Hàng Khoái", c:"Đặc sản Nha Trang Chọn Lọc", f:93, s:4.5, a:"16 Lê Quý Đôn, P. Xuân Hòa (P.6, Q.3 cũ)", d:2.7, m:"11 phút", h:"10:00 – 22:00 (Trưa & Tối)", l:false, e:false, sc:"Không gian máy lạnh tinh tế, trình bày món ăn chuẩn nhà hàng", pk:"Bãi gửi ô tô trên trục Lê Quý Đôn / Điện Biên Phủ (<100m)", pt:"nearby", ms:"Nem nướng Nha Trang, Bún sứa, Cá nướng ớt xiêm xanh, Gỏi cá mai", pr:"200.000 – 380.000đ", pMin:200, pMax:380},
+      {t:1, n:"Nhà Hàng Đông Dương", c:"Ẩm thực Việt Indochine", f:92, s:4.5, a:"26 Trương Định, P. Xuân Hòa (P.6, Q.3 cũ)", d:2.4, m:"10 phút", h:"10:00 – 22:00 (Trưa & Tối)", l:false, e:false, sc:"Kiến trúc Đông Dương thanh lịch, yên tĩnh, hợp tiếp khách", pk:"Có hỗ trợ đỗ ô tô trên tuyến Trương Định / bãi công viên Tao Đàn", pt:"nearby", ms:"Chả giò Đông Dương, Bò nướng lá lốt, Lẩu cua đồng hải sản", pr:"250.000 – 500.000đ", pMin:250, pMax:500},
+      {t:1, n:"Nam Phương Lầu", c:"Ẩm thực Việt & Á - Âu", f:92, s:4.4, a:"19 - 19B Nguyễn Thị Diệu, P. Xuân Hòa (P. Võ Thị Sáu, Q.3 cũ)", d:2.3, m:"9 phút", h:"10:00 – 22:30 (Trưa & Tối)", l:true, e:false, sc:"Không gian biệt thự máy lạnh và phòng riêng tiếp khách lịch sự", pk:"Có chỗ đỗ ô tô tại khuôn viên 19B Nguyễn Thị Diệu", pt:"direct", ms:"Gỏi củ hũ dừa tôm thịt, Cá mú hấp Hong Kong, Bò sốt tiêu đen", pr:"250.000 – 500.000đ", pMin:250, pMax:500},
+      {t:1, n:"Nhà Hàng Chay Sân Mây", c:"Ẩm thực Chay Thanh Lịch", f:92, s:4.6, a:"771 Lê Hồng Phong, P. Hòa Hưng (P.12, Q.10 cũ)", d:1.1, m:"4 phút", h:"07:30 – 22:00 (Sáng/Trưa/Tối)", l:false, e:true, sc:"Không gian thiền tịnh, máy lạnh mát mẻ, trình bày món chay đẹp mắt", pk:"Bãi gửi ô tô tại Vạn Hạnh Mall hoặc Lê Hồng Phong nối dài (<150m)", pt:"nearby", ms:"Lẩu nấm Sân Mây, Đậu hũ non sốt nấm, Gỏi cuốn ngũ sắc", pr:"80.000 – 150.000đ", pMin:80, pMax:150},
+      {t:1, n:"Phở Tàu Bay (Lý Thái Tổ)", c:"Phở Truyền Thống Danh Tiếng", f:93, s:4.4, a:"435 Lý Thái Tổ, P. Vườn Lài (P.9, Q.10 cũ)", d:0.15, m:"1 phút", h:"06:00 – 12:00 (Chuyên Ăn Sáng)", l:false, e:true, sc:"Quán ăn sáng rộng rãi, sạch sẽ, ngay sát điểm mốc 384 Lý Thái Tổ", pk:"Gửi ô tô tại bãi vòng xoay Lý Thái Tổ hoặc chung cư Ngô Gia Tự (<150m)", pt:"nearby", ms:"Phở tái nạm gầu, Phở bò viên, Nước hầm xương trong ngọt", pr:"60.000 – 85.000đ", pMin:60, pMax:85},
+      {t:1, n:"Bún Cá Lóc Phan Lê", c:"Đặc sản Châu Đốc Chọn Lọc", f:90, s:4.4, a:"159 Cao Thắng, P. Bàn Cờ (P.11, Q.10 cũ)", d:1.2, m:"5 phút", h:"07:00 – 22:00 (Sáng/Trưa/Tối)", l:false, e:true, sc:"Quán máy lạnh sạch sẽ, phục vụ nhanh, hợp ăn sáng & trưa văn phòng", pk:"Bãi gửi ô tô khu vực Cao Thắng nối dài / trung tâm TDTT (<150m)", pt:"nearby", ms:"Bún cá lóc rán nghệ sả riềng, Đầu cá lóc, Rau bông thiên lý Châu Đốc", pr:"45.000 – 85.000đ", pMin:45, pMax:85},
+      {t:1, n:"Cháo Sườn Chú Chen", c:"Cháo Sườn Đài Loan - Việt", f:91, s:4.4, a:"523 Tô Hiến Thành, P. Hòa Hưng (P.14, Q.10 cũ)", d:2.2, m:"8 phút", h:"08:00 – 22:30 (Mở sau 22h)", l:true, e:true, sc:"Không gian máy lạnh hiện đại, trình bày thố đất giữ nhiệt sang trọng", pk:"Gửi ô tô tại bãi xe khu Tô Hiến Thành / Thành Thái (<120m)", pt:"nearby", ms:"Cháo sườn sụn bắp non, Cháo sườn gan, Quẩy giòn", pr:"60.000 – 180.000đ", pMin:60, pMax:180},
+      {t:1, n:"Bún Đậu Mắm Tôm Tiến Hải", c:"Quán Việt Miền Bắc Sạch Sẽ", f:89, s:4.2, a:"409 Nguyễn Tri Phương, P. Vườn Lài (P.5, Q.10 cũ)", d:0.6, m:"3 phút", h:"09:30 – 22:00 (Trưa & Tối)", l:false, e:false, sc:"Nhiều tầng máy lạnh sạch sẽ, bàn ghế gỗ lịch sự", pk:"Gửi ô tô tại bãi xe Nguyễn Chí Thanh gần vòng xoay NTP (<150m)", pt:"nearby", ms:"Mẹt bún đậu thập cẩm, Cốm chiên giòn, Chân giò bó luộc", pr:"45.000 – 85.000đ", pMin:45, pMax:85},
+      {t:1, n:"Bún Bò Gốc Huế O Tú", c:"Ẩm thực Cố Đô Chọn Lọc", f:88, s:4.3, a:"466A Nguyễn Tri Phương, P. Vườn Lài (P.9, Q.10 cũ)", d:0.5, m:"2 phút", h:"08:00 – 21:00 (Sáng/Trưa/Tối)", l:false, e:true, sc:"Không gian gọn gàng, sạch sẽ, rất gần mốc 384 Lý Thái Tổ", pk:"Gửi ô tô tại bãi xe vòng xoay Nguyễn Tri Phương - Nguyễn Chí Thanh", pt:"nearby", ms:"Bún bò Huế đặc biệt, Chả cua Huế, Giò heo hầm", pr:"45.000 – 88.000đ", pMin:45, pMax:88},
+
+      // ==================== TAB 2: LẨU, NƯỚNG & HẢI SẢN TỤ TẬP (17 ĐỊA ĐIỂM) ====================
+      {t:2, n:"Nhà Hàng Top Pot Garden", c:"Lẩu & Nướng Sân Vườn", f:97, s:4.6, a:"448 Ba Tháng Hai, P. Hòa Hưng (P.12, Q.10 cũ)", d:1.4, m:"6 phút", h:"16:00 – 24:00 (Mở khuya tới nửa đêm)", l:true, e:false, sc:"Không gian sân vườn kết hợp phòng máy lạnh hiện đại cho nhóm 20-40 tuổi", pk:"Có bãi đỗ ô tô trực tiếp mặt tiền đường Ba Tháng Hai", pt:"direct", ms:"Lẩu uyên ương Top Pot, Bò Mỹ nướng, Hải sản tươi sống", pr:"200.000 – 550.000đ", pMin:200, pMax:550},
+      {t:2, n:"Vườn Ốc Wongnai", c:"Hải sản & Ốc Kiểu Thái", f:96, s:4.5, a:"268 Tô Hiến Thành, P. Hòa Hưng (P.15, Q.10 cũ)", d:2.1, m:"8 phút", h:"09:00 – 23:00 (Mở khuya sau 22h)", l:true, e:false, sc:"Tổ hợp diện tích cực lớn, thoáng mát, sôi động cho nhóm bạn tụ tập", pk:"Bãi đỗ ô tô nội khu cực rộng ngay tại số 268 Tô Hiến Thành", pt:"direct", ms:"Bạch tuộc ngâm mắm tắc, Mực ống khổng lồ, Gỏi tép nhảy Goong Ten", pr:"250.000 – 350.000đ", pMin:250, pMax:350},
+      {t:2, n:"Hải Sản Phi Phố Biển", c:"Nhà Hàng Hải Sản Tươi Sống", f:96, s:4.6, a:"16A Lê Hồng Phong (nối dài), P. Hòa Hưng (P.12, Q.10 cũ)", d:1.3, m:"5 phút", h:"09:00 – 22:30 (Mở sau 22h)", l:true, e:false, sc:"Hệ thống bể kính hải sản lớn, sảnh máy lạnh và phòng VIP lịch sự", pk:"Đỗ ô tô trực tiếp thoải mái trong khuôn viên 16A Lê Hồng Phong", pt:"direct", ms:"Tôm hùm bông, Cá mú đỏ hấp xì dầu, Ốc hương rang muối, Cua gạch", pr:"350.000 – 800.000đ", pMin:350, pMax:800},
+      {t:2, n:"Ghiền Quán (Nguyễn Thiện Thuật)", c:"Lẩu Nướng & Hải Sản Tụ Tập", f:95, s:4.5, a:"318 Nguyễn Thiện Thuật, P. Bàn Cờ (P.3, Q.3 cũ)", d:0.7, m:"3 phút", h:"11:00 – 23:59 (Mở khuya tới 24h)", l:true, e:false, sc:"Không gian rộng rãi, ấm cúng, cách mốc 384 Lý Thái Tổ chỉ 700m", pk:"Bãi gửi ô tô khu chung cư Nguyễn Thiện Thuật / Điện Biên Phủ (<150m)", pt:"nearby", ms:"Hải sản nướng, Giò heo chiên giòn, Lẩu hải sản chua cay, Gỏi bò", pr:"200.000 – 300.000đ", pMin:200, pMax:300},
+      {t:2, n:"Mala Panda – Lẩu Tứ Xuyên", c:"Lẩu & Xào Cay Tứ Xuyên", f:93, s:4.5, a:"764 Sư Vạn Hạnh, P. Hòa Hưng (P.12, Q.10 cũ)", d:1.1, m:"5 phút", h:"11:00 – 23:59 (Mở khuya tới 24h)", l:true, e:false, sc:"Thiết kế trẻ trung hiện đại, máy lạnh mát, hợp nhóm bạn 20-35 tuổi", pk:"Gửi ô tô tại hầm Vạn Hạnh Mall cách quán ~120m", pt:"nearby", ms:"Lẩu Mala Tứ Xuyên cay tê, Xào khô Mala tự chọn, Thịt bò nhúng", pr:"120.000 – 220.000đ", pMin:120, pMax:220},
+      {t:2, n:"Hải Sản Biển Việt", c:"Hải sản Tươi Sống & Lẩu", f:94, s:4.4, a:"205 - 207 Nguyễn Văn Cừ, P. Chợ Quán (P.3, Q.5 cũ)", d:1.9, m:"7 phút", h:"10:00 – 23:00 (Mở khuya sau 22h)", l:true, e:false, sc:"Sảnh rộng thoáng và phòng máy lạnh, quầy hải sản tươi chọn tại hồ", pk:"Đỗ ô tô tại bãi xe khách sạn Nikko / vòng xoay Nguyễn Văn Cừ (<150m)", pt:"nearby", ms:"Mực ống hấp hành, Cá lăng kho tộ, Lẩu cua đồng, Tôm càng nướng", pr:"220.000 – 350.000đ", pMin:220, pMax:350},
+      {t:2, n:"Mợ Mê Ốc", c:"Chuyên Ốc & Hải Sản Đêm", f:92, s:4.4, a:"130 Cách Mạng Tháng 8, P. Nhiêu Lộc (P.7, Q.3 cũ)", d:2.2, m:"8 phút", h:"16:30 – 03:00 sáng (Mở xuyên đêm)", l:true, e:false, sc:"Không gian thoáng mát, lên món nhanh, tụ điểm ăn khuya sầm uất", pk:"Gửi ô tô tại bãi xe công viên Lê Thị Riêng / CMT8 (<150m)", pt:"nearby", ms:"Ốc dừa hấp muối tiêu, Ốc giác xào bơ, Càng ghẹ rang muối ớt", pr:"250.000 – 320.000đ", pMin:250, pMax:320},
+      {t:2, n:"Buffet Ăn Được Phúc (Hùng Vương)", c:"Lẩu & Nướng Chuẩn Vị Ma Cao", f:95, s:4.5, a:"90 Hùng Vương, P. An Đông (P.9, Q.5 cũ)", d:0.9, m:"4 phút", h:"08:00 – 24:00 (Mở khuya tới 24h)", l:true, e:true, sc:"Nhà hàng máy lạnh quy mô lớn, quầy line hiện đại, cách mốc <1km", pk:"Bãi gửi ô tô tại 100Bis Hùng Vương ngay sát bên (<50m)", pt:"nearby", ms:"Lẩu Ma Cao 2 ngăn, Bò Mỹ thượng hạng, Tôm sú, Há cảo hấp", pr:"299.000 – 399.000đ", pMin:299, pMax:399},
+      {t:2, n:"Buffet Ăn Được Phúc (Nguyễn Tri Phương)", c:"Buffet Lẩu & Nướng Ma Cao", f:94, s:4.5, a:"533 Nguyễn Tri Phương, P. Vườn Lài (P.8, Q.10 cũ)", d:0.8, m:"3 phút", h:"10:30 – 22:30 (Mở sau 22h)", l:true, e:false, sc:"Không gian máy lạnh nhiều tầng rộng rãi, hút khói tại bàn", pk:"Gửi ô tô tại bãi xe sau Bưu điện Lý Thường Kiệt / Thành Thái (<150m)", pt:"nearby", ms:"Lẩu Tứ Xuyên & Lẩu nấm, Ba chỉ bò Mỹ, Hải sản nướng", pr:"249.000 – 339.000đ", pMin:249, pMax:339},
+      {t:2, n:"Long Wang – Hấp Thủy Nhiệt", c:"Hấp Thủy Nhiệt Đài Loan", f:95, s:4.6, a:"816 Sư Vạn Hạnh, P. Hòa Hưng (P.12, Q.10 cũ)", d:1.2, m:"5 phút", h:"11:00 – 22:00 (Trưa & Tối)", l:false, e:false, sc:"Thiết kế Đài Loan sang trọng, nồi hấp 2 tầng thông minh tại bàn", pk:"Gửi ô tô tại hầm Vạn Hạnh Mall đối diện xéo (<100m)", pt:"nearby", ms:"Tôm sú hấp thủy nhiệt, Cá hồi, Bào ngư, Cháo dưỡng sinh tầng đáy", pr:"250.000 – 450.000đ", pMin:250, pMax:450},
+      {t:2, n:"Sugoi Hotpot (Sư Vạn Hạnh)", c:"Buffet Lẩu Nướng Hiện Đại", f:91, s:4.3, a:"Lầu 1, 816 Sư Vạn Hạnh, P. Hòa Hưng (P.12, Q.10 cũ)", d:1.2, m:"5 phút", h:"10:00 – 14:00 & 17:00 – 22:30", l:true, e:false, sc:"Không gian máy lạnh trẻ trung, menu gần 100 món nhúng", pk:"Gửi ô tô tại Vạn Hạnh Mall (11 Sư Vạn Hạnh) cách 100m", pt:"nearby", ms:"5 vị nước lẩu Sugoi, Bắp bò Mỹ, Bạch tuộc, Nấm tươi", pr:"159.000 – 249.000đ", pMin:159, pMax:249},
+      {t:2, n:"Taka BBQ (Nguyễn Tri Phương)", c:"Buffet Nướng Lẩu Hàn Quốc", f:92, s:4.4, a:"327 Nguyễn Tri Phương, P. Vườn Lài (P.5, Q.10 cũ)", d:0.6, m:"3 phút", h:"10:30 – 22:30 (Mở sau 22h)", l:true, e:false, sc:"Phòng máy lạnh 3 tầng, hệ thống hút khói âm bàn sạch sẽ", pk:"Gửi ô tô tại bãi xe Nguyễn Chí Thanh gần vòng xoay NTP (<140m)", pt:"nearby", ms:"Sườn bò non ướp sốt Hàn, Lẩu kim chi, Hải sản nướng", pr:"199.000 – 339.000đ", pMin:199, pMax:339},
+      {t:2, n:"Hải Sản Sao Biển", c:"Hải sản Tươi Sống Chọn Tại Hồ", f:92, s:4.4, a:"GB6 - GB7 Nguyễn Giản Thanh, P. Hòa Hưng (P.15, Q.10 cũ)", d:2.2, m:"8 phút", h:"10:00 – 22:00 (Trưa & Tối)", l:false, e:false, sc:"Không gian rộng khu Bắc Hải, tự tay bắt hải sản chế biến tại chỗ", pk:"Đỗ ô tô thuận tiện ngay mặt tiền đường Nguyễn Giản Thanh", pt:"direct", ms:"Ghẹ xanh hấp, Ốc hương sốt trứng muối, Cá tầm nấu măng", pr:"200.000 – 450.000đ", pMin:200, pMax:450},
+      {t:2, n:"BA GÁC Grill & Beer Garden", c:"Nướng Việt Nam & Bia Thủ Công", f:94, s:4.6, a:"31 Lê Quý Đôn, P. Xuân Hòa (P. Võ Thị Sáu, Q.3 cũ)", d:2.8, m:"11 phút", h:"16:00 – 24:00 (Mở khuya tới 24h)", l:true, e:false, sc:"Không gian beer garden hiện đại, sôi động cho dân công sở 25-40 tuổi", pk:"Có bãi gửi ô tô trên trục Lê Quý Đôn / Tú Xương (<100m)", pt:"nearby", ms:"Sườn heo nướng Ba Gác, Bò nướng tảng, Dồi sụn, Bia thủ công", pr:"300.000 – 500.000đ", pMin:300, pMax:500},
+      {t:2, n:"GoGi House (Lê Văn Sỹ)", c:"Thịt Nướng Hàn Quốc", f:92, s:4.5, a:"254 - 256 Lê Văn Sỹ, P. Nhiêu Lộc (P.14, Q.3 cũ)", d:2.9, m:"12 phút", h:"10:00 – 22:00 (Trưa & Tối)", l:false, e:false, sc:"Không gian chuẩn Hàn Quốc, máy lạnh và hút khói hiện đại", pk:"Hỗ trợ chỗ đỗ ô tô khu vực Lê Văn Sỹ / bãi xe cầu Lê Văn Sỹ", pt:"nearby", ms:"Dẻ sườn bò Mỹ, Ba chỉ bò Mỹ cuộn sốt GoGi, Cơm trộn bát đá", pr:"300.000 – 450.000đ", pMin:300, pMax:450},
+      {t:2, n:"Food House – Lẩu Ngon", c:"Lẩu Thái & Lẩu 9 Tầng Mây", f:89, s:4.2, a:"230 Nguyễn Tri Phương, P. Vườn Lài (P.4, Q.10 cũ)", d:0.7, m:"3 phút", h:"10:30 – 14:00 & 17:30 – 22:00", l:false, e:false, sc:"Không gian máy lạnh ấm cúng, thiết kế trẻ trung gần điểm mốc", pk:"Gửi ô tô tại bãi xe Nguyễn Chí Thanh gần vòng xoay NTP (<130m)", pt:"nearby", ms:"Set bò nhúng lẩu 9 tầng mây, Lẩu Thái Tomyum, Sườn khò sốt Lava", pr:"150.000 – 250.000đ", pMin:150, pMax:250},
+      {t:2, n:"Cháo & Lẩu Vịt Bà Lâm", c:"Đặc sản Vịt & Lẩu Đêm", f:88, s:4.3, a:"343/2 Tô Hiến Thành, P. Hòa Hưng (P.12, Q.10 cũ)", d:1.8, m:"7 phút", h:"11:00 – 23:00 (Mở muộn sau 22h)", l:true, e:false, sc:"Hẻm xe hơi rộng rãi, bàn ghế thoáng mát, quán lâu năm", pk:"Hẻm 343 Tô Hiến Thành rộng hoặc gửi bãi BigC Miền Đông (<150m)", pt:"nearby", ms:"Gỏi vịt bắp cải, Cháo vịt đậu xanh, Vịt nướng chao, Lẩu vịt măng", pr:"100.000 – 220.000đ", pMin:100, pMax:220},
+
+      // ==================== TAB 3: ẨM THỰC QUỐC TẾ: Á - ÂU - HOA (24 ĐỊA ĐIỂM) ====================
+      {t:3, n:"San Fu Lou – Đường 3 Tháng 2", c:"Ẩm thực Quảng Đông Mở Khuya", f:99, s:4.7, a:"24 Đường 3 Tháng 2, P. Hòa Hưng (P.12, Q.10 cũ)", d:1.1, m:"4 phút", h:"07:00 – 03:00 sáng (Mở xuyên đêm)", l:true, e:true, sc:"Kiến trúc Á Đông giao thoa phương Tây thanh lịch, bếp mở hiện đại", pk:"Có bãi đỗ ô tô trực tiếp ngay khuôn viên mặt tiền số 24 đường 3/2", pt:"direct", ms:"Há cảo vịt gói kiểu trái lựu, Bánh bao phong sa, Vịt quay Hồng Kông, Hoành thánh dấm đen", pr:"250.000 – 500.000đ", pMin:250, pMax:500},
+      {t:3, n:"Baoz Dimsum (Nguyễn Tri Phương)", c:"Nhà Hàng Dimsum & Món Hoa", f:98, s:4.7, a:"82 - 84 - 86 - 88 Nguyễn Tri Phương, P. An Đông (P.7, Q.5 cũ)", d:1.1, m:"4 phút", h:"06:30 – 14:30 & 16:00 – 23:00", l:true, e:true, sc:"Tòa nhà 5 tầng sang trọng, có phòng VIP cho gia đình & tiếp khách", pk:"Hỗ trợ chỉ dẫn đỗ ô tô trên trục Trần Hưng Đạo / bãi xe Nguyễn Tri Phương (<120m)", pt:"nearby", ms:"Bánh bao kim sa, Há cảo tôm tươi, Vịt quay Bắc Kinh, Chân gà hấp tàu xì", pr:"180.000 – 350.000đ", pMin:180, pMax:350},
+      {t:3, n:"Dim Tu Tac (Trần Hưng Đạo)", c:"Ẩm thực Quảng Đông Cao Cấp", f:98, s:4.7, a:"29B Trần Hưng Đạo, P. An Đông (P.6, Q.5 cũ)", d:1.5, m:"6 phút", h:"08:00 – 14:00 & 17:00 – 22:00", l:false, e:true, sc:"Không gian đại sảnh lớn & phòng VIP đẳng cấp chuẩn Hồng Kông", pk:"Có chỗ đỗ ô tô trực tiếp tại khuôn viên 29B Trần Hưng Đạo", pt:"direct", ms:"Vịt quay Bắc Kinh 3 món, Sườn kinh đô, Cua lột rang muối tiêu, Canh kung fu bào ngư, Chè Dương Chi", pr:"300.000 – 600.000đ", pMin:300, pMax:600},
+      {t:3, n:"Shang Garden (Tôn Thất Tùng)", c:"Fine Dining Trung Hoa", f:97, s:4.6, a:"1A Tôn Thất Tùng, P. Bến Thành (P. Phạm Ngũ Lão, Q.1 cũ)", d:2.2, m:"9 phút", h:"08:00 – 14:30 & 17:30 – 22:00", l:false, e:true, sc:"2 tầng sức chứa 300 khách, 5 phòng VIP (10-80 khách/phòng) sang trọng", pk:"Có bãi đỗ ô tô chuyên biệt cách nhà hàng chỉ 50m", pt:"nearby", ms:"Vịt quay Bắc Kinh, Bào ngư hầm bông cá, Tôm càng cháy tỏi ớt, Heo sữa quay", pr:"400.000 – 700.000đ", pMin:400, pMax:700},
+      {t:3, n:"Ngân Đình Sài Gòn (Windsor Plaza)", c:"Nhà Hàng Hoa 5 Sao", f:96, s:4.6, a:"Tầng 5 Windsor Plaza, 1 Sư Vạn Hạnh, P. An Đông (P.9, Q.5 cũ)", d:1.0, m:"4 phút", h:"07:00 – 14:00 & 17:00 – 22:00", l:false, e:true, sc:"Không gian khách sạn 5 sao lộng lẫy, yên tĩnh, chuẩn tiếp khách VIP", pk:"Hầm đỗ ô tô quy mô lớn trực tiếp của tòa nhà Windsor Plaza", pt:"direct", ms:"Dimsum thủ công, Heo sữa quay nguyên con, Cá mú hấp xì dầu", pr:"350.000 – 650.000đ", pMin:350, pMax:650},
+      {t:3, n:"Tân Hải Vân (Nguyễn Trãi)", c:"Cantonese Restaurant Mở Khuya", f:96, s:4.5, a:"158 - 164 Nguyễn Trãi, P. Bến Thành (Q.1 cũ)", d:2.3, m:"9 phút", h:"06:00 – 23:00 (Sáng sớm tới Khuya)", l:true, e:true, sc:"Khuôn viên kiến trúc Trung Hoa cổ điển rộng lớn, nhiều phòng VIP", pk:"Có bãi đỗ ô tô trực tiếp và nhân viên hướng dẫn trước nhà hàng", pt:"direct", ms:"Bào ngư vi cá, Lẩu hoa Tân Hải Vân, Tiểu long bao, Vịt quay", pr:"300.000 – 650.000đ", pMin:300, pMax:650},
+      {t:3, n:"Baoz Dimsum (The Garden Mall)", c:"Nhà Hàng Dimsum & Yến Tiệc", f:97, s:4.7, a:"Tòa nhà The Garden Mall, 190 Hồng Bàng, P. Chợ Lớn (Q.5 cũ)", d:2.2, m:"8 phút", h:"06:30 – 22:30 (Sáng/Trưa/Tối)", l:true, e:true, sc:"Sảnh lớn hiện đại nằm trong TTTM The Garden Mall, cực kỳ thoáng rộng", pk:"Đỗ ô tô trực tiếp tại tầng hầm rộng rãi của The Garden Mall", pt:"direct", ms:"Bánh cuốn tôm nhân giòn, Xíu mại gạch cua, Mì vịt tiềm", pr:"180.000 – 350.000đ", pMin:180, pMax:350},
+      {t:3, n:"San Fu Lou (Nguyễn Đình Chiểu)", c:"Ẩm thực Quảng Đông", f:95, s:4.6, a:"117 Nguyễn Đình Chiểu, P. Xuân Hòa (P.6, Q.3 cũ)", d:2.5, m:"10 phút", h:"07:00 – 23:00 (Mở sau 22h)", l:true, e:true, sc:"Không gian hiện đại, ấm cúng, phù hợp gia đình trẻ & gặp gỡ đối tác", pk:"Bãi gửi ô tô tại cao ốc lân cận trên trục Nguyễn Đình Chiểu (<100m)", pt:"nearby", ms:"Cơm chiên Quảng Đông, Thịt quay thập cẩm, Đậu hũ Tứ Xuyên", pr:"250.000 – 450.000đ", pMin:250, pMax:450},
+      {t:3, n:"Tokyo Deli Sushi (Đường 3/2)", c:"Nhà Hàng Nhật Bản Chuẩn Vị", f:95, s:4.5, a:"386 - 388 Đường 3 Tháng 2, P. Hòa Hưng (P.12, Q.10 cũ)", d:1.2, m:"5 phút", h:"11:00 – 22:00 (Trưa & Tối)", l:false, e:false, sc:"Mặt tiền đôi rộng rãi, bàn ghế gỗ Nhật Bản có vách ngăn lịch sự", pk:"Có chỗ đỗ ô tô trực tiếp ngay vỉa hè rộng mặt tiền 386 đường 3/2", pt:"direct", ms:"Set Sashimi cá hồi, Maki cuộn lươn, Bánh xèo Nhật, Lẩu Sukiyaki", pr:"150.000 – 300.000đ", pMin:150, pMax:300},
+      {t:3, n:"Chamie Steak (Sư Vạn Hạnh)", c:"Bít Tết & Món Âu Hiện Đại", f:93, s:4.5, a:"770B Sư Vạn Hạnh, P. Hòa Hưng (P.12, Q.10 cũ)", d:1.1, m:"5 phút", h:"10:00 – 22:00 (Trưa & Tối)", l:false, e:false, sc:"Không gian Âu sang trọng, ánh sáng ấm, lý tưởng để hẹn hò & nhóm bạn", pk:"Gửi ô tô tại hầm Vạn Hạnh Mall cách quán chỉ 100m", pt:"nearby", ms:"Steak bò Mỹ sốt tiêu đen/phô mai, Mì Ý hải sản, Salad cá hồi", pr:"150.000 – 280.000đ", pMin:150, pMax:280},
+      {t:3, n:"Nhà Hàng Ái Huê", c:"Ẩm thực Hoa Chợ Lớn Lâu Đời", f:93, s:4.4, a:"412 - 418 Trần Hưng Đạo B, P. Chợ Lớn (P.11, Q.5 cũ)", d:2.6, m:"10 phút", h:"07:30 – 22:00 (Sáng/Trưa/Tối)", l:false, e:true, sc:"Tòa nhà nhiều tầng quy mô lớn, danh tiếng hơn 70 năm tại Chợ Lớn", pk:"Có chỗ đỗ ô tô trên tuyến Trần Hưng Đạo B trước nhà hàng", pt:"direct", ms:"Heo sữa quay, Vịt quay Bắc Kinh, Dimsum điểm tâm sáng, Súp vi cá", pr:"250.000 – 550.000đ", pMin:250, pMax:550},
+      {t:3, n:"Sik Dak Fook (Ăn Được Phúc)", c:"Dimsum & Món Hoa Hiện Đại", f:93, s:4.4, a:"411 Trần Hưng Đạo B, P. Chợ Lớn (P.10, Q.5 cũ)", d:2.5, m:"10 phút", h:"07:30 – 22:00 (Sáng/Trưa/Tối)", l:false, e:true, sc:"Không gian máy lạnh nhiều tầng sang trọng, bàn tròn gia đình", pk:"Hỗ trợ đỗ ô tô mặt tiền Trần Hưng Đạo B & bãi xe lân cận (<100m)", pt:"nearby", ms:"Há cảo tôm, Bánh cuốn xá xíu, Vịt quay, Lẩu uyên ương", pr:"179.000 – 350.000đ", pMin:179, pMax:350},
+      {t:3, n:"Cửu Long Quán – Kowloon Bing Sutt", c:"Ẩm thực Hồng Kông TVB", f:92, s:4.5, a:"74 - 76 Bùi Hữu Nghĩa, P. An Đông (P.7, Q.5 cũ)", d:1.6, m:"6 phút", h:"07:00 – 14:00 & 17:00 – 22:00", l:false, e:true, sc:"Thiết kế đậm chất Hong Kong thập niên 90, máy lạnh sạch sẽ", pk:"Gửi ô tô tại bãi xe công viên Hòa Bình / Trần Tuấn Khải (<150m)", pt:"nearby", ms:"Há cảo, Bánh xếp, Xíu mại, Chân gà tàu xì, Trà sữa Hong Kong", pr:"150.000 – 300.000đ", pMin:150, pMax:300},
+      {t:3, n:"Tiến Phát – Điểm Tâm Hồng Kông", c:"Chuyên Dimsum Ăn Sáng", f:91, s:4.5, a:"18 Ký Hòa, P. Chợ Lớn (P.11, Q.5 cũ)", d:2.1, m:"8 phút", h:"06:00 – 12:30 (Chuyên Sáng & Trưa)", l:false, e:true, sc:"Không gian máy lạnh 2 tầng luôn đông khách, hơn 50 món điểm tâm", pk:"Gửi ô tô tại bãi xe Hùng Vương Plaza cách phố Ký Hòa ~150m", pt:"nearby", ms:"Chân gà hấp tàu xì, Há cảo sò điệp, Cà ri dê, Bánh bao kim sa", pr:"100.000 – 220.000đ", pMin:100, pMax:220},
+      {t:3, n:"Dimsum Mr Hào", c:"Dimsum & Món Hoa Chọn Lọc", f:91, s:4.4, a:"175 Trần Tuấn Khải, P. An Đông (P.5, Q.5 cũ)", d:1.8, m:"7 phút", h:"08:00 – 21:00 (Sáng/Trưa/Tối)", l:false, e:true, sc:"Nằm đối diện Công viên Hòa Bình rất thoáng mát, có khu máy lạnh", pk:"Đỗ ô tô thuận tiện ngay khu vực đối diện Công viên Hòa Bình", pt:"direct", ms:"Bánh bao kim sa, Sủi cảo tôm, Há cảo thủy tinh, Xá xíu", pr:"100.000 – 180.000đ", pMin:100, pMax:180},
+      {t:3, n:"Bonjour Resto' (Sư Vạn Hạnh)", c:"Ẩm thực Âu Kiểu Pháp", f:90, s:4.3, a:"517 Sư Vạn Hạnh, P. Hòa Hưng (P.12, Q.10 cũ)", d:0.9, m:"4 phút", h:"09:00 – 22:00 (Trưa & Tối)", l:false, e:false, sc:"Không gian Pháp ấm cúng, nhẹ nhàng, phù hợp cặp đôi & gia đình nhỏ", pk:"Gửi ô tô tại Vạn Hạnh Mall hoặc bãi xe Sư Vạn Hạnh (<150m)", pt:"nearby", ms:"Bò bít tết sốt rượu vang, Lườn ngỗng xông khói, Mì Ý đút lò", pr:"150.000 – 280.000đ", pMin:150, pMax:280},
+      {t:3, n:"Sushi Sakura (Sư Vạn Hạnh)", c:"Nhà Hàng Sushi Nhật Bản", f:90, s:4.4, a:"505 Sư Vạn Hạnh, P. Hòa Hưng (P.12, Q.10 cũ)", d:0.9, m:"4 phút", h:"11:00 – 22:30 (Mở sau 22h)", l:true, e:false, sc:"Phòng máy lạnh phong cách Nhật gọn gàng, sạch sẽ", pk:"Gửi ô tô tại Vạn Hạnh Mall hoặc bãi xe khu Sư Vạn Hạnh (<150m)", pt:"nearby", ms:"Sushi cá hồi nướng phô mai, Sashimi tổng hợp, Cơm lươn Nhật", pr:"120.000 – 250.000đ", pMin:120, pMax:250},
+      {t:3, n:"AKIKO Japan Dessert & Sushi", c:"Sushi & Tráng Miệng Nhật", f:89, s:4.3, a:"457 Nguyễn Tri Phương, P. Vườn Lài (P.8, Q.10 cũ)", d:0.5, m:"2 phút", h:"09:00 – 21:00 (Sáng/Trưa/Tối)", l:false, e:false, sc:"Không gian trẻ trung, kết hợp sushi và bánh ngọt matcha Nhật Bản", pk:"Gửi ô tô tại bãi xe vòng xoay Nguyễn Tri Phương (<150m)", pt:"nearby", ms:"Set Sushi Akiko, Kem Matcha Parfait, Mì Udon", pr:"150.000 – 250.000đ", pMin:150, pMax:250},
+      {t:3, n:"Cheeky Chicken (Sư Vạn Hạnh)", c:"Gà Nướng & Phô Mai Hàn Quốc", f:91, s:4.4, a:"850 Sư Vạn Hạnh, P. Hòa Hưng (P.13, Q.10 cũ)", d:1.4, m:"6 phút", h:"10:00 – 22:00 (Trưa & Tối)", l:false, e:false, sc:"Thiết kế tinh tế, yên tĩnh, ấm cúng hơn các quán gà rán thông thường", pk:"Gửi ô tô tại hầm Vạn Hạnh Mall (11 Sư Vạn Hạnh) cách ~140m", pt:"nearby", ms:"Gà phô mai chảy trên chảo nóng, Sườn heo nướng Hàn Quốc", pr:"150.000 – 250.000đ", pMin:150, pMax:250},
+      {t:3, n:"Kokoria (Ba Tháng Hai)", c:"Ẩm thực Phô Mai Hàn Quốc", f:89, s:4.3, a:"207/33 Ba Tháng Hai, P. Hòa Hưng (P.11, Q.10 cũ)", d:1.3, m:"5 phút", h:"10:30 – 22:00 (Trưa & Tối)", l:false, e:false, sc:"2 tầng rộng rãi, tầng trên chia nhiều phòng nhỏ riêng tư có chuông gọi", pk:"Gửi ô tô tại bãi xe Nhà hát Hòa Bình ngay kế bên (<100m)", pt:"nearby", ms:"Chảo sườn phô mai kéo sợi, Chảo gà phô mai, Cơm trộn Hàn Quốc", pr:"120.000 – 220.000đ", pMin:120, pMax:220},
+      {t:3, n:"TukTuk Thai Bistro", c:"Ẩm thực Thái Hiện Đại", f:94, s:4.5, a:"38 Lý Tự Trọng / Khu Lê Quý Đôn (Giáp Q.3 - Q.1)", d:3.1, m:"13 phút", h:"10:00 – 22:00 (Trưa & Tối)", l:false, e:false, sc:"Phong cách Bistro Thái Lan sành điệu, máy lạnh, hợp giới trẻ 20-40", pk:"Bãi gửi ô tô Vincom / Lý Tự Trọng cách <120m", pt:"nearby", ms:"Gỏi cá trê chiên xù xoài xanh, Súp Tomyum, Pad Thái, Trà sữa Thái", pr:"250.000 – 450.000đ", pMin:250, pMax:450},
+      {t:3, n:"A Mà Kitchen", c:"Món Hoa Hiện Đại Trẻ Trung", f:94, s:4.6, a:"62 Võ Văn Tần, P. Xuân Hòa (P.6, Q.3 cũ)", d:2.4, m:"10 phút", h:"10:30 – 22:00 (Trưa & Tối)", l:false, e:false, sc:"Decor phong cách Hồng Kông hiện đại cực đẹp, điểm check-in nổi tiếng", pk:"Gửi ô tô tại bãi xe Hồ Con Rùa / Bảo tàng Chứng tích Chiến tranh (<150m)", pt:"nearby", ms:"Cơm chiên cá mặn gà xé, Đậu hũ sốt Tứ Xuyên, Ba rọi quay giòn", pr:"200.000 – 350.000đ", pMin:200, pMax:350},
+      {t:3, n:"CoCo Dining", c:"Fine Dining Đương Đại & Whisky", f:95, s:4.8, a:"143 Nam Kỳ Khởi Nghĩa, P. Xuân Hòa (P.6, Q.3 cũ)", d:2.9, m:"12 phút", h:"17:30 – 23:00 (Mở muộn tiếp khách)", l:true, e:false, sc:"Biệt thự Fine Dining đẳng cấp Michelin Selected, cực kỳ sang trọng", pk:"Có dịch vụ hỗ trợ đỗ ô tô trực tiếp tại khuôn viên nhà hàng", pt:"direct", ms:"Thực đơn Tasting Menu đương đại, Bò Wagyu ủ khô, Hải sản cao cấp", pr:"800.000 – 2.000.000đ", pMin:800, pMax:2000},
+      {t:3, n:"Au Lac Do Brazil", c:"Thịt Nướng Churrasco Brazil", f:94, s:4.6, a:"238 Pasteur, P. Xuân Hòa (P.6, Q.3 cũ)", d:2.6, m:"11 phút", h:"11:00 – 22:30 (Mở sau 22h)", l:true, e:false, sc:"Nhà hàng máy lạnh sang trọng, phục vụ cắt thịt nướng tại bàn", pk:"Bãi đỗ ô tô tại 220 Pasteur ngay kế cận (<80m)", pt:"nearby", ms:"Thăn bò Picanha nướng xiên, Sườn cừu, Xúc xích Brazil, Dứa nướng mật ong", pr:"500.000 – 900.000đ", pMin:500, pMax:900},
+
+      // ==================== TAB 4: KHU ẨM THỰC TTTM & DI CHUYỂN (22 ĐỊA ĐIỂM) ====================
+      {t:4, n:"Haidilao Hotpot (Hùng Vương Plaza)", c:"Lẩu Trung Hoa Dịch Vụ Đỉnh Cao", f:99, s:4.8, a:"Tầng 4, Hùng Vương Plaza, 126 Hồng Bàng, P. Chợ Lớn (Q.5 cũ)", d:1.8, m:"8 phút", h:"10:00 – 02:00 sáng (Mở xuyên đêm)", l:true, e:false, sc:"Sảnh nhà hàng cực lớn tầng 4 TTTM, có phòng riêng, làm nail miễn phí", pk:"Đỗ ô tô tại Hầm B1 (50 xe) hoặc Bãi xe cổng Nguyễn Kim của Hùng Vương Plaza", pt:"direct", ms:"Lẩu 4 ngăn (Dầu cay, Cà chua, Thái, Nấm), Múa mì tại bàn, Thịt bò Haidilao", pr:"350.000 – 600.000đ", pMin:350, pMax:600},
+      {t:4, n:"Hoàng Yến Buffet (Vạn Hạnh Mall)", c:"Buffet Ẩm Thực Việt & Á", f:98, s:4.6, a:"Tầng 5, Gian 15, Vạn Hạnh Mall, 11 Sư Vạn Hạnh, P. Hòa Hưng (Q.10 cũ)", d:1.2, m:"5 phút", h:"11:00 – 14:00 & 18:00 – 22:00", l:false, e:false, sc:"Không gian hiện đại, rộng rãi trong Vạn Hạnh Mall, hơn 60 món Việt-Á", pk:"Bãi đỗ ô tô 350 chỗ tại tầng 3-4-5 Vạn Hạnh Mall (20.000đ/4h đầu)", pt:"direct", ms:"Hải sản tươi, Bánh khọt, Bò nướng lá lốt, Gỏi cuốn, Chè truyền thống", pr:"335.000 – 500.000đ", pMin:335, pMax:500},
+      {t:4, n:"Dim Tu Tac (Hùng Vương Plaza)", c:"Nhà Hàng Quảng Đông Trong TTTM", f:98, s:4.7, a:"Tầng 3F-03-04, Hùng Vương Plaza, 126 Hồng Bàng, P. Chợ Lớn (Q.5 cũ)", d:1.8, m:"8 phút", h:"09:00 – 22:00 (Sáng/Trưa/Tối)", l:false, e:false, sc:"Không gian sang trọng bậc nhất tầng 3 Hùng Vương Plaza, hợp tiếp khách", pk:"Đỗ ô tô trực tiếp tại Hầm B1 hoặc bãi ngoài trời Nguyễn Kim Hùng Vương Plaza", pt:"direct", ms:"Dimsum thượng hạng, Vịt quay Bắc Kinh, Sườn kinh đô, Chè xoài bưởi", pr:"300.000 – 600.000đ", pMin:300, pMax:600},
+      {t:4, n:"Sushi Hokkaido Sachi (Hùng Vương Plaza)", c:"Nhà Hàng Nhật Bản Cao Cấp", f:97, s:4.7, a:"Tầng 4F-04-05, Hùng Vương Plaza, 126 Hồng Bàng, P. Chợ Lớn (Q.5 cũ)", d:1.8, m:"8 phút", h:"10:30 – 22:00 (Trưa & Tối)", l:false, e:false, sc:"Thiết kế chuẩn Nhật Bản tinh tế, nguyên liệu hải sản nhập khẩu đường hàng không", pk:"Đỗ ô tô trực tiếp tại Hầm B1 hoặc bãi Nguyễn Kim của Hùng Vương Plaza", pt:"direct", ms:"Sashimi bụng cá hồi, Sò điệp Hokkaido, Cua lông, Mì lạnh Inaniwa", pr:"400.000 – 800.000đ", pMin:400, pMax:800},
+      {t:4, n:"Chang Kang Kung (Vạn Hạnh Mall)", c:"Hấp Thủy Nhiệt Hong Kong", f:97, s:4.6, a:"Tầng 6, Vạn Hạnh Mall, 11 Sư Vạn Hạnh, P. Hòa Hưng (Q.10 cũ)", d:1.2, m:"5 phút", h:"10:00 – 21:30 (Trưa & Tối)", l:false, e:false, sc:"Không gian thanh lịch, phương pháp hấp không dầu mỡ tốt cho sức khỏe", pk:"Đỗ ô tô tại bãi xe tầng 3-5 Vạn Hạnh Mall (sức chứa 350 ô tô)", pt:"direct", ms:"Cá chình hấp, Tôm sú, Bò Mỹ cuộn nấm kim châm, Cháo hạt sen sườn non", pr:"300.000 – 450.000đ", pMin:300, pMax:450},
+      {t:4, n:"Chang Kang Kung (Hùng Vương Plaza)", c:"Hấp Thủy Nhiệt Hong Kong", f:96, s:4.6, a:"Tầng 4F-02-03, Hùng Vương Plaza, 126 Hồng Bàng, P. Chợ Lớn (Q.5 cũ)", d:1.8, m:"8 phút", h:"10:00 – 21:30 (Trưa & Tối)", l:false, e:false, sc:"Không gian hiện đại tại tầng 4 Hùng Vương Plaza, phục vụ chuyên nghiệp", pk:"Đỗ ô tô tại Hầm B1 hoặc bãi Nguyễn Kim của Hùng Vương Plaza", pt:"direct", ms:"Hải sản hấp thủy nhiệt, Gà tre hấp cải bẹ xanh, Dimsum hấp", pr:"300.000 – 450.000đ", pMin:300, pMax:450},
+      {t:4, n:"Tasaki BBQ (Vạn Hạnh Mall)", c:"Nướng Than Hoa Nhật Bản", f:96, s:4.5, a:"Tầng 6, Vạn Hạnh Mall, 11 Sư Vạn Hạnh, P. Hòa Hưng (Q.10 cũ)", d:1.2, m:"5 phút", h:"10:00 – 22:00 (Trưa & Tối)", l:false, e:false, sc:"Không gian ấm cúng chuẩn Nhật, hút khói không ám mùi quần áo", pk:"Đỗ ô tô tại bãi xe tầng 3-5 Vạn Hạnh Mall (20.000đ/4h đầu)", pt:"direct", ms:"Thịt bò Wagyu, Sườn bò Mỹ không xương sốt Tare, Lẩu Shabu", pr:"250.000 – 400.000đ", pMin:250, pMax:400},
+      {t:4, n:"Gyu Shige – Ngưu Phồn (Hùng Vương Plaza)", c:"Yakiniku Nhật Bản Cao Cấp", f:96, s:4.6, a:"Tầng 4, Hùng Vương Plaza, 126 Hồng Bàng, P. Chợ Lớn (Q.5 cũ)", d:1.8, m:"8 phút", h:"10:30 – 22:00 (Trưa & Tối)", l:false, e:false, sc:"Không gian nướng Yakiniku sang trọng, vách ngăn riêng tư", pk:"Đỗ ô tô trực tiếp tại Hầm B1 / bãi Nguyễn Kim Hùng Vương Plaza", pt:"direct", ms:"Lưỡi bò nướng, Dẻ sườn bò Mỹ sốt Miso, Hàu Nhật nướng mỡ hành", pr:"350.000 – 600.000đ", pMin:350, pMax:600},
+      {t:4, n:"Manwah Taiwanese Hotpot (Hùng Vương)", c:"Buffet Lẩu Đài Loan", f:95, s:4.5, a:"Tầng 4, Hùng Vương Plaza, 126 Hồng Bàng, P. Chợ Lớn (Q.5 cũ)", d:1.8, m:"8 phút", h:"10:00 – 22:00 (Trưa & Tối)", l:false, e:false, sc:"Thiết kế gỗ trầm ấm, quầy line tráng miệng & kem phong phú", pk:"Đỗ ô tô trực tiếp tại Hầm B1 / bãi Nguyễn Kim Hùng Vương Plaza", pt:"direct", ms:"Lẩu Mala Đài Loan & Lẩu Đài Bắc, Bò Mỹ, Há cảo, Quầy kem", pr:"399.000 – 499.000đ", pMin:399, pMax:499},
+      {t:4, n:"Hoang Yen Hotpot (Vạn Hạnh Mall)", c:"Lẩu Truyền Thống & Hiện Đại", f:95, s:4.5, a:"Tầng 5, Vạn Hạnh Mall, 11 Sư Vạn Hạnh, P. Hòa Hưng (Q.10 cũ)", d:1.2, m:"5 phút", h:"10:30 – 22:00 (Trưa & Tối)", l:false, e:false, sc:"Không gian lịch sự tại tầng 5 Vạn Hạnh Mall, hợp gia đình nhiều thế hệ", pk:"Đỗ ô tô tại bãi xe tầng 3-5 Vạn Hạnh Mall (350 chỗ)", pt:"direct", ms:"Lẩu mắm miền Tây, Lẩu cua đồng, Lẩu thả Phan Thiết, Bò nhúng dấm", pr:"250.000 – 450.000đ", pMin:250, pMax:450},
+      {t:4, n:"Khao Lao (Vạn Hạnh Mall)", c:"Nhà Hàng Ẩm Thực Lào", f:94, s:4.5, a:"Tầng 5, Vạn Hạnh Mall, 11 Sư Vạn Hạnh, P. Hòa Hưng (Q.10 cũ)", d:1.2, m:"5 phút", h:"11:00 – 22:00 (Trưa & Tối)", l:false, e:false, sc:"Không gian sang trọng, trình bày món ăn tinh tế, khẩu vị hài hòa", pk:"Đỗ ô tô tại bãi xe tầng 3-5 Vạn Hạnh Mall (20.000đ/4h đầu)", pt:"direct", ms:"Lạp bò, Cá bống mú sốt ớt Khao Lao, Xôi Lào, Tằm Mạc Hùng", pr:"200.000 – 280.000đ", pMin:200, pMax:280},
+      {t:4, n:"Chảo Cá (Vạn Hạnh Mall)", c:"Chuyên Món Cá & Lẩu Việt", f:93, s:4.4, a:"Tầng 5, Vạn Hạnh Mall, 11 Sư Vạn Hạnh, P. Hòa Hưng (Q.10 cũ)", d:1.2, m:"5 phút", h:"10:00 – 22:00 (Trưa & Tối)", l:false, e:false, sc:"Bàn ăn trang bị bếp từ hiện đại giữ nóng chảo cá ngay tại bàn", pk:"Đỗ ô tô tại bãi xe tầng 3-5 Vạn Hạnh Mall", pt:"direct", ms:"Chảo cá lăng nướng nghệ thì là, Lẩu cá lăng măng chua, Chả cá Lã Vọng", pr:"150.000 – 250.000đ", pMin:150, pMax:250},
+      {t:4, n:"Aka House (Vạn Hạnh Mall)", c:"Buffet Nướng Nhật Bản", f:94, s:4.4, a:"Tầng 6, Vạn Hạnh Mall, 11 Sư Vạn Hạnh, P. Hòa Hưng (Q.10 cũ)", d:1.2, m:"5 phút", h:"10:00 – 22:00 (Trưa & Tối)", l:false, e:false, sc:"Không gian Yakiniku trẻ trung, năng động cho nhóm bạn 20-35 tuổi", pk:"Đỗ ô tô tại bãi xe tầng 3-5 Vạn Hạnh Mall", pt:"direct", ms:"Đầu thăn ngoại bò Mỹ, Ba chỉ heo, Hải sản nướng, Lẩu kim chi", pr:"250.000 – 450.000đ", pMin:250, pMax:450},
+      {t:4, n:"King BBQ Buffet (Vạn Hạnh Mall)", c:"Buffet Nướng Lẩu Hàn Quốc", f:94, s:4.4, a:"Gian 6-16B, Tầng 6, Vạn Hạnh Mall, 11 Sư Vạn Hạnh, P. Hòa Hưng", d:1.2, m:"5 phút", h:"10:30 – 21:30 (Trưa & Tối)", l:false, e:false, sc:"Sảnh rộng rãi, quầy panchan ăn kèm đa dạng thay đổi mỗi ngày", pk:"Đỗ ô tô tại bãi xe tầng 3-5 Vạn Hạnh Mall", pt:"direct", ms:"Sườn King bò Mỹ, Cổ bò Mỹ sốt King BBQ, Canh sườn bò Hàn Quốc", pr:"290.000 – 399.000đ", pMin:290, pMax:399},
+      {t:4, n:"GoGi House (Vạn Hạnh Mall)", c:"Quán Thịt Nướng Hàn Quốc", f:94, s:4.4, a:"Tầng 6, Vạn Hạnh Mall, 11 Sư Vạn Hạnh, P. Hòa Hưng (Q.10 cũ)", d:1.2, m:"5 phút", h:"10:00 – 22:00 (Trưa & Tối)", l:false, e:false, sc:"Không gian hiện đại nằm ngay cụm ẩm thực tầng 6 Vạn Hạnh Mall", pk:"Đỗ ô tô tại bãi xe tầng 3-5 Vạn Hạnh Mall", pt:"direct", ms:"Thăn nội bò Mỹ, Sườn non bò Mỹ, Mì lạnh, Lẩu Bulgogi", pr:"250.000 – 450.000đ", pMin:250, pMax:450},
+      {t:4, n:"Kichi Kichi (Vạn Hạnh Mall & Hùng Vương)", c:"Buffet Lẩu Băng Chuyền", f:93, s:4.2, a:"Tầng 6 Vạn Hạnh Mall (11 Sư Vạn Hạnh) & Tầng 4F-09 Hùng Vương Plaza", d:1.2, m:"5 phút", h:"10:30 – 22:00 (Trưa & Tối)", l:false, e:false, sc:"Hệ thống băng chuyền cá nhân và bàn nhóm hiện đại, sạch sẽ", pk:"Đỗ ô tô trực tiếp tại bãi xe Vạn Hạnh Mall hoặc Hùng Vương Plaza", pt:"direct", ms:"Lẩu Tomyum, Lẩu nấm, Ba chỉ bò Mỹ nhập khẩu, Cá hồi, Nấm tươi", pr:"269.000 – 350.000đ", pMin:269, pMax:350},
+      {t:4, n:"iSushi (Hùng Vương Plaza)", c:"Buffet Nhật Bản 100 Món", f:95, s:4.5, a:"Tầng 4, Hùng Vương Plaza, 126 Hồng Bàng, P. Chợ Lớn (Q.5 cũ)", d:1.8, m:"8 phút", h:"10:30 – 22:00 (Trưa & Tối)", l:false, e:false, sc:"Không gian Nhật Bản sang trọng, phục vụ Sashimi tươi không giới hạn", pk:"Đỗ ô tô trực tiếp tại Hầm B1 / bãi Nguyễn Kim Hùng Vương Plaza", pt:"direct", ms:"Buffet Sashimi cá hồi, Cá ngừ, Sushi lươn, Bò Wagyu nướng đá", pr:"450.000 – 600.000đ", pMin:450, pMax:600},
+      {t:4, n:"Yakimono (Hùng Vương Plaza)", c:"Thịt Nướng Đường Phố Nhật", f:93, s:4.4, a:"Tầng 4F-01, Hùng Vương Plaza, 126 Hồng Bàng, P. Chợ Lớn (Q.5 cũ)", d:1.8, m:"8 phút", h:"10:30 – 22:00 (Trưa & Tối)", l:false, e:false, sc:"Thiết kế trẻ trung kiểu phố đèn lồng Tokyo, hợp nhóm bạn trẻ", pk:"Đỗ ô tô trực tiếp tại Hầm B1 / bãi Nguyễn Kim Hùng Vương Plaza", pt:"direct", ms:"Ba chỉ bò Mỹ cuộn nấm, Dẻ sườn bò nướng sốt Nhật, Bánh xèo Nhật", pr:"299.000 – 399.000đ", pMin:299, pMax:399},
+      {t:4, n:"Marukame Udon (Vạn Hạnh Mall)", c:"Mì Udon Tươi & Tempura Nhật", f:91, s:4.4, a:"Tầng 6, Vạn Hạnh Mall, 11 Sư Vạn Hạnh, P. Hòa Hưng (Q.10 cũ)", d:1.2, m:"5 phút", h:"10:00 – 22:00 (Trưa & Tối)", l:false, e:false, sc:"Bếp mở làm mì tươi tại chỗ, sạch sẽ, ăn trưa hoặc tối nhanh gọn", pk:"Đỗ ô tô tại bãi xe tầng 3-5 Vạn Hạnh Mall", pt:"direct", ms:"Mì Udon bò trứng lòng đào, Udon hải sản cay, Tôm Tempura", pr:"70.000 – 150.000đ", pMin:70, pMax:150},
+      {t:4, n:"The Coffee Bean & Starbucks (Hùng Vương)", c:"Cafe & Bánh Ngọt Tiếp Khách", f:93, s:4.6, a:"Tầng 1F-14, Hùng Vương Plaza, 126 Hồng Bàng, P. Chợ Lớn (Q.5 cũ)", d:1.8, m:"8 phút", h:"06:30 – 00:00 (Mở sáng sớm tới Nửa đêm)", l:true, e:true, sc:"Không gian tầng trệt TTTM sang trọng, mở từ 6h30 sáng đến 12h đêm", pk:"Đỗ ô tô tại bãi xe cổng Nguyễn Kim / Hầm B1 Hùng Vương Plaza", pt:"direct", ms:"Cà phê Espresso, Matcha Ice Blended, Bánh sừng trâu ăn sáng", pr:"75.000 – 160.000đ", pMin:75, pMax:160},
+      {t:4, n:"San Fu Lou (Vincom Đồng Khởi & AB Tower)", c:"Ẩm thực Quảng Đông Trung Tâm", f:95, s:4.6, a:"Tầng B3-28A Vincom (72 Lê Thánh Tôn) & 76A Lê Lai, P. Sài Gòn (Q.1 cũ)", d:3.4, m:"14 phút", h:"07:00 – 03:00 (CN AB Tower mở khuya)", l:true, e:true, sc:"Không gian hiện đại ngay lõi trung tâm Quận 1, tiện kết hợp dạo phố", pk:"Hầm đỗ ô tô Vincom Center (40.000đ/lượt) hoặc bãi xe Lê Lai đối diện CV 23/9", pt:"direct", ms:"Dimsum tổng hợp, Vịt quay, Mì khô vịt tiềm, Trà hoa cúc", pr:"250.000 – 450.000đ", pMin:250, pMax:450},
+      {t:4, n:"Khu Ẩm Thực Saigon Centre / Takashimaya", c:"Tổ Hợp Nhà Hàng Quốc Tế Cao Cấp", f:96, s:4.7, a:"65 Lê Lợi / 92-94 Nam Kỳ Khởi Nghĩa, P. Sài Gòn (Q.1 cũ)", d:3.5, m:"15 phút", h:"09:30 – 22:00 (Trưa & Tối)", l:false, e:false, sc:"Tập hợp hàng chục nhà hàng Nhật, Âu, Thái, Hoa chuẩn 5 sao tại B2 & L5", pk:"Hầm B2 chứa 405 ô tô (30.000đ/2h đầu; Miễn phí gửi ô tô khi HĐ >1.000.000đ)", pt:"direct", ms:"Sushi & Sashimi, Steak Âu, Lẩu Thái, Bánh ngọt Nhật Bản", pr:"250.000 – 800.000đ", pMin:250, pMax:800}
+    ];
+
+    let currentTab = 1;
+
+    function updateCounts() {
+      for (let t = 1; t <= 4; t++) {
+        const cnt = DB.filter(x => x.t === t).length;
+        document.getElementById('count' + t).textContent = cnt;
+      }
+    }
+
+    function switchTab(tabIndex) {
+      currentTab = tabIndex;
+      for (let t = 1; t <= 4; t++) {
+        const btn = document.getElementById('tabBtn' + t);
+        if (t === tabIndex) btn.classList.add('active');
+        else btn.classList.remove('active');
+      }
+      const transitBox = document.getElementById('transitBox');
+      if (tabIndex === 4) transitBox.classList.add('visible');
+      else transitBox.classList.remove('visible');
+      renderTable();
+    }
+
+    function setSort(sortVal) {
+      const sel = document.getElementById('sortSelect');
+      if (sortVal === 'name') {
+        sel.value = 'fit_desc';
+      } else {
+        sel.value = sortVal;
+      }
+      renderTable();
+    }
+
+    function resetFilters() {
+      document.getElementById('searchInput').value = '';
+      document.getElementById('timeFilter').value = 'all';
+      document.getElementById('carFilter').value = 'all';
+      document.getElementById('priceFilter').value = 'all';
+      document.getElementById('sortSelect').value = 'fit_desc';
+      renderTable();
+    }
+
+    function renderTable() {
+      const q = document.getElementById('searchInput').value.trim().toLowerCase();
+      const timeF = document.getElementById('timeFilter').value;
+      const carF = document.getElementById('carFilter').value;
+      const priceF = document.getElementById('priceFilter').value;
+      const sortF = document.getElementById('sortSelect').value;
+
+      let list = DB.filter(item => item.t === currentTab);
+
+      if (q) {
+        list = list.filter(item =>
+          item.n.toLowerCase().includes(q) ||
+          item.c.toLowerCase().includes(q) ||
+          item.a.toLowerCase().includes(q) ||
+          item.ms.toLowerCase().includes(q) ||
+          item.sc.toLowerCase().includes(q)
+        );
+      }
+
+      if (timeF === 'late') list = list.filter(item => item.l === true);
+      else if (timeF === 'morning') list = list.filter(item => item.e === true);
+      else if (timeF === 'fullday') list = list.filter(item => !item.e || item.l);
+
+      if (carF === 'direct') list = list.filter(item => item.pt === 'direct');
+      else if (carF === 'nearby') list = list.filter(item => item.pt === 'nearby');
+
+      if (priceF === 'low') list = list.filter(item => item.pMin < 200);
+      else if (priceF === 'mid') list = list.filter(item => item.pMin >= 150 && item.pMax <= 450);
+      else if (priceF === 'high') list = list.filter(item => item.pMax >= 450);
+
+      list.sort((a, b) => {
+        if (sortF === 'fit_desc') return b.f - a.f || b.s - a.s;
+        if (sortF === 'dist_asc') return a.d - b.d;
+        if (sortF === 'star_desc') return b.s - a.s || b.f - a.f;
+        if (sortF === 'price_asc') return a.pMin - b.pMin;
+        if (sortF === 'price_desc') return b.pMax - a.pMax;
+        return 0;
+      });
+
+      const tbody = document.getElementById('tableBody');
+      const emptyState = document.getElementById('emptyState');
+      tbody.innerHTML = '';
+
+      if (list.length === 0) {
+        emptyState.style.display = 'block';
+      } else {
+        emptyState.style.display = 'none';
+        list.forEach(v => {
+          const tr = document.createElement('tr');
+          const timeBadge = v.l
+            ? '<span class="badge-late">🌙 Mở khuya &gt;22h</span>'
+            : (v.e ? '<span class="badge-day">☀️ Mở ăn sáng</span>' : '<span class="badge-day">🕒 Trưa &amp; Tối</span>');
+          const carClass = v.pt === 'direct' ? 'car-direct' : 'car-nearby';
+          const carIcon = v.pt === 'direct' ? '🅿️ Đỗ trực tiếp/Hầm: ' : '🚶 Bãi xe &lt;150m: ';
+
+          tr.innerHTML = `
+            <td class="col-name" data-label="Tên Nhà Hàng">
+              <div>
+                <span class="v-name">${v.n}</span>
+                <span class="v-cat-tag">${v.c}</span>
+              </div>
+            </td>
+            <td class="col-fit" data-label="Độ Phù Hợp & Sao">
+              <div>
+                <span class="fit-pill">${v.f}%</span>
+                <span class="star-box">${v.s.toFixed(1)} ★</span>
+              </div>
+            </td>
+            <td class="col-addr" data-label="Địa Chỉ">${v.a}</td>
+            <td class="col-dist" data-label="Khoảng Cách">
+              <div>
+                <span class="dist-num">${v.d.toFixed(1)} km</span>
+                <span class="time-sub">~${v.m} đi xe</span>
+              </div>
+            </td>
+            <td class="col-hour" data-label="Giờ Hoạt Động">
+              <div>
+                <span class="hour-text">${v.h}</span>
+                ${timeBadge}
+              </div>
+            </td>
+            <td class="col-spac" data-label="Quy Mô Không Gian">${v.sc}</td>
+            <td class="col-car" data-label="Chỗ Đỗ Ô Tô">
+              <span class="${carClass}">${carIcon}${v.pk}</span>
+            </td>
+            <td class="col-must" data-label="Món Phải Gọi"><strong>${v.ms}</strong></td>
+            <td class="col-pric" data-label="Khoảng Giá/Người">
+              <span class="price-val">${v.pr}</span>
+            </td>
+          `;
+          tbody.appendChild(tr);
+        });
+      }
+
+      document.getElementById('resultStatus').innerHTML =
+        `Đang hiển thị <strong>${list.length}</strong> địa điểm trong Tab hiện tại (Tổng hệ thống: <strong>${DB.length}</strong> nhà hàng &amp; quán ăn chất lượng quanh 384 Lý Thái Tổ).`;
+    }
+
+    // Khởi tạo giao diện
+    updateCounts();
+    renderTable();
+  </script>
+</body>
+</html>
