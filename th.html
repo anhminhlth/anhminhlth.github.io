@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Danh sách Trang (Bí mật)</title>
+    <style>
+        body { font-family: 'Roboto', sans-serif; background: #F4F6F8; padding: 15px; color: #111827; margin: 0; }
+        .container { max-width: 600px; margin: 0 auto; background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); border-top: 4px solid #10B981; }
+        .header-flex { display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #E5E7EB; padding-bottom: 12px; margin-bottom: 15px; }
+        h2 { color: #065F46; margin: 0; font-size: 1.3rem; }
+        
+        ul { list-style: none; padding: 0; margin: 0; }
+        li { margin-bottom: 10px; }
+        a.item-link { text-decoration: none; color: #1F2937; font-size: 1.05rem; padding: 12px; display: flex; align-items: center; background: #F9FAFB; border-radius: 6px; transition: 0.2s; border: 1px solid #E5E7EB; }
+        a.item-link:hover { background: #ECFDF5; border-color: #10B981; transform: translateX(5px); color: #047857; }
+        
+        .icon { font-size: 1.4rem; margin-right: 12px; }
+        .title-text { font-weight: bold; }
+        .filename { font-size: 0.85rem; color: #9CA3AF; margin-left: auto; font-style: italic; }
+        .loading { font-style: italic; color: #6B7280; text-align: center; padding: 20px; }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="header-flex">
+            <h2>Dashboard (Trang gốc)</h2>
+        </div>
+        <ul id="page-list">
+            <li class="loading">Đang quét hệ thống...</li>
+        </ul>
+    </div>
+
+    <script>
+        // CẤU HÌNH
+        const owner = 'anhminhlth';
+        const repo = 'anhminhlth.github.io';
+        
+        // Cố định URL API để luôn lấy dữ liệu ở thư mục gốc (root), không phụ thuộc vào đường dẫn /th
+        const apiUrl = `https://api.github.com/repos/${owner}/${repo}/contents/`;
+
+        fetch(apiUrl)
+            .then(response => response.json())
+            .then(data => {
+                const list = document.getElementById('page-list');
+                list.innerHTML = ''; 
+                
+                // Loại bỏ thư mục ẩn, index.html và chính file th.html này
+                let items = data.filter(item => 
+                    !item.name.startsWith('.') && 
+                    item.name !== 'index.html' && 
+                    item.name !== 'th.html'
+                );
+                
+                // Ưu tiên hiện thư mục trước, file sau
+                items.sort((a, b) => (a.type === b.type) ? 0 : (a.type === 'dir' ? -1 : 1));
+
+                items.forEach(file => {
+                    const listItem = document.createElement('li');
+                    const link = document.createElement('a');
+                    link.className = 'item-link';
+                    
+                    if (file.type === 'dir') {
+                        link.href = `/${file.name}/`;
+                        link.innerHTML = `<span class="icon">📁</span> <span class="title-text">${file.name}</span>`;
+                        listItem.appendChild(link);
+                        list.appendChild(listItem);
+                    } 
+                    else if (file.type === 'file' && file.name.endsWith('.html')) {
+                        const cleanName = file.name.replace('.html', '');
+                        link.href = `/${cleanName}`;
+                        
+                        link.innerHTML = `<span class="icon">📄</span> <span class="title-text">${cleanName}</span> <span class="filename">${file.name}</span>`;
+                        listItem.appendChild(link);
+                        list.appendChild(listItem);
+
+                        // Tự động load tiêu đề <title> của file
+                        fetch(file.download_url)
+                            .then(res => res.text())
+                            .then(html => {
+                                const match = html.match(/<title>(.*?)<\/title>/);
+                                if (match && match[1]) {
+                                    link.querySelector('.title-text').textContent = match[1];
+                                }
+                            }).catch(e => console.log('Lỗi lấy title:', e));
+                    }
+                });
+            })
+            .catch(error => {
+                document.getElementById('page-list').innerHTML = '<li>Lỗi tải dữ liệu.</li>';
+            });
+    </script>
+</body>
+</html>
