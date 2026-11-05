@@ -1,0 +1,1253 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cẩm Nang Du Lịch & Ẩm Thực 2026</title>
+  <style>
+    :root {
+      --bg-main: #F8FAFC;
+      --bg-card: #FFFFFF;
+      --text-main: #0F172A;
+      --text-muted: #475569;
+      --primary: #1A73E8;
+      --primary-hover-bg: #E8F0FE;
+      --border-color: #E2E8F0;
+      --badge-green-bg: #DCFCE7;
+      --badge-green-text: #166534;
+      --badge-amber-bg: #FEF3C7;
+      --badge-amber-text: #92400E;
+      --badge-purple-bg: #F3E8FF;
+      --badge-purple-text: #6B21A8;
+      --badge-blue-bg: #DBEAFE;
+      --badge-blue-text: #1E40AF;
+      --danger: #DC2626;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background-color: var(--bg-main);
+      color: var(--text-main);
+      line-height: 1.5;
+      padding-bottom: 60px;
+    }
+
+    /* Header & KPI Bar */
+    .app-header {
+      background-color: var(--bg-card);
+      border-bottom: 1px solid var(--border-color);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 2px 8px rgba(15, 23, 42, 0.04);
+    }
+
+    .container {
+      max-width: 1440px;
+      margin: 0 auto;
+      padding: 0 16px;
+    }
+
+    .top-banner {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 0;
+      gap: 12px;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .brand-title h1 {
+      font-size: 1.25rem;
+      font-weight: 800;
+      color: var(--text-main);
+      letter-spacing: -0.02em;
+    }
+
+    .brand-title p {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      margin-top: 2px;
+    }
+
+    .itinerary-actions {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+    }
+
+    .btn-action {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 14px;
+      border-radius: 8px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      cursor: pointer;
+      border: 1px solid var(--primary);
+      background-color: var(--bg-card);
+      color: var(--primary);
+      transition: all 0.15s ease;
+      text-decoration: none;
+    }
+
+    .btn-action:hover {
+      background-color: var(--primary-hover-bg);
+      color: var(--text-main);
+    }
+
+    .btn-action.primary {
+      background-color: var(--primary);
+      color: #FFFFFF;
+    }
+
+    .btn-action.primary:hover {
+      background-color: #1557B0;
+      color: #FFFFFF;
+    }
+
+    .kpi-bar {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 10px;
+      padding: 10px 0;
+    }
+
+    .kpi-card {
+      background-color: var(--bg-main);
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      padding: 8px 12px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .kpi-label {
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: var(--text-muted);
+      font-weight: 600;
+    }
+
+    .kpi-val {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--text-main);
+      margin-top: 2px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .kpi-val.accent {
+      color: var(--primary);
+    }
+
+    /* Controls: Tabs, Search & Filter Chips */
+    .controls-section {
+      margin-top: 16px;
+      background-color: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      padding: 16px;
+      box-shadow: 0 1px 3px rgba(15, 23, 42, 0.03);
+    }
+
+    .tabs-nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      border-bottom: 1px solid var(--border-color);
+      padding-bottom: 14px;
+      margin-bottom: 14px;
+    }
+
+    .tab-btn {
+      padding: 9px 15px;
+      border-radius: 8px;
+      border: 1px solid var(--border-color);
+      background-color: var(--bg-card);
+      color: var(--text-main);
+      font-size: 0.85rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.15s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    /* Mandatory Hover & Active Tab Rules */
+    .tab-btn:hover {
+      background-color: var(--primary-hover-bg);
+      color: var(--text-main);
+      border-color: var(--primary);
+    }
+
+    .tab-btn.active {
+      background-color: var(--primary);
+      color: #FFFFFF;
+      border-color: var(--primary);
+    }
+
+    .tab-count {
+      font-size: 0.75rem;
+      padding: 1px 7px;
+      border-radius: 99px;
+      background-color: rgba(15, 23, 42, 0.08);
+      color: inherit;
+    }
+
+    .tab-btn.active .tab-count {
+      background-color: rgba(255, 255, 255, 0.25);
+      color: #FFFFFF;
+    }
+
+    .search-filter-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .search-box {
+      flex: 1 1 300px;
+      position: relative;
+    }
+
+    .search-box input {
+      width: 100%;
+      padding: 10px 14px 10px 36px;
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      font-size: 0.9rem;
+      color: var(--text-main);
+      background-color: var(--bg-main);
+      outline: none;
+      transition: border-color 0.15s;
+    }
+
+    .search-box input:focus {
+      border-color: var(--primary);
+      background-color: var(--bg-card);
+    }
+
+    .search-icon {
+      position: absolute;
+      left: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      pointer-events: none;
+    }
+
+    .filter-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      flex: 2 1 500px;
+    }
+
+    .chip {
+      padding: 6px 12px;
+      border-radius: 999px;
+      border: 1px solid var(--border-color);
+      background-color: var(--bg-card);
+      color: var(--text-main);
+      font-size: 0.78rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+
+    .chip:hover {
+      background-color: var(--primary-hover-bg);
+      color: var(--text-main);
+      border-color: var(--primary);
+    }
+
+    .chip.active {
+      background-color: var(--primary);
+      color: #FFFFFF;
+      border-color: var(--primary);
+    }
+
+    /* Status & Sort Bar */
+    .results-toolbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin: 14px 0 10px;
+      font-size: 0.84rem;
+      color: var(--text-muted);
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .mobile-sort-select {
+      display: none;
+      padding: 6px 10px;
+      border-radius: 6px;
+      border: 1px solid var(--border-color);
+      background-color: var(--bg-card);
+      color: var(--text-main);
+      font-size: 0.82rem;
+      font-weight: 600;
+    }
+
+    /* Table View (Desktop) */
+    .table-wrapper {
+      background-color: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      overflow-x: auto;
+      box-shadow: 0 1px 3px rgba(15, 23, 42, 0.03);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+      font-size: 0.84rem;
+    }
+
+    thead th {
+      background-color: #F1F5F9;
+      color: var(--text-main);
+      font-weight: 700;
+      padding: 12px 10px;
+      border-bottom: 2px solid var(--border-color);
+      white-space: nowrap;
+      user-select: none;
+    }
+
+    thead th.sortable {
+      cursor: pointer;
+      transition: background-color 0.15s;
+    }
+
+    thead th.sortable:hover {
+      background-color: var(--primary-hover-bg);
+      color: var(--text-main);
+    }
+
+    .sort-indicator {
+      display: inline-block;
+      margin-left: 4px;
+      font-size: 0.75rem;
+      color: var(--primary);
+    }
+
+    tbody tr {
+      border-bottom: 1px solid var(--border-color);
+      background-color: var(--bg-card);
+      color: var(--text-main);
+      transition: background-color 0.12s ease;
+    }
+
+    /* Mandatory Table Row Hover Rule */
+    tbody tr:hover {
+      background-color: var(--primary-hover-bg);
+      color: var(--text-main);
+    }
+
+    tbody td {
+      padding: 12px 10px;
+      vertical-align: top;
+      color: var(--text-main);
+    }
+
+    .place-name {
+      font-weight: 700;
+      font-size: 0.92rem;
+      color: var(--text-main);
+      margin-bottom: 3px;
+    }
+
+    .place-cat {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      font-weight: 500;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 2px 7px;
+      border-radius: 6px;
+      font-size: 0.72rem;
+      font-weight: 700;
+      margin-right: 4px;
+      margin-top: 4px;
+    }
+
+    .badge-early {
+      background-color: var(--badge-green-bg);
+      color: var(--badge-green-text);
+    }
+
+    .badge-late {
+      background-color: var(--badge-purple-bg);
+      color: var(--badge-purple-text);
+    }
+
+    .badge-car {
+      background-color: var(--badge-blue-bg);
+      color: var(--badge-blue-text);
+    }
+
+    .badge-tier {
+      background-color: var(--badge-amber-bg);
+      color: var(--badge-amber-text);
+    }
+
+    .fit-pill {
+      display: inline-block;
+      padding: 3px 8px;
+      border-radius: 6px;
+      font-weight: 700;
+      background-color: #E0F2FE;
+      color: #0369A1;
+      font-size: 0.82rem;
+    }
+
+    .star-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 3px;
+      font-weight: 700;
+      color: #B45309;
+      background-color: #FEF3C7;
+      padding: 3px 8px;
+      border-radius: 6px;
+      font-size: 0.82rem;
+    }
+
+    .row-actions {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      min-width: 125px;
+    }
+
+    .btn-sm {
+      padding: 6px 10px;
+      border-radius: 6px;
+      font-size: 0.76rem;
+      font-weight: 600;
+      text-align: center;
+      text-decoration: none;
+      cursor: pointer;
+      border: 1px solid var(--border-color);
+      background-color: var(--bg-card);
+      color: var(--text-main);
+      transition: all 0.15s;
+    }
+
+    .btn-sm:hover {
+      background-color: var(--primary);
+      color: #FFFFFF;
+      border-color: var(--primary);
+    }
+
+    .btn-sm.saved {
+      background-color: #16A34A;
+      color: #FFFFFF;
+      border-color: #16A34A;
+    }
+
+    /* Card View (Mobile < 620px) */
+    .card-grid {
+      display: none;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .place-card {
+      background-color: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      padding: 14px;
+      box-shadow: 0 1px 3px rgba(15, 23, 42, 0.04);
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 8px;
+    }
+
+    .card-metrics {
+      display: flex;
+      gap: 6px;
+      flex-shrink: 0;
+    }
+
+    .card-row {
+      font-size: 0.83rem;
+      color: var(--text-main);
+    }
+
+    .card-row strong {
+      color: var(--text-muted);
+      font-weight: 600;
+    }
+
+    .card-footer {
+      display: flex;
+      gap: 8px;
+      margin-top: 6px;
+      padding-top: 10px;
+      border-top: 1px solid var(--border-color);
+    }
+
+    .card-footer .btn-sm {
+      flex: 1;
+      padding: 8px 10px;
+      font-size: 0.8rem;
+    }
+
+    /* Modal for Saved Itinerary */
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background-color: rgba(15, 23, 42, 0.55);
+      z-index: 200;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+    }
+
+    .modal-overlay.open {
+      display: flex;
+    }
+
+    .modal-box {
+      background-color: var(--bg-card);
+      color: var(--text-main);
+      border-radius: 12px;
+      max-width: 720px;
+      width: 100%;
+      max-height: 85vh;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 20px 25px -5px rgba(15, 23, 42, 0.15);
+    }
+
+    .modal-header {
+      padding: 16px 20px;
+      border-bottom: 1px solid var(--border-color);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .modal-header h3 {
+      font-size: 1.05rem;
+      font-weight: 700;
+    }
+
+    .modal-body {
+      padding: 16px 20px;
+      overflow-y: auto;
+      flex: 1;
+    }
+
+    .modal-footer {
+      padding: 12px 20px;
+      border-top: 1px solid var(--border-color);
+      display: flex;
+      justify-content: flex-end;
+      gap: 8px;
+    }
+
+    .saved-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 0;
+      border-bottom: 1px solid var(--border-color);
+      gap: 12px;
+    }
+
+    .empty-state {
+      text-align: center;
+      padding: 32px 16px;
+      color: var(--text-muted);
+    }
+
+    /* Responsive Breakpoints */
+    @media (max-width: 960px) {
+      .kpi-bar {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 620px) {
+      .kpi-bar {
+        grid-template-columns: 1fr 1fr;
+      }
+      .kpi-card:first-child {
+        grid-column: span 2;
+      }
+      .table-wrapper {
+        display: none;
+      }
+      .card-grid {
+        display: flex;
+      }
+      .mobile-sort-select {
+        display: inline-block;
+      }
+      .tabs-nav {
+        overflow-x: auto;
+        flex-wrap: nowrap;
+        padding-bottom: 10px;
+      }
+      .tab-btn {
+        white-space: nowrap;
+        flex-shrink: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- STICKY HEADER & KPI BAR -->
+  <header class="app-header">
+    <div class="container">
+      <div class="top-banner">
+        <div class="brand-title">
+          <h1>CẨM NANG DU LỊCH & ẨM THỰC TP.HCM 2026</h1>
+          <p>Chuẩn không gian The Running Bean / Cafe New • Kiểm chứng hoạt động 2025–2026 • Ưu tiên đỗ Ô tô</p>
+        </div>
+        <div class="itinerary-actions">
+          <button class="btn-action" id="btnViewSaved" onclick="openSavedModal()">
+            📌 Lịch trình đã lưu (<span id="savedCount">0</span>)
+          </button>
+          <button class="btn-action primary" onclick="exportCSV(false)">
+            ⬇️ Xuất CSV Toàn Bộ
+          </button>
+        </div>
+      </div>
+
+      <div class="kpi-bar">
+        <div class="kpi-card">
+          <span class="kpi-label">Điểm Mốc Trung Tâm ([LANDMARK])</span>
+          <span class="kpi-val accent" title="384 Lý Thái Tổ, Phường Vườn Lài (Phường 10, Quận 10 cũ), TP.HCM">384 Lý Thái Tổ, P. Vườn Lài (Q.10)</span>
+        </div>
+        <div class="kpi-card">
+          <span class="kpi-label">Khách Mục Tiêu ([AGE_GROUP])</span>
+          <span class="kpi-val">20 – 40 tuổi (Hiện đại, Có gu)</span>
+        </div>
+        <div class="kpi-card">
+          <span class="kpi-label">Tổng Số Điểm / Dịch Vụ</span>
+          <span class="kpi-val accent" id="kpiTotal">0</span>
+        </div>
+        <div class="kpi-card">
+          <span class="kpi-label">Điểm Đỗ Được Ô Tô (<150m)</span>
+          <span class="kpi-val" id="kpiCar">0</span>
+        </div>
+        <div class="kpi-card">
+          <span class="kpi-label">Mở Khuya Sau 22:00 / 24h</span>
+          <span class="kpi-val" id="kpiLate">0</span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- MAIN CONTENT -->
+  <main class="container">
+    <section class="controls-section">
+      <!-- 6 Category Tabs -->
+      <div class="tabs-nav" id="tabsContainer"></div>
+
+      <!-- Search & Quick Filter Chips -->
+      <div class="search-filter-row">
+        <div class="search-box">
+          <span class="search-icon">🔍</span>
+          <input type="text" id="searchInput" placeholder="Tìm tên quán, món đặc sản, đường (VD: Running Bean, Sư Vạn Hạnh, Phở, Bãi xe)..." oninput="handleSearch()">
+        </div>
+        <div class="filter-chips" id="chipsContainer"></div>
+      </div>
+    </section>
+
+    <!-- Toolbar -->
+    <div class="results-toolbar">
+      <div id="resultSummary">Đang hiển thị <strong>0</strong> địa điểm</div>
+      <div>
+        <span>Mẹo: Click tiêu đề cột để sắp xếp (Sort ▲/▼)</span>
+        <select class="mobile-sort-select" id="mobileSortSelect" onchange="handleMobileSort(this.value)">
+          <option value="fit-desc">Sắp xếp: Độ phù hợp (Cao → Thấp)</option>
+          <option value="star-desc">Sắp xếp: Điểm sao (Cao → Thấp)</option>
+          <option value="dist-asc">Sắp xếp: Khoảng cách (Gần → Xa)</option>
+          <option value="priceSort-asc">Sắp xếp: Giá (Thấp → Cao)</option>
+          <option value="priceSort-desc">Sắp xếp: Giá (Cao → Thấp)</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- Desktop Table View -->
+    <div class="table-wrapper">
+      <table>
+        <thead>
+          <tr>
+            <th style="width: 18%;">Tên Quán / Địa Điểm & Loại Hình</th>
+            <th class="sortable" style="width: 8%;" onclick="toggleSort('fit')">Độ Hợp Gu <span class="sort-indicator" id="sort-fit"></span></th>
+            <th class="sortable" style="width: 7%;" onclick="toggleSort('star')">Sao ★ <span class="sort-indicator" id="sort-star"></span></th>
+            <th style="width: 14%;">Địa Chỉ Cụ Thể</th>
+            <th class="sortable" style="width: 9%;" onclick="toggleSort('dist')">Từ Mốc 384 <span class="sort-indicator" id="sort-dist"></span></th>
+            <th style="width: 10%;">Giờ Mở Cửa</th>
+            <th style="width: 10%;">Quy Mô & Không Gian</th>
+            <th style="width: 14%;">Chỗ Đỗ Ô Tô (<150m)</th>
+            <th style="width: 12%;">Món Phải Thử / Hoạt Động</th>
+            <th class="sortable" style="width: 9%;" onclick="toggleSort('priceSort')">Mức Giá (VNĐ) <span class="sort-indicator" id="sort-priceSort"></span></th>
+            <th style="width: 9%;">Tương Tác</th>
+          </tr>
+        </thead>
+        <tbody id="tableBody"></tbody>
+      </table>
+    </div>
+
+    <!-- Mobile Card View (< 620px) -->
+    <div class="card-grid" id="cardGrid"></div>
+  </main>
+
+  <!-- SAVED ITINERARY MODAL -->
+  <div class="modal-overlay" id="savedModal">
+    <div class="modal-box">
+      <div class="modal-header">
+        <h3>📌 Lịch Trình Đã Lưu Của Bạn (Mốc: 384 Lý Thái Tổ)</h3>
+        <button class="btn-sm" onclick="closeSavedModal()">✕ Đóng</button>
+      </div>
+      <div class="modal-body" id="savedModalBody"></div>
+      <div class="modal-footer">
+        <button class="btn-action" onclick="clearSavedItinerary()">🗑️ Xóa tất cả</button>
+        <button class="btn-action primary" onclick="exportCSV(true)">⬇️ Xuất CSV Lịch Trình Đã Lưu</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- COMPACT DATA STORE & APPLICATION SCRIPT -->
+  <script>
+    const LANDMARK_ORIGIN = "384 Lý Thái Tổ, Phường 10, Quận 10, TP.HCM";
+
+    const TABS_CONFIG = [
+      { id: "all", label: "Tất Cả (6 Nhóm)" },
+      { id: "tab1", label: "Tab 1: Ăn & Uống Kết Hợp" },
+      { id: "tab2", label: "Tab 2: Quán Cafe" },
+      { id: "tab3", label: "Tab 3: Quán Ăn Chất Lượng" },
+      { id: "tab4", label: "Tab 4: Quán & Món Đặc Sản" },
+      { id: "tab5", label: "Tab 5: Du Lịch, Vui Chơi & TTTM" },
+      { id: "tab6", label: "Tab 6: Di Chuyển & Bãi Đỗ Xe" }
+    ];
+
+    const FILTER_CHIPS = [
+      { id: "all", label: "Tất cả" },
+      { id: "car", label: "🚗 Đỗ Ô tô" },
+      { id: "late", label: "🌙 Mở sau 22h" },
+      { id: "early", label: "☀️ Mở sớm <=7h" },
+      { id: "star45", label: "⭐ Sao >= 4.5★" },
+      { id: "near2km", label: "📍 Gần mốc < 2km" },
+      { id: "tierLow", label: "💰 Giá bình dân" },
+      { id: "tierMid", label: "💎 Trung cấp" },
+      { id: "tierHigh", label: "👑 Cao cấp" }
+    ];
+
+    /*
+      Compact JSON Data Store (90 verified items across 6 tabs).
+      Note: Cafe Rita Võ (Nguyễn Văn Cừ) is strictly excluded per prompt instructions as it closed in 2025-2026.
+      Keys:
+      id, tab, name, type, fit (%), star, addr, dist (km from 384 Lý Thái Tổ), time (mins car/bike),
+      hours, early (bool), late (bool), space, car (bool), carNote, dish, price, priceSort (numeric avg VND), tier
+    */
+    const PLACES_DATA = [
+      // ================= TAB 1: ĂN & UỐNG KẾT HỢP (ALL-IN-ONE CAFE & BISTRO) =================
+      {id:101, tab:"tab1", name:"The Running Bean - Hồ Tùng Mậu", type:"All-day Brunch & Specialty Coffee", fit:99, star:4.7, addr:"115 Hồ Tùng Mậu, P. Sài Gòn (P. Bến Nghé, Q.1)", dist:3.9, time:"12p Ô tô / 10p Xe máy", hours:"07:30 - 22:00", early:false, late:false, space:"Rộng ~320m2, 3 tầng thông tầng hiện đại, chuẩn tham chiếu cao cấp", car:true, carNote:"Đỗ hạn chế trước quán hoặc gửi hầm Bitexco / bãi Hồ Tùng Mậu cách 80m", dish:"All-day Brunch, Eggs Benedict, Cold Brew, Kombucha, Bánh tươi", price:"70.000đ - 220.000đ", priceSort:145000, tier:"Trung cấp"},
+      {id:102, tab:"tab1", name:"The Running Bean - Mạc Thị Bưởi", type:"Cafe & Brunch Bistro", fit:98, star:4.7, addr:"33 Mạc Thị Bưởi, P. Sài Gòn (P. Bến Nghé, Q.1)", dist:4.3, time:"14p Ô tô / 11p Xe máy", hours:"07:30 - 22:00", early:false, late:false, space:"Rộng ~280m2, 2 tầng sang trọng, ánh sáng tự nhiên", car:true, carNote:"Gửi bãi ô tô đường Ngô Đức Kế / Hồ Huấn Nghiệp cách 100m", dish:"Sourdough Brunch, Smoothie Bowl, Mix Juice, Specialty Latte", price:"70.000đ - 220.000đ", priceSort:145000, tier:"Trung cấp"},
+      {id:103, tab:"tab1", name:"The Running Bean - Bến Thành", type:"Coffee & Brunch Lounge", fit:97, star:4.6, addr:"5 Nguyễn Trung Trực, P. Bến Thành, Q.1", dist:3.4, time:"11p Ô tô / 9p Xe máy", hours:"07:30 - 22:00", early:false, late:false, space:"Rộng ~260m2, thiết kế hiện đại, bàn dài làm việc & tiếp khách", car:true, carNote:"Bãi gửi ô tô tư nhân đường Nguyễn Trung Trực / Lê Lợi cách 90m", dish:"Roast Beef Sandwich, Croissant mặn, Pour Over Coffee", price:"70.000đ - 220.000đ", priceSort:145000, tier:"Trung cấp"},
+      {id:104, tab:"tab1", name:"Au Coeur de Saigon - Villa 2", type:"Villa Cafe & French Bistro", fit:96, star:4.5, addr:"1B Lý Thái Tổ, P. Vườn Lài (P.1, Q.10)", dist:0.5, time:"2p Ô tô / 2p Xe máy", hours:"06:30 - 22:30", early:true, late:true, space:"Biệt thự sân vườn ~450m2, không khí xanh mát, kiến trúc Pháp", car:true, carNote:"Đỗ ô tô trực tiếp tại Bãi đỗ xe 1B Lý Thái Tổ ngay khuôn viên", dish:"Điểm tâm sáng kiểu Âu - Việt, Bò lúc lắc, Trà trái cây nhiệt đới", price:"55.000đ - 185.000đ", priceSort:120000, tier:"Trung cấp"},
+      {id:105, tab:"tab1", name:"SOKO Cake Bake & Brunch - Nguyễn Trung Trực", type:"All-day Dining & Bakery Bistro", fit:96, star:4.6, addr:"27A Nguyễn Trung Trực, P. Bến Thành, Q.1", dist:3.4, time:"11p Ô tô / 9p Xe máy", hours:"08:00 - 22:00", early:false, late:false, space:"Rộng ~240m2, 2 tầng nhiều cửa kính lớn và cây xanh", car:true, carNote:"Gửi bãi ô tô đường Nguyễn Trung Trực / Takashimaya cách 120m", dish:"SOKO's Bánh Mì Chảo, Cube Croissant, Cronut, Eggs Benedict", price:"70.000đ - 320.000đ", priceSort:195000, tier:"Trung cấp"},
+      {id:106, tab:"tab1", name:"SOKO Cake Bake & Brunch - Hồ Tùng Mậu", type:"Brunch & Pastry Cafe", fit:95, star:4.6, addr:"24 Hồ Tùng Mậu, P. Sài Gòn, Q.1", dist:3.8, time:"12p Ô tô / 10p Xe máy", hours:"08:00 - 22:00", early:false, late:false, space:"Rộng ~220m2, phong cách Âu đương đại, decor sáng", car:true, carNote:"Bãi gửi ô tô đường Hồ Tùng Mậu / Võ Văn Kiệt cách 100m", dish:"The Convict Brunch, Cruffin, Matcha Latte", price:"70.000đ - 300.000đ", priceSort:185000, tier:"Trung cấp"},
+      {id:107, tab:"tab1", name:"Godmother Bake & Brunch - Lê Lợi", type:"Australian Brunch & Bakery", fit:96, star:4.6, addr:"70B Lê Lợi, P. Bến Thành, Q.1", dist:3.3, time:"10p Ô tô / 8p Xe máy", hours:"08:00 - 22:00", early:false, late:false, space:"Rộng ~250m2, ghế sofa nhung pastel, cửa sổ lớn cực thoáng", car:true, carNote:"Gửi hầm Saigon Centre hoặc bãi xe đường Lê Lợi cách 110m", dish:"Godmother Breakfast, Eggs Atlantic, Avocado Toast, Chiffon Cake", price:"150.000đ - 380.000đ", priceSort:265000, tier:"Cao cấp"},
+      {id:108, tab:"tab1", name:"L'Usine - Lê Thánh Tôn", type:"Concept Store, Cafe & Bistro", fit:95, star:4.5, addr:"19 Lê Thánh Tôn, P. Sài Gòn (Bến Nghé, Q.1)", dist:4.2, time:"14p Ô tô / 11p Xe máy", hours:"07:30 - 22:30", early:false, late:true, space:"Rộng ~400m2, 2 tầng kết hợp khu mua sắm & bistro Đông Dương", car:true, carNote:"Gửi hầm Vincom Đồng Khởi hoặc bãi Lê Thánh Tôn cách 120m", dish:"Royal Salmon Rosti, The Big Breakfast, Pasta, Cà phê đặc sản", price:"150.000đ - 320.000đ", priceSort:235000, tier:"Cao cấp"},
+      {id:109, tab:"tab1", name:"L'Usine - Saigon Centre", type:"All-day Breakfast & Bistro", fit:94, star:4.5, addr:"Lầu 5, Saigon Centre, 65 Lê Lợi, P. Bến Nghé, Q.1", dist:3.6, time:"11p Ô tô / 9p Xe máy", hours:"09:30 - 21:30", early:false, late:false, space:"Rộng ~250m2 trong TTTM cao cấp, thoáng đãng, lịch sự", car:true, carNote:"Đỗ ô tô trực tiếp tại hầm TTTM Saigon Centre (Takashimaya)", dish:"L'Usine Wholesome Breakfast, Burger Wagyu, Cold Brew", price:"140.000đ - 300.000đ", priceSort:220000, tier:"Cao cấp"},
+      {id:110, tab:"tab1", name:"Tartine Saigon - Bà Huyện Thanh Quan", type:"Artisan Sourdough Bakery & Bistro", fit:94, star:4.6, addr:"14A Bà Huyện Thanh Quan, P. Võ Thị Sáu, Q.3", dist:2.3, time:"7p Ô tô / 6p Xe máy", hours:"07:00 - 22:00", early:true, late:false, space:"Rộng ~200m2, thiết kế châu Âu ấm cúng, mùi bánh nướng thơm", car:true, carNote:"Gửi bãi ô tô đường Bà Huyện Thanh Quan / Nguyễn Thị Minh Khai cách 100m", dish:"Sourdough thủ công, Shakshuka, Eggs Benedict sốt Truffle", price:"75.000đ - 240.000đ", priceSort:155000, tier:"Trung cấp"},
+      {id:111, tab:"tab1", name:"Au Parc Restaurant & Cafe", type:"Mediterranean Brunch & Cafe", fit:93, star:4.5, addr:"23 Hàn Thuyên, P. Bến Nghé, Q.1", dist:3.7, time:"11p Ô tô / 9p Xe máy", hours:"07:30 - 22:30", early:false, late:true, space:"Rộng ~280m2, nhìn thẳng ra công viên 30/4 xanh mát", car:true, carNote:"Gửi tại Bãi xe 24/24 số 11 Nguyễn Văn Chiêm cách 120m", dish:"Turkish Eggs, Moroccan Lamb, Salad Địa Trung Hải, Fresh Juice", price:"120.000đ - 320.000đ", priceSort:220000, tier:"Cao cấp"},
+      {id:112, tab:"tab1", name:"The Vintage Emporium - Đa Kao", type:"Cafe & All-day Brunch", fit:93, star:4.6, addr:"95B Nguyễn Văn Thủ, P. Đa Kao, Q.1", dist:4.4, time:"14p Ô tô / 11p Xe máy", hours:"07:00 - 21:00", early:true, late:false, space:"Rộng ~260m2, 3 khu trong nhà, sân vườn và hồ nước", car:true, carNote:"Đỗ ô tô dọc tuyến cho phép hoặc bãi Mạc Đĩnh Chi cách 120m", dish:"Smoked Salmon Bruschetta, Acai Bowl, Flat White", price:"95.000đ - 260.000đ", priceSort:175000, tier:"Trung cấp"},
+      {id:113, tab:"tab1", name:"Chez Mimosa Cafe & Breakfast", type:"Early Morning Cafe & Breakfast", fit:90, star:4.5, addr:"90 Đề Thám, P. Cầu Ông Lãnh, Q.1", dist:2.9, time:"9p Ô tô / 7p Xe máy", hours:"06:30 - 15:30", early:true, late:false, space:"Rộng ~140m2, thoáng sáng, chuyên phục vụ khách ăn sáng sớm", car:true, carNote:"Gửi bãi xe đường Trần Hưng Đạo / Công viên 23/9 cách 130m", dish:"Combo Breakfast 145k, Cà phê trứng, Cà phê muối, Crepes", price:"75.000đ - 160.000đ", priceSort:115000, tier:"Trung cấp"},
+      {id:114, tab:"tab1", name:"Runam d'Or - Công Xã Paris", type:"Luxury Cafe & Fine Bistro", fit:95, star:4.6, addr:"3 Công Xã Paris, P. Bến Nghé, Q.1", dist:3.8, time:"12p Ô tô / 10p Xe máy", hours:"07:00 - 23:00", early:true, late:true, space:"Biệt thự cổ Pháp ~500m2 sát Nhà thờ Đức Bà, sân vườn sang trọng", car:true, carNote:"Bãi đỗ xe 24/24 số 11 Nguyễn Văn Chiêm cách 90m", dish:"Bánh mì bò kho thượng hạng, Cà phê RuNam, Set Trà chiều", price:"120.000đ - 450.000đ", priceSort:285000, tier:"Cao cấp"},
+      {id:115, tab:"tab1", name:"Eddie's New York Deli & Diner - Pasteur", type:"American Diner & Milkshake Lounge", fit:92, star:4.6, addr:"73 Pasteur, P. Bến Nghé, Q.1", dist:3.6, time:"11p Ô tô / 9p Xe máy", hours:"08:00 - 22:30", early:false, late:true, space:"Rộng ~240m2, decor retro thập niên 50s chuẩn New York, ghế da rộng", car:true, carNote:"Gửi hầm Saigon Centre hoặc bãi Pasteur cách 100m", dish:"Reuben Sandwich, Philly Cheesesteak, Pancakes, Oreo Milkshake", price:"110.000đ - 290.000đ", priceSort:200000, tier:"Trung cấp"},
+
+      // ================= TAB 2: QUÁN CAFE CHỌN LỌC (CHUẨN >= CAFE NEW 212 ĐỘC LẬP) =================
+      {id:201, tab:"tab2", name:"Cà Phê New - 212 Độc Lập (Chuẩn Tham Chiếu)", type:"Garden & Lounge Coffee", fit:91, star:4.3, addr:"212 Độc Lập, P. Tân Thành, Q. Tân Phú", dist:5.4, time:"16p Ô tô / 13p Xe máy", hours:"06:00 - 22:30", early:true, late:true, space:"Rộng ~600m2, sân vườn kết hợp phòng lạnh lịch sự, thoáng đãng", car:true, carNote:"Đỗ ô tô trực tiếp dọc mặt tiền rộng rãi trước quán", dish:"Cà phê phin truyền thống, Nước ép trái cây tươi, Điểm tâm sáng", price:"40.000đ - 85.000đ", priceSort:60000, tier:"Bình dân"},
+      {id:202, tab:"tab2", name:"Every Half Coffee Roasters - Tú Xương", type:"Specialty Coffee Roastery", fit:97, star:4.6, addr:"6E Tú Xương, P. Võ Thị Sáu, Q.3", dist:2.2, time:"7p Ô tô / 6p Xe máy", hours:"07:00 - 21:30", early:true, late:false, space:"Rộng ~220m2, biệt thự cải tạo hiện đại, yên tĩnh làm việc", car:true, carNote:"Đỗ ô tô trực tiếp trên tuyến đường Tú Xương / Nam Kỳ Khởi Nghĩa", dish:"Fine Robusta, Kombucha sơ ri, Cold Brew ủ lạnh, Croissant", price:"55.000đ - 120.000đ", priceSort:85000, tier:"Trung cấp"},
+      {id:203, tab:"tab2", name:"Every Half Coffee Roasters - Ngô Đức Kế", type:"Minimalist Specialty Coffee", fit:95, star:4.6, addr:"8-24 Ngô Đức Kế, P. Sài Gòn, Q.1", dist:4.0, time:"13p Ô tô / 10p Xe máy", hours:"07:00 - 21:30", early:true, late:false, space:"Rộng ~180m2, thiết kế tối giản sáng gọn, hợp gặp đối tác", car:true, carNote:"Bãi gửi ô tô đường Ngô Đức Kế / Hồ Tùng Mậu cách 80m", dish:"Cascara Tea, Hand Brew Arabica, Latte Hạnh Nhân", price:"55.000đ - 120.000đ", priceSort:85000, tier:"Trung cấp"},
+      {id:204, tab:"tab2", name:"Bosgaurus Coffee Roasters - The Opera House", type:"High-End Specialty Coffee", fit:96, star:4.7, addr:"12 Nguyễn Siêu, P. Sài Gòn (Bến Nghé, Q.1)", dist:4.3, time:"14p Ô tô / 11p Xe máy", hours:"07:00 - 21:00", early:true, late:false, space:"Rộng ~260m2, quầy bar trung tâm 360 độ đẳng cấp quốc tế", car:true, carNote:"Đỗ ô tô tại bãi Nguyễn Siêu / Nhà hát Thành phố cách 100m", dish:"Áp suất Espresso độc bản, Coffee Flight, Bánh ngọt Pháp", price:"70.000đ - 180.000đ", priceSort:125000, tier:"Trung cấp"},
+      {id:205, tab:"tab2", name:"Guru Coffee & Sports Bar - Sư Vạn Hạnh", type:"24/7 Villa Coffee & Lounge", fit:93, star:4.4, addr:"433/7 Sư Vạn Hạnh, P. Hòa Hưng (P.12, Q.10)", dist:0.8, time:"3p Ô tô / 2p Xe máy", hours:"00:00 - 24:00 (24/7)", early:true, late:true, space:"Rộng ~350m2, không gian mở kết hợp phòng máy lạnh, mở xuyên đêm", car:true, carNote:"Có chỗ đỗ xe hơi đầu hẻm lớn hoặc gửi Vạn Hạnh Mall cách 140m", dish:"Cà phê sữa đá Sài Gòn, Trà đào cam sả, Đồ ăn nhẹ đêm khuya", price:"45.000đ - 95.000đ", priceSort:70000, tier:"Bình dân"},
+      {id:206, tab:"tab2", name:"Three O'Clock - Lý Thái Tổ", type:"24/7 Modern Work Cafe", fit:92, star:4.3, addr:"538 Lý Thái Tổ, P. Vườn Lài (P.10, Q.10)", dist:0.3, time:"1p Ô tô / 1p Xe máy", hours:"00:00 - 24:00 (24/7)", early:true, late:true, space:"Rộng ~240m2, 3 tầng hiện đại, nhiều ổ cắm điện, cách mốc 300m", car:true, carNote:"Gửi ô tô tại Siêu thị Sài Gòn (436 đường 3/2) cách 150m", dish:"Trà lài đác thơm, Cold Brew cam sả, Bánh phô mai tan chảy", price:"42.000đ - 78.000đ", priceSort:60000, tier:"Bình dân"},
+      {id:207, tab:"tab2", name:"Chidori Coffee in Bed - Sư Vạn Hạnh", type:"Japanese Stay & Work Cafe", fit:92, star:4.5, addr:"796 Sư Vạn Hạnh, P. Hòa Hưng (P.12, Q.10)", dist:1.3, time:"4p Ô tô / 3p Xe máy", hours:"08:00 - 23:00", early:false, late:true, space:"Rộng ~280m2, 4 tầng thiết kế gỗ Nhật Bản, vừa làm việc vừa nghỉ ngơi", car:true, carNote:"Gửi ô tô tại hầm Vạn Hạnh Mall (11 Sư Vạn Hạnh) cách 120m", dish:"Matcha Uji Latte, Houjicha, Bánh su kem nướng", price:"55.000đ - 110.000đ", priceSort:80000, tier:"Trung cấp"},
+      {id:208, tab:"tab2", name:"The Coffee House Signature / Vạn Hạnh Mall", type:"Modern Roastery & Work Space", fit:91, star:4.4, addr:"Tầng 1, Vạn Hạnh Mall, 11 Sư Vạn Hạnh, Q.10", dist:1.2, time:"4p Ô tô / 3p Xe máy", hours:"07:30 - 22:30", early:false, late:true, space:"Rộng ~220m2, mặt tiền kính thoáng, bàn ghế công thái học", car:true, carNote:"Đỗ ô tô trực tiếp tại hầm TTTM Vạn Hạnh Mall (sức chứa 350 ô tô)", dish:"Trà đào cam sả, CloudFee Hạnh Nhân, Bánh mì que", price:"45.000đ - 85.000đ", priceSort:65000, tier:"Bình dân"},
+      {id:209, tab:"tab2", name:"Starbucks Reserve - Hàn Thuyên", type:"Premium Reserve Coffee Bar", fit:96, star:4.6, addr:"11-13 Hàn Thuyên, P. Bến Nghé, Q.1", dist:3.7, time:"11p Ô tô / 9p Xe máy", hours:"06:30 - 23:00", early:true, late:true, space:"Rộng ~320m2, 2 tầng sang trọng đối diện công viên, quầy pha Siphon", car:true, carNote:"Đỗ xe tại Bãi 24/24 số 11 Nguyễn Văn Chiêm cách 80m", dish:"Nitro Cold Brew, Microblend 21, Croissant bơ Pháp", price:"85.000đ - 165.000đ", priceSort:125000, tier:"Trung cấp"},
+      {id:210, tab:"tab2", name:"Starbucks - Vạn Hạnh Mall", type:"International Chain Coffee", fit:93, star:4.5, addr:"Tầng Trệt, Vạn Hạnh Mall, 11 Sư Vạn Hạnh, Q.10", dist:1.2, time:"4p Ô tô / 3p Xe máy", hours:"07:00 - 22:30", early:true, late:true, space:"Rộng ~180m2, có khu ngồi trong nhà và sảnh ngoài thoáng", car:true, carNote:"Đỗ ô tô trực tiếp dưới hầm Vạn Hạnh Mall mở 24/24", dish:"Caramel Macchiato, Green Tea Frappuccino, Bagel kem phô mai", price:"65.000đ - 130.000đ", priceSort:95000, tier:"Trung cấp"},
+      {id:211, tab:"tab2", name:"Katinat Saigon Kafe - Vòng Xoay Dân Chủ", type:"Lifestyle & View Coffee", fit:92, star:4.4, addr:"1B Cách Mạng Tháng 8, P. Bến Thành / Võ Thị Sáu", dist:1.8, time:"6p Ô tô / 5p Xe máy", hours:"07:00 - 23:30", early:true, late:true, space:"Rộng ~300m2, 3 tầng ôm trọn vòng xoay, trần cao thoáng", car:true, carNote:"Gửi ô tô tại bãi xe đường CMT8 / Nguyễn Thượng Hiền cách 120m", dish:"Trà sữa Chôm Chôm, Bơ Già Dừa Non, Cà phê Hạt Phỉ", price:"50.000đ - 95.000đ", priceSort:72000, tier:"Bình dân"},
+      {id:212, tab:"tab2", name:"Katinat Saigon Kafe - Sư Vạn Hạnh", type:"Modern Lifestyle Coffee", fit:93, star:4.4, addr:"710 Sư Vạn Hạnh, P. Hòa Hưng (P.12, Q.10)", dist:1.0, time:"3p Ô tô / 3p Xe máy", hours:"07:00 - 23:30", early:true, late:true, space:"Rộng ~260m2, 2 tầng thiết kế hiện đại, rất đông giới trẻ 20-35", car:true, carNote:"Gửi ô tô tại hầm Vạn Hạnh Mall hoặc bãi BV 115 cách 130m", dish:"Trà Ô Long Ba Lá, Cóc Cóc Đác Đác, Bánh ngọt", price:"50.000đ - 95.000đ", priceSort:72000, tier:"Bình dân"},
+      {id:213, tab:"tab2", name:"Phúc Long Coffee & Tea - Sư Vạn Hạnh", type:"Specialty Tea & Coffee", fit:90, star:4.3, addr:"754 Sư Vạn Hạnh, P. Hòa Hưng (P.12, Q.10)", dist:1.1, time:"4p Ô tô / 3p Xe máy", hours:"07:00 - 22:30", early:true, late:true, space:"Rộng ~240m2, 2 tầng rộng rãi, máy lạnh mát sâu", car:true, carNote:"Gửi ô tô tại hầm Vạn Hạnh Mall cách 110m", dish:"Trà nhãn sen, Trà sữa Phúc Long đậm vị, Bánh mì bơ tỏi", price:"45.000đ - 80.000đ", priceSort:62000, tier:"Bình dân"},
+      {id:214, tab:"tab2", name:"Cheese Coffee - Sư Vạn Hạnh", type:"European Industrial Coffee", fit:93, star:4.5, addr:"782 Sư Vạn Hạnh, P. Hòa Hưng (P.12, Q.10)", dist:1.2, time:"4p Ô tô / 3p Xe máy", hours:"07:00 - 22:30", early:true, late:true, space:"Rộng ~250m2, decor phong cách châu Âu hiện đại, nhạc có gu", car:true, carNote:"Gửi ô tô tại hầm Vạn Hạnh Mall (11 Sư Vạn Hạnh) cách 90m", dish:"Marble Cà Phê Bơ, Trà Cam Quýt, Bánh Sừng Trâu Trứng Muối", price:"50.000đ - 95.000đ", priceSort:72000, tier:"Bình dân"},
+      {id:215, tab:"tab2", name:"Highlands Coffee - Kỳ Hòa (Đường 3/2)", type:"Garden & Business Coffee", fit:91, star:4.4, addr:"16A Lê Hồng Phong (Khu Kỳ Hòa), P.12, Q.10", dist:0.9, time:"3p Ô tô / 2p Xe máy", hours:"06:30 - 23:00", early:true, late:true, space:"Khuôn viên ~450m2 cực rộng trong cụm Kỳ Hòa, nhiều cây cổ thụ", car:true, carNote:"Đỗ ô tô trực tiếp thoải mái ngay trong sân bãi Kỳ Hòa", dish:"Phin Sữa Đá, Freeze Trà Xanh, Trà Sen Vàng", price:"39.000đ - 75.000đ", priceSort:55000, tier:"Bình dân"},
+      {id:216, tab:"tab2", name:"Beanthere Cafe - Hoàng Sa", type:"Botanical & Art Cafe", fit:92, star:4.5, addr:"3/5 Hoàng Sa, P. Đa Kao, Q.1", dist:4.6, time:"15p Ô tô / 12p Xe máy", hours:"07:00 - 22:00", early:true, late:false, space:"Rộng ~300m2, biệt thự sân vườn yên tĩnh ven kênh, nhiều cây xanh", car:true, carNote:"Đỗ ô tô dọc bờ kè Hoàng Sa / bãi Thảo Cầm Viên cách 120m", dish:"Latte Hoa Đậu Biếc, Latte Mè Đen, Đồ ăn chay & Healthy", price:"60.000đ - 110.000đ", priceSort:85000, tier:"Trung cấp"},
+
+      // ================= TAB 3: QUÁN ĂN CHẤT LƯỢNG & LỊCH SỰ (TIẾP KHÁCH, NHÓM BẠN, GIA ĐÌNH) =================
+      {id:301, tab:"tab3", name:"Uraetei BBQ - Phổ Đình (Đường 3/2)", type:"Japanese Yakiniku & Shabu", fit:96, star:4.5, addr:"430 - 434 Đường Ba Tháng Hai, P.12, Q.10", dist:0.5, time:"2p Ô tô / 2p Xe máy", hours:"11:00 - 23:00", early:false, late:true, space:"Rộng ~500m2, thiết kế gỗ Nhật sang trọng, có vách ngăn riêng tư", car:true, carNote:"Có bãi đỗ ô tô trước nhà hàng & sát Siêu thị Sài Gòn (436 đường 3/2)", dish:"Bò Wagyu nướng than, Sườn bò Kalbi, Lẩu Shabu Shabu", price:"250.000đ - 650.000đ", priceSort:450000, tier:"Cao cấp"},
+      {id:302, tab:"tab3", name:"Haidilao Hotpot - Vạn Hạnh Mall", type:"Premium Hotpot & Late Night Dining", fit:97, star:4.7, addr:"Tầng 4, Vạn Hạnh Mall, 11 Sư Vạn Hạnh, Q.10", dist:1.2, time:"4p Ô tô / 3p Xe máy", hours:"09:00 - 02:00", early:false, late:true, space:"Rộng ~600m2, dịch vụ chăm sóc khách hàng chuẩn 5 sao, múa mì", car:true, carNote:"Đỗ ô tô trực tiếp tại hầm Vạn Hạnh Mall mở 24/24", dish:"Lẩu 4 ngăn (Cà chua, Dầu cay Tứ Xuyên), Thịt bò Bông Tuyết, Múa mì", price:"300.000đ - 600.000đ", priceSort:450000, tier:"Cao cấp"},
+      {id:303, tab:"tab3", name:"Nhà Hàng Việt Phố - Lê Quý Đôn", type:"Fine Vietnamese & Seafood", fit:95, star:4.5, addr:"45-47-49 Lê Quý Đôn, P. Xuân Hòa (P. Võ Thị Sáu, Q.3)", dist:2.5, time:"8p Ô tô / 6p Xe máy", hours:"09:00 - 23:00", early:false, late:true, space:"Rộng ~1.000m2, có sân vườn, phòng VIP riêng tiếp khách đối tác", car:true, carNote:"Đỗ ô tô trực tiếp trong khuôn viên và có nhân viên điều phối xe", dish:"Hải sản tươi sống tại hồ, Gà Đông Tảo, Heo tộc, Món Việt cao cấp", price:"350.000đ - 850.000đ", priceSort:600000, tier:"Cao cấp"},
+      {id:304, tab:"tab3", name:"Nhà Hàng Út Cà Mau - Điện Biên Phủ", type:"Southwest Crab & Seafood", fit:93, star:4.4, addr:"215 Điện Biên Phủ, P. Xuân Hòa (Q.3)", dist:1.9, time:"6p Ô tô / 5p Xe máy", hours:"10:00 - 23:00", early:false, late:true, space:"Rộng ~650m2, có khu sân vườn và phòng riêng 8-60 khách", car:true, carNote:"Gửi ô tô tại bãi xe 220 Pasteur / Điện Biên Phủ cách 100m", dish:"Cua Cà Mau gạch son, Lẩu mắm miền Tây, Cá thòi lòi nướng", price:"250.000đ - 550.000đ", priceSort:400000, tier:"Cao cấp"},
+      {id:305, tab:"tab3", name:"Nhà Hàng Phi Phố Biển - Cao Thắng", type:"Live Seafood & VIP Dining", fit:94, star:4.5, addr:"16A Lê Hồng Phong (Nối dài) / Khu Cao Thắng, P.12, Q.10", dist:0.9, time:"3p Ô tô / 2p Xe máy", hours:"09:30 - 23:00", early:false, late:true, space:"Rộng ~800m2, hệ thống phòng riêng cách âm tốt, lịch sự", car:true, carNote:"Đỗ ô tô trực tiếp miễn phí ngay trước sảnh nhà hàng", dish:"Tôm hùm bông, Cá mú đỏ hấp Hồng Kông, Ốc hương rang muối", price:"350.000đ - 900.000đ", priceSort:620000, tier:"Cao cấp"},
+      {id:306, tab:"tab3", name:"Tasaki BBQ - Vạn Hạnh Mall", type:"Japanese Charcoal Grill", fit:93, star:4.6, addr:"Tầng 6, Vạn Hạnh Mall, 11 Sư Vạn Hạnh, Q.10", dist:1.2, time:"4p Ô tô / 3p Xe máy", hours:"10:00 - 22:00", early:false, late:false, space:"Rộng ~350m2, không gian Á Đông ấm cúng, bếp trưởng Nhật 40 năm KN", car:true, carNote:"Đỗ ô tô trực tiếp tại tầng hầm Vạn Hạnh Mall", dish:"Thịt nướng Wagyu, Sashimi cá hồi, Lẩu Sukiyaki", price:"250.000đ - 500.000đ", priceSort:375000, tier:"Cao cấp"},
+      {id:307, tab:"tab3", name:"Hoàng Yến Buffet - Vạn Hạnh Mall", type:"Vietnamese Upscale Buffet", fit:92, star:4.4, addr:"Tầng 5, Vạn Hạnh Mall, 11 Sư Vạn Hạnh, Q.10", dist:1.2, time:"4p Ô tô / 3p Xe máy", hours:"10:00 - 22:00", early:false, late:false, space:"Rộng ~450m2, sang trọng, hợp gia đình nhiều thế hệ và đồng nghiệp", car:true, carNote:"Đỗ ô tô trực tiếp dưới hầm Vạn Hạnh Mall", dish:"Hơn 70 món Việt 3 miền, Hải sản nướng, Bánh khọt, Chè truyền thống", price:"295.000đ - 450.000đ", priceSort:370000, tier:"Cao cấp"},
+      {id:308, tab:"tab3", name:"Pizza 4P's - Saigon Centre / Hai Bà Trưng", type:"Japanese-Italian Craft Pizza", fit:97, star:4.8, addr:"151B Hai Bà Trưng, P. Võ Thị Sáu, Q.3", dist:2.9, time:"9p Ô tô / 7p Xe máy", hours:"10:00 - 23:00", early:false, late:true, space:"Rộng ~400m2, kiến trúc gạch thô & lò nướng củi hiện đại, cực kỳ có gu", car:true, carNote:"Bãi gửi ô tô đường Hai Bà Trưng / Nguyễn Đình Chiểu cách 100m", dish:"Pizza Burrata Prosciutto, Mì Ý Cua sốt kem cà chua, Phô mai tự làm", price:"220.000đ - 450.000đ", priceSort:335000, tier:"Cao cấp"},
+      {id:309, tab:"tab3", name:"TukTuk Thai Bistro - Nguyễn Tri Phương", type:"Modern Thai Bistro", fit:93, star:4.4, addr:"519 Nguyễn Tri Phương, P.8, Q.10", dist:0.8, time:"3p Ô tô / 2p Xe máy", hours:"10:00 - 22:00", early:false, late:false, space:"Rộng ~260m2, thiết kế bistro trẻ trung, năng động, sạch sẽ", car:true, carNote:"Gửi ô tô tại bãi Nguyễn Chí Thanh / Thành Thái cách 140m", dish:"Pad Thái tôm càng, Súp Tom Yum hải sản, Xôi xoài, Gỏi cá trê", price:"150.000đ - 320.000đ", priceSort:235000, tier:"Trung cấp"},
+      {id:310, tab:"tab3", name:"Ăn Được Phúc - Hotpot & BBQ", type:"Macau Hotpot & Grill", fit:91, star:4.3, addr:"533 Nguyễn Tri Phương, P.8, Q.10", dist:0.8, time:"3p Ô tô / 2p Xe máy", hours:"11:00 - 22:30", early:false, late:true, space:"Rộng ~380m2, 3 tầng trang trí phong cách Macau hiện đại, ấm cúng", car:true, carNote:"Bãi gửi ô tô khu Nguyễn Tri Phương / Đào Duy Từ cách 130m", dish:"Lẩu Macau chuẩn vị, Thịt bò Mỹ nhúng lẩu, Dimsum", price:"220.000đ - 380.000đ", priceSort:300000, tier:"Trung cấp"},
+      {id:311, tab:"tab3", name:"Nhà Hàng Chay Thuần Khiết / Hội An Quán Chay", type:"Fine Vegetarian Restaurant", fit:90, star:4.5, addr:"500 Lý Thái Tổ, P. Vườn Lài (P.10, Q.10)", dist:0.2, time:"1p Ô tô / 1p Xe máy", hours:"07:00 - 21:30", early:true, late:false, space:"Rộng ~200m2, thanh tịnh, sạch sẽ, ngay sát điểm mốc 384 Lý Thái Tổ", car:true, carNote:"Gửi ô tô tại Siêu thị Sài Gòn (436 đường 3/2) cách 150m", dish:"Lẩu nấm thiên nhiên, Cơm sen chay, Gỏi cuốn ngũ sắc", price:"60.000đ - 180.000đ", priceSort:120000, tier:"Bình dân"},
+      {id:312, tab:"tab3", name:"Bistrot De Saigon - Bạch Mã", type:"Cozy French Bistro", fit:91, star:4.4, addr:"Q9 Bạch Mã, Khu Bắc Hải, P.15, Q.10", dist:2.1, time:"6p Ô tô / 5p Xe máy", hours:"17:30 - 22:30", early:false, late:true, space:"Rộng ~160m2, biệt thự khu cư xá Bắc Hải yên tĩnh, lãng mạn", car:true, carNote:"Đỗ ô tô trực tiếp trên đường nội khu Bạch Mã rộng thoáng", dish:"Gan ngỗng áp chảo, Vẹm xanh hấp rượu vang trắng, Steak bò", price:"150.000đ - 380.000đ", priceSort:265000, tier:"Trung cấp"},
+      {id:313, tab:"tab3", name:"Cowboy Steakhouse & Grill - Đồng Nai", type:"Western Steakhouse", fit:90, star:4.3, addr:"40 Đồng Nai, Khu Bắc Hải, P.15, Q.10", dist:2.0, time:"6p Ô tô / 5p Xe máy", hours:"10:00 - 22:00", early:false, late:false, space:"Rộng ~180m2, phong cách miền Viễn Tây ấm cúng, lịch sự", car:true, carNote:"Đỗ ô tô trực tiếp trên đường Đồng Nai khu Bắc Hải", dish:"Ribeye Steak sốt tiêu đen, Mì Ý hải sản, Salad cá ngừ", price:"120.000đ - 450.000đ", priceSort:285000, tier:"Trung cấp"},
+      {id:314, tab:"tab3", name:"Én Restaurant & Event Space", type:"Fusion Vietnamese & Banquet", fit:94, star:4.5, addr:"308C Điện Biên Phủ, P.4, Q.3", dist:1.3, time:"4p Ô tô / 3p Xe máy", hours:"09:00 - 22:30", early:false, late:true, space:"Rộng ~600m2, hòa quyện thiên nhiên và kiến trúc đương đại tinh tế", car:true, carNote:"Có hầm và bãi gửi ô tô ngay tại tòa nhà Robot Tower", dish:"Bò nướng ống tre, Gỏi bưởi tôm sú, Cơm chiên trái thơm", price:"200.000đ - 450.000đ", priceSort:325000, tier:"Cao cấp"},
+      {id:315, tab:"tab3", name:"Mrsimple Steakhouse - Trương Quyền", type:"Premium Steakhouse & Wine", fit:94, star:4.6, addr:"62 Trương Quyền, P. Võ Thị Sáu, Q.3", dist:2.6, time:"8p Ô tô / 6p Xe máy", hours:"10:30 - 22:30", early:false, late:true, space:"Rộng ~350m2, cổ điển sang trọng, có phòng riêng 2-50 khách", car:true, carNote:"Đỗ ô tô trực tiếp tại sân hoặc bãi Trương Quyền cách 50m", dish:"Dry-Aged Steak, Súp nấm Truffle, Rượu vang tuyển chọn", price:"350.000đ - 850.000đ", priceSort:600000, tier:"Cao cấp"},
+      {id:316, tab:"tab3", name:"Lẩu Bò Sài Gòn Vivu - Vạn Hạnh Mall", type:"Modern Vietnamese Hotpot", fit:91, star:4.4, addr:"Tầng 5, Vạn Hạnh Mall, 11 Sư Vạn Hạnh, Q.10", dist:1.2, time:"4p Ô tô / 3p Xe máy", hours:"10:00 - 22:00", early:false, late:false, space:"Rộng ~220m2, sức chứa 100 khách, sạch sẽ, máy lạnh mát", car:true, carNote:"Đỗ ô tô trực tiếp tại tầng hầm Vạn Hạnh Mall", dish:"Lẩu bò thập cẩm Sài Gòn, Gân bò hầm mềm, Bánh phở tươi", price:"150.000đ - 300.000đ", priceSort:225000, tier:"Trung cấp"},
+
+      // ================= TAB 4: QUÁN & MÓN ĐẶC SẢN PHẢI THỬ =================
+      {id:401, tab:"tab4", name:"Phở Hòa Pasteur", type:"Đặc Sản Phở Nam Bộ Gia Truyền", fit:95, star:4.4, addr:"260C Pasteur, P. Võ Thị Sáu, Q.3", dist:2.7, time:"8p Ô tô / 7p Xe máy", hours:"06:00 - 22:30", early:true, late:true, space:"Rộng ~280m2, 2 tầng sạch sẽ, đạt chuẩn Michelin Bib Gourmand", car:true, carNote:"Bãi gửi ô tô 220 Pasteur hoặc đường Pasteur cách 100m", dish:"Phở đặc biệt tái nạm gầu gân, Quẩy giòn, Bánh flan", price:"90.000đ - 135.000đ", priceSort:110000, tier:"Trung cấp"},
+      {id:402, tab:"tab4", name:"Phở Lệ - Nguyễn Trãi", type:"Đặc Sản Phở Bò Viên Chợ Lớn", fit:94, star:4.4, addr:"413-415 Nguyễn Trãi, P.7, Q.5", dist:1.5, time:"5p Ô tô / 4p Xe máy", hours:"06:00 - 00:30", early:true, late:true, space:"Rộng ~250m2, sáng sủa, phục vụ cực nhanh từ sáng sớm đến khuya", car:true, carNote:"Đỗ ô tô tạm dọc tuyến hoặc bãi BV Nguyễn Trãi cách 120m", dish:"Phở tái bò viên khổng lồ, Nước dùng béo thơm đậm đà", price:"85.000đ - 120.000đ", priceSort:100000, tier:"Trung cấp"},
+      {id:403, tab:"tab4", name:"Cơm Tấm Ba Ghiền", type:"Đặc Sản Cơm Tấm Sài Gòn (Michelin)", fit:96, star:4.5, addr:"84 Đặng Văn Ngữ, P.10, Q. Phú Nhuận", dist:3.2, time:"10p Ô tô / 8p Xe máy", hours:"07:00 - 21:30", early:true, late:false, space:"Rộng ~220m2, mới nâng cấp khang trang, có phòng lạnh lịch sự", car:true, carNote:"Bãi đỗ xe ô tô đường Đặng Văn Ngữ cách quán 80m", dish:"Cơm tấm sườn nướng tảng khổng lồ, Bì chả trứng ốp la", price:"75.000đ - 145.000đ", priceSort:110000, tier:"Trung cấp"},
+      {id:404, tab:"tab4", name:"Cơm Tấm Nguyễn Văn Cừ", type:"Đặc Sản Cơm Tấm Cao Cấp", fit:92, star:4.3, addr:"74 Nguyễn Văn Cừ, P. Cầu Kho, Q.1", dist:2.1, time:"6p Ô tô / 5p Xe máy", hours:"06:30 - 15:30", early:true, late:false, space:"Rộng ~200m2, bàn ghế gỗ sạch sẽ, sườn ướp nướng than hoa thơm lừng", car:true, carNote:"Gửi ô tô tại hầm TTTM NowZone (235 Nguyễn Văn Cừ) cách 150m", dish:"Cơm tấm sườn non nướng, Chả cá thác lác, Canh khổ qua", price:"90.000đ - 170.000đ", priceSort:130000, tier:"Trung cấp"},
+      {id:405, tab:"tab4", name:"Hủ Tiếu Nam Vang Nhân Quán - Sư Vạn Hạnh", type:"Đặc Sản Hủ Tiếu Nam Vang", fit:93, star:4.3, addr:"488 Sư Vạn Hạnh, P.9, Q.10", dist:0.5, time:"2p Ô tô / 2p Xe máy", hours:"06:00 - 23:00", early:true, late:true, space:"Rộng ~220m2, ngay gần mốc 384 Lý Thái Tổ, thoáng mát, phục vụ nhanh", car:true, carNote:"Gửi ô tô tại bãi dịch vụ Sư Vạn Hạnh / Siêu thị Sài Gòn cách 140m", dish:"Hủ tiếu Nam Vang khô & nước, Tôm tươi, Thịt bằm sốt tỏi phi", price:"75.000đ - 110.000đ", priceSort:92000, tier:"Bình dân"},
+      {id:406, tab:"tab4", name:"Hủ Tiếu Hồ - Cao Thắng", type:"Đặc Sản Hủ Tiếu Hồ Triều Châu", fit:91, star:4.4, addr:"227 Cao Thắng, P.12, Q.10", dist:0.9, time:"3p Ô tô / 2p Xe máy", hours:"06:00 - 22:00", early:true, late:false, space:"Rộng ~150m2, quán lâu đời sạch sẽ trên trục Cao Thắng", car:true, carNote:"Bãi giữ xe ô tô 177B Cao Thắng cách quán 110m", dish:"Hủ tiếu hồ bản to mềm mượt, Phá lấu lòng heo khìa, Cải chua", price:"60.000đ - 90.000đ", priceSort:75000, tier:"Bình dân"},
+      {id:407, tab:"tab4", name:"Bánh Canh Cua 14 - Trần Bình Trọng", type:"Đặc Sản Bánh Canh Cua Sài Gòn", fit:94, star:4.4, addr:"221 Trần Bình Trọng, P.3, Q.5", dist:1.3, time:"4p Ô tô / 3p Xe máy", hours:"06:30 - 22:30", early:true, late:true, space:"Rộng ~180m2, sạch sẽ, nồi nước dùng sệt đỏ au bắt mắt", car:true, carNote:"Đỗ ô tô tại bãi giữ xe đường Trần Bình Trọng / Hùng Vương cách 100m", dish:"Bánh canh cua nguyên càng, Chả cua, Tôm sú, Bánh quẩy", price:"65.000đ - 130.000đ", priceSort:95000, tier:"Bình dân"},
+      {id:408, tab:"tab4", name:"Bún Cá Nha Trang Phúc Béo - Sư Vạn Hạnh", type:"Đặc Sản Bún Cá & Sứa", fit:90, star:4.3, addr:"560 Sư Vạn Hạnh, P.10, Q.10", dist:0.6, time:"2p Ô tô / 2p Xe máy", hours:"06:30 - 22:00", early:true, late:false, space:"Rộng ~140m2, gọn gàng, sạch sẽ, rất hợp ăn sáng và ăn trưa", car:true, carNote:"Gửi ô tô tại bãi xe BV 115 / Vạn Hạnh Mall cách 150m", dish:"Bún chả cá sứa Nha Trang, Cá dầm, Nem nướng", price:"50.000đ - 85.000đ", priceSort:65000, tier:"Bình dân"},
+      {id:409, tab:"tab4", name:"Bánh Mì Huỳnh Hoa", type:"Đặc Sản Bánh Mì Sài Gòn", fit:95, star:4.5, addr:"26 Lê Thị Riêng, P. Bến Thành, Q.1", dist:2.5, time:"8p Ô tô / 6p Xe máy", hours:"06:00 - 22:00", early:true, late:false, space:"Quầy chế biến mở quy trình chuyên nghiệp ~120m2, chia line nhanh", car:true, carNote:"Đỗ tạm nhận bánh hoặc gửi bãi xe New World / Lê Lai cách 120m", dish:"Bánh mì thập cẩm đặc biệt 13 vị nhân, Pate bơ gia truyền", price:"68.000đ - 75.000đ", priceSort:70000, tier:"Bình dân"},
+      {id:410, tab:"tab4", name:"Bò Né 3 Ngon - Nguyễn Thượng Hiền / Q.10", type:"Đặc Sản Bò Né Chảo Gang", fit:90, star:4.3, addr:"18 Đinh Tiên Hoàng / CN Quận 10 - Quận 3", dist:2.4, time:"8p Ô tô / 6p Xe máy", hours:"06:30 - 22:30", early:true, late:true, space:"Rộng ~160m2, thoáng mát, phục vụ nhanh cho giới trẻ", car:true, carNote:"Bãi gửi xe cách quán 100m", dish:"Bò né bít tết trứng pate phô mai, Bánh mì nóng giòn", price:"55.000đ - 95.000đ", priceSort:75000, tier:"Bình dân"},
+      {id:411, tab:"tab4", name:"Súp Cua Hạnh - Sư Vạn Hạnh", type:"Đặc Sản Súp Cua Quận 10", fit:91, star:4.3, addr:"517 Sư Vạn Hạnh, P.12, Q.10", dist:0.8, time:"3p Ô tô / 2p Xe máy", hours:"06:30 - 22:30", early:true, late:true, space:"Rộng ~130m2, sạch sẽ, nổi tiếng hơn 20 năm trên đường Sư Vạn Hạnh", car:true, carNote:"Gửi ô tô tại bãi xe BV Nhân Dân 115 (527 Sư Vạn Hạnh) cách 50m", dish:"Súp cua óc heo trứng bắc thảo, Thịt cua tươi đầy đặn", price:"40.000đ - 75.000đ", priceSort:55000, tier:"Bình dân"},
+      {id:412, tab:"tab4", name:"Chè Mâm Khánh Vy - Sư Vạn Hạnh", type:"Đặc Sản Chè Mâm 16 Món", fit:92, star:4.4, addr:"Hẻm 242 / 248 Sư Vạn Hạnh, P.2, Q.10", dist:0.9, time:"3p Ô tô / 2p Xe máy", hours:"15:00 - 22:30", early:false, late:true, space:"Không gian mở ~180m2 thoáng mát, cực kỳ hút nhóm bạn 20-35 tuổi", car:true, carNote:"Gửi ô tô tại bãi Lô B Chung cư Ngô Gia Tự (P.3, Q.10) cách 120m", dish:"Mâm chè 16 chén (Chè bà ba, chè bưởi, trôi nước, bánh flan, rau câu)", price:"35.000đ - 140.000đ", priceSort:85000, tier:"Bình dân"},
+      {id:413, tab:"tab4", name:"Chè Nguyên Hương - Sư Vạn Hạnh", type:"Đặc Sản Chè Truyền Thống", fit:89, star:4.3, addr:"525 Sư Vạn Hạnh, P.12, Q.10", dist:0.8, time:"3p Ô tô / 2p Xe máy", hours:"10:00 - 22:30", early:false, late:true, space:"Rộng ~120m2, sạch sẽ, ngọt thanh vừa miệng", car:true, carNote:"Gửi ô tô tại bãi xe BV Nhân Dân 115 (527 Sư Vạn Hạnh) ngay sát bên", dish:"Chè đậu xanh đánh, Chè thái sầu riêng, Sâm bổ lượng", price:"30.000đ - 60.000đ", priceSort:45000, tier:"Bình dân"},
+      {id:414, tab:"tab4", name:"Chả Cá Đế Vương - Sư Vạn Hạnh", type:"Đặc Sản Chả Cá Lã Vọng", fit:92, star:4.4, addr:"794 Sư Vạn Hạnh, P.12, Q.10", dist:1.3, time:"4p Ô tô / 3p Xe máy", hours:"10:00 - 22:00", early:false, late:false, space:"Rộng ~240m2, 2 tầng máy lạnh lịch sự, không ám mùi khói", car:true, carNote:"Gửi ô tô tại hầm TTTM Vạn Hạnh Mall cách 110m", dish:"Chả cá lăng nướng nghệ thì là, Lòng cá giòn, Cháo cá", price:"140.000đ - 280.000đ", priceSort:210000, tier:"Trung cấp"},
+      {id:415, tab:"tab4", name:"Ốc Tre - Thành Thái", type:"Đặc Sản Ốc & Hải Sản Đêm", fit:93, star:4.4, addr:"C29-C31 Thành Thái, P.14, Q.10", dist:1.5, time:"5p Ô tô / 4p Xe máy", hours:"15:00 - 23:30", early:false, late:true, space:"Rộng ~450m2, không gian mở cực thoáng, bàn ghế sạch lịch sự", car:true, carNote:"Đỗ ô tô trực tiếp tại Bãi xe C30 Thành Thái ngay đối diện quán", dish:"Ốc hương sốt trứng muối, Sò điệp nướng mỡ hành, Nghêu hấp thái", price:"120.000đ - 300.000đ", priceSort:210000, tier:"Trung cấp"},
+      {id:416, tab:"tab4", name:"Bánh Cuốn Hải Nam - Cao Thắng", type:"Đặc Sản Bánh Cuốn Nóng", fit:92, star:4.4, addr:"11A Cao Thắng, P.2, Q.3", dist:1.4, time:"5p Ô tô / 4p Xe máy", hours:"06:30 - 22:00", early:true, late:false, space:"Rộng ~180m2, khang trang, tráng bánh trực tiếp qua lớp kính sạch sẽ", car:true, carNote:"Gửi ô tô tại bãi xe đường Cao Thắng / Nguyễn Thị Minh Khai cách 100m", dish:"Bánh cuốn thịt nướng, Chả quế, Bánh tôm chiên giòn", price:"60.000đ - 95.000đ", priceSort:78000, tier:"Bình dân"},
+
+      // ================= TAB 5: DU LỊCH, VUI CHƠI & MUA SẮM TTTM =================
+      {id:501, tab:"tab5", name:"TTTM Vạn Hạnh Mall", type:"Trung Tâm Thương Mại & Giải Trí", fit:98, star:4.7, addr:"11 Sư Vạn Hạnh, P. Hòa Hưng (P.12, Q.10)", dist:1.2, time:"4p Ô tô / 3p Xe máy", hours:"09:30 - 22:00 (CGV & Haidilao đến 02:30)", early:false, late:true, space:"Quy mô 7 tầng nổi + hầm lớn (~90.000m2 sàn), kiến trúc vòm biểu tượng", car:true, carNote:"Hầm đỗ xe thông minh 24/7 sức chứa 350 ô tô & 3.000 xe máy", dish:"Mua sắm 200+ thương hiệu, Đại siêu thị Co.opXtra, CGV, Bowling, Ẩm thực", price:"Miễn phí vào cổng (Giữ ô tô từ 20.000đ)", priceSort:50000, tier:"Trung cấp"},
+      {id:502, tab:"tab5", name:"Công Viên Số 1 Lý Thái Tổ (Công Viên Giọt Nước)", type:"Công Viên Cảnh Quan & Đài Phun Nước", fit:94, star:4.6, addr:"Số 1 Lý Thái Tổ, P. Vườn Lài (P.1, Q.10)", dist:0.5, time:"2p Ô tô / 2p Xe máy", hours:"06:00 - 22:30 (Mở tự do 24/7)", early:true, late:true, space:"Rộng ~4,3 ha ngay nút giao Ngã Bảy, đài phun nước nghệ thuật lên đèn", car:true, carNote:"Đỗ ô tô tại Bãi xe 1B Lý Thái Tổ ngay sát công viên (30.000đ/lượt)", dish:"Dạo bộ hóng mát, Xem nhạc nước buổi tối, Check-in không gian xanh", price:"Miễn phí 100% (Giữ xe máy 5.000đ)", priceSort:5000, tier:"Bình dân"},
+      {id:503, tab:"tab5", name:"Phố Ẩm Thực & Chợ Hoa Đêm Hồ Thị Kỷ", type:"Khu Phố Đêm & Chợ Hoa Lớn Nhất SG", fit:95, star:4.5, addr:"Đường Hồ Thị Kỷ, P. Vườn Lài (P.1, Q.10)", dist:0.6, time:"2p Ô tô / 2p Xe máy", hours:"15:00 - 23:30 (Chợ hoa mở 24/7)", early:true, late:true, space:"Tuyến phố dài ~800m rực rỡ sắc hoa tươi và hơn 100 gian hàng ẩm thực", car:true, carNote:"Gửi ô tô tại Bãi đỗ xe 1B Lý Thái Tổ rồi đi bộ 120m vào phố", dish:"Thưởng thức Pad Thái, Thịt xiên nướng, Súp cua, Mua hoa tươi đêm", price:"30.000đ - 150.000đ", priceSort:90000, tier:"Bình dân"},
+      {id:504, tab:"tab5", name:"TTTM NowZone Fashion Mall", type:"Trung Tâm Thương Mại & Ẩm Thực", fit:92, star:4.4, addr:"235 Nguyễn Văn Cừ, P. Cầu Ông Lãnh (Q.1)", dist:1.6, time:"5p Ô tô / 4p Xe máy", hours:"09:30 - 22:00", early:false, late:false, space:"Quy mô 5 tầng hiện đại liền kề khách sạn 5 sao Hotel Nikko Saigon", car:true, carNote:"Hầm đỗ xe thông minh 24/7 (30.000đ/2 giờ đầu, lối dốc rộng)", dish:"Mua sắm thời trang, Xem phim, Haidilao, K-Pub, Dookki", price:"Miễn phí vào cổng (Giữ ô tô 30.000đ)", priceSort:50000, tier:"Trung cấp"},
+      {id:505, tab:"tab5", name:"TTTM Hùng Vương Plaza", type:"Trung Tâm Thương Mại & Giải Trí", fit:91, star:4.5, addr:"126 Hồng Bàng, P. Chợ Lớn (P.12, Q.5)", dist:1.8, time:"6p Ô tô / 5p Xe máy", hours:"09:30 - 22:00", early:false, late:false, space:"Tổ hợp thương mại lớn ~40.000m2 khu vực Quận 5 mới nâng cấp hiện đại", car:true, carNote:"Bãi đỗ xe ô tô nhiều tầng ngay trong tòa nhà (20.000đ - 40.000đ/lượt)", dish:"CGV Cinema, Haidilao, Mua sắm Adidas/Nike, Khu Fitness", price:"Miễn phí vào cổng", priceSort:50000, tier:"Trung cấp"},
+      {id:506, tab:"tab5", name:"TTTM Saigon Centre (Takashimaya)", type:"Luxury Shopping Mall", fit:98, star:4.8, addr:"65 Lê Lợi, P. Sài Gòn (P. Bến Nghé, Q.1)", dist:3.6, time:"11p Ô tô / 9p Xe máy", hours:"09:30 - 22:00", early:false, late:false, space:"Tổ hợp TTTM Nhật Bản cao cấp bậc nhất TP.HCM, thiết kế sang trọng", car:true, carNote:"Hầm đỗ xe ô tô 3 tầng hiện đại (cổng vào đường Nam Kỳ Khởi Nghĩa / Pasteur)", dish:"Mua sắm hàng hiệu, Khu ẩm thực tầng hầm B2, Cafe Brunch tầng 5", price:"Miễn phí vào cổng", priceSort:100000, tier:"Cao cấp"},
+      {id:507, tab:"tab5", name:"Bảo Tàng Y Học Cổ Truyền Việt Nam (FITO Museum)", type:"Điểm Du Lịch Văn Hóa & Kiến Trúc", fit:92, star:4.7, addr:"41 Hoàng Dư Khương, P.12, Q.10", dist:1.1, time:"4p Ô tô / 3p Xe máy", hours:"08:30 - 17:00", early:false, late:false, space:"Tòa nhà gỗ 6 tầng chạm khắc tinh xảo rộng ~600m2 ngay Quận 10", car:true, carNote:"Đỗ ô tô trực tiếp trên đường Hoàng Dư Khương / bãi Kỳ Hòa cách 80m", dish:"Tham quan 3.000 hiện vật y học cổ, Thưởng trà thảo mộc, Chụp ảnh nghệ thuật", price:"120.000đ - 180.000đ/vé", priceSort:150000, tier:"Trung cấp"},
+      {id:508, tab:"tab5", name:"Dinh Độc Lập (Hội Trường Thống Nhất)", type:"Di Tích Lịch Sử Quốc Gia Đặc Biệt", fit:95, star:4.7, addr:"135 Nam Kỳ Khởi Nghĩa, P. Bến Thành, Q.1", dist:2.8, time:"9p Ô tô / 7p Xe máy", hours:"08:00 - 16:30", early:false, late:false, space:"Khuôn viên công viên cổ thụ rộng 12 ha giữa trung tâm thành phố", car:true, carNote:"Bãi gửi ô tô đường Huyền Trân Công Chúa / Nguyễn Du cách cổng 100m", dish:"Tham quan kiến trúc Dinh Độc Lập, Hầm chỉ huy, Triển lãm chuyên đề", price:"40.000đ - 65.000đ/vé", priceSort:50000, tier:"Bình dân"},
+      {id:509, tab:"tab5", name:"Phố Đi Bộ Nguyễn Huệ & Bến Bạch Đằng", type:"Không Gian Đô Thị & Du Thuyền Sông", fit:97, star:4.7, addr:"Đường Nguyễn Huệ & Tôn Đức Thắng, P. Sài Gòn, Q.1", dist:4.0, time:"13p Ô tô / 10p Xe máy", hours:"00:00 - 24:00 (24/7)", early:true, late:true, space:"Quảng trường đi bộ dài 670m kết nối thẳng công viên bờ sông Sài Gòn", car:true, carNote:"Gửi ô tô hầm tòa nhà The Waterfront Saigon / Hồ Tùng Mậu cách 100m", dish:"Đi Saigon Waterbus (15.000đ), Xe buýt 2 tầng (130.500đ), Cafe chung cư 42", price:"15.000đ - 239.000đ", priceSort:120000, tier:"Trung cấp"},
+      {id:510, tab:"tab5", name:"Rainbow Noraebang & CGV - Vạn Hạnh Mall", type:"Tổ Hợp Giải Trí Đêm & Rạp Phim", fit:95, star:4.6, addr:"Tầng 6 & Tầng 7, Vạn Hạnh Mall, 11 Sư Vạn Hạnh, Q.10", dist:1.2, time:"4p Ô tô / 3p Xe máy", hours:"08:00 - 02:30", early:false, late:true, space:"Rộng ~2.500m2 gồm cụm rạp chiếu phim IMAX/Gold Class và Karaoke Hàn Quốc", car:true, carNote:"Hầm đỗ xe Vạn Hạnh Mall mở xuyên đêm 24/24 cho khách xem suất khuya", dish:"Xem phim bom tấn suất đêm, Hát Karaoke phòng thu chuẩn Hàn Quốc", price:"95.000đ - 250.000đ", priceSort:170000, tier:"Trung cấp"},
+      {id:511, tab:"tab5", name:"Karaoke FYOU III - Sư Vạn Hạnh", type:"Luxury KTV & Lounge", fit:91, star:4.5, addr:"519-521 Sư Vạn Hạnh, P. Hòa Hưng (P.12, Q.10)", dist:0.8, time:"3p Ô tô / 2p Xe máy", hours:"10:00 - 02:00", early:false, late:true, space:"Tòa nhà 6 tầng thiết kế hiện đại, âm thanh ánh sáng chuẩn phòng thu", car:true, carNote:"Có nhân viên nhận đỗ ô tô hoặc gửi bãi BV 115 cách 40m", dish:"Giao lưu âm nhạc nhóm bạn, Tiệc sinh nhật, Set trái cây & đồ uống", price:"150.000đ - 400.000đ/giờ", priceSort:275000, tier:"Trung cấp"},
+      {id:512, tab:"tab5", name:"Citigym - Vạn Hạnh Mall / Thành Thái", type:"High-End Fitness & Yoga Club", fit:93, star:4.6, addr:"Tầng 7 Vạn Hạnh Mall & 52 Thành Thái, Q.10", dist:1.2, time:"4p Ô tô / 3p Xe máy", hours:"06:00 - 22:00", early:true, late:false, space:"Rộng ~3.000m2, thiết kế cây xanh hiện đại, trang thiết bị Technogym", car:true, carNote:"Đỗ ô tô trực tiếp tại hầm Vạn Hạnh Mall hoặc khuôn viên 52 Thành Thái", dish:"Tập Gym, Yoga, GroupX, Xông hơi thư giãn", price:"150.000đ - 300.000đ/lượt lẻ", priceSort:200000, tier:"Trung cấp"},
+      {id:513, tab:"tab5", name:"Nhà Hát Thành Phố (À Ố Show)", type:"Biểu Diễn Nghệ Thuật Đương Đại", fit:94, star:4.8, addr:"7 Công Trường Lam Sơn, P. Sài Gòn, Q.1", dist:4.1, time:"13p Ô tô / 10p Xe máy", hours:"09:00 - 21:30", early:false, late:false, space:"Kiến trúc Pháp cổ điển năm 1900 ngay ga ngầm Metro Nhà hát TP", car:true, carNote:"Gửi ô tô tại hầm Union Square / Bãi xe Lam Sơn ngay cạnh nhà hát", dish:"Thưởng thức À Ố Show (xiếc tre đương đại), Hòa nhạc giao hưởng", price:"800.000đ - 1.250.000đ/vé", priceSort:1000000, tier:"Cao cấp"},
+
+      // ================= TAB 6: CẨM NANG DI CHUYỂN, GIÁ CƯỚC & BÃI ĐỖ XE =================
+      {id:601, tab:"tab6", name:"Bãi Đỗ Xe Ô Tô 24/24 - 1B Lý Thái Tổ", type:"Bãi Đỗ Xe Ô Tô Ngoài Trời Quy Mô Lớn", fit:99, star:4.6, addr:"1B Lý Thái Tổ, P. Vườn Lài (P.1, Q.10)", dist:0.5, time:"2p Ô tô", hours:"00:00 - 24:00 (24/7)", early:true, late:true, space:"Mặt bằng rộng lớn ngay nút giao Q.10 - Q.3 - Q.5, nhận xe 4-16 chỗ", car:true, carNote:"Đỗ trực tiếp 24/24, thuận tiện đi Công viên Lý Thái Tổ, Hồ Thị Kỷ, BV Nhi Đồng 1", dish:"Gửi ô tô theo lượt ban ngày, Gửi lưu đêm và hợp đồng tháng", price:"30.000đ/lượt ngày | 100k-150k/đêm", priceSort:30000, tier:"Bình dân"},
+      {id:602, tab:"tab6", name:"Bãi Đỗ Xe Siêu Thị Sài Gòn (Satra)", type:"Bãi Đỗ Ô Tô Sát Mốc 384 Lý Thái Tổ", fit:98, star:4.5, addr:"436 Đường Ba Tháng Hai, P.12, Q.10", dist:0.5, time:"2p Ô tô", hours:"07:00 - 22:30", early:true, late:true, space:"Khuôn viên sân bãi rộng rãi ngay mặt tiền đường 3/2, sát cổng BV Nhi Đồng 1", car:true, carNote:"Đỗ ô tô trực tiếp, đi bộ 3 phút sang trục Lý Thái Tổ & Sư Vạn Hạnh", dish:"Gửi xe ô tô tính theo giờ minh bạch, an ninh bảo vệ 2 lớp", price:"10.000đ/giờ (Khoảng 30.000đ-50.000đ/lượt)", priceSort:30000, tier:"Bình dân"},
+      {id:603, tab:"tab6", name:"Hầm Đỗ Xe 24/7 TTTM Vạn Hạnh Mall", type:"Hầm Đỗ Ô Tô Thông Minh", fit:98, star:4.7, addr:"11 Sư Vạn Hạnh, P. Hòa Hưng (P.12, Q.10)", dist:1.2, time:"4p Ô tô", hours:"00:00 - 24:00 (24/7)", early:true, late:true, space:"Đường xoắn ốc xuống hầm rộng, sức chứa 350 ô tô, camera & thẻ từ 24/7", car:true, carNote:"Mở cửa 24/24 phục vụ cả khách ăn uống đêm & xem phim khuya", dish:"Gửi ô tô trung tâm trục Sư Vạn Hạnh, an toàn tuyệt đối, mát mẻ", price:"20.000đ - 40.000đ/lượt", priceSort:30000, tier:"Bình dân"},
+      {id:604, tab:"tab6", name:"Bãi Đỗ Xe Ô Tô C30 Thành Thái & 90B Lý Thường Kiệt", type:"Cụm Bãi Đỗ Ô Tô Quận 10 (Có Mái Che)", fit:95, star:4.5, addr:"C30 Thành Thái & 90B Lý Thường Kiệt, P.14, Q.10", dist:1.5, time:"5p Ô tô", hours:"00:00 - 24:00 (24/7)", early:true, late:true, space:"Bãi xe rất rộng, không cần để lại chìa khóa (90B Lý Thường Kiệt có mái che)", car:true, carNote:"Nhận cả xe vãng lai ngày/đêm và gửi tháng", dish:"Đỗ ô tô đi ăn khu Thành Thái - Bắc Hải - Lý Thường Kiệt", price:"30.000đ - 50.000đ/ngày đêm | 1,2tr/tháng", priceSort:40000, tier:"Bình dân"},
+      {id:605, tab:"tab6", name:"Bãi Đỗ Xe 332 Tô Hiến Thành & 177B Cao Thắng", type:"Bãi Đỗ Ô Tô Chia Ô Tiêu Chuẩn", fit:94, star:4.5, addr:"332 Tô Hiến Thành (P.14) & 177B Cao Thắng (P.12), Q.10", dist:1.1, time:"4p Ô tô", hours:"00:00 - 24:00 (24/7)", early:true, late:true, space:"Hạ tầng vững chắc, chia từng ô đỗ riêng biệt chống trầy xước", car:true, carNote:"Mở liên tục 24/7, nhận lưu xe qua đêm an toàn", dish:"Gửi xe ô tô theo giờ hoặc theo tháng khu Cao Thắng - Tô Hiến Thành", price:"30.000đ/3h đầu (+10k/h) | 1,6tr/tháng", priceSort:30000, tier:"Bình dân"},
+      {id:606, tab:"tab6", name:"Hầm Đỗ Xe 24/7 NowZone & Hotel Nikko (235 Nguyễn Văn Cừ)", type:"Hầm Đỗ Ô Tô Giáp Ranh Q.1 - Q.5 - Q.10", fit:95, star:4.6, addr:"235 Nguyễn Văn Cừ, P. Nguyễn Cư Trinh, Q.1", dist:1.6, time:"5p Ô tô", hours:"00:00 - 24:00 (24/7)", early:true, late:true, space:"Hầm kiểm soát thẻ từ thông minh, trần cao đáp ứng tốt cả SUV cỡ lớn & Sedan", car:true, carNote:"Hoạt động 24/7 ngay trục Nguyễn Văn Cừ nối Hùng Vương - Lý Thái Tổ", dish:"Gửi xe theo giờ và đăng ký vé tháng", price:"30.000đ/2h đầu | 1,8tr - 2,2tr/tháng", priceSort:30000, tier:"Bình dân"},
+      {id:607, tab:"tab6", name:"Bãi Xe 24/24 Trung Tâm Q.1 (11 Nguyễn Văn Chiêm & 606 Trần Hưng Đạo)", type:"Bãi Đỗ Ô Tô Trung Tâm Q.1 & Q.5", fit:94, star:4.5, addr:"11 Nguyễn Văn Chiêm (Q.1) & 606 Trần Hưng Đạo (Q.5)", dist:2.2, time:"7p Ô tô", hours:"00:00 - 24:00 (24/7)", early:true, late:true, space:"Mặt bằng thoáng phẳng, không giới hạn chiều cao xe (nhận cả bán tải, 16 chỗ)", car:true, carNote:"Đi bộ 2 phút ra Nhà thờ Đức Bà, Diamond Plaza hoặc khu Chợ Lớn", dish:"Gửi xe ban ngày và qua đêm tại lõi trung tâm", price:"30.000đ-35.000đ/2h đầu | 120k-200k/đêm", priceSort:35000, tier:"Bình dân"},
+      {id:608, tab:"tab6", name:"Cứu Hộ Lốp & Kích Bình 24/7 Chiến Thắng & Hải Triều", type:"Dịch Vụ Hỗ Trợ Ô Tô Trên Đường Lý Thái Tổ", fit:96, star:4.8, addr:"429 Lý Thái Tổ & 103-107 Lý Thái Tổ, P. Vườn Lài, Q.10", dist:0.2, time:"1p Ô tô", hours:"00:00 - 24:00 (24/7)", early:true, late:true, space:"Cơ sở lớn ngay mặt tiền Lý Thái Tổ, cách điểm mốc 384 chỉ 150m", car:true, carNote:"Đỗ xe xử lý trực tiếp tại cửa hàng hoặc gọi cứu hộ lưu động 24/7 (0345 050 365)", dish:"Vá vỏ lưu động, Kích bình ắc quy 24/7, Cân mâm bấm chì, Thay lốp", price:"50.000đ - 300.000đ/lần hỗ trợ", priceSort:100000, tier:"Bình dân"},
+      {id:609, tab:"tab6", name:"Bảng Giá Taxi Điện Xanh SM (Green SM Car / Premium / Limo)", type:"Phương Tiện Di Chuyển - Taxi Điện 100%", fit:98, star:4.8, addr:"Đón tận nơi tại 384 Lý Thái Tổ (App Xanh SM / 1900 2088)", dist:0.0, time:"Đón sau 3p", hours:"00:00 - 24:00 (24/7)", early:true, late:true, space:"Dàn xe điện VinFast VF 5, VF 6, VF e34, Nerio Green, Limo Green 7 chỗ êm ái", car:true, carNote:"Không tách phí thời gian chờ khi kẹt xe, giá niêm yết minh bạch gồm VAT", dish:"Green SM Mini: 27,5k/2km đầu (+12,4k/km) | Car: 30,5k/2km (+14,7k-15,2k/km) | Limo 7 chỗ: 39,5k/2km (+18,4k/km)", price:"30.500đ/2km đầu | 14.700đ/km", priceSort:60000, tier:"Bình dân"},
+      {id:610, tab:"tab6", name:"Bảng Giá GrabCar & BeCar (4 Chỗ - 7 Chỗ)", type:"Phương Tiện Di Chuyển - Xe Công Nghệ", fit:96, star:4.6, addr:"Đón tận nơi tại 384 Lý Thái Tổ (App Grab / Be)", dist:0.0, time:"Đón sau 2p", hours:"00:00 - 24:00 (24/7)", early:true, late:true, space:"Mạng lưới xe 4 chỗ, 7 chỗ và GrabCar Plus phủ dày đặc Quận 10", car:true, carNote:"Lưu ý GrabCar có cộng phí thời gian di chuyển (442đ-550đ/phút) và phí nền tảng (5k-19k)", dish:"GrabCar 4C: 28,5k-29k/2km đầu (+10k-13,2k/km) | 7C: 34k/2km (+12k-16,8k/km) | BeCar 4C: 31k/2km (+11,5k/km)", price:"29.000đ - 37.000đ/2km đầu", priceSort:65000, tier:"Bình dân"},
+      {id:611, tab:"tab6", name:"Bảng Giá Taxi Vinasun & Mai Linh (Truyền Thống & App)", type:"Phương Tiện Di Chuyển - Taxi Truyền Thống", fit:92, star:4.5, addr:"Đón vẫy trực tiếp trên đường Lý Thái Tổ / Sư Vạn Hạnh (1055 / 028 38272727)", dist:0.0, time:"Đón sau 2p", hours:"00:00 - 24:00 (24/7)", early:true, late:true, space:"Dòng xe Toyota Vios, Innova 7 chỗ luôn túc trực quanh cổng BV Nhi Đồng 1 & Ngã 7", car:true, carNote:"Không tăng giá giờ cao điểm (surge pricing), thanh toán thẻ/QR tiện lợi", dish:"Vinasun 4C: 11k/0.5km đầu (+16,4k-17,6k/km) | 7C: 12k/0.5km (+18,2k-19,6k/km) | Mai Linh: 10k-12k mở cửa (+13,9k-17k/km)", price:"11.000đ mở cửa | 15.100đ-19.600đ/km", priceSort:70000, tier:"Bình dân"},
+      {id:612, tab:"tab6", name:"Tuyến Metro Số 1 (Bến Thành - Suối Tiên) & 17 Tuyến Buýt Điện", type:"Giao Thông Công Cộng Hiện Đại", fit:97, star:4.8, addr:"Ga ngầm Bến Thành (Cách 384 Lý Thái Tổ 3,1 km)", dist:3.1, time:"10p Ô tô/Xe máy ra Ga", hours:"05:00 - 22:00 (T6-CN đến 23:00)", early:true, late:true, space:"14 ga dài 19,7km máy lạnh hiện đại, kết nối Thảo Điền, Tân Cảng (Landmark 81), Suối Tiên", car:true, carNote:"Có thể gửi xe tại công viên 23/9 hoặc đi xe buýt điện giá 5.000đ/lượt kết nối thẳng vào ga", dish:"Vé lượt không tiền mặt: 6.000đ - 19.000đ (7 ga đầu đồng giá 6.000đ) | Vé 1 ngày: 40.000đ | Vé 3 ngày: 90.000đ", price:"6.000đ - 19.000đ/lượt | 40.000đ/ngày", priceSort:15000, tier:"Bình dân"},
+      {id:613, tab:"tab6", name:"Thuê Xe Ô Tô Tự Lái 24/7 (Xe Hàng Xóm / Mioto / Green Future)", type:"Thuê Xe Theo Giờ & Theo Ngày (Keyless 24/7)", fit:95, star:4.7, addr:"Nhận xe tại Quận 10 hoặc giao tận nơi 384 Lý Thái Tổ", dist:0.5, time:"Giao xe tận nơi", hours:"00:00 - 24:00 (24/7)", early:true, late:true, space:"Đa dạng xe 4-7 chỗ đời mới: VinFast VF 3, VF 6, VF 8, Toyota Cross, Kia Carnival", car:true, carNote:"Mở khóa xe qua điện thoại (Keyless) 24/7, định mức 300-350km/ngày", dish:"Gói linh hoạt 4 giờ: từ 450.000đ | Thuê ngày: VF 3 (550k), Sedan/SUV 5 chỗ (750k-1,1tr), VF 8 (1,2tr), Carnival (1,8tr)", price:"450.000đ/4h | 550.000đ - 1.800.000đ/ngày", priceSort:750000, tier:"Trung cấp"},
+      {id:614, tab:"tab6", name:"Lộ Trình Từ 384 Lý Thái Tổ Đi Các Điểm Trọng Yếu", type:"Cẩm Nang Lộ Trình & Thời Gian Thực Tế", fit:98, star:4.9, addr:"Xuất phát từ 384 Lý Thái Tổ, P. Vườn Lài, TP.HCM", dist:0.0, time:"Tâm điểm kết nối", hours:"00:00 - 24:00 (24/7)", early:true, late:true, space:"Kết nối 4 trục huyết mạch: Lý Thái Tổ - Ba Tháng Hai - Sư Vạn Hạnh - Điện Biên Phủ", car:true, carNote:"Tránh quay đầu ngay cổng chính BV Nhi Đồng 1 lúc 07:00-08:30 sáng", dish:"Đi Vạn Hạnh Mall (1,2km - 4p) | Đi Chợ Bến Thành Q.1 (3,1km - 10p) | Đi Phố đi bộ Nguyễn Huệ (4,0km - 13p) | Đi Sân bay TSN (6,8km - 22p)", price:"Cước xe 4 chỗ: 35.000đ - 115.000đ/chặng", priceSort:60000, tier:"Bình dân"}
+    ];
+
+    // Application State
+    let currentTab = "all";
+    let currentChip = "all";
+    let searchQuery = "";
+    let sortField = "fit";
+    let sortOrder = "desc";
+    let savedIds = [];
+
+    // Load Saved Itinerary from localStorage
+    function loadSavedState() {
+      try {
+        const raw = localStorage.getItem("argon_saved_itinerary_384ltt");
+        if (raw) {
+          savedIds = JSON.parse(raw);
+        }
+      } catch (e) {
+        savedIds = [];
+      }
+      updateSavedCounter();
+    }
+
+    function saveStateToStorage() {
+      try {
+        localStorage.setItem("argon_saved_itinerary_384ltt", JSON.stringify(savedIds));
+      } catch (e) {}
+      updateSavedCounter();
+    }
+
+    function updateSavedCounter() {
+      const el = document.getElementById("savedCount");
+      if (el) el.textContent = savedIds.length;
+    }
+
+    // Initialize Top KPI Metrics
+    function initKPIs() {
+      const total = PLACES_DATA.length;
+      const carCount = PLACES_DATA.filter(p => p.car).length;
+      const lateCount = PLACES_DATA.filter(p => p.late).length;
+
+      document.getElementById("kpiTotal").textContent = total + " điểm chuẩn chọn lọc";
+      document.getElementById("kpiCar").textContent = carCount + "/" + total + " điểm (100%)";
+      document.getElementById("kpiLate").textContent = lateCount + " điểm mở >22h";
+    }
+
+    // Render Category Tabs
+    function renderTabs() {
+      const container = document.getElementById("tabsContainer");
+      container.innerHTML = TABS_CONFIG.map(tab => {
+        const count = tab.id === "all"
+          ? PLACES_DATA.length
+          : PLACES_DATA.filter(p => p.tab === tab.id).length;
+        const activeClass = currentTab === tab.id ? "active" : "";
+        return `
+          <button class="tab-btn ${activeClass}" onclick="selectTab('${tab.id}')">
+            <span>${tab.label}</span>
+            <span class="tab-count">${count}</span>
+          </button>
+        `;
+      }).join("");
+    }
+
+    // Render Quick Filter Chips
+    function renderChips() {
+      const container = document.getElementById("chipsContainer");
+      container.innerHTML = FILTER_CHIPS.map(chip => {
+        const activeClass = currentChip === chip.id ? "active" : "";
+        return `
+          <button class="chip ${activeClass}" onclick="selectChip('${chip.id}')">
+            ${chip.label}
+          </button>
+        `;
+      }).join("");
+    }
+
+    function selectTab(tabId) {
+      currentTab = tabId;
+      renderTabs();
+      renderContent();
+    }
+
+    function selectChip(chipId) {
+      currentChip = chipId;
+      renderChips();
+      renderContent();
+    }
+
+    function handleSearch() {
+      searchQuery = document.getElementById("searchInput").value.trim().toLowerCase();
+      renderContent();
+    }
+
+    function toggleSort(field) {
+      if (sortField === field) {
+        sortOrder = sortOrder === "asc" ? "desc" : "asc";
+      } else {
+        sortField = field;
+        sortOrder = field === "dist" ? "asc" : "desc";
+      }
+      renderContent();
+    }
+
+    function handleMobileSort(val) {
+      const parts = val.split("-");
+      sortField = parts[0];
+      sortOrder = parts[1];
+      renderContent();
+    }
+
+    function getFilteredAndSortedData() {
+      return PLACES_DATA.filter(item => {
+        if (currentTab !== "all" && item.tab !== currentTab) return false;
+
+        if (currentChip === "car" && !item.car) return false;
+        if (currentChip === "late" && !item.late) return false;
+        if (currentChip === "early" && !item.early) return false;
+        if (currentChip === "star45" && item.star < 4.5) return false;
+        if (currentChip === "near2km" && item.dist >= 2.0) return false;
+        if (currentChip === "tierLow" && item.tier !== "Bình dân") return false;
+        if (currentChip === "tierMid" && item.tier !== "Trung cấp") return false;
+        if (currentChip === "tierHigh" && item.tier !== "Cao cấp") return false;
+
+        if (searchQuery) {
+          const hay = (item.name + " " + item.type + " " + item.addr + " " + item.dish + " " + item.carNote).toLowerCase();
+          if (!hay.includes(searchQuery)) return false;
+        }
+        return true;
+      }).sort((a, b) => {
+        const valA = a[sortField];
+        const valB = b[sortField];
+        if (valA === valB) return 0;
+        if (sortOrder === "asc") {
+          return valA > valB ? 1 : -1;
+        } else {
+          return valA < valB ? 1 : -1;
+        }
+      });
+    }
+
+    function buildGoogleMapsUrl(destinationAddr) {
+      const orig = encodeURIComponent(LANDMARK_ORIGIN);
+      const dest = encodeURIComponent(destinationAddr);
+      return `https://www.google.com/maps/dir/?api=1&origin=${orig}&destination=${dest}&travelmode=driving`;
+    }
+
+    function toggleSaveItem(id) {
+      const idx = savedIds.indexOf(id);
+      if (idx === -1) {
+        savedIds.push(id);
+      } else {
+        savedIds.splice(idx, 1);
+      }
+      saveStateToStorage();
+      renderContent();
+      if (document.getElementById("savedModal").classList.contains("open")) {
+        renderSavedModalList();
+      }
+    }
+
+    function updateSortHeaderIndicators() {
+      ["fit", "star", "dist", "priceSort"].forEach(col => {
+        const el = document.getElementById("sort-" + col);
+        if (!el) return;
+        if (sortField === col) {
+          el.textContent = sortOrder === "asc" ? "▲" : "▼";
+        } else {
+          el.textContent = "↕";
+        }
+      });
+    }
+
+    // Render Main Table and Mobile Cards
+    function renderContent() {
+      updateSortHeaderIndicators();
+      const list = getFilteredAndSortedData();
+      document.getElementById("resultSummary").innerHTML =
+        `Đang hiển thị <strong>${list.length}</strong> / ${PLACES_DATA.length} địa điểm (Tính từ mốc <strong>384 Lý Thái Tổ, P. Vườn Lài</strong>)`;
+
+      const tbody = document.getElementById("tableBody");
+      const cardGrid = document.getElementById("cardGrid");
+
+      if (list.length === 0) {
+        const emptyHtml = `<tr><td colspan="11" class="empty-state">Không tìm thấy địa điểm phù hợp với bộ lọc hiện tại. Hãy thử chọn [Tất cả] hoặc xóa từ khóa tìm kiếm.</td></tr>`;
+        tbody.innerHTML = emptyHtml;
+        cardGrid.innerHTML = `<div class="empty-state">Không tìm thấy địa điểm phù hợp.</div>`;
+        return;
+      }
+
+      tbody.innerHTML = list.map(item => {
+        const isSaved = savedIds.includes(item.id);
+        const mapUrl = buildGoogleMapsUrl(item.name + ", " + item.addr);
+        return `
+          <tr>
+            <td>
+              <div class="place-name">${item.name}</div>
+              <div class="place-cat">${item.type}</div>
+              <div>
+                <span class="badge badge-car">🚗 Đỗ Ô tô</span>
+                ${item.early ? '<span class="badge badge-early">☀️ Mở sớm</span>' : ''}
+                ${item.late ? '<span class="badge badge-late">🌙 Sau 22h</span>' : ''}
+                <span class="badge badge-tier">${item.tier}</span>
+              </div>
+            </td>
+            <td><span class="fit-pill">${item.fit}%</span></td>
+            <td><span class="star-pill">★ ${item.star.toFixed(1)}</span></td>
+            <td>${item.addr}</td>
+            <td>
+              <strong>${item.dist.toFixed(1)} km</strong>
+              <div style="font-size:0.75rem; color:var(--text-muted);">${item.time}</div>
+            </td>
+            <td>${item.hours}</td>
+            <td>${item.space}</td>
+            <td>${item.carNote}</td>
+            <td>${item.dish}</td>
+            <td><strong>${item.price}</strong></td>
+            <td>
+              <div class="row-actions">
+                <a class="btn-sm" href="${mapUrl}" target="_blank" rel="noopener">🗺️ Chỉ đường</a>
+                <button class="btn-sm ${isSaved ? 'saved' : ''}" onclick="toggleSaveItem(${item.id})">
+                  ${isSaved ? '✓ Đã lưu' : '+ Lưu lịch trình'}
+                </button>
+              </div>
+            </td>
+          </tr>
+        `;
+      }).join("");
+
+      cardGrid.innerHTML = list.map(item => {
+        const isSaved = savedIds.includes(item.id);
+        const mapUrl = buildGoogleMapsUrl(item.name + ", " + item.addr);
+        return `
+          <div class="place-card">
+            <div class="card-header">
+              <div>
+                <div class="place-name">${item.name}</div>
+                <div class="place-cat">${item.type}</div>
+              </div>
+              <div class="card-metrics">
+                <span class="fit-pill">${item.fit}%</span>
+                <span class="star-pill">★ ${item.star.toFixed(1)}</span>
+              </div>
+            </div>
+            <div>
+              <span class="badge badge-car">🚗 Đỗ Ô tô</span>
+              ${item.early ? '<span class="badge badge-early">☀️ Mở sớm</span>' : ''}
+              ${item.late ? '<span class="badge badge-late">🌙 Sau 22h</span>' : ''}
+              <span class="badge badge-tier">${item.tier}</span>
+            </div>
+            <div class="card-row"><strong>📍 Địa chỉ:</strong> ${item.addr} (Cách mốc <strong>${item.dist.toFixed(1)} km</strong> • ${item.time})</div>
+            <div class="card-row"><strong>🕒 Giờ mở cửa:</strong> ${item.hours}</div>
+            <div class="card-row"><strong>🏛️ Không gian:</strong> ${item.space}</div>
+            <div class="card-row"><strong>🅿️ Đỗ ô tô:</strong> ${item.carNote}</div>
+            <div class="card-row"><strong>✨ Điểm nhấn:</strong> ${item.dish}</div>
+            <div class="card-row"><strong>💵 Mức giá:</strong> <span style="color:var(--primary); font-weight:700;">${item.price}</span></div>
+            <div class="card-footer">
+              <a class="btn-sm" href="${mapUrl}" target="_blank" rel="noopener">🗺️ Chỉ đường Maps</a>
+              <button class="btn-sm ${isSaved ? 'saved' : ''}" onclick="toggleSaveItem(${item.id})">
+                ${isSaved ? '✓ Đã lưu' : '+ Lưu lịch trình'}
+              </button>
+            </div>
+          </div>
+        `;
+      }).join("");
+    }
+
+    // Saved Itinerary Modal Functions
+    function openSavedModal() {
+      renderSavedModalList();
+      document.getElementById("savedModal").classList.add("open");
+    }
+
+    function closeSavedModal() {
+      document.getElementById("savedModal").classList.remove("open");
+    }
+
+    function renderSavedModalList() {
+      const body = document.getElementById("savedModalBody");
+      const savedItems = PLACES_DATA.filter(p => savedIds.includes(p.id));
+      if (savedItems.length === 0) {
+        body.innerHTML = `<div class="empty-state">Bạn chưa lưu địa điểm nào. Hãy nhấn nút <strong>"+ Lưu lịch trình"</strong> trên các quán yêu thích để tạo danh sách cá nhân và xuất file CSV.</div>`;
+        return;
+      }
+      body.innerHTML = savedItems.map(item => {
+        const mapUrl = buildGoogleMapsUrl(item.name + ", " + item.addr);
+        return `
+          <div class="saved-item">
+            <div>
+              <div class="place-name">${item.name} <span class="star-pill">★ ${item.star.toFixed(1)}</span></div>
+              <div style="font-size:0.8rem; color:var(--text-muted);">${item.addr} • Cách mốc ${item.dist.toFixed(1)} km • ${item.price}</div>
+              <div style="font-size:0.78rem; color:var(--text-main); margin-top:2px;">🅿️ ${item.carNote}</div>
+            </div>
+            <div style="display:flex; gap:6px; flex-shrink:0;">
+              <a class="btn-sm" href="${mapUrl}" target="_blank" rel="noopener">🗺️ Maps</a>
+              <button class="btn-sm" onclick="toggleSaveItem(${item.id})">✕ Bỏ lưu</button>
+            </div>
+          </div>
+        `;
+      }).join("");
+    }
+
+    function clearSavedItinerary() {
+      savedIds = [];
+      saveStateToStorage();
+      renderSavedModalList();
+      renderContent();
+    }
+
+    // Export CSV (Saved Only or Full Filtered List)
+    function exportCSV(onlySaved) {
+      const sourceList = onlySaved
+        ? PLACES_DATA.filter(p => savedIds.includes(p.id))
+        : getFilteredAndSortedData();
+
+      if (sourceList.length === 0) {
+        alert(onlySaved ? "Chưa có địa điểm nào trong lịch trình đã lưu!" : "Không có dữ liệu để xuất!");
+        return;
+      }
+
+      const headers = [
+        "ID", "Nhóm Tab", "Tên Địa Điểm", "Loại Hình", "Độ Hợp Gu (%)", "Điểm Sao",
+        "Địa Chỉ", "Khoảng Cách Từ 384 Lý Thái Tổ (km)", "Thời Gian Di Chuyển",
+        "Giờ Mở Cửa", "Quy Mô Không Gian", "Chỗ Đỗ Ô Tô", "Món Phải Thử / Hoạt Động", "Mức Giá (VNĐ)", "Phân Khúc"
+      ];
+
+      const escapeCSV = (val) => {
+        const str = String(val ?? "").replace(/"/g, '""');
+        return `"${str}"`;
+      };
+
+      const rows = sourceList.map(item => [
+        item.id,
+        item.tab.toUpperCase(),
+        item.name,
+        item.type,
+        item.fit,
+        item.star,
+        item.addr,
+        item.dist,
+        item.time,
+        item.hours,
+        item.space,
+        item.carNote,
+        item.dish,
+        item.price,
+        item.tier
+      ].map(escapeCSV).join(","));
+
+      const csvContent = "\uFEFF" + [headers.map(escapeCSV).join(","), ...rows].join("\r\n");
+      const blob = new Blob([csvContent], { type: "text/csv;charset=utf-8;" });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = onlySaved
+        ? "Lich_Trinh_Da_Luu_384_Ly_Thai_To.csv"
+        : "Cam_Nang_Du_Lich_384_Ly_Thai_To_Full.csv";
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+    }
+
+    // Boot Application
+    window.addEventListener("DOMContentLoaded", () => {
+      loadSavedState();
+      initKPIs();
+      renderTabs();
+      renderChips();
+      renderContent();
+    });
+  </script>
+</body>
+</html>
