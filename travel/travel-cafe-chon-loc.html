@@ -1,0 +1,1105 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
+  <title>Quán Cafe chọn lọc</title>
+  <style>
+    :root {
+      --bg-page: #F8F6F2;
+      --bg-surface: #FFFFFF;
+      --bg-elevated: #F3EFE6;
+      --bg-hover-row: #EFE8D8;
+      --text-primary: #18181B;
+      --text-secondary: #4B5563;
+      --text-muted: #6B7280;
+      --accent-primary: #0F4C81;
+      --accent-secondary: #B45309;
+      --accent-emerald: #047857;
+      --accent-purple: #6D28D9;
+      --border-color: #E5E0D5;
+      --border-strong: #CBD5E1;
+      --shadow-sm: 0 1px 3px rgba(15, 23, 42, 0.06);
+      --shadow-md: 0 4px 12px rgba(15, 23, 42, 0.08);
+      --radius-md: 10px;
+      --radius-lg: 14px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      background-color: var(--bg-page);
+      color: var(--text-primary);
+      line-height: 1.55;
+      font-size: 14.5px;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* HEADER BANNER */
+    .app-header {
+      background: linear-gradient(135deg, #1E293B 0%, #0F172A 100%);
+      color: #F8FAFC;
+      padding: 24px 20px 20px;
+      border-bottom: 4px solid #D97706;
+    }
+
+    .header-container {
+      max-width: 1440px;
+      margin: 0 auto;
+    }
+
+    .header-badge-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 10px;
+    }
+
+    .header-badge {
+      background: rgba(245, 158, 11, 0.2);
+      border: 1px solid rgba(245, 158, 11, 0.5);
+      color: #FDE68A;
+      font-size: 12px;
+      font-weight: 600;
+      padding: 4px 10px;
+      border-radius: 999px;
+      letter-spacing: 0.02em;
+    }
+
+    .app-title {
+      font-size: clamp(20px, 3vw, 28px);
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      color: #FFFFFF;
+      margin-bottom: 6px;
+    }
+
+    .app-subtitle {
+      font-size: 13.5px;
+      color: #CBD5E1;
+      max-width: 980px;
+    }
+
+    .landmark-bar {
+      margin-top: 14px;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-radius: var(--radius-md);
+      padding: 10px 14px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      align-items: center;
+      font-size: 13px;
+      color: #F1F5F9;
+    }
+
+    .landmark-bar strong {
+      color: #FBBF24;
+    }
+
+    /* MAIN CONTAINER */
+    .main-container {
+      max-width: 1440px;
+      margin: 0 auto;
+      padding: 18px 16px 48px;
+    }
+
+    /* TABS NAVIGATION */
+    .tabs-nav {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+      margin-bottom: 16px;
+    }
+
+    .tab-btn {
+      background: var(--bg-surface);
+      color: var(--text-primary);
+      border: 2px solid var(--border-color);
+      border-radius: var(--radius-md);
+      padding: 12px 14px;
+      text-align: left;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      box-shadow: var(--shadow-sm);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .tab-btn:hover {
+      background-color: var(--bg-elevated);
+      color: var(--text-primary);
+      border-color: #94A3B8;
+    }
+
+    .tab-btn.active {
+      background-color: #0F4C81;
+      color: #FFFFFF;
+      border-color: #0F4C81;
+      box-shadow: 0 4px 12px rgba(15, 76, 129, 0.25);
+    }
+
+    .tab-btn.active .tab-sub {
+      color: #E0F2FE;
+    }
+
+    .tab-btn.active .tab-count {
+      background: #F59E0B;
+      color: #111827;
+    }
+
+    .tab-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 4px;
+    }
+
+    .tab-label {
+      font-weight: 700;
+      font-size: 14px;
+    }
+
+    .tab-count {
+      background: var(--bg-elevated);
+      color: var(--text-primary);
+      font-size: 11.5px;
+      font-weight: 700;
+      padding: 2px 8px;
+      border-radius: 99px;
+      white-space: nowrap;
+    }
+
+    .tab-sub {
+      font-size: 12px;
+      color: var(--text-secondary);
+      line-height: 1.35;
+    }
+
+    /* CONTROLS BAR (SEARCH, FILTER, STATS) */
+    .controls-panel {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      padding: 14px;
+      margin-bottom: 16px;
+      box-shadow: var(--shadow-sm);
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .search-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      flex: 1 1 580px;
+    }
+
+    .search-input {
+      flex: 1 1 260px;
+      padding: 9px 12px;
+      border: 1px solid var(--border-strong);
+      border-radius: 8px;
+      font-size: 14px;
+      background: #FFFFFF;
+      color: var(--text-primary);
+    }
+
+    .search-input:focus, .filter-select:focus {
+      outline: 2px solid var(--accent-primary);
+      border-color: transparent;
+    }
+
+    .filter-select {
+      padding: 9px 12px;
+      border: 1px solid var(--border-strong);
+      border-radius: 8px;
+      font-size: 13.5px;
+      background: #FFFFFF;
+      color: var(--text-primary);
+      cursor: pointer;
+    }
+
+    .reset-btn {
+      padding: 9px 14px;
+      background: var(--bg-elevated);
+      color: var(--text-primary);
+      border: 1px solid var(--border-strong);
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 13px;
+      cursor: pointer;
+    }
+
+    .reset-btn:hover {
+      background: #E2D9C5;
+      color: #111827;
+    }
+
+    .status-summary {
+      font-size: 13px;
+      color: var(--text-secondary);
+      font-weight: 600;
+    }
+
+    /* TRANSPORT GUIDE BOX (TAB 4) */
+    .transport-guide {
+      display: none;
+      background: #FFFFFF;
+      border: 2px solid #0F4C81;
+      border-radius: var(--radius-lg);
+      padding: 16px;
+      margin-bottom: 18px;
+      box-shadow: var(--shadow-md);
+    }
+
+    .transport-guide.visible {
+      display: block;
+    }
+
+    .transport-header {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 12px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .transport-header h3 {
+      font-size: 16px;
+      color: #0F4C81;
+      font-weight: 800;
+    }
+
+    .fare-formula-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      font-size: 12px;
+    }
+
+    .formula-pill {
+      background: #F1F5F9;
+      color: #1E293B;
+      border: 1px solid #CBD5E1;
+      padding: 4px 10px;
+      border-radius: 6px;
+      font-weight: 600;
+    }
+
+    .transport-table-wrap {
+      overflow-x: auto;
+    }
+
+    .transport-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13px;
+    }
+
+    .transport-table th {
+      background: #F1F5F9;
+      color: #0F172A;
+      text-align: left;
+      padding: 9px 10px;
+      border-bottom: 2px solid #CBD5E1;
+      font-weight: 700;
+    }
+
+    .transport-table td {
+      padding: 9px 10px;
+      border-bottom: 1px solid #E2E8F0;
+      color: #1E293B;
+    }
+
+    .transport-table tbody tr:hover {
+      background-color: #EFF6FF !important;
+      color: #0F172A !important;
+    }
+
+    /* DATA TABLE (DESKTOP & TABLET >= 620px) */
+    .table-wrapper {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-md);
+      overflow-x: auto;
+    }
+
+    .cafe-table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 1060px;
+    }
+
+    .cafe-table thead th {
+      background: #1E293B;
+      color: #FFFFFF;
+      font-weight: 700;
+      font-size: 13px;
+      text-align: left;
+      padding: 13px 12px;
+      border-bottom: 3px solid #D97706;
+      cursor: pointer;
+      user-select: none;
+      position: sticky;
+      top: 0;
+      z-index: 5;
+      transition: background-color 0.15s ease;
+    }
+
+    .cafe-table thead th:hover {
+      background-color: #334155 !important;
+      color: #FDE68A !important;
+    }
+
+    .th-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 6px;
+    }
+
+    .sort-indicator {
+      font-size: 11px;
+      color: #94A3B8;
+    }
+
+    .cafe-table thead th.sorted .sort-indicator {
+      color: #FBBF24;
+      font-weight: 900;
+    }
+
+    .cafe-table tbody tr {
+      border-bottom: 1px solid var(--border-color);
+      background-color: #FFFFFF;
+      color: var(--text-primary);
+      transition: background-color 0.12s ease;
+    }
+
+    .cafe-table tbody tr:nth-child(even) {
+      background-color: #FAF8F5;
+    }
+
+    /* ANTI-BLACK HOVER PROTECTION: High contrast light amber hover with dark text */
+    .cafe-table tbody tr:hover {
+      background-color: var(--bg-hover-row) !important;
+      color: #111827 !important;
+    }
+
+    .cafe-table tbody tr:hover td,
+    .cafe-table tbody tr:hover .cafe-name,
+    .cafe-table tbody tr:hover .addr-text,
+    .cafe-table tbody tr:hover .detail-text {
+      color: #111827 !important;
+    }
+
+    .cafe-table td {
+      padding: 13px 12px;
+      vertical-align: top;
+      font-size: 13.5px;
+      color: var(--text-primary);
+    }
+
+    /* BADGES & TYPOGRAPHY IN CELLS */
+    .cafe-name {
+      font-weight: 800;
+      font-size: 14.5px;
+      color: #0F4C81;
+      margin-bottom: 4px;
+      display: block;
+    }
+
+    .mall-tag {
+      display: inline-block;
+      background: #E0E7FF;
+      color: #1E40AF;
+      font-size: 11px;
+      font-weight: 700;
+      padding: 2px 7px;
+      border-radius: 4px;
+      margin-top: 3px;
+    }
+
+    .match-badge {
+      display: inline-block;
+      background: #ECFDF5;
+      color: #065F46;
+      border: 1px solid #6EE7B7;
+      font-weight: 800;
+      font-size: 13px;
+      padding: 3px 8px;
+      border-radius: 6px;
+    }
+
+    .star-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 3px;
+      background: #FEF3C7;
+      color: #92400E;
+      border: 1px solid #FCD34D;
+      font-weight: 800;
+      font-size: 13px;
+      padding: 3px 8px;
+      border-radius: 6px;
+    }
+
+    .dist-number {
+      font-weight: 800;
+      color: #0F172A;
+      display: block;
+    }
+
+    .time-sub {
+      font-size: 12px;
+      color: var(--text-secondary);
+      display: block;
+      margin-top: 2px;
+    }
+
+    .hours-tag {
+      display: inline-block;
+      background: #F3F4F6;
+      color: #1F2937;
+      border: 1px solid #D1D5DB;
+      font-weight: 700;
+      font-size: 12.5px;
+      padding: 4px 8px;
+      border-radius: 6px;
+    }
+
+    .hours-tag.is-247 {
+      background: #FEF2F2;
+      color: #991B1B;
+      border-color: #FCA5A5;
+    }
+
+    .parking-highlight {
+      color: #065F46;
+      font-weight: 600;
+    }
+
+    .price-badge {
+      display: inline-block;
+      margin-top: 5px;
+      background: #FFFBEB;
+      color: #B45309;
+      border: 1px solid #FDE68A;
+      font-weight: 700;
+      font-size: 12.5px;
+      padding: 2px 8px;
+      border-radius: 5px;
+    }
+
+    .maps-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      margin-top: 7px;
+      padding: 5px 10px;
+      background: #0F4C81;
+      color: #FFFFFF !important;
+      text-decoration: none;
+      font-size: 12px;
+      font-weight: 600;
+      border-radius: 6px;
+      transition: background-color 0.15s ease;
+    }
+
+    .maps-btn:hover {
+      background: #1D4ED8 !important;
+      color: #FFFFFF !important;
+    }
+
+    /* MOBILE CARD VIEW (< 620px) */
+    .mobile-cards-container {
+      display: none;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .cafe-card {
+      background: #FFFFFF;
+      border: 1px solid var(--border-color);
+      border-left: 5px solid #0F4C81;
+      border-radius: var(--radius-md);
+      padding: 15px;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 8px;
+      margin-bottom: 8px;
+    }
+
+    .card-title {
+      font-size: 16px;
+      font-weight: 800;
+      color: #0F4C81;
+    }
+
+    .card-badges {
+      display: flex;
+      gap: 6px;
+      flex-shrink: 0;
+    }
+
+    .card-row {
+      margin-bottom: 7px;
+      font-size: 13.5px;
+      color: #1F2937;
+    }
+
+    .card-label {
+      font-weight: 700;
+      color: #374151;
+    }
+
+    .mobile-sort-bar {
+      display: none;
+      background: #FFFFFF;
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      padding: 10px 12px;
+      margin-bottom: 12px;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+    }
+
+    /* RESPONSIVE BREAKPOINTS */
+    @media (max-width: 980px) {
+      .tabs-nav {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 620px) {
+      .tabs-nav {
+        grid-template-columns: 1fr;
+      }
+      .table-wrapper {
+        display: none;
+      }
+      .mobile-cards-container {
+        display: flex;
+      }
+      .mobile-sort-bar {
+        display: flex;
+      }
+      .app-header {
+        padding: 18px 14px;
+      }
+      .main-container {
+        padding: 12px 10px 36px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="app-header">
+    <div class="header-container">
+      <div class="header-badge-row">
+        <span class="header-badge">DỮ LIỆU CHỌN LỌC 2026</span>
+        <span class="header-badge">64 QUÁN ĐẠT CHUẨN RỘNG & ĐỖ Ô TÔ</span>
+        <span class="header-badge">KHÁCH HÀNG 20 - 40 TUỔI</span>
+      </div>
+      <h1 class="app-title">Quán Cafe Chọn Lọc & Không Gian Rộng TP.HCM</h1>
+      <p class="app-subtitle">
+        Hệ thống cơ sở dữ liệu chuyên biệt các quán Specialty Coffee, Roastery, Garden Cafe, Workspace 24/7 và Cafe TTTM có hạ tầng đỗ xe ô tô thuận lợi. Đã loại trừ hoàn toàn các cơ sở đóng cửa (như Rita Võ Nguyễn Văn Cừ).
+      </p>
+      <div class="landmark-bar">
+        <span>📍 <strong>ĐIỂM MỐC TRUNG TÂM:</strong> 384 Lý Thái Tổ, Phường Vườn Lài (Quận 10), TP.HCM</span>
+        <span>🚗 <strong>TIÊU CHÍ:</strong> Đỗ Ô Tô An Toàn • Mở Sớm / Đóng Khuya (&ge;22h & 24/7) • Chuẩn The Running Bean &amp; Cà Phê New</span>
+      </div>
+    </div>
+  </header>
+
+  <main class="main-container">
+    <!-- 4 TABS NAVIGATION -->
+    <nav class="tabs-nav" aria-label="Danh mục phân loại quán cafe">
+      <button class="tab-btn active" data-tab="tab1" onclick="switchTab('tab1')">
+        <div class="tab-top">
+          <span class="tab-label">1. Cafe Rộng &amp; Đỗ Ô Tô</span>
+          <span class="tab-count" id="count-tab1">16 quán</span>
+        </div>
+        <div class="tab-sub">Mặt tiền lớn, sân biệt thự hoặc khu phân lô bàn cờ đỗ ô tô thoải mái</div>
+      </button>
+
+      <button class="tab-btn" data-tab="tab2" onclick="switchTab('tab2')">
+        <div class="tab-top">
+          <span class="tab-label">2. Cafe Mở Khuya (&ge;22h &amp; 24/7)</span>
+          <span class="tab-count" id="count-tab2">16 quán</span>
+        </div>
+        <div class="tab-sub">Không gian làm việc, chạy deadline &amp; trò chuyện xuyên đêm lịch sự</div>
+      </button>
+
+      <button class="tab-btn" data-tab="tab3" onclick="switchTab('tab3')">
+        <div class="tab-top">
+          <span class="tab-label">3. Specialty &amp; Roastery</span>
+          <span class="tab-count" id="count-tab3">16 quán</span>
+        </div>
+        <div class="tab-sub">Cà phê đặc sản, xưởng rang hiện đại chuẩn gu The Running Bean</div>
+      </button>
+
+      <button class="tab-btn" data-tab="tab4" onclick="switchTab('tab4')">
+        <div class="tab-top">
+          <span class="tab-label">4. Cafe TTTM &amp; Giá Di Chuyển</span>
+          <span class="tab-count" id="count-tab4">16 quán</span>
+        </div>
+        <div class="tab-sub">Hầm đỗ xe ô tô lớn kèm bảng cước Taxi / Grab / XanhSM từ điểm mốc</div>
+      </button>
+    </nav>
+
+    <!-- TAB 4 EXCLUSIVE: TRANSPORT COST TABLE FROM 384 LY THAI TO -->
+    <section id="transport-guide-box" class="transport-guide">
+      <div class="transport-header">
+        <h3>🚕 Bảng Giá Di Chuyển Thực Tế Từ Điểm Mốc (384 Lý Thái Tổ) Tới Các TTTM Có Hầm Đỗ Ô Tô</h3>
+        <div class="fare-formula-badges">
+          <span class="formula-pill">GrabCar 4 chỗ: 25.000đ/2km đầu + 9.000–11.500đ/km + 300đ/phút</span>
+          <span class="formula-pill">Xanh SM Car: 30.500đ/2km đầu + 15.200đ/km (km 3–12)</span>
+          <span class="formula-pill">Vinasun/Mai Linh: Mở cửa 11.000–12.000đ + 14.500–16.500đ/km</span>
+        </div>
+      </div>
+      <div class="transport-table-wrap">
+        <table class="transport-table">
+          <thead>
+            <tr>
+              <th>Trung Tâm Thương Mại (TTTM)</th>
+              <th>Địa Chỉ Cổng Vào Hầm Xe</th>
+              <th>Khoảng Cách &amp; Thời Gian</th>
+              <th>Xe Máy (GrabBike / XanhSM Bike)</th>
+              <th>GrabCar 4 Chỗ (1 chiều)</th>
+              <th>Taxi Điện Xanh SM Car</th>
+              <th>Taxi Vinasun / Mai Linh (4 chỗ)</th>
+              <th>Hạ Tầng Hầm Đỗ Ô Tô &amp; Phí Gửi</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Vincom Plaza 3 Tháng 2</strong></td>
+              <td>3C Đường 3 Tháng 2, P.11, Quận 10</td>
+              <td><strong>1,2 km</strong> (4 – 6 phút)</td>
+              <td>14.000 – 18.000đ</td>
+              <td>27.000 – 33.000đ</td>
+              <td>30.500đ (Giá mở cửa 2km)</td>
+              <td>28.000 – 34.000đ</td>
+              <td>2 hầm B1–B2 rộng rãi • Phí ô tô: 25.000–30.000đ/lượt</td>
+            </tr>
+            <tr>
+              <td><strong>Vạn Hạnh Mall</strong></td>
+              <td>11 Sư Vạn Hạnh, P.12, Quận 10</td>
+              <td><strong>1,7 km</strong> (5 – 7 phút)</td>
+              <td>15.000 – 20.000đ</td>
+              <td>28.000 – 35.000đ</td>
+              <td>30.500đ (Giá mở cửa 2km)</td>
+              <td>30.000 – 38.000đ</td>
+              <td>2 tầng hầm + bãi nổi 5 tầng (&gt;1.000 ô tô) • 30.000đ/4h</td>
+            </tr>
+            <tr>
+              <td><strong>Nowzone Fashion Mall</strong></td>
+              <td>235 Nguyễn Văn Cừ, P. Nguyễn Cư Trinh, Q.1</td>
+              <td><strong>1,9 km</strong> (5 – 8 phút)</td>
+              <td>16.000 – 21.000đ</td>
+              <td>29.000 – 37.000đ</td>
+              <td>30.500 – 32.000đ</td>
+              <td>32.000 – 40.000đ</td>
+              <td>Bãi ô tô sảnh ngoài trời + tầng hầm • 30.000đ/lượt</td>
+            </tr>
+            <tr>
+              <td><strong>RomeA Centre</strong></td>
+              <td>117 Nguyễn Đình Chiểu, P. Võ Thị Sáu, Q.3</td>
+              <td><strong>2,2 km</strong> (6 – 9 phút)</td>
+              <td>18.000 – 23.000đ</td>
+              <td>31.000 – 40.000đ</td>
+              <td>33.500 – 36.000đ</td>
+              <td>35.000 – 44.000đ</td>
+              <td>3 tầng hầm hiện đại, dễ xuống dốc • 35.000đ/lượt</td>
+            </tr>
+            <tr>
+              <td><strong>Hùng Vương Plaza</strong></td>
+              <td>126 Hồng Bàng, P.12, Quận 5</td>
+              <td><strong>2,5 km</strong> (7 – 10 phút)</td>
+              <td>19.000 – 25.000đ</td>
+              <td>34.000 – 44.000đ</td>
+              <td>38.100 – 41.000đ</td>
+              <td>39.000 – 48.000đ</td>
+              <td>3 tầng hầm mới nâng cấp báo chỗ trống LED • 30.000đ/lượt</td>
+            </tr>
+            <tr>
+              <td><strong>Saigon Centre (Takashimaya)</strong></td>
+              <td>65 Lê Lợi, P. Bến Nghé, Quận 1</td>
+              <td><strong>3,8 km</strong> (12 – 15 phút)</td>
+              <td>25.000 – 33.000đ</td>
+              <td>46.000 – 58.000đ</td>
+              <td>57.800 – 61.000đ</td>
+              <td>58.000 – 68.000đ</td>
+              <td>Hầm B3–B6 chuẩn quốc tế (&gt;1.500 ô tô) • 35.000–40.000đ/2h</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- SEARCH & FILTER CONTROLS -->
+    <section class="controls-panel">
+      <div class="search-group">
+        <input
+          type="text"
+          id="search-input"
+          class="search-input"
+          placeholder="🔍 Tìm tên quán, đường (Tú Xương, Sư Vạn Hạnh...), món uống, đỗ ô tô..."
+          oninput="applyFilters()"
+        />
+        <select id="dist-filter" class="filter-select" onchange="applyFilters()">
+          <option value="all">📏 Mọi khoảng cách</option>
+          <option value="2">Dưới 2.0 km (Rất gần)</option>
+          <option value="3.5">Dưới 3.5 km (Trung tâm)</option>
+          <option value="5">Dưới 5.0 km</option>
+        </select>
+        <select id="rating-filter" class="filter-select" onchange="applyFilters()">
+          <option value="0">★ Mọi mức sao</option>
+          <option value="4.7">Từ 4.7★ trở lên (Xuất sắc)</option>
+          <option value="4.6">Từ 4.6★ trở lên</option>
+          <option value="4.5">Từ 4.5★ trở lên</option>
+        </select>
+        <button class="reset-btn" onclick="resetFilters()">Đặt lại bộ lọc</button>
+      </div>
+      <div class="status-summary" id="status-summary">
+        Đang hiển thị: 16 / 16 quán
+      </div>
+    </section>
+
+    <!-- MOBILE SORT BAR (ONLY VISIBLE ON PHONE <620px) -->
+    <div class="mobile-sort-bar">
+      <span style="font-weight:700; font-size:13px;">Sắp xếp theo:</span>
+      <select id="mobile-sort-select" class="filter-select" style="flex:1;" onchange="handleMobileSort(this.value)">
+        <option value="match-desc">Độ phù hợp: Cao → Thấp (%)</option>
+        <option value="dist_km-asc">Khoảng cách: Gần → Xa (km)</option>
+        <option value="rating-desc">Đánh giá: Sao Cao → Thấp (★)</option>
+        <option value="price_min-asc">Giá thức uống: Thấp → Cao (VNĐ)</option>
+        <option value="name-asc">Tên quán: A → Z</option>
+      </select>
+    </div>
+
+    <!-- DESKTOP TABLE VIEW (CLICK-TO-SORT ON HEADERS) -->
+    <div class="table-wrapper">
+      <table class="cafe-table" id="cafe-table">
+        <thead>
+          <tr>
+            <th style="width: 16%;" onclick="sortByColumn('name')" id="th-name">
+              <div class="th-inner"><span>Tên Quán Cafe</span><span class="sort-indicator">↕</span></div>
+            </th>
+            <th style="width: 7%;" onclick="sortByColumn('match')" id="th-match" class="sorted">
+              <div class="th-inner"><span>Phù Hợp</span><span class="sort-indicator">↓</span></div>
+            </th>
+            <th style="width: 6%;" onclick="sortByColumn('rating')" id="th-rating">
+              <div class="th-inner"><span>Sao</span><span class="sort-indicator">↕</span></div>
+            </th>
+            <th style="width: 14%;" onclick="sortByColumn('address')" id="th-address">
+              <div class="th-inner"><span>Địa Chỉ</span><span class="sort-indicator">↕</span></div>
+            </th>
+            <th style="width: 9%;" onclick="sortByColumn('dist_km')" id="th-dist_km">
+              <div class="th-inner"><span>Từ Điểm Mốc</span><span class="sort-indicator">↕</span></div>
+            </th>
+            <th style="width: 9%;" onclick="sortByColumn('hours')" id="th-hours">
+              <div class="th-inner"><span>Giờ Mở - Đóng</span><span class="sort-indicator">↕</span></div>
+            </th>
+            <th style="width: 15%;" onclick="sortByColumn('space')" id="th-space">
+              <div class="th-inner"><span>Diện Tích / Không Gian / Wifi / Ổ Cắm</span><span class="sort-indicator">↕</span></div>
+            </th>
+            <th style="width: 12%;" onclick="sortByColumn('parking')" id="th-parking">
+              <div class="th-inner"><span>Hạ Tầng Đỗ Ô Tô</span><span class="sort-indicator">↕</span></div>
+            </th>
+            <th style="width: 12%;" onclick="sortByColumn('price_min')" id="th-price_min">
+              <div class="th-inner"><span>Món Đặc Trưng &amp; Giá</span><span class="sort-indicator">↕</span></div>
+            </th>
+          </tr>
+        </thead>
+        <tbody id="table-body"></tbody>
+      </table>
+    </div>
+
+    <!-- MOBILE CARD VIEW (<620px) -->
+    <div class="mobile-cards-container" id="mobile-cards"></div>
+  </main>
+
+  <script>
+    // COMPRESSED JSON DATASET OF 64 CURATED CAFES (16 PER TAB) AROUND 384 LY THAI TO, PHUONG VUON LAI (QUAN 10)
+    const CAFE_DATA = [
+      // ================= TAB 1: CAFE RỘNG & ĐỖ Ô TÔ (16 QUÁN) =================
+      {"id":"T1-01","tab":"tab1","name":"Cà Phê New (Độc Lập - Chuẩn Mẫu)","match":93,"rating":4.5,"address":"212 Độc Lập, P. Tân Thành, Q. Tân Phú","dist_km":6.2,"travel_time":"18 - 22 phút","hours":"06:30 - 22:30","space":"Diện tích ~600m², khuôn viên sân vườn rợp bóng cây xanh kết hợp sảnh máy lạnh lịch sự. Bàn ghế gỗ mộc rộng rãi, Wifi cáp quang ổn định, ổ cắm bố trí dọc tường.","parking":"Mặt tiền đường Độc Lập lộ giới 20m, vỉa hè rộng đỗ được nhiều xe ô tô 4-7 chỗ cùng lúc, bảo vệ hỗ trợ xi-nhan miễn phí.","drink":"Cà phê Muối biển béo mặn, Cà phê Trứng, Bạc xỉu 3 tầng","price_min":35000,"price_str":"35.000 - 65.000đ","maps_query":"Cà Phê New 212 Độc Lập Tân Phú"},
+      {"id":"T1-02","tab":"tab1","name":"Cà Phê Suối Đá (Biệt Thự Sân Vườn)","match":96,"rating":4.6,"address":"175 Nam Kỳ Khởi Nghĩa, P. Võ Thị Sáu (Xuân Hòa), Quận 3","dist_km":2.8,"travel_time":"8 - 11 phút","hours":"06:45 - 22:30","space":"Khuôn viên biệt thự sân vườn sinh thái ~1.200m², thác nước chảy róc rách giữa tán cây cổ thụ, phòng máy lạnh yên tĩnh tiếp khách, Wifi mạnh, ổ cắm đều các bàn.","parking":"Sân đỗ ô tô chuyên biệt ngay cổng chính sức chứa 15-20 ô tô, nhân viên bảo vệ điều phối đỗ xe an toàn 100% miễn phí.","drink":"Cà phê Phin Suối Đá thượng hạng, Nước ép Cam Cà rốt, Trà sen long nhãn","price_min":45000,"price_str":"45.000 - 95.000đ","maps_query":"Cà Phê Suối Đá 175 Nam Kỳ Khởi Nghĩa Quận 3"},
+      {"id":"T1-03","tab":"tab1","name":"The Wiselands Coffee (Thư Quán)","match":97,"rating":4.7,"address":"216 Điện Biên Phủ, P. Võ Thị Sáu (Xuân Hòa), Quận 3","dist_km":2.2,"travel_time":"7 - 10 phút","hours":"07:00 - 23:00","space":"Thư quán sân vườn tri thức ~800m², hàng ngàn đầu sách chọn lọc, giếng trời tự nhiên xanh mát. Bàn làm việc dài thiết kế công thái học, ổ cắm từng chỗ ngồi, Wifi 150Mbps.","parking":"Khoảng sân trước biệt thự rộng thênh thang đỗ được 6-8 ô tô thoải mái, bảo vệ trực điều tiết vị trí đỗ thuận tiện.","drink":"Cold Brew chanh vàng thanh khiết, Trà Thiết Quan Âm mật ong, Cà phê Hạnh nhân","price_min":40000,"price_str":"40.000 - 85.000đ","maps_query":"The Wiselands Coffee 216 Điện Biên Phủ Quận 3"},
+      {"id":"T1-04","tab":"tab1","name":"Cheese Coffee (Sư Vạn Hạnh)","match":95,"rating":4.6,"address":"782 Sư Vạn Hạnh, Phường 12 (Hòa Hưng), Quận 10","dist_km":1.6,"travel_time":"5 - 7 phút","hours":"07:00 - 22:30","space":"Thiết kế Industrial châu Âu hiện đại 3 tầng ~450m², vách kính lớn đón nắng, điều hòa mát sâu, Wifi băng thông rộng, ổ cắm dưới chân bàn tiện làm việc.","parking":"Mặt tiền Sư Vạn Hạnh đoạn rộng cho phép dừng đỗ ô tô; có bãi đỗ xe ô tô đối diện/liền kề có bảo vệ hướng dẫn.","drink":"Trà sữa Nguyên Lá kem cheese, Marble Caffe, Arabica Hazelnut Macchiato","price_min":45000,"price_str":"45.000 - 85.000đ","maps_query":"Cheese Coffee 782 Sư Vạn Hạnh Quận 10"},
+      {"id":"T1-05","tab":"tab1","name":"Bits Coffee & Workspace","match":94,"rating":4.5,"address":"28 Trần Thiện Chánh, Phường 12 (Hòa Hưng), Quận 10","dist_km":1.2,"travel_time":"4 - 6 phút","hours":"07:00 - 22:30","space":"Nằm trong khu phân lô biệt thự yên tĩnh ~350m², không gian xanh mát kết hợp phòng kính máy lạnh, bàn họp nhóm lớn, Wifi chuyên dụng, ổ cắm phong phú.","parking":"Đường phân lô bàn cờ Trần Thiện Chánh rộng 12m, đỗ xe hơi thoải mái hai bên đường miễn phí, rất dễ quay đầu xe.","drink":"Specialty Pour Over Ethiopia, Cold Brew Cam Sả, Trà gạo rang Nhật Bản","price_min":38000,"price_str":"38.000 - 75.000đ","maps_query":"Bits Coffee 28 Trần Thiện Chánh Quận 10"},
+      {"id":"T1-06","tab":"tab1","name":"Điệu Garden & Café (Bắc Hải)","match":92,"rating":4.4,"address":"139 Bắc Hải, Phường 14 (Hòa Hưng), Quận 10","dist_km":2.1,"travel_time":"6 - 9 phút","hours":"06:30 - 22:00","space":"Khuôn viên sinh thái nhiệt đới rộng >700m² giữa lòng Quận 10, bóng mát cây xanh, khu phòng lạnh yên tĩnh có cổng cắm điện và Wifi tốc độ cao cho laptop.","parking":"Mặt tiền trục chính đường Bắc Hải rất rộng, sảnh trước đỗ được 4-5 xe ô tô trực tiếp, có bảo vệ trông coi chu đáo.","drink":"Cà phê Sữa dừa Bến Tre, Trà trái cây nhiệt đới, Nước ép dưa hấu bạc hà","price_min":35000,"price_str":"35.000 - 70.000đ","maps_query":"Điệu Garden Cafe 139 Bắc Hải Quận 10"},
+      {"id":"T1-07","tab":"tab1","name":"Sori Cafe & More (Biệt Thự Pháp)","match":97,"rating":4.7,"address":"20 Tú Xương, P. Võ Thị Sáu (Xuân Hòa), Quận 3","dist_km":2.4,"travel_time":"7 - 10 phút","hours":"07:00 - 23:00","space":"Dinh thự kiểu Pháp tân cổ điển ~650m² với hồ cảnh quan trong vắt, ban công ngập nắng, nội thất sang trọng lịch sự, ghế đệm cao cấp ngồi lâu, ổ cắm tinh tế.","parking":"Tuyến phố biệt thự Tú Xương thông thoáng bóng cây râm mát, đỗ xe ô tô dọc tuyến đường có bảo vệ quán hướng dẫn.","drink":"Rose Latte hương hoa hồng, Cold Brew bưởi hồng, Bánh Pain Au Chocolat","price_min":50000,"price_str":"50.000 - 110.000đ","maps_query":"Sori Cafe & More 20 Tú Xương Quận 3"},
+      {"id":"T1-08","tab":"tab1","name":"iTune Coffee (Sư Vạn Hạnh)","match":93,"rating":4.5,"address":"573/10 Sư Vạn Hạnh, Phường 13 (Hòa Hưng), Quận 10","dist_km":1.7,"travel_time":"5 - 8 phút","hours":"07:00 - 22:30","space":"Không gian ghế bành sofa lớn êm ái xông tinh dầu hương trầm & oải hương ~400m², chia khu làm việc và họp nhóm yên tĩnh, Wifi mạnh, ổ cắm đầy đủ.","parking":"Có bãi đậu xe ô tô miễn phí ngay đối diện quán rộng rãi, bảo vệ trực hướng dẫn khách lái xe hơi chu đáo.","drink":"Cà phê Caramelly Macchiato, Trà đào cam sả hoàng gia, Bánh Tiramisu","price_min":35000,"price_str":"35.000 - 68.000đ","maps_query":"iTune Coffee 573/10 Sư Vạn Hạnh Quận 10"},
+      {"id":"T1-09","tab":"tab1","name":"Vòm Coffee (Kiến Trúc Địa Trung Hải)","match":94,"rating":4.6,"address":"251 Tô Hiến Thành, Phường 13 (Hòa Hưng), Quận 10","dist_km":1.8,"travel_time":"6 - 8 phút","hours":"07:00 - 23:00","space":"Tòa nhà 3 tầng + sân thượng phong cách Địa Trung Hải ~500m², nội thất mây tre gỗ tinh tế, bàn rộng cho nhóm 6-12 người hoặc làm việc, ổ cắm khắp các tầng.","parking":"Mặt tiền đường Tô Hiến Thành 4 làn xe, có chỗ dừng đỗ ô tô trước quán và bãi gửi ô tô lớn liền kề.","drink":"Trà ổi hồng thanh long, Dirty Latte béo ngậy, Croffle kem tươi","price_min":45000,"price_str":"45.000 - 80.000đ","maps_query":"Vòm Coffee 251 Tô Hiến Thành Quận 10"},
+      {"id":"T1-10","tab":"tab1","name":"3Đ Chill Cafe (Trần Quốc Thảo)","match":93,"rating":4.5,"address":"120/4 Trần Quốc Thảo, P. Võ Thị Sáu (Xuân Hòa), Quận 3","dist_km":2.9,"travel_time":"9 - 12 phút","hours":"07:00 - 22:00","space":"Không gian sân vườn kết hợp phòng lạnh trẻ trung ~550m², tách biệt hoàn toàn tiếng ồn phố thị, bàn gỗ rộng rãi, Wifi tốc độ cao, ổ cắm tiện lợi.","parking":"Hẻm 120 Trần Quốc Thảo rộng như đường chính, có bãi đậu xe hơi rộng rãi ngay tại khuôn viên quán.","drink":"Cà phê Kem muối 3Đ, Trà vải hoa hồng, Cold Brew cam vàng","price_min":45000,"price_str":"45.000 - 75.000đ","maps_query":"3Đ Chill Cafe 120/4 Trần Quốc Thảo Quận 3"},
+      {"id":"T1-11","tab":"tab1","name":"Zenhouse Café & Garden (Giáp Q.10)","match":93,"rating":4.6,"address":"60/2 Vân Côi, Phường 7, Q. Tân Bình","dist_km":3.2,"travel_time":"10 - 12 phút","hours":"07:00 - 22:00","space":"Ốc đảo sân vườn thiền định rộng >1.000m² sát ranh Quận 10, hồ cá Koi lớn, cây cổ thụ rợp bóng, không gian thanh tịnh tuyệt đối để đọc sách và tiếp đối tác.","parking":"Khuôn viên nội bộ có sân đỗ xe hơi 8-10 chiếc, đường vào rộng rãi cho ô tô 4-7 chỗ ra vào an toàn.","drink":"Trà thảo mộc cung đình, Cà phê cốt dừa hữu cơ, Bánh hạt sen","price_min":42000,"price_str":"42.000 - 85.000đ","maps_query":"Zenhouse Cafe 60/2 Vân Côi Tân Bình"},
+      {"id":"T1-12","tab":"tab1","name":"Cà Phê Miền Đồng Thảo","match":92,"rating":4.5,"address":"221A Nguyễn Trọng Tuyển, Phường 8, Q. Phú Nhuận","dist_km":4.1,"travel_time":"12 - 15 phút","hours":"06:30 - 22:30","space":"Thảo nguyên châu Âu thu nhỏ ~1.500m², suối nước chảy róc rách, kiến trúc gỗ và đá mộc mạc, khu phòng máy lạnh yên tĩnh có Wifi mạnh.","parking":"Bãi đỗ xe ô tô riêng biệt ngay cổng có đội ngũ bảo vệ đón tiếp và sắp xếp xe chuyên nghiệp.","drink":"Cà phê sữa phin Miền Đồng Thảo, Trà hoa cúc mật ong, Chanh dây tuyết","price_min":40000,"price_str":"40.000 - 80.000đ","maps_query":"Cà phê Miền Đồng Thảo 221A Nguyễn Trọng Tuyển Phú Nhuận"},
+      {"id":"T1-13","tab":"tab1","name":"Koi Garden Coffee (Trần Hưng Đạo)","match":94,"rating":4.5,"address":"105 Trần Hưng Đạo, Phường An Đông (Quận 5), TP.HCM","dist_km":2.1,"travel_time":"6 - 9 phút","hours":"06:30 - 22:30","space":"Thiên đường xanh ~850m² với hồ cá Koi lớn và thác nước nhân tạo mát mẻ, khu phòng máy lạnh sang trọng yên tĩnh để làm việc hoặc họp mặt gia đình, đối tác.","parking":"Khu vực bãi đỗ xe ô tô rộng lớn ngay tại quán có bảo vệ trông coi trực tiếp rất an toàn.","drink":"Cà phê Phin truyền thống, Trà detox trái cây tươi, Nước ép nguyên chất","price_min":42000,"price_str":"42.000 - 85.000đ","maps_query":"Koi Garden Coffee 105 Trần Hưng Đạo Quận 5"},
+      {"id":"T1-14","tab":"tab1","name":"Dabao Concept – Cố Đô (Tú Xương)","match":95,"rating":4.6,"address":"18 Tú Xương, P. Võ Thị Sáu (Xuân Hòa), Quận 3","dist_km":2.4,"travel_time":"7 - 10 phút","hours":"07:00 - 22:00","space":"Biệt thự sân vườn kiến trúc cung đình Huế uy nghiêm ~700m², sân gạch dưới tán cây cổ thụ, khu nhà gỗ máy lạnh yên tĩnh, nhiều góc ngồi lịch sự.","parking":"Tuyến đường Tú Xương rộng thoáng, có vị trí đỗ xe ô tô trước quán và bãi gửi ô tô liền kề có bảo vệ hướng dẫn.","drink":"Cà phê Muối Cố Đô, Trà sen nhãn lồng Huế, Bánh ngọt thủ công","price_min":45000,"price_str":"45.000 - 105.000đ","maps_query":"Dabao Concept Cố Đô 18 Tú Xương Quận 3"},
+      {"id":"T1-15","tab":"tab1","name":"The O'Palm Cafe (Tú Xương)","match":95,"rating":4.6,"address":"25A Tú Xương, P. Võ Thị Sáu (Xuân Hòa), Quận 3","dist_km":2.4,"travel_time":"7 - 10 phút","hours":"08:00 - 23:00","space":"Không gian biệt thự Địa Trung Hải pha nét cổ điển châu Âu ~550m², giếng trời thoáng đãng, nội thất gỗ và cây oliu sang trọng, Wifi mạnh, ổ cắm đầy đủ.","parking":"Đường Tú Xương rợp bóng cây cho phép đỗ xe hơi dọc lề có nhân viên bảo vệ quán trông coi.","drink":"O'Palm Signature Latte, Trà bá tước kem phô mai, Bánh Croissant hạnh nhân","price_min":50000,"price_str":"50.000 - 100.000đ","maps_query":"The O'Palm Cafe 25A Tú Xương Quận 3"},
+      {"id":"T1-16","tab":"tab1","name":"Du Miên Garden Coffee (Phan Văn Trị)","match":92,"rating":4.5,"address":"7 Phan Văn Trị, Phường 10, Q. Gò Vấp","dist_km":7.5,"travel_time":"20 - 25 phút","hours":"07:00 - 23:00","space":"Quần thể cafe sân vườn & nhà gỗ trên cây cổ thụ rộng ~4.000m², suối thác nhân tạo hùng vĩ, sảnh máy lạnh lớn, Wifi phủ toàn khuôn viên.","parking":"Bãi đỗ xe ô tô chuyên nghiệp quy mô lớn chứa trên 40 xe hơi, kiểm soát thẻ từ tự động.","drink":"Cà phê Cốt dừa đá xay, Trà bưởi hồng nha đam, Nước dừa xiêm tươi","price_min":45000,"price_str":"45.000 - 95.000đ","maps_query":"Du Miên Garden Coffee 7 Phan Văn Trị Gò Vấp"},
+
+      // ================= TAB 2: CAFE MỞ KHUYA (>=22H & 24/7) (16 QUÁN) =================
+      {"id":"T2-01","tab":"tab2","name":"Three O'Clock (Sư Vạn Hạnh)","match":98,"rating":4.7,"address":"822 Sư Vạn Hạnh, Phường 12 (Hòa Hưng), Quận 10","dist_km":1.7,"travel_time":"5 - 7 phút","hours":"24/7 (Mở xuyên đêm)","space":"Tòa nhà 3 tầng ~400m², thiết kế tối giản Industrial tone xám trầm, bàn làm việc dài trang bị ổ cắm dày đặc từng ghế, Wifi 2 băng tần cực mạnh.","parking":"Vỉa hè rộng có bảo vệ trực 24/24; dừng đỗ ô tô thuận tiện về đêm hoặc gửi tại bãi xe đối diện.","drink":"Trà sữa Ô Long Bá Tước, Drip Cold Brew đậm đà, Trà Cam Đào","price_min":42000,"price_str":"42.000 - 75.000đ","maps_query":"Three O'Clock 822 Sư Vạn Hạnh Quận 10"},
+      {"id":"T2-02","tab":"tab2","name":"Three O'Clock (Cách Mạng Tháng 8)","match":96,"rating":4.6,"address":"551 Cách Mạng Tháng 8, Phường 15, Quận 10","dist_km":1.5,"travel_time":"5 - 7 phút","hours":"24/7 (Mở xuyên đêm)","space":"Không gian 2 tầng rộng ~350m², thiết kế ấm cúng hiện đại, ghế nệm ngồi làm việc xuyên đêm không mỏi, ổ sạc laptop bố trí khắp phòng.","parking":"Mặt tiền CMT8 rộng, khu vực trước quán có chỗ dừng ô tô, sau 21h đỗ xe hơi thoải mái có bảo vệ trông.","drink":"Trà đen Macchiato béo mịn, Americano đá, Bánh Croissant bơ tỏi","price_min":40000,"price_str":"40.000 - 72.000đ","maps_query":"Three O'Clock 551 Cách Mạng Tháng 8 Quận 10"},
+      {"id":"T2-03","tab":"tab2","name":"Three O'Clock (Nguyễn Thị Minh Khai)","match":97,"rating":4.7,"address":"462 Nguyễn Thị Minh Khai, Phường 2, Quận 3","dist_km":1.1,"travel_time":"3 - 5 phút","hours":"24/7 (Mở xuyên đêm)","space":"Tòa nhà 4 tầng ~500m² rất gần 384 Lý Thái Tổ, không gian chuẩn Nhật tối giản, máy lạnh 24/24, yên tĩnh để chạy deadline và bàn công việc khuya.","parking":"Mặt tiền NTMK rộng, buổi tối và ban đêm đỗ xe ô tô ngay trước cửa hoặc làn đỗ ô tô có bảo vệ trực.","drink":"Trà sữa Thiết Quan Âm, Cold Brew cam vàng, Bánh Red Velvet","price_min":42000,"price_str":"42.000 - 75.000đ","maps_query":"Three O'Clock 462 Nguyễn Thị Minh Khai Quận 3"},
+      {"id":"T2-04","tab":"tab2","name":"Three O'Clock (Trần Hưng Đạo)","match":95,"rating":4.6,"address":"771 Trần Hưng Đạo, Phường 1, Quận 5","dist_km":1.9,"travel_time":"6 - 8 phút","hours":"24/7 (Mở xuyên đêm)","space":"Diện tích ~380m² mặt tiền đại lộ lớn, ánh sáng dịu mắt chuyên dụng đọc sách và làm việc khuya, Wifi mạnh, ổ cắm từng bàn.","parking":"Bãi đỗ xe an toàn ngay lối vào mặt tiền Trần Hưng Đạo rộng rãi, bảo vệ trực 24/7 hỗ trợ xe hơi.","drink":"Cà phê phin rang xay tại chỗ, Trà lài xoài nhiệt đới, Bánh Mousse","price_min":42000,"price_str":"42.000 - 75.000đ","maps_query":"Three O'Clock 771 Trần Hưng Đạo Quận 5"},
+      {"id":"T2-05","tab":"tab2","name":"Garage Coffee (Sư Vạn Hạnh)","match":96,"rating":4.6,"address":"816 Sư Vạn Hạnh, Phường 12 (Hòa Hưng), Quận 10","dist_km":1.7,"travel_time":"5 - 7 phút","hours":"24/7 (Mở cả ngày & đêm)","space":"Lấy cảm hứng từ gara xe cổ ~420m², không gian mở kết hợp phòng lạnh tầng lửng, ghế da êm ái, Wifi tốc độ cao, ổ cắm dưới mọi chân bàn.","parking":"Khoảng sân trước cửa lùi sâu tạo bãi đậu xe hơi riêng rộng rãi cho 3-4 chiếc ô tô đỗ trực tiếp.","drink":"Specialty Cold Brew chanh muối, Latte hạnh nhân, Bánh ngọt","price_min":35000,"price_str":"35.000 - 68.000đ","maps_query":"Garage Coffee 816 Sư Vạn Hạnh Quận 10"},
+      {"id":"T2-06","tab":"tab2","name":"The Daily Coffee (Trần Minh Quyền)","match":94,"rating":4.5,"address":"42 Trần Minh Quyền, Phường 11 (Vườn Lài), Quận 10","dist_km":0.8,"travel_time":"2 - 4 phút","hours":"24/7 (Sát điểm mốc)","space":"Chỉ cách 384 Lý Thái Tổ 800m, phong cách vintage ấm cúng ~280m², cực kỳ yên tĩnh, phục vụ cả đồ uống lẫn điểm tâm khuya, ổ cắm đầy đủ.","parking":"Đường Trần Minh Quyền thông thoáng, xe ô tô dừng đỗ ngay trước quán thuận tiện có bảo vệ trông giữ.","drink":"Cà phê máy Espresso, Trà sữa Daily, Sữa chua trái cây & Bánh ngọt","price_min":35000,"price_str":"35.000 - 65.000đ","maps_query":"The Daily Coffee 42 Trần Minh Quyền Quận 10"},
+      {"id":"T2-07","tab":"tab2","name":"Viva Star Coffee 24/24 (Cư Xá Bắc Hải)","match":94,"rating":4.5,"address":"52 Cửu Long, Cư xá Bắc Hải, Phường 15, Quận 10","dist_km":2.3,"travel_time":"7 - 9 phút","hours":"24/7 (Mở xuyên đêm)","space":"Không gian mở hiện đại kết hợp phòng máy lạnh sang trọng ~450m², nhiều cây xanh tươi mát, yên tĩnh làm việc hoặc trò chuyện đêm.","parking":"Đường Cửu Long khu Cư xá Bắc Hải rộng 12m, ô tô đỗ dọc hai bên đường thoải mái cả ngày lẫn đêm.","drink":"Cà phê Viva Espresso đậm vị, Trà bưởi hồng nha đam, Đá xay","price_min":32000,"price_str":"32.000 - 65.000đ","maps_query":"Viva Star Coffee 52 Cửu Long Cư Xá Bắc Hải Quận 10"},
+      {"id":"T2-08","tab":"tab2","name":"Ward Coffee (Cafe Sách Cư Xá Bắc Hải)","match":93,"rating":4.5,"address":"43CT Tam Đảo, Cư xá Bắc Hải, Phường 15, Quận 10","dist_km":2.2,"travel_time":"6 - 9 phút","hours":"06:00 - 23:30 (Mở sớm & khuya)","space":"Quán cà phê sách yên tĩnh ~300m², mở cửa từ 6h sáng đến 23h30 đêm, bàn gỗ dài tập trung làm việc cao độ, Wifi mạnh, nhiều ổ cắm.","parking":"Đường phân lô Tam Đảo rộng rãi ít xe qua lại, đỗ xe ô tô ngay trước cửa hoặc bên hông quán an toàn.","drink":"Cold Brew ủ lạnh thảo mộc, Trà đào cam sả, Cà phê phin truyền thống","price_min":45000,"price_str":"45.000 - 65.000đ","maps_query":"Ward Coffee 43CT Tam Đảo Quận 10"},
+      {"id":"T2-09","tab":"tab2","name":"Chidori – Coffee in Bed (Sư Vạn Hạnh)","match":95,"rating":4.6,"address":"796/2A Sư Vạn Hạnh, Phường 12 (Hòa Hưng), Quận 10","dist_km":1.7,"travel_time":"5 - 7 phút","hours":"08:00 - 23:00 (Đóng khuya)","space":"4 tầng rộng ~400m² với tầng 4 co-working space chuyên biệt và các ô nằm nghỉ/làm việc riêng tư chuẩn Nhật Bản, ổ cắm và đèn đọc sách từng ô.","parking":"Khu vực hẻm lớn 796 Sư Vạn Hạnh có bãi đỗ xe ô tô an toàn ngay gần quán có bảo vệ hướng dẫn.","drink":"Trà hoa cúc mật ong, Matcha Latte Nhật Bản, Bánh mì nướng phô mai","price_min":45000,"price_str":"45.000 - 85.000đ","maps_query":"Chidori Coffee in Bed 796 Sư Vạn Hạnh Quận 10"},
+      {"id":"T2-10","tab":"tab2","name":"Đen Đá Coffee (Sư Vạn Hạnh)","match":93,"rating":4.5,"address":"543 Sư Vạn Hạnh, Phường 13 (Hòa Hưng), Quận 10","dist_km":1.6,"travel_time":"5 - 7 phút","hours":"07:00 - 02:00 sáng","space":"Thiết kế Sài Gòn retro 2 tầng ~320m², bàn dài cho nhóm bạn và freelancer làm việc về đêm, máy lạnh mát, Wifi ổn định.","parking":"Vỉa hè Sư Vạn Hạnh rộng, sau 20h30 đỗ xe ô tô thuận tiện ngay trước quán có nhân viên bảo vệ trông coi.","drink":"Bánh Toast kem tươi mật ong, Trà lài trân châu hoàng kim, Cà phê đen đá","price_min":38000,"price_str":"38.000 - 75.000đ","maps_query":"Đen Đá Coffee 543 Sư Vạn Hạnh Quận 10"},
+      {"id":"T2-11","tab":"tab2","name":"Đen Đá Coffee (Pasteur - 24/7)","match":95,"rating":4.6,"address":"182 Pasteur, P. Bến Nghé (Sài Gòn), Quận 1","dist_km":3.3,"travel_time":"10 - 13 phút","hours":"24/7 (Mở xuyên đêm)","space":"Kiến trúc Pháp cổ 2 tầng ~380m² ngay trung tâm Quận 1, không gian ấm cúng, bàn ghế rộng rãi, ổ cắm điện bố trí dày đặc cho khách làm việc đêm.","parking":"Đường Pasteur một chiều thoáng đãng, ban đêm đỗ ô tô dọc lề trước quán hoặc bãi xe đối diện.","drink":"Toast phô mai tan chảy, Cà phê sữa đá đậm vị, Trà dưa hấu bạc hà","price_min":42000,"price_str":"42.000 - 82.000đ","maps_query":"Đen Đá Coffee 182 Pasteur Quận 1"},
+      {"id":"T2-12","tab":"tab2","name":"Thức Coffee (Pasteur - 24/7)","match":95,"rating":4.6,"address":"156 Pasteur, P. Bến Nghé (Sài Gòn), Quận 1","dist_km":3.4,"travel_time":"10 - 14 phút","hours":"24/7 (Mở xuyên đêm)","space":"Thương hiệu cafe 24/7 biểu tượng của Sài Gòn ~280m², không gian mộc mạc lịch sự, nhạc nhẹ, thích hợp đọc sách và trò chuyện khuya.","parking":"Mặt tiền Pasteur cho phép dừng đỗ ô tô thuận lợi vào khung giờ tối và đêm có bảo vệ hỗ trợ.","drink":"Cà phê sữa Thức nguyên bản, Cà phê cốt dừa, Trà táo quế","price_min":40000,"price_str":"40.000 - 78.000đ","maps_query":"Thức Coffee 156 Pasteur Quận 1"},
+      {"id":"T2-13","tab":"tab2","name":"Snob Coffee (Trần Hưng Đạo - 24/7)","match":94,"rating":4.5,"address":"147A Trần Hưng Đạo, P. Cầu Ông Lãnh, Quận 1","dist_km":2.7,"travel_time":"8 - 11 phút","hours":"24/7 (Mở xuyên đêm)","space":"Không gian 2 tầng ~320m² thiết kế chuyên cho làm việc đêm, bàn dài rộng rãi, ánh sáng chuẩn văn phòng, Wifi cáp quang tốc độ cao.","parking":"Đại lộ Trần Hưng Đạo rộng lớn, có chỗ dừng đỗ xe hơi trước cửa quán về đêm với bảo vệ trực 24/7.","drink":"Caramel Macchiato, Trà gạo rang kem cheese, Bánh sừng bò trứng muối","price_min":45000,"price_str":"45.000 - 80.000đ","maps_query":"Snob Coffee 147A Trần Hưng Đạo Quận 1"},
+      {"id":"T2-14","tab":"tab2","name":"Lagom Café – Coffee & Belgian Beer Lounge","match":95,"rating":4.6,"address":"87 Võ Thị Sáu, P. Võ Thị Sáu (Xuân Hòa), Quận 3","dist_km":2.8,"travel_time":"8 - 11 phút","hours":"08:00 - 23:30 (Đóng khuya)","space":"Phong cách châu Âu Bắc Âu (Scandinavian) ấm cúng và sang trọng ~350m², ban ngày làm việc yên tĩnh, buổi tối thư giãn lịch sự cho khách 25-40 tuổi.","parking":"Mặt tiền Võ Thị Sáu gần công viên Lê Văn Tám, thuận tiện gửi ô tô tại bãi đỗ công viên hoặc dừng trước quán.","drink":"Cà phê Specialty Pour Over, Trà thảo mộc Bỉ, Đồ uống lúa mạch thủ công","price_min":50000,"price_str":"50.000 - 150.000đ","maps_query":"Lagom Cafe 87 Võ Thị Sáu Quận 3"},
+      {"id":"T2-15","tab":"tab2","name":"Katinat Saigon Kafe (Nguyễn Thị Minh Khai)","match":96,"rating":4.7,"address":"468 Nguyễn Thị Minh Khai, Phường 2, Quận 3","dist_km":1.1,"travel_time":"3 - 5 phút","hours":"07:00 - 23:30 (Đóng khuya)","space":"Tòa nhà góc 2 mặt tiền kiến trúc tân cổ điển ~480m², trần cao thoáng đãng, ghế sofa êm ái, ổ cắm bố trí dọc các dãy bàn dài.","parking":"Vỉa hè cực rộng có bảo vệ điều phối, đối diện có bãi gửi xe ô tô và đỗ xe thuận lợi sau 20h.","drink":"Trà sữa Chôm Chôm, Bơ già dừa non, Cà phê Phin mê sữa","price_min":45000,"price_str":"45.000 - 80.000đ","maps_query":"Katinat 468 Nguyễn Thị Minh Khai Quận 3"},
+      {"id":"T2-16","tab":"tab2","name":"Trên Tầng Thượng (Cafe Rooftop Mở Khuya)","match":92,"rating":4.5,"address":"540/19 Cách Mạng Tháng Tám, Phường 11, Quận 3","dist_km":2.3,"travel_time":"7 - 10 phút","hours":"07:00 - 23:30 (Mở sớm & khuya)","space":"Không gian tầng thượng rộng ~450m² cải tạo từ xưởng tàu hỏa Pháp cổ đầu thế kỷ 20, cực kỳ thoáng gió, yên tĩnh để trò chuyện tối hoặc làm việc.","parking":"Khu vực hẻm rộng CMT8 có bãi gửi xe ô tô đầu đường cách quán 80m an toàn.","drink":"Trà cam đào nhiệt đới, Cà phê kem béo, Nước ép trái cây tươi","price_min":50000,"price_str":"50.000 - 75.000đ","maps_query":"Trên Tầng Thượng 540/19 Cách Mạng Tháng Tám Quận 3"},
+
+      // ================= TAB 3: SPECIALTY & ROASTERY (16 QUÁN) =================
+      {"id":"T3-01","tab":"tab3","name":"The Running Bean (Hồ Tùng Mậu - Gu Mẫu)","match":99,"rating":4.8,"address":"115 Hồ Tùng Mậu, P. Bến Nghé (Sài Gòn), Quận 1","dist_km":3.8,"travel_time":"12 - 15 phút","hours":"07:30 - 22:00","space":"Quy mô chuẩn mực ~800m², thiết kế Modern Minimalist kết hợp cây xanh như co-working hiện đại, ánh sáng tự nhiên tuyệt đẹp, bàn lớn lịch sự tiếp đối tác.","parking":"Có chỗ đỗ ô tô giới hạn trước quán và bãi đỗ xe ô tô tư nhân thu phí sát bên (Hàm Nghi / Bitexco cách 100m).","drink":"Specialty Pour Over, Cold Brew đóng chai, Cacao kem béo & Brunch","price_min":68000,"price_str":"68.000 - 160.000đ","maps_query":"The Running Bean 115 Hồ Tùng Mậu Quận 1"},
+      {"id":"T3-02","tab":"tab3","name":"The Running Bean (Mạc Thị Bưởi)","match":98,"rating":4.8,"address":"33 Mạc Thị Bưởi, P. Bến Nghé (Sài Gòn), Quận 1","dist_km":4.1,"travel_time":"13 - 16 phút","hours":"07:30 - 22:00","space":"Không gian 3 tầng sang trọng ~600m², giếng trời thông tầng xanh mát, nội thất gỗ cao cấp, điểm hẹn lý tưởng cho giới chuyên gia 25-40 tuổi.","parking":"Đường Mạc Thị Bưởi cho phép dừng đón trả; gửi ô tô tại bãi xe Công trường Lam Sơn hoặc hầm Union Square cách 150m.","drink":"Single Origin Filter, Espresso Tonic cam vàng, Bánh ngọt thủ công","price_min":68000,"price_str":"68.000 - 165.000đ","maps_query":"The Running Bean 33 Mạc Thị Bưởi Quận 1"},
+      {"id":"T3-03","tab":"tab3","name":"XLIII Specialty Coffee (Pasteur)","match":99,"rating":4.9,"address":"178A Pasteur, P. Bến Nghé (Sài Gòn), Quận 1","dist_km":3.3,"travel_time":"10 - 13 phút","hours":"06:30 - 22:30 (Mở sớm & khuya)","space":"Đánh giá 4.9/5 (7.794 reviews), không gian nghệ thuật tối giản trắng - bê tông ~450m², mở từ 6h30 sáng đến 22h30 đêm, cực kỳ yên tĩnh và đẳng cấp.","parking":"Mặt tiền Pasteur có bảo vệ hỗ trợ dừng đỗ ô tô và hướng dẫn gửi bãi ô tô liền kề ngay trung tâm.","drink":"Specialty Pour Over Gesha Village, Shot Espresso siêu phẩm, Cold Brew","price_min":100000,"price_str":"100.000 - 250.000đ","maps_query":"XLIII Specialty Coffee 178A Pasteur Quận 1"},
+      {"id":"T3-04","tab":"tab3","name":"Every Half Coffee Roasters (Tú Xương)","match":98,"rating":4.7,"address":"6E Tú Xương, P. Võ Thị Sáu (Xuân Hòa), Quận 3","dist_km":2.4,"travel_time":"7 - 10 phút","hours":"07:00 - 21:30","space":"Biệt thự sân vườn kết hợp xưởng rang thủ công tại chỗ ~550m², thiết kế tối giản hiện đại, thường tổ chức workshop thử nếm, Wifi mạnh, nhiều ổ cắm.","parking":"Đường Tú Xương rộng và yên tĩnh, hỗ trợ Curbside pickup và đỗ xe ô tô dọc tuyến phố có bảo vệ trông.","drink":"Single Origin Filter V60, Nitro Cold Brew, Matcha Latte & Croissant","price_min":50000,"price_str":"50.000 - 95.000đ","maps_query":"Every Half Coffee Roasters 6E Tú Xương Quận 3"},
+      {"id":"T3-05","tab":"tab3","name":"Every Half Coffee Roasters (Võ Thị Sáu)","match":97,"rating":4.7,"address":"232/23 Võ Thị Sáu, P. Võ Thị Sáu (Xuân Hòa), Quận 3","dist_km":2.6,"travel_time":"8 - 11 phút","hours":"07:00 - 21:30","space":"Nằm trong khu biệt thự yên tĩnh ~400m², không gian mở thoáng đãng ngập ánh sáng, bàn gỗ dài chuyên dụng cho làm việc cá nhân và hội họp.","parking":"Hẻm biệt thự 232 Võ Thị Sáu rộng 8m xe ô tô ra vào tận cửa, có sân đỗ ô tô thuận lợi.","drink":"Cà phê Đặc sản Việt Nam & Quốc tế, Cascara Tea, Bánh Muffin","price_min":50000,"price_str":"50.000 - 95.000đ","maps_query":"Every Half Coffee Roasters 232/23 Võ Thị Sáu Quận 3"},
+      {"id":"T3-06","tab":"tab3","name":"Anh Coffee Roastery (Pasteur)","match":97,"rating":4.7,"address":"200 Pasteur, P. Võ Thị Sáu (Xuân Hòa), Quận 3","dist_km":3.1,"travel_time":"9 - 12 phút","hours":"07:00 - 22:00","space":"Kiến trúc gạch nung đỏ Terra Cotta 2 mặt tiền bề thế ~500m², thiết kế giật cấp hiện đại pha nét cổ điển, bàn làm việc rộng, ổ cắm đầy đủ.","parking":"Góc ngã tư Pasteur thông thoáng, có chỗ dừng đỗ xe ô tô và bảo vệ điều phối xe hơi chuyên nghiệp.","drink":"Specialty Espresso rang mộc tại quán, Cold Brew Mơ, Bánh sừng bò","price_min":55000,"price_str":"55.000 - 120.000đ","maps_query":"Anh Coffee Roastery 200 Pasteur Quận 3"},
+      {"id":"T3-07","tab":"tab3","name":"Là Việt Coffee Saigon (Tú Xương)","match":96,"rating":4.6,"address":"57A Tú Xương, P. Võ Thị Sáu (Xuân Hòa), Quận 3","dist_km":2.5,"travel_time":"8 - 11 phút","hours":"07:00 - 22:00","space":"Không gian cà phê đặc sản Việt Nam kết hợp co-working ~450m², phong cách Industrial tối giản, cực kỳ được giới công nghệ và sáng tạo ưa chuộng.","parking":"Đường Tú Xương rợp bóng mát, xe ô tô đỗ thuận tiện trước quán dưới sự hướng dẫn của bảo vệ.","drink":"Drip Arabica Cầu Đất Đà Lạt, Cold Brew Margarita, Cà phê Sữa tươi","price_min":50000,"price_str":"50.000 - 100.000đ","maps_query":"Là Việt Coffee 57A Tú Xương Quận 3"},
+      {"id":"T3-08","tab":"tab3","name":"Bosgaurus Coffee Roasters (The Opera House)","match":98,"rating":4.8,"address":"12 Nguyễn Siêu, P. Bến Nghé (Sài Gòn), Quận 1","dist_km":4.2,"travel_time":"13 - 16 phút","hours":"08:00 - 22:30","space":"Quán cà phê đặc sản đẳng cấp quốc tế ~380m², quầy bar mở phô diễn kỹ nghệ pha chế V60/Syphon, không gian sáng sủa, lịch sự tuyệt đối.","parking":"Đường Nguyễn Siêu rộng rãi, có chỗ đỗ ô tô và bãi gửi xe hơi ngay khu vực Nhà hát Thành phố lân cận.","drink":"Arabica Da Lat Honey, Bosgaurus Signature Latte, Pour Over Ethiopia","price_min":65000,"price_str":"65.000 - 150.000đ","maps_query":"Bosgaurus Coffee Roasters 12 Nguyễn Siêu Quận 1"},
+      {"id":"T3-09","tab":"tab3","name":"The Workshop Coffee (Ngô Đức Kế)","match":97,"rating":4.7,"address":"Lầu 2, 27 Ngô Đức Kế, P. Bến Nghé (Sài Gòn), Quận 1","dist_km":4.1,"travel_time":"13 - 16 phút","hours":"08:00 - 21:00","space":"Biểu tượng Workspace & Specialty Coffee đầu tiên tại Sài Gòn ~400m², trần cao, bàn gỗ lớn cho laptop, Wifi cực mạnh, âm lượng vừa phải.","parking":"Gửi xe ô tô tại bãi đỗ xe Bitexco Financial Tower hoặc đường Hồ Tùng Mậu cách quán 120m.","drink":"Syphon Coffee, Chemex Pour Over, Cold Brew & Brunch Âu","price_min":60000,"price_str":"60.000 - 160.000đ","maps_query":"The Workshop Coffee 27 Ngô Đức Kế Quận 1"},
+      {"id":"T3-10","tab":"tab3","name":"Tonkin Specialty Coffee (Lý Tự Trọng)","match":97,"rating":4.9,"address":"91 Lý Tự Trọng, P. Bến Thành, Quận 1","dist_km":3.5,"travel_time":"11 - 14 phút","hours":"07:00 - 22:00","space":"Đánh giá 4.9/5 (3.629 reviews), giao thoa kiến trúc Indochine tinh tế và quầy pha chế thủ công ~320m², không gian ấm cúng, lịch sự.","parking":"Nằm trong danh sách quán Quận 1 có bãi đỗ xe hơi thuận tiện ngay gần Dinh Độc Lập.","drink":"Cà phê Trứng Tonkin trứ danh, Pour Over Kalita/V60, Bánh Croissant","price_min":55000,"price_str":"55.000 - 115.000đ","maps_query":"Tonkin Specialty Coffee 91 Lý Tự Trọng Quận 1"},
+      {"id":"T3-11","tab":"tab3","name":"Okkio Caffe (Lê Lợi)","match":96,"rating":4.7,"address":"120 - 122 Lê Lợi, P. Bến Thành, Quận 1","dist_km":3.4,"travel_time":"10 - 13 phút","hours":"07:30 - 22:00","space":"Thiết kế Retro-Futuristic tinh xảo ~280m² nhìn xuống đại lộ Lê Lợi, yên tĩnh, ánh sáng nghệ thuật, bàn làm việc có ổ cắm đầy đủ.","parking":"Có bãi đỗ xe ô tô ngay tại Cửa Đông chợ Bến Thành và đại lộ Lê Lợi cực kỳ thuận tiện.","drink":"Okkio Egg Coffee, Pour Over hạt Colombia, Cold Brew Mơ rừng","price_min":60000,"price_str":"60.000 - 125.000đ","maps_query":"Okkio Caffe 120 Lê Lợi Quận 1"},
+      {"id":"T3-12","tab":"tab3","name":"Okkio Caffe (Duy Tân - Phạm Ngọc Thạch)","match":96,"rating":4.7,"address":"41/1 Phạm Ngọc Thạch, P. Võ Thị Sáu (Xuân Hòa), Quận 3","dist_km":3.0,"travel_time":"9 - 12 phút","hours":"07:30 - 22:00","space":"Không gian biệt thự gạch đỏ yên tĩnh ~320m² gần Hồ Con Rùa, quầy bar uốn lượn hiện đại, Wifi mạnh, rất hợp ngồi làm việc sâu.","parking":"Hẻm 41 Phạm Ngọc Thạch rộng cho ô tô vào tận nơi, có sân đỗ và bảo vệ hướng dẫn.","drink":"Flat White hạt đặc sản, Iced Shaken Espresso, Trà Cascara","price_min":60000,"price_str":"60.000 - 125.000đ","maps_query":"Okkio Caffe 41/1 Phạm Ngọc Thạch Quận 3"},
+      {"id":"T3-13","tab":"tab3","name":"Barista Collective (Lê Văn Sỹ)","match":95,"rating":4.6,"address":"264H Lê Văn Sỹ, Phường 14 (Nhiêu Lộc), Quận 3","dist_km":3.2,"travel_time":"10 - 13 phút","hours":"07:30 - 22:00","space":"Thiết kế 1 trệt 3 lầu + sân thượng rộng ~380m², mỗi tầng một phong cách từ xưởng rang specialty đến book-cafe yên tĩnh, ổ cắm mọi bàn.","parking":"Khu vực 264 Lê Văn Sỹ rộng thoáng, có chỗ dừng đỗ xe hơi và bãi gửi ô tô liền kề.","drink":"Specialty Pour Over, Cold Brew chanh vàng, Latte Art thủ công","price_min":50000,"price_str":"50.000 - 95.000đ","maps_query":"Barista Collective 264H Lê Văn Sỹ Quận 3"},
+      {"id":"T3-14","tab":"tab3","name":"The Hummingbird Café & Roastery","match":95,"rating":4.6,"address":"103Bis Võ Thị Sáu, P. Võ Thị Sáu (Xuân Hòa), Quận 3","dist_km":2.7,"travel_time":"8 - 11 phút","hours":"08:00 - 21:00","space":"Tọa lạc trong biệt thự Pháp cổ ~320m², hương cà phê tự rang lan tỏa ấm áp, không gian yên tĩnh, tinh tế cho khách 25-40 tuổi.","parking":"Khuôn viên biệt thự đường Võ Thị Sáu có khoảng sân trước và gần bãi đỗ ô tô công viên Lê Văn Tám.","drink":"V60 Single Origin Kenya, Hummingbird Latte, Bánh chuối nướng","price_min":55000,"price_str":"55.000 - 100.000đ","maps_query":"The Hummingbird Cafe & Roastery 103Bis Võ Thị Sáu Quận 3"},
+      {"id":"T3-15","tab":"tab3","name":"Epic Coffee Roaster (Ngô Thời Nhiệm)","match":95,"rating":4.6,"address":"49 Ngô Thời Nhiệm, P. Võ Thị Sáu (Xuân Hòa), Quận 3","dist_km":2.3,"travel_time":"7 - 10 phút","hours":"07:30 - 22:00","space":"Quán cafe sân vườn kết hợp xưởng rang ~450m², rợp bóng cây xanh yên tĩnh, thiết kế mở thoáng đãng lý tưởng để đọc sách và làm việc.","parking":"Đường Ngô Thời Nhiệm khu biệt thự Quận 3 rộng rãi, đỗ xe ô tô thuận tiện ngay trước quán.","drink":"Cà phê rang mộc Espresso, Trà đào cam sả, Trà vải hoa hồng","price_min":45000,"price_str":"45.000 - 95.000đ","maps_query":"Epic Coffee Roaster 49 Ngô Thời Nhiệm Quận 3"},
+      {"id":"T3-16","tab":"tab3","name":"A Priori Coffee House (Sư Vạn Hạnh)","match":94,"rating":4.5,"address":"449/11 Sư Vạn Hạnh, Phường 12 (Hòa Hưng), Quận 10","dist_km":1.4,"travel_time":"4 - 6 phút","hours":"07:00 - 22:00","space":"Không gian biệt thự tối giản pha nét Sài Gòn xưa ~350m², có khu sân vườn cây xanh và phòng máy lạnh tầng trệt yên tĩnh làm việc.","parking":"Hẻm 449 Sư Vạn Hạnh rộng như đường lớn, có bãi đậu xe hơi miễn phí ngay tại quán.","drink":"Cà phê rang xay tại chỗ, Trà vải nha đam thanh mát, Cold Brew","price_min":40000,"price_str":"40.000 - 75.000đ","maps_query":"A Priori Coffee House 449/11 Sư Vạn Hạnh Quận 10"},
+
+      // ================= TAB 4: CAFE TRONG TTTM & HƯỚNG DẪN DI CHUYỂN (16 QUÁN) =================
+      {"id":"T4-01","tab":"tab4","mall":"Vạn Hạnh Mall (Q.10)","name":"Starbucks Coffee – Vạn Hạnh Mall","match":98,"rating":4.6,"address":"Tầng Trệt, Vạn Hạnh Mall, 11 Sư Vạn Hạnh, P.12, Quận 10","dist_km":1.7,"travel_time":"5 - 7 phút","hours":"07:30 - 22:30","space":"Diện tích ~350m² ngay mặt tiền sảnh chính TTTM, trần cao thoáng đãng, ghế sofa bọc da và bàn dài làm việc, Wifi ổn định, nhiều ổ cắm.","parking":"Hầm đỗ ô tô 2 tầng + bãi đỗ nổi nhiều tầng của Vạn Hạnh Mall (>1.000 chỗ). Grab/XanhSM từ mốc: ~30.500đ.","drink":"Caramel Macchiato, Cold Brew Malt, Green Tea Frappuccino","price_min":60000,"price_str":"60.000 - 115.000đ","maps_query":"Starbucks Vạn Hạnh Mall 11 Sư Vạn Hạnh Quận 10"},
+      {"id":"T4-02","tab":"tab4","mall":"Vạn Hạnh Mall (Q.10)","name":"RuNam Bistro – Vạn Hạnh Mall","match":97,"rating":4.7,"address":"Tầng Trệt, Vạn Hạnh Mall, 11 Sư Vạn Hạnh, P.12, Quận 10","dist_km":1.7,"travel_time":"5 - 7 phút","hours":"08:00 - 22:30","space":"Không gian sang trọng bậc nhất Quận 10 (~380m²), nội thất gỗ và đồng quý phái, yên tĩnh, cực kỳ lịch sự để tiếp đối tác hoặc ngồi làm việc lâu.","parking":"Gửi ô tô tại hầm Vạn Hạnh Mall hoặc sảnh đón trả khách mặt tiền Sư Vạn Hạnh. Grab/XanhSM: ~30.500đ.","drink":"Cà phê RuNam phin mạ vàng, Trà sen hoàng gia, Bánh ngọt Âu","price_min":75000,"price_str":"75.000 - 180.000đ","maps_query":"RuNam Bistro Vạn Hạnh Mall Quận 10"},
+      {"id":"T4-03","tab":"tab4","mall":"Vạn Hạnh Mall (Q.10)","name":"Phúc Long Coffee & Tea – Vạn Hạnh Mall","match":95,"rating":4.5,"address":"Tầng 1, Vạn Hạnh Mall, 11 Sư Vạn Hạnh, P.12, Quận 10","dist_km":1.7,"travel_time":"5 - 7 phút","hours":"08:00 - 22:00","space":"Không gian rộng ~300m² nhìn xuống sảnh TTTM, bàn ghế gỗ hiện đại, máy lạnh mát sâu, thuận tiện gặp gỡ bạn bè và làm việc.","parking":"Hệ thống hầm xe ô tô Vạn Hạnh Mall rộng thênh thang, thang cuốn lên thẳng quán. Grab/XanhSM: ~30.500đ.","drink":"Trà đào cam sả Phúc Long, Trà sữa Ô Long đậm vị, Cà phê Latte","price_min":45000,"price_str":"45.000 - 80.000đ","maps_query":"Phúc Long Vạn Hạnh Mall Quận 10"},
+      {"id":"T4-04","tab":"tab4","mall":"Vạn Hạnh Mall (Q.10)","name":"Cheese Coffee – Vạn Hạnh Mall","match":95,"rating":4.6,"address":"Tầng Trệt, Vạn Hạnh Mall, 11 Sư Vạn Hạnh, P.12, Quận 10","dist_km":1.7,"travel_time":"5 - 7 phút","hours":"08:00 - 22:30","space":"Mặt tiền kính rộng ~280m² hướng ra đường Sư Vạn Hạnh, phong cách Bistro châu Âu trẻ trung, bàn dài có ổ cắm điện tiện lợi.","parking":"Đỗ ô tô tại hầm Vạn Hạnh Mall an toàn 100%, không lo mưa nắng. Cước Grab/XanhSM từ mốc: ~30.500đ.","drink":"Trà sữa Nguyên Lá kem cheese, Arabica Macchiato, Bánh Croissant","price_min":45000,"price_str":"45.000 - 85.000đ","maps_query":"Cheese Coffee Vạn Hạnh Mall Quận 10"},
+      {"id":"T4-05","tab":"tab4","mall":"Vincom Plaza 3/2 (Q.10)","name":"Highlands Coffee – Vincom Plaza 3 Tháng 2","match":95,"rating":4.5,"address":"Tầng Trệt, Vincom Plaza, 3C Đường 3 Tháng 2, P.11, Quận 10","dist_km":1.2,"travel_time":"4 - 6 phút","hours":"07:00 - 22:00","space":"Diện tích ~320m² ngay mặt tiền sảnh chính Vincom 3/2, trần cao, khu ngồi trong nhà máy lạnh và ngoài trời thoáng đãng, nhiều ổ cắm.","parking":"Hầm đỗ xe ô tô B1-B2 của Vincom Plaza 3/2 cực gần điểm mốc. Cước Grab/XanhSM: 27.000 - 30.500đ.","drink":"Phin Sữa Đá, Freeze Trà Xanh, Trà Sen Vàng củ năng","price_min":39000,"price_str":"39.000 - 75.000đ","maps_query":"Highlands Coffee Vincom 3C Đường 3 Tháng 2 Quận 10"},
+      {"id":"T4-06","tab":"tab4","mall":"Vincom Plaza 3/2 (Q.10)","name":"The Coffee House – Vincom Plaza 3 Tháng 2","match":94,"rating":4.5,"address":"Tầng 1, Vincom Plaza, 3C Đường 3 Tháng 2, P.11, Quận 10","dist_km":1.2,"travel_time":"4 - 6 phút","hours":"08:00 - 22:00","space":"Không gian chuẩn Workspace ~260m², ánh sáng ấm áp, bàn gỗ dài tích hợp ổ cắm điện phục vụ khách làm việc trên laptop cả ngày.","parking":"Hầm đỗ xe ô tô Vincom Plaza 3/2 rộng rãi, an ninh 24/7. Cước Grab/XanhSM từ mốc: 27.000 - 30.500đ.","drink":"Trà đào cam sả, CloudFee Hạnh Nhân Nướng, Bánh Mousse Gấu","price_min":39000,"price_str":"39.000 - 72.000đ","maps_query":"The Coffee House Vincom 3C Đường 3 Tháng 2 Quận 10"},
+      {"id":"T4-07","tab":"tab4","mall":"Nowzone Mall (Q.1)","name":"Starbucks Coffee – Nowzone Fashion Mall","match":97,"rating":4.6,"address":"Tầng Trệt, Nowzone, 235 Nguyễn Văn Cừ, P. Nguyễn Cư Trinh, Q.1","dist_km":1.9,"travel_time":"5 - 8 phút","hours":"07:30 - 22:00","space":"Diện tích ~320m² ngay cổng chính Nguyễn Văn Cừ, vách kính lớn ngập tràn ánh sáng, ghế bành êm ái, không gian lịch sự chuẩn quốc tế.","parking":"Bãi đỗ xe ô tô ngoài trời ngay trước sảnh + tầng hầm Nowzone Mall. Cước Grab/XanhSM: 29.000 - 32.000đ.","drink":"Asian Dolce Latte, Cold Brew sữa tươi, Iced Shaken Hibiscus","price_min":60000,"price_str":"60.000 - 115.000đ","maps_query":"Starbucks Nowzone 235 Nguyễn Văn Cừ Quận 1"},
+      {"id":"T4-08","tab":"tab4","mall":"Nowzone Mall (Q.1)","name":"Phê La – Nowzone Fashion Mall","match":96,"rating":4.7,"address":"Tầng 1, Nowzone, 235 Nguyễn Văn Cừ, P. Nguyễn Cư Trinh, Q.1","dist_km":1.9,"travel_time":"5 - 8 phút","hours":"08:00 - 22:30","space":"Không gian rộng ~300m² thiết kế phong cách Đà Lạt du mục hiện đại, hương trà Ô Long đặc sản thơm dịu, rất hợp gu giới trẻ 20-40 tuổi.","parking":"Bãi đỗ xe ô tô sảnh trước và hầm Nowzone cực kỳ thuận tiện. Cước Grab/XanhSM: 29.000 - 32.000đ.","drink":"Ô Long Sữa Phê La trân châu cốm, Gấm, Khói B'Lao, Cà phê Phin","price_min":50000,"price_str":"50.000 - 85.000đ","maps_query":"Phê La Nowzone 235 Nguyễn Văn Cừ Quận 1"},
+      {"id":"T4-09","tab":"tab4","mall":"Nowzone Mall (Q.1)","name":"Highlands Coffee – Nowzone Fashion Mall","match":94,"rating":4.5,"address":"Tầng Trệt, Nowzone, 235 Nguyễn Văn Cừ, P. Nguyễn Cư Trinh, Q.1","dist_km":1.9,"travel_time":"5 - 8 phút","hours":"07:00 - 22:00","space":"Không gian ~280m² gồm khu máy lạnh trong sảnh và khu ngoài trời thoáng mát, thuận tiện gặp gỡ đối tác nhanh gọn.","parking":"Đỗ xe ô tô trực tiếp tại bãi xe sảnh trước Nowzone Mall có bảo vệ điều phối. Grab/XanhSM: ~30.500đ.","drink":"PhinDi Hạnh Nhân, Trà Thạch Đào, Bánh mì que pate","price_min":39000,"price_str":"39.000 - 75.000đ","maps_query":"Highlands Coffee Nowzone 235 Nguyễn Văn Cừ Quận 1"},
+      {"id":"T4-10","tab":"tab4","mall":"RomeA Centre (Q.3)","name":"Phê La – RomeA Centre (Nguyễn Đình Chiểu)","match":97,"rating":4.7,"address":"Tầng Trệt, RomeA Centre, 117 Nguyễn Đình Chiểu, P. Võ Thị Sáu, Q.3","dist_km":2.2,"travel_time":"6 - 9 phút","hours":"07:30 - 22:30","space":"Diện tích ~350m² góc Lê Quý Đôn – Nguyễn Đình Chiểu rợp bóng cây cổ thụ, thiết kế mở hiện đại, Wifi mạnh, ổ cắm bố trí đều.","parking":"Hầm đỗ xe ô tô 3 tầng của tòa nhà TTTM RomeA Centre cực rộng. Cước Grab/XanhSM: 31.000 - 36.000đ.","drink":"Ô Long Nhài Sữa, Langbiang (Trà Ô Long kem trứng), Cold Brew","price_min":50000,"price_str":"50.000 - 85.000đ","maps_query":"Phê La RomeA 117 Nguyễn Đình Chiểu Quận 3"},
+      {"id":"T4-11","tab":"tab4","mall":"RomeA Centre (Q.3)","name":"Starbucks Coffee – RomeA Centre","match":97,"rating":4.6,"address":"Tầng Trệt, RomeA Centre, 117 Nguyễn Đình Chiểu, P. Võ Thị Sáu, Q.3","dist_km":2.2,"travel_time":"6 - 9 phút","hours":"07:00 - 22:30","space":"Không gian ~320m² sang trọng, yên tĩnh, tập trung đông giới văn phòng và chuyên gia nước ngoài tại Quận 3 làm việc trên laptop.","parking":"Gửi xe ô tô dưới hầm B1-B3 tòa nhà RomeA Centre thang máy lên thẳng sảnh. Grab/XanhSM: 31.000 - 36.000đ.","drink":"Flat White, Nitro Cold Brew, Bánh sừng bò bơ Pháp","price_min":60000,"price_str":"60.000 - 115.000đ","maps_query":"Starbucks RomeA 117 Nguyễn Đình Chiểu Quận 3"},
+      {"id":"T4-12","tab":"tab4","mall":"Hùng Vương Plaza (Q.5)","name":"Starbucks Coffee – Hùng Vương Plaza","match":97,"rating":4.6,"address":"Tầng Trệt, Hùng Vương Plaza, 126 Hồng Bàng, P.12, Quận 5","dist_km":2.5,"travel_time":"7 - 10 phút","hours":"07:30 - 22:00","space":"Diện tích ~360m² ngay mặt tiền Hồng Bàng – Lý Thường Kiệt, thiết kế mới sang trọng sau khi Hùng Vương Plaza nâng cấp toàn diện.","parking":"Hầm đỗ ô tô 3 tầng hiện đại có đèn LED báo vị trí trống. Cước Grab/XanhSM từ mốc: 34.000 - 41.000đ.","drink":"Iced Americano, Caramel Macchiato, Bánh Bagel kem phô mai","price_min":60000,"price_str":"60.000 - 115.000đ","maps_query":"Starbucks Hùng Vương Plaza 126 Hồng Bàng Quận 5"},
+      {"id":"T4-13","tab":"tab4","mall":"Hùng Vương Plaza (Q.5)","name":"Phúc Long Coffee & Tea – Hùng Vương Plaza","match":95,"rating":4.5,"address":"Tầng 1, Hùng Vương Plaza, 126 Hồng Bàng, P.12, Quận 5","dist_km":2.5,"travel_time":"7 - 10 phút","hours":"08:30 - 22:00","space":"Không gian mở ~300m² nhìn ra đại sảnh thông tầng Hùng Vương Plaza, bàn ghế rộng rãi, điều hòa mát rượi, Wifi tốc độ cao.","parking":"Hầm đỗ xe ô tô Hùng Vương Plaza sức chứa lớn, lối vào đường Lý Thường Kiệt. Grab/XanhSM: 34.000 - 41.000đ.","drink":"Trà vải lài Phúc Long, Trà sữa Phúc Long, Cà phê sữa đá","price_min":45000,"price_str":"45.000 - 85.000đ","maps_query":"Phúc Long Hùng Vương Plaza 126 Hồng Bàng Quận 5"},
+      {"id":"T4-14","tab":"tab4","mall":"Saigon Centre (Q.1)","name":"Starbucks Reserve – Saigon Centre","match":99,"rating":4.8,"address":"Tầng L1, Saigon Centre, 65 Lê Lợi, P. Bến Nghé, Quận 1","dist_km":3.8,"travel_time":"12 - 15 phút","hours":"07:30 - 22:00","space":"Cửa hàng Flagship Starbucks Reserve ~400m², quầy bar pha chế thủ công Syphon/Chemex/Black Eagle đẳng cấp, không gian cực kỳ sang trọng.","parking":"Hệ thống hầm B3-B6 Saigon Centre (>1.500 chỗ ô tô). Cước Grab/XanhSM từ mốc: 46.000 - 58.000đ.","drink":"Reserve Nitro Cold Brew Float, Microblend Pour Over, Croissant","price_min":85000,"price_str":"85.000 - 190.000đ","maps_query":"Starbucks Reserve Saigon Centre 65 Lê Lợi Quận 1"},
+      {"id":"T4-15","tab":"tab4","mall":"Saigon Centre (Q.1)","name":"% Arabica – Saigon Centre Roastery","match":98,"rating":4.7,"address":"Tầng 1, Saigon Centre, 65 Lê Lợi, P. Bến Nghé, Quận 1","dist_km":3.8,"travel_time":"12 - 15 phút","hours":"08:00 - 22:00","space":"Thương hiệu Specialty Coffee lừng danh từ Kyoto Nhật Bản ~280m², thiết kế trắng tối giản tinh khiết, trang bị máy rang hạt tại chỗ.","parking":"Hầm đỗ ô tô Saigon Centre / Takashimaya chuẩn quốc tế. Cước Grab/XanhSM từ mốc: 46.000 - 58.000đ.","drink":"Kyoto Latte, Spanish Latte đá, Matcha Soft Cream","price_min":75000,"price_str":"75.000 - 150.000đ","maps_query":"% Arabica Saigon Centre 65 Lê Lợi Quận 1"},
+      {"id":"T4-16","tab":"tab4","mall":"Saigon Centre (Q.1)","name":"Khanh Casa Tea House / Cafe Terrace – Takashimaya","match":96,"rating":4.6,"address":"Tầng 4, TTTM Takashimaya, 65 Lê Lợi, P. Bến Nghé, Quận 1","dist_km":3.8,"travel_time":"12 - 15 phút","hours":"09:30 - 22:00","space":"Không gian Tea Lounge & Garden trong nhà rộng ~350m², thiết kế lồng chim và vườn hoa nghệ thuật thanh lịch, lý tưởng trò chuyện lâu.","parking":"Đỗ ô tô tại hầm Saigon Centre (lối vào Nam Kỳ Khởi Nghĩa / Pasteur). Grab/XanhSM: 46.000 - 58.000đ.","drink":"Trà hoa cúc kim cúc mật ong, Set trà chiều High Tea, Cappuccino","price_min":70000,"price_str":"70.000 - 170.000đ","maps_query":"Cafe Terrace Takashimaya 65 Lê Lợi Quận 1"}
+    ];
+
+    let currentTab = 'tab1';
+    let currentSortKey = 'match';
+    let currentSortDir = 'desc';
+
+    function switchTab(tabId) {
+      currentTab = tabId;
+      document.querySelectorAll('.tab-btn').forEach(btn => {
+        btn.classList.toggle('active', btn.getAttribute('data-tab') === tabId);
+      });
+      const guideBox = document.getElementById('transport-guide-box');
+      if (tabId === 'tab4') {
+        guideBox.classList.add('visible');
+      } else {
+        guideBox.classList.remove('visible');
+      }
+      applyFilters();
+    }
+
+    function sortByColumn(key) {
+      if (currentSortKey === key) {
+        currentSortDir = currentSortDir === 'asc' ? 'desc' : 'asc';
+      } else {
+        currentSortKey = key;
+        currentSortDir = (key === 'dist_km' || key === 'price_min' || key === 'name' || key === 'address') ? 'asc' : 'desc';
+      }
+      updateSortHeaders();
+      applyFilters();
+    }
+
+    function handleMobileSort(val) {
+      const parts = val.split('-');
+      currentSortKey = parts[0];
+      currentSortDir = parts[1];
+      updateSortHeaders();
+      applyFilters();
+    }
+
+    function updateSortHeaders() {
+      document.querySelectorAll('.cafe-table thead th').forEach(th => {
+        th.classList.remove('sorted');
+        const ind = th.querySelector('.sort-indicator');
+        if (ind) ind.textContent = '↕';
+      });
+      const activeTh = document.getElementById('th-' + currentSortKey);
+      if (activeTh) {
+        activeTh.classList.add('sorted');
+        const ind = activeTh.querySelector('.sort-indicator');
+        if (ind) ind.textContent = currentSortDir === 'asc' ? '↑' : '↓';
+      }
+    }
+
+    function resetFilters() {
+      document.getElementById('search-input').value = '';
+      document.getElementById('dist-filter').value = 'all';
+      document.getElementById('rating-filter').value = '0';
+      currentSortKey = 'match';
+      currentSortDir = 'desc';
+      document.getElementById('mobile-sort-select').value = 'match-desc';
+      updateSortHeaders();
+      applyFilters();
+    }
+
+    function applyFilters() {
+      const q = document.getElementById('search-input').value.trim().toLowerCase();
+      const maxDist = document.getElementById('dist-filter').value;
+      const minRating = parseFloat(document.getElementById('rating-filter').value || '0');
+
+      const tabItems = CAFE_DATA.filter(item => item.tab === currentTab);
+
+      let filtered = tabItems.filter(item => {
+        if (maxDist !== 'all' && item.dist_km > parseFloat(maxDist)) return false;
+        if (item.rating < minRating) return false;
+        if (q) {
+          const haystack = (
+            item.name + ' ' +
+            item.address + ' ' +
+            item.space + ' ' +
+            item.parking + ' ' +
+            item.drink + ' ' +
+            (item.mall || '')
+          ).toLowerCase();
+          if (!haystack.includes(q)) return false;
+        }
+        return true;
+      });
+
+      filtered.sort((a, b) => {
+        let valA = a[currentSortKey];
+        let valB = b[currentSortKey];
+        if (typeof valA === 'string') {
+          const cmp = valA.localeCompare(valB, 'vi');
+          return currentSortDir === 'asc' ? cmp : -cmp;
+        } else {
+          return currentSortDir === 'asc' ? (valA - valB) : (valB - valA);
+        }
+      });
+
+      document.getElementById('status-summary').textContent =
+        `Đang hiển thị: ${filtered.length} / ${tabItems.length} quán (Tổng toàn hệ thống: ${CAFE_DATA.length} quán)`;
+
+      renderTableAndCards(filtered);
+    }
+
+    function renderTableAndCards(items) {
+      const tbody = document.getElementById('table-body');
+      const cardsContainer = document.getElementById('mobile-cards');
+
+      if (items.length === 0) {
+        const emptyHtml = `<tr><td colspan="9" style="text-align:center; padding:32px; font-weight:600; color:#4B5563;">Không tìm thấy quán cafe phù hợp với bộ lọc hiện tại. Hãy nhấn "Đặt lại bộ lọc".</td></tr>`;
+        tbody.innerHTML = emptyHtml;
+        cardsContainer.innerHTML = `<div class="cafe-card" style="text-align:center; font-weight:600;">Không tìm thấy quán cafe phù hợp với bộ lọc hiện tại.</div>`;
+        return;
+      }
+
+      let rowsHtml = '';
+      let cardsHtml = '';
+
+      items.forEach((c, idx) => {
+        const mapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(c.maps_query)}`;
+        const is247 = c.hours.includes('24/7');
+        const mallBadge = c.mall ? `<span class="mall-tag">🏢 ${c.mall}</span>` : '';
+
+        rowsHtml += `
+          <tr>
+            <td>
+              <span class="cafe-name">${idx + 1}. ${c.name}</span>
+              ${mallBadge}
+              <div>
+                <a class="maps-btn" href="${mapsUrl}" target="_blank" rel="noopener noreferrer">📍 Chỉ đường Maps</a>
+              </div>
+            </td>
+            <td><span class="match-badge">${c.match}%</span></td>
+            <td><span class="star-badge">★ ${c.rating.toFixed(1)}</span></td>
+            <td><span class="addr-text">${c.address}</span></td>
+            <td>
+              <span class="dist-number">${c.dist_km.toFixed(1)} km</span>
+              <span class="time-sub">⏱ ${c.travel_time}</span>
+            </td>
+            <td><span class="hours-tag ${is247 ? 'is-247' : ''}">${c.hours}</span></td>
+            <td><span class="detail-text">${c.space}</span></td>
+            <td><span class="detail-text parking-highlight">🚗 ${c.parking}</span></td>
+            <td>
+              <div class="detail-text">${c.drink}</div>
+              <span class="price-badge">💰 ${c.price_str}</span>
+            </td>
+          </tr>
+        `;
+
+        cardsHtml += `
+          <article class="cafe-card">
+            <div class="card-header">
+              <div>
+                <div class="card-title">${idx + 1}. ${c.name}</div>
+                ${mallBadge}
+              </div>
+              <div class="card-badges">
+                <span class="match-badge">${c.match}%</span>
+                <span class="star-badge">★ ${c.rating.toFixed(1)}</span>
+              </div>
+            </div>
+            <div class="card-row"><span class="card-label">📍 Địa chỉ:</span> ${c.address}</div>
+            <div class="card-row"><span class="card-label">📏 Khoảng cách từ 384 Lý Thái Tổ:</span> <strong>${c.dist_km.toFixed(1)} km</strong> (${c.travel_time})</div>
+            <div class="card-row"><span class="card-label">⏰ Giờ hoạt động:</span> <span class="hours-tag ${is247 ? 'is-247' : ''}">${c.hours}</span></div>
+            <div class="card-row"><span class="card-label">🛋️ Không gian / Wifi / Ổ cắm:</span> ${c.space}</div>
+            <div class="card-row"><span class="card-label">🚗 Chỗ đỗ ô tô:</span> <span class="parking-highlight">${c.parking}</span></div>
+            <div class="card-row"><span class="card-label">☕ Thức uống &amp; Giá:</span> ${c.drink} — <span class="price-badge">${c.price_str}</span></div>
+            <div style="margin-top:10px;">
+              <a class="maps-btn" href="${mapsUrl}" target="_blank" rel="noopener noreferrer">🗺️ Mở Google Maps Chỉ Đường</a>
+            </div>
+          </article>
+        `;
+      });
+
+      tbody.innerHTML = rowsHtml;
+      cardsContainer.innerHTML = cardsHtml;
+    }
+
+    // Initialize default view on load
+    window.addEventListener('DOMContentLoaded', () => {
+      applyFilters();
+    });
+  </script>
+</body>
+</html>
