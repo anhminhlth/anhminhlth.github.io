@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đề Xuất Chuyên Sâu Chân 1 (KD3): Khai Thác FshareStorage B2B & Lộ Trình Solution Storage (2027–2029)</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Inter', 'sans-serif'] },
+                    colors: {
+                        brand: {
+                            50: '#f0f9ff', 100: '#e0f2fe', 500: '#0284c7',
+                            600: '#0369a1', 700: '#075985', 800: '#0c4a6e', 900: '#082f49'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .chart-box { position: relative; width: 100%; height: 270px; }
+        .tab-btn {
+            border-top-left-radius: 0.5rem;
+            border-top-right-radius: 0.5rem;
+            transition: all 0.15s ease-in-out;
+            color: #cbd5e1;
+            border-bottom: 3px solid transparent;
+            white-space: nowrap;
+        }
+        .tab-btn:hover:not(.active) {
+            background-color: #1e293b;
+            color: #38bdf8;
+        }
+        .tab-btn.active {
+            background-color: #f8fafc;
+            color: #0369a1;
+            font-weight: 700;
+            border-top: 3px solid #f59e0b;
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 font-sans antialiased min-h-screen flex flex-col">
+
+    <!-- TOP EXECUTIVE HEADER -->
+    <header class="bg-slate-900 text-white sticky top-0 z-50 shadow-lg border-b border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 py-2.5 flex flex-col lg:flex-row lg:items-center lg:justify-between gap-2">
+            <div class="flex items-center space-x-3">
+                <div class="w-9 h-9 rounded-lg bg-amber-500 flex items-center justify-center font-black text-slate-950 text-sm shadow">
+                    C1
+                </div>
+                <div>
+                    <div class="flex items-center gap-2 text-[10px] font-bold uppercase tracking-wider">
+                        <span class="text-sky-400">FTI • PHÒNG KD3 (ODS)</span>
+                        <span class="text-slate-600">|</span>
+                        <span class="text-amber-400">Tờ Trình Bảo Vệ Phương Án Chân 1</span>
+                    </div>
+                    <h1 class="text-sm md:text-base font-extrabold text-white">
+                        Kế Hoạch Triển Khai FshareStorage B2B (200k–300k/TB) & Lộ Trình Solution Storage (2027–2029)
+                    </h1>
+                </div>
+            </div>
+            <div class="flex flex-wrap items-center gap-1.5 text-[11px]">
+                <span class="px-2.5 py-1 rounded bg-slate-800 text-emerald-400 border border-emerald-500/30 font-semibold">
+                    Hạ tầng: 42 Server (&gt;2.04 PB) • CAPEX = 0đ
+                </span>
+                <span class="px-2.5 py-1 rounded bg-slate-800 text-amber-300 border border-amber-500/30 font-semibold">
+                    R&D & Spare: 150 Triệu • Hòa vốn: ~90 TB
+                </span>
+                <span class="px-2.5 py-1 rounded bg-slate-800 text-sky-300 border border-sky-500/30 font-semibold">
+                    Tiết kiệm: 6,45 Tỷ nợ bồi hoàn B2C
+                </span>
+            </div>
+        </div>
+
+        <!-- 6-TAB NAVIGATION BAR -->
+        <nav class="bg-slate-950 px-3 sm:px-6 overflow-x-auto pt-1 border-t border-slate-800">
+            <div class="max-w-7xl mx-auto flex space-x-1 min-w-max">
+                <button onclick="switchTab('t1')" id="btn-t1" class="tab-btn active px-3.5 py-2 text-xs">
+                    1. Chỉ Đạo BĐH & Lý Do Giữ FshareStorage
+                </button>
+                <button onclick="switchTab('t2')" id="btn-t2" class="tab-btn px-3.5 py-2 text-xs">
+                    2. Lợi Thế, Bất Lợi & An Toàn Dữ Liệu
+                </button>
+                <button onclick="switchTab('t3')" id="btn-t3" class="tab-btn px-3.5 py-2 text-xs">
+                    3. Khai Thác 1.649 KHG & Giá 200k/300k
+                </button>
+                <button onclick="switchTab('t4')" id="btn-t4" class="tab-btn px-3.5 py-2 text-xs">
+                    4. Ma Trận Bundle Dịch Vụ FTI
+                </button>
+                <button onclick="switchTab('t5')" id="btn-t5" class="tab-btn px-3.5 py-2 text-xs">
+                    5. Cam Kết Hiện Tại & Lộ Trình Ver 2/3
+                </button>
+                <button onclick="switchTab('t6')" id="btn-t6" class="tab-btn px-3.5 py-2 text-xs">
+                    6. BMC & Kiến Nghị Phê Duyệt
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <!-- MAIN WORKSPACE -->
+    <main class="flex-grow max-w-7xl w-full mx-auto px-4 py-5 space-y-5">
+
+        <!-- TAB 1: CHỈ ĐẠO BĐH & LÝ DO GIỮ FSHARESTORAGE -->
+        <section id="t1" class="tab-panel space-y-4">
+            <div class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm space-y-3">
+                <div class="flex flex-col md:flex-row md:items-center justify-between border-b pb-2.5 gap-2">
+                    <h2 class="text-sm md:text-base font-bold text-slate-900">
+                        Quán Triệt Ý Kiến Chỉ Đạo Của Lãnh Đạo Chu Thế Anh & Vai Trò Bắt Buộc Của FshareStorage Trong Chân 1
+                    </h2>
+                    <span class="text-xs font-bold px-2.5 py-1 rounded bg-amber-50 text-amber-800 border border-amber-200">
+                        Chiếm thị phần • Tạo Use Case thực tế • Nuôi sống 5 tủ rack
+                    </span>
+                </div>
+                <div class="p-3.5 rounded-lg bg-slate-900 text-slate-100 text-xs leading-relaxed border-l-4 border-amber-400">
+                    <strong class="text-amber-400 block mb-1">Trích định hướng chỉ đạo của anh Chu Thế Anh (11/09/2026):</strong>
+                    "Giai đoạn đầu nên ưu tiên chiếm thị phần và tạo tập khách hàng sử dụng thực tế hơn là tối ưu doanh thu. Hạ tầng hiện hữu đang còn free lớn vì vậy có thể chấp nhận mức giá cạnh tranh hoặc đưa vào các chương trình bundle để nhanh chóng đưa sản phẩm ra thị trường. Thậm chí chấp nhận 1 số option free trong thời gian đầu sử dụng nhưng sẽ không áp dụng đại trà mà có tính toán hiệu quả tránh tâm lý của KH cho rằng 'của cho là của ôi'. Thực tế chúng ta cũng chịu các trách nhiệm về Data của KH khi họ sử dụng dịch vụ nên tính toán hợp lý... Mục tiêu trước mắt là xây dựng tệp khách hàng, hình thành các use case thực tế để tiếp tục hoàn thiện sản phẩm."
+                </div>
+                <p class="text-xs text-slate-600 leading-relaxed">
+                    Nếu Chân 1 bỏ qua <strong>FshareStorage B2B (200k–300k/TB)</strong> để chỉ làm <strong>Solution mới (VaultBaaS 450k–850k/TB)</strong>, PKD3 sẽ mất đi công cụ tạo dòng tiền tức thời trong Quý I–II/2027 (do Solution Ngân hàng cần 3–6 tháng dựng Lab PoC và đấu thầu), đồng thời bỏ trống 38 máy chủ ổ 2TB (1.558 TB) vẫn đang tiêu tốn ~40 triệu VNĐ/tháng chi phí OPEX. Triển khai song song FshareStorage và Solution mới giải quyết trọn vẹn 4 bài toán sống còn:
+                </p>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 text-xs pt-1">
+                    <div class="p-3.5 rounded-xl bg-sky-50 border border-sky-200 space-y-1">
+                        <span class="text-[11px] font-extrabold uppercase text-sky-900">1. Dòng Tiền Tức Thời (Day 1)</span>
+                        <div class="text-lg font-black text-sky-700">1.649 VIP &gt; 10GB</div>
+                        <p class="text-slate-600">Có sẵn tệp khách hàng lưu trữ thực, HĐ Whitelist (TC Thuế, Việt Ba, Vinama) và traffic tự nhiên từ web fshare.vn để ký PO ngay từ 01/01/2027.</p>
+                    </div>
+                    <div class="p-3.5 rounded-xl bg-emerald-50 border border-emerald-200 space-y-1">
+                        <span class="text-[11px] font-extrabold uppercase text-emerald-900">2. Nuôi Sống Hạ Tầng 5 Rack</span>
+                        <div class="text-lg font-black text-emerald-700">Hòa Vốn Ở ~90 TB</div>
+                        <p class="text-slate-600">Chỉ cần bán 4,3% công suất cụm 2,1 PB (~42 triệu/tháng) là bù đắp 100% OPEX điện/chỗ đặt cho toàn bộ 42 server trong lúc chờ chốt deal Ngân hàng.</p>
+                    </div>
+                    <div class="p-3.5 rounded-xl bg-amber-50 border border-amber-200 space-y-1">
+                        <span class="text-[11px] font-extrabold uppercase text-amber-900">3. Giảm 90% Nợ Bồi Hoàn B2C</span>
+                        <div class="text-lg font-black text-amber-700">Tiết Kiệm 6,45 Tỷ</div>
+                        <p class="text-slate-600">Chuyển đổi khách VIP B2C dài hạn sang Két sắt B2B Private giúp kéo nghĩa vụ bồi hoàn từ 7,15 tỷ xuống ~700 triệu vào cuối 2028 và 0% khủng hoảng MXH.</p>
+                    </div>
+                    <div class="p-3.5 rounded-xl bg-purple-50 border border-purple-200 space-y-1">
+                        <span class="text-[11px] font-extrabold uppercase text-purple-900">4. Vũ Khí Bundle Toàn FTI</span>
+                        <div class="text-lg font-black text-purple-700">CAPEX Mới = 0 Đ</div>
+                        <p class="text-slate-600">Giải cứu ngay 66 KH Enterprise FDrive (đang 0% backup vật lý) và làm quà tặng kèm giá trị cao giúp PKD1, PKD2, KD3 chốt Leased Line, MS365, HiGIO.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-4">
+                <div class="lg:col-span-7 bg-white p-4 rounded-xl border border-slate-200 shadow-sm text-xs space-y-2.5">
+                    <h3 class="font-bold text-slate-900 text-sm border-b pb-2">Sự Phối Hợp Bổ Trợ Giữa 2 Nhánh Trong Chân 1 (42 Máy Chủ = 2,04 PB)</h3>
+                    <div class="p-3 rounded-lg bg-amber-50/70 border border-amber-200">
+                        <strong class="text-amber-950 block mb-1">Nhánh 1A – FshareStorage B2B Standard (200k–300k/TB/tháng) • Mở Phễu & Chiếm Thị Phần:</strong>
+                        • <strong>Hạ tầng:</strong> Khai thác 38 máy chủ Supermicro 4U (912 ổ HDD 2TB = 1.558 TB) tại DC5/DC7.<br>
+                        • <strong>Đối tượng:</strong> Tệp 1.649 VIP B2C cũ (&gt;10GB), SME/Micro-SME, công ty Media/Quảng cáo/AEC gửi file lớn, 66 KH FDrive và tập khách hàng Bundle cùng Leased Line, MS365, Camera.<br>
+                        • <strong>Nhân sự phụ trách:</strong> <strong>Vân</strong> (Sale B2B FshareStorage, từng đạt 100% gia hạn HĐ B2B năm 2025) & <strong>Huy</strong> (CSKH SLA &lt;4h).
+                    </div>
+                    <div class="p-3 rounded-lg bg-sky-50/70 border border-sky-200">
+                        <strong class="text-sky-950 block mb-1">Nhánh 1B – Solution Storage Mới: FTI VaultBaaS & DeepArchive 15Y+ (450k–850k/TB) • Nâng Biên Lợi Nhuận:</strong>
+                        • <strong>Hạ tầng:</strong> Khai thác 04 máy chủ 10GbE (96 ổ 6TB HDD + 48 ổ SSD 480GB = 499,2 TB) + 01 máy 70x8TB (560 TB) tại DC7 EPZ1.<br>
+                        • <strong>Đối tượng:</strong> Ngân hàng (BFSI), Chứng khoán, Bảo hiểm, Y tế (PACS) cần khóa bất biến WORM (Veeam XFS & S3 Object Lock) tuân thủ TT 09/2020 & TT 04/2025/TT-NHNN.<br>
+                        • <strong>Nhân sự phụ trách:</strong> <strong>Minh</strong> (Solution Lead) chủ trì kiến trúc & PoC cùng đội Sales B2B.
+                    </div>
+                </div>
+                <div class="lg:col-span-5 bg-white p-4 rounded-xl border border-slate-200 shadow-sm flex flex-col justify-between">
+                    <h3 class="font-bold text-slate-900 text-xs border-b pb-1.5">So Sánh Đơn Giá 1 TB/Tháng Với Thị Trường (Nghìn VNĐ)</h3>
+                    <div class="chart-box my-auto">
+                        <canvas id="chartPriceCompare"></canvas>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- TAB 2: LỢI THẾ, BẤT LỢI & AN TOÀN DỮ LIỆU -->
+        <section id="t2" class="tab-panel hidden space-y-4">
+            <div class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm space-y-3">
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between border-b pb-2 gap-2">
+                    <h2 class="text-sm md:text-base font-bold text-slate-900">
+                        Phân Tích Lợi Thế, Bất Lợi Sản Phẩm & Giải Pháp Bảo Toàn Dữ Liệu Khách Hàng (Data Liability)
+                    </h2>
+                    <span class="text-xs font-bold px-2.5 py-1 rounded bg-emerald-50 text-emerald-800 border border-emerald-200">
+                        Erasure Coding EC 8+4 + Auto Backup 1-1 • 0% Rủi Ro Mất Data
+                    </span>
+                </div>
+
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left text-xs border-collapse border border-slate-200">
+                        <thead class="bg-slate-100 text-slate-700 uppercase font-bold">
+                            <tr>
+                                <th class="p-3 border-b w-[18%]">Khía Cạnh Đánh Giá</th>
+                                <th class="p-3 border-b w-[27%]">Lợi Thế Cạnh Tranh Độc Quyền (Strengths)</th>
+                                <th class="p-3 border-b w-[25%]">Bất Lợi & Rủi Ro Hiện Tại (Weaknesses)</th>
+                                <th class="p-3 border-b w-[30%]">Giải Pháp Kỹ Thuật & Vận Hành Hóa Giải Triệt Để</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-slate-200">
+                            <tr>
+                                <td class="p-3 font-bold text-slate-900 align-top">1. Hạ Tầng Vật Lý & Trách Nhiệm Dữ Liệu (Data Liability)</td>
+                                <td class="p-3 text-slate-700 align-top">
+                                    • Giải phóng 42 máy chủ Supermicro 4U (&gt;2,04 PB) đã hết khấu hao 100%, <strong>CAPEX = 0 VNĐ</strong>.<br>
+                                    • Đặt tại FPT Data Center (DC5/DC7) chuẩn Tier III nội địa.
+                                </td>
+                                <td class="p-3 text-slate-700 align-top">
+                                    • Máy đầu tư từ 2012–2018; 38 máy mạng 1GbE chưa thay card RAID; hỏng ~5 ổ 2TB/tháng.<br>
+                                    • Từng xảy ra sự cố Server 034 (T4/2025) mất 40TB dữ liệu.
+                                </td>
+                                <td class="p-3 text-slate-800 align-top bg-emerald-50/40">
+                                    • Chuyển sang <strong>Erasure Coding (EC 8+4)</strong> + <strong>Auto Backup 1-1</strong> cho 100% file mới từ 01/01/2027 (chết 3–4 máy/card RAID cùng lúc vẫn an toàn 100% data).<br>
+                                    • Tháo 4 máy lỗi (STT 17, 25, 27) lấy ~70 ổ 2TB làm kho dự phòng 0đ + Đầu tư <strong>150 triệu VNĐ</strong> mua ổ 6TB/8TB/SSD spare & card HBA.
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="p-3 font-bold text-slate-900 align-top">2. Băng Thông & Tốc Độ Truyền Tải</td>
+                                <td class="p-3 text-slate-700 align-top">
+                                    • Kế thừa CDN nội bộ chịu tải <strong>&gt;3 PB traffic/tháng</strong>.<br>
+                                    • Tốc độ Directlink đạt chuẩn <strong>LAN-speed nội địa</strong>, miễn nhiễm khi đứt cáp quang biển, <strong>0đ phí rút Egress</strong>.
+                                </td>
+                                <td class="p-3 text-slate-700 align-top">
+                                    • 38 máy Tầng 2 dùng cổng 1GbE không phù hợp chạy máy ảo IOPS cao trực tiếp.
+                                </td>
+                                <td class="p-3 text-slate-800 align-top bg-emerald-50/40">
+                                    • Định vị đúng ngách: Dùng cụm 38 máy làm kho lưu trữ & phân phối file lớn (BIM/CAD/4K) qua CDN; dùng cụm 5 máy Dual 10GbE tại DC7 chạy Veeam Backup tốc độ cao.
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="p-3 font-bold text-slate-900 align-top">3. Thương Hiệu, Pháp Lý & Bản Quyền</td>
+                                <td class="p-3 text-slate-700 align-top">
+                                    • Đáp ứng 100% <strong>Nghị định 13, Luật BVDLCN 91/2025 & Nghị định 53</strong> về lưu trữ dữ liệu trong nước.
+                                </td>
+                                <td class="p-3 text-slate-700 align-top">
+                                    • Định kiến thương hiệu B2C chia sẻ phim ảnh cũ; rủi ro bản quyền DMCA nếu để link công khai.
+                                </td>
+                                <td class="p-3 text-slate-800 align-top bg-emerald-50/40">
+                                    • Tái định vị thành <strong>"FshareStorage – Két sắt dữ liệu DN"</strong>; xóa bỏ Fxu, Guest Upload, Rương quà.<br>
+                                    • Mặc định <strong>100% file Private</strong> chia sẻ định danh qua Email (0% DMCA); chỉ mở Whitelist theo HĐ riêng (như Tổng cục Thuế).
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="p-3 font-bold text-slate-900 align-top">4. Tính Năng Sản Phẩm & Nguồn Lực</td>
+                                <td class="p-3 text-slate-700 align-top">
+                                    • Giao diện Web/App thân thiện, sẵn sàng vận hành ngay không tốn chi phí viết mới từ đầu.
+                                </td>
+                                <td class="p-3 text-slate-700 align-top">
+                                    • Bản Core v1 chưa có Zero-Knowledge Encryption, Smart Sync; nhân sự cũ thuần B2C.
+                                </td>
+                                <td class="p-3 text-slate-800 align-top bg-emerald-50/40">
+                                    • GĐ 1 (2027) bán Pure Storage giá rẻ (200k–300k/TB) & Bundle; GĐ 2 (2028) nâng cấp Ver 2/Ver 3.<br>
+                                    • Giữ <strong>Vân & Huy</strong> chăm sóc Storage; huy động Direct Sales toàn FTI bán chéo.
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- TAB 3: KHAI THÁC 1.649 KHG & GIÁ 200K VS 300K -->
+        <section id="t3" class="tab-panel hidden space-y-4">
+            <div class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm space-y-4">
+                <div class="flex flex-col md:flex-row md:items-center justify-between border-b pb-2.5 gap-2">
+                    <div>
+                        <h2 class="text-sm md:text-base font-bold text-slate-900">
+                            Kế Hoạch Khai Thác 1.649 KHG Có Lưu Trữ (&gt;10GB) & Mô Phỏng Doanh Số 2 Phương Án Giá
+                        </h2>
+                        <p class="text-xs text-slate-500">
+                            Cơ cấu gói: 30% Gói 100GB • 50% Gói 1TB • 15% Gói 5TB • 5% Gói 10TB (Trung bình 1,78 TB/KH) | Khung chiết khấu: AM 5% • TP 10% • BGĐ 15%
+                        </p>
+                    </div>
+                    <div class="flex gap-1.5">
+                        <button onclick="setPriceMode('BOTH')" id="pbtn-BOTH" class="px-3 py-1.5 rounded-lg text-xs font-bold bg-brand-600 text-white">So Sánh Cả 2 Phương Án</button>
+                        <button onclick="setPriceMode('PA1')" id="pbtn-PA1" class="px-3 py-1.5 rounded-lg text-xs font-semibold bg-slate-200 text-slate-700">PA1: 200k/TB/Tháng</button>
+                        <button onclick="setPriceMode('PA2')" id="pbtn-PA2" class="px-3 py-1.5 rounded-lg text-xs font-semibold bg-slate-200 text-slate-700">PA2: 300k/TB/Tháng</button>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-4 items-center">
+                    <div class="lg:col-span-7 overflow-x-auto">
+                        <table class="w-full text-xs text-left border-collapse border border-slate-200">
+                            <thead class="bg-slate-100 text-slate-700 font-bold uppercase">
+                                <tr>
+                                    <th class="p-2.5 border-b">Tỷ Lệ Chuyển Đổi (Từ 1.649 VIP)</th>
+                                    <th class="p-2.5 border-b text-center">Số KH Ký PO</th>
+                                    <th class="p-2.5 border-b text-right">Sản Lượng (TB)</th>
+                                    <th class="p-2.5 border-b text-right text-sky-800">Doanh Thu Năm PA1 (200k/TB)</th>
+                                    <th class="p-2.5 border-b text-right text-amber-800">Doanh Thu Năm PA2 (300k/TB)</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-slate-200">
+                                <tr class="hover:bg-slate-50">
+                                    <td class="p-2.5 font-semibold">Mức Tối thiểu (5%)</td>
+                                    <td class="p-2.5 text-center font-bold">82 KH</td>
+                                    <td class="p-2.5 text-right">146,0 TB</td>
+                                    <td class="p-2.5 text-right font-bold text-sky-700">354,73 Triệu (29,6Tr/th)</td>
+                                    <td class="p-2.5 text-right font-bold text-amber-700">531,36 Triệu (44,3Tr/th)</td>
+                                </tr>
+                                <tr class="bg-sky-50/70 font-bold">
+                                    <td class="p-2.5 text-brand-900">Cam kết Cơ sở (10%) ★</td>
+                                    <td class="p-2.5 text-center text-brand-900">165 KH</td>
+                                    <td class="p-2.5 text-right text-brand-900">293,7 TB</td>
+                                    <td class="p-2.5 text-right text-sky-700">713,79 Triệu (59,5Tr/th)</td>
+                                    <td class="p-2.5 text-right text-amber-700">1.069,20 Triệu (89,1Tr/th)</td>
+                                </tr>
+                                <tr class="hover:bg-slate-50">
+                                    <td class="p-2.5 font-semibold">Mức Tích cực (15%)</td>
+                                    <td class="p-2.5 text-center font-bold">247 KH</td>
+                                    <td class="p-2.5 text-right">439,7 TB</td>
+                                    <td class="p-2.5 text-right font-bold text-sky-700">1.068,52 Triệu (89,0Tr/th)</td>
+                                    <td class="p-2.5 text-right font-bold text-amber-700">1.600,56 Triệu (133,4Tr/th)</td>
+                                </tr>
+                                <tr class="hover:bg-slate-50">
+                                    <td class="p-2.5 font-semibold">Mức Đột phá (20%)</td>
+                                    <td class="p-2.5 text-center font-bold">330 KH</td>
+                                    <td class="p-2.5 text-right">587,4 TB</td>
+                                    <td class="p-2.5 text-right font-bold text-sky-700">1.427,58 Triệu (119,0Tr/th)</td>
+                                    <td class="p-2.5 text-right font-bold text-amber-700">2.138,40 Triệu (178,2Tr/th)</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <div class="mt-2.5 p-2.5 rounded bg-slate-100 text-[11px] text-slate-700">
+                            <strong>Cách kết hợp tối ưu cả 2 mức giá:</strong> Bán giá <strong>200.000 đ/TB/tháng</strong> cho gói Pure Storage cơ bản (HĐ 12 tháng, KH VIP cũ chuyển đổi & gia hạn sau Bundle); bán giá <strong>300.000 đ/TB/tháng</strong> cho gói FshareStorage Pro (băng thông Directlink cao cho Media/AEC, Whitelist tùy chỉnh hoặc HĐ ngắn hạn).
+                        </div>
+                    </div>
+                    <div class="lg:col-span-5">
+                        <div class="chart-box">
+                            <canvas id="chartVipSim"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- TAB 4: MA TRẬN BUNDLE DỊCH VỤ FTI -->
+        <section id="t4" class="tab-panel hidden space-y-4">
+            <div class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm space-y-3">
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between border-b pb-2 gap-2">
+                    <h2 class="text-sm md:text-base font-bold text-slate-900">
+                        Ma Trận Phương Án Bundle / Cross-Sell Giải Quyết 4 Yêu Cầu Của Lãnh Đạo Chu Thế Anh
+                    </h2>
+                    <span class="text-xs font-bold px-2.5 py-1 rounded bg-sky-50 text-sky-800 border border-sky-200">
+                        Không cấp Free đại trà • Gắn chặt theo HĐ chính FTI
+                    </span>
+                </div>
+
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left text-xs border-collapse border border-slate-200">
+                        <thead class="bg-slate-100 text-slate-700 uppercase font-bold">
+                            <tr>
+                                <th class="p-3 border-b w-[20%]">1. Dịch Vụ FTI Bundle Ngay</th>
+                                <th class="p-3 border-b w-[28%]">2. Giá Trị Mang Lại Cho Khách Hàng</th>
+                                <th class="p-3 border-b w-[22%]">3. Chi Phí Bổ Sung Của FTI</th>
+                                <th class="p-3 border-b w-[30%]">4. Quy Mô Tiếp Cận Giai Đoạn Đầu & Cơ Chế Thu Phí</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-slate-200">
+                            <tr>
+                                <td class="p-3 font-bold text-slate-900 align-top">1. Kênh truyền Leased Line / Internet B2B (PKD1, PKD2, KD3)</td>
+                                <td class="p-3 text-slate-700 align-top">• Kho lưu trữ & gửi file siêu nặng (CAD/BIM/4K) tốc độ LAN nội địa.<br>• Tuân thủ NĐ 13 & NĐ 53; không lo đứt cáp biển.</td>
+                                <td class="p-3 text-emerald-800 font-semibold align-top">• CAPEX bổ sung = 0 VNĐ.<br>• OPEX điện/mạng không đáng kể trên cụm 38 server.</td>
+                                <td class="p-3 text-slate-700 align-top">• Toàn bộ KH ký mới/gia hạn Leased Line (HĐ &gt;100 triệu/năm tặng 100GB–1TB tối đa 1 năm; từ năm 2 thu 200k–300k/TB).</td>
+                            </tr>
+                            <tr>
+                                <td class="p-3 font-bold text-slate-900 align-top">2. FPT Cloud (HiGIO) & Giải cứu FDrive (Nextcloud)</td>
+                                <td class="p-3 text-slate-700 align-top">• Sở hữu cụm Physical Backup 1-1 tách biệt vật lý hoàn toàn với Cloud chính.<br>• Rẻ hơn 35%–50% so với mua VM/S3 nóng.</td>
+                                <td class="p-3 text-emerald-800 font-semibold align-top">• CAPEX bổ sung = 0 VNĐ.<br>• Dùng chung gói 150 triệu R&D/Spare của Chân 1.</td>
+                                <td class="p-3 text-slate-700 align-top">• Giải cứu ngay <strong>66 KH Enterprise của FDrive</strong> (đang chịu rủi ro Critical 0% backup vật lý) + KH thuê HiGIO Cloud mới.</td>
+                            </tr>
+                            <tr>
+                                <td class="p-3 font-bold text-slate-900 align-top">3. Bản quyền Microsoft 365 (Mũi nhọn Chân 2 KD3)</td>
+                                <td class="p-3 text-slate-700 align-top">• Mở rộng dung lượng lưu file lớn ngoài OneDrive và sao lưu dữ liệu SharePoint/Mail về Việt Nam.</td>
+                                <td class="p-3 text-emerald-800 font-semibold align-top">• CAPEX bổ sung = 0 VNĐ.<br>• Tăng tỷ lệ thắng thầu các deal trăm license.</td>
+                                <td class="p-3 text-slate-700 align-top">• Các công ty Sản xuất, Dược, Xây dựng mua từ 100–1.000 license MS365 trong luồng Lead của KD3 & PKD2.</td>
+                            </tr>
+                            <tr>
+                                <td class="p-3 font-bold text-slate-900 align-top">4. FPT Camera AI & Vệ tinh Starlink B2B</td>
+                                <td class="p-3 text-slate-700 align-top">• Mở rộng lưu trữ video giám sát dài hạn (30–365 ngày) với giá rẻ hơn 40% so với Cloud Camera thường.</td>
+                                <td class="p-3 text-emerald-800 font-semibold align-top">• CAPEX bổ sung = 0 VNĐ.</td>
+                                <td class="p-3 text-slate-700 align-top">• Chuỗi bán lẻ, nhà xưởng KCN, phòng giao dịch Ngân hàng (Điều 18 TT 09/2020) cần lưu camera &gt;30 ngày.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- TAB 5: CAM KẾT HIỆN TẠI & LỘ TRÌNH VER 2/3 -->
+        <section id="t5" class="tab-panel hidden space-y-4">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
+                <div class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm space-y-3">
+                    <h3 class="text-sm font-bold text-slate-900 border-b pb-2">1. Bốn Cam Kết Cơ Bản Cho Giai Đoạn Hiện Tại (2026–2027)</h3>
+                    <div class="space-y-2.5">
+                        <div class="p-3 rounded-lg bg-emerald-50 border border-emerald-200">
+                            <strong class="text-emerald-950 block">Cam kết Tài chính & Hạ tầng:</strong>
+                            • 0 VNĐ chi phí đầu tư thiết bị mới (tái sử dụng 100% 42 máy chủ &gt;2,04 PB); thu hồi vốn 150 triệu R&D/Spare ngay trong Q1/2027.<br>
+                            • Chuyển đổi tối thiểu 10% tệp 1.649 VIP B2C cũ; hòa vốn OPEX ở ~90 TB; đảm bảo doanh số sàn Chân 1 đạt 0,5 Tỷ (2027) &#8594; 3,5 Tỷ (2028) &#8594; 8,0 Tỷ (2029) và tiết kiệm 6,45 tỷ nợ bồi hoàn B2C.
+                        </div>
+                        <div class="p-3 rounded-lg bg-sky-50 border border-sky-200">
+                            <strong class="text-sky-950 block">Cam kết SLA Vận hành & CSKH:</strong>
+                            • <strong>SLA CSKH:</strong> Phản hồi ticket hỗ trợ kỹ thuật B2B trong vòng <strong>&lt; 4 giờ</strong>.<br>
+                            • <strong>SLA Lead B2B:</strong> Liên hệ tư vấn khách hàng đăng ký qua Form Web `fshare.vn` trong vòng <strong>&lt; 24 giờ</strong>.
+                        </div>
+                        <div class="p-3 rounded-lg bg-amber-50 border border-amber-200">
+                            <strong class="text-amber-950 block">Cam kết An toàn Truyền thông & Pháp lý:</strong>
+                            • Vận hành Soft Close êm đẹp (31/10 khóa Uploader, 31/12 đóng ví cá nhân), <strong>0% khủng hoảng MXH</strong>.<br>
+                            • <strong>0% rủi ro DMCA</strong> nhờ mặc định 100% Private; bảo toàn dữ liệu bằng Backup 1-1 & EC 8+4; chuẩn NĐ 13 & NĐ 53.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm space-y-3">
+                    <h3 class="text-sm font-bold text-slate-900 border-b pb-2">2. Lộ Trình Nâng Cấp Tương Lai (Ver 2, Ver 3 & VaultBaaS)</h3>
+                    <div class="space-y-2.5">
+                        <div class="p-3 rounded-lg bg-slate-50 border border-slate-200">
+                            <strong class="text-brand-800 block">Giai đoạn 1 (Q4/2026 – Q1/2027): Đóng gói Core v1 & Dựng Cụm SDS</strong>
+                            • Đổi giao diện "FshareStorage – Két sắt dữ liệu DN", bật Form Lead Capture B2B, chạy Erasure Coding (EC 8+4) & Backup 1-1 trên 38 máy; dựng Lab PoC VaultBaaS trên 5 máy 10GbE DC7.
+                        </div>
+                        <div class="p-3 rounded-lg bg-slate-50 border border-slate-200">
+                            <strong class="text-brand-800 block">Giai đoạn 2 (Năm 2027): Chiếm lĩnh thị phần & Phủ Bundle FTI</strong>
+                            • Khai thác 1.649 VIP cũ, giải cứu 66 KH FDrive, phủ Bundle kèm Leased Line/MS365/Camera và chốt 2–4 hợp đồng VaultBaaS Ngân hàng đầu tiên.
+                        </div>
+                        <div class="p-3 rounded-lg bg-slate-50 border border-slate-200">
+                            <strong class="text-brand-800 block">Giai đoạn 3 (2028 – 2029): Nâng cấp Ver 2/Ver 3 & Mở rộng Cold Archive 15Y+</strong>
+                            • Bổ sung tính năng <strong>Zero-Knowledge Encryption, Smart Sync, S3 API</strong>.<br>
+                            • 31/12/2028: Đóng hẳn 6 máy B2C cũ; chuyển toàn bộ gói tặng Bundle sang thu phí 200k–300k/TB và mở rộng gói <strong>FTI DeepArchive 15Y+ (450k–850k/TB)</strong> đạt 8,0 tỷ VNĐ/năm.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- TAB 6: BMC & KIẾN NGHỊ PHÊ DUYỆT -->
+        <section id="t6" class="tab-panel hidden space-y-4">
+            <div class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm space-y-4">
+                <h2 class="text-sm md:text-base font-bold text-slate-900 border-b pb-2">
+                    Business Model Canvas (Chân 1: FshareStorage B2B & Solution Storage) & 4 Đề Xuất Trình BĐH Phê Duyệt
+                </h2>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-3 text-xs">
+                    <div class="p-3 rounded-lg bg-slate-50 border border-slate-200">
+                        <strong class="text-brand-800 block border-b pb-1 mb-1.5">1. Đối Tác & Kênh Bán</strong>
+                        • <strong>Đối tác:</strong> BGĐ FTI, PKD1, PKD2, FPT Cloud, FPT Camera, Đội Tech SIS (TạiCV), Pháp chế LQA.<br>
+                        • <strong>Kênh bán:</strong> Vân (Telesale/Email 1.649 VIP cũ + Form Web `fshare.vn`) + Direct Sales FTI bán chéo.
+                    </div>
+                    <div class="p-3 rounded-lg bg-amber-50 border border-amber-300">
+                        <strong class="text-amber-950 block border-b border-amber-200 pb-1 mb-1.5">2. Giải Pháp Giá Trị & Sản Phẩm</strong>
+                        • <strong>FshareStorage (200k–300k/TB):</strong> Két sắt Private 100%, tốc độ LAN nội địa (&gt;3PB/tháng), Backup 1-1 & EC 8+4.<br>
+                        • <strong>VaultBaaS (450k–850k/TB):</strong> Khóa bất biến Veeam XFS & S3 Object Lock chuẩn TT 09/2020 NHNN.
+                    </div>
+                    <div class="p-3 rounded-lg bg-emerald-50 border border-emerald-300">
+                        <strong class="text-emerald-950 block border-b border-emerald-200 pb-1 mb-1.5">3. Tài Chính & Dòng Tiền</strong>
+                        • <strong>Chi phí:</strong> CAPEX = 0đ; R&D & Spare = 150 triệu; Hòa vốn OPEX ở ~90 TB (~42 triệu/tháng).<br>
+                        • <strong>Doanh thu Chân 1:</strong> 0,5 Tỷ (2027) &#8594; 3,5 Tỷ (2028) &#8594; 8,0 Tỷ (2029) + Tiết kiệm 6,45 tỷ bồi hoàn B2C.
+                    </div>
+                </div>
+
+                <div class="p-4 rounded-xl bg-slate-900 text-white space-y-2.5 text-xs">
+                    <strong class="text-amber-400 text-sm block">4 Kiến Nghị Cụ Thể Kính Trình Ban Điều Hành Phê Duyệt Cho Chân 1:</strong>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-2.5">
+                        <div class="p-2.5 rounded bg-slate-800 border border-slate-700">
+                            <strong>1. Phê duyệt sử dụng cụm 42 Server (&gt;2,04 PB) & Ngân sách 150 Triệu VNĐ:</strong> Cho phép quy hoạch 38 máy chạy Erasure Coding (FshareStorage) + 5 máy 10GbE chạy VaultBaaS, tháo 4 máy yếu lấy linh kiện và cấp 150 triệu mua ổ spare/card HBA.
+                        </div>
+                        <div class="p-2.5 rounded bg-slate-800 border border-slate-700">
+                            <strong>2. Phê duyệt Biểu giá 200k & 300k/TB/tháng kèm Khung chiết khấu:</strong> Cho phép ban hành gói 100GB, 500GB, 1TB, 5TB, 10TB theo 2 mức giá 200k/TB (Standard/Bundle) và 300k/TB (Pro/Media) với chiết khấu AM 5% – TP 10% – BGĐ 15%.
+                        </div>
+                        <div class="p-2.5 rounded bg-slate-800 border border-slate-700">
+                            <strong>3. Phê duyệt Cơ chế Bundle có kiểm soát toàn FTI:</strong> Cho phép đính kèm gói FshareStorage (100GB–1TB) vào HĐ Leased Line, MS365, HiGIO Cloud, Camera và triển khai ngay phương án backup vật lý 1-1 cho 66 KH Enterprise FDrive.
+                        </div>
+                        <div class="p-2.5 rounded bg-slate-800 border border-slate-700">
+                            <strong>4. Phê duyệt Bố trí Nhân sự Vận hành FshareStorage:</strong> Giữ 02 nhân sự (Vân làm Sale B2B FshareStorage khai thác 1.649 VIP cũ & HĐ Whitelist; Huy làm CSKH SLA &lt;4h & Soft Close) phối hợp cùng Minh (Solution Lead).
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <script>
+        let simChart = null;
+        const vipData = {
+            labels: ['5% (82 KH • 146 TB)', '10% Cam kết (165 KH • 294 TB)', '15% (247 KH • 440 TB)', '20% (330 KH • 587 TB)'],
+            pa1: [354.73, 713.79, 1068.52, 1427.58],
+            pa2: [531.36, 1069.20, 1600.56, 2138.40],
+            opex: [480, 480, 480, 480]
+        };
+
+        function switchTab(id) {
+            document.querySelectorAll('.tab-panel').forEach(el => el.classList.add('hidden'));
+            document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
+            document.getElementById(id).classList.remove('hidden');
+            document.getElementById('btn-' + id).classList.add('active');
+            setTimeout(() => {
+                if (simChart) simChart.resize();
+            }, 50);
+        }
+
+        function setPriceMode(mode) {
+            ['BOTH', 'PA1', 'PA2'].forEach(m => {
+                const btn = document.getElementById('pbtn-' + m);
+                btn.className = (m === mode)
+                    ? 'px-3 py-1.5 rounded-lg text-xs font-bold bg-brand-600 text-white'
+                    : 'px-3 py-1.5 rounded-lg text-xs font-semibold bg-slate-200 text-slate-700';
+            });
+            renderSimChart(mode);
+        }
+
+        function renderSimChart(mode) {
+            const ctx = document.getElementById('chartVipSim').getContext('2d');
+            if (simChart) simChart.destroy();
+            const datasets = [];
+            if (mode === 'BOTH' || mode === 'PA1') {
+                datasets.push({
+                    label: 'PA1: 200k/TB/tháng (Triệu VNĐ/năm)',
+                    data: vipData.pa1,
+                    backgroundColor: '#0284c7',
+                    borderRadius: 4
+                });
+            }
+            if (mode === 'BOTH' || mode === 'PA2') {
+                datasets.push({
+                    label: 'PA2: 300k/TB/tháng (Triệu VNĐ/năm)',
+                    data: vipData.pa2,
+                    backgroundColor: '#f59e0b',
+                    borderRadius: 4
+                });
+            }
+            simChart = new Chart(ctx, {
+                type: 'bar',
+                data: { labels: vipData.labels, datasets: datasets },
+                options: {
+                    responsive: true, maintainAspectRatio: false,
+                    plugins: { legend: { position: 'bottom', labels: { font: { size: 10 } } } },
+                    scales: { y: { beginAtZero: true, title: { display: true, text: 'Triệu VNĐ / Năm', font: { size: 10 } } } }
+                }
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            new Chart(document.getElementById('chartPriceCompare').getContext('2d'), {
+                type: 'bar',
+                data: {
+                    labels: ['FshareStorage (200k-300k)', 'FTI VaultBaaS (450k-850k)', 'FPT Cloud S3 (OS-03 10TB)', 'FPT Cloud S3 (OS-01 2TB)', 'AWS Glacier (Khi rút 1TB)'],
+                    datasets: [{
+                        label: 'Nghìn VNĐ / TB / Tháng',
+                        data: [250, 650, 1000, 1750, 2870],
+                        backgroundColor: ['#10b981', '#f59e0b', '#94a3b8', '#64748b', '#dc2626'],
+                        borderRadius: 4
+                    }]
+                },
+                options: {
+                    indexAxis: 'y', responsive: true, maintainAspectRatio: false,
+                    plugins: { legend: { display: false } }
+                }
+            });
+            renderSimChart('BOTH');
+        });
+    </script>
+</body>
+</html>
