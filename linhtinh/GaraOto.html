@@ -1,0 +1,1324 @@
+<!DOCTYPE html>
+<html lang="vi" data-theme="dark"><head><script data-bard-client-injected="true">
+  document.addEventListener('input', (event) => {
+    if (event.target && (event.target.isContentEditable || event.target.hasAttribute('contenteditable'))) {
+      const clonedDoc = document.cloneNode(true);
+      const injectedScripts = clonedDoc.querySelectorAll('[data-bard-client-injected="true"]');
+      injectedScripts.forEach(el => el.remove());
+      window.parent.postMessage({
+        type: 'inlineEdit',
+        html: '<!DOCTYPE html>\n' + clonedDoc.documentElement.outerHTML
+      }, '*');
+    }
+  });
+</script><script data-bard-client-injected="true">(function(){'use strict';window.addEventListener("message",a=>{a.data&&a.data.type==="SUPPLEMENTAL_DATA_UPDATE"&&window.dispatchEvent(new CustomEvent("supplementaldataupdate",{detail:a.data.data}))});}).call(this);
+</script><script data-bard-client-injected="true">(function(){'use strict';function k(c){c=Number(c.replace(/px$/,""));return Number.isFinite(c)?c:0}var m=new Set("SCRIPT STYLE TEMPLATE LINK META NOSCRIPT".split(" "));function n(c){var a=[],b=e=>{for(let f of e.children)m.has(f.tagName.toUpperCase())||(window.getComputedStyle(f).display==="contents"?b(f):a.push(f))};b(c);return a};var p={scrollY:0,paddingBottom:0,borderBottomWidth:0},q=0,r=0;
+function t(c=!1){var a=document.body;var b=document.documentElement;b=Math.max(a.scrollHeight,a.offsetHeight,b.offsetHeight,b.scrollHeight);var e=!!window.__gdmMeasureContentHeight;if(e){var f=[];for(h of n(a)){var g=h.getBoundingClientRect();let l=window.getComputedStyle(h);(l.position==="absolute"||l.position==="fixed")&&g.width<=1&&g.height<=1||f.push({bottom:g.bottom,width:g.width,height:g.height,marginBottom:k(l.marginBottom),h:l.position==="fixed"})}var h=f}else h=[];e?(a=window.getComputedStyle(a),
+a={scrollY:window.scrollY||0,paddingBottom:k(a.paddingBottom),borderBottomWidth:k(a.borderBottomWidth)}):a=p;if(e){e=a.paddingBottom===0&&a.borderBottomWidth===0;f=0;g=!1;for(var d of h){if(d.h)continue;if(d.width===0&&d.height===0)continue;h=d.bottom+(e?0:d.marginBottom);if(!g||h>f)f=h,g=!0}g&&(d=Math.ceil(f+a.scrollY+a.paddingBottom+a.borderBottomWidth),b=d>0?d:b)}d=document.documentElement.scrollWidth||document.body.scrollWidth;b>0&&d>0&&(c||b!==q||d!==r)&&(q=b,r=d,window.parent.postMessage({type:"contentDimensions",
+height:b,width:d},"*"))}var u=0;function v(){u||(u=typeof window.requestAnimationFrame==="function"?window.requestAnimationFrame(()=>{u=0;t()}):setTimeout(()=>{u=0;t()},16))}
+window.addEventListener("load",()=>{t(!0);setTimeout(()=>{t(!0)},500);if(window.ResizeObserver){let c=new WeakSet,a=new ResizeObserver(()=>{t()}),b=()=>{c.has(document.body)||(c.add(document.body),a.observe(document.body));for(let e of n(document.body))c.has(e)||(c.add(e),a.observe(e))};b();(new MutationObserver(()=>{b();v()})).observe(document.body,{attributes:!0,childList:!0,subtree:!0})}else(new MutationObserver(v)).observe(document.body,{attributes:!0,childList:!0,subtree:!0,characterData:!0})});}).call(this);
+</script><script data-bard-client-injected="true">(function() {
+  // Ensure this script is executed only once
+  if (window.firebaseAuthBridgeScriptLoaded) {
+    return;
+  }
+  window.firebaseAuthBridgeScriptLoaded = true;
+
+  let nextTokenPromiseId = 0;
+
+  // Stores { resolve, reject } for ongoing token requests
+  const pendingTokenPromises = {};
+
+  // Listen for messages from the Host Application
+  window.addEventListener('message', function(event) {
+
+    const messageData = event.data;
+
+  if (messageData && messageData.type === 'RESOLVE_NEW_FIREBASE_TOKEN') {
+      const { success, token, error, promiseId } = messageData ?? {};
+      if (pendingTokenPromises[promiseId]) {
+        if (success) {
+          pendingTokenPromises[promiseId].resolve(token);
+        } else {
+          pendingTokenPromises[promiseId].reject(new Error(error || 'Token refresh failed from host.'));
+        }
+        delete pendingTokenPromises[promiseId];
+      }
+    }
+  });
+
+  // Expose a function for the Generated App to request a new Firebase token
+  window.requestNewFirebaseToken = function() {
+    const currentPromiseId = nextTokenPromiseId++;
+    const promise = new Promise((resolve, reject) => {
+      pendingTokenPromises[currentPromiseId] = { resolve, reject };
+    });
+    if (window.parent && window.parent !== window) {
+      window.parent.postMessage({
+        type: 'REQUEST_NEW_FIREBASE_TOKEN',
+        promiseId: currentPromiseId
+      }, '*');
+    } else {
+      pendingTokenPromises[currentPromiseId].reject(new Error('No parent window to request token from.'));
+      delete pendingTokenPromises[currentPromiseId];
+    }
+    return promise;
+  };
+})();</script><script data-bard-client-injected="true">
+let realOriginalGetUserMedia = null;
+if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+  realOriginalGetUserMedia = navigator.mediaDevices.getUserMedia.bind(navigator.mediaDevices);
+}
+
+(function() {
+  if (navigator.mediaDevices && navigator.mediaDevices.__proto__) {
+    try {
+      Object.defineProperty(navigator.mediaDevices.__proto__, 'getUserMedia', {
+        get: function() {
+          return undefined; // Or throw an error
+        },
+        configurable: false
+      });
+    } catch (error) {
+      console.error("Error defining prototype getter:", error);
+    }
+  }
+})();
+
+(function() {
+  const pendingMediaResolvers = {};
+  let nextMediaPromiseId = 0;
+
+  function requestMediaPermissions(constraints) {
+    const mediaPromiseId = nextMediaPromiseId++;
+    const promise = new Promise((resolve, reject) => {
+      pendingMediaResolvers[mediaPromiseId] = (granted) => {
+        delete pendingMediaResolvers[mediaPromiseId];
+        resolve(granted);
+      };
+    });
+
+    window.parent.postMessage({
+      type: 'requestMediaPermission',
+      constraints: constraints,
+      promiseId: mediaPromiseId,
+    }, '*');
+
+    return promise;
+  }
+
+  let originalGetUserMedia = realOriginalGetUserMedia;
+
+  function interceptGetUserMedia() {
+    if (navigator.mediaDevices) {
+      Object.defineProperty(navigator.mediaDevices, 'getUserMedia', {
+        value: function(constraints) {
+          return requestMediaPermissions(constraints).then((granted) => {
+            if (granted) {
+              if (originalGetUserMedia) {
+                return originalGetUserMedia(constraints);
+              } else {
+                throw new Error("Original getUserMedia not available.");
+              }
+            } else {
+              throw new DOMException('Permission denied', 'NotAllowedError');
+            }
+          });
+        },
+        writable: false,
+        configurable: false
+      });
+    }
+  }
+
+  interceptGetUserMedia();
+
+  const observer = new MutationObserver(function(mutationsList, observer) {
+    for (const mutation of mutationsList) {
+      if (mutation.type === 'reconfigured' && mutation.name === 'getUserMedia' && mutation.object === navigator.mediaDevices) {
+        interceptGetUserMedia();
+      } else if (mutation.type === 'attributes' && mutation.attributeName === 'getUserMedia' && mutation.target === navigator.mediaDevices) {
+        interceptGetUserMedia();
+      } else if (mutation.type === 'childList' && mutation.addedNodes) {
+        mutation.addedNodes.forEach(node => {
+          if (node === navigator.mediaDevices) {
+            interceptGetUserMedia();
+          }
+        });
+      }
+    }
+  });
+
+  function interceptSpeechRecognition() {
+    if (!window.SpeechRecognition && !window.webkitSpeechRecognition) {
+      return;
+    }
+
+    const OriginalSpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+
+    const SpeechRecognitionWrapper = function(...args) {
+      const recognizer = new OriginalSpeechRecognition(...args);
+      const originalStart = recognizer.start.bind(recognizer);
+
+      recognizer.start = function() {
+        requestMediaPermissions({ audio: true }).then(granted => {
+          if (granted) {
+            originalStart();
+          } else {
+            const errorEvent = new SpeechRecognitionErrorEvent('error');
+            errorEvent.error = 'not-allowed'; // This is the standard error for permission denial.
+            recognizer.dispatchEvent(errorEvent);
+          }
+        });
+      };
+
+      return recognizer;
+    };
+
+    SpeechRecognitionWrapper.prototype = OriginalSpeechRecognition.prototype;
+    SpeechRecognitionWrapper.prototype.constructor = SpeechRecognitionWrapper;
+
+    if (window.SpeechRecognition) {
+      window.SpeechRecognition = SpeechRecognitionWrapper;
+    }
+    if (window.webkitSpeechRecognition) {
+      window.webkitSpeechRecognition = SpeechRecognitionWrapper;
+    }
+  }
+
+  interceptSpeechRecognition();
+
+  window.addEventListener('message', function(event) {
+    if (event.data) {
+      if (event.data.type === 'resolveMediaPermission') {
+        const { promiseId, granted } = event.data;
+        if (pendingMediaResolvers[promiseId]) {
+          pendingMediaResolvers[promiseId](granted);
+        }
+      }
+    }
+  });
+
+})();</script><script ws-interception-config="{&quot;parentOrigin&quot;:&quot;https://gemini.google.com&quot;,&quot;proxiedDomains&quot;:[]}" data-bard-client-injected="true">(function(){'use strict';var u=typeof Object.defineProperties=="function"?Object.defineProperty:function(b,d,e){if(b==Array.prototype||b==Object.prototype)return b;b[d]=e.value;return b};function v(b){b=["object"==typeof globalThis&&globalThis,b,"object"==typeof window&&window,"object"==typeof self&&self,"object"==typeof global&&global];for(var d=0;d<b.length;++d){var e=b[d];if(e&&e.Math==Math)return e}throw Error("Cannot find global object");}var w=v(this);
+function y(b,d){if(d)a:{var e=w;b=b.split(".");for(var h=0;h<b.length-1;h++){var k=b[h];if(!(k in e))break a;e=e[k]}b=b[b.length-1];h=e[b];d=d(h);d!=h&&d!=null&&u(e,b,{configurable:!0,writable:!0,value:d})}}function z(b){function d(h){return b.next(h)}function e(h){return b.throw(h)}return new Promise(function(h,k){function m(n){n.done?h(n.value):Promise.resolve(n.value).then(d,e).then(m,k)}m(b.next())})}y("globalThis",function(b){return b||w});/*
+
+ Copyright The Closure Library Authors.
+ SPDX-License-Identifier: Apache-2.0
+*/
+function A(b,d){function e(){}e.prototype=d.prototype;b.j=d.prototype;b.prototype=new e;b.prototype.constructor=b;b.h=function(h,k,m){for(var n=Array(arguments.length-2),p=2;p<arguments.length;p++)n[p-2]=arguments[p];return d.prototype[k].apply(h,n)}};function B(b,d,e="*"){function h(a){if(typeof a==="string")return F.encode(a).buffer;if(a instanceof ArrayBuffer)return a.slice(0);if(ArrayBuffer.isView(a))return a.buffer.slice(a.byteOffset,a.byteOffset+a.byteLength);throw Error("Invalid data type");}function k(a){a=h(a);var f={type:"send",data:new Uint8Array(a)},g;(g=r)==null||g.postMessage(f,[a])}function m(){if(!r)throw Error("Data port not captured yet.");r.onmessage=a=>{if(a.data.type==="message"){a=new MessageEvent("message",{data:G.decode(a.data.data)});
+let f;(f=c.onmessage)==null||f.call(c,a);c.dispatchEvent(a)}}}function n(){if(!t)throw Error("Control port not captured yet.");t.onmessage=a=>{switch(a.data.type){case "open":l=1;var f=new Event("open"),g;(g=c.onopen)==null||g.call(c,f);c.dispatchEvent(f);q.forEach(H=>{k(H)});q=[];break;case "close":g=a.data;l=3;g=new CloseEvent("close",{code:g.code,reason:g.reason,wasClean:g.wasClean});(f=c.onclose)==null||f.call(c,g);c.dispatchEvent(g);break;case "error":l=3;f=new Event("error");let x;(x=c.onerror)==
+null||x.call(c,f);c.dispatchEvent(f)}}}function p(a){return z(function*(){var f=new MessageChannel;t=f.port1;var g=new MessageChannel;r=g.port1;n();m();window.parent.postMessage({type:"websocket_open",portOrdering:["control","data"],url:b,protocols:a||[],connectionId:I},e,[f.port2,g.port2])}())}var c=Reflect.construct(EventTarget,[],new.target);c.CONNECTING=0;c.OPEN=1;c.CLOSING=2;c.CLOSED=3;c.url=b;c.binaryType="arraybuffer";c.protocol="";c.i="";var l=0,t=null,r=null,q=[],F=new TextEncoder,G=new TextDecoder;
+c.onopen=null;c.onmessage=null;c.onclose=null;c.onerror=null;Object.defineProperty(c,"readyState",{get:()=>l,enumerable:!0,configurable:!0});Object.defineProperty(c,"bufferedAmount",{get:()=>{var a=0;q.forEach(f=>{a+=typeof f==="string"?f.length:f.byteLength});return a},enumerable:!0,configurable:!0});var I=function(){var a;return((a=globalThis.crypto)==null?0:a.randomUUID)?globalThis.crypto.randomUUID():"xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(/[xy]/g,f=>{var g=Math.random()*16|0;return(f===
+"x"?g:g&3|8).toString(16)})}();c.send=a=>{if(l===1)a instanceof Blob?a.arrayBuffer().then(f=>{k(f)}):k(a);else if(l===0)if(typeof a==="string")q.push(a);else if(a instanceof ArrayBuffer||ArrayBuffer.isView(a))q.push(h(a));else throw Error("Sending Blob is not supported before the connection is open.");else console.debug("WebSocket send called in CLOSING or CLOSED state; ignored.")};c.close=(a=1E3,f="")=>{if(l!==2&&l!==3){l=2;a={type:"close",code:a,reason:f,wasClean:a===1E3};var g;(g=t)==null||g.postMessage(a)}};
+Promise.resolve().then(()=>p(d));return c}A(B,EventTarget);var C=document.currentScript,D=C==null?void 0:C.getAttribute("ws-interception-config");if(!D)throw Error("WebSocket Interceptor: Missing ws-interception-config attribute in the script tag.");var E=JSON.parse(D);if(!E.parentOrigin||typeof E.parentOrigin!=="string")throw Error("WebSocket Interceptor: Invalid parentOrigin in ws-interception-config");
+(function(b){var d=Object.getOwnPropertyDescriptor(window,"WebSocket");if(!d||d.writable||d.configurable)d=Object.assign(function(e,h){try{let k=(new URL(e)).hostname;if(b.proxiedDomains.some(m=>k===m||k.endsWith(`.${m}`)))return new B(e,h,b.parentOrigin)}catch(k){throw window.parent.postMessage({type:"websocket_blocked",url:e,reason:"blocked_invalid_url"},b.parentOrigin),new DOMException(`WebSocket connection to '${e}' is not allowed in Canvas.`,"SecurityError");}window.parent.postMessage({type:"websocket_blocked",
+url:e,reason:"blocked_domain_not_allowlisted"},b.parentOrigin);throw new DOMException(`WebSocket connection to '${e}' is not allowed in Canvas.`,"SecurityError");},{CONNECTING:0,OPEN:1,CLOSING:2,CLOSED:3}),Object.defineProperty(window,"WebSocket",{value:d,writable:!1,configurable:!1})})({proxiedDomains:E.proxiedDomains||[],parentOrigin:E.parentOrigin});}).call(this);
+</script><script data-bard-client-injected="true">((function(modelInformation) {
+  const originalFetch = window.fetch;
+  // TODO: b/421908508 - Move these out of the script and match all generative AI model calls.
+  let googleLlmBaseApiUrls = [
+    'https://generativelanguage.googleapis.com/v1beta/models/' + modelInformation.textModelName + ':streamGenerateContent',
+    'https://generativelanguage.googleapis.com/v1beta/models/' + modelInformation.textModelName + ':generateContent',
+    'https://generativelanguage.googleapis.com/v1beta/models/' + modelInformation.imageModelName + ':predict',
+    'https://generativelanguage.googleapis.com/v1beta/models/' + modelInformation.imageModelName + ':predictLongRunning',
+    'https://generativelanguage.googleapis.com/v1beta/models/' + modelInformation.imageEditModelName + ':generateContent',
+    'https://generativelanguage.googleapis.com/v1beta/models/' + modelInformation.imageTransformModelName + ':generateContent',
+    'https://generativelanguage.googleapis.com/v1beta/models/' + modelInformation.videoModelName + ':predict',
+    'https://generativelanguage.googleapis.com/v1beta/models/' + modelInformation.videoModelName + ':predictLongRunning',
+    'https://generativelanguage.googleapis.com/v1beta/models/' + modelInformation.ttsModelName + ':generateContent',
+  ];
+  modelInformation.deprecatedTextModelNames.forEach((modelName) => {
+    googleLlmBaseApiUrls.push(
+      'https://generativelanguage.googleapis.com/v1beta/models/' + modelName + ':streamGenerateContent',
+      'https://generativelanguage.googleapis.com/v1beta/models/' + modelName + ':generateContent',
+    );
+  });
+  modelInformation.deprecatedImageModelNames.forEach((modelName) => {
+    googleLlmBaseApiUrls.push(
+      'https://generativelanguage.googleapis.com/v1beta/models/' + modelName + ':predict',
+      'https://generativelanguage.googleapis.com/v1beta/models/' + modelName + ':predictLongRunning',
+      'https://generativelanguage.googleapis.com/v1beta/models/' + modelName + ':generateContent',
+      'https://generativelanguage.googleapis.com/v1beta/models/' + modelName + ':streamGenerateContent',
+    );
+  });
+  modelInformation.deprecatedGenerateImageModelNames.forEach((modelName) => {
+    googleLlmBaseApiUrls.push(
+      'https://generativelanguage.googleapis.com/v1beta/models/' + modelName + ':generateContent',
+      'https://generativelanguage.googleapis.com/v1beta/models/' + modelName + ':streamGenerateContent',
+    );
+  });
+  modelInformation.deprecatedImageTransformModelNames.forEach((modelName) => {
+    googleLlmBaseApiUrls.push(
+      'https://generativelanguage.googleapis.com/v1beta/models/' + modelName + ':generateContent',
+      'https://generativelanguage.googleapis.com/v1beta/models/' + modelName + ':streamGenerateContent',
+    );
+  });
+
+  const pendingFetchResolvers = {};
+  let nextPromiseId = 0;
+
+  function handleStringInput(input, optionsArgument) {
+    const actualUrl = input;
+    const fetchCallArgs = [actualUrl, optionsArgument];
+    const effectiveOptions = optionsArgument || {};
+    const bodyForApiKeyCheck = effectiveOptions.body;
+    const bodyForPostMessage = effectiveOptions.body;
+    return { actualUrl, fetchCallArgs, effectiveOptions, bodyForApiKeyCheck, bodyForPostMessage };
+  }
+
+  function handleRequestInput(input, optionsArgument) {
+    const actualUrl = input.url;
+    const fetchCallArgs = [input, optionsArgument];
+    const effectiveOptions = { method: input.method, headers: new Headers(input.headers) };
+    let bodyForApiKeyCheck;
+    let bodyForPostMessage;
+
+    if (optionsArgument) {
+      if (optionsArgument.method) effectiveOptions.method = optionsArgument.method;
+      if (optionsArgument.headers) effectiveOptions.headers = new Headers(optionsArgument.headers);
+      if ('body' in optionsArgument) {
+        bodyForApiKeyCheck = optionsArgument.body;
+        bodyForPostMessage = optionsArgument.body;
+      } else {
+        bodyForApiKeyCheck = undefined;
+        bodyForPostMessage = input.body;
+      }
+    } else {
+      bodyForApiKeyCheck = undefined;
+      bodyForPostMessage = input.body;
+    }
+    return { actualUrl, fetchCallArgs, effectiveOptions, bodyForApiKeyCheck, bodyForPostMessage };
+  }
+
+  window.fetch = function(input, optionsArgument) {
+    let actualUrl;
+    let fetchCallArgs;
+    let effectiveOptions = {};
+    let bodyForApiKeyCheck;
+    let bodyForPostMessage;
+
+    if (typeof input === 'string') {
+      ({actualUrl, fetchCallArgs, effectiveOptions, bodyForApiKeyCheck, bodyForPostMessage} = handleStringInput(input, optionsArgument));
+    } else if (input instanceof Request) {
+      ({actualUrl, fetchCallArgs, effectiveOptions, bodyForApiKeyCheck, bodyForPostMessage} = handleRequestInput(input, optionsArgument));
+    } else {
+      return originalFetch.apply(window, [input, optionsArgument]);
+    }
+
+    effectiveOptions.method = effectiveOptions.method || 'GET';
+    if (!effectiveOptions.headers) {
+      effectiveOptions.headers = new Headers();
+    }
+
+
+    if (typeof actualUrl === 'string' && googleLlmBaseApiUrls.some((url) => actualUrl.startsWith(url))) {
+      let apiKeyIsNull = true;
+
+      const regex = new RegExp("models/([^:]+)");
+      const modelNameMatch = actualUrl.match(regex);
+      const modelName = modelNameMatch ? modelNameMatch[1] : 'unspecified';
+
+
+      try {
+        const urlObject = new URL(actualUrl);  // Use URL object for robust parsing
+        const apiKeyParam = urlObject.searchParams.get('key');
+        if (apiKeyParam) {
+          apiKeyIsNull = false;
+        }
+      } catch (e) {
+        // Continue checks even if URL parsing fails
+      }
+
+      if (apiKeyIsNull && effectiveOptions.headers) {
+        const h = new Headers(effectiveOptions.headers);
+        const apiKeyHeaderValue = h.get('X-API-Key') || h.get('x-api-key');
+        if (apiKeyHeaderValue) {
+          apiKeyIsNull = false;
+          return originalFetch.apply(window, fetchCallArgs);
+        }
+      }
+
+      if (apiKeyIsNull && effectiveOptions.method && ['POST', 'PUT', 'PATCH'].includes(effectiveOptions.method.toUpperCase()) && typeof bodyForApiKeyCheck === 'string') {
+        try {
+          const bodyData = JSON.parse(bodyForApiKeyCheck);
+          if (bodyData && bodyData.apiKey) {
+            apiKeyIsNull = false;
+            return originalFetch.apply(window, fetchCallArgs);
+          }
+        } catch (e) {
+          // Ignore JSON parsing errors
+        }
+      }
+
+      if(apiKeyIsNull) {
+        const promiseId = nextPromiseId++;
+        const promise = new Promise((resolve) => {
+          pendingFetchResolvers[promiseId] = (resolvedResponse) => {
+            delete pendingFetchResolvers[promiseId];
+            resolve(resolvedResponse);
+          };
+        });
+
+        let serializedBodyForPostMessage;
+        if (typeof bodyForPostMessage === 'string' || bodyForPostMessage == null) {
+            serializedBodyForPostMessage = bodyForPostMessage;
+        } else if (bodyForPostMessage instanceof ReadableStream) {
+            serializedBodyForPostMessage = null;
+        } else {
+            try {
+                serializedBodyForPostMessage = JSON.stringify(bodyForPostMessage);
+            } catch (e) {
+                serializedBodyForPostMessage = null;
+            }
+        }
+
+        const messageOptions = {
+            method: effectiveOptions.method,
+            headers: Object.fromEntries(new Headers(effectiveOptions.headers).entries()),
+            body: serializedBodyForPostMessage
+        };
+
+        window.parent.postMessage({
+          type: 'requestFetch',
+          url: actualUrl,
+          modelName: modelName,
+          options: messageOptions,
+          promiseId: promiseId,
+        }, '*');
+
+        return promise;
+      }
+      return originalFetch.apply(window, fetchCallArgs);
+    }
+    return originalFetch.apply(window, fetchCallArgs);
+  };
+
+  window.addEventListener('message', function(event) {
+    if (event.data && event.data.type === 'resolveFetch') {
+      const { promiseId, response } = event.data;
+      if (pendingFetchResolvers[promiseId]) {
+        try {
+          const reconstructedResponse = new Response(response.body, {
+            status: response.status,
+            statusText: response.statusText,
+            headers: new Headers(response.headers),
+          });
+          pendingFetchResolvers[promiseId](reconstructedResponse);
+        } catch (error) {
+          pendingFetchResolvers[promiseId](new Response(null, { status: 500, statusText: "Interceptor Response Reconstruction Error" }));
+        }
+      }
+    }
+  });
+
+}))({"textModelName":"gemini-3-flash-preview","imageModelName":"imagen-4.0-generate-001","imageEditModelName":"gemini-3.1-flash-image","imageTransformModelName":"gemini-3-pro-image","videoModelName":"veo-2.0-generate-001","ttsModelName":"gemini-2.5-flash-preview-tts","deprecatedTextModelNames":["gemini-2.0-flash","gemini-2.5-flash","gemini-2.5-flash-preview-04-17","gemini-2.5-flash-preview-05-20","gemini-2.5-flash-preview-09-2025"],"deprecatedImageModelNames":["imagen-3.0-generate-001","imagen-3.0-generate-002"],"deprecatedGenerateImageModelNames":["gemini-2.5-flash-image-preview","gemini-2.5-flash-image","gemini-3.1-flash-image-preview"],"deprecatedImageTransformModelNames":["gemini-3-pro-image-preview-11-2025"]})</script><script data-bard-client-injected="true">(function() {
+  function normalizeSlug(str) {
+    try {
+      return str
+        .trim()
+        .toLowerCase()
+        .replace(/[^p{L}p{N}s_-]/gu, '')
+        .replace(/s+/g, '-');
+    } catch (e) {
+      return str
+        .trim()
+        .toLowerCase()
+        .replace(/[^a-z0-9s_-]/g, '')
+        .replace(/s+/g, '-');
+    }
+  }
+
+  function findTargetElement(hash) {
+    if (!hash || hash === '#') {
+      return null;
+    }
+    const rawId = hash.startsWith('#') ? hash.slice(1) : hash;
+    let decodedId = rawId;
+    try {
+      decodedId = decodeURIComponent(rawId);
+    } catch (e) {
+      // Ignore URI malformed errors.
+    }
+
+    // 1. Direct ID match (raw and decoded).
+    let target = document.getElementById(rawId) || document.getElementById(decodedId);
+    if (target) {
+      return target;
+    }
+
+    // 2. Name attribute match (<a name="...">).
+    try {
+      if (typeof CSS !== 'undefined' && CSS.escape) {
+        target =
+          document.querySelector('[name="' + CSS.escape(rawId) + '"]') ||
+          document.querySelector('[name="' + CSS.escape(decodedId) + '"]');
+      } else {
+        const namedElements = document.getElementsByName(rawId);
+        if (namedElements && namedElements.length > 0) {
+          return namedElements[0];
+        }
+      }
+    } catch (e) {
+      // Ignore querySelector syntax errors.
+    }
+    if (target) {
+      return target;
+    }
+
+    // 3. Match heading text by slug (for Markdown TOCs where headings lack explicit IDs).
+    const targetSlug = normalizeSlug(decodedId);
+    if (targetSlug) {
+      for (const heading of document.querySelectorAll('h1, h2, h3, h4, h5, h6')) {
+        if (normalizeSlug(heading.textContent || '') === targetSlug) {
+          return heading;
+        }
+      }
+    }
+
+    return null;
+  }
+
+  document.addEventListener('click', function(event) {
+    const target = event.target;
+    const anchor = target && typeof target.closest === 'function' ? target.closest('a') : null;
+    if (!anchor) {
+      return;
+    }
+
+    const href = anchor.getAttribute('href');
+    if (
+      !href ||
+      href.trim().toLowerCase().startsWith('javascript:') ||
+      anchor.hasAttribute('download')
+    ) {
+      return;
+    }
+
+    // Check if the link is an in-page hash / anchor link.
+    if (href.startsWith('#')) {
+      event.preventDefault();
+      const targetElement = findTargetElement(href);
+      if (targetElement) {
+        targetElement.scrollIntoView({behavior: 'smooth', block: 'start'});
+      }
+      return;
+    }
+
+    // Check if the URL has the same origin/pathname but with a hash.
+    try {
+      const url = new URL(anchor.href, window.location.href);
+      if (
+        url.hash &&
+        url.origin === window.location.origin &&
+        url.pathname === window.location.pathname
+      ) {
+        event.preventDefault();
+        const targetElement = findTargetElement(url.hash);
+        if (targetElement) {
+          targetElement.scrollIntoView({behavior: 'smooth', block: 'start'});
+        }
+        return;
+      }
+    } catch (e) {
+      // Fall through if URL parsing fails.
+    }
+
+    // For all external or full navigation links, prevent iframe-level navigation
+    // (which breaks in AGSA WebView or sandboxed iframes) and ensure they open
+    // safely in a new tab/window.
+    if (anchor.target !== '_blank') {
+      event.preventDefault();
+      window.open(anchor.href, '_blank', 'noopener,noreferrer');
+    }
+  }, {capture: true});
+})();</script><script data-bard-client-injected="true">(function(){'use strict';function a(){window.parent.postMessage({type:"interaction"},"*")}window.addEventListener("click",a,{capture:!0,passive:!0});window.addEventListener("touchstart",a,{capture:!0,passive:!0});window.addEventListener("keydown",a,{capture:!0,passive:!0});}).call(this);
+</script><script data-bard-client-injected="true">(function() {
+  const originalConsoleLog = console.log;
+  const originalConsoleError = console.error;
+
+    /**
+   * Normalizes an error event or a promise rejection reason into a structured error object.
+   * @param {*} errorEventOrReason The error object or reason.
+   * @return {object} Structured error data { message, name, stack }.
+   */
+  function getErrorObject(errorEventOrReason) {
+    if (errorEventOrReason instanceof Error) {
+      return {
+        message: errorEventOrReason.message,
+        name: errorEventOrReason.name,
+        stack: errorEventOrReason.stack,
+      };
+    }
+    // Fallback for non-Error objects.
+    try {
+      return {
+        message: JSON.stringify(errorEventOrReason),
+        name: 'UnknownErrorType',
+        stack: null,
+      };
+    } catch (e) {
+      return {
+        message: String(errorEventOrReason),
+        name: 'UnknownErrorTypeNonStringifiable',
+        stack: null,
+      };
+    }
+  }
+
+  /**
+   * Converts an array of arguments (from log/error) into a single string.
+   * Handles Error objects specially to include their message and stack.
+   * @param {Array<*>} args - Arguments passed to console methods.
+   * @return {string} A string representation of the arguments.
+   */
+  function stringifyArgs(args) {
+    return args
+      .map((arg) => {
+        if (arg instanceof Error) {
+          const {message, stack} = arg;
+          return `Error: ${message}${stack ? ('\nStack: ' + stack) : ''}`;
+        }
+        if (typeof arg === 'object' && arg !== null) {
+          try {
+            return JSON.stringify(arg);
+          } catch (error) {
+            return '[Circular Object]';
+          }
+        } else {
+          return String(arg);
+        }
+      })
+      .join(' ');
+  }
+
+  console.log = function(...args) {
+    const logString = stringifyArgs(args);
+    window.parent.postMessage({ type: 'log', message: logString }, '*');
+    originalConsoleLog.apply(console, args);
+  };
+
+  console.error = function(...args) {
+    let errorData;
+    if (args.length > 0 && args[0] instanceof Error) {
+      const err = args[0];
+      // If the first arg is an Error, capture its details.
+      errorData = {
+        type: 'error',
+        source: 'CONSOLE_ERROR',
+        ...getErrorObject(err),
+        rawArgsString: stringifyArgs(args.slice(1)),
+        timestamp: new Date().toISOString(),
+      };
+    } else {
+      // If not an Error object, treat all args as a general error message.
+      errorData = {
+        type: 'error',
+        source: 'CONSOLE_ERROR',
+        message: stringifyArgs(args),
+        name: 'ConsoleLoggedError',
+        stack: null,
+        timestamp: new Date().toISOString(),
+      };
+    }
+    window.parent.postMessage(errorData, '*');
+    originalConsoleError.apply(console, args);
+  };
+
+  // Listen for global unhandled synchronous errors.
+  window.addEventListener('error', function(event) {
+    const errorDetails = event.error ? getErrorObject(event.error) : {
+      message: event.message,
+      name: 'GlobalError',
+      stack: null,
+      filename: event.filename,
+      lineno: event.lineno,
+      colno: event.colno,
+    };
+
+    window.parent.postMessage({
+      type: 'error',
+      source: 'global',
+      ...errorDetails,
+      message: errorDetails.message || event.message,
+      timestamp: new Date().toISOString(),
+    }, '*');
+  });
+
+  // Listen for unhandled promise rejections (asynchronous errors).
+  window.addEventListener('unhandledrejection', function(event) {
+    const errorDetails = getErrorObject(event.reason);
+
+    window.parent.postMessage({
+      type: 'error',
+      source: 'unhandledrejection',
+      ...errorDetails,
+      message: errorDetails.message || 'Unhandled Promise Rejection',
+      timestamp: new Date().toISOString(),
+    }, '*');
+  });
+
+})();</script><script data-bard-client-injected="true">((function(theme) {
+    function applyTheme(theme) {
+      const root = document.querySelector(':root');
+      if (root) {
+        root.dataset['theme'] = theme;
+      }
+    }
+
+    // Listen for messages from the parent window.
+    window.addEventListener("message", (event) => {
+      if (event.data && event.data.type === 'APPLY_THEME' && (event.data.theme === "light" || event.data.theme === "dark")) {
+        applyTheme(event.data.theme);
+      }
+    });
+
+    if (theme) {
+      applyTheme(theme);
+    }
+  }))("dark")</script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cổng Tra Cứu Gara Đồng Sơn PTI &amp; Đánh Bóng Kính Suzuki XL7</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.2.0/dist/chartjs-plugin-datalabels.min.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200">
+  <style>
+    @font-face {
+      font-family: 'Google Sans';
+      src: url('https://fonts.gstatic.com/s/googlesans/v35/4UaGrENHsxJlGwyg_OUCIzQyLQ.woff2') format('woff2');
+      font-weight: 400;
+      font-style: normal;
+    }
+    @font-face {
+      font-family: 'Google Sans Text';
+      src: url('https://fonts.gstatic.com/s/googlesanstext/v17/va9I4ljaH2sA_LzWxOQ_NQAyD_VwAWchj6yJ3yS3.woff2') format('woff2');
+      font-weight: 400;
+      font-style: normal;
+    }
+    body {
+      font-family: 'Google Sans', 'Google Sans Text', sans-serif;
+      background-color: #FFFFFF;
+      color: #111111;
+    }
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 1, 'wght' 500, 'GRAD' 0, 'opsz' 18;
+      vertical-align: middle;
+    }
+  </style>
+<style>*, ::before, ::after{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgb(59 130 246 / 0.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }::backdrop{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgb(59 130 246 / 0.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }/* ! tailwindcss v3.4.17 | MIT License | https://tailwindcss.com */*,::after,::before{box-sizing:border-box;border-width:0;border-style:solid;border-color:#e5e7eb}::after,::before{--tw-content:''}:host,html{line-height:1.5;-webkit-text-size-adjust:100%;-moz-tab-size:4;tab-size:4;font-family:ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";font-feature-settings:normal;font-variation-settings:normal;-webkit-tap-highlight-color:transparent}body{margin:0;line-height:inherit}hr{height:0;color:inherit;border-top-width:1px}abbr:where([title]){-webkit-text-decoration:underline dotted;text-decoration:underline dotted}h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight:inherit}a{color:inherit;text-decoration:inherit}b,strong{font-weight:bolder}code,kbd,pre,samp{font-family:ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;font-feature-settings:normal;font-variation-settings:normal;font-size:1em}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sub{bottom:-.25em}sup{top:-.5em}table{text-indent:0;border-color:inherit;border-collapse:collapse}button,input,optgroup,select,textarea{font-family:inherit;font-feature-settings:inherit;font-variation-settings:inherit;font-size:100%;font-weight:inherit;line-height:inherit;letter-spacing:inherit;color:inherit;margin:0;padding:0}button,select{text-transform:none}button,input:where([type=button]),input:where([type=reset]),input:where([type=submit]){-webkit-appearance:button;background-color:transparent;background-image:none}:-moz-focusring{outline:auto}:-moz-ui-invalid{box-shadow:none}progress{vertical-align:baseline}::-webkit-inner-spin-button,::-webkit-outer-spin-button{height:auto}[type=search]{-webkit-appearance:textfield;outline-offset:-2px}::-webkit-search-decoration{-webkit-appearance:none}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}summary{display:list-item}blockquote,dd,dl,figure,h1,h2,h3,h4,h5,h6,hr,p,pre{margin:0}fieldset{margin:0;padding:0}legend{padding:0}menu,ol,ul{list-style:none;margin:0;padding:0}dialog{padding:0}textarea{resize:vertical}input::placeholder,textarea::placeholder{opacity:1;color:#9ca3af}[role=button],button{cursor:pointer}:disabled{cursor:default}audio,canvas,embed,iframe,img,object,svg,video{display:block;vertical-align:middle}img,video{max-width:100%;height:auto}[hidden]:where(:not([hidden=until-found])){display:none}.relative{position:relative}.col-span-2{grid-column:span 2 / span 2}.m-0{margin:0px}.mt-0\.5{margin-top:0.125rem}.mt-1{margin-top:0.25rem}.mt-1\.5{margin-top:0.375rem}.mt-2{margin-top:0.5rem}.inline-block{display:inline-block}.flex{display:flex}.inline-flex{display:inline-flex}.grid{display:grid}.hidden{display:none}.h-2\.5{height:0.625rem}.h-32{height:8rem}.h-56{height:14rem}.w-2\.5{width:0.625rem}.w-full{width:100%}.max-w-\[800px\]{max-width:800px}.grid-cols-1{grid-template-columns:repeat(1, minmax(0, 1fr))}.grid-cols-2{grid-template-columns:repeat(2, minmax(0, 1fr))}.flex-col{flex-direction:column}.flex-wrap{flex-wrap:wrap}.items-center{align-items:center}.justify-center{justify-content:center}.justify-between{justify-content:space-between}.gap-1{gap:0.25rem}.gap-1\.5{gap:0.375rem}.gap-2{gap:0.5rem}.gap-2\.5{gap:0.625rem}.gap-3{gap:0.75rem}.gap-4{gap:1rem}.space-y-1 > :not([hidden]) ~ :not([hidden]){--tw-space-y-reverse:0;margin-top:calc(0.25rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(0.25rem * var(--tw-space-y-reverse))}.break-all{word-break:break-all}.rounded{border-radius:0.25rem}.rounded-full{border-radius:9999px}.rounded-lg{border-radius:0.5rem}.rounded-sm{border-radius:0.125rem}.rounded-xl{border-radius:0.75rem}.border{border-width:1px}.border-2{border-width:2px}.border-b{border-bottom-width:1px}.border-l-4{border-left-width:4px}.border-t{border-top-width:1px}.border-\[\#1A73E8\]{--tw-border-opacity:1;border-color:rgb(26 115 232 / var(--tw-border-opacity, 1))}.border-\[\#D1D1D1\]{--tw-border-opacity:1;border-color:rgb(209 209 209 / var(--tw-border-opacity, 1))}.border-\[\#D93025\]{--tw-border-opacity:1;border-color:rgb(217 48 37 / var(--tw-border-opacity, 1))}.bg-\[\#1A73E8\]{--tw-bg-opacity:1;background-color:rgb(26 115 232 / var(--tw-bg-opacity, 1))}.bg-\[\#1A73E8\]\/10{background-color:rgb(26 115 232 / 0.1)}.bg-\[\#1A73E8\]\/15{background-color:rgb(26 115 232 / 0.15)}.bg-\[\#81C995\]\/25{background-color:rgb(129 201 149 / 0.25)}.bg-\[\#D93025\]\/15{background-color:rgb(217 48 37 / 0.15)}.bg-\[\#F8F9FA\]{--tw-bg-opacity:1;background-color:rgb(248 249 250 / var(--tw-bg-opacity, 1))}.bg-\[\#FA903E\]{--tw-bg-opacity:1;background-color:rgb(250 144 62 / var(--tw-bg-opacity, 1))}.bg-\[\#FA903E\]\/20{background-color:rgb(250 144 62 / 0.2)}.bg-\[\#FFFFFF\]{--tw-bg-opacity:1;background-color:rgb(255 255 255 / var(--tw-bg-opacity, 1))}.p-1\.5{padding:0.375rem}.p-2{padding:0.5rem}.p-2\.5{padding:0.625rem}.p-3{padding:0.75rem}.p-3\.5{padding:0.875rem}.px-2{padding-left:0.5rem;padding-right:0.5rem}.px-2\.5{padding-left:0.625rem;padding-right:0.625rem}.px-3{padding-left:0.75rem;padding-right:0.75rem}.py-0\.5{padding-top:0.125rem;padding-bottom:0.125rem}.py-1{padding-top:0.25rem;padding-bottom:0.25rem}.py-1\.5{padding-top:0.375rem;padding-bottom:0.375rem}.py-2{padding-top:0.5rem;padding-bottom:0.5rem}.pb-3{padding-bottom:0.75rem}.pt-1\.5{padding-top:0.375rem}.pt-2{padding-top:0.5rem}.pt-3{padding-top:0.75rem}.font-mono{font-family:ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace}.text-\[10px\]{font-size:10px}.text-\[11px\]{font-size:11px}.text-lg{font-size:1.125rem;line-height:1.75rem}.text-sm{font-size:0.875rem;line-height:1.25rem}.text-xs{font-size:0.75rem;line-height:1rem}.font-bold{font-weight:700}.font-medium{font-weight:500}.font-semibold{font-weight:600}.leading-snug{line-height:1.375}.text-\[\#111111\]{--tw-text-opacity:1;color:rgb(17 17 17 / var(--tw-text-opacity, 1))}.text-\[\#1A73E8\]{--tw-text-opacity:1;color:rgb(26 115 232 / var(--tw-text-opacity, 1))}.text-\[\#1E6F3D\]{--tw-text-opacity:1;color:rgb(30 111 61 / var(--tw-text-opacity, 1))}.text-\[\#666666\]{--tw-text-opacity:1;color:rgb(102 102 102 / var(--tw-text-opacity, 1))}.text-\[\#B05300\]{--tw-text-opacity:1;color:rgb(176 83 0 / var(--tw-text-opacity, 1))}.text-\[\#D93025\]{--tw-text-opacity:1;color:rgb(217 48 37 / var(--tw-text-opacity, 1))}.text-\[\#FA903E\]{--tw-text-opacity:1;color:rgb(250 144 62 / var(--tw-text-opacity, 1))}.text-white{--tw-text-opacity:1;color:rgb(255 255 255 / var(--tw-text-opacity, 1))}.underline{-webkit-text-decoration-line:underline;text-decoration-line:underline}.transition-all{transition-property:all;transition-timing-function:cubic-bezier(0.4, 0, 0.2, 1);transition-duration:150ms}.hover\:bg-\[\#1557B0\]:hover{--tw-bg-opacity:1;background-color:rgb(21 87 176 / var(--tw-bg-opacity, 1))}.hover\:text-\[\#111111\]:hover{--tw-text-opacity:1;color:rgb(17 17 17 / var(--tw-text-opacity, 1))}.focus\:outline-none:focus{outline:2px solid transparent;outline-offset:2px}@media (min-width: 640px){.sm\:col-span-1{grid-column:span 1 / span 1}.sm\:grid-cols-2{grid-template-columns:repeat(2, minmax(0, 1fr))}.sm\:grid-cols-3{grid-template-columns:repeat(3, minmax(0, 1fr))}.sm\:grid-cols-4{grid-template-columns:repeat(4, minmax(0, 1fr))}.sm\:grid-cols-5{grid-template-columns:repeat(5, minmax(0, 1fr))}.sm\:p-5{padding:1.25rem}.sm\:text-xl{font-size:1.25rem;line-height:1.75rem}}@media (min-width: 768px){.md\:grid-cols-3{grid-template-columns:repeat(3, minmax(0, 1fr))}}</style></head>
+<body class="bg-[#FFFFFF] text-[#111111] m-0 p-2.5 sm:p-5 flex justify-center w-full">
+  <figure class="w-full max-w-[800px] flex flex-col gap-4 m-0">
+
+    <!-- Compact Header -->
+    <header class="border-b border-[#D1D1D1] pb-3 flex flex-col gap-1.5">
+      <div class="flex flex-wrap items-center justify-between gap-2">
+        <span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-xs font-semibold bg-[#1A73E8]/10 text-[#1A73E8]">
+          <span class="material-symbols-outlined">directions_car</span>
+          Suzuki XL7 • Bảo Hiểm PTI Gia Định (6tr/năm)
+        </span>
+        <span class="text-xs text-[#666666] font-medium">
+          Lộ trình: Bình Thới (Q.11) → Q.10 → Q.8/Q.4 → KCX Tân Thuận (Q.7)
+        </span>
+      </div>
+      <h1 class="text-lg sm:text-xl font-bold text-[#111111] leading-snug">
+        Bảng Điều Khiển Chọn Gara Đồng Sơn Bảo Lãnh PTI &amp; Đánh Bóng Kính
+      </h1>
+      <p class="text-xs text-[#666666]">
+        Chọn từng Tab bên dưới để xem nhanh điểm đề xuất, danh bạ lọc theo quận, đánh giá quảng cáo, dự toán chi phí và lấy code HTML.
+      </p>
+    </header>
+
+    <!-- Responsive Tab Navigation Bar (Wraps cleanly on Mobile, zero horizontal scroll) -->
+    <nav class="grid grid-cols-2 sm:grid-cols-5 gap-1.5 bg-[#F8F9FA] p-1.5 rounded-xl border border-[#D1D1D1]" role="tablist">
+      <button type="button" data-tab="tab-top" class="main-tab-btn px-2.5 py-2 rounded-lg text-xs font-bold bg-[#FFFFFF] text-[#666666] flex items-center justify-center gap-1 transition-all">
+        <span class="material-symbols-outlined">workspace_premium</span>
+        <span>1. Đề Xuất</span>
+      </button>
+      <button type="button" data-tab="tab-dir" class="main-tab-btn px-2.5 py-2 rounded-lg text-xs font-medium bg-[#FFFFFF] text-[#666666] hover:text-[#111111] flex items-center justify-center gap-1 transition-all">
+        <span class="material-symbols-outlined">location_on</span>
+        <span>2. Lọc 12 Gara</span>
+      </button>
+      <button type="button" data-tab="tab-ads" class="main-tab-btn px-2.5 py-2 rounded-lg text-xs font-medium bg-[#FFFFFF] text-[#666666] hover:text-[#111111] flex items-center justify-center gap-1 transition-all">
+        <span class="material-symbols-outlined">fact_check</span>
+        <span>3. Xét Quảng Cáo</span>
+      </button>
+      <button type="button" data-tab="tab-cost" class="main-tab-btn px-2.5 py-2 rounded-lg text-xs font-medium bg-[#FFFFFF] text-[#666666] hover:text-[#111111] flex items-center justify-center gap-1 transition-all">
+        <span class="material-symbols-outlined">payments</span>
+        <span>4. Chi Phí &amp; Mẹo</span>
+      </button>
+      <button type="button" data-tab="tab-update" class="main-tab-btn col-span-2 sm:col-span-1 px-2.5 py-2 rounded-lg text-xs font-bold bg-[#1A73E8] text-white hover:text-[#111111] flex items-center justify-center gap-1 transition-all">
+        <span class="material-symbols-outlined">code</span>
+        <span>5. Code &amp; Update</span>
+      </button>
+    </nav>
+
+    <!-- ================= TAB 1: ĐỀ XUẤT TỐT NHẤT (NGẮN GỌN, SÚC TÍCH) ================= -->
+    <section id="tab-top" class="tab-panel flex-col gap-3 hidden">
+      <div class="p-3 rounded-xl bg-[#F8F9FA] border border-[#D1D1D1] flex flex-col gap-2">
+        <div class="text-xs font-bold text-[#1A73E8] flex items-center gap-1">
+          <span class="material-symbols-outlined">verified</span>
+          TOP 4 ĐỊA ĐIỂM PHÙ HỢP NHẤT (TỰ LÀM HỒ SƠ PTI + SƠN NHIỀU MẶT + ĐÁNH BÓNG KÍNH)
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+          <!-- Top 1 -->
+          <div class="p-3 rounded-lg bg-[#FFFFFF] border-2 border-[#1A73E8] flex flex-col justify-between gap-2">
+            <div>
+              <div class="flex items-center justify-between">
+                <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-[#1A73E8] text-white">SỐ 1 TOÀN DIỆN (Q.7)</span>
+                <span class="text-xs font-bold text-[#FA903E]">★ 4.8/5 (9.5đ)</span>
+              </div>
+              <h3 class="text-sm font-bold text-[#111111] mt-1.5">Thanh Phong Auto (Tân Hưng)</h3>
+              <ul class="text-[11px] text-[#666666] mt-1.5 space-y-1">
+                <li>• <b class="text-[#111111]">Địa chỉ:</b> 68B Nguyễn Hữu Thọ, P. Tân Hưng, Q.7</li>
+                <li>• <b class="text-[#111111]">Giờ nhận:</b> 07:30–17:30 (Mở hồ sơ 15p; Sơn 1,5–2 ngày)</li>
+                <li>• <b class="text-[#111111]">Hợp tác PTI:</b> Bảo lãnh trực tiếp PTI; tự làm hồ sơ A–Z</li>
+                <li>• <b class="text-[#111111]">Đồng sơn &amp; Kính:</b> Phòng sấy hồng ngoại + Đánh bóng kính</li>
+              </ul>
+            </div>
+            <div class="pt-2 border-t border-[#D1D1D1] flex justify-between items-center text-xs">
+              <span class="font-bold text-[#1A73E8]">📞 0934 222 763 / 0789 86 2727</span>
+              <span class="text-[10px] text-[#666666]">Cách KCX ~10p</span>
+            </div>
+          </div>
+
+          <!-- Top 2 -->
+          <div class="p-3 rounded-lg bg-[#FFFFFF] border border-[#D1D1D1] flex flex-col justify-between gap-2">
+            <div>
+              <div class="flex items-center justify-between">
+                <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-[#1A73E8]/15 text-[#1A73E8]">SỐ 2 TRỤC CŨ (Q.7)</span>
+                <span class="text-xs font-bold text-[#FA903E]">★ 4.7/5 (9.2đ)</span>
+              </div>
+              <h3 class="text-sm font-bold text-[#111111] mt-1.5">Garage Ô Tô Thanh Tuấn</h3>
+              <ul class="text-[11px] text-[#666666] mt-1.5 space-y-1">
+                <li>• <b class="text-[#111111]">Địa chỉ:</b> 793/66/9 Trần Xuân Soạn, P. Tân Hưng, Q.7</li>
+                <li>• <b class="text-[#111111]">Giờ nhận:</b> 07:30–18:30 (Xưởng &gt;2.000m² không chờ lâu)</li>
+                <li>• <b class="text-[#111111]">Hợp tác PTI:</b> Hỗ trợ bảo hiểm tại chỗ, gộp vụ trầy xước</li>
+                <li>• <b class="text-[#111111]">Đồng sơn &amp; Kính:</b> Chuyên gò hàn, sơn các mặt &amp; bóng kính</li>
+              </ul>
+            </div>
+            <div class="pt-2 border-t border-[#D1D1D1] flex justify-between items-center text-xs">
+              <span class="font-bold text-[#1A73E8]">📞 0917 775 774</span>
+              <span class="text-[10px] text-[#666666]">Cách 445 TXS 800m</span>
+            </div>
+          </div>
+
+          <!-- Top 3 -->
+          <div class="p-3 rounded-lg bg-[#FFFFFF] border border-[#D1D1D1] flex flex-col justify-between gap-2">
+            <div>
+              <div class="flex items-center justify-between">
+                <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-[#81C995]/25 text-[#1E6F3D]">GẦN BÌNH THỚI NHẤT (Q.11)</span>
+                <span class="text-xs font-bold text-[#FA903E]">★ 4.7/5 (9.0đ)</span>
+              </div>
+              <h3 class="text-sm font-bold text-[#111111] mt-1.5">Garage Ô Tô Hiệp Cường</h3>
+              <ul class="text-[11px] text-[#666666] mt-1.5 space-y-1">
+                <li>• <b class="text-[#111111]">Địa chỉ:</b> 281/1 Lý Thường Kiệt, P.15, Q.11 (&amp; 579A SVH, Q.10)</li>
+                <li>• <b class="text-[#111111]">Giờ nhận:</b> 07:30–17:00 (T2–T7; nhận xe sớm gần nhà)</li>
+                <li>• <b class="text-[#111111]">Hợp tác PTI:</b> Gara liên kết bảo hiểm lâu năm, làm trọn gói</li>
+                <li>• <b class="text-[#111111]">Đồng sơn &amp; Kính:</b> Tân trang đồng sơn, tẩy ố vệ sinh kính</li>
+              </ul>
+            </div>
+            <div class="pt-2 border-t border-[#D1D1D1] flex justify-between items-center text-xs">
+              <span class="font-bold text-[#1A73E8]">📞 0909 930 856 / 0922 869 849</span>
+              <span class="text-[10px] text-[#666666]">Sát Bình Thới</span>
+            </div>
+          </div>
+
+          <!-- Top 4 -->
+          <div class="p-3 rounded-lg bg-[#FFFFFF] border border-[#D1D1D1] flex flex-col justify-between gap-2">
+            <div>
+              <div class="flex items-center justify-between">
+                <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-[#FA903E]/20 text-[#B05300]">SÁT CỔNG KCX TÂN THUẬN</span>
+                <span class="text-xs font-bold text-[#FA903E]">★ 4.7/5 (8.9đ)</span>
+              </div>
+              <h3 class="text-sm font-bold text-[#111111] mt-1.5">Khôi Nguyên Auto / Workshop</h3>
+              <ul class="text-[11px] text-[#666666] mt-1.5 space-y-1">
+                <li>• <b class="text-[#111111]">Địa chỉ:</b> 46/11R Nhánh Cầu Tân Thuận 2 &amp; 212/9 NVL, Q.7</li>
+                <li>• <b class="text-[#111111]">Giờ nhận:</b> 07:30–18:00 (Cứu hộ 24/7; đi bộ vào KCX)</li>
+                <li>• <b class="text-[#111111]">Hợp tác PTI:</b> Nhận sửa bảo hiểm ô tô, hỗ trợ hồ sơ tại chỗ</li>
+                <li>• <b class="text-[#111111]">Đồng sơn &amp; Kính:</b> Phòng sơn chuẩn Âu + Detailing kính</li>
+              </ul>
+            </div>
+            <div class="pt-2 border-t border-[#D1D1D1] flex justify-between items-center text-xs">
+              <span class="font-bold text-[#1A73E8]">📞 0936 166 679 / 0933 887 101</span>
+              <span class="text-[10px] text-[#666666]">Chân cầu Tân Thuận 2</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 3 Bước Gọi Trước Ngắn Gọn -->
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-2">
+        <div class="p-2.5 rounded-lg bg-[#FFFFFF] border border-[#D1D1D1] text-[11px]">
+          <div class="font-bold text-[#1A73E8]">BƯỚC 1: GỌI TRƯỚC 2 PHÚT</div>
+          <p class="text-[#666666] mt-0.5">Hỏi đúng 1 câu: <i>"Bên mình có đang nhận bảo lãnh trực tiếp đồng sơn với PTI Gia Định không?"</i></p>
+        </div>
+        <div class="p-2.5 rounded-lg bg-[#FFFFFF] border border-[#D1D1D1] text-[11px]">
+          <div class="font-bold text-[#1A73E8]">BƯỚC 2: CHỤP HỒ SƠ 15 PHÚT</div>
+          <p class="text-[#666666] mt-0.5">Ghé gara buổi sáng chụp Cà vẹt, Bằng lái, BH PTI &amp; vết xước, ký tờ khai rồi lấy xe đi làm.</p>
+        </div>
+        <div class="p-2.5 rounded-lg bg-[#FFFFFF] border border-[#D1D1D1] text-[11px]">
+          <div class="font-bold text-[#1A73E8]">BƯỚC 3: ĐƯA XE VÀO SƠN</div>
+          <p class="text-[#666666] mt-0.5">Khi PTI duyệt giá xong (sau 1 ngày), đưa xe vào sơn + đánh bóng kính, đóng khấu trừ 500k/vụ.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= TAB 2: DANH BẠ 12 GARA (LỌC THEO QUẬN) ================= -->
+    <section id="tab-dir" class="tab-panel hidden flex-col gap-3">
+      <div class="flex flex-wrap items-center justify-between gap-2 bg-[#F8F9FA] p-2.5 rounded-lg border border-[#D1D1D1]">
+        <span class="text-xs font-bold text-[#111111]">Lọc theo khu vực &amp; dịch vụ:</span>
+        <div class="flex flex-wrap gap-1" id="dir-filters">
+          <button type="button" data-group="all" class="dir-btn px-2 py-1 rounded text-[11px] font-semibold bg-[#1A73E8] text-white">Tất cả (12)</button>
+          <button type="button" data-group="q7" class="dir-btn px-2 py-1 rounded text-[11px] font-medium bg-[#FFFFFF] text-[#666666] border border-[#D1D1D1]">Quận 7 (6)</button>
+          <button type="button" data-group="q11_10" class="dir-btn px-2 py-1 rounded text-[11px] font-medium bg-[#FFFFFF] text-[#666666] border border-[#D1D1D1]">Quận 11 &amp; 10 (2)</button>
+          <button type="button" data-group="q8_4" class="dir-btn px-2 py-1 rounded text-[11px] font-medium bg-[#FFFFFF] text-[#666666] border border-[#D1D1D1]">Quận 8 &amp; 4 (2)</button>
+          <button type="button" data-group="other" class="dir-btn px-2 py-1 rounded text-[11px] font-medium bg-[#FFFFFF] text-[#666666] border border-[#D1D1D1]">Khác / Quảng cáo (2)</button>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5" id="dir-list">
+        <!-- 1 -->
+        <div data-tags="q7" class="dir-item p-3 rounded-lg border border-[#1A73E8] bg-[#FFFFFF] flex flex-col justify-between text-[11px]">
+          <div>
+            <div class="flex justify-between font-bold"><span class="text-[#1A73E8]">1. Thanh Phong Auto (Q.7)</span><span class="text-[#FA903E]">★ 4.8 (9.5đ)</span></div>
+            <p class="text-[#111111] mt-1">📍 68B Nguyễn Hữu Thọ, P. Tân Hưng, Q.7</p>
+            <p class="text-[#666666]">⏰ 07:30–17:30 | Sơn + Kính: 1,5–2 ngày</p>
+            <p class="text-[#666666]">🛡️ <b>PTI:</b> Đối tác chính thức, phòng BH tự làm A–Z</p>
+          </div>
+          <div class="pt-1.5 mt-1.5 border-t border-[#D1D1D1] font-bold text-[#111111]">📞 0934 222 763 / 0789 86 2727</div>
+        </div>
+        <!-- 2 -->
+        <div data-tags="q7" class="dir-item p-3 rounded-lg border border-[#D1D1D1] bg-[#FFFFFF] flex flex-col justify-between text-[11px]">
+          <div>
+            <div class="flex justify-between font-bold"><span class="text-[#1A73E8]">2. Garage Thanh Tuấn (Q.7)</span><span class="text-[#FA903E]">★ 4.7 (9.2đ)</span></div>
+            <p class="text-[#111111] mt-1">📍 793/66/9 Trần Xuân Soạn, P. Tân Hưng, Q.7</p>
+            <p class="text-[#666666]">⏰ 07:30–18:30 | Xưởng &gt;2.000m² nhận ngay</p>
+            <p class="text-[#666666]">🛡️ <b>PTI:</b> Hỗ trợ hồ sơ tại chỗ, gộp vụ trầy xước</p>
+          </div>
+          <div class="pt-1.5 mt-1.5 border-t border-[#D1D1D1] font-bold text-[#111111]">📞 0917 775 774</div>
+        </div>
+        <!-- 3 -->
+        <div data-tags="q11_10" class="dir-item p-3 rounded-lg border border-[#D1D1D1] bg-[#FFFFFF] flex flex-col justify-between text-[11px]">
+          <div>
+            <div class="flex justify-between font-bold"><span class="text-[#1E6F3D]">3. Garage Hiệp Cường (Q.11 &amp; 10)</span><span class="text-[#FA903E]">★ 4.7 (9.0đ)</span></div>
+            <p class="text-[#111111] mt-1">📍 281/1 Lý Thường Kiệt, Q.11 &amp; 579A SVH, Q.10</p>
+            <p class="text-[#666666]">⏰ 07:30–17:00 (T2–T7) | Sát nhà Bình Thới</p>
+            <p class="text-[#666666]">🛡️ <b>PTI:</b> Gara liên kết lâu năm, đồng sơn &amp; kính</p>
+          </div>
+          <div class="pt-1.5 mt-1.5 border-t border-[#D1D1D1] font-bold text-[#111111]">📞 0909 930 856 / 0922 869 849</div>
+        </div>
+        <!-- 4 -->
+        <div data-tags="q8_4" class="dir-item p-3 rounded-lg border border-[#D1D1D1] bg-[#FFFFFF] flex flex-col justify-between text-[11px]">
+          <div>
+            <div class="flex justify-between font-bold"><span class="text-[#1E6F3D]">4. Gara Trung Hậu (Quận 8)</span><span class="text-[#FA903E]">★ 4.6 (9.0đ)</span></div>
+            <p class="text-[#111111] mt-1">📍 06B Tạ Quang Bửu, P.5, Q.8 (Sát Trần Xuân Soạn)</p>
+            <p class="text-[#666666]">⏰ Giờ HC | Duyệt tự động trên hệ thống PTI</p>
+            <p class="text-[#666666]">🛡️ <b>PTI:</b> Nằm trong danh sách liên kết cứng PTI</p>
+          </div>
+          <div class="pt-1.5 mt-1.5 border-t border-[#D1D1D1] font-bold text-[#111111]">📞 Điều phối PTI: 1900 54 54 75</div>
+        </div>
+        <!-- 5 -->
+        <div data-tags="q7" class="dir-item p-3 rounded-lg border border-[#D1D1D1] bg-[#FFFFFF] flex flex-col justify-between text-[11px]">
+          <div>
+            <div class="flex justify-between font-bold"><span class="text-[#1A73E8]">5. Khôi Nguyên Auto (Q.7)</span><span class="text-[#FA903E]">★ 4.7 (8.9đ)</span></div>
+            <p class="text-[#111111] mt-1">📍 46/11R Nhánh Cầu Tân Thuận 2 &amp; 212/9 NVL, Q.7</p>
+            <p class="text-[#666666]">⏰ Hỗ trợ 24/7 | Đi bộ vào KCX Tân Thuận</p>
+            <p class="text-[#666666]">🛡️ <b>PTI:</b> Nhận sửa BH ô tô, đồng sơn &amp; đánh bóng kính</p>
+          </div>
+          <div class="pt-1.5 mt-1.5 border-t border-[#D1D1D1] font-bold text-[#111111]">📞 0936 166 679 / 0933 887 101</div>
+        </div>
+        <!-- 6 -->
+        <div data-tags="q7" class="dir-item p-3 rounded-lg border border-[#D1D1D1] bg-[#FFFFFF] flex flex-col justify-between text-[11px]">
+          <div>
+            <div class="flex justify-between font-bold"><span class="text-[#B05300]">6. Carpla Service Phú Mỹ Hưng (Q.7)</span><span class="text-[#FA903E]">★ 4.6 (8.6đ)</span></div>
+            <p class="text-[#111111] mt-1">📍 54 Nguyễn Thị Thập, P. Tân Thuận, Q.7</p>
+            <p class="text-[#666666]">⏰ 08:00–17:30 | Khám xe 199K + Đánh bóng kính</p>
+            <p class="text-[#666666]">🛡️ <b>PTI:</b> Cần gọi hỏi trước bảo lãnh trực tiếp PTI</p>
+          </div>
+          <div class="pt-1.5 mt-1.5 border-t border-[#D1D1D1] font-bold text-[#111111]">📞 0907 685 454</div>
+        </div>
+        <!-- 7 -->
+        <div data-tags="q7" class="dir-item p-3 rounded-lg border border-[#D1D1D1] bg-[#FFFFFF] flex flex-col justify-between text-[11px]">
+          <div>
+            <div class="flex justify-between font-bold"><span class="text-[#111111]">7. Gara Bách Tâm &amp; B&amp;M Auto (Q.7)</span><span class="text-[#FA903E]">★ 4.6 (8.6đ)</span></div>
+            <p class="text-[#111111] mt-1">📍 582/1 Huỳnh Tấn Phát &amp; 7/3 Nguyễn Văn Quỳ, Q.7</p>
+            <p class="text-[#666666]">⏰ 07:30–18:00 | Sát cổng KCX Tân Thuận</p>
+            <p class="text-[#666666]">🛡️ <b>PTI:</b> Hỗ trợ hồ sơ thân vỏ, gò hàn nhanh</p>
+          </div>
+          <div class="pt-1.5 mt-1.5 border-t border-[#D1D1D1] font-bold text-[#111111]">📞 0902 787 766 / 0933 385 152</div>
+        </div>
+        <!-- 8 -->
+        <div data-tags="q7" class="dir-item p-3 rounded-lg border border-[#D1D1D1] bg-[#FFFFFF] flex flex-col justify-between text-[11px]">
+          <div>
+            <div class="flex justify-between font-bold"><span class="text-[#111111]">8. Khoa Car &amp; Việt Âu Auto (Q.7)</span><span class="text-[#FA903E]">★ 4.6 (8.5đ)</span></div>
+            <p class="text-[#111111] mt-1">📍 92D12D Gò Ô Môi &amp; 01 Hoàng Quốc Việt, Q.7</p>
+            <p class="text-[#666666]">⏰ 08:00–17:30 (Khoa Car mở cửa cả Chủ Nhật)</p>
+            <p class="text-[#666666]">🛡️ <b>PTI:</b> Đồng sơn &amp; làm đẹp kính dịp cuối tuần</p>
+          </div>
+          <div class="pt-1.5 mt-1.5 border-t border-[#D1D1D1] font-bold text-[#111111]">📞 0794 98 8386 / 0938 680 136</div>
+        </div>
+        <!-- 9 -->
+        <div data-tags="q11_10" class="dir-item p-3 rounded-lg border border-[#D1D1D1] bg-[#FFFFFF] flex flex-col justify-between text-[11px]">
+          <div>
+            <div class="flex justify-between font-bold"><span class="text-[#111111]">9. Gara 79 &amp; Tư Thuận / Auto Run (Q.10)</span><span class="text-[#FA903E]">★ 4.5 (8.5đ)</span></div>
+            <p class="text-[#111111] mt-1">📍 Khu C30 Lô B5 &amp; Hẻm 7 Thành Thái, P.14, Q.10</p>
+            <p class="text-[#666666]">⏰ Giờ HC | Nhận xe nhanh không chờ lượt</p>
+            <p class="text-[#666666]">🛡️ <b>PTI:</b> Liên kết bảo hiểm &amp; hỗ trợ trọn gói hồ sơ</p>
+          </div>
+          <div class="pt-1.5 mt-1.5 border-t border-[#D1D1D1] font-bold text-[#111111]">📍 Cụm Thành Thái, P.14, Q.10</div>
+        </div>
+        <!-- 10 -->
+        <div data-tags="other" class="dir-item p-3 rounded-lg border border-[#D1D1D1] bg-[#FFFFFF] flex flex-col justify-between text-[11px]">
+          <div>
+            <div class="flex justify-between font-bold"><span class="text-[#666666]">10. Carpla Võ Văn Kiệt (P. Phú Định)</span><span class="text-[#FA903E]">★ 4.5 (7.5đ)</span></div>
+            <p class="text-[#111111] mt-1">📍 25 Võ Văn Kiệt, P. Phú Định, TP.HCM</p>
+            <p class="text-[#666666]">⏰ 08:00–17:30 | Ngược hướng đi KCX Tân Thuận</p>
+            <p class="text-[#D93025]">⚠️ KM giảm 10% sơn 1 ngày không áp dụng xe BH</p>
+          </div>
+          <div class="pt-1.5 mt-1.5 border-t border-[#D1D1D1] font-bold text-[#111111]">📞 0909 619 465</div>
+        </div>
+        <!-- 11 -->
+        <div data-tags="other" class="dir-item p-3 rounded-lg border border-[#D1D1D1] bg-[#FFFFFF] flex flex-col justify-between text-[11px]">
+          <div>
+            <div class="flex justify-between font-bold"><span class="text-[#666666]">11. Tuấn Dũng Auto (Tân Bình)</span><span class="text-[#FA903E]">★ 4.2 (6.8đ)</span></div>
+            <p class="text-[#111111] mt-1">📍 17 Thái Thị Nhạn, P.10, Q. Tân Bình</p>
+            <p class="text-[#666666]">⏰ Giờ HC | Chuyên sơn ngoài giá rẻ (3–5 ngày)</p>
+            <p class="text-[#D93025]">⚠️ Rủi ro bị PTI chế tài nếu vẽ hồ sơ sơn nguyên xe</p>
+          </div>
+          <div class="pt-1.5 mt-1.5 border-t border-[#D1D1D1] font-bold text-[#111111]">📞 0934 804 789 / 0902 864 789</div>
+        </div>
+        <!-- 12 -->
+        <div data-tags="q8_4" class="dir-item p-3 rounded-lg border border-[#D1D1D1] bg-[#FFFFFF] flex flex-col justify-between text-[11px]">
+          <div>
+            <div class="flex justify-between font-bold"><span class="text-[#666666]">12. Gara An Phát / Minh Tuấn (Quận 4)</span><span class="text-[#FA903E]">★ 4.0 (6.5đ)</span></div>
+            <p class="text-[#111111] mt-1">📍 500 Đoàn Văn Bơ, P.14 &amp; 33 Lê Quốc Hưng, Q.4</p>
+            <p class="text-[#666666]">⏰ Xử lý nhanh vá vỏ, cơ khí nhẹ trên đường đi</p>
+            <p class="text-[#D93025]">⚠️ Không thuộc danh sách đồng sơn PTI (nên qua Q.7)</p>
+          </div>
+          <div class="pt-1.5 mt-1.5 border-t border-[#D1D1D1] font-bold text-[#111111]">📞 0978 901 234 / 0936 364 678</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= TAB 3: THẨM ĐỊNH 3 QUẢNG CÁO FACEBOOK ================= -->
+    <section id="tab-ads" class="tab-panel hidden flex-col gap-3">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-2.5">
+        <div class="p-3 rounded-xl border border-[#D1D1D1] bg-[#FFFFFF] text-[11px] flex flex-col justify-between gap-2">
+          <div>
+            <span class="px-2 py-0.5 rounded font-bold bg-[#81C995]/25 text-[#1E6F3D]">NÊN DÙNG CÓ ĐIỀU KIỆN</span>
+            <h3 class="text-sm font-bold text-[#111111] mt-1.5">1. Carpla Phú Mỹ Hưng (Q.7)</h3>
+            <p class="text-[#666666]">📍 54 Nguyễn Thị Thập | 📞 0907 685 454</p>
+            <ul class="mt-2 space-y-1 text-[#111111]">
+              <li>✅ <b>Uy tín:</b> Thuộc Tập đoàn Tasco Auto, sát KCX Tân Thuận (~1km).</li>
+              <li>✅ <b>Nên làm:</b> Gói khám 10 hạng mục <b>199K + tặng rửa xe</b> &amp; đánh bóng kính.</li>
+              <li>⚠️ <b>Lưu ý PTI:</b> Gọi hỏi trước có ký bảo lãnh trực tiếp PTI Gia Định không.</li>
+            </ul>
+          </div>
+          <div class="pt-2 border-t border-[#D1D1D1] font-bold text-[#1E6F3D]">Đánh giá: ★ 4.6/5 (Rất tốt cho Kính &amp; Khám xe)</div>
+        </div>
+
+        <div class="p-3 rounded-xl border border-[#D1D1D1] bg-[#FFFFFF] text-[11px] flex flex-col justify-between gap-2">
+          <div>
+            <span class="px-2 py-0.5 rounded font-bold bg-[#FA903E]/20 text-[#B05300]">LOẠI TRỪ KM XE BẢO HIỂM</span>
+            <h3 class="text-sm font-bold text-[#111111] mt-1.5">2. Carpla Võ Văn Kiệt</h3>
+            <p class="text-[#666666]">📍 25 Võ Văn Kiệt, Phú Định | 📞 0909 619 465</p>
+            <ul class="mt-2 space-y-1 text-[#111111]">
+              <li>✅ <b>Uy tín:</b> Xưởng chuẩn Tasco Auto, buồng sơn hiện đại.</li>
+              <li>⚠️ <b>Điều khoản ẩn:</b> Quảng cáo ghi rõ <b>"Giảm 10% sơn 1 ngày KHÔNG áp dụng xe bảo hiểm"</b>.</li>
+              <li>⚠️ <b>Lộ trình:</b> Nằm ở P. Phú Định ngược hướng đi KCX Tân Thuận.</li>
+            </ul>
+          </div>
+          <div class="pt-2 border-t border-[#D1D1D1] font-bold text-[#B05300]">Đánh giá: ★ 4.5/5 (Nên qua CN Quận 7 gần hơn)</div>
+        </div>
+
+        <div class="p-3 rounded-xl border border-[#D1D1D1] bg-[#FFFFFF] text-[11px] flex flex-col justify-between gap-2">
+          <div>
+            <span class="px-2 py-0.5 rounded font-bold bg-[#D93025]/15 text-[#D93025]">RỦI RO HỒ SƠ PTI GIA ĐỊNH</span>
+            <h3 class="text-sm font-bold text-[#111111] mt-1.5">3. Tuấn Dũng Auto (Tân Bình)</h3>
+            <p class="text-[#666666]">📍 17 Thái Thị Nhạn, P.10, Q.TB | 📞 0934 804 789</p>
+            <ul class="mt-2 space-y-1 text-[#111111]">
+              <li>✅ <b>Ưu điểm:</b> 10 năm nghề đồng sơn, giá sơn ngoài rẻ, có bảo hành.</li>
+              <li>⚠️ <b>Rủi ro PTI:</b> Quảng cáo <i>"mua BH sơn nguyên xe"</i> dễ bị PTI chế tài (quy tắc PTI chỉ sơn nguyên xe khi hỏng &gt;50% diện tích).</li>
+              <li>⚠️ <b>Lộ trình:</b> Nằm ở Tân Bình ngược chiều đi làm.</li>
+            </ul>
+          </div>
+          <div class="pt-2 border-t border-[#D1D1D1] font-bold text-[#D93025]">Đánh giá: ★ 4.2/5 (Chỉ nên làm khi tự trả tiền)</div>
+        </div>
+      </div>
+
+      <div class="p-2.5 rounded-lg bg-[#F8F9FA] border border-[#D1D1D1] text-[11px] text-[#666666]">
+        <b class="text-[#D93025]">Lưu ý 2 cơ sở đã loại trừ tại Quận 7:</b> (1) <b>Ô tô Anh Đức</b> (445 Trần Xuân Soạn) đã dẹp mặt bằng cũ và xác nhận ngưng nhận đồng sơn bảo hiểm, chỉ làm ngoài; (2) <b>Thanh An Autocare</b> (123 Nguyễn Thị Thập) đã đóng cửa.
+      </div>
+    </section>
+
+    <!-- ================= TAB 4: DỰ TOÁN CHI PHÍ & MẸO TRAO ĐỔI ================= -->
+    <section id="tab-cost" class="tab-panel hidden flex-col gap-3">
+      <div class="p-3 rounded-xl bg-[#F8F9FA] border border-[#D1D1D1] flex flex-col gap-3">
+        <div class="flex flex-wrap items-center justify-between gap-2">
+          <div>
+            <h3 class="text-sm font-bold text-[#111111]">So Sánh Chi Phí PTI Bảo Lãnh Trả vs Số Tiền Bạn Thực Trả</h3>
+            <p class="text-[11px] text-[#666666]">Áp dụng cho xe Suzuki XL7: Sơn 4–6 mặt trầy xước + Đánh bóng xóa xước kính lái (mức Micron)</p>
+          </div>
+          <div class="flex items-center gap-3 text-xs">
+            <span class="flex items-center gap-1"><span class="w-2.5 h-2.5 rounded-sm bg-[#1A73E8] inline-block"></span> PTI Trả</span>
+            <span class="flex items-center gap-1"><span class="w-2.5 h-2.5 rounded-sm bg-[#FA903E] inline-block"></span> Bạn Trả</span>
+          </div>
+        </div>
+
+        <!-- Chart.js Canvas (No border box around plot area per strict rule) -->
+        <div class="relative w-full h-56 bg-[#FFFFFF] p-2">
+          <canvas id="costBreakdownChart"></canvas>
+        </div>
+
+        <!-- Bảng Tóm Tắt Giá Ngắn Gọn -->
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 text-[11px]">
+          <div class="p-2 rounded bg-[#FFFFFF] border border-[#D1D1D1]">
+            <div class="text-[#666666]">Sơn cản / cửa / hông</div>
+            <div class="font-bold text-[#111111] mt-0.5">400k – 800k / mặt</div>
+            <div class="text-[10px] text-[#1A73E8]">Gộp vào hồ sơ PTI</div>
+          </div>
+          <div class="p-2 rounded bg-[#FFFFFF] border border-[#D1D1D1]">
+            <div class="text-[#666666]">Khấu trừ PTI (1–2 vụ)</div>
+            <div class="font-bold text-[#FA903E] mt-0.5">500k – 1.000k</div>
+            <div class="text-[10px] text-[#666666]">Đóng tại gara khi lấy xe</div>
+          </div>
+          <div class="p-2 rounded bg-[#FFFFFF] border border-[#D1D1D1]">
+            <div class="text-[#666666]">Đánh bóng Kính lái</div>
+            <div class="font-bold text-[#111111] mt-0.5">600k – 1.000k</div>
+            <div class="text-[10px] text-[#666666]">Trả riêng (Xóa 95% xước)</div>
+          </div>
+          <div class="p-2 rounded bg-[#FFFFFF] border border-[#1A73E8]">
+            <div class="text-[#1A73E8] font-bold">TỔNG BẠN RÚT VÍ</div>
+            <div class="font-bold text-[#D93025] mt-0.5">~1,1 – 2,0 Triệu</div>
+            <div class="text-[10px] text-[#1E6F3D]">Tiết kiệm ~80% chi phí</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Kịch Bản Nói Chuyện Ngắn Gọn -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5 text-[11px]">
+        <div class="p-3 rounded-lg bg-[#F8F9FA] border-l-4 border-[#D93025]">
+          <div class="font-bold text-[#D93025]">❌ KHÔNG KHAI VỚI BẢO HIỂM:</div>
+          <p class="text-[#666666] mt-1"><i>"Xe tôi trầy lâu ngày nay gom lại đi sơn."</i> → Sẽ bị PTI từ chối/chế tài do quá hạn 5 ngày thông báo sự cố.</p>
+        </div>
+        <div class="p-3 rounded-lg bg-[#F8F9FA] border-l-4 border-[#1A73E8]">
+          <div class="font-bold text-[#1A73E8]">✅ NÓI VỚI CỐ VẤN GARA:</div>
+          <p class="text-[#666666] mt-1"><i>"Anh có BH PTI Gia Định. Em hướng dẫn anh khai gộp các mặt trầy vào 1–2 vụ va quẹt bãi đỗ/hẻm hẹp vừa xảy ra để PTI bảo lãnh, kèm báo giá đánh bóng kính lái."</i></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= TAB 5: LẤY CODE HTML & HƯỚNG DẪN CẬP NHẬT ================= -->
+    <section id="tab-update" class="tab-panel flex-col gap-3 flex">
+      <div class="p-3.5 rounded-xl bg-[#F8F9FA] border border-[#D1D1D1] flex flex-col gap-2.5 text-xs">
+        <div class="font-bold text-[#1A73E8] flex items-center gap-1">
+          <span class="material-symbols-outlined">sync</span>
+          CÁCH CẬP NHẬT THÔNG TIN MỚI SAU VÀI TUẦN (KHI CÓ GARA MỚI HOẶC ĐỔI CHÍNH SÁCH PTI)
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-2 text-[11px]">
+          <div class="p-2.5 rounded bg-[#FFFFFF] border border-[#D1D1D1]">
+            <b>1. Mở lại trang Gemini:</b><br>
+            Bấm vào liên kết đính kèm ở dưới cùng trang này để mở đúng phiên làm việc đã lưu toàn bộ ngữ cảnh xe XL7 &amp; PTI Gia Định của bạn.
+          </div>
+          <div class="p-2.5 rounded bg-[#FFFFFF] border border-[#D1D1D1]">
+            <b>2. Nhập lệnh cập nhật:</b><br>
+            Gõ câu lệnh: <i>"Kiểm tra cập nhật danh sách gara liên kết PTI mới nhất tại Q.7, Q.11, Q.10, Q.8 và thêm [Tên gara/Quảng cáo mới] vào bảng HTML."</i>
+          </div>
+          <div class="p-2.5 rounded bg-[#FFFFFF] border border-[#D1D1D1]">
+            <b>3. Sao chép Code HTML mới:</b><br>
+            Bấm nút <b>"Sao Chép Toàn Bộ Code HTML"</b> bên dưới và dán đè vào file <code>gara-pti-xl7.html</code> trên máy của bạn.
+          </div>
+        </div>
+
+        <div class="flex flex-wrap items-center justify-between gap-2 pt-2 border-t border-[#D1D1D1]">
+          <span class="font-bold text-[#111111]">Mã nguồn HTML chuẩn Responsive (Dùng để tạo file .html tự xem):</span>
+          <button type="button" id="copy-html-btn" class="px-3 py-1.5 rounded-lg bg-[#1A73E8] text-white font-bold text-xs flex items-center gap-1 hover:bg-[#1557B0] transition-all">
+            <span class="material-symbols-outlined">content_copy</span>
+            <span id="copy-btn-text">Sao Chép Toàn Bộ Code HTML</span>
+          </button>
+        </div>
+
+        <textarea id="raw-html-source" readonly="" class="w-full h-32 p-2 rounded border border-[#D1D1D1] bg-[#FFFFFF] font-mono text-[10px] text-[#666666] focus:outline-none" title="Code HTML trang này"></textarea>
+      </div>
+    </section>
+
+    <!-- Footer With Attached Link for Future Updates -->
+    <figcaption class="text-[11px] text-[#666666] border-t border-[#D1D1D1] pt-3 flex flex-col gap-1.5">
+      <div>
+        <b>Ghi chú nguồn dữ liệu:</b> Tổng hợp từ danh bạ bảo lãnh Bảo hiểm PTI (PTI Gia Định – 205 Nguyễn Xí), khảo sát các xưởng đồng sơn đang hoạt động dọc tuyến Q.11 – Q.10 – Q.8 – Q.4 – KCX Tân Thuận (Q.7) và bảng giá đánh bóng kính phổ thông.
+      </div>
+      <div class="p-2 rounded-lg bg-[#F8F9FA] border border-[#D1D1D1] flex flex-wrap items-center justify-between gap-2">
+        <span class="font-bold text-[#111111] flex items-center gap-1">
+          <span class="material-symbols-outlined text-[#1A73E8]">bookmark</span>
+          Link gốc lưu trữ để cập nhật nội dung mới khi cần:
+        </span>
+        <a href="https://gemini.google.com/app/4b39470e3d1d00fa?canvas-id=im_4d3049d88f9683f5" target="_blank" rel="noopener noreferrer" class="text-[#1A73E8] font-bold underline break-all">
+          https://gemini.google.com/app/4b39470e3d1d00fa?canvas-id=im_4d3049d88f9683f5
+        </a>
+      </div>
+    </figcaption>
+  </figure>
+
+  <script>
+    let costChartInstance = null;
+
+    function initOrRenderCostChart() {
+      const canvas = document.getElementById('costBreakdownChart');
+      if (!canvas) return;
+      if (costChartInstance) {
+        costChartInstance.resize();
+        return;
+      }
+      Chart.register(ChartDataLabels);
+      Chart.defaults.font.family = "'Google Sans', 'Google Sans Text', sans-serif";
+      Chart.defaults.color = '#111111';
+
+      const ctx = canvas.getContext('2d');
+      costChartInstance = new Chart(ctx, {
+        type: 'bar',
+        data: {
+          labels: [
+            ['Sơn 4–5 mặt', '(Gộp 1 vụ PTI)'],
+            ['Sơn nhiều mặt', '(Tách 2 vụ PTI)'],
+            ['Đánh bóng', 'kính lái'],
+            ['Đánh bóng', '2 kính sườn'],
+            ['COMBO TỔNG', '(Sơn + Kính lái)']
+          ],
+          datasets: [
+            {
+              label: 'PTI Bảo lãnh trả (Triệu đ)',
+              data: [4.5, 7.0, 0, 0, 4.5],
+              backgroundColor: '#1A73E8',
+              borderRadius: 4,
+              barPercentage: 0.72
+            },
+            {
+              label: 'Bạn thực trả (Triệu đ)',
+              data: [0.5, 1.0, 0.8, 0.6, 1.3],
+              backgroundColor: '#FA903E',
+              borderRadius: 4,
+              barPercentage: 0.72
+            }
+          ]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          layout: { padding: { top: 20, right: 10, left: 0, bottom: 0 } },
+          scales: {
+            x: {
+              grid: { display: false, drawBorder: false },
+              ticks: { color: '#111111', font: { size: 11, weight: '500' } }
+            },
+            y: {
+              beginAtZero: true,
+              grace: '18%',
+              border: { display: false },
+              grid: { color: '#D1D1D1', drawBorder: false },
+              ticks: {
+                color: '#666666',
+                font: { size: 11 },
+                callback: (val) => val + ' tr'
+              }
+            }
+          },
+          plugins: {
+            legend: { display: false },
+            tooltip: {
+              backgroundColor: '#FFFFFF',
+              titleColor: '#111111',
+              bodyColor: '#666666',
+              borderColor: '#D1D1D1',
+              borderWidth: 1,
+              padding: 10,
+              callbacks: {
+                label: (c) => `${c.dataset.label}: ${(c.raw * 1000000).toLocaleString('vi-VN')} VNĐ`
+              }
+            },
+            datalabels: {
+              anchor: 'end',
+              align: 'top',
+              offset: 2,
+              color: '#111111',
+              font: { size: 10, weight: 'bold' },
+              formatter: (val) => val === 0 ? '' : val.toLocaleString('vi-VN') + 'tr'
+            }
+          }
+        }
+      });
+    }
+
+    // Xử lý chuyển Tab chính
+    document.querySelectorAll('.main-tab-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.main-tab-btn').forEach(b => {
+          b.className = b.className
+            .replace('bg-[#1A73E8] text-white font-bold', 'bg-[#FFFFFF] text-[#666666] font-medium')
+            .replace('bg-[#1A73E8]', 'bg-[#FFFFFF]')
+            .replace('text-white', 'text-[#666666]');
+        });
+        btn.className = btn.className
+          .replace('bg-[#FFFFFF]', 'bg-[#1A73E8]')
+          .replace('text-[#666666]', 'text-white')
+          .replace('font-medium', 'font-bold');
+
+        const targetId = btn.getAttribute('data-tab');
+        document.querySelectorAll('.tab-panel').forEach(panel => {
+          if (panel.id === targetId) {
+            panel.classList.remove('hidden');
+            panel.classList.add('flex');
+          } else {
+            panel.classList.add('hidden');
+            panel.classList.remove('flex');
+          }
+        });
+
+        if (targetId === 'tab-cost') {
+          setTimeout(() => { initOrRenderCostChart(); }, 50);
+        }
+      });
+    });
+
+    // Xử lý lọc Quận trong Tab 2
+    document.querySelectorAll('.dir-btn').forEach(button => {
+      button.addEventListener('click', () => {
+        document.querySelectorAll('.dir-btn').forEach(b => {
+          b.className = 'dir-btn px-2 py-1 rounded text-[11px] font-medium bg-[#FFFFFF] text-[#666666] border border-[#D1D1D1]';
+        });
+        button.className = 'dir-btn px-2 py-1 rounded text-[11px] font-semibold bg-[#1A73E8] text-white';
+
+        const group = button.getAttribute('data-group');
+        document.querySelectorAll('.dir-item').forEach(item => {
+          const tags = item.getAttribute('data-tags').split(' ');
+          item.style.display = (group === 'all' || tags.includes(group)) ? 'flex' : 'none';
+        });
+      });
+    });
+
+    // Đưa mã nguồn HTML vào ô Textarea & Nút Copy trong Tab 5
+    document.addEventListener('DOMContentLoaded', () => {
+      const sourceBox = document.getElementById('raw-html-source');
+      const copyBtn = document.getElementById('copy-html-btn');
+      const copyBtnText = document.getElementById('copy-btn-text');
+
+      if (sourceBox) {
+        sourceBox.value = '<!DOCTYPE html>\n' + document.documentElement.outerHTML;
+      }
+
+      if (copyBtn && sourceBox) {
+        copyBtn.addEventListener('click', () => {
+          sourceBox.value = '<!DOCTYPE html>\n' + document.documentElement.outerHTML;
+          sourceBox.select();
+          navigator.clipboard.writeText(sourceBox.value).then(() => {
+            copyBtnText.textContent = 'Đã Sao Chép Thành Công!';
+            setTimeout(() => { copyBtnText.textContent = 'Sao Chép Toàn Bộ Code HTML'; }, 2500);
+          });
+        });
+      }
+    });
+  </script>
+
+
+</body></html>
