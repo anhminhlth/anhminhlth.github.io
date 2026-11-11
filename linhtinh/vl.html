@@ -1,0 +1,1923 @@
+<!doctype html>
+<html lang="vi" data-theme="dark"><head><script data-bard-client-injected="true">
+  document.addEventListener('input', (event) => {
+    if (event.target && (event.target.isContentEditable || event.target.hasAttribute('contenteditable'))) {
+      const clonedDoc = document.cloneNode(true);
+      const injectedScripts = clonedDoc.querySelectorAll('[data-bard-client-injected="true"]');
+      injectedScripts.forEach(el => el.remove());
+      window.parent.postMessage({
+        type: 'inlineEdit',
+        html: '<!DOCTYPE html>\n' + clonedDoc.documentElement.outerHTML
+      }, '*');
+    }
+  });
+</script><script data-bard-client-injected="true">(function(){'use strict';window.addEventListener("message",a=>{a.data&&a.data.type==="SUPPLEMENTAL_DATA_UPDATE"&&window.dispatchEvent(new CustomEvent("supplementaldataupdate",{detail:a.data.data}))});}).call(this);
+</script><script data-bard-client-injected="true">(function(){'use strict';function k(c){c=Number(c.replace(/px$/,""));return Number.isFinite(c)?c:0}var m=new Set("SCRIPT STYLE TEMPLATE LINK META NOSCRIPT".split(" "));function n(c){var a=[],b=e=>{for(let f of e.children)m.has(f.tagName.toUpperCase())||(window.getComputedStyle(f).display==="contents"?b(f):a.push(f))};b(c);return a};var p={scrollY:0,paddingBottom:0,borderBottomWidth:0},q=0,r=0;
+function t(c=!1){var a=document.body;var b=document.documentElement;b=Math.max(a.scrollHeight,a.offsetHeight,b.offsetHeight,b.scrollHeight);var e=!!window.__gdmMeasureContentHeight;if(e){var f=[];for(h of n(a)){var g=h.getBoundingClientRect();let l=window.getComputedStyle(h);(l.position==="absolute"||l.position==="fixed")&&g.width<=1&&g.height<=1||f.push({bottom:g.bottom,width:g.width,height:g.height,marginBottom:k(l.marginBottom),h:l.position==="fixed"})}var h=f}else h=[];e?(a=window.getComputedStyle(a),
+a={scrollY:window.scrollY||0,paddingBottom:k(a.paddingBottom),borderBottomWidth:k(a.borderBottomWidth)}):a=p;if(e){e=a.paddingBottom===0&&a.borderBottomWidth===0;f=0;g=!1;for(var d of h){if(d.h)continue;if(d.width===0&&d.height===0)continue;h=d.bottom+(e?0:d.marginBottom);if(!g||h>f)f=h,g=!0}g&&(d=Math.ceil(f+a.scrollY+a.paddingBottom+a.borderBottomWidth),b=d>0?d:b)}d=document.documentElement.scrollWidth||document.body.scrollWidth;b>0&&d>0&&(c||b!==q||d!==r)&&(q=b,r=d,window.parent.postMessage({type:"contentDimensions",
+height:b,width:d},"*"))}var u=0;function v(){u||(u=typeof window.requestAnimationFrame==="function"?window.requestAnimationFrame(()=>{u=0;t()}):setTimeout(()=>{u=0;t()},16))}
+window.addEventListener("load",()=>{t(!0);setTimeout(()=>{t(!0)},500);if(window.ResizeObserver){let c=new WeakSet,a=new ResizeObserver(()=>{t()}),b=()=>{c.has(document.body)||(c.add(document.body),a.observe(document.body));for(let e of n(document.body))c.has(e)||(c.add(e),a.observe(e))};b();(new MutationObserver(()=>{b();v()})).observe(document.body,{attributes:!0,childList:!0,subtree:!0})}else(new MutationObserver(v)).observe(document.body,{attributes:!0,childList:!0,subtree:!0,characterData:!0})});}).call(this);
+</script><script data-bard-client-injected="true">(function() {
+  // Ensure this script is executed only once
+  if (window.firebaseAuthBridgeScriptLoaded) {
+    return;
+  }
+  window.firebaseAuthBridgeScriptLoaded = true;
+
+  let nextTokenPromiseId = 0;
+
+  // Stores { resolve, reject } for ongoing token requests
+  const pendingTokenPromises = {};
+
+  // Listen for messages from the Host Application
+  window.addEventListener('message', function(event) {
+
+    const messageData = event.data;
+
+  if (messageData && messageData.type === 'RESOLVE_NEW_FIREBASE_TOKEN') {
+      const { success, token, error, promiseId } = messageData ?? {};
+      if (pendingTokenPromises[promiseId]) {
+        if (success) {
+          pendingTokenPromises[promiseId].resolve(token);
+        } else {
+          pendingTokenPromises[promiseId].reject(new Error(error || 'Token refresh failed from host.'));
+        }
+        delete pendingTokenPromises[promiseId];
+      }
+    }
+  });
+
+  // Expose a function for the Generated App to request a new Firebase token
+  window.requestNewFirebaseToken = function() {
+    const currentPromiseId = nextTokenPromiseId++;
+    const promise = new Promise((resolve, reject) => {
+      pendingTokenPromises[currentPromiseId] = { resolve, reject };
+    });
+    if (window.parent && window.parent !== window) {
+      window.parent.postMessage({
+        type: 'REQUEST_NEW_FIREBASE_TOKEN',
+        promiseId: currentPromiseId
+      }, '*');
+    } else {
+      pendingTokenPromises[currentPromiseId].reject(new Error('No parent window to request token from.'));
+      delete pendingTokenPromises[currentPromiseId];
+    }
+    return promise;
+  };
+})();</script><script data-bard-client-injected="true">
+let realOriginalGetUserMedia = null;
+if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+  realOriginalGetUserMedia = navigator.mediaDevices.getUserMedia.bind(navigator.mediaDevices);
+}
+
+(function() {
+  if (navigator.mediaDevices && navigator.mediaDevices.__proto__) {
+    try {
+      Object.defineProperty(navigator.mediaDevices.__proto__, 'getUserMedia', {
+        get: function() {
+          return undefined; // Or throw an error
+        },
+        configurable: false
+      });
+    } catch (error) {
+      console.error("Error defining prototype getter:", error);
+    }
+  }
+})();
+
+(function() {
+  const pendingMediaResolvers = {};
+  let nextMediaPromiseId = 0;
+
+  function requestMediaPermissions(constraints) {
+    const mediaPromiseId = nextMediaPromiseId++;
+    const promise = new Promise((resolve, reject) => {
+      pendingMediaResolvers[mediaPromiseId] = (granted) => {
+        delete pendingMediaResolvers[mediaPromiseId];
+        resolve(granted);
+      };
+    });
+
+    window.parent.postMessage({
+      type: 'requestMediaPermission',
+      constraints: constraints,
+      promiseId: mediaPromiseId,
+    }, '*');
+
+    return promise;
+  }
+
+  let originalGetUserMedia = realOriginalGetUserMedia;
+
+  function interceptGetUserMedia() {
+    if (navigator.mediaDevices) {
+      Object.defineProperty(navigator.mediaDevices, 'getUserMedia', {
+        value: function(constraints) {
+          return requestMediaPermissions(constraints).then((granted) => {
+            if (granted) {
+              if (originalGetUserMedia) {
+                return originalGetUserMedia(constraints);
+              } else {
+                throw new Error("Original getUserMedia not available.");
+              }
+            } else {
+              throw new DOMException('Permission denied', 'NotAllowedError');
+            }
+          });
+        },
+        writable: false,
+        configurable: false
+      });
+    }
+  }
+
+  interceptGetUserMedia();
+
+  const observer = new MutationObserver(function(mutationsList, observer) {
+    for (const mutation of mutationsList) {
+      if (mutation.type === 'reconfigured' && mutation.name === 'getUserMedia' && mutation.object === navigator.mediaDevices) {
+        interceptGetUserMedia();
+      } else if (mutation.type === 'attributes' && mutation.attributeName === 'getUserMedia' && mutation.target === navigator.mediaDevices) {
+        interceptGetUserMedia();
+      } else if (mutation.type === 'childList' && mutation.addedNodes) {
+        mutation.addedNodes.forEach(node => {
+          if (node === navigator.mediaDevices) {
+            interceptGetUserMedia();
+          }
+        });
+      }
+    }
+  });
+
+  function interceptSpeechRecognition() {
+    if (!window.SpeechRecognition && !window.webkitSpeechRecognition) {
+      return;
+    }
+
+    const OriginalSpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+
+    const SpeechRecognitionWrapper = function(...args) {
+      const recognizer = new OriginalSpeechRecognition(...args);
+      const originalStart = recognizer.start.bind(recognizer);
+
+      recognizer.start = function() {
+        requestMediaPermissions({ audio: true }).then(granted => {
+          if (granted) {
+            originalStart();
+          } else {
+            const errorEvent = new SpeechRecognitionErrorEvent('error');
+            errorEvent.error = 'not-allowed'; // This is the standard error for permission denial.
+            recognizer.dispatchEvent(errorEvent);
+          }
+        });
+      };
+
+      return recognizer;
+    };
+
+    SpeechRecognitionWrapper.prototype = OriginalSpeechRecognition.prototype;
+    SpeechRecognitionWrapper.prototype.constructor = SpeechRecognitionWrapper;
+
+    if (window.SpeechRecognition) {
+      window.SpeechRecognition = SpeechRecognitionWrapper;
+    }
+    if (window.webkitSpeechRecognition) {
+      window.webkitSpeechRecognition = SpeechRecognitionWrapper;
+    }
+  }
+
+  interceptSpeechRecognition();
+
+  window.addEventListener('message', function(event) {
+    if (event.data) {
+      if (event.data.type === 'resolveMediaPermission') {
+        const { promiseId, granted } = event.data;
+        if (pendingMediaResolvers[promiseId]) {
+          pendingMediaResolvers[promiseId](granted);
+        }
+      }
+    }
+  });
+
+})();</script><script ws-interception-config="{&quot;parentOrigin&quot;:&quot;https://gemini.google.com&quot;,&quot;proxiedDomains&quot;:[]}" data-bard-client-injected="true">(function(){'use strict';var u=typeof Object.defineProperties=="function"?Object.defineProperty:function(b,d,e){if(b==Array.prototype||b==Object.prototype)return b;b[d]=e.value;return b};function v(b){b=["object"==typeof globalThis&&globalThis,b,"object"==typeof window&&window,"object"==typeof self&&self,"object"==typeof global&&global];for(var d=0;d<b.length;++d){var e=b[d];if(e&&e.Math==Math)return e}throw Error("Cannot find global object");}var w=v(this);
+function y(b,d){if(d)a:{var e=w;b=b.split(".");for(var h=0;h<b.length-1;h++){var k=b[h];if(!(k in e))break a;e=e[k]}b=b[b.length-1];h=e[b];d=d(h);d!=h&&d!=null&&u(e,b,{configurable:!0,writable:!0,value:d})}}function z(b){function d(h){return b.next(h)}function e(h){return b.throw(h)}return new Promise(function(h,k){function m(n){n.done?h(n.value):Promise.resolve(n.value).then(d,e).then(m,k)}m(b.next())})}y("globalThis",function(b){return b||w});/*
+
+ Copyright The Closure Library Authors.
+ SPDX-License-Identifier: Apache-2.0
+*/
+function A(b,d){function e(){}e.prototype=d.prototype;b.j=d.prototype;b.prototype=new e;b.prototype.constructor=b;b.h=function(h,k,m){for(var n=Array(arguments.length-2),p=2;p<arguments.length;p++)n[p-2]=arguments[p];return d.prototype[k].apply(h,n)}};function B(b,d,e="*"){function h(a){if(typeof a==="string")return F.encode(a).buffer;if(a instanceof ArrayBuffer)return a.slice(0);if(ArrayBuffer.isView(a))return a.buffer.slice(a.byteOffset,a.byteOffset+a.byteLength);throw Error("Invalid data type");}function k(a){a=h(a);var f={type:"send",data:new Uint8Array(a)},g;(g=r)==null||g.postMessage(f,[a])}function m(){if(!r)throw Error("Data port not captured yet.");r.onmessage=a=>{if(a.data.type==="message"){a=new MessageEvent("message",{data:G.decode(a.data.data)});
+let f;(f=c.onmessage)==null||f.call(c,a);c.dispatchEvent(a)}}}function n(){if(!t)throw Error("Control port not captured yet.");t.onmessage=a=>{switch(a.data.type){case "open":l=1;var f=new Event("open"),g;(g=c.onopen)==null||g.call(c,f);c.dispatchEvent(f);q.forEach(H=>{k(H)});q=[];break;case "close":g=a.data;l=3;g=new CloseEvent("close",{code:g.code,reason:g.reason,wasClean:g.wasClean});(f=c.onclose)==null||f.call(c,g);c.dispatchEvent(g);break;case "error":l=3;f=new Event("error");let x;(x=c.onerror)==
+null||x.call(c,f);c.dispatchEvent(f)}}}function p(a){return z(function*(){var f=new MessageChannel;t=f.port1;var g=new MessageChannel;r=g.port1;n();m();window.parent.postMessage({type:"websocket_open",portOrdering:["control","data"],url:b,protocols:a||[],connectionId:I},e,[f.port2,g.port2])}())}var c=Reflect.construct(EventTarget,[],new.target);c.CONNECTING=0;c.OPEN=1;c.CLOSING=2;c.CLOSED=3;c.url=b;c.binaryType="arraybuffer";c.protocol="";c.i="";var l=0,t=null,r=null,q=[],F=new TextEncoder,G=new TextDecoder;
+c.onopen=null;c.onmessage=null;c.onclose=null;c.onerror=null;Object.defineProperty(c,"readyState",{get:()=>l,enumerable:!0,configurable:!0});Object.defineProperty(c,"bufferedAmount",{get:()=>{var a=0;q.forEach(f=>{a+=typeof f==="string"?f.length:f.byteLength});return a},enumerable:!0,configurable:!0});var I=function(){var a;return((a=globalThis.crypto)==null?0:a.randomUUID)?globalThis.crypto.randomUUID():"xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(/[xy]/g,f=>{var g=Math.random()*16|0;return(f===
+"x"?g:g&3|8).toString(16)})}();c.send=a=>{if(l===1)a instanceof Blob?a.arrayBuffer().then(f=>{k(f)}):k(a);else if(l===0)if(typeof a==="string")q.push(a);else if(a instanceof ArrayBuffer||ArrayBuffer.isView(a))q.push(h(a));else throw Error("Sending Blob is not supported before the connection is open.");else console.debug("WebSocket send called in CLOSING or CLOSED state; ignored.")};c.close=(a=1E3,f="")=>{if(l!==2&&l!==3){l=2;a={type:"close",code:a,reason:f,wasClean:a===1E3};var g;(g=t)==null||g.postMessage(a)}};
+Promise.resolve().then(()=>p(d));return c}A(B,EventTarget);var C=document.currentScript,D=C==null?void 0:C.getAttribute("ws-interception-config");if(!D)throw Error("WebSocket Interceptor: Missing ws-interception-config attribute in the script tag.");var E=JSON.parse(D);if(!E.parentOrigin||typeof E.parentOrigin!=="string")throw Error("WebSocket Interceptor: Invalid parentOrigin in ws-interception-config");
+(function(b){var d=Object.getOwnPropertyDescriptor(window,"WebSocket");if(!d||d.writable||d.configurable)d=Object.assign(function(e,h){try{let k=(new URL(e)).hostname;if(b.proxiedDomains.some(m=>k===m||k.endsWith(`.${m}`)))return new B(e,h,b.parentOrigin)}catch(k){throw window.parent.postMessage({type:"websocket_blocked",url:e,reason:"blocked_invalid_url"},b.parentOrigin),new DOMException(`WebSocket connection to '${e}' is not allowed in Canvas.`,"SecurityError");}window.parent.postMessage({type:"websocket_blocked",
+url:e,reason:"blocked_domain_not_allowlisted"},b.parentOrigin);throw new DOMException(`WebSocket connection to '${e}' is not allowed in Canvas.`,"SecurityError");},{CONNECTING:0,OPEN:1,CLOSING:2,CLOSED:3}),Object.defineProperty(window,"WebSocket",{value:d,writable:!1,configurable:!1})})({proxiedDomains:E.proxiedDomains||[],parentOrigin:E.parentOrigin});}).call(this);
+</script><script data-bard-client-injected="true">((function(modelInformation) {
+  const originalFetch = window.fetch;
+  // TODO: b/421908508 - Move these out of the script and match all generative AI model calls.
+  let googleLlmBaseApiUrls = [
+    'https://generativelanguage.googleapis.com/v1beta/models/' + modelInformation.textModelName + ':streamGenerateContent',
+    'https://generativelanguage.googleapis.com/v1beta/models/' + modelInformation.textModelName + ':generateContent',
+    'https://generativelanguage.googleapis.com/v1beta/models/' + modelInformation.imageModelName + ':predict',
+    'https://generativelanguage.googleapis.com/v1beta/models/' + modelInformation.imageModelName + ':predictLongRunning',
+    'https://generativelanguage.googleapis.com/v1beta/models/' + modelInformation.imageEditModelName + ':generateContent',
+    'https://generativelanguage.googleapis.com/v1beta/models/' + modelInformation.imageTransformModelName + ':generateContent',
+    'https://generativelanguage.googleapis.com/v1beta/models/' + modelInformation.videoModelName + ':predict',
+    'https://generativelanguage.googleapis.com/v1beta/models/' + modelInformation.videoModelName + ':predictLongRunning',
+    'https://generativelanguage.googleapis.com/v1beta/models/' + modelInformation.ttsModelName + ':generateContent',
+  ];
+  modelInformation.deprecatedTextModelNames.forEach((modelName) => {
+    googleLlmBaseApiUrls.push(
+      'https://generativelanguage.googleapis.com/v1beta/models/' + modelName + ':streamGenerateContent',
+      'https://generativelanguage.googleapis.com/v1beta/models/' + modelName + ':generateContent',
+    );
+  });
+  modelInformation.deprecatedImageModelNames.forEach((modelName) => {
+    googleLlmBaseApiUrls.push(
+      'https://generativelanguage.googleapis.com/v1beta/models/' + modelName + ':predict',
+      'https://generativelanguage.googleapis.com/v1beta/models/' + modelName + ':predictLongRunning',
+      'https://generativelanguage.googleapis.com/v1beta/models/' + modelName + ':generateContent',
+      'https://generativelanguage.googleapis.com/v1beta/models/' + modelName + ':streamGenerateContent',
+    );
+  });
+  modelInformation.deprecatedGenerateImageModelNames.forEach((modelName) => {
+    googleLlmBaseApiUrls.push(
+      'https://generativelanguage.googleapis.com/v1beta/models/' + modelName + ':generateContent',
+      'https://generativelanguage.googleapis.com/v1beta/models/' + modelName + ':streamGenerateContent',
+    );
+  });
+  modelInformation.deprecatedImageTransformModelNames.forEach((modelName) => {
+    googleLlmBaseApiUrls.push(
+      'https://generativelanguage.googleapis.com/v1beta/models/' + modelName + ':generateContent',
+      'https://generativelanguage.googleapis.com/v1beta/models/' + modelName + ':streamGenerateContent',
+    );
+  });
+
+  const pendingFetchResolvers = {};
+  let nextPromiseId = 0;
+
+  function handleStringInput(input, optionsArgument) {
+    const actualUrl = input;
+    const fetchCallArgs = [actualUrl, optionsArgument];
+    const effectiveOptions = optionsArgument || {};
+    const bodyForApiKeyCheck = effectiveOptions.body;
+    const bodyForPostMessage = effectiveOptions.body;
+    return { actualUrl, fetchCallArgs, effectiveOptions, bodyForApiKeyCheck, bodyForPostMessage };
+  }
+
+  function handleRequestInput(input, optionsArgument) {
+    const actualUrl = input.url;
+    const fetchCallArgs = [input, optionsArgument];
+    const effectiveOptions = { method: input.method, headers: new Headers(input.headers) };
+    let bodyForApiKeyCheck;
+    let bodyForPostMessage;
+
+    if (optionsArgument) {
+      if (optionsArgument.method) effectiveOptions.method = optionsArgument.method;
+      if (optionsArgument.headers) effectiveOptions.headers = new Headers(optionsArgument.headers);
+      if ('body' in optionsArgument) {
+        bodyForApiKeyCheck = optionsArgument.body;
+        bodyForPostMessage = optionsArgument.body;
+      } else {
+        bodyForApiKeyCheck = undefined;
+        bodyForPostMessage = input.body;
+      }
+    } else {
+      bodyForApiKeyCheck = undefined;
+      bodyForPostMessage = input.body;
+    }
+    return { actualUrl, fetchCallArgs, effectiveOptions, bodyForApiKeyCheck, bodyForPostMessage };
+  }
+
+  window.fetch = function(input, optionsArgument) {
+    let actualUrl;
+    let fetchCallArgs;
+    let effectiveOptions = {};
+    let bodyForApiKeyCheck;
+    let bodyForPostMessage;
+
+    if (typeof input === 'string') {
+      ({actualUrl, fetchCallArgs, effectiveOptions, bodyForApiKeyCheck, bodyForPostMessage} = handleStringInput(input, optionsArgument));
+    } else if (input instanceof Request) {
+      ({actualUrl, fetchCallArgs, effectiveOptions, bodyForApiKeyCheck, bodyForPostMessage} = handleRequestInput(input, optionsArgument));
+    } else {
+      return originalFetch.apply(window, [input, optionsArgument]);
+    }
+
+    effectiveOptions.method = effectiveOptions.method || 'GET';
+    if (!effectiveOptions.headers) {
+      effectiveOptions.headers = new Headers();
+    }
+
+
+    if (typeof actualUrl === 'string' && googleLlmBaseApiUrls.some((url) => actualUrl.startsWith(url))) {
+      let apiKeyIsNull = true;
+
+      const regex = new RegExp("models/([^:]+)");
+      const modelNameMatch = actualUrl.match(regex);
+      const modelName = modelNameMatch ? modelNameMatch[1] : 'unspecified';
+
+
+      try {
+        const urlObject = new URL(actualUrl);  // Use URL object for robust parsing
+        const apiKeyParam = urlObject.searchParams.get('key');
+        if (apiKeyParam) {
+          apiKeyIsNull = false;
+        }
+      } catch (e) {
+        // Continue checks even if URL parsing fails
+      }
+
+      if (apiKeyIsNull && effectiveOptions.headers) {
+        const h = new Headers(effectiveOptions.headers);
+        const apiKeyHeaderValue = h.get('X-API-Key') || h.get('x-api-key');
+        if (apiKeyHeaderValue) {
+          apiKeyIsNull = false;
+          return originalFetch.apply(window, fetchCallArgs);
+        }
+      }
+
+      if (apiKeyIsNull && effectiveOptions.method && ['POST', 'PUT', 'PATCH'].includes(effectiveOptions.method.toUpperCase()) && typeof bodyForApiKeyCheck === 'string') {
+        try {
+          const bodyData = JSON.parse(bodyForApiKeyCheck);
+          if (bodyData && bodyData.apiKey) {
+            apiKeyIsNull = false;
+            return originalFetch.apply(window, fetchCallArgs);
+          }
+        } catch (e) {
+          // Ignore JSON parsing errors
+        }
+      }
+
+      if(apiKeyIsNull) {
+        const promiseId = nextPromiseId++;
+        const promise = new Promise((resolve) => {
+          pendingFetchResolvers[promiseId] = (resolvedResponse) => {
+            delete pendingFetchResolvers[promiseId];
+            resolve(resolvedResponse);
+          };
+        });
+
+        let serializedBodyForPostMessage;
+        if (typeof bodyForPostMessage === 'string' || bodyForPostMessage == null) {
+            serializedBodyForPostMessage = bodyForPostMessage;
+        } else if (bodyForPostMessage instanceof ReadableStream) {
+            serializedBodyForPostMessage = null;
+        } else {
+            try {
+                serializedBodyForPostMessage = JSON.stringify(bodyForPostMessage);
+            } catch (e) {
+                serializedBodyForPostMessage = null;
+            }
+        }
+
+        const messageOptions = {
+            method: effectiveOptions.method,
+            headers: Object.fromEntries(new Headers(effectiveOptions.headers).entries()),
+            body: serializedBodyForPostMessage
+        };
+
+        window.parent.postMessage({
+          type: 'requestFetch',
+          url: actualUrl,
+          modelName: modelName,
+          options: messageOptions,
+          promiseId: promiseId,
+        }, '*');
+
+        return promise;
+      }
+      return originalFetch.apply(window, fetchCallArgs);
+    }
+    return originalFetch.apply(window, fetchCallArgs);
+  };
+
+  window.addEventListener('message', function(event) {
+    if (event.data && event.data.type === 'resolveFetch') {
+      const { promiseId, response } = event.data;
+      if (pendingFetchResolvers[promiseId]) {
+        try {
+          const reconstructedResponse = new Response(response.body, {
+            status: response.status,
+            statusText: response.statusText,
+            headers: new Headers(response.headers),
+          });
+          pendingFetchResolvers[promiseId](reconstructedResponse);
+        } catch (error) {
+          pendingFetchResolvers[promiseId](new Response(null, { status: 500, statusText: "Interceptor Response Reconstruction Error" }));
+        }
+      }
+    }
+  });
+
+}))({"textModelName":"gemini-3-flash-preview","imageModelName":"imagen-4.0-generate-001","imageEditModelName":"gemini-3.1-flash-image","imageTransformModelName":"gemini-3-pro-image","videoModelName":"veo-2.0-generate-001","ttsModelName":"gemini-2.5-flash-preview-tts","deprecatedTextModelNames":["gemini-2.0-flash","gemini-2.5-flash","gemini-2.5-flash-preview-04-17","gemini-2.5-flash-preview-05-20","gemini-2.5-flash-preview-09-2025"],"deprecatedImageModelNames":["imagen-3.0-generate-001","imagen-3.0-generate-002"],"deprecatedGenerateImageModelNames":["gemini-2.5-flash-image-preview","gemini-2.5-flash-image","gemini-3.1-flash-image-preview"],"deprecatedImageTransformModelNames":["gemini-3-pro-image-preview-11-2025"]})</script><script data-bard-client-injected="true">(function() {
+  function normalizeSlug(str) {
+    try {
+      return str
+        .trim()
+        .toLowerCase()
+        .replace(/[^p{L}p{N}s_-]/gu, '')
+        .replace(/s+/g, '-');
+    } catch (e) {
+      return str
+        .trim()
+        .toLowerCase()
+        .replace(/[^a-z0-9s_-]/g, '')
+        .replace(/s+/g, '-');
+    }
+  }
+
+  function findTargetElement(hash) {
+    if (!hash || hash === '#') {
+      return null;
+    }
+    const rawId = hash.startsWith('#') ? hash.slice(1) : hash;
+    let decodedId = rawId;
+    try {
+      decodedId = decodeURIComponent(rawId);
+    } catch (e) {
+      // Ignore URI malformed errors.
+    }
+
+    // 1. Direct ID match (raw and decoded).
+    let target = document.getElementById(rawId) || document.getElementById(decodedId);
+    if (target) {
+      return target;
+    }
+
+    // 2. Name attribute match (<a name="...">).
+    try {
+      if (typeof CSS !== 'undefined' && CSS.escape) {
+        target =
+          document.querySelector('[name="' + CSS.escape(rawId) + '"]') ||
+          document.querySelector('[name="' + CSS.escape(decodedId) + '"]');
+      } else {
+        const namedElements = document.getElementsByName(rawId);
+        if (namedElements && namedElements.length > 0) {
+          return namedElements[0];
+        }
+      }
+    } catch (e) {
+      // Ignore querySelector syntax errors.
+    }
+    if (target) {
+      return target;
+    }
+
+    // 3. Match heading text by slug (for Markdown TOCs where headings lack explicit IDs).
+    const targetSlug = normalizeSlug(decodedId);
+    if (targetSlug) {
+      for (const heading of document.querySelectorAll('h1, h2, h3, h4, h5, h6')) {
+        if (normalizeSlug(heading.textContent || '') === targetSlug) {
+          return heading;
+        }
+      }
+    }
+
+    return null;
+  }
+
+  document.addEventListener('click', function(event) {
+    const target = event.target;
+    const anchor = target && typeof target.closest === 'function' ? target.closest('a') : null;
+    if (!anchor) {
+      return;
+    }
+
+    const href = anchor.getAttribute('href');
+    if (
+      !href ||
+      href.trim().toLowerCase().startsWith('javascript:') ||
+      anchor.hasAttribute('download')
+    ) {
+      return;
+    }
+
+    // Check if the link is an in-page hash / anchor link.
+    if (href.startsWith('#')) {
+      event.preventDefault();
+      const targetElement = findTargetElement(href);
+      if (targetElement) {
+        targetElement.scrollIntoView({behavior: 'smooth', block: 'start'});
+      }
+      return;
+    }
+
+    // Check if the URL has the same origin/pathname but with a hash.
+    try {
+      const url = new URL(anchor.href, window.location.href);
+      if (
+        url.hash &&
+        url.origin === window.location.origin &&
+        url.pathname === window.location.pathname
+      ) {
+        event.preventDefault();
+        const targetElement = findTargetElement(url.hash);
+        if (targetElement) {
+          targetElement.scrollIntoView({behavior: 'smooth', block: 'start'});
+        }
+        return;
+      }
+    } catch (e) {
+      // Fall through if URL parsing fails.
+    }
+
+    // For all external or full navigation links, prevent iframe-level navigation
+    // (which breaks in AGSA WebView or sandboxed iframes) and ensure they open
+    // safely in a new tab/window.
+    if (anchor.target !== '_blank') {
+      event.preventDefault();
+      window.open(anchor.href, '_blank', 'noopener,noreferrer');
+    }
+  }, {capture: true});
+})();</script><script data-bard-client-injected="true">(function(){'use strict';function a(){window.parent.postMessage({type:"interaction"},"*")}window.addEventListener("click",a,{capture:!0,passive:!0});window.addEventListener("touchstart",a,{capture:!0,passive:!0});window.addEventListener("keydown",a,{capture:!0,passive:!0});}).call(this);
+</script><script data-bard-client-injected="true">(function() {
+  const originalConsoleLog = console.log;
+  const originalConsoleError = console.error;
+
+    /**
+   * Normalizes an error event or a promise rejection reason into a structured error object.
+   * @param {*} errorEventOrReason The error object or reason.
+   * @return {object} Structured error data { message, name, stack }.
+   */
+  function getErrorObject(errorEventOrReason) {
+    if (errorEventOrReason instanceof Error) {
+      return {
+        message: errorEventOrReason.message,
+        name: errorEventOrReason.name,
+        stack: errorEventOrReason.stack,
+      };
+    }
+    // Fallback for non-Error objects.
+    try {
+      return {
+        message: JSON.stringify(errorEventOrReason),
+        name: 'UnknownErrorType',
+        stack: null,
+      };
+    } catch (e) {
+      return {
+        message: String(errorEventOrReason),
+        name: 'UnknownErrorTypeNonStringifiable',
+        stack: null,
+      };
+    }
+  }
+
+  /**
+   * Converts an array of arguments (from log/error) into a single string.
+   * Handles Error objects specially to include their message and stack.
+   * @param {Array<*>} args - Arguments passed to console methods.
+   * @return {string} A string representation of the arguments.
+   */
+  function stringifyArgs(args) {
+    return args
+      .map((arg) => {
+        if (arg instanceof Error) {
+          const {message, stack} = arg;
+          return `Error: ${message}${stack ? ('\nStack: ' + stack) : ''}`;
+        }
+        if (typeof arg === 'object' && arg !== null) {
+          try {
+            return JSON.stringify(arg);
+          } catch (error) {
+            return '[Circular Object]';
+          }
+        } else {
+          return String(arg);
+        }
+      })
+      .join(' ');
+  }
+
+  console.log = function(...args) {
+    const logString = stringifyArgs(args);
+    window.parent.postMessage({ type: 'log', message: logString }, '*');
+    originalConsoleLog.apply(console, args);
+  };
+
+  console.error = function(...args) {
+    let errorData;
+    if (args.length > 0 && args[0] instanceof Error) {
+      const err = args[0];
+      // If the first arg is an Error, capture its details.
+      errorData = {
+        type: 'error',
+        source: 'CONSOLE_ERROR',
+        ...getErrorObject(err),
+        rawArgsString: stringifyArgs(args.slice(1)),
+        timestamp: new Date().toISOString(),
+      };
+    } else {
+      // If not an Error object, treat all args as a general error message.
+      errorData = {
+        type: 'error',
+        source: 'CONSOLE_ERROR',
+        message: stringifyArgs(args),
+        name: 'ConsoleLoggedError',
+        stack: null,
+        timestamp: new Date().toISOString(),
+      };
+    }
+    window.parent.postMessage(errorData, '*');
+    originalConsoleError.apply(console, args);
+  };
+
+  // Listen for global unhandled synchronous errors.
+  window.addEventListener('error', function(event) {
+    const errorDetails = event.error ? getErrorObject(event.error) : {
+      message: event.message,
+      name: 'GlobalError',
+      stack: null,
+      filename: event.filename,
+      lineno: event.lineno,
+      colno: event.colno,
+    };
+
+    window.parent.postMessage({
+      type: 'error',
+      source: 'global',
+      ...errorDetails,
+      message: errorDetails.message || event.message,
+      timestamp: new Date().toISOString(),
+    }, '*');
+  });
+
+  // Listen for unhandled promise rejections (asynchronous errors).
+  window.addEventListener('unhandledrejection', function(event) {
+    const errorDetails = getErrorObject(event.reason);
+
+    window.parent.postMessage({
+      type: 'error',
+      source: 'unhandledrejection',
+      ...errorDetails,
+      message: errorDetails.message || 'Unhandled Promise Rejection',
+      timestamp: new Date().toISOString(),
+    }, '*');
+  });
+
+})();</script><script data-bard-client-injected="true">((function(theme) {
+    function applyTheme(theme) {
+      const root = document.querySelector(':root');
+      if (root) {
+        root.dataset['theme'] = theme;
+      }
+    }
+
+    // Listen for messages from the parent window.
+    window.addEventListener("message", (event) => {
+      if (event.data && event.data.type === 'APPLY_THEME' && (event.data.theme === "light" || event.data.theme === "dark")) {
+        applyTheme(event.data.theme);
+      }
+    });
+
+    if (theme) {
+      applyTheme(theme);
+    }
+  }))("dark")</script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cẩm nang Tra cứu Đa tầng: 3,5 Năm Toàn cảnh Nội chiến Gia tộc và Pháp lý Vũ Linh (2023–2026)</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Chart.js and Datalabels Plugin -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.2.0/dist/chartjs-plugin-datalabels.min.js" crossorigin="anonymous"></script>
+
+    <style>
+      @font-face {
+        font-family: 'Google Sans';
+        src: url('https://fonts.gstatic.com/s/googlesans/v35/4UaGrENHsxJlGwyg_OUCIzQyLQ.woff2') format('woff2');
+        font-weight: 400;
+        font-style: normal;
+      }
+      @font-face {
+        font-family: 'Google Sans Text';
+        src: url('https://fonts.gstatic.com/s/googlesanstext/v17/va9I4ljaH2sA_LzWxOQ_NQAyD_VwAWchj6yJ3yS3.woff2') format('woff2');
+        font-weight: 400;
+        font-style: normal;
+      }
+
+      :root {
+        --bg-main: #FFFFFF;
+        --text-primary: #111111;
+        --text-secondary: #666666;
+        --axis-color: #888888;
+        --grid-color: #D1D1D1;
+        --card-bg: #F8F9FA;
+        --blue-primary: #1A73E8;
+        --red-primary: #D93025;
+        --green-primary: #1E8E3E;
+        --orange-primary: #E37400;
+      }
+
+      body {
+        font-family: 'Google Sans Text', 'Google Sans', sans-serif;
+        background-color: var(--bg-main);
+        color: var(--text-primary);
+        overflow-x: hidden;
+      }
+
+      h1, h2, h3, h4, h5, .font-heading {
+        font-family: 'Google Sans', sans-serif;
+      }
+
+      .material-symbols-outlined {
+        font-size: 16px;
+        vertical-align: middle;
+      }
+
+      .tab-active {
+        background-color: #111111 !important;
+        color: #FFFFFF !important;
+        border-color: #111111 !important;
+        font-weight: 600;
+      }
+
+      .filter-active {
+        background-color: #1A73E8 !important;
+        color: #FFFFFF !important;
+        border-color: #1A73E8 !important;
+      }
+    </style>
+  <style>*, ::before, ::after{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgb(59 130 246 / 0.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }::backdrop{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgb(59 130 246 / 0.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }/* ! tailwindcss v3.4.17 | MIT License | https://tailwindcss.com */*,::after,::before{box-sizing:border-box;border-width:0;border-style:solid;border-color:#e5e7eb}::after,::before{--tw-content:''}:host,html{line-height:1.5;-webkit-text-size-adjust:100%;-moz-tab-size:4;tab-size:4;font-family:ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";font-feature-settings:normal;font-variation-settings:normal;-webkit-tap-highlight-color:transparent}body{margin:0;line-height:inherit}hr{height:0;color:inherit;border-top-width:1px}abbr:where([title]){-webkit-text-decoration:underline dotted;text-decoration:underline dotted}h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight:inherit}a{color:inherit;text-decoration:inherit}b,strong{font-weight:bolder}code,kbd,pre,samp{font-family:ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;font-feature-settings:normal;font-variation-settings:normal;font-size:1em}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sub{bottom:-.25em}sup{top:-.5em}table{text-indent:0;border-color:inherit;border-collapse:collapse}button,input,optgroup,select,textarea{font-family:inherit;font-feature-settings:inherit;font-variation-settings:inherit;font-size:100%;font-weight:inherit;line-height:inherit;letter-spacing:inherit;color:inherit;margin:0;padding:0}button,select{text-transform:none}button,input:where([type=button]),input:where([type=reset]),input:where([type=submit]){-webkit-appearance:button;background-color:transparent;background-image:none}:-moz-focusring{outline:auto}:-moz-ui-invalid{box-shadow:none}progress{vertical-align:baseline}::-webkit-inner-spin-button,::-webkit-outer-spin-button{height:auto}[type=search]{-webkit-appearance:textfield;outline-offset:-2px}::-webkit-search-decoration{-webkit-appearance:none}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}summary{display:list-item}blockquote,dd,dl,figure,h1,h2,h3,h4,h5,h6,hr,p,pre{margin:0}fieldset{margin:0;padding:0}legend{padding:0}menu,ol,ul{list-style:none;margin:0;padding:0}dialog{padding:0}textarea{resize:vertical}input::placeholder,textarea::placeholder{opacity:1;color:#9ca3af}[role=button],button{cursor:pointer}:disabled{cursor:default}audio,canvas,embed,iframe,img,object,svg,video{display:block;vertical-align:middle}img,video{max-width:100%;height:auto}[hidden]:where(:not([hidden=until-found])){display:none}.absolute{position:absolute}.relative{position:relative}.right-2{right:0.5rem}.top-1\.5{top:0.375rem}.-left-\[21px\]{left:-21px}.m-0{margin:0px}.mb-1\.5{margin-bottom:0.375rem}.ml-1{margin-left:0.25rem}.ml-1\.5{margin-left:0.375rem}.mt-1{margin-top:0.25rem}.mb-1{margin-bottom:0.25rem}.inline-block{display:inline-block}.flex{display:flex}.inline-flex{display:inline-flex}.grid{display:grid}.hidden{display:none}.h-2\.5{height:0.625rem}.h-44{height:11rem}.min-h-0{min-height:0px}.w-2\.5{width:0.625rem}.w-full{width:100%}.max-w-\[800px\]{max-width:800px}.shrink-0{flex-shrink:0}.list-decimal{list-style-type:decimal}.list-disc{list-style-type:disc}.grid-cols-1{grid-template-columns:repeat(1, minmax(0, 1fr))}.grid-cols-2{grid-template-columns:repeat(2, minmax(0, 1fr))}.flex-col{flex-direction:column}.flex-wrap{flex-wrap:wrap}.items-start{align-items:flex-start}.items-center{align-items:center}.justify-center{justify-content:center}.justify-between{justify-content:space-between}.gap-1{gap:0.25rem}.gap-1\.5{gap:0.375rem}.gap-2{gap:0.5rem}.gap-2\.5{gap:0.625rem}.gap-3{gap:0.75rem}.gap-4{gap:1rem}.space-y-1 > :not([hidden]) ~ :not([hidden]){--tw-space-y-reverse:0;margin-top:calc(0.25rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(0.25rem * var(--tw-space-y-reverse))}.space-y-1\.5 > :not([hidden]) ~ :not([hidden]){--tw-space-y-reverse:0;margin-top:calc(0.375rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(0.375rem * var(--tw-space-y-reverse))}.space-y-2 > :not([hidden]) ~ :not([hidden]){--tw-space-y-reverse:0;margin-top:calc(0.5rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(0.5rem * var(--tw-space-y-reverse))}.self-start{align-self:flex-start}.whitespace-pre-wrap{white-space:pre-wrap}.break-all{word-break:break-all}.rounded{border-radius:0.25rem}.rounded-lg{border-radius:0.5rem}.rounded-sm{border-radius:0.125rem}.rounded-full{border-radius:9999px}.border{border-width:1px}.border-2{border-width:2px}.border-b{border-bottom-width:1px}.border-l-2{border-left-width:2px}.border-t{border-top-width:1px}.border-\[\#888888\]{--tw-border-opacity:1;border-color:rgb(136 136 136 / var(--tw-border-opacity, 1))}.border-\[\#D1D1D1\]{--tw-border-opacity:1;border-color:rgb(209 209 209 / var(--tw-border-opacity, 1))}.border-blue-200{--tw-border-opacity:1;border-color:rgb(191 219 254 / var(--tw-border-opacity, 1))}.border-red-200{--tw-border-opacity:1;border-color:rgb(254 202 202 / var(--tw-border-opacity, 1))}.border-\[\#FFFFFF\]{--tw-border-opacity:1;border-color:rgb(255 255 255 / var(--tw-border-opacity, 1))}.border-gray-300{--tw-border-opacity:1;border-color:rgb(209 213 219 / var(--tw-border-opacity, 1))}.border-green-200{--tw-border-opacity:1;border-color:rgb(187 247 208 / var(--tw-border-opacity, 1))}.border-orange-200{--tw-border-opacity:1;border-color:rgb(254 215 170 / var(--tw-border-opacity, 1))}.bg-\[\#111111\]{--tw-bg-opacity:1;background-color:rgb(17 17 17 / var(--tw-bg-opacity, 1))}.bg-\[\#1A73E8\]{--tw-bg-opacity:1;background-color:rgb(26 115 232 / var(--tw-bg-opacity, 1))}.bg-\[\#D93025\]{--tw-bg-opacity:1;background-color:rgb(217 48 37 / var(--tw-bg-opacity, 1))}.bg-\[\#F8F9FA\]{--tw-bg-opacity:1;background-color:rgb(248 249 250 / var(--tw-bg-opacity, 1))}.bg-\[\#FFFFFF\]{--tw-bg-opacity:1;background-color:rgb(255 255 255 / var(--tw-bg-opacity, 1))}.bg-blue-50{--tw-bg-opacity:1;background-color:rgb(239 246 255 / var(--tw-bg-opacity, 1))}.bg-red-50{--tw-bg-opacity:1;background-color:rgb(254 242 242 / var(--tw-bg-opacity, 1))}.bg-gray-100{--tw-bg-opacity:1;background-color:rgb(243 244 246 / var(--tw-bg-opacity, 1))}.bg-green-50{--tw-bg-opacity:1;background-color:rgb(240 253 244 / var(--tw-bg-opacity, 1))}.bg-orange-50{--tw-bg-opacity:1;background-color:rgb(255 247 237 / var(--tw-bg-opacity, 1))}.p-2{padding:0.5rem}.p-2\.5{padding:0.625rem}.p-3{padding:0.75rem}.p-3\.5{padding:0.875rem}.px-2{padding-left:0.5rem;padding-right:0.5rem}.px-2\.5{padding-left:0.625rem;padding-right:0.625rem}.px-3{padding-left:0.75rem;padding-right:0.75rem}.py-0\.5{padding-top:0.125rem;padding-bottom:0.125rem}.py-1{padding-top:0.25rem;padding-bottom:0.25rem}.py-1\.5{padding-top:0.375rem;padding-bottom:0.375rem}.py-2{padding-top:0.5rem;padding-bottom:0.5rem}.px-1\.5{padding-left:0.375rem;padding-right:0.375rem}.pb-3{padding-bottom:0.75rem}.pl-4{padding-left:1rem}.pl-5{padding-left:1.25rem}.pt-3{padding-top:0.75rem}.pb-1{padding-bottom:0.25rem}.pb-1\.5{padding-bottom:0.375rem}.text-center{text-align:center}.font-mono{font-family:ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace}.text-\[11px\]{font-size:11px}.text-lg{font-size:1.125rem;line-height:1.75rem}.text-sm{font-size:0.875rem;line-height:1.25rem}.text-xs{font-size:0.75rem;line-height:1rem}.text-\[10px\]{font-size:10px}.text-\[13px\]{font-size:13px}.font-bold{font-weight:700}.font-medium{font-weight:500}.font-semibold{font-weight:600}.uppercase{text-transform:uppercase}.italic{font-style:italic}.leading-relaxed{line-height:1.625}.leading-snug{line-height:1.375}.text-\[\#111111\]{--tw-text-opacity:1;color:rgb(17 17 17 / var(--tw-text-opacity, 1))}.text-\[\#1A73E8\]{--tw-text-opacity:1;color:rgb(26 115 232 / var(--tw-text-opacity, 1))}.text-\[\#1E8E3E\]{--tw-text-opacity:1;color:rgb(30 142 62 / var(--tw-text-opacity, 1))}.text-\[\#666666\]{--tw-text-opacity:1;color:rgb(102 102 102 / var(--tw-text-opacity, 1))}.text-\[\#D93025\]{--tw-text-opacity:1;color:rgb(217 48 37 / var(--tw-text-opacity, 1))}.text-white{--tw-text-opacity:1;color:rgb(255 255 255 / var(--tw-text-opacity, 1))}.text-\[\#E37400\]{--tw-text-opacity:1;color:rgb(227 116 0 / var(--tw-text-opacity, 1))}.underline{-webkit-text-decoration-line:underline;text-decoration-line:underline}.transition{transition-property:color, background-color, border-color, fill, stroke, opacity, box-shadow, transform, filter, -webkit-text-decoration-color, -webkit-backdrop-filter;transition-property:color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter;transition-property:color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter, -webkit-text-decoration-color, -webkit-backdrop-filter;transition-timing-function:cubic-bezier(0.4, 0, 0.2, 1);transition-duration:150ms}.placeholder\:text-\[\#666666\]::placeholder{--tw-text-opacity:1;color:rgb(102 102 102 / var(--tw-text-opacity, 1))}.hover\:bg-blue-700:hover{--tw-bg-opacity:1;background-color:rgb(29 78 216 / var(--tw-bg-opacity, 1))}.hover\:bg-gray-200:hover{--tw-bg-opacity:1;background-color:rgb(229 231 235 / var(--tw-bg-opacity, 1))}.hover\:bg-gray-800:hover{--tw-bg-opacity:1;background-color:rgb(31 41 55 / var(--tw-bg-opacity, 1))}.hover\:text-\[\#111111\]:hover{--tw-text-opacity:1;color:rgb(17 17 17 / var(--tw-text-opacity, 1))}.focus\:border-\[\#1A73E8\]:focus{--tw-border-opacity:1;border-color:rgb(26 115 232 / var(--tw-border-opacity, 1))}.focus\:outline-none:focus{outline:2px solid transparent;outline-offset:2px}@media (min-width: 640px){.sm\:grid-cols-2{grid-template-columns:repeat(2, minmax(0, 1fr))}.sm\:grid-cols-3{grid-template-columns:repeat(3, minmax(0, 1fr))}.sm\:flex-row{flex-direction:row}.sm\:items-center{align-items:center}.sm\:self-auto{align-self:auto}.sm\:p-5{padding:1.25rem}.sm\:text-2xl{font-size:1.5rem;line-height:2rem}.sm\:text-sm{font-size:0.875rem;line-height:1.25rem}.sm\:text-\[13px\]{font-size:13px}}</style></head>
+  <body class="m-0 p-2.5 sm:p-5 flex justify-center w-full bg-[#FFFFFF] text-[#111111]">
+    <figure class="w-full max-w-[800px] flex flex-col gap-4 m-0">
+
+      <!-- Compact Mobile-First Header -->
+      <div class="border-b border-[#D1D1D1] pb-3">
+        <div class="flex flex-wrap items-center justify-between gap-2 mb-1.5">
+          <div class="inline-flex items-center gap-1.5 px-2 py-0.5 text-[11px] font-bold uppercase rounded bg-red-50 text-[#D93025] border border-red-200">
+            <span class="material-symbols-outlined">gavel</span>
+            <span>Cẩm nang Bỏ túi (03/2023 – 11/2026)</span>
+          </div>
+          <div class="flex items-center gap-1.5">
+            <button onclick="copyFullHtmlPage()" id="btn-copy-html-top" class="inline-flex items-center gap-1 px-2.5 py-1 rounded text-[11px] font-semibold bg-[#F8F9FA] hover:bg-gray-200 text-[#111111] border border-[#D1D1D1] transition">
+              <span class="material-symbols-outlined">content_copy</span>
+              <span>Copy Code HTML</span>
+            </button>
+            <button onclick="downloadHtmlFile()" class="inline-flex items-center gap-1 px-2.5 py-1 rounded text-[11px] font-semibold bg-[#1A73E8] hover:bg-blue-700 text-white transition">
+              <span class="material-symbols-outlined">download</span>
+              <span>Tải File .HTML</span>
+            </button>
+          </div>
+        </div>
+        <h3 class="font-heading text-lg sm:text-2xl font-bold text-[#111111] leading-snug">
+          Toàn cảnh 3,5 Năm Nội chiến Gia tộc &amp; Pháp lý Vũ Linh
+        </h3>
+        <p class="text-xs text-[#666666] mt-1 leading-relaxed">
+          Bản tóm tắt cô đọng chuẩn responsive cho điện thoại, tổng hợp theo góc nhìn chuẩn xác của nghệ sĩ Lê Tín, sự kiện Minishow <i>"Ơn đời, ơn người"</i> (10/01/2026) của Hồng Phượng và 9 kỳ tòa án.
+        </p>
+      </div>
+
+      <!-- Navigation Grid Tabs (100% Responsive - No Horizontal Scroll) -->
+      <div class="grid grid-cols-2 sm:grid-cols-3 gap-1.5 text-xs">
+        <button onclick="switchTab('characters')" id="tab-btn-characters" class="tab-btn tab-active flex items-center justify-center gap-1 px-2.5 py-2 rounded-lg border border-[#D1D1D1] text-center transition">
+          <span class="material-symbols-outlined">groups</span>
+          <span>1. Nhân vật &amp; Phe</span>
+        </button>
+        <button onclick="switchTab('timeline')" id="tab-btn-timeline" class="tab-btn flex items-center justify-center gap-1 px-2.5 py-2 rounded-lg border border-[#D1D1D1] bg-[#F8F9FA] text-[#666666] hover:text-[#111111] text-center transition">
+          <span class="material-symbols-outlined">history</span>
+          <span>2. Mốc thời gian</span>
+        </button>
+        <button onclick="switchTab('slang')" id="tab-btn-slang" class="tab-btn flex items-center justify-center gap-1 px-2.5 py-2 rounded-lg border border-[#D1D1D1] bg-[#F8F9FA] text-[#666666] hover:text-[#111111] text-center transition">
+          <span class="material-symbols-outlined">psychology_alt</span>
+          <span>3. Giải mã &amp; Lê Tín</span>
+        </button>
+        <button onclick="switchTab('psychology')" id="tab-btn-psychology" class="tab-btn flex items-center justify-center gap-1 px-2.5 py-2 rounded-lg border border-[#D1D1D1] bg-[#F8F9FA] text-[#666666] hover:text-[#111111] text-center transition">
+          <span class="material-symbols-outlined">mood</span>
+          <span>4. Tâm lý các bên</span>
+        </button>
+        <button onclick="switchTab('court')" id="tab-btn-court" class="tab-btn flex items-center justify-center gap-1 px-2.5 py-2 rounded-lg border border-[#D1D1D1] bg-[#F8F9FA] text-[#666666] hover:text-[#111111] text-center transition">
+          <span class="material-symbols-outlined">account_balance</span>
+          <span>5. 9 Kỳ Tòa &amp; Đất</span>
+        </button>
+        <button onclick="switchTab('update')" id="tab-btn-update" class="tab-btn flex items-center justify-center gap-1 px-2.5 py-2 rounded-lg border border-[#D1D1D1] bg-[#F8F9FA] text-[#666666] hover:text-[#111111] text-center transition">
+          <span class="material-symbols-outlined">sync</span>
+          <span>6. Cách Cập nhật</span>
+        </button>
+      </div>
+
+      <!-- Quick Search & Faction Filter (Wraps cleanly on mobile) -->
+      <div id="filter-bar-container" class="flex flex-col gap-2 bg-[#F8F9FA] p-2.5 rounded-lg border border-[#D1D1D1]">
+        <div class="relative w-full">
+          <input type="text" id="search-input" placeholder="Tìm nhanh: Hồng Phượng, Lê Tín, Ơn đời ơn người, Malaysia, 15%, Kim Loan..." class="w-full text-xs px-3 py-1.5 rounded bg-[#FFFFFF] border border-[#D1D1D1] text-[#111111] placeholder:text-[#666666] focus:outline-none focus:border-[#1A73E8]" oninput="handleSearch(this.value)">
+          <button id="clear-search" onclick="clearSearch()" class="hidden absolute right-2 top-1.5 text-xs text-[#666666] hover:text-[#111111]">✕</button>
+        </div>
+
+        <!-- Faction Sub-filters (Only visible on Tab 1) -->
+        <div id="character-filters" class="flex flex-wrap items-center gap-1.5 text-[11px]">
+          <button onclick="filterFaction('ALL')" class="faction-filter-btn filter-active px-2 py-1 rounded border border-[#D1D1D1] font-medium" data-f="ALL">Tất cả (11)</button>
+          <button onclick="filterFaction('NHUNG')" class="faction-filter-btn px-2 py-1 rounded bg-[#FFFFFF] border border-[#D1D1D1] text-[#666666]" data-f="NHUNG">Phe Tốt / Gia đình (3)</button>
+          <button onclick="filterFaction('ANALYSIS')" class="faction-filter-btn px-2 py-1 rounded bg-[#FFFFFF] border border-[#D1D1D1] text-[#666666]" data-f="ANALYSIS">Lê Tín &amp; Trung lập (2)</button>
+          <button onclick="filterFaction('FLIP')" class="faction-filter-btn px-2 py-1 rounded bg-[#FFFFFF] border border-[#D1D1D1] text-[#666666]" data-f="FLIP">Thức tỉnh / Quay xe (3)</button>
+          <button onclick="filterFaction('LOAN')" class="faction-filter-btn px-2 py-1 rounded bg-[#FFFFFF] border border-[#D1D1D1] text-[#666666]" data-f="LOAN">Phe Hồng Loan (3)</button>
+        </div>
+      </div>
+
+      <!-- TAB 1: NHÂN VẬT & PHE PHÁI -->
+      <div id="tab-content-characters" class="tab-view flex flex-col gap-2.5">
+        <div id="character-list" class="grid grid-cols-1 sm:grid-cols-2 gap-2.5"><div class="p-3 rounded-lg bg-[#F8F9FA] border border-[#D1D1D1] flex flex-col justify-between text-xs gap-2">
+            <div class="flex items-start justify-between gap-1.5 border-b border-[#D1D1D1] pb-1.5">
+              <div>
+                <h4 class="font-heading font-bold text-[13px] text-[#111111]">Ca sĩ Lê Thị Hồng Phượng</h4>
+                <span class="text-[11px] text-[#666666]">Cháu gái ruột / Phe Tốt, Hiền lành, Giữ nghề</span>
+              </div>
+              <span class="px-2 py-0.5 rounded text-[10px] font-semibold shrink-0 bg-green-50 text-[#1E8E3E] border border-green-200">Phe Tốt / Gia đình</span>
+            </div>
+            <ul class="space-y-1 text-[11px] leading-relaxed text-[#666666] list-disc pl-4">
+              <li><b class="text-[#111111]">Quá khứ:</b> Con nghệ sĩ Hồng Nhung &amp; Quang Minh; theo cậu Vũ Linh đi hát từ năm 8 tuổi. Năm 2021 được cậu gọi về ở nhà số 5 Đoàn Thị Điểm và quay clip giao quản lý nhà thờ cúng.</li>
+              <li><b class="text-[#1A73E8]">Hiện tại (2026):</b> Minishow 'Ơn đời, ơn người' (10/01/2026) và các đêm diễn tại sân khấu Kim Thái Hoàng (TP.HCM) đông kín khán giả ủng hộ. Ngày 07/11/2026 bị 1 phụ nữ quá khích gây rối ở An Giang và được Công an bảo vệ.</li>
+              <li><b class="text-[#111111]">Bản chất:</b> Lê Tín làm rõ cô rất hiền lành, từng khuyên mẹ rút đơn kiện, sao kê rõ 1,003 tỷ tiền phúng điếu, không đôi co chợ búa.</li>
+            </ul>
+          </div><div class="p-3 rounded-lg bg-[#F8F9FA] border border-[#D1D1D1] flex flex-col justify-between text-xs gap-2">
+            <div class="flex items-start justify-between gap-1.5 border-b border-[#D1D1D1] pb-1.5">
+              <div>
+                <h4 class="font-heading font-bold text-[13px] text-[#111111]">Nghệ sĩ Lê Tín</h4>
+                <span class="text-[11px] text-[#666666]">Phân tích Chuẩn xác &amp; Uy tín (Từ Mỹ)</span>
+              </div>
+              <span class="px-2 py-0.5 rounded text-[10px] font-semibold shrink-0 bg-blue-50 text-[#1A73E8] border border-blue-200">Phân tích Chuẩn</span>
+            </div>
+            <ul class="space-y-1 text-[11px] leading-relaxed text-[#666666] list-disc pl-4">
+              <li><b class="text-[#111111]">Quá khứ:</b> Nghệ sĩ cải lương Hồ Quảng &amp; danh hài hải ngoại (đóng cặp Kiều Oanh ở Paris By Night). Từng cắt 2/3 lá gan năm 2007, sống trọng nhân quả và giữ lửa cải lương tại Mỹ.</li>
+              <li><b class="text-[#1A73E8]">Hiện tại (2026):</b> Nguồn phân tích uy tín nhất vụ việc: vạch trần thói 'Phản bội lòng tin - Bội tín - Bất nghĩa' của ekip quanh Hồng Loan và minh oan cho sự hiền lành của Hồng Phượng.</li>
+              <li><b class="text-[#111111]">Bản chất:</b> Nhận định chuẩn xác 100%; tháng 7–8/2025 diễn viên Linh Tý phải công khai cúi đầu xin lỗi chú Lê Tín và gia đình Cô Sáu.</li>
+            </ul>
+          </div><div class="p-3 rounded-lg bg-[#F8F9FA] border border-[#D1D1D1] flex flex-col justify-between text-xs gap-2">
+            <div class="flex items-start justify-between gap-1.5 border-b border-[#D1D1D1] pb-1.5">
+              <div>
+                <h4 class="font-heading font-bold text-[13px] text-[#111111]">NS Võ Thị Hồng Nhung (Cô Sáu)</h4>
+                <span class="text-[11px] text-[#666666]">Em gái ruột Vũ Linh / Nguyên đơn</span>
+              </div>
+              <span class="px-2 py-0.5 rounded text-[10px] font-semibold shrink-0 bg-green-50 text-[#1E8E3E] border border-green-200">Phe Tốt / Gia đình</span>
+            </div>
+            <ul class="space-y-1 text-[11px] leading-relaxed text-[#666666] list-disc pl-4">
+              <li><b class="text-[#111111]">Quá khứ:</b> Cô đào cải lương có thanh sắc; từ năm 1973 đã thay Vũ Linh phụng dưỡng mẹ già, quán xuyến gia đình và chăm bẵm chính Hồng Loan từ nhỏ.</li>
+              <li><b class="text-[#1A73E8]">Hiện tại (2026):</b> Tòa sơ thẩm (01/2025) công nhận công lao 50 năm và chia 15% di sản. Tại tòa phúc thẩm (24/09/2026), bà từ chối 2 tỷ đồng của Loan, giữ kháng cáo xin giao nhà số 5 cho Hồng Phượng làm từ đường.</li>
+              <li><b class="text-[#111111]">Bản chất:</b> Khởi kiện vì uất ức khi bị con nuôi đuổi khỏi nhà ngay sau 49 ngày mất của anh trai.</li>
+            </ul>
+          </div><div class="p-3 rounded-lg bg-[#F8F9FA] border border-[#D1D1D1] flex flex-col justify-between text-xs gap-2">
+            <div class="flex items-start justify-between gap-1.5 border-b border-[#D1D1D1] pb-1.5">
+              <div>
+                <h4 class="font-heading font-bold text-[13px] text-[#111111]">NS Tiểu Linh (Võ Thành Nhiêu)</h4>
+                <span class="text-[11px] text-[#666666]">Chú Bảy / Em trai ruột Vũ Linh</span>
+              </div>
+              <span class="px-2 py-0.5 rounded text-[10px] font-semibold shrink-0 bg-green-50 text-[#1E8E3E] border border-green-200">Phe Tốt / Gia đình</span>
+            </div>
+            <ul class="space-y-1 text-[11px] leading-relaxed text-[#666666] list-disc pl-4">
+              <li><b class="text-[#111111]">Quá khứ:</b> Nghệ sĩ cải lương gạo cội, cả đời kính trọng anh Năm Vũ Linh và giữ gìn gia phong.</li>
+              <li><b class="text-[#1A73E8]">Hiện tại (2026):</b> Tháng 09/2023 tuyên bố từ mặt con gái ruột Bùm Bum vì bất hiếu, hùa theo đám đông chửi cô ruột. Ngày 24/09/2026 ngồi xe lăn đội mưa đến tòa phúc thẩm; chỉ diễn các show trang trọng của Hồng Phượng.</li>
+              <li><b class="text-[#111111]">Bản chất:</b> Trọng đạo nghĩa gia tộc hơn tiền bạc và trào lưu mạng xã hội.</li>
+            </ul>
+          </div><div class="p-3 rounded-lg bg-[#F8F9FA] border border-[#D1D1D1] flex flex-col justify-between text-xs gap-2">
+            <div class="flex items-start justify-between gap-1.5 border-b border-[#D1D1D1] pb-1.5">
+              <div>
+                <h4 class="font-heading font-bold text-[13px] text-[#111111]">Lê Trần Kim Nga (Bé Nga)</h4>
+                <span class="text-[11px] text-[#666666]">Người chăm sóc Vũ Linh 10 năm cuối đời</span>
+              </div>
+              <span class="px-2 py-0.5 rounded text-[10px] font-semibold shrink-0 bg-gray-100 text-[#111111] border border-gray-300">Tận tụy / Trung lập</span>
+            </div>
+            <ul class="space-y-1 text-[11px] leading-relaxed text-[#666666] list-disc pl-4">
+              <li><b class="text-[#111111]">Quá khứ:</b> Hy sinh tuổi xuân không lấy chồng để kề cận chăm sóc Vũ Linh hơn 10 năm theo lời gửi gắm của cố nhiếp ảnh gia Hoàng Vinh.</li>
+              <li><b class="text-[#1A73E8]">Hiện tại (2026):</b> Trong băng ghi âm 12 phút, chính Vũ Linh khen 'Bé Nga đi làm giấy tờ không tốn đồng nào' (đối lập với Hồng Loan gạt hơn 60 triệu). Sống lặng lẽ, được gia đình Hồng Phượng hết mực biết ơn.</li>
+              <li><b class="text-[#111111]">Bản chất:</b> Chứng nhân sống cho thấy ai mới là người thực sự thương yêu, chăm sóc cố nghệ sĩ.</li>
+            </ul>
+          </div><div class="p-3 rounded-lg bg-[#F8F9FA] border border-[#D1D1D1] flex flex-col justify-between text-xs gap-2">
+            <div class="flex items-start justify-between gap-1.5 border-b border-[#D1D1D1] pb-1.5">
+              <div>
+                <h4 class="font-heading font-bold text-[13px] text-[#111111]">Vợ chồng Linh Tý – Bích Trâm</h4>
+                <span class="text-[11px] text-[#666666]">Thức tỉnh, lật mặt Chị Ni &amp; Xin lỗi Hồng Phượng</span>
+              </div>
+              <span class="px-2 py-0.5 rounded text-[10px] font-semibold shrink-0 bg-orange-50 text-[#E37400] border border-orange-200">Thức tỉnh / Quay xe</span>
+            </div>
+            <ul class="space-y-1 text-[11px] leading-relaxed text-[#666666] list-disc pl-4">
+              <li><b class="text-[#111111]">Quá khứ:</b> Con trai nghệ sĩ Linh Tâm; suốt gần 3 năm đầu nghe lời xúi giục của phía Hồng Loan – Chị Ni để công kích gia đình Cô Sáu, Hồng Phượng và Lê Tín.</li>
+              <li><b class="text-[#1A73E8]">Hiện tại (2026):</b> Tháng 7–8/2025 thức tỉnh, lật bài ngửa về chuyện xấu của Chị Ni ở Malaysia và công khai xin lỗi Cô Sáu Hồng Nhung, em Hồng Phượng, chú Lê Tín, Vũ Luân, Phương Lê.</li>
+              <li><b class="text-[#111111]">Bản chất:</b> Mở quán Beefsteak Tê Tê hoàn lương, được Vũ Luân &amp; Phương Lê bao dung tha thứ.</li>
+            </ul>
+          </div><div class="p-3 rounded-lg bg-[#F8F9FA] border border-[#D1D1D1] flex flex-col justify-between text-xs gap-2">
+            <div class="flex items-start justify-between gap-1.5 border-b border-[#D1D1D1] pb-1.5">
+              <div>
+                <h4 class="font-heading font-bold text-[13px] text-[#111111]">Doanh nhân Kim Loan</h4>
+                <span class="text-[11px] text-[#666666]">Mẹ đỡ đầu công khai tố Hồng Loan 'Vô ơn'</span>
+              </div>
+              <span class="px-2 py-0.5 rounded text-[10px] font-semibold shrink-0 bg-orange-50 text-[#E37400] border border-orange-200">Thức tỉnh / Quay xe</span>
+            </div>
+            <ul class="space-y-1 text-[11px] leading-relaxed text-[#666666] list-disc pl-4">
+              <li><b class="text-[#111111]">Quá khứ:</b> Nhận Hồng Loan làm con nuôi đỡ đầu và hỗ trợ hết mình khi mới xảy ra tranh chấp.</li>
+              <li><b class="text-[#1A73E8]">Hiện tại (2026):</b> Tháng 05/2025, ngay tại tiệc sinh nhật 60 tuổi, bà tuyên bố cắt đứt quan hệ 'mẹ đỡ đầu' và tố thẳng Hồng Loan là 'kẻ vô ơn'.</li>
+              <li><b class="text-[#111111]">Bản chất:</b> Chứng minh lời cảnh báo trước đó của nghệ sĩ Lê Tín về sự 'bội tín, bất nghĩa' là hoàn toàn đúng.</li>
+            </ul>
+          </div><div class="p-3 rounded-lg bg-[#F8F9FA] border border-[#D1D1D1] flex flex-col justify-between text-xs gap-2">
+            <div class="flex items-start justify-between gap-1.5 border-b border-[#D1D1D1] pb-1.5">
+              <div>
+                <h4 class="font-heading font-bold text-[13px] text-[#111111]">Vũ Luân, Phương Lê &amp; Bình Tinh</h4>
+                <span class="text-[11px] text-[#666666]">Con nuôi nghệ thuật &amp; Hoa hậu từng hậu thuẫn</span>
+              </div>
+              <span class="px-2 py-0.5 rounded text-[10px] font-semibold shrink-0 bg-orange-50 text-[#E37400] border border-orange-200">Tách nhóm / Đối đầu</span>
+            </div>
+            <ul class="space-y-1 text-[11px] leading-relaxed text-[#666666] list-disc pl-4">
+              <li><b class="text-[#111111]">Quá khứ:</b> Giai đoạn 2023 đứng ra bảo vệ Hồng Loan vì thương NSƯT Vũ Linh.</li>
+              <li><b class="text-[#1A73E8]">Hiện tại (2026):</b> Bình Tinh rút lui khỏi drama từ 07/2024 để giữ bình yên. Vũ Luân và Phương Lê mâu thuẫn gay gắt, đối đầu trực diện với phe Chị Ni – Hồng Loan và tha lỗi cho vợ chồng Linh Tý (07/2025).</li>
+              <li><b class="text-[#111111]">Bản chất:</b> Không chấp nhận cách hành xử của ekip Chị Ni – Hồng Loan.</li>
+            </ul>
+          </div><div class="p-3 rounded-lg bg-[#F8F9FA] border border-[#D1D1D1] flex flex-col justify-between text-xs gap-2">
+            <div class="flex items-start justify-between gap-1.5 border-b border-[#D1D1D1] pb-1.5">
+              <div>
+                <h4 class="font-heading font-bold text-[13px] text-[#111111]">Võ Thị Hồng Loan (Bị đơn)</h4>
+                <span class="text-[11px] text-[#666666]">Con nuôi hợp pháp / Thừa nhận không có công đóng góp</span>
+              </div>
+              <span class="px-2 py-0.5 rounded text-[10px] font-semibold shrink-0 bg-red-50 text-[#D93025] border border-red-200">Phe Hồng Loan</span>
+            </div>
+            <ul class="space-y-1 text-[11px] leading-relaxed text-[#666666] list-disc pl-4">
+              <li><b class="text-[#111111]">Quá khứ:</b> Được ông Trần Quốc Thanh bồng về lúc 3 tháng tuổi, đứng tên con nuôi hợp pháp; lấy chồng ra riêng từ năm 17 tuổi.</li>
+              <li><b class="text-[#1A73E8]">Hiện tại (2026):</b> Sang tên toàn bộ di sản trước 49 ngày (07/04/2023) rồi đuổi cô ruột và em họ khỏi nhà. Tại tòa phúc thẩm (24/09/2026), không nộp ADN, thừa nhận không có công đóng góp vào di sản của cha và đề nghị đưa 2 tỷ đồng.</li>
+              <li><b class="text-[#111111]">Bản chất:</b> Kháng cáo đòi tước cả 15% công sức chăm sóc gia đình của Cô Sáu; bị mẹ đỡ đầu Kim Loan tố vô ơn.</li>
+            </ul>
+          </div><div class="p-3 rounded-lg bg-[#F8F9FA] border border-[#D1D1D1] flex flex-col justify-between text-xs gap-2">
+            <div class="flex items-start justify-between gap-1.5 border-b border-[#D1D1D1] pb-1.5">
+              <div>
+                <h4 class="font-heading font-bold text-[13px] text-[#111111]">Chị Ni (Phạm Thị Hồng Ni)</h4>
+                <span class="text-[11px] text-[#666666]">Đại diện của Hồng Loan / Vụ án tại Malaysia</span>
+              </div>
+              <span class="px-2 py-0.5 rounded text-[10px] font-semibold shrink-0 bg-red-50 text-[#D93025] border border-red-200">Phe Hồng Loan</span>
+            </div>
+            <ul class="space-y-1 text-[11px] leading-relaxed text-[#666666] list-disc pl-4">
+              <li><b class="text-[#111111]">Quá khứ:</b> Chỗ dựa lớn nhất điều phối truyền thông và bán hàng online cho Hồng Loan.</li>
+              <li><b class="text-[#1A73E8]">Hiện tại (2026):</b> Tháng 8–11/2024 bị cảnh sát bắt giữ và hầu tòa tại Malaysia (gắn liền với từ khóa 'con ăn cắp Malaysia'). Tháng 07/2025 bị Linh Tý vạch trần việc nói dối về sự cố ở Malaysia.</li>
+              <li><b class="text-[#111111]">Bản chất:</b> Tác nhân chính gây chia rẽ khiến các đồng minh cũ lần lượt quay lưng với Hồng Loan.</li>
+            </ul>
+          </div><div class="p-3 rounded-lg bg-[#F8F9FA] border border-[#D1D1D1] flex flex-col justify-between text-xs gap-2">
+            <div class="flex items-start justify-between gap-1.5 border-b border-[#D1D1D1] pb-1.5">
+              <div>
+                <h4 class="font-heading font-bold text-[13px] text-[#111111]">Bùm Bum (Võ Thùy Dung)</h4>
+                <span class="text-[11px] text-[#666666]">Con gái Tiểu Linh / 'Thảm họa Tiếng trống Mê Linh'</span>
+              </div>
+              <span class="px-2 py-0.5 rounded text-[10px] font-semibold shrink-0 bg-red-50 text-[#D93025] border border-red-200">Phe Hồng Loan</span>
+            </div>
+            <ul class="space-y-1 text-[11px] leading-relaxed text-[#666666] list-disc pl-4">
+              <li><b class="text-[#111111]">Quá khứ:</b> Cùng Thành Mỹ lên livestream nói xấu cô ruột Hồng Nhung để bán hàng cùng Hồng Loan, bị cha ruột Tiểu Linh tuyên bố từ mặt (09/2023).</li>
+              <li><b class="text-[#1A73E8]">Hiện tại (2026):</b> Tháng 3–4/2026 bị báo chí gọi là 'Thảm họa Bùm Bum' và bị Sở Văn hóa tuýt còi vì tự ý diễn 'chui' vai Trưng Trắc (Tiếng trống Mê Linh) với lối diễn ngô nghê, ngả ngớn dung tục.</li>
+              <li><b class="text-[#111111]">Bản chất:</b> Minh chứng cho việc không có chuyên môn nhưng dựa hơi danh tiếng cố NSƯT Vũ Linh để chạy show.</li>
+            </ul>
+          </div></div>
+      </div>
+
+      <!-- TAB 2: DÒNG THỜI GIAN 3.5 NĂM -->
+      <div id="tab-content-timeline" class="tab-view hidden flex flex-col gap-2.5">
+        <div class="p-2.5 bg-[#F8F9FA] rounded-lg border border-[#D1D1D1] text-xs text-[#666666] flex flex-wrap items-center justify-between gap-2">
+          <span><b>Trục sự kiện:</b> Tang lễ (03/2023) → Sơ thẩm (01/2025) → Minishow Hồng Phượng (01/2026) → Phúc thẩm (09–11/2026)</span>
+          <span class="text-[11px] px-2 py-0.5 rounded bg-blue-50 text-[#1A73E8] font-semibold border border-blue-200">10 cột mốc</span>
+        </div>
+        <div id="timeline-list" class="relative pl-4 border-l-2 border-[#888888] flex flex-col gap-2.5 ml-1.5"><div class="relative">
+            <div class="absolute -left-[21px] top-1.5 w-2.5 h-2.5 rounded-full bg-[#1A73E8] border-2 border-[#FFFFFF]"></div>
+            <div class="bg-[#F8F9FA] p-2.5 rounded-lg border border-[#D1D1D1] text-xs">
+              <div class="flex flex-wrap items-center justify-between gap-1 mb-1">
+                <span class="font-heading font-bold text-[#111111] text-xs">05/03/2023 — NSƯT Vũ Linh qua đời tại nhà số 5 Đoàn Thị Điểm</span>
+                <span class="px-1.5 py-0.5 rounded text-[10px] font-semibold bg-[#FFFFFF] border border-[#D1D1D1] text-[#111111]">Khởi phát</span>
+              </div>
+              <p class="text-[11px] text-[#666666] leading-relaxed">Cố nghệ sĩ qua đời sau thời gian được Kim Nga, Cô Sáu và Hồng Phượng chăm sóc. Hồng Phượng thay mặt gia đình ký hợp đồng BH Media để bảo vệ hình ảnh đám tang, thu ~89 triệu giao hết cho gia đình lo cúng thất.</p>
+            </div>
+          </div><div class="relative">
+            <div class="absolute -left-[21px] top-1.5 w-2.5 h-2.5 rounded-full bg-[#1A73E8] border-2 border-[#FFFFFF]"></div>
+            <div class="bg-[#F8F9FA] p-2.5 rounded-lg border border-[#D1D1D1] text-xs">
+              <div class="flex flex-wrap items-center justify-between gap-1 mb-1">
+                <span class="font-heading font-bold text-[#111111] text-xs">07/04/2023 – 05/2023 — Hồng Loan âm thầm sang tên di sản trước 49 ngày &amp; Đuổi người thân</span>
+                <span class="px-1.5 py-0.5 rounded text-[10px] font-semibold bg-[#FFFFFF] border border-[#D1D1D1] text-[#111111]">Đánh úp pháp lý</span>
+              </div>
+              <p class="text-[11px] text-[#666666] leading-relaxed">Khi cha mất mới 33 ngày, Hồng Loan đi công chứng khai nhận toàn bộ di sản (07/04/2023). Sau 49 ngày, cô báo công an, đổi khóa và vứt đồ đuổi mẹ con Cô Sáu – Hồng Phượng ra đường.</p>
+            </div>
+          </div><div class="relative">
+            <div class="absolute -left-[21px] top-1.5 w-2.5 h-2.5 rounded-full bg-[#1A73E8] border-2 border-[#FFFFFF]"></div>
+            <div class="bg-[#F8F9FA] p-2.5 rounded-lg border border-[#D1D1D1] text-xs">
+              <div class="flex flex-wrap items-center justify-between gap-1 mb-1">
+                <span class="font-heading font-bold text-[#111111] text-xs">06/2023 – 26/10/2023 — Kỳ Tòa 1–3, Băng ghi âm 12 phút &amp; Tiểu Linh từ mặt con</span>
+                <span class="px-1.5 py-0.5 rounded text-[10px] font-semibold bg-[#FFFFFF] border border-[#D1D1D1] text-[#111111]">Kỳ Tòa 1–3</span>
+              </div>
+              <p class="text-[11px] text-[#666666] leading-relaxed">Cô Sáu khởi kiện (Hồng Phượng khuyên mẹ rút đơn không thành) và công khai sao kê đám tang (thu 1,003 tỷ / chi 1,017 tỷ). Ngày 21/08/2023 lộ ghi âm 12 phút Vũ Linh trách Loan trộm tiền, gạt 60 triệu làm sổ hồng. Ngày 26/10/2023 Tòa thẩm định nhà số 5.</p>
+            </div>
+          </div><div class="relative">
+            <div class="absolute -left-[21px] top-1.5 w-2.5 h-2.5 rounded-full bg-[#1A73E8] border-2 border-[#FFFFFF]"></div>
+            <div class="bg-[#F8F9FA] p-2.5 rounded-lg border border-[#D1D1D1] text-xs">
+              <div class="flex flex-wrap items-center justify-between gap-1 mb-1">
+                <span class="font-heading font-bold text-[#111111] text-xs">26/06/2024 – 11/2024 — Kỳ Tòa 4–5, Chị Ni bị bắt ở Malaysia &amp; Lê Tín phân tích</span>
+                <span class="px-1.5 py-0.5 rounded text-[10px] font-semibold bg-[#FFFFFF] border border-[#D1D1D1] text-[#111111]">Kỳ Tòa 4–5</span>
+              </div>
+              <p class="text-[11px] text-[#666666] leading-relaxed">Tòa Cầu Giấy (Hà Nội) xử hủy hợp đồng BH Media do vấn đề chủ thể ký. Từ tháng 8–11/2024, Chị Ni bị bắt và hầu tòa tại Malaysia. Nghệ sĩ Lê Tín lên sóng vạch trần sự 'Bội tín - Bất nghĩa' của nhóm lợi dụng Hồng Loan.</p>
+            </div>
+          </div><div class="relative">
+            <div class="absolute -left-[21px] top-1.5 w-2.5 h-2.5 rounded-full bg-[#1A73E8] border-2 border-[#FFFFFF]"></div>
+            <div class="bg-[#F8F9FA] p-2.5 rounded-lg border border-[#D1D1D1] text-xs">
+              <div class="flex flex-wrap items-center justify-between gap-1 mb-1">
+                <span class="font-heading font-bold text-[#111111] text-xs">07/01/2025 – 17/01/2025 — Kỳ Tòa 6 (Sơ thẩm): Chia 15% công sức cho Cô Sáu Hồng Nhung</span>
+                <span class="px-1.5 py-0.5 rounded text-[10px] font-semibold bg-[#FFFFFF] border border-[#D1D1D1] text-[#111111]">Kỳ Tòa 6 (Sơ thẩm)</span>
+              </div>
+              <p class="text-[11px] text-[#666666] leading-relaxed">TAND TP.HCM xác định Hồng Loan là con nuôi hợp pháp (85%), nhưng ghi nhận công lao bà Hồng Nhung chăm sóc mẹ già và gia đình từ 1973 nên áp dụng Án lệ 05 chia 15% di sản. Ngày 17/01/2025, Loan kháng cáo đòi giữ trọn 100%.</p>
+            </div>
+          </div><div class="relative">
+            <div class="absolute -left-[21px] top-1.5 w-2.5 h-2.5 rounded-full bg-[#1A73E8] border-2 border-[#FFFFFF]"></div>
+            <div class="bg-[#F8F9FA] p-2.5 rounded-lg border border-[#D1D1D1] text-xs">
+              <div class="flex flex-wrap items-center justify-between gap-1 mb-1">
+                <span class="font-heading font-bold text-[#111111] text-xs">05/2025 – 08/2025 — Kim Loan tố Hồng Loan 'Vô ơn' &amp; Linh Tý xin lỗi Hồng Phượng, Lê Tín</span>
+                <span class="px-1.5 py-0.5 rounded text-[10px] font-semibold bg-[#FFFFFF] border border-[#D1D1D1] text-[#111111]">Đồng minh quay xe</span>
+              </div>
+              <p class="text-[11px] text-[#666666] leading-relaxed">Tháng 5/2025, mẹ đỡ đầu Kim Loan tuyên bố từ mặt và tố Hồng Loan vô ơn tại tiệc sinh nhật 60 tuổi. Tháng 7–8/2025, diễn viên Linh Tý lật mặt Chị Ni vụ Malaysia và công khai xin lỗi Cô Sáu, Hồng Phượng, chú Lê Tín.</p>
+            </div>
+          </div><div class="relative">
+            <div class="absolute -left-[21px] top-1.5 w-2.5 h-2.5 rounded-full bg-[#1A73E8] border-2 border-[#FFFFFF]"></div>
+            <div class="bg-[#F8F9FA] p-2.5 rounded-lg border border-[#D1D1D1] text-xs">
+              <div class="flex flex-wrap items-center justify-between gap-1 mb-1">
+                <span class="font-heading font-bold text-[#111111] text-xs">10/01/2026 — Hồng Phượng thắng lớn với Minishow 'Ơn đời, ơn người'</span>
+                <span class="px-1.5 py-0.5 rounded text-[10px] font-semibold bg-[#FFFFFF] border border-[#D1D1D1] text-[#111111]">Minh oan &amp; Tỏa sáng</span>
+              </div>
+              <p class="text-[11px] text-[#666666] leading-relaxed">Tối 10/01/2026, ca sĩ Hồng Phượng tổ chức thành công rực rỡ Minishow 'Ơn đời, ơn người' (quy tụ 3 thế hệ gia đình cùng dàn sao) và biểu diễn thường xuyên tại sân khấu Kim Thái Hoàng (TP.HCM), được khán giả ủng hộ nồng nhiệt.</p>
+            </div>
+          </div><div class="relative">
+            <div class="absolute -left-[21px] top-1.5 w-2.5 h-2.5 rounded-full bg-[#1A73E8] border-2 border-[#FFFFFF]"></div>
+            <div class="bg-[#F8F9FA] p-2.5 rounded-lg border border-[#D1D1D1] text-xs">
+              <div class="flex flex-wrap items-center justify-between gap-1 mb-1">
+                <span class="font-heading font-bold text-[#111111] text-xs">03/2026 – 04/2026 — 'Thảm họa Bùm Bum' bị Sở Văn hóa tuýt còi vì diễn chui</span>
+                <span class="px-1.5 py-0.5 rounded text-[10px] font-semibold bg-[#FFFFFF] border border-[#D1D1D1] text-[#111111]">Scandal văn hóa</span>
+              </div>
+              <p class="text-[11px] text-[#666666] leading-relaxed">Bùm Bum (Võ Thùy Dung) và Hồng Loan đua nhau đi hát thương mại dù không có chuyên môn. Bùm Bum diễn 'chui' trích đoạn Tiếng trống Mê Linh ngả ngớn dung tục, bị báo chí lên án và Sở Văn hóa xử lý.</p>
+            </div>
+          </div><div class="relative">
+            <div class="absolute -left-[21px] top-1.5 w-2.5 h-2.5 rounded-full bg-[#1A73E8] border-2 border-[#FFFFFF]"></div>
+            <div class="bg-[#F8F9FA] p-2.5 rounded-lg border border-[#D1D1D1] text-xs">
+              <div class="flex flex-wrap items-center justify-between gap-1 mb-1">
+                <span class="font-heading font-bold text-[#111111] text-xs">06/2026 – 19/08/2026 — Kỳ Tòa 7–8: Hai lần hoãn Phúc thẩm &amp; Thẩm định giá tài sản</span>
+                <span class="px-1.5 py-0.5 rounded text-[10px] font-semibold bg-[#FFFFFF] border border-[#D1D1D1] text-[#111111]">Kỳ Tòa 7–8</span>
+              </div>
+              <p class="text-[11px] text-[#666666] leading-relaxed">Phúc thẩm hoãn lần 1 (06/2026) do Hồng Loan nhập viện; hoãn lần 2 do vắng đại diện UBND P. Cầu Kiệu. Ngày 15–19/08/2026 hoàn tất thẩm định giá nhà số 5 Đoàn Thị Điểm và xe ô tô.</p>
+            </div>
+          </div><div class="relative">
+            <div class="absolute -left-[21px] top-1.5 w-2.5 h-2.5 rounded-full bg-[#1A73E8] border-2 border-[#FFFFFF]"></div>
+            <div class="bg-[#F8F9FA] p-2.5 rounded-lg border border-[#D1D1D1] text-xs">
+              <div class="flex flex-wrap items-center justify-between gap-1 mb-1">
+                <span class="font-heading font-bold text-[#111111] text-xs">24/09/2026 – 11/2026 — Kỳ Tòa 9 (Phúc thẩm): Tạm dừng định giá đất &amp; Hiện trạng mới nhất</span>
+                <span class="px-1.5 py-0.5 rounded text-[10px] font-semibold bg-[#FFFFFF] border border-[#D1D1D1] text-[#111111]">Kỳ Tòa 9 &amp; Hiện tại</span>
+              </div>
+              <p class="text-[11px] text-[#666666] leading-relaxed">Tại tòa ngày 24/09/2026, Hồng Loan thừa nhận không có công đóng góp vào di sản của cha, đề nghị hỗ trợ 2 tỷ đồng nhưng Cô Sáu từ chối. Tòa tạm dừng để định giá lại 3.007 m² đất Thủ Đức (vướng quy hoạch chỉ còn ~122 m²). Ngày 07/11/2026, Hồng Phượng trình báo công an vụ bị gây rối khi đi diễn ở An Giang.</p>
+            </div>
+          </div></div>
+      </div>
+
+      <!-- TAB 3: GIẢI MÃ TỪ LÓNG & GÓC NHÌN LÊ TÍN -->
+      <div id="tab-content-slang" class="tab-view hidden flex flex-col gap-2.5">
+        <div id="slang-list" class="grid grid-cols-1 gap-2.5"><div class="p-3 bg-[#F8F9FA] rounded-lg border border-[#D1D1D1] flex flex-col gap-1.5 text-xs">
+            <div class="flex flex-wrap items-center justify-between gap-1 border-b border-[#D1D1D1] pb-1">
+              <span class="font-heading font-bold text-xs sm:text-[13px] text-[#D93025]">1. Góc nhìn Lê Tín: Hồng Phượng là 'Phe Tốt, Hiền Lành'</span>
+              <span class="text-[11px] text-[#666666] italic">Minh oan cho người nghệ sĩ chân chính bị truyền thông bẩn vu khống</span>
+            </div>
+            <ul class="list-disc pl-4 space-y-1 text-[11px] text-[#111111] leading-relaxed">
+              <li>Lê Tín phân tích rõ Hồng Phượng theo cậu đi hát từ năm 8 tuổi, được cậu Vũ Linh tin tưởng gọi về ở cùng năm 2021 và quay clip giao quản lý nhà thờ cúng.</li><li>Khi nổ ra kiện tụng, chính Hồng Phượng khuyên mẹ rút đơn; suốt 3,5 năm bị tấn công mạng vẫn giữ lời ăn tiếng nói lễ phép, không chửi bới ai.</li><li>Khán giả hiểu ra sự thật đã đến ủng hộ chật kín tại Minishow 'Ơn đời, ơn người' (10/01/2026) và sân khấu Kim Thái Hoàng.</li>
+            </ul>
+          </div><div class="p-3 bg-[#F8F9FA] rounded-lg border border-[#D1D1D1] flex flex-col gap-1.5 text-xs">
+            <div class="flex flex-wrap items-center justify-between gap-1 border-b border-[#D1D1D1] pb-1">
+              <span class="font-heading font-bold text-xs sm:text-[13px] text-[#D93025]">2. 'Con nuôi' (Không ADN &amp; Thừa nhận không có công sức)</span>
+              <span class="text-[11px] text-[#666666] italic">Sự thật pháp lý được làm rõ tại phiên Phúc thẩm ngày 24/09/2026</span>
+            </div>
+            <ul class="list-disc pl-4 space-y-1 text-[11px] text-[#111111] leading-relaxed">
+              <li>Năm 2023, phe Hồng Loan tung tin đồn có ADN con ruột để kích động đám đông chửi Hồng Phượng khi Phượng nói Loan là con nuôi.</li><li>Tại tòa Phúc thẩm (24/09/2026), Hồng Loan xác nhận không bổ sung ADN và chính thức thừa nhận 'không có công sức đóng góp vào khối di sản của cố NSƯT Vũ Linh'.</li><li>Loan chỉ được hưởng quyền lợi nhờ đứng tên trên tờ giấy nhận con nuôi hợp pháp do Vũ Linh làm lúc nhỏ.</li>
+            </ul>
+          </div><div class="p-3 bg-[#F8F9FA] rounded-lg border border-[#D1D1D1] flex flex-col gap-1.5 text-xs">
+            <div class="flex flex-wrap items-center justify-between gap-1 border-b border-[#D1D1D1] pb-1">
+              <span class="font-heading font-bold text-xs sm:text-[13px] text-[#D93025]">3. 'Con ăn cắp' (Ghi âm 12 phút) &amp; 'Con ăn cắp Malaysia' (Chị Ni)</span>
+              <span class="text-[11px] text-[#666666] italic">Hai sự việc thật liên quan đến Hồng Loan và người đại diện Chị Ni</span>
+            </div>
+            <ul class="list-disc pl-4 space-y-1 text-[11px] text-[#111111] leading-relaxed">
+              <li>Băng ghi âm 12 phút (21/08/2023): Soạn giả Vân Tiên công bố băng ghi âm thật giọng Vũ Linh than phiền Hồng Loan lấy trộm tiền và gạt ông hơn 60 triệu đồng làm sổ hồng (trong khi khen Kim Nga làm không tốn đồng nào).</li><li>Vụ Malaysia (08–11/2024): Chị Ni (chỗ dựa của Hồng Loan) bị cảnh sát bắt và hầu tòa tại Malaysia; các kênh đối lập gọi là đi ăn cắp bị đi 'ủ tờ' (ở tù).</li><li>Tháng 07/2025: Chính đồng minh thân cận là diễn viên Linh Tý đã lật bài ngửa, khẳng định 'chuyện xấu của chị Ni bên Malaysia không phải như Ni nói dóc'.</li>
+            </ul>
+          </div><div class="p-3 bg-[#F8F9FA] rounded-lg border border-[#D1D1D1] flex flex-col gap-1.5 text-xs">
+            <div class="flex flex-wrap items-center justify-between gap-1 border-b border-[#D1D1D1] pb-1">
+              <span class="font-heading font-bold text-xs sm:text-[13px] text-[#D93025]">4. 'Người vô ơn' (Mẹ đỡ đầu Kim Loan &amp; Đồng minh tố cáo)</span>
+              <span class="text-[11px] text-[#666666] italic">Chiếc mặt nạ đạo đức rơi xuống khi các ân nhân lần lượt quay lưng</span>
+            </div>
+            <ul class="list-disc pl-4 space-y-1 text-[11px] text-[#111111] leading-relaxed">
+              <li>Với gia tộc: Đuổi cô ruột Hồng Nhung và em họ ra khỏi nhà ngay sau 49 ngày cha mất; kháng cáo đòi tước cả 15% công sức chăm sóc mẹ già 50 năm của Cô Sáu.</li><li>Với ân nhân: Lần lượt quay lưng với Lê Tín, Vũ Luân, Phương Lê, Linh Tý sau khi đã đạt mục đích thương mại.</li><li>Đỉnh điểm tháng 05/2025: Doanh nhân Kim Loan tuyên bố chấm dứt làm 'mẹ đỡ đầu' tại tiệc sinh nhật 60 tuổi và thẳng thừng tố Hồng Loan là 'kẻ vô ơn'.</li>
+            </ul>
+          </div><div class="p-3 bg-[#F8F9FA] rounded-lg border border-[#D1D1D1] flex flex-col gap-1.5 text-xs">
+            <div class="flex flex-wrap items-center justify-between gap-1 border-b border-[#D1D1D1] pb-1">
+              <span class="font-heading font-bold text-xs sm:text-[13px] text-[#D93025]">5. Minishow 'Ơn đời, ơn người' vs 'Thảm họa Bùm Bum'</span>
+              <span class="text-[11px] text-[#666666] italic">Sự đối lập giữa lao động nghệ thuật chân chính và đám đông hát chui</span>
+            </div>
+            <ul class="list-disc pl-4 space-y-1 text-[11px] text-[#111111] leading-relaxed">
+              <li>Hồng Phượng: Đầu tư nghiêm túc cho Minishow 'Ơn đời, ơn người' (10/01/2026) quy tụ 3 thế hệ cải lương họ Võ và biểu diễn tại sân khấu Kim Thái Hoàng được khán giả yêu mến.</li><li>Bùm Bum &amp; Hồng Loan: Không có chuyên môn nhưng lợi dụng drama nhận show đi hát; tháng 3–4/2026 Bùm Bum diễn 'chui' phá nát vở Tiếng trống Mê Linh, bị Sở Văn hóa tuýt còi và báo chí gọi là 'Thảm họa'.</li>
+            </ul>
+          </div></div>
+      </div>
+
+      <!-- TAB 4: DIỄN BIẾN TÂM LÝ -->
+      <div id="tab-content-psychology" class="tab-view hidden flex flex-col gap-2.5">
+        <div id="psychology-list" class="flex flex-col gap-2.5"><div class="p-3 bg-[#F8F9FA] rounded-lg border border-[#D1D1D1] flex flex-col gap-2 text-xs">
+            <div class="flex flex-wrap items-center justify-between gap-1 border-b border-[#D1D1D1] pb-1.5">
+              <h4 class="font-heading font-bold text-xs sm:text-[13px] text-[#111111]">1. Ca sĩ Hồng Phượng &amp; Gia đình Cô Sáu (Phe Tốt)</h4>
+              <span class="text-[11px] text-[#1A73E8] font-medium">Động cơ: Giữ di nguyện hòa thuận của cậu Năm, bảo vệ nhà từ đường &amp; nối nghiệp cải lương</span>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-2 text-[11px]">
+              <div class="p-2 bg-[#FFFFFF] rounded border border-[#D1D1D1] text-[#666666] leading-relaxed">2023: Đau buồn lo tang lễ chu toàn, sao kê minh bạch 1,003 tỷ đồng; bàng hoàng khi bị đuổi khỏi nhà sau 49 ngày.</div>
+              <div class="p-2 bg-[#FFFFFF] rounded border border-[#D1D1D1] text-[#666666] leading-relaxed">2024–2025: Nhẫn nhịn chịu đựng bạo lực mạng, không chửi bới đáp trả; Cô Sáu được Tòa Sơ thẩm ghi nhận 15% công sức.</div>
+              <div class="p-2 bg-[#FFFFFF] rounded border border-[#D1D1D1] text-[#111111] font-medium leading-relaxed">2026: Vực dậy mạnh mẽ qua Minishow 'Ơn đời, ơn người' (10/01/2026) và sân khấu Kim Thái Hoàng trong sự yêu thương của khán giả.</div>
+            </div>
+          </div><div class="p-3 bg-[#F8F9FA] rounded-lg border border-[#D1D1D1] flex flex-col gap-2 text-xs">
+            <div class="flex flex-wrap items-center justify-between gap-1 border-b border-[#D1D1D1] pb-1.5">
+              <h4 class="font-heading font-bold text-xs sm:text-[13px] text-[#111111]">2. Nghệ sĩ Lê Tín &amp; Khán giả Tỉnh táo</h4>
+              <span class="text-[11px] text-[#1A73E8] font-medium">Động cơ: Bảo vệ lẽ phải, đạo lý sân khấu cải lương Hồ Quảng và luật Nhân quả</span>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-2 text-[11px]">
+              <div class="p-2 bg-[#FFFFFF] rounded border border-[#D1D1D1] text-[#666666] leading-relaxed">2023: Quan sát khách quan, nhắc nhở các bên giữ gìn danh dự cho cố NSƯT Vũ Linh.</div>
+              <div class="p-2 bg-[#FFFFFF] rounded border border-[#D1D1D1] text-[#666666] leading-relaxed">2024–2025: Sớm nhận ra sự thao túng của ekip Chị Ni, làm loạt clip vạch trần sự 'Phản bội lòng tin - Bội tín - Bất nghĩa'.</div>
+              <div class="p-2 bg-[#FFFFFF] rounded border border-[#D1D1D1] text-[#111111] font-medium leading-relaxed">2026: Những phân tích về sự hiền lành của Hồng Phượng hoàn toàn ứng nghiệm; được Linh Tý công khai xin lỗi.</div>
+            </div>
+          </div><div class="p-3 bg-[#F8F9FA] rounded-lg border border-[#D1D1D1] flex flex-col gap-2 text-xs">
+            <div class="flex flex-wrap items-center justify-between gap-1 border-b border-[#D1D1D1] pb-1.5">
+              <h4 class="font-heading font-bold text-xs sm:text-[13px] text-[#111111]">3. Hồng Loan, Chị Ni &amp; Bùm Bum</h4>
+              <span class="text-[11px] text-[#1A73E8] font-medium">Động cơ: Thâu tóm trọn vẹn di sản &amp; tận dụng sức nóng mạng xã hội để bán hàng, chạy show</span>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-2 text-[11px]">
+              <div class="p-2 bg-[#FFFFFF] rounded border border-[#D1D1D1] text-[#666666] leading-relaxed">2023: Đóng vai nạn nhân lấy lòng thương hại của đám đông nhưng âm thầm sang tên sổ đỏ khi cha mất chưa đầy 49 ngày.</div>
+              <div class="p-2 bg-[#FFFFFF] rounded border border-[#D1D1D1] text-[#666666] leading-relaxed">2024–2025: Xung đột lợi ích, quay lưng với các ân nhân cũ (Kim Loan, Vũ Luân, Phương Lê, Linh Tý); Chị Ni bị bắt ở Malaysia.</div>
+              <div class="p-2 bg-[#FFFFFF] rounded border border-[#D1D1D1] text-[#111111] font-medium leading-relaxed">2026: Tại tòa phúc thẩm (24/09/2026) phải thừa nhận không có công đóng góp vào di sản; bị chỉ trích nặng nề vì vụ hát chui 'Thảm họa Bùm Bum'.</div>
+            </div>
+          </div></div>
+      </div>
+
+      <!-- TAB 5: 9 KỲ TÒA ÁN & TÀI SẢN -->
+      <div id="tab-content-court" class="tab-view hidden flex flex-col gap-3">
+        <!-- Chart Container -->
+        <div class="bg-[#F8F9FA] p-3 rounded-lg border border-[#D1D1D1] flex flex-col gap-2">
+          <div class="flex flex-wrap items-center justify-between gap-1">
+            <div>
+              <h4 class="font-heading text-xs sm:text-sm font-bold text-[#111111]">Tỷ lệ Phân chia Di sản qua các Giai đoạn</h4>
+              <p class="text-[11px] text-[#666666]">Đối chiếu Phán quyết Sơ thẩm (01/2025) và Yêu cầu Phúc thẩm (09/2026)</p>
+            </div>
+            <div class="flex items-center gap-2.5 text-[11px] text-[#666666]">
+              <span class="inline-flex items-center gap-1"><span class="w-2.5 h-2.5 rounded-sm bg-[#1A73E8]"></span> Hồng Loan</span>
+              <span class="inline-flex items-center gap-1"><span class="w-2.5 h-2.5 rounded-sm bg-[#D93025]"></span> Cô Sáu &amp; Chú Bảy</span>
+            </div>
+          </div>
+          <div class="relative w-full h-44 min-h-0">
+            <canvas id="disputeChart"></canvas>
+          </div>
+        </div>
+
+        <!-- 9 Kỳ Tòa & Lộ trình Kỳ 10 -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5 text-xs">
+          <div class="p-3 bg-[#F8F9FA] rounded-lg border border-[#D1D1D1]">
+            <h5 class="font-heading font-bold text-[#111111] mb-1.5 flex items-center gap-1">
+              <span class="material-symbols-outlined text-[#1A73E8]">event_available</span>
+              <span>9 Kỳ Tòa đã diễn ra (06/2023 – 09/2026)</span>
+            </h5>
+            <ul class="space-y-1 text-[11px] text-[#666666] list-disc pl-4 leading-relaxed">
+              <li><b class="text-[#111111]">Kỳ 1 (06/2023):</b> TAND Q. Phú Nhuận thụ lý đơn kiện của Cô Sáu.</li>
+              <li><b class="text-[#111111]">Kỳ 2 (08/2023):</b> Thụ lý đơn phản tố đòi nhà của Hồng Loan.</li>
+              <li><b class="text-[#111111]">Kỳ 3 (26/10/2023):</b> Thẩm định tại chỗ nhà số 5 Đoàn Thị Điểm.</li>
+              <li><b class="text-[#111111]">Kỳ 4 (26/06/2024):</b> Tòa Cầu Giấy (Hà Nội) xử hủy hợp đồng BH Media.</li>
+              <li><b class="text-[#111111]">Kỳ 5 (2024):</b> Hòa giải tại TAND TP.HCM (cả 2 bên không thỏa thuận).</li>
+              <li><b class="text-[#111111]">Kỳ 6 (07/01/2025 - Sơ thẩm):</b> Tuyên Loan 85%, Cô Sáu 15% công sức chăm lo gia đình từ 1973 (Án lệ 05).</li>
+              <li><b class="text-[#111111]">Kỳ 7 (06/2026 - Phúc thẩm 1):</b> Hoãn do Hồng Loan nhập viện.</li>
+              <li><b class="text-[#111111]">Kỳ 8 (08/2026 - Phúc thẩm 2):</b> Hoãn do vắng UBND P. Cầu Kiệu; ngày 15–19/08 thẩm định giá nhà &amp; xe.</li>
+              <li><b class="text-[#111111]">Kỳ 9 (24/09/2026 - Phúc thẩm 3):</b> Loan nhận không có công đóng góp, đề nghị đưa 2 tỷ; Tòa tạm dừng để định giá lại đất Thủ Đức.</li>
+            </ul>
+          </div>
+
+          <div class="p-3 bg-[#F8F9FA] rounded-lg border border-[#D1D1D1]">
+            <h5 class="font-heading font-bold text-[#111111] mb-1.5 flex items-center gap-1">
+              <span class="material-symbols-outlined text-[#1E8E3E]">upcoming</span>
+              <span>Kỳ Tòa Tiếp theo &amp; Dự báo Kết quả</span>
+            </h5>
+            <ul class="space-y-1.5 text-[11px] text-[#666666] list-disc pl-4 leading-relaxed">
+              <li><b class="text-[#111111]">Đo đạc &amp; Định giá lại Đất (Cuối 2026):</b> Xác minh 3.007 m² đất Thủ Đức (định giá cũ &gt;17 tỷ) nay vướng quy hoạch ~2.885 m², chỉ còn ~122 m² sử dụng được.</li>
+              <li><b class="text-[#111111]">Kỳ 10 (Mở lại Phúc thẩm &amp; Tuyên án):</b> TAND Tối cao tại TP.HCM tuyên án chung thẩm có hiệu lực ngay.</li>
+              <li><b class="text-[#111111]">Khả năng 1 (~55%):</b> Giữ nguyên 15% công sức cho Cô Sáu tính trên bảng định giá mới (vì Loan thừa nhận không có công đóng góp).</li>
+              <li><b class="text-[#111111]">Khả năng 2 (~35%):</b> Ấn định mức thanh toán tiền mặt cố định (từ 2 tỷ đồng) cho Cô Sáu &amp; Chú Bảy để dứt điểm.</li>
+              <li><b class="text-[#111111]">Khả năng 3 (~10%):</b> Hòa giải giữ nguyên nhà số 5 làm từ đường thờ cúng Vũ Linh, không mua bán.</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Bóc tách 4 Tài sản -->
+        <div id="assets-breakdown" class="grid grid-cols-1 sm:grid-cols-2 gap-2.5"><div class="p-2.5 bg-[#F8F9FA] rounded-lg border border-[#D1D1D1] flex flex-col justify-between gap-1 text-xs">
+            <div class="flex items-center justify-between gap-1">
+              <span class="font-heading font-bold text-[#111111] text-xs">1. Nhà &amp; Đất số 5 Đoàn Thị Điểm (P. Cầu Kiệu)</span>
+              <span class="px-1.5 py-0.5 rounded bg-[#FFFFFF] border border-[#D1D1D1] font-semibold text-[#1A73E8] text-[10px] shrink-0">Từ đường thờ cúng</span>
+            </div>
+            <p class="text-[11px] text-[#666666] leading-relaxed">Hồng Loan đã sang tên (04/2023) và giữ làm nơi thờ cha, không bán; Cô Sáu kháng cáo đề nghị giao cho Hồng Phượng quản lý thờ cúng theo clip vi bằng năm 2021 của Vũ Linh.</p>
+          </div><div class="p-2.5 bg-[#F8F9FA] rounded-lg border border-[#D1D1D1] flex flex-col justify-between gap-1 text-xs">
+            <div class="flex items-center justify-between gap-1">
+              <span class="font-heading font-bold text-[#111111] text-xs">2. Đất 3.007 m² tại Thủ Đức (Thửa 87 &amp; 88)</span>
+              <span class="px-1.5 py-0.5 rounded bg-[#FFFFFF] border border-[#D1D1D1] font-semibold text-[#1A73E8] text-[10px] shrink-0">Đang định giá lại</span>
+            </div>
+            <p class="text-[11px] text-[#666666] leading-relaxed">Định giá sơ thẩm cũ &gt;17 tỷ đồng. Tại tòa phúc thẩm (24/09/2026), phát hiện vướng quy hoạch ~2.885 m², chỉ còn ~122 m² sử dụng được nên Tòa tạm dừng để định giá lại.</p>
+          </div><div class="p-2.5 bg-[#F8F9FA] rounded-lg border border-[#D1D1D1] flex flex-col justify-between gap-1 text-xs">
+            <div class="flex items-center justify-between gap-1">
+              <span class="font-heading font-bold text-[#111111] text-xs">3. Tiền Tang lễ, Xây mộ &amp; Két sắt</span>
+              <span class="px-1.5 py-0.5 rounded bg-[#FFFFFF] border border-[#D1D1D1] font-semibold text-[#1A73E8] text-[10px] shrink-0">Thu 1,003 tỷ / Chi 1,017 tỷ</span>
+            </div>
+            <p class="text-[11px] text-[#666666] leading-relaxed">Hồng Phượng đã công khai chi tiết từng khoản thu chi đám tang và xây mộ (bù lỗ 14 triệu đồng) cùng 4.200 USD kiểm thực tế ngày 25/03/2023.</p>
+          </div><div class="p-2.5 bg-[#F8F9FA] rounded-lg border border-[#D1D1D1] flex flex-col justify-between gap-1 text-xs">
+            <div class="flex items-center justify-between gap-1">
+              <span class="font-heading font-bold text-[#111111] text-xs">4. Xe ô tô Toyota cũ &amp; Hợp đồng BH Media</span>
+              <span class="px-1.5 py-0.5 rounded bg-[#FFFFFF] border border-[#D1D1D1] font-semibold text-[#1A73E8] text-[10px] shrink-0">Xe cũ / BH Media 89tr</span>
+            </div>
+            <p class="text-[11px] text-[#666666] leading-relaxed">Xe ô tô đã thẩm định giá tháng 8/2026 (giá trị thấp). Hợp đồng BH Media 89 triệu đồng (đã giao lo lễ cúng) bị Tòa Cầu Giấy tuyên hủy năm 2024 do vấn đề chủ thể ký.</p>
+          </div></div>
+      </div>
+
+      <!-- TAB 6: CÁCH CẬP NHẬT THÔNG TIN MỚI & LẤY CODE -->
+      <div id="tab-content-update" class="tab-view hidden flex flex-col gap-3 text-xs">
+        <div class="p-3.5 bg-[#F8F9FA] rounded-lg border border-[#D1D1D1] flex flex-col gap-2.5">
+          <h4 class="font-heading text-sm font-bold text-[#111111] flex items-center gap-1.5">
+            <span class="material-symbols-outlined text-[#1A73E8]">update</span>
+            <span>Hướng dẫn Cập nhật Thông tin Mới sau Vài tuần (Khi có Phiên tòa mới)</span>
+          </h4>
+          <p class="text-[#666666] leading-relaxed">
+            Vì phiên tòa Phúc thẩm đang tạm dừng để định giá lại khu đất 3.007 m² ở Thủ Đức, sau vài tuần hoặc vài tháng tới sẽ có kết quả định giá và phán quyết mới. Bạn chỉ cần làm đúng 3 bước sau để cập nhật trang HTML này:
+          </p>
+          <ol class="list-decimal pl-5 space-y-2 text-[#111111] leading-relaxed">
+            <li>
+              <b>Bước 1 (Mở lại đúng phiên làm việc này):</b> Nhấn trực tiếp vào đường dẫn lưu trữ ở cuối trang:<br>
+              <a href="https://gemini.google.com/app/ac5090ccabc1553a" target="_blank" rel="noopener noreferrer" class="inline-block mt-1 px-2.5 py-1 rounded bg-blue-50 text-[#1A73E8] font-semibold border border-blue-200 underline break-all">
+                https://gemini.google.com/app/ac5090ccabc1553a
+              </a>
+            </li>
+            <li>
+              <b>Bước 2 (Dán câu lệnh yêu cầu cập nhật):</b> Bấm nút <b>"Copy Câu Lệnh Cập Nhật"</b> bên dưới và gửi vào khung chat để hệ thống tự động tra cứu báo chí mới nhất và bổ sung vào mảng dữ liệu <code>DRAMA_DATA</code>.
+            </li>
+            <li>
+              <b>Bước 3 (Lưu lại trang mới):</b> Bấm nút <b>"Tải File .HTML"</b> hoặc <b>"Copy Code HTML"</b> ở góc trên cùng để lưu file <code>cam-nang-vu-linh.html</code> vào điện thoại/máy tính mở xem bất cứ lúc nào.
+            </li>
+          </ol>
+
+          <div class="p-2.5 bg-[#FFFFFF] rounded border border-[#D1D1D1] flex flex-col gap-2 mt-1">
+            <div class="flex items-center justify-between">
+              <span class="font-bold text-[11px] text-[#666666] uppercase">Câu lệnh (Prompt) mẫu để dán vào Gemini khi cần cập nhật:</span>
+              <button onclick="copyUpdatePrompt()" id="btn-copy-prompt" class="inline-flex items-center gap-1 px-2.5 py-1 rounded bg-[#1A73E8] text-white text-[11px] font-semibold hover:bg-blue-700 transition">
+                <span class="material-symbols-outlined">content_copy</span>
+                <span>Copy Câu Lệnh Cập Nhật</span>
+              </button>
+            </div>
+            <pre id="update-prompt-text" class="text-[11px] text-[#111111] bg-[#F8F9FA] p-2 rounded border border-[#D1D1D1] whitespace-pre-wrap font-mono leading-relaxed">Hãy tìm kiếm thông tin mới nhất từ tháng 11/2026 đến hiện tại về vụ án tranh chấp di sản cố NSƯT Vũ Linh (kết quả định giá đất Thủ Đức, phán quyết phiên tòa phúc thẩm mở lại, tin tức mới về ca sĩ Hồng Phượng và phân tích của nghệ sĩ Lê Tín). Giữ nguyên cấu trúc trang HTML 6 tab gọn nhẹ hiện tại và cập nhật thêm các cột mốc mới vào bảng HTML giúp tôi.</pre>
+          </div>
+        </div>
+      </div>
+
+      <!-- Persistent Footer with Required Link & Sources -->
+      <figcaption class="flex flex-col gap-2.5 border-t border-[#D1D1D1] pt-3 text-xs">
+        <div class="p-2.5 rounded-lg bg-[#F8F9FA] border border-[#D1D1D1] flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+          <div class="text-[11px] text-[#111111] leading-relaxed">
+            <span class="font-bold">🔗 Link gốc để cập nhật thông tin mới khi cần:</span>
+            <a href="https://gemini.google.com/app/ac5090ccabc1553a" target="_blank" rel="noopener noreferrer" class="text-[#1A73E8] font-semibold underline break-all ml-1">
+              https://gemini.google.com/app/ac5090ccabc1553a
+            </a>
+          </div>
+          <button onclick="switchTab('update')" class="shrink-0 px-2.5 py-1 rounded bg-[#111111] text-white text-[11px] font-semibold hover:bg-gray-800 transition self-start sm:self-auto">
+            Xem hướng dẫn Update →
+          </button>
+        </div>
+
+        <span class="text-[11px] text-[#666666] leading-relaxed">
+          Chú thích: Dữ liệu tổng hợp từ hồ sơ 9 kỳ tố tụng (03/2023 – 11/2026), Minishow "Ơn đời, ơn người" (10/01/2026) tại sân khấu Kim Thái Hoàng và phân tích của nghệ sĩ Lê Tín.
+        </span>
+      </figcaption>
+
+    </figure>
+
+    <!-- Core Logic & Concise Grounded Dataset -->
+    <script>
+      const DRAMA_DATA = {
+        characters: [
+          {
+            name: "Ca sĩ Lê Thị Hồng Phượng",
+            alias: "Cháu gái ruột / Phe Tốt, Hiền lành, Giữ nghề",
+            faction: "NHUNG",
+            badge: "Phe Tốt / Gia đình",
+            badge_cls: "bg-green-50 text-[#1E8E3E] border border-green-200",
+            past: "Con nghệ sĩ Hồng Nhung & Quang Minh; theo cậu Vũ Linh đi hát từ năm 8 tuổi. Năm 2021 được cậu gọi về ở nhà số 5 Đoàn Thị Điểm và quay clip giao quản lý nhà thờ cúng.",
+            now: "Minishow 'Ơn đời, ơn người' (10/01/2026) và các đêm diễn tại sân khấu Kim Thái Hoàng (TP.HCM) đông kín khán giả ủng hộ. Ngày 07/11/2026 bị 1 phụ nữ quá khích gây rối ở An Giang và được Công an bảo vệ.",
+            point: "Lê Tín làm rõ cô rất hiền lành, từng khuyên mẹ rút đơn kiện, sao kê rõ 1,003 tỷ tiền phúng điếu, không đôi co chợ búa."
+          },
+          {
+            name: "Nghệ sĩ Lê Tín",
+            alias: "Phân tích Chuẩn xác & Uy tín (Từ Mỹ)",
+            faction: "ANALYSIS",
+            badge: "Phân tích Chuẩn",
+            badge_cls: "bg-blue-50 text-[#1A73E8] border border-blue-200",
+            past: "Nghệ sĩ cải lương Hồ Quảng & danh hài hải ngoại (đóng cặp Kiều Oanh ở Paris By Night). Từng cắt 2/3 lá gan năm 2007, sống trọng nhân quả và giữ lửa cải lương tại Mỹ.",
+            now: "Nguồn phân tích uy tín nhất vụ việc: vạch trần thói 'Phản bội lòng tin - Bội tín - Bất nghĩa' của ekip quanh Hồng Loan và minh oan cho sự hiền lành của Hồng Phượng.",
+            point: "Nhận định chuẩn xác 100%; tháng 7–8/2025 diễn viên Linh Tý phải công khai cúi đầu xin lỗi chú Lê Tín và gia đình Cô Sáu."
+          },
+          {
+            name: "NS Võ Thị Hồng Nhung (Cô Sáu)",
+            alias: "Em gái ruột Vũ Linh / Nguyên đơn",
+            faction: "NHUNG",
+            badge: "Phe Tốt / Gia đình",
+            badge_cls: "bg-green-50 text-[#1E8E3E] border border-green-200",
+            past: "Cô đào cải lương có thanh sắc; từ năm 1973 đã thay Vũ Linh phụng dưỡng mẹ già, quán xuyến gia đình và chăm bẵm chính Hồng Loan từ nhỏ.",
+            now: "Tòa sơ thẩm (01/2025) công nhận công lao 50 năm và chia 15% di sản. Tại tòa phúc thẩm (24/09/2026), bà từ chối 2 tỷ đồng của Loan, giữ kháng cáo xin giao nhà số 5 cho Hồng Phượng làm từ đường.",
+            point: "Khởi kiện vì uất ức khi bị con nuôi đuổi khỏi nhà ngay sau 49 ngày mất của anh trai."
+          },
+          {
+            name: "NS Tiểu Linh (Võ Thành Nhiêu)",
+            alias: "Chú Bảy / Em trai ruột Vũ Linh",
+            faction: "NHUNG",
+            badge: "Phe Tốt / Gia đình",
+            badge_cls: "bg-green-50 text-[#1E8E3E] border border-green-200",
+            past: "Nghệ sĩ cải lương gạo cội, cả đời kính trọng anh Năm Vũ Linh và giữ gìn gia phong.",
+            now: "Tháng 09/2023 tuyên bố từ mặt con gái ruột Bùm Bum vì bất hiếu, hùa theo đám đông chửi cô ruột. Ngày 24/09/2026 ngồi xe lăn đội mưa đến tòa phúc thẩm; chỉ diễn các show trang trọng của Hồng Phượng.",
+            point: "Trọng đạo nghĩa gia tộc hơn tiền bạc và trào lưu mạng xã hội."
+          },
+          {
+            name: "Lê Trần Kim Nga (Bé Nga)",
+            alias: "Người chăm sóc Vũ Linh 10 năm cuối đời",
+            faction: "ANALYSIS",
+            badge: "Tận tụy / Trung lập",
+            badge_cls: "bg-gray-100 text-[#111111] border border-gray-300",
+            past: "Hy sinh tuổi xuân không lấy chồng để kề cận chăm sóc Vũ Linh hơn 10 năm theo lời gửi gắm của cố nhiếp ảnh gia Hoàng Vinh.",
+            now: "Trong băng ghi âm 12 phút, chính Vũ Linh khen 'Bé Nga đi làm giấy tờ không tốn đồng nào' (đối lập với Hồng Loan gạt hơn 60 triệu). Sống lặng lẽ, được gia đình Hồng Phượng hết mực biết ơn.",
+            point: "Chứng nhân sống cho thấy ai mới là người thực sự thương yêu, chăm sóc cố nghệ sĩ."
+          },
+          {
+            name: "Vợ chồng Linh Tý – Bích Trâm",
+            alias: "Thức tỉnh, lật mặt Chị Ni & Xin lỗi Hồng Phượng",
+            faction: "FLIP",
+            badge: "Thức tỉnh / Quay xe",
+            badge_cls: "bg-orange-50 text-[#E37400] border border-orange-200",
+            past: "Con trai nghệ sĩ Linh Tâm; suốt gần 3 năm đầu nghe lời xúi giục của phía Hồng Loan – Chị Ni để công kích gia đình Cô Sáu, Hồng Phượng và Lê Tín.",
+            now: "Tháng 7–8/2025 thức tỉnh, lật bài ngửa về chuyện xấu của Chị Ni ở Malaysia và công khai xin lỗi Cô Sáu Hồng Nhung, em Hồng Phượng, chú Lê Tín, Vũ Luân, Phương Lê.",
+            point: "Mở quán Beefsteak Tê Tê hoàn lương, được Vũ Luân & Phương Lê bao dung tha thứ."
+          },
+          {
+            name: "Doanh nhân Kim Loan",
+            alias: "Mẹ đỡ đầu công khai tố Hồng Loan 'Vô ơn'",
+            faction: "FLIP",
+            badge: "Thức tỉnh / Quay xe",
+            badge_cls: "bg-orange-50 text-[#E37400] border border-orange-200",
+            past: "Nhận Hồng Loan làm con nuôi đỡ đầu và hỗ trợ hết mình khi mới xảy ra tranh chấp.",
+            now: "Tháng 05/2025, ngay tại tiệc sinh nhật 60 tuổi, bà tuyên bố cắt đứt quan hệ 'mẹ đỡ đầu' và tố thẳng Hồng Loan là 'kẻ vô ơn'.",
+            point: "Chứng minh lời cảnh báo trước đó của nghệ sĩ Lê Tín về sự 'bội tín, bất nghĩa' là hoàn toàn đúng."
+          },
+          {
+            name: "Vũ Luân, Phương Lê & Bình Tinh",
+            alias: "Con nuôi nghệ thuật & Hoa hậu từng hậu thuẫn",
+            faction: "FLIP",
+            badge: "Tách nhóm / Đối đầu",
+            badge_cls: "bg-orange-50 text-[#E37400] border border-orange-200",
+            past: "Giai đoạn 2023 đứng ra bảo vệ Hồng Loan vì thương NSƯT Vũ Linh.",
+            now: "Bình Tinh rút lui khỏi drama từ 07/2024 để giữ bình yên. Vũ Luân và Phương Lê mâu thuẫn gay gắt, đối đầu trực diện với phe Chị Ni – Hồng Loan và tha lỗi cho vợ chồng Linh Tý (07/2025).",
+            point: "Không chấp nhận cách hành xử của ekip Chị Ni – Hồng Loan."
+          },
+          {
+            name: "Võ Thị Hồng Loan (Bị đơn)",
+            alias: "Con nuôi hợp pháp / Thừa nhận không có công đóng góp",
+            faction: "LOAN",
+            badge: "Phe Hồng Loan",
+            badge_cls: "bg-red-50 text-[#D93025] border border-red-200",
+            past: "Được ông Trần Quốc Thanh bồng về lúc 3 tháng tuổi, đứng tên con nuôi hợp pháp; lấy chồng ra riêng từ năm 17 tuổi.",
+            now: "Sang tên toàn bộ di sản trước 49 ngày (07/04/2023) rồi đuổi cô ruột và em họ khỏi nhà. Tại tòa phúc thẩm (24/09/2026), không nộp ADN, thừa nhận không có công đóng góp vào di sản của cha và đề nghị đưa 2 tỷ đồng.",
+            point: "Kháng cáo đòi tước cả 15% công sức chăm sóc gia đình của Cô Sáu; bị mẹ đỡ đầu Kim Loan tố vô ơn."
+          },
+          {
+            name: "Chị Ni (Phạm Thị Hồng Ni)",
+            alias: "Đại diện của Hồng Loan / Vụ án tại Malaysia",
+            faction: "LOAN",
+            badge: "Phe Hồng Loan",
+            badge_cls: "bg-red-50 text-[#D93025] border border-red-200",
+            past: "Chỗ dựa lớn nhất điều phối truyền thông và bán hàng online cho Hồng Loan.",
+            now: "Tháng 8–11/2024 bị cảnh sát bắt giữ và hầu tòa tại Malaysia (gắn liền với từ khóa 'con ăn cắp Malaysia'). Tháng 07/2025 bị Linh Tý vạch trần việc nói dối về sự cố ở Malaysia.",
+            point: "Tác nhân chính gây chia rẽ khiến các đồng minh cũ lần lượt quay lưng với Hồng Loan."
+          },
+          {
+            name: "Bùm Bum (Võ Thùy Dung)",
+            alias: "Con gái Tiểu Linh / 'Thảm họa Tiếng trống Mê Linh'",
+            faction: "LOAN",
+            badge: "Phe Hồng Loan",
+            badge_cls: "bg-red-50 text-[#D93025] border border-red-200",
+            past: "Cùng Thành Mỹ lên livestream nói xấu cô ruột Hồng Nhung để bán hàng cùng Hồng Loan, bị cha ruột Tiểu Linh tuyên bố từ mặt (09/2023).",
+            now: "Tháng 3–4/2026 bị báo chí gọi là 'Thảm họa Bùm Bum' và bị Sở Văn hóa tuýt còi vì tự ý diễn 'chui' vai Trưng Trắc (Tiếng trống Mê Linh) với lối diễn ngô nghê, ngả ngớn dung tục.",
+            point: "Minh chứng cho việc không có chuyên môn nhưng dựa hơi danh tiếng cố NSƯT Vũ Linh để chạy show."
+          }
+        ],
+        timeline: [
+          {
+            date: "05/03/2023",
+            title: "NSƯT Vũ Linh qua đời tại nhà số 5 Đoàn Thị Điểm",
+            desc: "Cố nghệ sĩ qua đời sau thời gian được Kim Nga, Cô Sáu và Hồng Phượng chăm sóc. Hồng Phượng thay mặt gia đình ký hợp đồng BH Media để bảo vệ hình ảnh đám tang, thu ~89 triệu giao hết cho gia đình lo cúng thất.",
+            tag: "Khởi phát"
+          },
+          {
+            date: "07/04/2023 – 05/2023",
+            title: "Hồng Loan âm thầm sang tên di sản trước 49 ngày & Đuổi người thân",
+            desc: "Khi cha mất mới 33 ngày, Hồng Loan đi công chứng khai nhận toàn bộ di sản (07/04/2023). Sau 49 ngày, cô báo công an, đổi khóa và vứt đồ đuổi mẹ con Cô Sáu – Hồng Phượng ra đường.",
+            tag: "Đánh úp pháp lý"
+          },
+          {
+            date: "06/2023 – 26/10/2023",
+            title: "Kỳ Tòa 1–3, Băng ghi âm 12 phút & Tiểu Linh từ mặt con",
+            desc: "Cô Sáu khởi kiện (Hồng Phượng khuyên mẹ rút đơn không thành) và công khai sao kê đám tang (thu 1,003 tỷ / chi 1,017 tỷ). Ngày 21/08/2023 lộ ghi âm 12 phút Vũ Linh trách Loan trộm tiền, gạt 60 triệu làm sổ hồng. Ngày 26/10/2023 Tòa thẩm định nhà số 5.",
+            tag: "Kỳ Tòa 1–3"
+          },
+          {
+            date: "26/06/2024 – 11/2024",
+            title: "Kỳ Tòa 4–5, Chị Ni bị bắt ở Malaysia & Lê Tín phân tích",
+            desc: "Tòa Cầu Giấy (Hà Nội) xử hủy hợp đồng BH Media do vấn đề chủ thể ký. Từ tháng 8–11/2024, Chị Ni bị bắt và hầu tòa tại Malaysia. Nghệ sĩ Lê Tín lên sóng vạch trần sự 'Bội tín - Bất nghĩa' của nhóm lợi dụng Hồng Loan.",
+            tag: "Kỳ Tòa 4–5"
+          },
+          {
+            date: "07/01/2025 – 17/01/2025",
+            title: "Kỳ Tòa 6 (Sơ thẩm): Chia 15% công sức cho Cô Sáu Hồng Nhung",
+            desc: "TAND TP.HCM xác định Hồng Loan là con nuôi hợp pháp (85%), nhưng ghi nhận công lao bà Hồng Nhung chăm sóc mẹ già và gia đình từ 1973 nên áp dụng Án lệ 05 chia 15% di sản. Ngày 17/01/2025, Loan kháng cáo đòi giữ trọn 100%.",
+            tag: "Kỳ Tòa 6 (Sơ thẩm)"
+          },
+          {
+            date: "05/2025 – 08/2025",
+            title: "Kim Loan tố Hồng Loan 'Vô ơn' & Linh Tý xin lỗi Hồng Phượng, Lê Tín",
+            desc: "Tháng 5/2025, mẹ đỡ đầu Kim Loan tuyên bố từ mặt và tố Hồng Loan vô ơn tại tiệc sinh nhật 60 tuổi. Tháng 7–8/2025, diễn viên Linh Tý lật mặt Chị Ni vụ Malaysia và công khai xin lỗi Cô Sáu, Hồng Phượng, chú Lê Tín.",
+            tag: "Đồng minh quay xe"
+          },
+          {
+            date: "10/01/2026",
+            title: "Hồng Phượng thắng lớn với Minishow 'Ơn đời, ơn người'",
+            desc: "Tối 10/01/2026, ca sĩ Hồng Phượng tổ chức thành công rực rỡ Minishow 'Ơn đời, ơn người' (quy tụ 3 thế hệ gia đình cùng dàn sao) và biểu diễn thường xuyên tại sân khấu Kim Thái Hoàng (TP.HCM), được khán giả ủng hộ nồng nhiệt.",
+            tag: "Minh oan & Tỏa sáng"
+          },
+          {
+            date: "03/2026 – 04/2026",
+            title: "'Thảm họa Bùm Bum' bị Sở Văn hóa tuýt còi vì diễn chui",
+            desc: "Bùm Bum (Võ Thùy Dung) và Hồng Loan đua nhau đi hát thương mại dù không có chuyên môn. Bùm Bum diễn 'chui' trích đoạn Tiếng trống Mê Linh ngả ngớn dung tục, bị báo chí lên án và Sở Văn hóa xử lý.",
+            tag: "Scandal văn hóa"
+          },
+          {
+            date: "06/2026 – 19/08/2026",
+            title: "Kỳ Tòa 7–8: Hai lần hoãn Phúc thẩm & Thẩm định giá tài sản",
+            desc: "Phúc thẩm hoãn lần 1 (06/2026) do Hồng Loan nhập viện; hoãn lần 2 do vắng đại diện UBND P. Cầu Kiệu. Ngày 15–19/08/2026 hoàn tất thẩm định giá nhà số 5 Đoàn Thị Điểm và xe ô tô.",
+            tag: "Kỳ Tòa 7–8"
+          },
+          {
+            date: "24/09/2026 – 11/2026",
+            title: "Kỳ Tòa 9 (Phúc thẩm): Tạm dừng định giá đất & Hiện trạng mới nhất",
+            desc: "Tại tòa ngày 24/09/2026, Hồng Loan thừa nhận không có công đóng góp vào di sản của cha, đề nghị hỗ trợ 2 tỷ đồng nhưng Cô Sáu từ chối. Tòa tạm dừng để định giá lại 3.007 m² đất Thủ Đức (vướng quy hoạch chỉ còn ~122 m²). Ngày 07/11/2026, Hồng Phượng trình báo công an vụ bị gây rối khi đi diễn ở An Giang.",
+            tag: "Kỳ Tòa 9 & Hiện tại"
+          }
+        ],
+        slangs: [
+          {
+            term: "1. Góc nhìn Lê Tín: Hồng Phượng là 'Phe Tốt, Hiền Lành'",
+            summary: "Minh oan cho người nghệ sĩ chân chính bị truyền thông bẩn vu khống",
+            bullets: [
+              "Lê Tín phân tích rõ Hồng Phượng theo cậu đi hát từ năm 8 tuổi, được cậu Vũ Linh tin tưởng gọi về ở cùng năm 2021 và quay clip giao quản lý nhà thờ cúng.",
+              "Khi nổ ra kiện tụng, chính Hồng Phượng khuyên mẹ rút đơn; suốt 3,5 năm bị tấn công mạng vẫn giữ lời ăn tiếng nói lễ phép, không chửi bới ai.",
+              "Khán giả hiểu ra sự thật đã đến ủng hộ chật kín tại Minishow 'Ơn đời, ơn người' (10/01/2026) và sân khấu Kim Thái Hoàng."
+            ]
+          },
+          {
+            term: "2. 'Con nuôi' (Không ADN & Thừa nhận không có công sức)",
+            summary: "Sự thật pháp lý được làm rõ tại phiên Phúc thẩm ngày 24/09/2026",
+            bullets: [
+              "Năm 2023, phe Hồng Loan tung tin đồn có ADN con ruột để kích động đám đông chửi Hồng Phượng khi Phượng nói Loan là con nuôi.",
+              "Tại tòa Phúc thẩm (24/09/2026), Hồng Loan xác nhận không bổ sung ADN và chính thức thừa nhận 'không có công sức đóng góp vào khối di sản của cố NSƯT Vũ Linh'.",
+              "Loan chỉ được hưởng quyền lợi nhờ đứng tên trên tờ giấy nhận con nuôi hợp pháp do Vũ Linh làm lúc nhỏ."
+            ]
+          },
+          {
+            term: "3. 'Con ăn cắp' (Ghi âm 12 phút) & 'Con ăn cắp Malaysia' (Chị Ni)",
+            summary: "Hai sự việc thật liên quan đến Hồng Loan và người đại diện Chị Ni",
+            bullets: [
+              "Băng ghi âm 12 phút (21/08/2023): Soạn giả Vân Tiên công bố băng ghi âm thật giọng Vũ Linh than phiền Hồng Loan lấy trộm tiền và gạt ông hơn 60 triệu đồng làm sổ hồng (trong khi khen Kim Nga làm không tốn đồng nào).",
+              "Vụ Malaysia (08–11/2024): Chị Ni (chỗ dựa của Hồng Loan) bị cảnh sát bắt và hầu tòa tại Malaysia; các kênh đối lập gọi là đi ăn cắp bị đi 'ủ tờ' (ở tù).",
+              "Tháng 07/2025: Chính đồng minh thân cận là diễn viên Linh Tý đã lật bài ngửa, khẳng định 'chuyện xấu của chị Ni bên Malaysia không phải như Ni nói dóc'."
+            ]
+          },
+          {
+            term: "4. 'Người vô ơn' (Mẹ đỡ đầu Kim Loan & Đồng minh tố cáo)",
+            summary: "Chiếc mặt nạ đạo đức rơi xuống khi các ân nhân lần lượt quay lưng",
+            bullets: [
+              "Với gia tộc: Đuổi cô ruột Hồng Nhung và em họ ra khỏi nhà ngay sau 49 ngày cha mất; kháng cáo đòi tước cả 15% công sức chăm sóc mẹ già 50 năm của Cô Sáu.",
+              "Với ân nhân: Lần lượt quay lưng với Lê Tín, Vũ Luân, Phương Lê, Linh Tý sau khi đã đạt mục đích thương mại.",
+              "Đỉnh điểm tháng 05/2025: Doanh nhân Kim Loan tuyên bố chấm dứt làm 'mẹ đỡ đầu' tại tiệc sinh nhật 60 tuổi và thẳng thừng tố Hồng Loan là 'kẻ vô ơn'."
+            ]
+          },
+          {
+            term: "5. Minishow 'Ơn đời, ơn người' vs 'Thảm họa Bùm Bum'",
+            summary: "Sự đối lập giữa lao động nghệ thuật chân chính và đám đông hát chui",
+            bullets: [
+              "Hồng Phượng: Đầu tư nghiêm túc cho Minishow 'Ơn đời, ơn người' (10/01/2026) quy tụ 3 thế hệ cải lương họ Võ và biểu diễn tại sân khấu Kim Thái Hoàng được khán giả yêu mến.",
+              "Bùm Bum & Hồng Loan: Không có chuyên môn nhưng lợi dụng drama nhận show đi hát; tháng 3–4/2026 Bùm Bum diễn 'chui' phá nát vở Tiếng trống Mê Linh, bị Sở Văn hóa tuýt còi và báo chí gọi là 'Thảm họa'."
+            ]
+          }
+        ],
+        psychology: [
+          {
+            character: "1. Ca sĩ Hồng Phượng & Gia đình Cô Sáu (Phe Tốt)",
+            motive: "Giữ di nguyện hòa thuận của cậu Năm, bảo vệ nhà từ đường & nối nghiệp cải lương",
+            p1: "2023: Đau buồn lo tang lễ chu toàn, sao kê minh bạch 1,003 tỷ đồng; bàng hoàng khi bị đuổi khỏi nhà sau 49 ngày.",
+            p2: "2024–2025: Nhẫn nhịn chịu đựng bạo lực mạng, không chửi bới đáp trả; Cô Sáu được Tòa Sơ thẩm ghi nhận 15% công sức.",
+            p3: "2026: Vực dậy mạnh mẽ qua Minishow 'Ơn đời, ơn người' (10/01/2026) và sân khấu Kim Thái Hoàng trong sự yêu thương của khán giả."
+          },
+          {
+            character: "2. Nghệ sĩ Lê Tín & Khán giả Tỉnh táo",
+            motive: "Bảo vệ lẽ phải, đạo lý sân khấu cải lương Hồ Quảng và luật Nhân quả",
+            p1: "2023: Quan sát khách quan, nhắc nhở các bên giữ gìn danh dự cho cố NSƯT Vũ Linh.",
+            p2: "2024–2025: Sớm nhận ra sự thao túng của ekip Chị Ni, làm loạt clip vạch trần sự 'Phản bội lòng tin - Bội tín - Bất nghĩa'.",
+            p3: "2026: Những phân tích về sự hiền lành của Hồng Phượng hoàn toàn ứng nghiệm; được Linh Tý công khai xin lỗi."
+          },
+          {
+            character: "3. Hồng Loan, Chị Ni & Bùm Bum",
+            motive: "Thâu tóm trọn vẹn di sản & tận dụng sức nóng mạng xã hội để bán hàng, chạy show",
+            p1: "2023: Đóng vai nạn nhân lấy lòng thương hại của đám đông nhưng âm thầm sang tên sổ đỏ khi cha mất chưa đầy 49 ngày.",
+            p2: "2024–2025: Xung đột lợi ích, quay lưng với các ân nhân cũ (Kim Loan, Vũ Luân, Phương Lê, Linh Tý); Chị Ni bị bắt ở Malaysia.",
+            p3: "2026: Tại tòa phúc thẩm (24/09/2026) phải thừa nhận không có công đóng góp vào di sản; bị chỉ trích nặng nề vì vụ hát chui 'Thảm họa Bùm Bum'."
+          }
+        ],
+        court_assets: [
+          {
+            item: "1. Nhà & Đất số 5 Đoàn Thị Điểm (P. Cầu Kiệu)",
+            val: "Từ đường thờ cúng",
+            desc: "Hồng Loan đã sang tên (04/2023) và giữ làm nơi thờ cha, không bán; Cô Sáu kháng cáo đề nghị giao cho Hồng Phượng quản lý thờ cúng theo clip vi bằng năm 2021 của Vũ Linh."
+          },
+          {
+            item: "2. Đất 3.007 m² tại Thủ Đức (Thửa 87 & 88)",
+            val: "Đang định giá lại",
+            desc: "Định giá sơ thẩm cũ >17 tỷ đồng. Tại tòa phúc thẩm (24/09/2026), phát hiện vướng quy hoạch ~2.885 m², chỉ còn ~122 m² sử dụng được nên Tòa tạm dừng để định giá lại."
+          },
+          {
+            item: "3. Tiền Tang lễ, Xây mộ & Két sắt",
+            val: "Thu 1,003 tỷ / Chi 1,017 tỷ",
+            desc: "Hồng Phượng đã công khai chi tiết từng khoản thu chi đám tang và xây mộ (bù lỗ 14 triệu đồng) cùng 4.200 USD kiểm thực tế ngày 25/03/2023."
+          },
+          {
+            item: "4. Xe ô tô Toyota cũ & Hợp đồng BH Media",
+            val: "Xe cũ / BH Media 89tr",
+            desc: "Xe ô tô đã thẩm định giá tháng 8/2026 (giá trị thấp). Hợp đồng BH Media 89 triệu đồng (đã giao lo lễ cúng) bị Tòa Cầu Giấy tuyên hủy năm 2024 do vấn đề chủ thể ký."
+          }
+        ]
+      };
+
+      let currentTab = 'characters';
+      let currentFactionFilter = 'ALL';
+      let searchQuery = '';
+      let disputeChartInstance = null;
+
+      function switchTab(tabId) {
+        currentTab = tabId;
+        document.querySelectorAll('.tab-btn').forEach(btn => {
+          btn.classList.remove('tab-active');
+          btn.classList.add('bg-[#F8F9FA]', 'text-[#666666]');
+        });
+        const activeBtn = document.getElementById(`tab-btn-${tabId}`);
+        if (activeBtn) {
+          activeBtn.classList.add('tab-active');
+          activeBtn.classList.remove('bg-[#F8F9FA]', 'text-[#666666]');
+        }
+
+        document.querySelectorAll('.tab-view').forEach(view => view.classList.add('hidden'));
+        const activeView = document.getElementById(`tab-content-${tabId}`);
+        if (activeView) activeView.classList.remove('hidden');
+
+        const filterBar = document.getElementById('filter-bar-container');
+        const charFilters = document.getElementById('character-filters');
+        if (tabId === 'update' || tabId === 'court') {
+          filterBar.classList.add('hidden');
+        } else {
+          filterBar.classList.remove('hidden');
+          if (tabId === 'characters') charFilters.classList.remove('hidden');
+          else charFilters.classList.add('hidden');
+        }
+
+        if (tabId === 'court') {
+          renderDisputeChart();
+        }
+        renderActiveTab();
+      }
+
+      function filterFaction(faction) {
+        currentFactionFilter = faction;
+        document.querySelectorAll('.faction-filter-btn').forEach(btn => {
+          if (btn.getAttribute('data-f') === faction) {
+            btn.className = "faction-filter-btn filter-active px-2 py-1 rounded border border-[#D1D1D1] font-medium";
+          } else {
+            btn.className = "faction-filter-btn px-2 py-1 rounded bg-[#FFFFFF] border border-[#D1D1D1] text-[#666666]";
+          }
+        });
+        renderCharacters();
+      }
+
+      function handleSearch(val) {
+        searchQuery = val.trim().toLowerCase();
+        const clearBtn = document.getElementById('clear-search');
+        if (searchQuery.length > 0) clearBtn.classList.remove('hidden');
+        else clearBtn.classList.add('hidden');
+        renderActiveTab();
+      }
+
+      function clearSearch() {
+        document.getElementById('search-input').value = '';
+        searchQuery = '';
+        document.getElementById('clear-search').classList.add('hidden');
+        renderActiveTab();
+      }
+
+      function renderActiveTab() {
+        if (currentTab === 'characters') renderCharacters();
+        else if (currentTab === 'timeline') renderTimeline();
+        else if (currentTab === 'slang') renderSlangs();
+        else if (currentTab === 'psychology') renderPsychology();
+        else if (currentTab === 'court') renderAssets();
+      }
+
+      // Render Tab 1: Characters (Compact & Concise)
+      function renderCharacters() {
+        const list = document.getElementById('character-list');
+        list.innerHTML = '';
+        const filtered = DRAMA_DATA.characters.filter(c => {
+          const matchF = (currentFactionFilter === 'ALL') || (c.faction === currentFactionFilter);
+          const matchS = searchQuery === '' ||
+            c.name.toLowerCase().includes(searchQuery) ||
+            c.alias.toLowerCase().includes(searchQuery) ||
+            c.past.toLowerCase().includes(searchQuery) ||
+            c.now.toLowerCase().includes(searchQuery) ||
+            c.point.toLowerCase().includes(searchQuery);
+          return matchF && matchS;
+        });
+
+        if (filtered.length === 0) {
+          list.innerHTML = '<div class="col-span-full py-6 text-center text-xs text-[#666666]">Không tìm thấy nhân vật khớp từ khóa.</div>';
+          return;
+        }
+
+        filtered.forEach(c => {
+          const card = document.createElement('div');
+          card.className = "p-3 rounded-lg bg-[#F8F9FA] border border-[#D1D1D1] flex flex-col justify-between text-xs gap-2";
+          card.innerHTML = `
+            <div class="flex items-start justify-between gap-1.5 border-b border-[#D1D1D1] pb-1.5">
+              <div>
+                <h4 class="font-heading font-bold text-[13px] text-[#111111]">${c.name}</h4>
+                <span class="text-[11px] text-[#666666]">${c.alias}</span>
+              </div>
+              <span class="px-2 py-0.5 rounded text-[10px] font-semibold shrink-0 ${c.badge_cls}">${c.badge}</span>
+            </div>
+            <ul class="space-y-1 text-[11px] leading-relaxed text-[#666666] list-disc pl-4">
+              <li><b class="text-[#111111]">Quá khứ:</b> ${c.past}</li>
+              <li><b class="text-[#1A73E8]">Hiện tại (2026):</b> ${c.now}</li>
+              <li><b class="text-[#111111]">Bản chất:</b> ${c.point}</li>
+            </ul>
+          `;
+          list.appendChild(card);
+        });
+      }
+
+      // Render Tab 2: Vertical Timeline
+      function renderTimeline() {
+        const list = document.getElementById('timeline-list');
+        list.innerHTML = '';
+        const filtered = DRAMA_DATA.timeline.filter(t =>
+          searchQuery === '' ||
+          t.date.toLowerCase().includes(searchQuery) ||
+          t.title.toLowerCase().includes(searchQuery) ||
+          t.desc.toLowerCase().includes(searchQuery)
+        );
+
+        if (filtered.length === 0) {
+          list.innerHTML = '<div class="py-6 text-center text-xs text-[#666666]">Không có mốc thời gian nào khớp từ khóa.</div>';
+          return;
+        }
+
+        filtered.forEach(t => {
+          const item = document.createElement('div');
+          item.className = "relative";
+          item.innerHTML = `
+            <div class="absolute -left-[21px] top-1.5 w-2.5 h-2.5 rounded-full bg-[#1A73E8] border-2 border-[#FFFFFF]"></div>
+            <div class="bg-[#F8F9FA] p-2.5 rounded-lg border border-[#D1D1D1] text-xs">
+              <div class="flex flex-wrap items-center justify-between gap-1 mb-1">
+                <span class="font-heading font-bold text-[#111111] text-xs">${t.date} — ${t.title}</span>
+                <span class="px-1.5 py-0.5 rounded text-[10px] font-semibold bg-[#FFFFFF] border border-[#D1D1D1] text-[#111111]">${t.tag}</span>
+              </div>
+              <p class="text-[11px] text-[#666666] leading-relaxed">${t.desc}</p>
+            </div>
+          `;
+          list.appendChild(item);
+        });
+      }
+
+      // Render Tab 3: Slangs & Le Tin Analysis
+      function renderSlangs() {
+        const list = document.getElementById('slang-list');
+        list.innerHTML = '';
+        const filtered = DRAMA_DATA.slangs.filter(s =>
+          searchQuery === '' ||
+          s.term.toLowerCase().includes(searchQuery) ||
+          s.summary.toLowerCase().includes(searchQuery) ||
+          s.bullets.join(' ').toLowerCase().includes(searchQuery)
+        );
+
+        if (filtered.length === 0) {
+          list.innerHTML = '<div class="py-6 text-center text-xs text-[#666666]">Không tìm thấy mục giải mã phù hợp.</div>';
+          return;
+        }
+
+        filtered.forEach(s => {
+          const card = document.createElement('div');
+          card.className = "p-3 bg-[#F8F9FA] rounded-lg border border-[#D1D1D1] flex flex-col gap-1.5 text-xs";
+          const bulletHtml = s.bullets.map(b => `<li>${b}</li>`).join('');
+          card.innerHTML = `
+            <div class="flex flex-wrap items-center justify-between gap-1 border-b border-[#D1D1D1] pb-1">
+              <span class="font-heading font-bold text-xs sm:text-[13px] text-[#D93025]">${s.term}</span>
+              <span class="text-[11px] text-[#666666] italic">${s.summary}</span>
+            </div>
+            <ul class="list-disc pl-4 space-y-1 text-[11px] text-[#111111] leading-relaxed">
+              ${bulletHtml}
+            </ul>
+          `;
+          list.appendChild(card);
+        });
+      }
+
+      // Render Tab 4: Psychology
+      function renderPsychology() {
+        const list = document.getElementById('psychology-list');
+        list.innerHTML = '';
+        const filtered = DRAMA_DATA.psychology.filter(p =>
+          searchQuery === '' ||
+          p.character.toLowerCase().includes(searchQuery) ||
+          p.motive.toLowerCase().includes(searchQuery) ||
+          p.p1.toLowerCase().includes(searchQuery) ||
+          p.p2.toLowerCase().includes(searchQuery) ||
+          p.p3.toLowerCase().includes(searchQuery)
+        );
+
+        filtered.forEach(p => {
+          const card = document.createElement('div');
+          card.className = "p-3 bg-[#F8F9FA] rounded-lg border border-[#D1D1D1] flex flex-col gap-2 text-xs";
+          card.innerHTML = `
+            <div class="flex flex-wrap items-center justify-between gap-1 border-b border-[#D1D1D1] pb-1.5">
+              <h4 class="font-heading font-bold text-xs sm:text-[13px] text-[#111111]">${p.character}</h4>
+              <span class="text-[11px] text-[#1A73E8] font-medium">Động cơ: ${p.motive}</span>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-2 text-[11px]">
+              <div class="p-2 bg-[#FFFFFF] rounded border border-[#D1D1D1] text-[#666666] leading-relaxed">${p.p1}</div>
+              <div class="p-2 bg-[#FFFFFF] rounded border border-[#D1D1D1] text-[#666666] leading-relaxed">${p.p2}</div>
+              <div class="p-2 bg-[#FFFFFF] rounded border border-[#D1D1D1] text-[#111111] font-medium leading-relaxed">${p.p3}</div>
+            </div>
+          `;
+          list.appendChild(card);
+        });
+      }
+
+      // Render Tab 5: Assets
+      function renderAssets() {
+        const list = document.getElementById('assets-breakdown');
+        list.innerHTML = '';
+        DRAMA_DATA.court_assets.forEach(a => {
+          const card = document.createElement('div');
+          card.className = "p-2.5 bg-[#F8F9FA] rounded-lg border border-[#D1D1D1] flex flex-col justify-between gap-1 text-xs";
+          card.innerHTML = `
+            <div class="flex items-center justify-between gap-1">
+              <span class="font-heading font-bold text-[#111111] text-xs">${a.item}</span>
+              <span class="px-1.5 py-0.5 rounded bg-[#FFFFFF] border border-[#D1D1D1] font-semibold text-[#1A73E8] text-[10px] shrink-0">${a.val}</span>
+            </div>
+            <p class="text-[11px] text-[#666666] leading-relaxed">${a.desc}</p>
+          `;
+          list.appendChild(card);
+        });
+      }
+
+      // Chart.js Implementation
+      function renderDisputeChart() {
+        const ctx = document.getElementById('disputeChart');
+        if (!ctx) return;
+        if (disputeChartInstance) disputeChartInstance.destroy();
+
+        disputeChartInstance = new Chart(ctx, {
+          type: 'bar',
+          data: {
+            labels: [
+              'Sơ thẩm (07/01/2025)',
+              'Kháng cáo Hồng Loan',
+              'Kháng cáo Cô Sáu (PA1)'
+            ],
+            datasets: [
+              {
+                label: 'Hồng Loan (%)',
+                data: [85, 100, 50],
+                backgroundColor: '#1A73E8',
+                borderRadius: 4
+              },
+              {
+                label: 'Cô Sáu & Chú Bảy (%)',
+                data: [15, 0, 50],
+                backgroundColor: '#D93025',
+                borderRadius: 4
+              }
+            ]
+          },
+          options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            indexAxis: 'y',
+            scales: {
+              x: {
+                stacked: true,
+                max: 100,
+                border: { display: false },
+                grid: { color: '#D1D1D1' },
+                ticks: {
+                  color: '#888888',
+                  font: { family: "'Google Sans Text', sans-serif", size: 11 },
+                  callback: (val) => val + '%'
+                }
+              },
+              y: {
+                stacked: true,
+                border: { display: false },
+                grid: { display: false },
+                ticks: {
+                  color: '#111111',
+                  font: { family: "'Google Sans', sans-serif", size: 11 }
+                }
+              }
+            },
+            plugins: {
+              legend: { display: false },
+              tooltip: {
+                backgroundColor: '#FFFFFF',
+                titleColor: '#111111',
+                bodyColor: '#666666',
+                borderColor: '#D1D1D1',
+                borderWidth: 1,
+                callbacks: {
+                  label: function(context) {
+                    if (context.dataIndex === 1 && context.datasetIndex === 0) {
+                      return ' Hồng Loan: 100% (+ Đề nghị hỗ trợ 2 tỷ đ)';
+                    }
+                    return ` ${context.dataset.label}: ${context.raw}%`;
+                  }
+                }
+              },
+              datalabels: {
+                color: '#FFFFFF',
+                font: { family: "'Google Sans', sans-serif", size: 11, weight: 'bold' },
+                formatter: (val, ctx) => {
+                  if (val === 0) return '';
+                  if (ctx.dataIndex === 1 && ctx.datasetIndex === 0) return '100% (+2 tỷ)';
+                  return val + '%';
+                }
+              }
+            }
+          },
+          plugins: [ChartDataLabels]
+        });
+      }
+
+      // Utility: Copy Prompt for Future Update
+      function copyUpdatePrompt() {
+        const promptText = document.getElementById('update-prompt-text').innerText;
+        navigator.clipboard.writeText(promptText).then(() => {
+          const btn = document.getElementById('btn-copy-prompt');
+          const oldHtml = btn.innerHTML;
+          btn.innerHTML = '<span>✓ Đã Copy Câu Lệnh!</span>';
+          setTimeout(() => { btn.innerHTML = oldHtml; }, 2000);
+        });
+      }
+
+      // Utility: Copy Full Standalone HTML Source Code
+      function copyFullHtmlPage() {
+        const fullHtml = '<!doctype html>\n' + document.documentElement.outerHTML;
+        navigator.clipboard.writeText(fullHtml).then(() => {
+          const btn = document.getElementById('btn-copy-html-top');
+          const oldHtml = btn.innerHTML;
+          btn.innerHTML = '<span>✓ Đã Copy Code HTML!</span>';
+          setTimeout(() => { btn.innerHTML = oldHtml; }, 2000);
+        });
+      }
+
+      // Utility: Download Standalone .HTML File
+      function downloadHtmlFile() {
+        const fullHtml = '<!doctype html>\n' + document.documentElement.outerHTML;
+        const blob = new Blob([fullHtml], { type: 'text/html;charset=utf-8' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = 'cam-nang-vu-linh-2026.html';
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+      }
+
+      document.fonts.ready.then(() => {
+        renderCharacters();
+        renderTimeline();
+        renderSlangs();
+        renderPsychology();
+        renderAssets();
+      });
+    </script>
+  
+</body></html>
