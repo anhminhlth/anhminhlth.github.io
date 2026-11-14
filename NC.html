@@ -1,0 +1,1853 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cơ Chế Sở Hữu Tâm Lý & Tính Thụ Động Liên Thế Hệ | Nghiên Cứu Dọc 1920–2026</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet" />
+  <style>
+    body {
+      font-family: 'Be Vietnam Pro', sans-serif;
+      background-color: #FAF8F5;
+      color: #1F2421;
+      overflow-x: hidden;
+    }
+    .font-mono-num {
+      font-family: 'JetBrains Mono', monospace;
+    }
+    .chart-container {
+      position: relative;
+      width: 100%;
+      max-width: 680px;
+      margin-left: auto;
+      margin-right: auto;
+      height: 310px;
+      max-height: 400px;
+    }
+    @media (min-width: 768px) {
+      .chart-container {
+        height: 350px;
+      }
+    }
+    .concentric-canvas-wrap {
+      position: relative;
+      width: 100%;
+      max-width: 540px;
+      margin-left: auto;
+      margin-right: auto;
+      height: 360px;
+      max-height: 420px;
+    }
+    @media (min-width: 768px) {
+      .concentric-canvas-wrap {
+        height: 400px;
+      }
+    }
+    .nav-pill-active {
+      background-color: #2A6F5B;
+      color: #FFFFFF;
+      box-shadow: 0 4px 12px rgba(42, 111, 91, 0.22);
+    }
+    .card-elevated {
+      background-color: #FFFFFF;
+      border: 1px solid #E7E2D8;
+      box-shadow: 0 2px 10px rgba(31, 36, 33, 0.03);
+    }
+    .step-unlocked {
+      border-color: #2A6F5B;
+      background-color: #F4F9F7;
+    }
+    .core-unlocked {
+      border-color: #C87D32;
+      background: linear-gradient(135deg, #FFFDF9 0%, #FDF4E7 100%);
+    }
+  </style>
+</head>
+<body class="antialiased selection:bg-emerald-100 selection:text-emerald-900">
+  <!-- Chosen Palette: Warm Alabaster & Botanical Sage-Terracotta Harmony (#FAF8F5 background, #FFFFFF cards, #2A6F5B primary sage, #C87D32 ownership amber-gold, #C44D3B terracotta risk highlight) -->
+  <!-- Application Structure Plan: Designed as a 5-stage progressive interactive research SPA rather than a static linear paper. (1) Executive Hero & KPI Ribbon establishes the empirical stakes (N=12,400, >20% risk threshold, 41.2% passive heir risk). (2) Interactive Concentric Four-Factor Canvas allows step-by-step click-to-reveal exploration where clicking the three outer rings (Responsibility, Hardship, Proactivity) progressively unlocks their mechanisms and converges on the central nucleus (Ownership). (3) Intergenerational Trajectory (1920-2026) & 5 Ownership Archetypes combines Chart.js cohort trends with interactive archetype cards explaining the 4-2-1 Ownership Dead Zone and Passive Inheritance Paradox. (4) 16-Year Longitudinal Empirical Lab provides interactive Chart.js comparisons of controlled cohorts (Group A vs B1-B4), Starmans's 89% vs 52% self-ownership insight, and a searchable/sortable statistical matrix. (5) Contemporary Fallacies, 5 Real-World Scenarios & 100% Ownership Transfer Protocol equips users with interactive side-by-side mode switches and a live Household Ownership & Risk Simulator. Bilingual VI/EN switching is integrated globally for complete accessibility. -->
+  <!-- Visualization & Content Choices: (1) Concentric 4-Factor Diagram -> Goal: Organize & Reveal Core Convergence -> Interactive High-DPI HTML5 Canvas + Step Cards -> Click nodes or progressive step buttons to unlock outer traits and synthesize Ownership core -> Justification: Directly fulfills the report's step-by-step convergence architecture without SVG/Mermaid. (2) Intergenerational Indices & Failure Risk (1920-2026) -> Goal: Change & Compare -> Chart.js Multi-Axis Line/Bar Chart -> Toggle metrics and inspect cohort tooltips -> Justification: Visualizes exponential decay of AAI/HARI/SRSI/APOI across 4 generations. (3) Controlled Cohort Failure Risk & >20% Threshold -> Goal: Compare & Highlight Causal Risk -> Chart.js Horizontal Bar Chart -> Filter by parenting fallacy or hukou stratum -> Justification: Clearly contrasts 14.2% baseline against 34.6%-41.2% failure rates. (4) Psychometric Profile & Starmans Perception -> Goal: Relationships -> Chart.js Grouped Bar Chart -> Compare Group A vs B-Combined/B4 -> Justification: Demonstrates how loss of autonomy causes 89% of youth to view themselves as parental property. (5) Household Ownership Simulator -> Goal: Engage & Apply -> Interactive Range Sliders + Dynamic Risk Gauge -> Real-time calculation of APOI and FFMR -> Justification: Translates academic findings into actionable parental diagnostics. CONFIRMED: NO SVG, NO Mermaid JS used. -->
+  <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+
+  <header class="sticky top-0 z-50 bg-[#FAF8F5]/95 backdrop-blur-md border-b border-[#E7E2D8]">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 flex flex-wrap items-center justify-between gap-3">
+      <div class="flex items-center gap-3">
+        <div class="w-10 h-10 rounded-xl bg-[#2A6F5B] text-white flex items-center justify-center font-bold text-lg shadow-sm">
+          ◎
+        </div>
+        <div>
+          <div class="text-xs font-semibold uppercase tracking-wider text-[#2A6F5B]" data-i18n="headerTag">
+            Nghiên Cứu Dọc 16 Năm (2010–2026) • Đối Chiếu 4 Thế Hệ (1920–2026)
+          </div>
+          <h1 class="text-sm sm:text-base font-bold text-[#1F2421] leading-tight" data-i18n="headerTitle">
+            Cơ Chế Sở Hữu Tâm Lý & Tính Thụ Động Liên Thế Hệ
+          </h1>
+        </div>
+      </div>
+
+      <nav class="hidden xl:flex items-center gap-1.5 bg-[#F1EDE4] p-1 rounded-xl border border-[#E7E2D8]" id="desktopNav">
+        <button onclick="scrollToSection('sec-model')" class="nav-btn nav-pill-active px-3 py-1.5 rounded-lg text-xs font-semibold transition" data-target="sec-model" data-i18n="navModel">
+          1. Mô Hình 4 Yếu Tố
+        </button>
+        <button onclick="scrollToSection('sec-generations')" class="nav-btn px-3 py-1.5 rounded-lg text-xs font-semibold text-[#575D59] hover:text-[#1F2421] transition" data-target="sec-generations" data-i18n="navGen">
+          2. 4 Thế Hệ & 5 Kịch Bản
+        </button>
+        <button onclick="scrollToSection('sec-empirical')" class="nav-btn px-3 py-1.5 rounded-lg text-xs font-semibold text-[#575D59] hover:text-[#1F2421] transition" data-target="sec-empirical" data-i18n="navEmpirical">
+          3. Dữ Liệu N=12.400
+        </button>
+        <button onclick="scrollToSection('sec-examples')" class="nav-btn px-3 py-1.5 rounded-lg text-xs font-semibold text-[#575D59] hover:text-[#1F2421] transition" data-target="sec-examples" data-i18n="navExamples">
+          4. Sai Lầm & 5 Ví Dụ
+        </button>
+        <button onclick="scrollToSection('sec-protocol')" class="nav-btn px-3 py-1.5 rounded-lg text-xs font-semibold text-[#575D59] hover:text-[#1F2421] transition" data-target="sec-protocol" data-i18n="navProtocol">
+          5. Giao Thức 100%
+        </button>
+      </nav>
+
+      <div class="flex items-center gap-2">
+        <div class="hidden sm:flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white border border-[#E7E2D8] text-xs font-medium text-[#575D59]">
+          <span data-i18n="progressLabel">Khám phá:</span>
+          <span id="exploreProgressText" class="font-mono-num font-bold text-[#2A6F5B]">1/4</span>
+        </div>
+        <div class="flex rounded-lg bg-[#F1EDE4] p-0.5 border border-[#E7E2D8]">
+          <button id="btnLangVi" onclick="setLanguage('vi')" class="px-2.5 py-1 rounded-md text-xs font-bold bg-[#1F2421] text-white transition">
+            VI
+          </button>
+          <button id="btnLangEn" onclick="setLanguage('en')" class="px-2.5 py-1 rounded-md text-xs font-bold text-[#575D59] hover:text-[#1F2421] transition">
+            EN
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="xl:hidden border-t border-[#E7E2D8] bg-[#FAF8F5] px-4 py-2 overflow-x-auto flex items-center gap-2">
+      <button onclick="scrollToSection('sec-model')" class="nav-btn nav-pill-active whitespace-nowrap px-3 py-1 rounded-lg text-xs font-semibold" data-target="sec-model" data-i18n="navModel">
+        1. Mô Hình 4 Yếu Tố
+      </button>
+      <button onclick="scrollToSection('sec-generations')" class="nav-btn whitespace-nowrap px-3 py-1 rounded-lg text-xs font-semibold text-[#575D59]" data-target="sec-generations" data-i18n="navGen">
+        2. 4 Thế Hệ & 5 Kịch Bản
+      </button>
+      <button onclick="scrollToSection('sec-empirical')" class="nav-btn whitespace-nowrap px-3 py-1 rounded-lg text-xs font-semibold text-[#575D59]" data-target="sec-empirical" data-i18n="navEmpirical">
+        3. Dữ Liệu N=12.400
+      </button>
+      <button onclick="scrollToSection('sec-examples')" class="nav-btn whitespace-nowrap px-3 py-1 rounded-lg text-xs font-semibold text-[#575D59]" data-target="sec-examples" data-i18n="navExamples">
+        4. Sai Lầm & 5 Ví Dụ
+      </button>
+      <button onclick="scrollToSection('sec-protocol')" class="nav-btn whitespace-nowrap px-3 py-1 rounded-lg text-xs font-semibold text-[#575D59]" data-target="sec-protocol" data-i18n="navProtocol">
+        5. Giao Thức 100%
+      </button>
+    </div>
+  </header>
+
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-14">
+
+    <section class="card-elevated rounded-2xl p-6 sm:p-8 lg:p-10 relative overflow-hidden">
+      <div class="max-w-4xl">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#F4F9F7] border border-[#CBE3DC] text-[#2A6F5B] text-xs font-semibold mb-4">
+          <span>◈</span>
+          <span data-i18n="heroBadge">Tóm Tắt Chuyên Khảo Khoa Học • Mẫu CFPS 12.400 Hộ Gia Đình (39.680 Cá Nhân)</span>
+        </div>
+        <h2 class="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-[#1F2421] tracking-tight leading-snug mb-4" data-i18n="heroTitle">
+          Vì Sao Trẻ Em Đương Đại Suy Giảm Tính Chủ Động Và Tăng Rủi Ro Thất Bại Khi Trưởng Thành?
+        </h2>
+        <p class="text-sm sm:text-base text-[#575D59] leading-relaxed mb-6" data-i18n="heroDesc">
+          Sự dịch chuyển sang cấu trúc gia đình <strong>"4-2-1"</strong> (4 ông bà, 2 cha mẹ, 1 đứa trẻ), bao bọc quá mức (<em>helicopter parenting</em>) và ép lịch trình <em>Jiwa</em> ("bơm máu gà") đã đẩy trẻ vào <strong>"Vùng trũng Vô chủ"</strong>. Khi bị tước quyền tự chủ thời gian và quyền sở hữu đối với tài sản cá nhân (<em>"đồ của ba mẹ mua"</em>), trẻ đánh mất đồng thời ba phẩm chất hành vi và đối mặt với rủi ro thất bại khi trưởng thành cao hơn <strong>20,9 đến 24,2 điểm phần trăm</strong> — làm bùng phát các hội chứng <em>"Nằm thẳng" (Tangping)</em>, <em>"Ăn bám" (Ken lao)</em> và <em>"Con toàn thời gian" (Quanzhi Ernu)</em>.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 pt-2">
+        <div class="rounded-xl p-4 bg-[#FDF6F5] border border-[#F2D3CE]">
+          <div class="flex items-center justify-between text-xs font-semibold text-[#C44D3B] mb-1">
+            <span data-i18n="kpi1Label">Chênh Lệch Rủi Ro Thất Bại</span>
+            <span>▲ >20%</span>
+          </div>
+          <div class="font-mono-num text-2xl sm:text-3xl font-extrabold text-[#C44D3B]">+24,2%</div>
+          <p class="text-xs text-[#575D59] mt-1 leading-relaxed" data-i18n="kpi1Sub">
+            38,4% (Nhóm bị tước sở hữu & nhắc nhở) so với 14,2% (Nhóm tự chủ 100%).
+          </p>
+        </div>
+
+        <div class="rounded-xl p-4 bg-[#FDF4E7] border border-[#F0DEC2]">
+          <div class="flex items-center justify-between text-xs font-semibold text-[#C87D32] mb-1">
+            <span data-i18n="kpi2Label">Nghịch Lý Thừa Kế Thụ Động</span>
+            <span>⚠️ Đỉnh Rủi Ro</span>
+          </div>
+          <div class="font-mono-num text-2xl sm:text-3xl font-extrabold text-[#C87D32]">41,2%</div>
+          <p class="text-xs text-[#575D59] mt-1 leading-relaxed" data-i18n="kpi2Sub">
+            Tỷ lệ hư hỏng, tiêu tán cơ nghiệp ở người có gia sản để lại nhưng thiếu 3 phẩm chất cốt lõi.
+          </p>
+        </div>
+
+        <div class="rounded-xl p-4 bg-[#F7F6F2] border border-[#E7E2D8]">
+          <div class="flex items-center justify-between text-xs font-semibold text-[#1F2421] mb-1">
+            <span data-i18n="kpi3Label">Tự Coi Mình Là "Tài Sản Cha Mẹ"</span>
+            <span>🧠 Starmans</span>
+          </div>
+          <div class="font-mono-num text-2xl sm:text-3xl font-extrabold text-[#1F2421]">89,0%</div>
+          <p class="text-xs text-[#575D59] mt-1 leading-relaxed" data-i18n="kpi3Sub">
+            Trẻ bị tước tự chủ tin mình thuộc sở hữu của mẹ (so với 52,0% ở nhóm tự chủ).
+          </p>
+        </div>
+
+        <div class="rounded-xl p-4 bg-[#F4F9F7] border border-[#CBE3DC]">
+          <div class="flex items-center justify-between text-xs font-semibold text-[#2A6F5B] mb-1">
+            <span data-i18n="kpi4Label">Sức Mạnh Giải Thích Của Sở Hữu</span>
+            <span>SEM CFI=0.97</span>
+          </div>
+          <div class="font-mono-num text-2xl sm:text-3xl font-extrabold text-[#2A6F5B]">68,4%</div>
+          <p class="text-xs text-[#575D59] mt-1 leading-relaxed" data-i18n="kpi4Sub">
+            Phương sai Tính chủ động (β = 0,827) được quyết định trực tiếp bởi Chỉ số Sở hữu (APOI).
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section id="sec-model" class="space-y-6 scroll-mt-24">
+      <div class="max-w-3xl">
+        <span class="text-xs font-bold uppercase tracking-wider text-[#2A6F5B]" data-i18n="sec1Tag">
+          Phần 1 • Kiến Trúc Lý Thuyết Trọng Tâm
+        </span>
+        <h2 class="text-2xl sm:text-3xl font-bold text-[#1F2421] mt-1" data-i18n="sec1Title">
+          Mô Hình Đồng Tâm Bốn Yếu Tố: Bấm Từng Bước Hội Tụ Về Tâm Điểm "Tính Sở Hữu"
+        </h2>
+        <p class="text-sm sm:text-base text-[#575D59] mt-2 leading-relaxed" data-i18n="sec1Intro">
+          Khác với quan niệm truyền thống tách rời các đức tính, nghiên cứu chứng minh ba phẩm chất hành vi vòng ngoài — <strong>Tính Trách Nhiệm</strong>, <strong>Tính Vất Vả</strong> và <strong>Tính Chủ Động</strong> — không thể rèn luyện rời rạc bằng lời khuyên đạo đức, mà đều sinh ra từ một hạt nhân duy nhất ở chính giữa là <strong>Tính Sở Hữu (Ownership)</strong>. Hãy bấm lần lượt vào từng vòng tròn trên sơ đồ hoặc các nút bước bên dưới để mở khóa cơ chế khoa học.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+        <div class="lg:col-span-5 card-elevated rounded-2xl p-5 flex flex-col items-center">
+          <div class="w-full flex items-center justify-between mb-2">
+            <span class="text-xs font-semibold text-[#575D59]" data-i18n="canvasHint">
+              👆 Bấm vào từng vòng tròn để mở khóa
+            </span>
+            <button onclick="unlockAllSteps()" class="text-xs font-semibold text-[#2A6F5B] hover:underline" data-i18n="btnUnlockAll">
+              Mở tất cả 4 bước →
+            </button>
+          </div>
+          <div class="concentric-canvas-wrap">
+            <canvas id="concentricCanvas"></canvas>
+          </div>
+          <div class="w-full grid grid-cols-4 gap-1.5 mt-3">
+            <button onclick="selectModelNode(0)" id="nodeBtn0" class="py-2 px-1 rounded-lg text-xs font-bold border border-[#2A6F5B] bg-[#2A6F5B] text-white transition">
+              1. Trách Nhiệm
+            </button>
+            <button onclick="selectModelNode(1)" id="nodeBtn1" class="py-2 px-1 rounded-lg text-xs font-bold border border-[#E7E2D8] bg-[#FAF8F5] text-[#575D59] hover:border-[#2A6F5B] transition">
+              2. Vất Vả
+            </button>
+            <button onclick="selectModelNode(2)" id="nodeBtn2" class="py-2 px-1 rounded-lg text-xs font-bold border border-[#E7E2D8] bg-[#FAF8F5] text-[#575D59] hover:border-[#2A6F5B] transition">
+              3. Chủ Động
+            </button>
+            <button onclick="selectModelNode(3)" id="nodeBtn3" class="py-2 px-1 rounded-lg text-xs font-bold border border-[#C87D32] bg-[#FDF4E7] text-[#C87D32] hover:bg-[#C87D32] hover:text-white transition">
+              ★ Sở Hữu
+            </button>
+          </div>
+        </div>
+
+        <div class="lg:col-span-7 space-y-4">
+          <div id="modelDetailCard" class="card-elevated rounded-2xl p-6 sm:p-7 transition-all">
+          </div>
+
+          <div class="card-elevated rounded-2xl p-5 bg-[#FAF8F5]">
+            <div class="flex flex-wrap items-center justify-between gap-2 mb-3">
+              <h4 class="text-xs font-bold uppercase tracking-wider text-[#1F2421]" data-i18n="distinctionHeader">
+                Phân Định Cốt Lõi: Tính Chủ Động Trải Nghiệm vs. Ba Mẹ Bắt Ép Trải Nghiệm
+              </h4>
+              <span class="px-2.5 py-0.5 rounded-full text-xs font-bold bg-[#FDF6F5] text-[#C44D3B] border border-[#F2D3CE]">
+                +20,4% Rủi Ro Khi Bị Ép
+              </span>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              <div class="p-3.5 rounded-xl bg-white border border-[#CBE3DC]">
+                <div class="text-xs font-bold text-[#2A6F5B] mb-1" data-i18n="volitionalTitle">
+                  ✓ Chủ Động Trải Nghiệm Tự Thân (Nhóm A)
+                </div>
+                <p class="text-xs text-[#575D59] leading-relaxed" data-i18n="volitionalBody">
+                  Trẻ tự khởi phát tò mò, tự chọn mục tiêu, tự va vấp thử-sai và sở hữu 100% bài học rút ra. Chỉ số APOI đạt <strong>83,6/100</strong>; rủi ro thất bại tương lai chỉ <strong>14,2%</strong>.
+                </p>
+              </div>
+              <div class="p-3.5 rounded-xl bg-white border border-[#F2D3CE]">
+                <div class="text-xs font-bold text-[#C44D3B] mb-1" data-i18n="forcedTitle">
+                  ✕ Ba Mẹ Bắt Ép Trải Nghiệm (Nhóm B3 • Jiwa)
+                </div>
+                <p class="text-xs text-[#575D59] leading-relaxed" data-i18n="forcedBody">
+                  Cha mẹ ép học nhạc cụ, trại hè, ngoại khóa theo kịch bản người lớn. Trẻ chỉ là "người tiêu thụ thụ động" (APOI = <strong>25,4/100</strong>), đẩy rủi ro thất bại lên <strong>34,6%</strong>.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="sec-generations" class="space-y-6 scroll-mt-24">
+      <div class="max-w-3xl">
+        <span class="text-xs font-bold uppercase tracking-wider text-[#2A6F5B]" data-i18n="sec2Tag">
+          Phần 2 • Đối Chiếu Lịch Sử 106 Năm (1920–2026)
+        </span>
+        <h2 class="text-2xl sm:text-3xl font-bold text-[#1F2421] mt-1" data-i18n="sec2Title">
+          Sự Suy Thoái Liên Thế Hệ & Năm Kịch Bản Sở Hữu Của Con Người
+        </h2>
+        <p class="text-sm sm:text-base text-[#575D59] mt-2 leading-relaxed" data-i18n="sec2Intro">
+          Tại sao thế hệ Ông Bà (1945–1965) không cần khóa học kỹ năng sống vẫn đạt tỷ lệ tự lập trên 94%, trong khi Thế hệ IV (2000–2018) lại rơi vào khủng hoảng <em>"Nằm thẳng"</em> và <em>"Con toàn thời gian"</em>? Biểu đồ xu hướng và 5 kịch bản sở hữu dưới đây giải mã quy luật động lực tự thân qua từng thời đại.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+        <div class="lg:col-span-7 card-elevated rounded-2xl p-6 flex flex-col justify-between">
+          <div>
+            <div class="flex flex-wrap items-center justify-between gap-2 mb-4">
+              <div>
+                <h3 class="text-base font-bold text-[#1F2421]" data-i18n="genChartTitle">
+                  Quỹ Đạo Bốn Chỉ Số Phát Triển & Rủi Ro Thất Bại (1920–2026)
+                </h3>
+                <p class="text-xs text-[#575D59]" data-i18n="genChartSub">
+                  Thang điểm chuẩn hóa 0–100 và Tỷ lệ Rủi ro Thất bại Trưởng thành (FFMR %)
+                </p>
+              </div>
+              <div class="flex gap-1.5">
+                <button onclick="setGenChartMode('all')" id="btnGenAll" class="px-2.5 py-1 rounded-lg text-xs font-semibold bg-[#2A6F5B] text-white">
+                  Tất cả chỉ số
+                </button>
+                <button onclick="setGenChartMode('risk')" id="btnGenRisk" class="px-2.5 py-1 rounded-lg text-xs font-semibold bg-[#F1EDE4] text-[#575D59]">
+                  Sở hữu vs. Thất bại
+                </button>
+              </div>
+            </div>
+            <div class="chart-container">
+              <canvas id="generationalChart"></canvas>
+            </div>
+          </div>
+          <div class="mt-4 pt-3 border-t border-[#E7E2D8] grid grid-cols-4 gap-2 text-center">
+            <div class="p-2 rounded-lg bg-[#FAF8F5]">
+              <div class="text-[11px] font-semibold text-[#575D59]">Thế hệ I (1920–40)</div>
+              <div class="font-mono-num text-sm font-bold text-[#2A6F5B]">FFMR: 4,8%</div>
+            </div>
+            <div class="p-2 rounded-lg bg-[#FAF8F5]">
+              <div class="text-[11px] font-semibold text-[#575D59]">Thế hệ II (1945–65)</div>
+              <div class="font-mono-num text-sm font-bold text-[#2A6F5B]">FFMR: 5,6%</div>
+            </div>
+            <div class="p-2 rounded-lg bg-[#FAF8F5]">
+              <div class="text-[11px] font-semibold text-[#575D59]">Thế hệ III (1970–88)</div>
+              <div class="font-mono-num text-sm font-bold text-[#C87D32]">FFMR: 12,4%</div>
+            </div>
+            <div class="p-2 rounded-lg bg-[#FDF6F5]">
+              <div class="text-[11px] font-semibold text-[#C44D3B]">Thế hệ IV (2000–18)</div>
+              <div class="font-mono-num text-sm font-bold text-[#C44D3B]">FFMR: 31,6%</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="lg:col-span-5 card-elevated rounded-2xl p-6 flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between mb-3">
+              <h3 class="text-base font-bold text-[#1F2421]" data-i18n="scenarioBoxTitle">
+                5 Kịch Bản Trạng Thái Sở Hữu
+              </h3>
+              <span class="text-xs font-semibold text-[#C87D32]" data-i18n="scenarioHint">
+                Bấm từng kịch bản
+              </span>
+            </div>
+            <div class="space-y-2" id="scenarioList">
+            </div>
+          </div>
+          <div id="scenarioDetailBox" class="mt-4 p-4 rounded-xl bg-[#FAF8F5] border border-[#E7E2D8]">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="sec-empirical" class="space-y-6 scroll-mt-24">
+      <div class="max-w-3xl">
+        <span class="text-xs font-bold uppercase tracking-wider text-[#2A6F5B]" data-i18n="sec3Tag">
+          Phần 3 • Bằng Chứng Thực Nghiệm Dọc 16 Năm (2010–2026)
+        </span>
+        <h2 class="text-2xl sm:text-3xl font-bold text-[#1F2421] mt-1" data-i18n="sec3Title">
+          Định Lượng Ngưỡng Rủi Ro Thất Bại >20% & Hiệu Ứng Sở Hữu Bản Thân
+        </h2>
+        <p class="text-sm sm:text-base text-[#575D59] mt-2 leading-relaxed" data-i18n="sec3Intro">
+          Theo dõi cùng một nhóm đối tượng qua 3 giai đoạn (6–10 tuổi, 12–16 tuổi và 20–26 tuổi) trên mẫu <strong>N = 12.400 hộ gia đình</strong> chứng minh sự phân cực thống kê sắc nét (χ² = 614,82, p &lt; 0,001). Chỉ cần cha mẹ làm thay đồng hồ báo thức hoặc tuyên bố đồ dùng là của cha mẹ, rủi ro thất bại trưởng thành lập tức vượt ngưỡng cảnh báo <strong>+20 điểm phần trăm</strong>.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        <div class="card-elevated rounded-2xl p-6">
+          <div class="flex flex-wrap items-center justify-between gap-2 mb-4">
+            <div>
+              <h3 class="text-base font-bold text-[#1F2421]" data-i18n="riskChartTitle">
+                Tỷ Lệ Rủi Ro Thất Bại Trưởng Thành Theo Nhóm Đối Chứng (%)
+              </h3>
+              <p class="text-xs text-[#575D59]" data-i18n="riskChartSub">
+                So sánh với Nhóm Chuẩn A (14,2%) • Mức tăng vượt ngưỡng +20%
+              </p>
+            </div>
+            <select id="cohortFilterSelect" onchange="updateRiskChart()" class="text-xs font-semibold bg-[#FAF8F5] border border-[#E7E2D8] rounded-lg px-2.5 py-1.5 text-[#1F2421]">
+              <option value="all">Tất cả phân nhóm (A vs B1–B4)</option>
+              <option value="parenting">Sai lầm nuôi dạy (A, B1, B2, B3, B-Comb)</option>
+              <option value="hukou">Phân tầng Đô thị vs Nông thôn</option>
+            </select>
+          </div>
+          <div class="chart-container">
+            <canvas id="failureRiskChart"></canvas>
+          </div>
+          <div id="riskChartCallout" class="mt-3 p-3 rounded-xl bg-[#FDF6F5] border border-[#F2D3CE] text-xs text-[#575D59] leading-relaxed">
+          </div>
+        </div>
+
+        <div class="card-elevated rounded-2xl p-6">
+          <div class="flex flex-wrap items-center justify-between gap-2 mb-4">
+            <div>
+              <h3 class="text-base font-bold text-[#1F2421]" data-i18n="radarChartTitle">
+                Hồ Sơ 4 Chỉ Số & Nhận Thức "Bị Cha Mẹ Sở Hữu" (Starmans)
+              </h3>
+              <p class="text-xs text-[#575D59]" data-i18n="radarChartSub">
+                Đối chiếu Nhóm A (Tự chủ 100%) với các nhóm bị kiểm soát/thừa kế thụ động
+              </p>
+            </div>
+            <select id="profileCompareSelect" onchange="updateProfileChart()" class="text-xs font-semibold bg-[#FAF8F5] border border-[#E7E2D8] rounded-lg px-2.5 py-1.5 text-[#1F2421]">
+              <option value="bComb">Nhóm A vs. B-Kết hợp (38,4% rủi ro)</option>
+              <option value="b4">Nhóm A vs. B4 Thừa kế thụ động (41,2% rủi ro)</option>
+              <option value="b2">Nhóm A vs. B2 Tước sở hữu vật chất (36,8%)</option>
+              <option value="b1">Nhóm A vs. B1 Nhắc nhở thời gian (35,1%)</option>
+            </select>
+          </div>
+          <div class="chart-container">
+            <canvas id="psychometricProfileChart"></canvas>
+          </div>
+          <div class="mt-3 p-3 rounded-xl bg-[#F4F9F7] border border-[#CBE3DC] text-xs text-[#575D59] leading-relaxed" data-i18n="starmansNote">
+            <strong>Hiệu ứng Starmans (2023):</strong> Khi không được quyền tự quyết định, <strong>89,0%</strong> trẻ em phán đoán bản thân mình là <em>"vật sở hữu của mẹ"</em> (so với <strong>52,0%</strong> ở Nhóm A). Một đứa trẻ coi cuộc đời mình là tài sản của cha mẹ không thể sinh ra động lực tự chủ.
+          </div>
+        </div>
+      </div>
+
+      <div class="card-elevated rounded-2xl p-6">
+        <div class="flex flex-wrap items-center justify-between gap-3 mb-4">
+          <div>
+            <h3 class="text-base font-bold text-[#1F2421]" data-i18n="tableTitle">
+              Bảng Thống Kê Đối Chứng Toàn Mẫu (N = 12.400 Hộ Gia Đình)
+            </h3>
+            <p class="text-xs text-[#575D59]" data-i18n="tableSub">
+              Lọc theo phân tầng nghiên cứu hoặc sắp xếp theo tỷ lệ Rủi ro Thất bại (FFMR %)
+            </p>
+          </div>
+          <div class="flex flex-wrap items-center gap-2">
+            <input type="text" id="tableSearchInput" onkeyup="renderStatsTable()" placeholder="Tìm nhóm nghiên cứu..." class="text-xs px-3 py-1.5 rounded-lg border border-[#E7E2D8] bg-[#FAF8F5] focus:outline-none focus:border-[#2A6F5B]" />
+            <button onclick="toggleTableSort()" id="btnSortTable" class="text-xs font-semibold px-3 py-1.5 rounded-lg bg-[#F1EDE4] text-[#1F2421] hover:bg-[#E7E2D8] transition">
+              Sắp xếp Rủi ro: Mặc định ⇅
+            </button>
+          </div>
+        </div>
+        <div class="overflow-x-auto">
+          <table class="w-full text-left border-collapse text-xs">
+            <thead>
+              <tr class="border-b-2 border-[#E7E2D8] bg-[#FAF8F5] text-[#575D59] font-bold">
+                <th class="py-3 px-3">Nhóm Nghiên Cứu / Phân Tầng</th>
+                <th class="py-3 px-2 text-right">Mẫu (n)</th>
+                <th class="py-3 px-2 text-right">Tự chủ (AAI)</th>
+                <th class="py-3 px-2 text-right">Vất vả (HARI)</th>
+                <th class="py-3 px-2 text-right">Trách nhiệm (SRSI)</th>
+                <th class="py-3 px-2 text-right">Sở hữu (APOI)</th>
+                <th class="py-3 px-2 text-right">Bị sở hữu (%)</th>
+                <th class="py-3 px-2 text-right">Thành công (%)</th>
+                <th class="py-3 px-3 text-right">Rủi ro Thất bại</th>
+              </tr>
+            </thead>
+            <tbody id="statsTableBody" class="divide-y divide-[#E7E2D8]">
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section id="sec-examples" class="space-y-6 scroll-mt-24">
+      <div class="max-w-3xl">
+        <span class="text-xs font-bold uppercase tracking-wider text-[#C44D3B]" data-i18n="sec4Tag">
+          Phần 4 • Giải Phẫu Hành Vi Đương Đại
+        </span>
+        <h2 class="text-2xl sm:text-3xl font-bold text-[#1F2421] mt-1" data-i18n="sec4Title">
+          Bốn Sai Lầm Ngôn Ngữ Của Cha Mẹ & Năm Tình Huống Đời Thực Thời Đại Số
+        </h2>
+        <p class="text-sm sm:text-base text-[#575D59] mt-2 leading-relaxed" data-i18n="sec4Intro">
+          Sự thụ động của trẻ không xuất hiện ngẫu nhiên mà được "lập trình" mỗi ngày qua những câu nói tưởng chừng yêu thương của cha mẹ và những thói quen làm thay như gọi dậy buổi sáng, nhắc bài tập hay tuyên bố chủ quyền đối với chiếc iPad. Bấm vào từng thẻ để đối chiếu cơ chế tâm lý.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4" id="fallacyGrid">
+      </div>
+
+      <div class="card-elevated rounded-2xl p-6">
+        <div class="flex flex-wrap items-center justify-between gap-3 mb-5">
+          <div>
+            <h3 class="text-lg font-bold text-[#1F2421]" data-i18n="examplesHeader">
+              5 Tình Huống Thực Tế Điển Hình: Đối Chiếu Hai Cơ Chế Nuôi Dạy
+            </h3>
+            <p class="text-xs text-[#575D59]" data-i18n="examplesSub">
+              Chọn một tình huống thực tế và chuyển đổi trạng thái để quan sát phản ứng thần kinh – hành vi của trẻ
+            </p>
+          </div>
+          <div class="flex rounded-xl bg-[#F1EDE4] p-1 border border-[#E7E2D8]">
+            <button onclick="setExampleMode('disowned')" id="btnExDisowned" class="px-3 py-1.5 rounded-lg text-xs font-bold bg-[#C44D3B] text-white transition">
+              ✕ Chế độ Tước Sở Hữu (Hiện tại)
+            </button>
+            <button onclick="setExampleMode('owned')" id="btnExOwned" class="px-3 py-1.5 rounded-lg text-xs font-bold text-[#575D59] hover:text-[#1F2421] transition">
+              ✓ Chế độ Giao Quyền 100%
+            </button>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-5 gap-2 mb-5" id="exampleTabs">
+        </div>
+
+        <div id="exampleContentBox" class="p-5 rounded-xl border transition-all">
+        </div>
+      </div>
+    </section>
+
+    <section id="sec-protocol" class="space-y-6 scroll-mt-24">
+      <div class="max-w-3xl">
+        <span class="text-xs font-bold uppercase tracking-wider text-[#2A6F5B]" data-i18n="sec5Tag">
+          Phần 5 • Giải Pháp Can Thiệp Thực Hành
+        </span>
+        <h2 class="text-2xl sm:text-3xl font-bold text-[#1F2421] mt-1" data-i18n="sec5Title">
+          Giao Thức Chuyển Giao Quyền Sở Hữu Tuyệt Đối 100% & Bộ Mô Phỏng Gia Đình
+        </h2>
+        <p class="text-sm sm:text-base text-[#575D59] mt-2 leading-relaxed" data-i18n="sec5Intro">
+          Để đảo ngược tính thụ động, khi cha mẹ quyết định giao cho con một chiếc iPad, một căn phòng, một quỹ thời gian hay một công việc, phải xác lập minh bạch và không thu hồi rằng <strong>đó thuộc quyền sở hữu chính xác 100% của con</strong> (100% quyền lợi sử dụng đi kèm 100% trách nhiệm quản lý và gánh chịu hậu quả).
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+        <div class="lg:col-span-7 space-y-3" id="protocolCardsContainer">
+        </div>
+
+        <div class="lg:col-span-5 card-elevated rounded-2xl p-6 bg-gradient-to-b from-white to-[#FAF8F5] flex flex-col justify-between">
+          <div>
+            <div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-[#F4F9F7] text-[#2A6F5B] text-xs font-bold mb-2">
+              <span>🎛️</span>
+              <span data-i18n="simBadge">Công Cụ Chẩn Đoán & Mô Phỏng Dữ Liệu Dọc</span>
+            </div>
+            <h3 class="text-lg font-bold text-[#1F2421]" data-i18n="simTitle">
+              Đo Lường Chỉ Số Sở Hữu (APOI) & Rủi Ro Thất Bại Của Trẻ
+            </h3>
+            <p class="text-xs text-[#575D59] mt-1 mb-5" data-i18n="simSub">
+              Điều chỉnh 5 thực hành hàng ngày trong gia đình bạn để dự báo chỉ số APOI và mức chênh lệch rủi ro so với ngưỡng cảnh báo 20%.
+            </p>
+
+            <div class="space-y-4">
+              <div>
+                <div class="flex justify-between text-xs font-semibold mb-1">
+                  <span>1. Tự chủ thức dậy buổi sáng (Đồng hồ riêng)</span>
+                  <span id="valWake" class="font-mono-num text-[#2A6F5B]">50%</span>
+                </div>
+                <input type="range" id="sliderWake" min="0" max="100" value="50" oninput="runSimulator()" class="w-full accent-[#2A6F5B] cursor-pointer" />
+                <div class="flex justify-between text-[10px] text-[#575D59]">
+                  <span>Ba mẹ gọi dậy 3–5 lần</span>
+                  <span>100% tự đặt báo thức & tự chịu phạt</span>
+                </div>
+              </div>
+
+              <div>
+                <div class="flex justify-between text-xs font-semibold mb-1">
+                  <span>2. Tự quản lý lịch học (Không nhắc nhở vi mô)</span>
+                  <span id="valSchedule" class="font-mono-num text-[#2A6F5B]">40%</span>
+                </div>
+                <input type="range" id="sliderSchedule" min="0" max="100" value="40" oninput="runSimulator()" class="w-full accent-[#2A6F5B] cursor-pointer" />
+                <div class="flex justify-between text-[10px] text-[#575D59]">
+                  <span>Nhắc bài mỗi 30 phút</span>
+                  <span>100% tự lập thời gian biểu</span>
+                </div>
+              </div>
+
+              <div>
+                <div class="flex justify-between text-xs font-semibold mb-1">
+                  <span>3. Quyền sở hữu thiết bị & đồ dùng (iPad, góc học)</span>
+                  <span id="valAsset" class="font-mono-num text-[#2A6F5B]">30%</span>
+                </div>
+                <input type="range" id="sliderAsset" min="0" max="100" value="30" oninput="runSimulator()" class="w-full accent-[#2A6F5B] cursor-pointer" />
+                <div class="flex justify-between text-[10px] text-[#575D59]">
+                  <span>"Đồ của ba mẹ cho mượn"</span>
+                  <span>"100% của con, hỏng tự sửa"</span>
+                </div>
+              </div>
+
+              <div>
+                <div class="flex justify-between text-xs font-semibold mb-1">
+                  <span>4. Trực tiếp quét dọn không gian & chịu vất vả</span>
+                  <span id="valChore" class="font-mono-num text-[#2A6F5B]">35%</span>
+                </div>
+                <input type="range" id="sliderChore" min="0" max="100" value="35" oninput="runSimulator()" class="w-full accent-[#2A6F5B] cursor-pointer" />
+                <div class="flex justify-between text-[10px] text-[#575D59]">
+                  <span>Người lớn dọn phòng hộ</span>
+                  <span>Tự quét dọn & quản lý như Chủ đất</span>
+                </div>
+              </div>
+
+              <div>
+                <div class="flex justify-between text-xs font-semibold mb-1">
+                  <span>5. Trải nghiệm tự khởi xướng (Không bị bắt ép)</span>
+                  <span id="valExp" class="font-mono-num text-[#2A6F5B]">45%</span>
+                </div>
+                <input type="range" id="sliderExp" min="0" max="100" value="45" oninput="runSimulator()" class="w-full accent-[#2A6F5B] cursor-pointer" />
+                <div class="flex justify-between text-[10px] text-[#575D59]">
+                  <span>Ép học/trại hè kiểu Jiwa</span>
+                  <span>100% tự chọn & tự chịu trách nhiệm</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="mt-6 pt-5 border-t border-[#E7E2D8]">
+            <div class="grid grid-cols-2 gap-3 mb-3">
+              <div class="p-3 rounded-xl bg-white border border-[#E7E2D8]">
+                <div class="text-[11px] font-semibold text-[#575D59]">Chỉ số Sở hữu (APOI)</div>
+                <div id="simApoiScore" class="font-mono-num text-2xl font-extrabold text-[#2A6F5B]">40,0 / 100</div>
+              </div>
+              <div class="p-3 rounded-xl bg-white border border-[#E7E2D8]">
+                <div class="text-[11px] font-semibold text-[#575D59]">Rủi ro Thất bại Dự báo</div>
+                <div id="simRiskScore" class="font-mono-num text-2xl font-extrabold text-[#C44D3B]">31,2%</div>
+              </div>
+            </div>
+            <div id="simVerdictBox" class="p-3.5 rounded-xl text-xs leading-relaxed">
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="card-elevated rounded-2xl p-6 sm:p-8 bg-[#1F2421] text-white">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
+        <div class="lg:col-span-8">
+          <div class="text-xs font-bold uppercase tracking-wider text-[#88C9B5] mb-2" data-i18n="footerTag">
+            Kết Luận Tổng Hợp Của Công Trình Nghiên Cứu
+          </div>
+          <p class="text-sm sm:text-base text-gray-200 leading-relaxed" data-i18n="footerQuote">
+            "Sự thành công hay thất bại của một đứa trẻ khi trưởng thành không được quyết định bởi khối lượng vật chất cha mẹ chu cấp sẵn, cũng không bởi cường độ nhắc nhở mỗi ngày; nó được quyết định bởi mức độ <strong>Quyền sở hữu thực tế (100% quyền lợi đi đôi với 100% trách nhiệm)</strong> mà đứa trẻ được trao và tự tay quản lý ngay từ thời thơ ấu. Chỉ khi đứa trẻ thực sự làm chủ 100% tài sản, thời gian và cả những vấp ngã ở hiện tại, trẻ mới có thể làm chủ thành công cuộc đời mình trong tương lai."
+          </p>
+        </div>
+        <div class="lg:col-span-4 flex flex-col sm:flex-row lg:flex-col gap-2.5 justify-end">
+          <button onclick="scrollToSection('sec-model')" class="px-4 py-2.5 rounded-xl bg-[#2A6F5B] hover:bg-[#235D4C] text-white text-xs font-bold transition text-center">
+            ↑ Quay Lại Sơ Đồ Đồng Tâm 4 Yếu Tố
+          </button>
+          <div class="text-[11px] text-gray-400 text-center">
+            Cơ sở lý thuyết: Pierce et al. (2001, 2003), Starmans (2023), Deci & Ryan (SDT), CFPS Panel (N = 12.400).
+          </div>
+        </div>
+      </div>
+    </footer>
+
+  </main>
+
+  <script>
+    const appState = {
+      lang: 'vi',
+      activeModelNode: 0,
+      unlockedNodes: [true, false, false, false],
+      genChartMode: 'all',
+      activeScenario: 3,
+      exampleMode: 'disowned',
+      activeExampleIdx: 0,
+      tableSortAsc: null
+    };
+
+    const i18nDict = {
+      vi: {
+        headerTag: 'Nghiên Cứu Dọc 16 Năm (2010–2026) • Đối Chiếu 4 Thế Hệ (1920–2026)',
+        headerTitle: 'Cơ Chế Sở Hữu Tâm Lý & Tính Thụ Động Liên Thế Hệ',
+        navModel: '1. Mô Hình 4 Yếu Tố',
+        navGen: '2. 4 Thế Hệ & 5 Kịch Bản',
+        navEmpirical: '3. Dữ Liệu N=12.400',
+        navExamples: '4. Sai Lầm & 5 Ví Dụ',
+        navProtocol: '5. Giao Thức 100%',
+        progressLabel: 'Khám phá:',
+        heroBadge: 'Tóm Tắt Chuyên Khảo Khoa Học • Mẫu CFPS 12.400 Hộ Gia Đình (39.680 Cá Nhân)',
+        heroTitle: 'Vì Sao Trẻ Em Đương Đại Suy Giảm Tính Chủ Động Và Tăng Rủi Ro Thất Bại Khi Trưởng Thành?',
+        heroDesc: 'Sự dịch chuyển sang cấu trúc gia đình <strong>"4-2-1"</strong> (4 ông bà, 2 cha mẹ, 1 đứa trẻ), bao bọc quá mức (<em>helicopter parenting</em>) và ép lịch trình <em>Jiwa</em> ("bơm máu gà") đã đẩy trẻ vào <strong>"Vùng trũng Vô chủ"</strong>. Khi bị tước quyền tự chủ thời gian và quyền sở hữu đối với tài sản cá nhân (<em>"đồ của ba mẹ mua"</em>), trẻ đánh mất đồng thời ba phẩm chất hành vi và đối mặt với rủi ro thất bại khi trưởng thành cao hơn <strong>20,9 đến 24,2 điểm phần trăm</strong> — làm bùng phát các hội chứng <em>"Nằm thẳng" (Tangping)</em>, <em>"Ăn bám" (Ken lao)</em> và <em>"Con toàn thời gian" (Quanzhi Ernu)</em>.',
+        kpi1Label: 'Chênh Lệch Rủi Ro Thất Bại',
+        kpi1Sub: '38,4% (Nhóm bị tước sở hữu & nhắc nhở) so với 14,2% (Nhóm tự chủ 100%).',
+        kpi2Label: 'Nghịch Lý Thừa Kế Thụ Động',
+        kpi2Sub: 'Tỷ lệ hư hỏng, tiêu tán cơ nghiệp ở người có gia sản để lại nhưng thiếu 3 phẩm chất cốt lõi.',
+        kpi3Label: 'Tự Coi Mình Là "Tài Sản Cha Mẹ"',
+        kpi3Sub: 'Trẻ bị tước tự chủ tin mình thuộc sở hữu của mẹ (so với 52,0% ở nhóm tự chủ).',
+        kpi4Label: 'Sức Mạnh Giải Thích Của Sở Hữu',
+        kpi4Sub: 'Phương sai Tính chủ động (β = 0,827) được quyết định trực tiếp bởi Chỉ số Sở hữu (APOI).',
+        sec1Tag: 'Phần 1 • Kiến Trúc Lý Thuyết Trọng Tâm',
+        sec1Title: 'Mô Hình Đồng Tâm Bốn Yếu Tố: Bấm Từng Bước Hội Tụ Về Tâm Điểm "Tính Sở Hữu"',
+        sec1Intro: 'Khác với quan niệm truyền thống tách rời các đức tính, nghiên cứu chứng minh ba phẩm chất hành vi vòng ngoài — <strong>Tính Trách Nhiệm</strong>, <strong>Tính Vất Vả</strong> và <strong>Tính Chủ Động</strong> — không thể rèn luyện rời rạc bằng lời khuyên đạo đức, mà đều sinh ra từ một hạt nhân duy nhất ở chính giữa là <strong>Tính Sở Hữu (Ownership)</strong>. Hãy bấm lần lượt vào từng vòng tròn trên sơ đồ hoặc các nút bước bên dưới để mở khóa cơ chế khoa học.',
+        canvasHint: '👆 Bấm vào từng vòng tròn để mở khóa',
+        btnUnlockAll: 'Mở tất cả 4 bước →',
+        distinctionHeader: 'Phân Định Cốt Lõi: Tính Chủ Động Trải Nghiệm vs. Ba Mẹ Bắt Ép Trải Nghiệm',
+        volitionalTitle: '✓ Chủ Động Trải Nghiệm Tự Thân (Nhóm A)',
+        volitionalBody: 'Trẻ tự khởi phát tò mò, tự chọn mục tiêu, tự va vấp thử-sai và sở hữu 100% bài học rút ra. Chỉ số APOI đạt <strong>83,6/100</strong>; rủi ro thất bại tương lai chỉ <strong>14,2%</strong>.',
+        forcedTitle: '✕ Ba Mẹ Bắt Ép Trải Nghiệm (Nhóm B3 • Jiwa)',
+        forcedBody: 'Cha mẹ ép học nhạc cụ, trại hè, ngoại khóa theo kịch bản người lớn. Trẻ chỉ là "người tiêu thụ thụ động" (APOI = <strong>25,4/100</strong>), đẩy rủi ro thất bại lên <strong>34,6%</strong>.',
+        sec2Tag: 'Phần 2 • Đối Chiếu Lịch Sử 106 Năm (1920–2026)',
+        sec2Title: 'Sự Suy Thoái Liên Thế Hệ & Năm Kịch Bản Sở Hữu Của Con Người',
+        sec2Intro: 'Tại sao thế hệ Ông Bà (1945–1965) không cần khóa học kỹ năng sống vẫn đạt tỷ lệ tự lập trên 94%, trong khi Thế hệ IV (2000–2018) lại rơi vào khủng hoảng <em>"Nằm thẳng"</em> và <em>"Con toàn thời gian"</em>? Biểu đồ xu hướng và 5 kịch bản sở hữu dưới đây giải mã quy luật động lực tự thân qua từng thời đại.',
+        genChartTitle: 'Quỹ Đạo Bốn Chỉ Số Phát Triển & Rủi Ro Thất Bại (1920–2026)',
+        genChartSub: 'Thang điểm chuẩn hóa 0–100 và Tỷ lệ Rủi ro Thất bại Trưởng thành (FFMR %)',
+        scenarioBoxTitle: '5 Kịch Bản Trạng Thái Sở Hữu',
+        scenarioHint: 'Bấm từng kịch bản',
+        sec3Tag: 'Phần 3 • Bằng Chứng Thực Nghiệm Dọc 16 Năm (2010–2026)',
+        sec3Title: 'Định Lượng Ngưỡng Rủi Ro Thất Bại >20% & Hiệu Ứng Sở Hữu Bản Thân',
+        sec3Intro: 'Theo dõi cùng một nhóm đối tượng qua 3 giai đoạn (6–10 tuổi, 12–16 tuổi và 20–26 tuổi) trên mẫu <strong>N = 12.400 hộ gia đình</strong> chứng minh sự phân cực thống kê sắc nét (χ² = 614,82, p < 0,001). Chỉ cần cha mẹ làm thay đồng hồ báo thức hoặc tuyên bố đồ dùng là của cha mẹ, rủi ro thất bại trưởng thành lập tức vượt ngưỡng cảnh báo <strong>+20 điểm phần trăm</strong>.',
+        riskChartTitle: 'Tỷ Lệ Rủi Ro Thất Bại Trưởng Thành Theo Nhóm Đối Chứng (%)',
+        riskChartSub: 'So sánh với Nhóm Chuẩn A (14,2%) • Mức tăng vượt ngưỡng +20%',
+        radarChartTitle: 'Hồ Sơ 4 Chỉ Số & Nhận Thức "Bị Cha Mẹ Sở Hữu" (Starmans)',
+        radarChartSub: 'Đối chiếu Nhóm A (Tự chủ 100%) với các nhóm bị kiểm soát/thừa kế thụ động',
+        starmansNote: '<strong>Hiệu ứng Starmans (2023):</strong> Khi không được quyền tự quyết định, <strong>89,0%</strong> trẻ em phán đoán bản thân mình là <em>"vật sở hữu của mẹ"</em> (so với <strong>52,0%</strong> ở Nhóm A). Một đứa trẻ coi cuộc đời mình là tài sản của cha mẹ không thể sinh ra động lực tự chủ.',
+        tableTitle: 'Bảng Thống Kê Đối Chứng Toàn Mẫu (N = 12.400 Hộ Gia Đình)',
+        tableSub: 'Lọc theo phân tầng nghiên cứu hoặc sắp xếp theo tỷ lệ Rủi ro Thất bại (FFMR %)',
+        sec4Tag: 'Phần 4 • Giải Phẫu Hành Vi Đương Đại',
+        sec4Title: 'Bốn Sai Lầm Ngôn Ngữ Của Cha Mẹ & Năm Tình Huống Đời Thực Thời Đại Số',
+        sec4Intro: 'Sự thụ động của trẻ không xuất hiện ngẫu nhiên mà được "lập trình" mỗi ngày qua những câu nói tưởng chừng yêu thương của cha mẹ và những thói quen làm thay như gọi dậy buổi sáng, nhắc bài tập hay tuyên bố chủ quyền đối với chiếc iPad. Bấm vào từng thẻ để đối chiếu cơ chế tâm lý.',
+        examplesHeader: '5 Tình Huống Thực Tế Điển Hình: Đối Chiếu Hai Cơ Chế Nuôi Dạy',
+        examplesSub: 'Chọn một tình huống thực tế và chuyển đổi trạng thái để quan sát phản ứng thần kinh – hành vi của trẻ',
+        sec5Tag: 'Phần 5 • Giải Pháp Can Thiệp Thực Hành',
+        sec5Title: 'Giao Thức Chuyển Giao Quyền Sở Hữu Tuyệt Đối 100% & Bộ Mô Phỏng Gia Đình',
+        sec5Intro: 'Để đảo ngược tính thụ động, khi cha mẹ quyết định giao cho con một chiếc iPad, một căn phòng, một quỹ thời gian hay một công việc, phải xác lập minh bạch và không thu hồi rằng <strong>đó thuộc quyền sở hữu chính xác 100% của con</strong> (100% quyền lợi sử dụng đi kèm 100% trách nhiệm quản lý và gánh chịu hậu quả).',
+        simBadge: 'Công Cụ Chẩn Đoán & Mô Phỏng Dữ Liệu Dọc',
+        simTitle: 'Đo Lường Chỉ Số Sở Hữu (APOI) & Rủi Ro Thất Bại Của Trẻ',
+        simSub: 'Điều chỉnh 5 thực hành hàng ngày trong gia đình bạn để dự báo chỉ số APOI và mức chênh lệch rủi ro so với ngưỡng cảnh báo 20%.',
+        footerTag: 'Kết Luận Tổng Hợp Của Công Trình Nghiên Cứu',
+        footerQuote: '"Sự thành công hay thất bại của một đứa trẻ khi trưởng thành không được quyết định bởi khối lượng vật chất cha mẹ chu cấp sẵn, cũng không bởi cường độ nhắc nhở mỗi ngày; nó được quyết định bởi mức độ <strong>Quyền sở hữu thực tế (100% quyền lợi đi đôi với 100% trách nhiệm)</strong> mà đứa trẻ được trao và tự tay quản lý ngay từ thời thơ ấu. Chỉ khi đứa trẻ thực sự làm chủ 100% tài sản, thời gian và cả những vấp ngã ở hiện tại, trẻ mới có thể làm chủ thành công cuộc đời mình trong tương lai."'
+      },
+      en: {
+        headerTag: '16-Year Longitudinal Study (2010–2026) • 4-Generation Comparison (1920–2026)',
+        headerTitle: 'Psychological Ownership Mechanisms & Intergenerational Child Passivity',
+        navModel: '1. 4-Factor Model',
+        navGen: '2. 4 Cohorts & 5 Scenarios',
+        navEmpirical: '3. N=12,400 Data',
+        navExamples: '4. Fallacies & 5 Cases',
+        navProtocol: '5. 100% Protocol',
+        progressLabel: 'Explored:',
+        heroBadge: 'Research Monograph • CFPS Sample of 12,400 Households (39,680 Individuals)',
+        heroTitle: 'Why Do Contemporary Youth Exhibit Severe Passivity and Elevated Adult Failure Risk?',
+        heroDesc: 'The demographic shift to the <strong>"4-2-1" family structure</strong> (4 grandparents, 2 parents, 1 child), pervasive <em>helicopter parenting</em>, and hyper-scheduled <em>Jiwa</em> ("chicken-baby") involution have trapped children in an <strong>"Ownership Dead Zone."</strong> Deprived of temporal autonomy and asset ownership (<em>"bought by Mom and Dad"</em>), youth suffer a collapse of outer agency traits and face an adult failure risk elevated by <strong>20.9 to 24.2 percentage points</strong>—fueling <em>"Lying Flat" (Tangping)</em>, <em>"Gnawing the Old" (Ken lao)</em>, and <em>"Full-Time Children" (Quanzhi Ernu)</em>.',
+        kpi1Label: 'Adult Failure Risk Differential',
+        kpi1Sub: '38.4% (Disowned & nagged cohort) vs. 14.2% (100% autonomy & ownership cohort).',
+        kpi2Label: 'Passive Inheritance Paradox',
+        kpi2Sub: 'Ruin and maladjustment rate among heirs endowed with wealth but lacking 3 core traits.',
+        kpi3Label: 'Perceived "Owned by Parents"',
+        kpi3Sub: 'Non-autonomous youth judge themselves as mother\'s property (vs. 52.0% in Group A).',
+        kpi4Label: 'Explanatory Power of Ownership',
+        kpi4Sub: 'Variance in Proactivity (β = 0.827) directly governed by Actual Ownership (APOI).',
+        sec1Tag: 'Section 1 • Core Theoretical Architecture',
+        sec1Title: 'Concentric Four-Factor Model: Click Step-by-Step Toward the "Ownership" Nucleus',
+        sec1Intro: 'Unlike conventional approaches that preach virtues separately, this study proves that the three outer behavioral pillars—<strong>Responsibility</strong>, <strong>Hardship</strong>, and <strong>Proactivity</strong>—cannot be cultivated in isolation, as all three converge upon and originate from a single central core: <strong>Ownership</strong>. Click each outer circle on the diagram or the step buttons below to unlock the mechanism.',
+        canvasHint: '👆 Click each circle to unlock',
+        btnUnlockAll: 'Unlock all 4 steps →',
+        distinctionHeader: 'Core Distinction: Volitional Experiential Proactivity vs. Parent-Forced Experience',
+        volitionalTitle: '✓ Volitional Experiential Proactivity (Group A)',
+        volitionalBody: 'Child initiates curiosity, chooses targets, navigates trial-and-error, and owns 100% of lessons learned. APOI reaches <strong>83.6/100</strong>; adult failure risk is only <strong>14.2%</strong>.',
+        forcedTitle: '✕ Parent-Forced Experience (Sub-cohort B3 • Jiwa)',
+        forcedBody: 'Parents mandate piano, camps, and activities per adult scripts. The child is a passive consumer (APOI = <strong>25.4/100</strong>), elevating adult failure risk to <strong>34.6%</strong>.',
+        sec2Tag: 'Section 2 • 106-Year Historical Comparison (1920–2026)',
+        sec2Title: 'Intergenerational Erosion & Five Human Ownership Archetypes',
+        sec2Intro: 'Why did the Grandparents cohort (1945–1965) achieve >94% self-reliance without modern life-skills courses, whereas Generation IV (2000–2018) retreats into <em>"Lying Flat"</em> and <em>"Full-Time Children"</em>? The trajectory chart and five archetypes below decode intrinsic motivation across eras.',
+        genChartTitle: 'Trajectory of Four Developmental Indices & Failure Risk (1920–2026)',
+        genChartSub: 'Standardized 0–100 psychometric scores and Adult Failure & Maladjustment Risk (FFMR %)',
+        scenarioBoxTitle: '5 Ownership Archetype Scenarios',
+        scenarioHint: 'Click any scenario',
+        sec3Tag: 'Section 3 • 16-Year Longitudinal Empirical Evidence (2010–2026)',
+        sec3Title: 'Quantifying the >20% Future Failure Risk Threshold & Self-Ownership Effect',
+        sec3Intro: 'Tracking the same cohort across three stages (ages 6–10, 12–16, and 20–26) across <strong>N = 12,400 households</strong> demonstrates sharp statistical polarization (χ² = 614.82, p < 0.001). Merely replacing a child\'s alarm clock or claiming parental title over items pushes adult failure risk past the <strong>+20 percentage point</strong> threshold.',
+        riskChartTitle: 'Adult Failure & Maladjustment Risk by Controlled Cohort (%)',
+        riskChartSub: 'Compared against Baseline Group A (14.2%) • Highlighting the >20% risk surge',
+        radarChartTitle: '4-Index Profile & "Owned by Parents" Cognition (Starmans)',
+        radarChartSub: 'Contrasting Group A (100% Autonomy) against controlled/passive-heir cohorts',
+        starmansNote: '<strong>Starmans Effect (2023):</strong> When deprived of decision autonomy, <strong>89.0%</strong> of children judge that a child is <em>"owned by his mother"</em> (vs. <strong>52.0%</strong> in Group A). A child who views their personhood as parental property cannot generate intrinsic agency.',
+        tableTitle: 'Full-Sample Controlled Statistical Matrix (N = 12,400 Households)',
+        tableSub: 'Filter by study stratification or sort by Adult Failure Risk (FFMR %)',
+        sec4Tag: 'Section 4 • Deconstructing Contemporary Parenting',
+        sec4Title: 'Four Verbal Fallacies & Five Real-World Digital-Era Scenarios',
+        sec4Intro: 'Childhood passivity is programmed daily through seemingly affectionate parental phrases and substitution habits—waking the child up, nagging homework, or claiming parental ownership over the iPad. Click each card to examine the neuro-cognitive mechanism.',
+        examplesHeader: '5 Contemporary Real-World Scenarios: Contrasting Two Rearing Modes',
+        examplesSub: 'Select a real-world scenario and toggle modes to observe the child\'s behavioral trajectory',
+        sec5Tag: 'Section 5 • Actionable Behavioral Intervention',
+        sec5Title: 'The 100% Ownership Transfer Protocol & Household Risk Simulator',
+        sec5Intro: 'To reverse passivity, whenever parents provide an iPad, bedroom, time budget, or task, they must establish transparently and irrevocably that <strong>it belongs 100% to the child</strong> (100% usage rights paired with 100% stewardship and natural consequence liabilities).',
+        simBadge: 'Longitudinal Diagnostic & Predictive Simulator',
+        simTitle: 'Calculate Child Ownership Index (APOI) & Projected Failure Risk',
+        simSub: 'Adjust 5 daily household practices to project APOI and risk differential relative to the 20% threshold.',
+        footerTag: 'Comprehensive Synthesis of the Research Monograph',
+        footerQuote: '"A child\'s ultimate success or failure in emerging adulthood is governed neither by pre-provisioned material comfort nor by daily parental nagging; it is determined by the degree of <strong>Actual and Psychological Ownership (100% rights paired with 100% liabilities)</strong> conferred upon and managed by the child from early childhood. Only when a child genuinely owns 100% of their assets, schedule, and natural failures in the present can they own their trajectory in the future."'
+      }
+    };
+
+    const modelNodesData = [
+      {
+        id: 'responsibility',
+        badgeVi: 'Vòng Ngoài Thứ Nhất • Hành Vi Quản Gia (Stewardship)',
+        badgeEn: 'Outer Ring 1 • Stewardship & Accountability',
+        titleVi: '1. Tính Trách Nhiệm (Responsibility / Stewardship)',
+        titleEn: '1. Responsibility & Stewardship',
+        statVi: 'SEM: R² = 64,1% giải thích bởi Sở hữu (β = 0,801, p < 0,001) • Sụt từ 81,6 (Thế hệ II) xuống 36,2 (Thế hệ IV)',
+        statEn: 'SEM: R² = 64.1% explained by Ownership (β = 0.801, p < 0.001) • Plummets from 81.6 (Gen II) to 36.2 (Gen IV)',
+        bodyVi: 'Tính trách nhiệm không phải sự phục tùng mệnh lệnh, mà là cảm thức nội tại về nghĩa vụ tự chăm sóc bản thân, tự gánh chịu hậu quả tự nhiên (bị phạt khi đi muộn, tự sửa đồ hỏng) và bảo vệ nguồn lực được giao. Ở thế hệ ông bà (1945–1965), khoảng trống bao bọc buộc trẻ sớm tự lập. Ngày nay, khi cha mẹ đứng ra xin lỗi thay, giải quyết mâu thuẫn thay và lo liệu mọi thứ, hành vi quản gia bị triệt tiêu.',
+        bodyEn: 'Responsibility is not passive obedience, but internalized accountability for self-maintenance, bearing natural consequences (tardiness penalties, repairing broken items), and stewarding entrusted resources. In the grandparents\' era, the absence of coddling forged early self-reliance. Today, when parents absorb blame and fix every mistake, stewardship behavior is extinguished.',
+        quoteVi: 'Cơ chế cốt lõi: "Con người chỉ đứng ra bảo vệ và chịu trách nhiệm đến cùng cho tài sản mà hệ thần kinh của họ nhận diện là CỦA MÌNH."',
+        quoteEn: 'Core Mechanism: "Human beings only defend and assume full accountability for targets their nervous system categorizes as MINE."'
+      },
+      {
+        id: 'hardship',
+        badgeVi: 'Vòng Ngoài Thứ Hai • Con Đường Tự Đầu Tư (Self-Investment)',
+        badgeEn: 'Outer Ring 2 • Self-Investment & Adversity Tolerance',
+        titleVi: '2. Tính Vất Vả (Hardship / Resilience)',
+        titleEn: '2. Hardship & Adversity Resilience',
+        statVi: 'SEM: R² = 59,3% giải thích bởi Sở hữu (β = 0,770, p < 0,001) • Sụt từ 88,5 (Thế hệ I) xuống 29,4 (Thế hệ IV)',
+        statEn: 'SEM: R² = 59.3% explained by Ownership (β = 0.770, p < 0.001) • Plummets from 88.5 (Gen I) to 29.4 (Gen IV)',
+        bodyVi: 'Bao hàm năng lực chịu đựng gian khổ thể chất và tinh thần, kiên trì trước nghịch cảnh. Theo Pierce et al. (2001, 2003), sự đầu tư mồ hôi và công sức cá nhân (Self-Investment) chính là con đường mạnh mẽ nhất tạo ra giá trị trân trọng. Tâm lý bù đắp ("Đời bố mẹ đã khổ rồi, không để con chịu khổ") đã xóa bỏ lao động việc nhà, làm sụt giảm sức chịu đựng nghịch cảnh.',
+        bodyEn: 'Encompasses physical and psychological endurance and perseverance through deprivation. Per Pierce et al. (2001, 2003), investing personal sweat and labor (Self-Investment) is the most potent route to psychological valuation. Compensatory parenting ("We suffered so our child never has to") eliminates domestic toil and collapses adversity tolerance.',
+        quoteVi: 'Cơ chế cốt lõi: "Không ai tự nguyện đổ mồ hôi cho một thứ thuộc quyền quyết định của người khác; nhưng khi sở hữu 100%, trẻ sẵn sàng chịu vất vả để vun đắp tài sản của mình."',
+        quoteEn: 'Core Mechanism: "No one willingly sweats for an asset controlled by another; when granted 100% ownership, children willingly endure hardship to cultivate what is theirs."'
+      },
+      {
+        id: 'proactivity',
+        badgeVi: 'Vòng Ngoài Thứ Ba • Quyền Tự Quyết (Volitional Agency)',
+        badgeEn: 'Outer Ring 3 • Volitional Cognitive & Behavioral Agency',
+        titleVi: '3. Tính Chủ Động (Proactivity / Agency)',
+        titleEn: '3. Proactivity & Volitional Agency',
+        statVi: 'SEM: R² = 68,4% giải thích bởi Sở hữu (β = 0,827, p < 0,001) • Sụt từ 78,4 (Thế hệ II) xuống 34,8 (Thế hệ IV)',
+        statEn: 'SEM: R² = 68.4% explained by Ownership (β = 0.827, p < 0.001) • Plummets from 78.4 (Gen II) to 34.8 (Gen IV)',
+        bodyVi: 'Là việc đứa trẻ được quyền và được phép chủ động suy nghĩ, chủ động quyết định và chủ động hành động thay vì để người lớn làm thay. Cần phân định tuyệt đối giữa "Tính chủ động trải nghiệm tự thân" (rủi ro 14,2%) với "Ba mẹ bắt ép trải nghiệm kiểu Jiwa" (rủi ro 34,6%, tăng +20,4 điểm phần trăm).',
+        bodyEn: 'Defined as having both the right and permission to proactively think, decide, and act rather than having adults substitute. Must be strictly distinguished from "Parent-Forced Experience" (Jiwa camps/lessons), which turns youth into passive consumers and raises failure risk by +20.4 percentage points (34.6% vs. 14.2%).',
+        quoteVi: 'Cơ chế cốt lõi: "If they can only consume, they will never own — Nếu trẻ chỉ tiêu thụ lịch trình ba mẹ sắp sẵn, trẻ mãi mãi thụ động."',
+        quoteEn: 'Core Mechanism: "If they can only consume, they will never own — When youth merely consume parent-scripted agendas, passivity is locked in."'
+      },
+      {
+        id: 'ownership',
+        badgeVi: '★ Hạt Nhân Trung Tâm • Hội Tụ Toàn Bộ Mô Hình',
+        badgeEn: '★ Central Nucleus • Convergence Core of the Model',
+        titleVi: '4. Tâm Điểm: Tính Sở Hữu (Psychological & Actual Ownership)',
+        titleEn: '4. Central Core: Psychological & Actual Ownership',
+        statVi: 'Tương quan nghịch cực mạnh với Rủi ro Thất bại: r = -0,78 (p < 0,001) • Mô hình SEM: CFI = 0,97, RMSEA = 0,054',
+        statEn: 'Powerful inverse correlation with Future Failure Risk: r = -0.78 (p < 0.001) • SEM Fit: CFI = 0.97, RMSEA = 0.054',
+        bodyVi: 'Cảm thức "Mục tiêu này là CỦA TÔI!" ("It is MINE!") biến đối tượng sở hữu thành một phần mở rộng của bản ngã (Extended Self). Khi trẻ có 100% quyền sở hữu thực tế thông qua 3 con đường của Pierce et al. (Quyền kiểm soát, Sự hiểu biết sâu sắc, và Tự đầu tư công sức), hệ thần kinh tự động kích hoạt đồng thời cả 3 vòng ngoài: Chủ động điều khiển, Trách nhiệm bảo vệ, và Chấp nhận vất vả.',
+        bodyEn: 'The cognitive-affective conviction "This target is MINE!" fuses the target into the child\'s Extended Self. When granted 100% actual ownership via Pierce et al.\'s three routes (Control, Intimate Knowledge, Self-Investment), the brain spontaneously activates all three outer rings: proactive control, protective stewardship, and hardship endurance.',
+        quoteVi: 'Định luật trung tâm: "Trẻ em ngày nay mất chủ động, vô trách nhiệm và sợ vất vả vì bị tước mất Tính Sở Hữu thực sự ngay trong chính ngôi nhà của mình."',
+        quoteEn: 'Central Law: "Modern children lack agency, responsibility, and grit because they are systematically stripped of authentic Ownership inside their own homes."'
+      }
+    ];
+
+    const scenariosData = [
+      {
+        id: 0,
+        tagVi: 'Kịch bản 1 • Cổ đại / Tiên phong',
+        tagEn: 'Scenario 1 • Conquest / Pioneer',
+        titleVi: 'Khát Vọng Chiếm Hữu & Chinh Phục Cao Độ',
+        titleEn: 'High Acquisitive & Conquest Aspiration',
+        statusVi: 'Sở hữu mục tiêu kỳ vọng: Rất cao → Trưởng thành vượt bậc',
+        statusEn: 'Prospective Target Ownership: Very High → Exceptional Maturity',
+        descVi: 'Điển hình là các bậc vua chúa, thủ lĩnh hoặc người mở cõi mang khát vọng mãnh liệt muốn chinh phục một lãnh thổ hay mục tiêu lớn chưa thuộc về mình. Chính khát vọng chiếm hữu cao độ buộc họ phải quyết tâm chủ động vạch chiến lược, chịu trách nhiệm sinh tử và chấp nhận muôn vàn gian khổ để giành lấy mục tiêu.',
+        descEn: 'Exemplified by monarchs, commanders, or pioneers driven by fierce aspiration to conquer territories or grand goals. High prospective ownership precludes passivity, compelling strategic proactivity, existential responsibility, and extreme hardship endurance.'
+      },
+      {
+        id: 1,
+        tagVi: 'Kịch bản 2 • Thế hệ I & II (Nông dân nghèo)',
+        tagEn: 'Scenario 2 • Gen I & II (Zero Endowment)',
+        titleVi: 'Không Có Gì Trong Tay – Trắng Tay Tuyệt Đối (0%)',
+        titleEn: 'Absolute Deprivation – Zero Initial Endowment (0%)',
+        statusVi: 'Vật chất ban đầu: 0% → Lực đẩy sinh tồn cực mạnh (FSR > 94%)',
+        statusEn: 'Initial Assets: 0% → Intense Survival Propulsion (FSR > 94%)',
+        descVi: 'Nhận thức rõ ràng rằng bản thân hoàn toàn không có đất đai, ruộng đồng hay tài sản thừa kế nào. Sự trống rỗng sinh tồn không bị che đậy bởi chu cấp giả tạo đã thôi thúc thế hệ ông bà chủ động mưu sinh, có trách nhiệm với từng hạt gạo và chấp nhận vất vả lao động từ hai bàn tay trắng để tạo dựng cơ đồ.',
+        descEn: 'Acute awareness of owning zero land, fields, or inherited capital. Unmasked survival scarcity propelled grandparents to proactively seek livelihoods, steward every grain, and endure physical toil from scratch to build lineage wealth.'
+      },
+      {
+        id: 2,
+        tagVi: 'Kịch bản 3 • Điền chủ / Chủ ruộng vườn lớn',
+        tagEn: 'Scenario 3 • Vast Estate Stewardship',
+        titleVi: 'Sở Hữu Quá Nhiều – Áp Lực Quản Lý Tài Sản Lớn',
+        titleEn: 'Vast Possession – Heavy Stewardship Compulsion',
+        statusVi: 'Sở hữu thực tế: Rất lớn → Buộc trực tiếp đứng ra quản lý',
+        statusEn: 'Actual Ownership: Vast → Compelled to Directly Manage',
+        descVi: 'Chủ ruộng vườn, điền chủ sở hữu nhiều đất đai tài sản. Quy luật: càng sở hữu thực tế nhiều bao nhiêu, áp lực buộc phải trực tiếp đứng ra quản lý càng lớn bấy nhiêu — từ việc tự tay quét dọn nhà cửa, lau dọn cơ ngơi đến tính toán mùa vụ và chịu trách nhiệm điều hành để giữ khối tài sản không bị thất thoát.',
+        descEn: 'Large estate and orchard proprietors. Law: the greater the actual ownership, the heavier the compulsion to step forward and manage—from personally sweeping courtyards and cleaning halls to planning harvests and preventing asset dissipation.'
+      },
+      {
+        id: 3,
+        tagVi: 'Kịch bản 4 • Trẻ em Gia đình 4-2-1 Hiện đại',
+        tagEn: 'Scenario 4 • Modern 4-2-1 Youth',
+        titleVi: '"Vùng Trũng Vô Chủ" (Ownership Dead Zone)',
+        titleEn: 'The "Ownership Dead Zone"',
+        statusVi: 'Dư tiện nghi nhưng 0% sở hữu thực → Rủi ro thất bại 38,4%',
+        statusEn: 'Surrounded by comfort, 0% owned → 38.4% Failure Risk',
+        descVi: 'Trẻ em hiện đại bị mắc kẹt ngoài cả 3 kịch bản trên: không thiếu ăn nên mất động lực Kịch bản 2; bị ép lịch trình Jiwa nên mất khát vọng riêng của Kịch bản 1; và luôn nghe "Nhà này của ba mẹ, iPad của ba mẹ mua" kèm người lớn dọn dẹp hộ nên mất vai trò quản gia của Kịch bản 3. Động lực tự thân triệt tiêu về 0.',
+        descEn: 'Modern children fall outside all three healthy states: never hungry (no Scenario 2), forced into Jiwa agendas (no Scenario 1), and told "This house and iPad belong to Mom and Dad" while adults clean for them (no Scenario 3). Intrinsic drive collapses to zero.'
+      },
+      {
+        id: 4,
+        tagVi: 'Kịch bản 5 • Nghịch lý Thừa kế Thụ động',
+        tagEn: 'Scenario 5 • Passive Inheritance Paradox',
+        titleVi: 'Có Gia Sản Để Lại Nhưng Thiếu 3 Phẩm Chất Cốt Lõi',
+        titleEn: 'Unstewarded Family Estate Without Core Qualities',
+        statusVi: 'Tài sản trên giấy tờ lớn, APOI = 20,8 → Đỉnh thất bại 41,2%',
+        statusEn: 'Nominal legal title, APOI = 20.8 → Peak Failure Rate 41.2%',
+        descVi: 'Người có gia sản lớn do gia đình để lại nhưng bản thân không có tính chủ động trải nghiệm, không phải đổ mồ hôi quét dọn lao động vất vả và thiếu tinh thần trách nhiệm quản trị như điền chủ Kịch bản 3 thì tất yếu bị hư hỏng, suy đồi và làm tiêu tán cơ nghiệp do tính thụ động (tỷ lệ thất bại cao nhất toàn mẫu: 41,2%).',
+        descEn: 'Individuals left substantial family estates yet lacking volitional proactivity, physical hardship toil, and stewardship accountability inevitably degenerate and dissipate their patrimony due to passivity (recording the panel\'s highest failure rate at 41.2%).'
+      }
+    ];
+
+    const empiricalTableData = [
+      { group: 'Thế hệ I: Cố / Tiền bối (1920–1940)', cat: 'gen', n: '4.120', aai: '81,2', hari: '88,5', srsi: '85,0', apoi: '79,6', ownedByParent: '18,4%', success: '95,2%', risk: 4.8, badge: 'Chuẩn lịch sử' },
+      { group: 'Thế hệ II: Ông Bà (1945–1965)', cat: 'gen', n: '9.850', aai: '78,4', hari: '84,1', srsi: '81,6', apoi: '76,9', ownedByParent: '22,1%', success: '94,4%', risk: 5.6, badge: 'Tự lập cao' },
+      { group: 'Thế hệ III: Bố Mẹ (1970–1988)', cat: 'gen', n: '12.400', aai: '64,2', hari: '61,5', srsi: '66,8', apoi: '63,4', ownedByParent: '41,5%', success: '87,6%', risk: 12.4, badge: 'Chuyển tiếp' },
+      { group: 'Thế hệ IV: Trẻ em/Thanh niên (2000–2018)', cat: 'gen', n: '12.400', aai: '34,8', hari: '29,4', srsi: '36,2', apoi: '31,5', ownedByParent: '76,8%', success: '68,4%', risk: 31.6, badge: 'Suy thoái' },
+      { group: 'Nhóm A (Đối chứng Chuẩn): Tự chủ thời gian & Sở hữu 100%', cat: 'exp', n: '3.120', aai: '79,4', hari: '74,8', srsi: '81,2', apoi: '83,6', ownedByParent: '52,0%', success: '85,8%', risk: 14.2, badge: 'Chuẩn đối chứng' },
+      { group: 'Nhóm B1: Bị gọi dậy mỗi sáng & Nhắc nhở lịch trình', cat: 'exp', n: '3.480', aai: '31,2', hari: '35,4', srsi: '38,9', apoi: '39,1', ownedByParent: '84,2%', success: '64,9%', risk: 35.1, badge: '+20,9% vs A' },
+      { group: 'Nhóm B3: Bị ba mẹ bắt ép trải nghiệm (Jiwa)', cat: 'exp', n: '1.850', aai: '29,8', hari: '31,2', srsi: '33,0', apoi: '25,4', ownedByParent: '83,4%', success: '65,4%', risk: 34.6, badge: '+20,4% vs A' },
+      { group: 'Nhóm B2: Bị tuyên bố đồ dùng/iPad là của ba mẹ', cat: 'exp', n: '3.210', aai: '33,5', hari: '28,6', srsi: '31,4', apoi: '22,8', ownedByParent: '87,5%', success: '63,2%', risk: 36.8, badge: '+22,6% vs A' },
+      { group: 'Nhóm B-Kết hợp: Bao bọc + Nhắc nhở + Tước sở hữu', cat: 'exp', n: '2.590', aai: '24,6', hari: '22,1', srsi: '26,8', apoi: '19,4', ownedByParent: '89,0%', success: '61,6%', risk: 38.4, badge: '+24,2% vs A' },
+      { group: 'Nhóm B4: Thừa kế gia sản sẵn nhưng thiếu 3 phẩm chất', cat: 'exp', n: '1.420', aai: '22,4', hari: '18,6', srsi: '21,5', apoi: '20,8', ownedByParent: '86,0%', success: '58,8%', risk: 41.2, badge: '+27,0% Đỉnh' },
+      { group: 'Phân tầng Đô thị 4-2-1 (Áp lực Jiwa cao)', cat: 'hukou', n: '7.440', aai: '31,4', hari: '24,8', srsi: '33,5', apoi: '28,9', ownedByParent: '81,2%', success: '65,8%', risk: 34.2, badge: 'Đô thị' },
+      { group: 'Phân tầng Nông thôn & Thị trấn (Còn việc nhà)', cat: 'hukou', n: '4.960', aai: '39,9', hari: '36,3', srsi: '40,2', apoi: '35,4', ownedByParent: '70,2%', success: '72,3%', risk: 27.7, badge: 'Nông thôn' }
+    ];
+
+    const fallaciesData = [
+      {
+        num: 'Sai lầm 1 • Tước Tính Chủ Động',
+        quote: '"Cái này của ba mẹ rồi, con phải nghe theo ba mẹ"',
+        impact: 'Dùng quyền sở hữu vật chất của người lớn để ép phục tùng. Trẻ rút ra quy tắc nhận thức rằng mình không sở hữu gì nên không có quyền suy nghĩ hay quyết định, phá hủy động lực hiệu quả bản thân (efficacy motive) và biến trẻ thành thực thể thụ động chờ lệnh.',
+        fix: 'Chuyển hóa: "Đây là tài sản/thời gian thuộc 100% quyền quyết định của con; ba mẹ tôn trọng lựa chọn và cùng con nhìn nhận kết quả."'
+      },
+      {
+        num: 'Sai lầm 2 • Triệt Tiêu Vất Vả & Trách Nhiệm',
+        quote: '"Ba mẹ lo hết cho con rồi, con chỉ cần lo cho con thôi, không cần lo cho ba mẹ"',
+        impact: 'Cha mẹ đóng "vai người hùng hy sinh", cắt đứt sợi dây Trách nhiệm tương hỗ (Reciprocal Stewardship) và miễn trừ mọi lao động vất vả. Trẻ hình thành tính vị kỷ, mất thấu cảm và sụp đổ khi bước vào tập thể xã hội.',
+        fix: 'Chuyển hóa: "Con là thành viên đồng sở hữu gia đình; con có trách nhiệm tự lo việc của mình và gánh vác phần việc chung của nhà mình."'
+      },
+      {
+        num: 'Sai lầm 3 • Đứt Gãy Hiện Tại & Tương Lai',
+        quote: '"Cái này của bố mẹ, con phải cố gắng học vì tương lai của con"',
+        impact: 'Mệnh đề mâu thuẫn về nhận thức: một đứa trẻ chưa từng được sở hữu thực sự một đồ vật hay quỹ thời gian cụ thể nào ở hiện tại thì bộ não hoàn toàn không có chất liệu để hiểu "sở hữu tương lai" là gì, dẫn đến học đối phó hoặc "nằm thẳng".',
+        fix: 'Chuyển hóa: Trao quyền sở hữu 100% ở hiện tại (góc học tập, đồng hồ, thiết bị) để não bộ trải nghiệm cảm giác làm chủ thực tế.'
+      },
+      {
+        num: 'Quy Luật 4 • Thất Bại Tất Yếu Khi Trưởng Thành',
+        quote: 'Thiếu 3 phẩm chất vòng ngoài & Không giao chính xác 100% quyền sở hữu',
+        impact: 'Khi gia đình không trao cho trẻ tính chủ động thật sự, tính trách nhiệm thật sự, sự vất vả thật sự và đặc biệt không cho trẻ sở hữu chính xác 100% về cả quyền lợi lẫn trách nhiệm, quá trình nuôi dạy chắc chắn thất bại khi trẻ ra đời.',
+        fix: 'Nguyên tắc vàng: Giao đúng 100% quyền sở hữu đi đôi 100% trách nhiệm gánh chịu hậu quả tự nhiên.'
+      }
+    ];
+
+    const realExamplesData = [
+      {
+        tab: '1. Gọi Dậy Mỗi Sáng',
+        title: 'Gọi Con Dậy Mỗi Sáng: Đánh Cắp Trải Nghiệm Thất Bại Khi Ngủ Quên',
+        disownedTitle: 'Cha mẹ làm "chiếc đồng hồ báo thức sống" (Gọi 3–5 lần/sáng)',
+        disownedDesc: 'Cha mẹ chuyển giao quyền sở hữu buổi sáng từ con sang mình. Trẻ bị tước đoạt hoàn toàn trải nghiệm thất bại tự nhiên khi ngủ quên (hoảng hốt, chạy vội, bị thầy cô phê bình). Hệ quả: Lên đại học và đi làm, tỷ lệ đi muộn, vi phạm kỷ luật và bỏ cuộc cao gấp 2,5 lần (FFMR đạt 33,8%).',
+        ownedTitle: 'Giao 100% quyền sở hữu chiếc đồng hồ báo thức & buổi sáng cho con',
+        ownedDesc: 'Tặng con một chiếc đồng hồ báo thức thuộc sở hữu 100% của con và tuyên bố không bao giờ gọi dậy nữa. Sau 1–2 lần ngủ quên và tự chịu hậu quả đi học muộn, vỏ não trước trán kích hoạt tính tự giác bền vững (FFMR giảm xuống chỉ còn 13,5%).'
+      },
+      {
+        tab: '2. Nhắc Lịch & Bài Tập',
+        title: 'Nhắc Nhở Liên Tục Thời Gian Biểu: Tăng Rủi Ro Thất Bại Hơn 20%',
+        disownedTitle: 'Kiểm soát vi mô: Nhắc học bài & đi ngủ mỗi 15–30 phút',
+        disownedDesc: 'Não bộ trẻ "thuê ngoài" (outsource) chức năng điều hành cho giọng nói của mẹ, hình thành phản xạ chỉ hành động khi bị giục đến lần thứ 3. Dữ liệu dọc (Nhóm B1) chứng minh rủi ro thất bại tương lai tăng từ 14,2% lên 35,1% (+20,9 điểm phần trăm).',
+        ownedTitle: 'Giao 100% quỹ thời gian buổi tối & cuối tuần cho trẻ tự lập kế hoạch',
+        ownedDesc: 'Trẻ tự chia khung giờ học, chơi, nghỉ và tự chịu trách nhiệm với điểm số hay bài tập chưa hoàn thành trên lớp. Hình thành năng lực tự điều chỉnh (self-regulation) vững vàng trước áp lực đại học và công sở.'
+      },
+      {
+        tab: '3. Chiếc iPad & Đồ Dùng',
+        title: 'Tuyên Bố Chủ Quyền Của Cha Mẹ Đối Với Chiếc iPad & Đồ Dùng Cá Nhân',
+        disownedTitle: '"Chiếc iPad này tiền của ba mẹ mua, ba mẹ chỉ cho mượn, hư ba mẹ sửa"',
+        disownedDesc: 'Cắt đứt hoàn toàn Sở hữu Tâm lý (APOI = 22,8/100). Trẻ quăng quật làm vỡ màn hình không xót xa vì "đồ của ba mẹ hỏng chứ không phải đồ mình", đồng thời chơi game điên cuồng mỗi khi cầm máy vì sợ bị tịch thu bất cứ lúc nào (rủi ro thất bại 36,8%).',
+        ownedTitle: 'Chuyển giao sở hữu 100%: "Chiếc iPad này là của con, 4 năm tới không mua mới"',
+        ownedDesc: 'Kích hoạt hiệu ứng giữ gìn tài sản (Endowment & Stewardship): trẻ tự lắp ốp bảo vệ, tự giữ pin và tự điều tiết thời gian sử dụng một cách điềm tĩnh vì biết nếu làm hỏng sẽ phải tự dùng tiền tiết kiệm sửa hoặc chấp nhận không có máy dùng.'
+      },
+      {
+        tab: '4. Dọn Phòng & Rắc Rối',
+        title: 'Dọn Phòng Hộ & Giải Quyết Thay Rắc Rối: Tước Sự Vất Vả & Sửa Sai',
+        disownedTitle: 'Người lớn dọn phòng ngủ, gấp chăn, tranh cãi với giáo viên thay con',
+        disownedDesc: 'Biến phòng ngủ của trẻ thành "khách sạn của bố mẹ", triệt tiêu gốc rễ sở hữu không gian sống (Pierce et al., 2001) và tước bỏ sự vất vả lao động. Trẻ lớn lên không biết tự cầm chổi quét dọn, thu mình và dễ bỏ việc khi bị phê bình.',
+        ownedTitle: 'Giao quyền Chủ quản lãnh thổ (Mô hình Điền chủ Kịch bản 3)',
+        ownedDesc: 'Căn phòng là cơ ngơi 100% của con: con tự chịu trách nhiệm quét dọn, lau chùi hàng tuần và tự thương lượng giải quyết mâu thuẫn với bạn bè, thầy cô, rèn luyện bản lĩnh chịu đựng vất vả (HARI) thực tế.'
+      },
+      {
+        tab: '5. Ép Trải Nghiệm & Gia Sản',
+        title: 'Bắt Ép "Trải Nghiệm" Lúc Nhỏ & Để Lại Gia Sản Sẵn Cho Con Thụ Động',
+        disownedTitle: 'Ép học ngoại khóa kiểu Jiwa (34,6% rủi ro) & Để sẵn nhà xe (41,2% rủi ro)',
+        disownedDesc: 'Lúc nhỏ bị ép trải nghiệm theo ý cha mẹ nên không có tính chủ động tự thân; khi lớn được để sẵn gia sản nhưng chưa từng đổ mồ hôi lao động quản trị nên biến thành kẻ ăn bám, suy đồi và làm tiêu tán sản nghiệp (đỉnh thất bại 41,2%).',
+        ownedTitle: 'Tự chủ trải nghiệm tự thân & Rèn năng lực quản trị trước khi chuyển giao',
+        ownedDesc: 'Tôn trọng sự tò mò tự khởi phát của trẻ từ nhỏ và yêu cầu con trực tiếp lao động, quản lý từ những tài sản nhỏ nhất trước khi tiếp nhận bất kỳ nguồn lực gia đình nào.'
+      }
+    ];
+
+    const protocolDomainsData = [
+      {
+        icon: '📱',
+        domain: '1. Thiết bị Công nghệ & Đồ đạc Cá nhân (iPad, Xe đạp, Máy tính)',
+        oldWay: 'Xóa bỏ: "Chiếc iPad này tiền của ba mẹ mua, ba mẹ cho mượn, không ngoan ba mẹ thu hồi."',
+        newScript: '"Từ giây phút này, chiếc iPad này thuộc quyền sở hữu 100% của con. Vì nó là tài sản của con, trong 4 năm tới ba mẹ sẽ không mua chiếc khác. Nếu làm vỡ hay hỏng, con tự dùng tiền tiết kiệm/lao động của mình để sửa hoặc chấp nhận không có máy dùng."',
+        mechanism: 'Kích hoạt hiệu ứng giữ gìn tài sản (Endowment & Stewardship) & tự điều tiết hành vi dài hạn.'
+      },
+      {
+        icon: '⏰',
+        domain: '2. Quỹ Thời gian Buổi sáng & Lịch trình Học tập',
+        oldWay: 'Xóa bỏ: Gọi con dậy 3–5 lần mỗi sáng; nhắc nhở bài tập mỗi 30 phút.',
+        newScript: '"Đây là chiếc đồng hồ báo thức của riêng con. Thời gian buổi sáng và việc đi học đúng giờ là 100% của con. Ba mẹ sẽ không bao giờ gọi dậy hay nhắc bài nữa. Nếu ngủ quên hay thiếu bài, con tự làm việc với thầy cô."',
+        mechanism: 'Kích hoạt vỏ não trước trán tự lập kế hoạch, giảm hơn 20% rủi ro thất bại tương lai.'
+      },
+      {
+        icon: '🧹',
+        domain: '3. Không gian Sống & Lao động Việc nhà (Mô hình Chủ đất Kịch bản 3)',
+        oldWay: 'Xóa bỏ: Dọn phòng, gấp chăn, xếp cặp hộ con; nói "Nhà này của ba mẹ".',
+        newScript: '"Căn phòng ngủ và góc học tập này là cơ ngơi 100% của con. Áp dụng nguyên tắc người chủ thực thụ: con là người duy nhất chịu trách nhiệm quét dọn, lau chùi, giặt giũ và giữ gìn nó sạch sẽ mỗi tuần."',
+        mechanism: 'Nuôi dưỡng Tính vất vả (HARI) và Sự đầu tư bản thân (Self-Investment) qua mồ hôi công sức.'
+      },
+      {
+        icon: '🤝',
+        domain: '4. Trách nhiệm Gia đình & Định hướng Tương lai',
+        oldWay: 'Xóa bỏ: "Ba mẹ lo hết rồi, con không cần lo cho ba mẹ, chỉ cần học vì tương lai của con."',
+        newScript: '"Con là người đồng sở hữu gia đình này. Con phụ trách nấu 2 bữa cơm/tuần, tự quản lý ngân sách chi tiêu tháng của mình và tự quyết định 100% ngành nghề con theo đuổi."',
+        mechanism: 'Chuyển hóa trẻ từ "khách trọ hưởng thụ" thành người đồng sở hữu có trách nhiệm (SRSI).'
+      }
+    ];
+
+    function wrapLabel(str, maxLen = 16) {
+      if (str.length <= maxLen) return str;
+      const words = str.split(' ');
+      const lines = [];
+      let current = '';
+      words.forEach((word) => {
+        if ((current + ' ' + word).trim().length <= maxLen) {
+          current = (current + ' ' + word).trim();
+        } else {
+          if (current) lines.push(current);
+          current = word;
+        }
+      });
+      if (current) lines.push(current);
+      return lines;
+    }
+
+    function scrollToSection(id) {
+      const el = document.getElementById(id);
+      if (el) {
+        el.scrollIntoView({ behavior: 'smooth' });
+      }
+      document.querySelectorAll('.nav-btn').forEach((btn) => {
+        if (btn.dataset.target === id) {
+          btn.classList.add('nav-pill-active');
+          btn.classList.remove('text-[#575D59]');
+        } else {
+          btn.classList.remove('nav-pill-active');
+          btn.classList.add('text-[#575D59]');
+        }
+      });
+    }
+
+    function setLanguage(lang) {
+      appState.lang = lang;
+      const viBtn = document.getElementById('btnLangVi');
+      const enBtn = document.getElementById('btnLangEn');
+      if (lang === 'vi') {
+        viBtn.className = 'px-2.5 py-1 rounded-md text-xs font-bold bg-[#1F2421] text-white transition';
+        enBtn.className = 'px-2.5 py-1 rounded-md text-xs font-bold text-[#575D59] hover:text-[#1F2421] transition';
+      } else {
+        enBtn.className = 'px-2.5 py-1 rounded-md text-xs font-bold bg-[#1F2421] text-white transition';
+        viBtn.className = 'px-2.5 py-1 rounded-md text-xs font-bold text-[#575D59] hover:text-[#1F2421] transition';
+      }
+
+      document.querySelectorAll('[data-i18n]').forEach((el) => {
+        const key = el.getAttribute('data-i18n');
+        if (i18nDict[lang] && i18nDict[lang][key]) {
+          el.innerHTML = i18nDict[lang][key];
+        }
+      });
+
+      renderModelDetail();
+      drawConcentricCanvas();
+      renderScenarios();
+      updateGenerationalChart();
+      updateRiskChart();
+      updateProfileChart();
+    }
+
+    let concentricHitZones = [];
+
+    function drawConcentricCanvas() {
+      const canvas = document.getElementById('concentricCanvas');
+      if (!canvas) return;
+      const parent = canvas.parentElement;
+      const dpr = window.devicePixelRatio || 1;
+      const rect = parent.getBoundingClientRect();
+      canvas.width = rect.width * dpr;
+      canvas.height = rect.height * dpr;
+      const ctx = canvas.getContext('2d');
+      ctx.scale(dpr, dpr);
+
+      const w = rect.width;
+      const h = rect.height;
+      const cx = w / 2;
+      const cy = h / 2;
+      const orbitR = Math.min(w, h) * 0.30;
+      const satR = Math.min(w, h) * 0.135;
+      const coreR = Math.min(w, h) * 0.165;
+
+      ctx.clearRect(0, 0, w, h);
+
+      ctx.beginPath();
+      ctx.arc(cx, cy, orbitR, 0, Math.PI * 2);
+      ctx.strokeStyle = '#D8D1C5';
+      ctx.lineWidth = 2;
+      ctx.setLineDash([6, 6]);
+      ctx.stroke();
+      ctx.setLineDash([]);
+
+      const satellites = [
+        {
+          idx: 0,
+          angle: -Math.PI / 2,
+          label: appState.lang === 'vi' ? 'Tính Trách Nhiệm' : 'Responsibility',
+          sub: 'SRSI • β=0.80'
+        },
+        {
+          idx: 1,
+          angle: Math.PI / 6,
+          label: appState.lang === 'vi' ? 'Tính Vất Vả' : 'Hardship',
+          sub: 'HARI • β=0.77'
+        },
+        {
+          idx: 2,
+          angle: (5 * Math.PI) / 6,
+          label: appState.lang === 'vi' ? 'Tính Chủ Động' : 'Proactivity',
+          sub: 'AAI • β=0.83'
+        }
+      ];
+
+      concentricHitZones = [];
+
+      satellites.forEach((sat) => {
+        const sx = cx + orbitR * Math.cos(sat.angle);
+        const sy = cy + orbitR * Math.sin(sat.angle);
+        const isUnlocked = appState.unlockedNodes[sat.idx];
+        const isActive = appState.activeModelNode === sat.idx;
+
+        ctx.beginPath();
+        ctx.moveTo(sx, sy);
+        ctx.lineTo(cx, cy);
+        ctx.strokeStyle = isUnlocked ? '#2A6F5B' : '#D8D1C5';
+        ctx.lineWidth = isActive ? 3.5 : 2;
+        ctx.stroke();
+
+        const midX = (sx + cx) / 2;
+        const midY = (sy + cy) / 2;
+        ctx.beginPath();
+        ctx.arc(midX, midY, 4, 0, Math.PI * 2);
+        ctx.fillStyle = isUnlocked ? '#C87D32' : '#B5AEA2';
+        ctx.fill();
+
+        ctx.beginPath();
+        ctx.arc(sx, sy, satR, 0, Math.PI * 2);
+        ctx.fillStyle = isActive ? '#2A6F5B' : isUnlocked ? '#F4F9F7' : '#FFFFFF';
+        ctx.fill();
+        ctx.lineWidth = isActive ? 3.5 : 2;
+        ctx.strokeStyle = isUnlocked ? '#2A6F5B' : '#B5AEA2';
+        ctx.stroke();
+
+        ctx.fillStyle = isActive ? '#FFFFFF' : '#1F2421';
+        ctx.font = 'bold 12px "Be Vietnam Pro", sans-serif';
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'middle';
+        ctx.fillText(sat.label, sx, sy - 7);
+
+        ctx.fillStyle = isActive ? '#D9EFE8' : '#575D59';
+        ctx.font = '600 10px "JetBrains Mono", monospace';
+        ctx.fillText(sat.sub, sx, sy + 10);
+
+        concentricHitZones.push({ idx: sat.idx, x: sx, y: sy, r: satR });
+      });
+
+      const coreUnlocked = appState.unlockedNodes[3];
+      const coreActive = appState.activeModelNode === 3;
+
+      ctx.beginPath();
+      ctx.arc(cx, cy, coreR + 6, 0, Math.PI * 2);
+      ctx.fillStyle = coreActive ? 'rgba(200, 125, 50, 0.18)' : 'rgba(200, 125, 50, 0.08)';
+      ctx.fill();
+
+      ctx.beginPath();
+      ctx.arc(cx, cy, coreR, 0, Math.PI * 2);
+      ctx.fillStyle = coreActive ? '#C87D32' : coreUnlocked ? '#FDF4E7' : '#FFFDF9';
+      ctx.fill();
+      ctx.lineWidth = 3.5;
+      ctx.strokeStyle = '#C87D32';
+      ctx.stroke();
+
+      ctx.fillStyle = coreActive ? '#FFFFFF' : '#9E5E1E';
+      ctx.font = 'bold 13px "Be Vietnam Pro", sans-serif';
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'middle';
+      ctx.fillText(appState.lang === 'vi' ? 'TÍNH SỞ HỮU' : 'OWNERSHIP', cx, cy - 8);
+
+      ctx.fillStyle = coreActive ? '#FFF4E4' : '#575D59';
+      ctx.font = '700 10px "JetBrains Mono", monospace';
+      ctx.fillText('100% CORE (APOI)', cx, cy + 10);
+
+      concentricHitZones.push({ idx: 3, x: cx, y: cy, r: coreR });
+    }
+
+    function selectModelNode(idx) {
+      appState.activeModelNode = idx;
+      appState.unlockedNodes[idx] = true;
+      const unlockedCount = appState.unlockedNodes.filter(Boolean).length;
+      document.getElementById('exploreProgressText').textContent = `${unlockedCount}/4`;
+
+      for (let i = 0; i < 4; i++) {
+        const btn = document.getElementById(`nodeBtn${i}`);
+        if (!btn) continue;
+        if (i === 3) {
+          btn.className = idx === 3
+            ? 'py-2 px-1 rounded-lg text-xs font-bold border border-[#C87D32] bg-[#C87D32] text-white transition'
+            : 'py-2 px-1 rounded-lg text-xs font-bold border border-[#C87D32] bg-[#FDF4E7] text-[#C87D32] transition';
+        } else if (idx === i) {
+          btn.className = 'py-2 px-1 rounded-lg text-xs font-bold border border-[#2A6F5B] bg-[#2A6F5B] text-white transition';
+        } else if (appState.unlockedNodes[i]) {
+          btn.className = 'py-2 px-1 rounded-lg text-xs font-bold border border-[#2A6F5B] bg-[#F4F9F7] text-[#2A6F5B] transition';
+        } else {
+          btn.className = 'py-2 px-1 rounded-lg text-xs font-bold border border-[#E7E2D8] bg-[#FAF8F5] text-[#575D59] transition';
+        }
+      }
+
+      drawConcentricCanvas();
+      renderModelDetail();
+    }
+
+    function unlockAllSteps() {
+      appState.unlockedNodes = [true, true, true, true];
+      selectModelNode(3);
+    }
+
+    function renderModelDetail() {
+      const node = modelNodesData[appState.activeModelNode];
+      const isCore = appState.activeModelNode === 3;
+      const card = document.getElementById('modelDetailCard');
+      card.className = isCore
+        ? 'card-elevated core-unlocked rounded-2xl p-6 sm:p-7 transition-all'
+        : 'card-elevated step-unlocked rounded-2xl p-6 sm:p-7 transition-all';
+
+      const badge = appState.lang === 'vi' ? node.badgeVi : node.badgeEn;
+      const title = appState.lang === 'vi' ? node.titleVi : node.titleEn;
+      const stat = appState.lang === 'vi' ? node.statVi : node.statEn;
+      const body = appState.lang === 'vi' ? node.bodyVi : node.bodyEn;
+      const quote = appState.lang === 'vi' ? node.quoteVi : node.quoteEn;
+
+      const nextIdx = (appState.activeModelNode + 1) % 4;
+      const nextBtnLabel = appState.lang === 'vi'
+        ? (isCore ? 'Xem lại từ Bước 1 →' : `Tiếp theo: Mở khóa ${nextIdx === 3 ? 'Tâm điểm Sở hữu' : 'Bước ' + (nextIdx + 1)} →`)
+        : (isCore ? 'Review from Step 1 →' : `Next: Unlock ${nextIdx === 3 ? 'Ownership Core' : 'Step ' + (nextIdx + 1)} →`);
+
+      card.innerHTML = `
+        <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold mb-3 ${isCore ? 'bg-[#C87D32] text-white' : 'bg-[#2A6F5B] text-white'}">
+          <span>${badge}</span>
+        </div>
+        <h3 class="text-xl sm:text-2xl font-extrabold text-[#1F2421] mb-2">${title}</h3>
+        <div class="font-mono-num text-xs font-semibold ${isCore ? 'text-[#9E5E1E]' : 'text-[#2A6F5B]'} bg-white/80 border border-[#E7E2D8] rounded-lg px-3 py-2 mb-4">
+          ${stat}
+        </div>
+        <p class="text-sm text-[#1F2421] leading-relaxed mb-4">${body}</p>
+        <div class="p-3.5 rounded-xl bg-white border border-[#E7E2D8] text-xs font-medium text-[#575D59] italic mb-4">
+          ${quote}
+        </div>
+        <div class="flex items-center justify-between">
+          <span class="text-xs text-[#575D59]">
+            ${appState.lang === 'vi' ? 'Đã mở khóa ' + appState.unlockedNodes.filter(Boolean).length + '/4 yếu tố' : 'Unlocked ' + appState.unlockedNodes.filter(Boolean).length + '/4 factors'}
+          </span>
+          <button onclick="selectModelNode(${nextIdx})" class="px-4 py-2 rounded-xl text-xs font-bold ${isCore ? 'bg-[#1F2421] text-white' : 'bg-[#2A6F5B] text-white'} hover:opacity-90 transition">
+            ${nextBtnLabel}
+          </button>
+        </div>
+      `;
+    }
+
+    let genChartInstance = null;
+
+    function initGenerationalChart() {
+      const ctx = document.getElementById('generationalChart').getContext('2d');
+      genChartInstance = new Chart(ctx, {
+        type: 'bar',
+        data: getGenChartData(),
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          interaction: { mode: 'index', intersect: false },
+          plugins: {
+            legend: {
+              position: 'bottom',
+              labels: { font: { family: 'Be Vietnam Pro', size: 11 }, boxWidth: 12 }
+            },
+            tooltip: {
+              backgroundColor: '#1F2421',
+              titleFont: { family: 'Be Vietnam Pro', size: 12 },
+              bodyFont: { family: 'Be Vietnam Pro', size: 11 },
+              callbacks: {
+                title: (items) => items[0].label.replace(/\n/g, ' ')
+              }
+            }
+          },
+          scales: {
+            y: {
+              beginAtZero: true,
+              max: 100,
+              grid: { color: '#EFECE6' },
+              ticks: { font: { family: 'JetBrains Mono', size: 10 } }
+            },
+            x: {
+              grid: { display: false },
+              ticks: { font: { family: 'Be Vietnam Pro', size: 11 } }
+            }
+          }
+        }
+      });
+    }
+
+    function getGenChartData() {
+      const labels = appState.lang === 'vi'
+        ? [
+            wrapLabel('Thế hệ I (1920–1940)', 14),
+            wrapLabel('Thế hệ II (1945–1965)', 14),
+            wrapLabel('Thế hệ III (1970–1988)', 14),
+            wrapLabel('Thế hệ IV (2000–2018)', 14)
+          ]
+        : [
+            wrapLabel('Gen I (1920–1940)', 14),
+            wrapLabel('Gen II (1945–1965)', 14),
+            wrapLabel('Gen III (1970–1988)', 14),
+            wrapLabel('Gen IV (2000–2018)', 14)
+          ];
+
+      if (appState.genChartMode === 'risk') {
+        return {
+          labels,
+          datasets: [
+            {
+              type: 'bar',
+              label: appState.lang === 'vi' ? 'Chỉ số Sở hữu Thực tế (APOI)' : 'Actual Ownership Index (APOI)',
+              data: [79.6, 76.9, 63.4, 31.5],
+              backgroundColor: '#2A6F5B',
+              borderRadius: 6
+            },
+            {
+              type: 'line',
+              label: appState.lang === 'vi' ? 'Rủi ro Thất bại Trưởng thành (FFMR %)' : 'Adult Failure Risk (FFMR %)',
+              data: [4.8, 5.6, 12.4, 31.6],
+              borderColor: '#C44D3B',
+              backgroundColor: '#C44D3B',
+              borderWidth: 3,
+              pointRadius: 5,
+              tension: 0.3
+            }
+          ]
+        };
+      }
+
+      return {
+        labels,
+        datasets: [
+          {
+            label: appState.lang === 'vi' ? 'Quyền tự chủ (AAI)' : 'Autonomy (AAI)',
+            data: [81.2, 78.4, 64.2, 34.8],
+            backgroundColor: '#2A6F5B',
+            borderRadius: 4
+          },
+          {
+            label: appState.lang === 'vi' ? 'Chịu vất vả (HARI)' : 'Hardship (HARI)',
+            data: [88.5, 84.1, 61.5, 29.4],
+            backgroundColor: '#5B9A8B',
+            borderRadius: 4
+          },
+          {
+            label: appState.lang === 'vi' ? 'Trách nhiệm (SRSI)' : 'Responsibility (SRSI)',
+            data: [85.0, 81.6, 66.8, 36.2],
+            backgroundColor: '#C87D32',
+            borderRadius: 4
+          },
+          {
+            label: appState.lang === 'vi' ? 'Rủi ro Thất bại (%)' : 'Failure Risk (%)',
+            data: [4.8, 5.6, 12.4, 31.6],
+            backgroundColor: '#C44D3B',
+            borderRadius: 4
+          }
+        ]
+      };
+    }
+
+    function setGenChartMode(mode) {
+      appState.genChartMode = mode;
+      document.getElementById('btnGenAll').className = mode === 'all'
+        ? 'px-2.5 py-1 rounded-lg text-xs font-semibold bg-[#2A6F5B] text-white'
+        : 'px-2.5 py-1 rounded-lg text-xs font-semibold bg-[#F1EDE4] text-[#575D59]';
+      document.getElementById('btnGenRisk').className = mode === 'risk'
+        ? 'px-2.5 py-1 rounded-lg text-xs font-semibold bg-[#2A6F5B] text-white'
+        : 'px-2.5 py-1 rounded-lg text-xs font-semibold bg-[#F1EDE4] text-[#575D59]';
+      updateGenerationalChart();
+    }
+
+    function updateGenerationalChart() {
+      if (!genChartInstance) return;
+      genChartInstance.data = getGenChartData();
+      genChartInstance.update();
+    }
+
+    function renderScenarios() {
+      const listEl = document.getElementById('scenarioList');
+      listEl.innerHTML = scenariosData.map((sc, idx) => {
+        const active = appState.activeScenario === idx;
+        const isDanger = idx >= 3;
+        return `
+          <button onclick="selectScenario(${idx})" class="w-full text-left px-3.5 py-2.5 rounded-xl border transition flex items-center justify-between ${
+            active
+              ? isDanger
+                ? 'bg-[#FDF6F5] border-[#C44D3B] text-[#1F2421]'
+                : 'bg-[#F4F9F7] border-[#2A6F5B] text-[#1F2421]'
+              : 'bg-white border-[#E7E2D8] text-[#575D59] hover:border-[#B5AEA2]'
+          }">
+            <div>
+              <div class="text-[10px] font-bold uppercase ${isDanger ? 'text-[#C44D3B]' : 'text-[#2A6F5B]'}">
+                ${appState.lang === 'vi' ? sc.tagVi : sc.tagEn}
+              </div>
+              <div class="text-xs font-bold text-[#1F2421]">
+                ${appState.lang === 'vi' ? sc.titleVi : sc.titleEn}
+              </div>
+            </div>
+            <span class="text-xs font-bold">${active ? '●' : '○'}</span>
+          </button>
+        `;
+      }).join('');
+
+      const cur = scenariosData[appState.activeScenario];
+      const detailBox = document.getElementById('scenarioDetailBox');
+      const isDanger = appState.activeScenario >= 3;
+      detailBox.className = isDanger
+        ? 'mt-4 p-4 rounded-xl bg-[#FDF6F5] border border-[#F2D3CE]'
+        : 'mt-4 p-4 rounded-xl bg-[#F4F9F7] border border-[#CBE3DC]';
+      detailBox.innerHTML = `
+        <div class="text-xs font-extrabold ${isDanger ? 'text-[#C44D3B]' : 'text-[#2A6F5B]'} mb-1.5">
+          ${appState.lang === 'vi' ? cur.statusVi : cur.statusEn}
+        </div>
+        <p class="text-xs text-[#1F2421] leading-relaxed">
+          ${appState.lang === 'vi' ? cur.descVi : cur.descEn}
+        </p>
+      `;
+    }
+
+    function selectScenario(idx) {
+      appState.activeScenario = idx;
+      renderScenarios();
+    }
+
+    let riskChartInstance = null;
+
+    function initRiskChart() {
+      const ctx = document.getElementById('failureRiskChart').getContext('2d');
+      riskChartInstance = new Chart(ctx, {
+        type: 'bar',
+        data: getRiskChartData(),
+        options: {
+          indexAxis: 'y',
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: { display: false },
+            tooltip: {
+              backgroundColor: '#1F2421',
+              callbacks: {
+                title: (items) => items[0].label.replace(/\n/g, ' '),
+                label: (ctx) => {
+                  const val = ctx.parsed.x;
+                  const diff = (val - 14.2).toFixed(1);
+                  return `Rủi ro thất bại: ${val}% (${diff >= 0 ? '+' + diff + '% vs Nhóm A' : 'Chuẩn'})`;
+                }
+              }
+            }
+          },
+          scales: {
+            x: {
+              beginAtZero: true,
+              max: 50,
+              grid: { color: '#EFECE6' },
+              ticks: {
+                callback: (v) => v + '%',
+                font: { family: 'JetBrains Mono', size: 10 }
+              }
+            },
+            y: {
+              grid: { display: false },
+              ticks: { font: { family: 'Be Vietnam Pro', size: 11 } }
+            }
+          }
+        }
+      });
+      updateRiskCallout();
+    }
+
+    function getRiskChartData() {
+      const filter = document.getElementById('cohortFilterSelect').value;
+      let items = [];
+      if (filter === 'hukou') {
+        items = [
+          { label: 'Nhóm Chuẩn A (Tự chủ 100%)', val: 14.2, color: '#2A6F5B' },
+          { label: 'Nông thôn & Thị trấn (n=4.960)', val: 27.7, color: '#C87D32' },
+          { label: 'Đô thị 4-2-1 Jiwa (n=7.440)', val: 34.2, color: '#C44D3B' }
+        ];
+      } else if (filter === 'parenting') {
+        items = [
+          { label: 'Nhóm A: Tự chủ & Sở hữu 100%', val: 14.2, color: '#2A6F5B' },
+          { label: 'Nhóm B3: Bị ép trải nghiệm (Jiwa)', val: 34.6, color: '#D97757' },
+          { label: 'Nhóm B1: Gọi dậy & Nhắc bài liên tục', val: 35.1, color: '#C44D3B' },
+          { label: 'Nhóm B2: Tuyên bố đồ của ba mẹ', val: 36.8, color: '#B83B2B' },
+          { label: 'Nhóm B-Kết hợp: Bao bọc toàn diện', val: 38.4, color: '#992618' }
+        ];
+      } else {
+        items = [
+          { label: 'Nhóm A: Tự chủ & Sở hữu 100%', val: 14.2, color: '#2A6F5B' },
+          { label: 'Nhóm B3: Bị ép trải nghiệm (Jiwa)', val: 34.6, color: '#D97757' },
+          { label: 'Nhóm B1: Gọi dậy & Nhắc lịch trình', val: 35.1, color: '#C44D3B' },
+          { label: 'Nhóm B2: Tước sở hữu đồ dùng/iPad', val: 36.8, color: '#B83B2B' },
+          { label: 'Nhóm B-Kết hợp: Bao bọc toàn diện', val: 38.4, color: '#992618' },
+          { label: 'Nhóm B4: Thừa kế gia sản thụ động', val: 41.2, color: '#7A190E' }
+        ];
+      }
+
+      return {
+        labels: items.map((i) => wrapLabel(i.label, 22)),
+        datasets: [
+          {
+            data: items.map((i) => i.val),
+            backgroundColor: items.map((i) => i.color),
+            borderRadius: 6,
+            barThickness: 22
+          }
+        ]
+      };
+    }
+
+    function updateRiskCallout() {
+      const filter = document.getElementById('cohortFilterSelect').value;
+      const box = document.getElementById('riskChartCallout');
+      if (filter === 'hukou') {
+        box.innerHTML = '<strong>Phân tầng Đô thị – Nông thôn:</strong> Gia đình đô thị 4-2-1 có tỷ lệ bao bọc vật chất và ép học <em>Jiwa</em> cao nhất nên rủi ro thất bại chạm mức <strong>34,2%</strong> (so với <strong>27,7%</strong> ở nông thôn, nơi trẻ còn tham gia một phần việc nhà).';
+      } else if (filter === 'parenting') {
+        box.innerHTML = '<strong>Vượt ngưỡng cảnh báo +20%:</strong> Tất cả các nhóm bị kiểm soát (B1: +20,9%, B2: +22,6%, B3: +20,4%, B-Kết hợp: +24,2%) đều có tỷ lệ thất bại cao hơn Nhóm Chuẩn A trên 20 điểm phần trăm.';
+      } else {
+        box.innerHTML = '<strong>Hai phát hiện đỉnh điểm:</strong> Bao bọc kết hợp tước sở hữu đẩy rủi ro lên <strong>38,4% (+24,2%)</strong>, trong khi <strong>Nhóm B4 (có gia sản để lại nhưng thiếu 3 phẩm chất)</strong> ghi nhận tỷ lệ hư hỏng cao nhất toàn mẫu ở mức <strong>41,2% (+27,0%)</strong>.';
+      }
+    }
+
+    function updateRiskChart() {
+      if (!riskChartInstance) return;
+      riskChartInstance.data = getRiskChartData();
+      riskChartInstance.update();
+      updateRiskCallout();
+    }
+
+    let profileChartInstance = null;
+
+    function initProfileChart() {
+      const ctx = document.getElementById('psychometricProfileChart').getContext('2d');
+      profileChartInstance = new Chart(ctx, {
+        type: 'bar',
+        data: getProfileChartData(),
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: {
+              position: 'bottom',
+              labels: { font: { family: 'Be Vietnam Pro', size: 11 }, boxWidth: 12 }
+            },
+            tooltip: {
+              backgroundColor: '#1F2421',
+              callbacks: {
+                title: (items) => items[0].label.replace(/\n/g, ' ')
+              }
+            }
+          },
+          scales: {
+            y: {
+              beginAtZero: true,
+              max: 100,
+              grid: { color: '#EFECE6' },
+              ticks: { font: { family: 'JetBrains Mono', size: 10 } }
+            },
+            x: {
+              grid: { display: false },
+              ticks: { font: { family: 'Be Vietnam Pro', size: 10 } }
+            }
+          }
+        }
+      });
+    }
+
+    function getProfileChartData() {
+      const sel = document.getElementById('profileCompareSelect').value;
+      const targets = {
+        bComb: { name: 'Nhóm B-Kết hợp (Rủi ro 38,4%)', data: [24.6, 22.1, 26.8, 19.4, 89.0], color: '#C44D3B' },
+        b4: { name: 'Nhóm B4 Thừa kế thụ động (41,2%)', data: [22.4, 18.6, 21.5, 20.8, 86.0], color: '#C87D32' },
+        b2: { name: 'Nhóm B2 Tước sở hữu đồ dùng (36,8%)', data: [33.5, 28.6, 31.4, 22.8, 87.5], color: '#B83B2B' },
+        b1: { name: 'Nhóm B1 Nhắc nhở thời gian (35,1%)', data: [31.2, 35.4, 38.9, 39.1, 84.2], color: '#D97757' }
+      };
+      const t = targets[sel];
+      const labels = [
+        wrapLabel('Quyền tự chủ (AAI)', 14),
+        wrapLabel('Chịu vất vả (HARI)', 14),
+        wrapLabel('Trách nhiệm (SRSI)', 14),
+        wrapLabel('Sở hữu thực (APOI)', 14),
+        wrapLabel('Tự nhận bị sở hữu (%)', 14)
+      ];
+
+      return {
+        labels,
+        datasets: [
+          {
+            label: 'Nhóm A: Tự chủ & Sở hữu 100% (14,2% rủi ro)',
+            data: [79.4, 74.8, 81.2, 83.6, 52.0],
+            backgroundColor: '#2A6F5B',
+            borderRadius: 5
+          },
+          {
+            label: t.name,
+            data: t.data,
+            backgroundColor: t.color,
+            borderRadius: 5
+          }
+        ]
+      };
+    }
+
+    function updateProfileChart() {
+      if (!profileChartInstance) return;
+      profileChartInstance.data = getProfileChartData();
+      profileChartInstance.update();
+    }
+
+    function renderStatsTable() {
+      const q = document.getElementById('tableSearchInput').value.toLowerCase().trim();
+      let rows = empiricalTableData.filter((r) => r.group.toLowerCase().includes(q) || r.badge.toLowerCase().includes(q));
+      if (appState.tableSortAsc !== null) {
+        rows = [...rows].sort((a, b) => appState.tableSortAsc ? a.risk - b.risk : b.risk - a.risk);
+      }
+
+      const tbody = document.getElementById('statsTableBody');
+      tbody.innerHTML = rows.map((r) => {
+        const isHighRisk = r.risk >= 30;
+        const isBaseline = r.risk <= 15;
+        return `
+          <tr class="hover:bg-[#FAF8F5] transition">
+            <td class="py-2.5 px-3 font-medium text-[#1F2421]">
+              <div>${r.group}</div>
+              <span class="inline-block mt-0.5 text-[10px] px-2 py-0.5 rounded-full font-semibold ${
+                isHighRisk ? 'bg-[#FDF6F5] text-[#C44D3B]' : isBaseline ? 'bg-[#F4F9F7] text-[#2A6F5B]' : 'bg-[#F1EDE4] text-[#575D59]'
+              }">${r.badge}</span>
+            </td>
+            <td class="py-2.5 px-2 text-right font-mono-num text-[#575D59]">${r.n}</td>
+            <td class="py-2.5 px-2 text-right font-mono-num">${r.aai}</td>
+            <td class="py-2.5 px-2 text-right font-mono-num">${r.hari}</td>
+            <td class="py-2.5 px-2 text-right font-mono-num">${r.srsi}</td>
+            <td class="py-2.5 px-2 text-right font-mono-num font-bold text-[#2A6F5B]">${r.apoi}</td>
+            <td class="py-2.5 px-2 text-right font-mono-num text-[#575D59]">${r.ownedByParent}</td>
+            <td class="py-2.5 px-2 text-right font-mono-num font-semibold text-[#2A6F5B]">${r.success}</td>
+            <td class="py-2.5 px-3 text-right font-mono-num font-extrabold ${isHighRisk ? 'text-[#C44D3B]' : 'text-[#2A6F5B]'}">
+              ${r.risk.toFixed(1).replace('.', ',')}%
+            </td>
+          </tr>
+        `;
+      }).join('');
+    }
+
+    function toggleTableSort() {
+      if (appState.tableSortAsc === null) appState.tableSortAsc = false;
+      else if (appState.tableSortAsc === false) appState.tableSortAsc = true;
+      else appState.tableSortAsc = null;
+
+      const btn = document.getElementById('btnSortTable');
+      btn.textContent = appState.tableSortAsc === false
+        ? 'Sắp xếp Rủi ro: Cao → Thấp ↓'
+        : appState.tableSortAsc === true
+          ? 'Sắp xếp Rủi ro: Thấp → Cao ↑'
+          : 'Sắp xếp Rủi ro: Mặc định ⇅';
+      renderStatsTable();
+    }
+
+    function renderFallacies() {
+      const grid = document.getElementById('fallacyGrid');
+      grid.innerHTML = fallaciesData.map((f) => `
+        <div class="card-elevated rounded-2xl p-5 flex flex-col justify-between">
+          <div>
+            <div class="text-xs font-bold uppercase tracking-wider text-[#C44D3B] mb-1.5">${f.num}</div>
+            <div class="p-3 rounded-xl bg-[#FDF6F5] border border-[#F2D3CE] text-sm font-bold text-[#1F2421] mb-3">
+              ${f.quote}
+            </div>
+            <p class="text-xs text-[#575D59] leading-relaxed mb-3">${f.impact}</p>
+          </div>
+          <div class="p-3 rounded-xl bg-[#F4F9F7] border border-[#CBE3DC] text-xs font-medium text-[#2A6F5B]">
+            ${f.fix}
+          </div>
+        </div>
+      `).join('');
+    }
+
+    function renderRealExamples() {
+      const tabsEl = document.getElementById('exampleTabs');
+      tabsEl.innerHTML = realExamplesData.map((ex, idx) => {
+        const active = appState.activeExampleIdx === idx;
+        return `
+          <button onclick="selectExample(${idx})" class="px-3 py-2.5 rounded-xl text-xs font-bold border text-left transition ${
+            active
+              ? 'bg-[#1F2421] text-white border-[#1F2421]'
+              : 'bg-[#FAF8F5] text-[#575D59] border-[#E7E2D8] hover:border-[#1F2421]'
+          }">
+            ${ex.tab}
+          </button>
+        `;
+      }).join('');
+
+      const item = realExamplesData[appState.activeExampleIdx];
+      const isDisowned = appState.exampleMode === 'disowned';
+      const box = document.getElementById('exampleContentBox');
+      box.className = isDisowned
+        ? 'p-5 rounded-xl border border-[#F2D3CE] bg-[#FDF6F5] transition-all'
+        : 'p-5 rounded-xl border border-[#CBE3DC] bg-[#F4F9F7] transition-all';
+
+      box.innerHTML = `
+        <div class="text-xs font-bold uppercase tracking-wider ${isDisowned ? 'text-[#C44D3B]' : 'text-[#2A6F5B]'} mb-1">
+          ${item.title}
+        </div>
+        <h4 class="text-base sm:text-lg font-extrabold text-[#1F2421] mb-2">
+          ${isDisowned ? '✕ ' + item.disownedTitle : '✓ ' + item.ownedTitle}
+        </h4>
+        <p class="text-sm text-[#1F2421] leading-relaxed">
+          ${isDisowned ? item.disownedDesc : item.ownedDesc}
+        </p>
+      `;
+    }
+
+    function selectExample(idx) {
+      appState.activeExampleIdx = idx;
+      renderRealExamples();
+    }
+
+    function setExampleMode(mode) {
+      appState.exampleMode = mode;
+      document.getElementById('btnExDisowned').className = mode === 'disowned'
+        ? 'px-3 py-1.5 rounded-lg text-xs font-bold bg-[#C44D3B] text-white transition'
+        : 'px-3 py-1.5 rounded-lg text-xs font-bold text-[#575D59] hover:text-[#1F2421] transition';
+      document.getElementById('btnExOwned').className = mode === 'owned'
+        ? 'px-3 py-1.5 rounded-lg text-xs font-bold bg-[#2A6F5B] text-white transition'
+        : 'px-3 py-1.5 rounded-lg text-xs font-bold text-[#575D59] hover:text-[#1F2421] transition';
+      renderRealExamples();
+    }
+
+    function renderProtocolCards() {
+      const container = document.getElementById('protocolCardsContainer');
+      container.innerHTML = protocolDomainsData.map((p, idx) => `
+        <div class="card-elevated rounded-2xl p-5">
+          <div class="flex items-start justify-between gap-2 mb-2">
+            <div class="flex items-center gap-2">
+              <span class="text-lg">${p.icon}</span>
+              <h4 class="text-sm font-extrabold text-[#1F2421]">${p.domain}</h4>
+            </div>
+            <button onclick="copyProtocolScript(${idx}, this)" class="px-2.5 py-1 rounded-lg bg-[#F1EDE4] hover:bg-[#2A6F5B] hover:text-white text-[11px] font-bold text-[#1F2421] transition whitespace-nowrap">
+              Sao chép lời thoại
+            </button>
+          </div>
+          <div class="text-xs text-[#C44D3B] line-through mb-2">${p.oldWay}</div>
+          <div class="p-3 rounded-xl bg-[#F4F9F7] border border-[#CBE3DC] text-xs font-semibold text-[#1F2421] leading-relaxed mb-2">
+            ${p.newScript}
+          </div>
+          <div class="text-[11px] text-[#575D59]">
+            <strong>Cơ chế kích hoạt:</strong> ${p.mechanism}
+          </div>
+        </div>
+      `).join('');
+    }
+
+    function copyProtocolScript(idx, btn) {
+      const text = protocolDomainsData[idx].newScript;
+      if (navigator.clipboard) {
+        navigator.clipboard.writeText(text);
+      }
+      const orig = btn.textContent;
+      btn.textContent = '✓ Đã sao chép';
+      setTimeout(() => {
+        btn.textContent = orig;
+      }, 1600);
+    }
+
+    function runSimulator() {
+      const wake = Number(document.getElementById('sliderWake').value);
+      const sched = Number(document.getElementById('sliderSchedule').value);
+      const asset = Number(document.getElementById('sliderAsset').value);
+      const chore = Number(document.getElementById('sliderChore').value);
+      const exp = Number(document.getElementById('sliderExp').value);
+
+      document.getElementById('valWake').textContent = wake + '%';
+      document.getElementById('valSchedule').textContent = sched + '%';
+      document.getElementById('valAsset').textContent = asset + '%';
+      document.getElementById('valChore').textContent = chore + '%';
+      document.getElementById('valExp').textContent = exp + '%';
+
+      const apoi = (wake * 0.2 + sched * 0.2 + asset * 0.25 + chore * 0.2 + exp * 0.15);
+      const predictedRisk = 41.2 - (apoi / 100) * (41.2 - 14.2);
+      const diffFromBaseline = predictedRisk - 14.2;
+
+      const apoiEl = document.getElementById('simApoiScore');
+      const riskEl = document.getElementById('simRiskScore');
+      const verdictBox = document.getElementById('simVerdictBox');
+
+      apoiEl.textContent = apoi.toFixed(1).replace('.', ',') + ' / 100';
+      riskEl.textContent = predictedRisk.toFixed(1).replace('.', ',') + '%';
+
+      if (diffFromBaseline >= 20) {
+        apoiEl.className = 'font-mono-num text-2xl font-extrabold text-[#C44D3B]';
+        riskEl.className = 'font-mono-num text-2xl font-extrabold text-[#C44D3B]';
+        verdictBox.className = 'p-3.5 rounded-xl bg-[#FDF6F5] border border-[#F2D3CE] text-xs text-[#1F2421] leading-relaxed';
+        verdictBox.innerHTML = `<strong class="text-[#C44D3B]">⚠️ Vượt ngưỡng cảnh báo +20% (+${diffFromBaseline.toFixed(1).replace('.', ',')}% vs Chuẩn):</strong> Trẻ đang nằm trong <em>"Vùng trũng Vô chủ"</em>. Cần áp dụng ngay Giao thức Chuyển giao Sở hữu 100% đối với đồng hồ báo thức, thiết bị cá nhân và việc tự quét dọn không gian sống.`;
+      } else if (diffFromBaseline >= 8) {
+        apoiEl.className = 'font-mono-num text-2xl font-extrabold text-[#C87D32]';
+        riskEl.className = 'font-mono-num text-2xl font-extrabold text-[#C87D32]';
+        verdictBox.className = 'p-3.5 rounded-xl bg-[#FDF4E7] border border-[#F0DEC2] text-xs text-[#1F2421] leading-relaxed';
+        verdictBox.innerHTML = `<strong class="text-[#C87D32]">◈ Vùng Chuyển Tiếp (+${diffFromBaseline.toFixed(1).replace('.', ',')}% vs Chuẩn):</strong> Trẻ đã có một phần tự chủ nhưng vẫn còn sự nhắc nhở hoặc tuyên bố sở hữu từ cha mẹ. Hãy nâng mức giao quyền sở hữu 100% để đưa rủi ro về ngưỡng an toàn (~14,2%).`;
+      } else {
+        apoiEl.className = 'font-mono-num text-2xl font-extrabold text-[#2A6F5B]';
+        riskEl.className = 'font-mono-num text-2xl font-extrabold text-[#2A6F5B]';
+        verdictBox.className = 'p-3.5 rounded-xl bg-[#F4F9F7] border border-[#CBE3DC] text-xs text-[#1F2421] leading-relaxed';
+        verdictBox.innerHTML = `<strong class="text-[#2A6F5B]">✓ Vùng An Toàn Tự Chủ (+${diffFromBaseline.toFixed(1).replace('.', ',')}% vs Chuẩn):</strong> Gia đình đang vận hành chuẩn xác theo <em>Giao thức Chuyển giao Sở hữu 100%</em>. Trẻ có nền tảng vững chắc về Tính chủ động, Tính trách nhiệm và Tính chịu đựng vất vả.`;
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      const canvas = document.getElementById('concentricCanvas');
+      canvas.addEventListener('click', (e) => {
+        const rect = canvas.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        for (let i = concentricHitZones.length - 1; i >= 0; i--) {
+          const z = concentricHitZones[i];
+          const dist = Math.hypot(x - z.x, y - z.y);
+          if (dist <= z.r) {
+            selectModelNode(z.idx);
+            break;
+          }
+        }
+      });
+
+      window.addEventListener('resize', drawConcentricCanvas);
+
+      selectModelNode(0);
+      initGenerationalChart();
+      renderScenarios();
+      initRiskChart();
+      initProfileChart();
+      renderStatsTable();
+      renderFallacies();
+      renderRealExamples();
+      renderProtocolCards();
+      runSimulator();
+    });
+  </script>
+</body>
+</html>
