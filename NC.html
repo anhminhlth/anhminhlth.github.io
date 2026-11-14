@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
-  <title>Psychological Ownership Mechanisms & Intergenerational Passivity | Cơ Chế Sở Hữu Tâm Lý & Tính Thụ Động Liên Thế Hệ (1920–2026)</title>
+  <title>Psychological Ownership Mechanisms & Practical Parenting Tactics | Cơ Chế Sở Hữu Tâm Lý & Giải Pháp Giúp Con Tự Giác (1920–2026)</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -33,7 +33,7 @@
       background-color: var(--bg-alabaster);
       color: var(--ink-primary);
       overflow-x: hidden;
-      padding-bottom: 92px; /* Space for sticky Spacebar/Mobile controller */
+      padding-bottom: 92px;
     }
 
     .font-mono-num {
@@ -53,10 +53,6 @@
       font-weight: 400;
       line-height: 1.45;
       margin-top: 0.2rem;
-    }
-    .lang-vi-inline {
-      color: #575D59;
-      font-weight: 500;
     }
 
     body.mode-en-only .lang-vi,
@@ -143,7 +139,6 @@
       animation: pulseSpace 2.2s infinite;
     }
 
-    /* Custom Scrollbar */
     ::-webkit-scrollbar {
       width: 8px;
       height: 8px;
@@ -171,29 +166,29 @@
         </div>
         <div class="min-w-0">
           <div class="text-[11px] font-bold uppercase tracking-wider text-[#2A6F5B] truncate">
-            16-Year Longitudinal Study (2010–2026) • Nghiên Cứu Dọc 16 Năm & Đối Chiếu 4 Thế Hệ (1920–2026)
+            16-Year Longitudinal Study (2010–2026) • Nghiên Cứu Dọc 16 Năm &amp; Kỹ Thuật Thực Hành Gia Đình
           </div>
           <h1 class="text-xs sm:text-sm md:text-base font-extrabold text-[#1F2421] truncate">
-            Psychological Ownership & Intergenerational Passivity • Cơ Chế Sở Hữu Tâm Lý & Tính Thụ Động Liên Thế Hệ
+            Psychological Ownership &amp; Self-Directed Youth • Cơ Chế Sở Hữu Tâm Lý &amp; Giải Pháp Giúp Con Tự Giác
           </h1>
         </div>
       </div>
 
       <nav class="hidden xl:flex items-center gap-1 bg-[#F1EDE4] p-1 rounded-xl border border-[#E7E2D8]">
         <button onclick="scrollToSection('sec-model')" class="nav-btn nav-pill-active px-2.5 py-1.5 rounded-lg text-xs font-bold transition" data-target="sec-model">
-          1. 4-Factor Model • Mô Hình 4 Yếu Tố
+          1. 4-Factor Model • Mô Hình 4 Vòng Tròn
         </button>
         <button onclick="scrollToSection('sec-generations')" class="nav-btn px-2.5 py-1.5 rounded-lg text-xs font-semibold text-[#575D59] hover:text-[#1F2421] transition" data-target="sec-generations">
-          2. 4 Cohorts & 5 Cases • 4 Thế Hệ & 5 Kịch Bản
+          2. 4 Cohorts &amp; 5 Cases • 4 Thế Hệ &amp; 5 Kịch Bản
         </button>
         <button onclick="scrollToSection('sec-empirical')" class="nav-btn px-2.5 py-1.5 rounded-lg text-xs font-semibold text-[#575D59] hover:text-[#1F2421] transition" data-target="sec-empirical">
           3. N=12,400 Data • Dữ Liệu Thực Nghiệm
         </button>
         <button onclick="scrollToSection('sec-examples')" class="nav-btn px-2.5 py-1.5 rounded-lg text-xs font-semibold text-[#575D59] hover:text-[#1F2421] transition" data-target="sec-examples">
-          4. Fallacies & Scenarios • Sai Lầm & Tình Huống
+          4. Fallacies &amp; 5 Cases • Sai Lầm &amp; 5 Tình Huống
         </button>
         <button onclick="scrollToSection('sec-protocol')" class="nav-btn px-2.5 py-1.5 rounded-lg text-xs font-semibold text-[#575D59] hover:text-[#1F2421] transition" data-target="sec-protocol">
-          5. 100% Protocol • Giao Thức 100%
+          5. 6 Micro-Tactics &amp; 100% Protocol • 6 Tuyệt Chiêu &amp; Giao Thức
         </button>
       </nav>
 
@@ -219,7 +214,7 @@
     <!-- Mobile Horizontal Scroll Navigation -->
     <div class="xl:hidden border-t border-[#E7E2D8] bg-[#FAF8F5] px-4 py-1.5 overflow-x-auto flex items-center gap-1.5">
       <button onclick="scrollToSection('sec-model')" class="nav-btn nav-pill-active whitespace-nowrap px-2.5 py-1 rounded-lg text-[11px] font-bold" data-target="sec-model">
-        1. 4-Factor Model • 4 Yếu Tố
+        1. 4-Factor Model • 4 Vòng Tròn
       </button>
       <button onclick="scrollToSection('sec-generations')" class="nav-btn whitespace-nowrap px-2.5 py-1 rounded-lg text-[11px] font-semibold text-[#575D59]" data-target="sec-generations">
         2. 4 Cohorts • 4 Thế Hệ
@@ -228,10 +223,10 @@
         3. N=12,400 Data • Dữ Liệu
       </button>
       <button onclick="scrollToSection('sec-examples')" class="nav-btn whitespace-nowrap px-2.5 py-1 rounded-lg text-[11px] font-semibold text-[#575D59]" data-target="sec-examples">
-        4. 5 Real Cases • 5 Ví Dụ
+        4. 5 Real Cases • 5 Tình Huống
       </button>
       <button onclick="scrollToSection('sec-protocol')" class="nav-btn whitespace-nowrap px-2.5 py-1 rounded-lg text-[11px] font-semibold text-[#575D59]" data-target="sec-protocol">
-        5. 100% Protocol • Giao Thức
+        5. 6 Micro-Tactics • 6 Tuyệt Chiêu
       </button>
     </div>
   </header>
@@ -243,22 +238,22 @@
       <div class="max-w-4xl">
         <div class="inline-flex flex-wrap items-center gap-2 px-3 py-1 rounded-full bg-[#F4F9F7] border border-[#CBE3DC] text-[#2A6F5B] text-xs font-bold mb-4">
           <span>◈</span>
-          <span>Scientific Monograph • CFPS Sample of 12,400 Households (39,680 Individuals) | Chuyên Khảo Khoa Học • Mẫu CFPS 12.400 Hộ Gia Đình</span>
+          <span>Scientific Monograph &amp; Practical Guide • CFPS N=12,400 Households | Chuyên Khảo Khoa Học &amp; Hướng Dẫn Thực Hành Giúp Con Tự Giác</span>
         </div>
 
         <h2 class="text-xl sm:text-2xl lg:text-3xl font-extrabold text-[#1F2421] tracking-tight leading-snug lang-en-block">
-          Why Do Contemporary Youth Exhibit Severe Passivity and Elevated Adult Failure Risk?
+          Why Do Contemporary Youth Lose Proactivity—and How Can Simple Parental Adjustments Stabilize All Four Development Circles?
         </h2>
         <h3 class="text-base sm:text-xl font-bold text-[#2A6F5B] mt-1.5 mb-4 lang-vi-block">
-          Vì Sao Trẻ Em Đương Đại Suy Giảm Tính Chủ Động Và Tăng Rủi Ro Thất Bại Khi Trưởng Thành?
+          Vì Sao Trẻ Em Đương Đại Suy Giảm Tính Tự Giác — Và Làm Sao Để Ba Mẹ Xử Lý Đơn Giản Giúp 4 Vòng Tròn Của Con Phát Triển Ổn Định?
         </h3>
 
         <div class="space-y-2.5 text-xs sm:text-sm leading-relaxed mb-6">
           <p class="text-[#1F2421] font-medium lang-en-block">
-            <strong>EN:</strong> The demographic transition to the <strong>"4-2-1" family structure</strong> (4 grandparents, 2 parents, 1 child), pervasive <em>helicopter parenting</em>, and hyper-scheduled <em>Jiwa</em> ("chicken-baby") involution have trapped youth inside an <strong>"Ownership Dead Zone."</strong> Stripped of temporal autonomy and asset ownership (<em>"bought by Mom and Dad"</em>), children suffer a simultaneous collapse of three outer agency traits and face an adult failure risk elevated by <strong>20.9 to 24.2 percentage points</strong>—fueling <em>"Lying Flat" (Tangping)</em>, <em>"Gnawing the Old" (Ken lao)</em>, and <em>"Full-Time Children" (Quanzhi Ernu)</em>.
+            <strong>EN:</strong> The shift to the <strong>"4-2-1" family structure</strong>, constant schedule nagging, and claiming parental title over children's items (<em>"bought by Mom and Dad"</em>) trap youth in an <strong>"Ownership Dead Zone"</strong>—elevating adult failure risk by <strong>20.9 to 24.2 percentage points</strong>. Conversely, when parents apply simple, low-effort behavioral levers—such as <strong>affirming 100% item ownership with absolute certainty</strong>, <strong>allowing a 1–2 day delay without nagging</strong> so natural consequences take effect, and <strong>strategically "playing dumb, naive, or slightly worried"</strong> so the child steps up to lead—all four developmental circles stabilize rapidly.
           </p>
           <p class="text-[#575D59] lang-vi-block border-l-2 border-[#2A6F5B] pl-3">
-            <strong>VI:</strong> Sự dịch chuyển sang cấu trúc gia đình <strong>"4-2-1"</strong> (4 ông bà, 2 cha mẹ, 1 đứa trẻ), bao bọc quá mức (<em>helicopter parenting</em>) và ép lịch trình <em>Jiwa</em> ("bơm máu gà") đã đẩy trẻ vào <strong>"Vùng trũng Vô chủ"</strong>. Khi bị tước quyền tự chủ thời gian và quyền sở hữu đối với tài sản cá nhân (<em>"đồ của ba mẹ mua"</em>), trẻ đánh mất đồng thời ba phẩm chất hành vi và đối mặt với rủi ro thất bại khi trưởng thành cao hơn <strong>20,9 đến 24,2 điểm phần trăm</strong> — làm bùng phát các hội chứng <em>"Nằm thẳng" (Tangping)</em>, <em>"Ăn bám" (Ken lao)</em> và <em>"Con toàn thời gian" (Quanzhi Ernu)</em>.
+            <strong>VI:</strong> Sự dịch chuyển sang cấu trúc gia đình <strong>"4-2-1"</strong>, thói quen nhắc nhở từng chút và tuyên bố <em>"đồ của ba mẹ mua"</em> đã đẩy trẻ vào <strong>"Vùng trũng Vô chủ"</strong>, làm tăng rủi ro thất bại khi trưởng thành thêm <strong>20,9 đến 24,2 điểm phần trăm</strong>. Ngược lại, chỉ cần ba mẹ đổi sang các cách xử lý đơn giản mà cực kỳ hiệu quả: <strong>nói chắc chắn 100% đồ nào thuộc sở hữu của con</strong> để con có trách nhiệm, <strong>cho phép con trễ 1–2 ngày không nhắc nhở</strong> để con tự ngấm hậu quả tự nhiên, và <strong>ba mẹ giả ngốc / ngờ nghệch / hay lo lắng</strong> để kích hoạt bản năng tự giác dẫn dắt của con, cả 4 vòng tròn của trẻ sẽ phát triển vững chắc.
           </p>
         </div>
       </div>
@@ -273,10 +268,10 @@
           <div class="text-[11px] font-medium text-[#8C3326] mb-1 lang-vi-block">Chênh Lệch Rủi Ro Thất Bại</div>
           <div class="font-mono-num text-2xl sm:text-3xl font-extrabold text-[#C44D3B]">+24.2%</div>
           <p class="text-xs text-[#1F2421] font-medium mt-1.5 lang-en-block">
-            38.4% (Disowned &amp; nagged cohort) vs. 14.2% (100% autonomy &amp; ownership baseline).
+            38.4% (Disowned &amp; nagged cohort) vs. 14.2% (100% ownership &amp; unprompted autonomy).
           </p>
           <p class="text-[11px] text-[#575D59] mt-0.5 lang-vi-block">
-            38,4% (Nhóm bị tước sở hữu &amp; nhắc nhở) so với 14,2% (Nhóm tự chủ 100%).
+            38,4% (Nhóm bị nhắc nhở &amp; tước sở hữu) so với 14,2% (Nhóm sở hữu 100% &amp; tự giác).
           </p>
         </div>
 
@@ -288,10 +283,10 @@
           <div class="text-[11px] font-medium text-[#8F561D] mb-1 lang-vi-block">Nghịch Lý Thừa Kế Thụ Động</div>
           <div class="font-mono-num text-2xl sm:text-3xl font-extrabold text-[#C87D32]">41.2%</div>
           <p class="text-xs text-[#1F2421] font-medium mt-1.5 lang-en-block">
-            Ruin &amp; maladjustment rate among heirs endowed with wealth but lacking 3 core traits.
+            Ruin rate among heirs endowed with wealth but lacking the 3 outer behavioral circles.
           </p>
           <p class="text-[11px] text-[#575D59] mt-0.5 lang-vi-block">
-            Tỷ lệ hư hỏng, tiêu tán cơ nghiệp ở người có gia sản để lại nhưng thiếu 3 phẩm chất.
+            Tỷ lệ hư hỏng, tiêu tán cơ nghiệp ở người có gia sản để sẵn nhưng thiếu 3 vòng phẩm chất.
           </p>
         </div>
 
@@ -303,48 +298,48 @@
           <div class="text-[11px] font-medium text-[#575D59] mb-1 lang-vi-block">Tự Coi Mình Là "Tài Sản Cha Mẹ"</div>
           <div class="font-mono-num text-2xl sm:text-3xl font-extrabold text-[#1F2421]">89.0%</div>
           <p class="text-xs text-[#1F2421] font-medium mt-1.5 lang-en-block">
-            Non-autonomous youth judge themselves as mother's property (vs. 52.0% in Group A).
+            Over-directed youth judge themselves as mother's property (vs. 52.0% in Group A).
           </p>
           <p class="text-[11px] text-[#575D59] mt-0.5 lang-vi-block">
-            Trẻ bị tước tự chủ tin mình thuộc sở hữu của mẹ (so với 52,0% ở nhóm tự chủ).
+            Trẻ bị làm thay &amp; sai khiến tin mình thuộc sở hữu của mẹ (so với 52,0% ở Nhóm A).
           </p>
         </div>
 
         <div class="rounded-xl p-4 bg-[#F4F9F7] border border-[#CBE3DC]">
           <div class="flex items-center justify-between text-xs font-bold text-[#2A6F5B] mb-1">
-            <span>Explanatory Power of Ownership</span>
+            <span>Power of 100% Ownership</span>
             <span>SEM CFI=0.97</span>
           </div>
-          <div class="text-[11px] font-medium text-[#215949] mb-1 lang-vi-block">Sức Mạnh Giải Thích Của Sở Hữu</div>
+          <div class="text-[11px] font-medium text-[#215949] mb-1 lang-vi-block">Sức Mạnh Của Giao Quyền 100%</div>
           <div class="font-mono-num text-2xl sm:text-3xl font-extrabold text-[#2A6F5B]">68.4%</div>
           <p class="text-xs text-[#1F2421] font-medium mt-1.5 lang-en-block">
-            Variance in Proactivity (β = 0.827) directly governed by Actual Ownership (APOI).
+            Variance in Proactivity (β = 0.827) directly activated when children own 100% of targets.
           </p>
           <p class="text-[11px] text-[#575D59] mt-0.5 lang-vi-block">
-            Phương sai Tính chủ động (β = 0,827) được quyết định trực tiếp bởi Chỉ số Sở hữu (APOI).
+            Phương sai Tính chủ động (β = 0,827) được kích hoạt trực tiếp khi con sở hữu chắc chắn 100%.
           </p>
         </div>
       </div>
     </section>
 
-    <!-- SECTION 1: INTERACTIVE 4-FACTOR MODEL (SPACEBAR STEP-BY-STEP REVEAL, ZERO OVERLAP) -->
+    <!-- SECTION 1: INTERACTIVE 4-FACTOR MODEL (SPACEBAR STEP-BY-STEP REVEAL, ZERO OVERLAP + PRACTICAL PARENTING LEVERS) -->
     <section id="sec-model" class="space-y-6 scroll-mt-24">
       <div class="max-w-4xl">
         <span class="text-xs font-bold uppercase tracking-wider text-[#2A6F5B]">
-          Section 1 • Core Theoretical Architecture | Phần 1 • Kiến Trúc Lý Thuyết Trọng Tâm
+          Section 1 • Core Architecture &amp; Practical Levers | Phần 1 • Mô Hình 4 Vòng Tròn &amp; Cách Ba Mẹ Giúp Con Tự Giác
         </span>
         <h2 class="text-xl sm:text-2xl lg:text-3xl font-extrabold text-[#1F2421] mt-1 lang-en-block">
-          The Four-Factor Convergence Model: Press <kbd class="px-2 py-0.5 text-sm font-mono-num bg-[#2A6F5B] text-white rounded-md shadow-sm">Space</kbd> to Reveal Each Outer Circle &amp; Converge on the "Ownership" Core
+          The Four-Factor Convergence Model: Press <kbd class="px-2 py-0.5 text-sm font-mono-num bg-[#2A6F5B] text-white rounded-md shadow-sm">Space</kbd> to Reveal Each Outer Circle, the Center Core &amp; Simple Parental Tactics
         </h2>
         <h3 class="text-base sm:text-lg font-bold text-[#2A6F5B] mt-1 lang-vi-block">
-          Mô Hình Hội Tụ Bốn Yếu Tố: Nhấn Phím <kbd class="px-1.5 py-0.5 text-xs font-mono-num bg-[#E7E2D8] text-[#1F2421] rounded">Space</kbd> Để Hiện Từng Vòng Tròn Xung Quanh, Sau Đó Hiện Vòng Tròn Giữa &amp; Giải Thích Đầy Đủ
+          Mô Hình Bốn Vòng Tròn Hội Tụ: Nhấn Phím <kbd class="px-1.5 py-0.5 text-xs font-mono-num bg-[#E7E2D8] text-[#1F2421] rounded">Space</kbd> Để Hiện Từng Vòng Tròn Xung Quanh, Vòng Tròn Giữa &amp; Mẹo Xử Lý Đơn Giản Cho Ba Mẹ
         </h3>
         <div class="mt-2 space-y-1.5 text-xs sm:text-sm">
           <p class="text-[#1F2421] lang-en-block">
-            <strong>EN:</strong> Unlike conventional approaches that preach virtues in isolation, this study proves that the three surrounding behavioral circles—<strong>1. Responsibility</strong>, <strong>2. Hardship Resilience</strong>, and <strong>3. Proactivity</strong>—cannot be cultivated separately. All three converge inward upon and originate from a single central nucleus: <strong>4. Ownership (100% Core)</strong>. Press <strong>Space</strong> (or tap the step buttons) 4 times: Steps 1, 2, and 3 reveal each surrounding circle and its full bilingual explanation; Step 4 reveals the central Ownership core and its synthesis without ever overlapping any text.
+            <strong>EN:</strong> Press <strong>Space</strong> (or tap the step buttons) 4 times: Steps 1, 2, and 3 sequentially unlock the three surrounding circles—<strong>1. Responsibility</strong> (stabilized by <em>allowing a 1–2 day delay without nagging</em>), <strong>2. Hardship Resilience</strong> (stabilized by <em>delegating physical chores without premature rescue</em>), and <strong>3. Proactivity</strong> (stabilized when <em>parents play dumb, naive, or worried</em> so the child takes the lead). Step 4 reveals the central nucleus—<strong>4. Ownership (100% Core)</strong> (stabilized by <em>declaring with 100% certainty what belongs to the child</em>).
           </p>
           <p class="text-[#575D59] lang-vi-block">
-            <strong>VI:</strong> Khác với quan niệm truyền thống tách rời các đức tính, nghiên cứu chứng minh ba vòng tròn phẩm chất xung quanh — <strong>1. Tính Trách Nhiệm</strong>, <strong>2. Tính Vất Vả</strong> và <strong>3. Tính Chủ Động</strong> — đều hội tụ về và sinh ra từ hạt nhân duy nhất ở chính giữa là <strong>4. Tâm Điểm: Tính Sở Hữu (Ownership)</strong>. Hãy nhấn phím <strong>Space</strong> (hoặc bấm nút bước trên màn hình) lần lượt từ lần 1 đến lần 4 để hiện từng vòng tròn xung quanh, sau đó mới hiện vòng tròn giữa và mở toàn bộ lời giải thích tương ứng.
+            <strong>VI:</strong> Nhấn phím <strong>Space</strong> (hoặc bấm nút bước) 4 lần: Lần 1, 2, 3 mở khóa tuần tự 3 vòng tròn xung quanh — <strong>1. Tính Trách Nhiệm</strong> (vững vàng khi ba mẹ <em>cho con trễ 1–2 ngày không nhắc</em> để con tự giác), <strong>2. Tính Vất Vả</strong> (vững vàng khi ba mẹ <em>giao việc thật và không nhảy vào làm hộ</em>), và <strong>3. Tính Chủ Động</strong> (bật mạnh khi <em>ba mẹ giả ngốc / ngờ nghệch / hay lo lắng</em> để con đứng ra lo liệu). Nhấn <strong>Space</strong> lần 4 sẽ hiện vòng tròn chính giữa — <strong>4. Tâm Điểm: Tính Sở Hữu (100% Core)</strong> (vững chắc khi ba mẹ <em>tuyên bố đồ nào của con một cách chắc chắn 100%</em>).
           </p>
         </div>
       </div>
@@ -363,7 +358,7 @@
               </span>
             </div>
 
-            <!-- Geometry Mode Switcher: Orbital Triad (Screenshot 2 style) vs Concentric Rings (Screenshot 1 style) -->
+            <!-- Geometry Mode Switcher -->
             <div class="flex rounded-lg bg-[#F1EDE4] p-0.5 border border-[#E7E2D8] text-[11px] font-bold">
               <button id="btnGeoOrbital" onclick="setDiagramGeometry('orbital')" class="px-2 py-1 rounded-md bg-[#1F2421] text-white transition" title="3 surrounding circles + 1 center circle">
                 3 Outer + 1 Core
@@ -397,6 +392,15 @@
               <div>★ 4. Ownership</div>
               <div class="text-[10px] opacity-85 font-normal">Tâm Sở Hữu</div>
             </button>
+          </div>
+
+          <!-- Quick Summary of Practical Levers Underneath Diagram -->
+          <div class="w-full mt-3 p-3 rounded-xl bg-[#FAF8F5] border border-[#E7E2D8] text-[11px] space-y-1">
+            <div class="font-extrabold text-[#2A6F5B]">💡 Quick Parenting Levers • Đòn Bẩy Đơn Giản Cho Ba Mẹ:</div>
+            <div class="text-[#1F2421]">• <strong>Circle 1 (Responsibility):</strong> Allow 1–2 days delay without nagging • <em>Cho trễ 1–2 ngày không nhắc</em></div>
+            <div class="text-[#1F2421]">• <strong>Circle 2 (Hardship):</strong> Delegate real chores, act tired • <em>Giao việc thật, giả mệt không làm hộ</em></div>
+            <div class="text-[#1F2421]">• <strong>Circle 3 (Proactivity):</strong> Play dumb / naive / worried • <em>Giả ngốc / ngờ nghệch / hay lo lắng</em></div>
+            <div class="text-[#C87D32] font-bold">• <strong>Core 4 (Ownership):</strong> Affirm 100% child's item with certainty • <em>Nói đồ của con chắc chắn 100%</em></div>
           </div>
 
           <!-- Quick Action Controls -->
@@ -436,10 +440,10 @@
             <div class="flex flex-wrap items-center justify-between gap-2 mb-3">
               <div>
                 <h4 class="text-xs font-extrabold uppercase tracking-wider text-[#1F2421] lang-en-block">
-                  Core Distinction: Volitional Experiential Proactivity vs. Parent-Forced Experience (Jiwa)
+                  Core Distinction: Volitional Self-Directed Experience vs. Parent-Forced Experience (Jiwa)
                 </h4>
                 <div class="text-[11px] font-bold text-[#2A6F5B] lang-vi-block">
-                  Phân Định Cốt Lõi: Tính Chủ Động Trải Nghiệm Tự Thân vs. Ba Mẹ Bắt Ép Trải Nghiệm (Jiwa)
+                  Phân Định Cốt Lõi: Chủ Động Trải Nghiệm Tự Giác vs. Ba Mẹ Bắt Ép Trải Nghiệm (Jiwa)
                 </div>
               </div>
               <span class="px-2.5 py-1 rounded-full text-xs font-extrabold bg-[#FDF6F5] text-[#C44D3B] border border-[#F2D3CE]">
@@ -450,31 +454,31 @@
             <div class="grid grid-cols-1 md:grid-cols-2 gap-3.5">
               <div class="p-4 rounded-xl bg-white border border-[#CBE3DC]">
                 <div class="text-xs font-extrabold text-[#2A6F5B] mb-1">
-                  ✓ Volitional Experiential Proactivity (Group A)
+                  ✓ Volitional Proactivity via "Playing Dumb" &amp; 100% Ownership (Group A)
                 </div>
                 <div class="text-[11px] font-bold text-[#2A6F5B] mb-2 lang-vi-block">
-                  ✓ Chủ Động Trải Nghiệm Tự Thân (Nhóm Chuẩn A)
+                  ✓ Chủ Động Tự Thân Nhờ Ba Mẹ "Giả Ngốc" &amp; Giao Quyền 100% (Nhóm A)
                 </div>
                 <p class="text-xs text-[#1F2421] leading-relaxed lang-en-block">
-                  <strong>EN:</strong> The child initiates curiosity, chooses targets, navigates trial-and-error, and owns 100% of lessons learned. Actual Ownership Index (APOI) reaches <strong>83.6/100</strong>; adult failure risk is only <strong>14.2%</strong>.
+                  <strong>EN:</strong> When parents step back, act slightly naive/worried, and let the child choose and manage their own schedule and 1–2 day mistakes, the child owns 100% of lessons learned. APOI reaches <strong>83.6/100</strong>; adult failure risk is only <strong>14.2%</strong>.
                 </p>
                 <p class="text-xs text-[#575D59] leading-relaxed mt-1.5 pt-1.5 border-t border-[#F1EDE4] lang-vi-block">
-                  <strong>VI:</strong> Trẻ tự khởi phát tò mò, tự chọn mục tiêu, tự va vấp thử-sai và sở hữu 100% bài học rút ra. Chỉ số APOI đạt <strong>83,6/100</strong>; rủi ro thất bại tương lai chỉ ở mức <strong>14,2%</strong>.
+                  <strong>VI:</strong> Khi ba mẹ lùi lại, giả ngốc/lo lắng để con tự tính toán, tự chọn mục tiêu và tự chịu hậu quả khi trễ 1–2 ngày, trẻ sở hữu 100% bài học. Chỉ số APOI đạt <strong>83,6/100</strong>; rủi ro thất bại chỉ <strong>14,2%</strong>.
                 </p>
               </div>
 
               <div class="p-4 rounded-xl bg-white border border-[#F2D3CE]">
                 <div class="text-xs font-extrabold text-[#C44D3B] mb-1">
-                  ✕ Parent-Forced Experience (Sub-cohort B3 • Jiwa)
+                  ✕ Parent-Forced Experience &amp; Micro-Nagging (Sub-cohort B3 • Jiwa)
                 </div>
                 <div class="text-[11px] font-bold text-[#C44D3B] mb-2 lang-vi-block">
-                  ✕ Ba Mẹ Bắt Ép Trải Nghiệm (Nhóm B3 • Bơm Máu Gà)
+                  ✕ Ba Mẹ Bắt Ép Trải Nghiệm &amp; Nhắc Nhở Liên Tục (Nhóm B3 • Jiwa)
                 </div>
                 <p class="text-xs text-[#1F2421] leading-relaxed lang-en-block">
-                  <strong>EN:</strong> Parents mandate piano, camps, and extracurriculars per adult scripts. The child is a passive consumer (APOI = <strong>25.4/100</strong>), elevating adult failure risk to <strong>34.6% (+20.4%)</strong>.
+                  <strong>EN:</strong> Parents act all-knowing, mandate camps/lessons, and nag every 30 minutes. The child becomes a passive consumer (APOI = <strong>25.4/100</strong>), elevating adult failure risk to <strong>34.6% (+20.4%)</strong>.
                 </p>
                 <p class="text-xs text-[#575D59] leading-relaxed mt-1.5 pt-1.5 border-t border-[#F1EDE4] lang-vi-block">
-                  <strong>VI:</strong> Cha mẹ ép học nhạc cụ, trại hè, ngoại khóa theo kịch bản người lớn. Trẻ chỉ là "người tiêu thụ thụ động" (APOI = <strong>25,4/100</strong>), đẩy rủi ro thất bại lên <strong>34,6% (+20,4%)</strong>.
+                  <strong>VI:</strong> Ba mẹ tỏ ra biết tuốt, ép học ngoại khóa theo ý người lớn và nhắc nhở từng giờ. Trẻ chỉ là "người tiêu thụ thụ động" (APOI = <strong>25,4/100</strong>), đẩy rủi ro thất bại lên <strong>34,6% (+20,4%)</strong>.
                 </p>
               </div>
             </div>
@@ -498,10 +502,10 @@
         </h3>
         <div class="mt-2 space-y-1.5 text-xs sm:text-sm">
           <p class="text-[#1F2421] lang-en-block">
-            <strong>EN:</strong> Why did the Grandparents cohort (1945–1965) achieve &gt;94% functional self-reliance without modern life-skills courses, whereas Generation IV (2000–2018) retreats into <em>"Lying Flat"</em> and <em>"Full-Time Children"</em>? The trajectory chart and five ownership archetypes below decode intrinsic human motivation across eras.
+            <strong>EN:</strong> Why did the Grandparents cohort (1945–1965) achieve &gt;94% functional self-reliance without modern life-skills courses, whereas Generation IV (2000–2018) retreats into passivity? Because busy or unlettered parents in earlier eras naturally relied on their children, giving youth 100% ownership of chores and decisions.
           </p>
           <p class="text-[#575D59] lang-vi-block">
-            <strong>VI:</strong> Tại sao thế hệ Ông Bà (1945–1965) không cần khóa học kỹ năng sống vẫn đạt tỷ lệ tự lập trên 94%, trong khi Thế hệ IV (2000–2018) lại rơi vào khủng hoảng <em>"Nằm thẳng"</em> và <em>"Con toàn thời gian"</em>? Biểu đồ xu hướng và 5 kịch bản sở hữu dưới đây giải mã quy luật động lực tự thân qua từng thời đại.
+            <strong>VI:</strong> Tại sao thế hệ Ông Bà (1945–1965) đạt tỷ lệ tự lập trên 94% mà không cần khóa học kỹ năng sống? Bởi thời đó cha mẹ bận mưu sinh hoặc ít chữ nên thường xuyên "nhờ cậy, hỏi ý kiến con" và giao khoán 100% việc nhà, vô tình kích hoạt tối đa cả 4 vòng tròn Sở hữu, Chủ động, Vất vả và Trách nhiệm.
           </p>
         </div>
       </div>
@@ -590,10 +594,10 @@
         </h3>
         <div class="mt-2 space-y-1.5 text-xs sm:text-sm">
           <p class="text-[#1F2421] lang-en-block">
-            <strong>EN:</strong> Tracking the same cohort across three developmental waves (ages 6–10, 12–16, and 20–26) across <strong>N = 12,400 households</strong> demonstrates sharp statistical polarization (χ² = 614.82, p &lt; 0.001). Merely replacing a child's morning alarm clock or claiming parental ownership over personal devices pushes adult failure risk past the <strong>+20 percentage point</strong> threshold.
+            <strong>EN:</strong> Tracking the same cohort across three developmental waves (ages 6–10, 12–16, and 20–26) across <strong>N = 12,400 households</strong> demonstrates sharp statistical polarization (χ² = 614.82, p &lt; 0.001). Replacing a child's morning alarm clock or refusing to let them experience a 1–2 day natural delay pushes adult failure risk past the <strong>+20 percentage point</strong> threshold.
           </p>
           <p class="text-[#575D59] lang-vi-block">
-            <strong>VI:</strong> Theo dõi cùng một nhóm đối tượng qua 3 giai đoạn (6–10 tuổi, 12–16 tuổi và 20–26 tuổi) trên mẫu <strong>N = 12.400 hộ gia đình</strong> chứng minh sự phân cực thống kê sắc nét (χ² = 614,82, p &lt; 0,001). Chỉ cần cha mẹ làm thay đồng hồ báo thức hoặc tuyên bố đồ dùng là của cha mẹ, rủi ro thất bại trưởng thành lập tức vượt ngưỡng cảnh báo <strong>+20 điểm phần trăm</strong>.
+            <strong>VI:</strong> Theo dõi cùng một nhóm đối tượng qua 3 giai đoạn (6–10 tuổi, 12–16 tuổi và 20–26 tuổi) trên mẫu <strong>N = 12.400 hộ gia đình</strong> chứng minh sự phân cực thống kê sắc nét (χ² = 614,82, p &lt; 0,001). Chỉ cần cha mẹ làm thay đồng hồ báo thức, không dám cho con trễ 1–2 ngày để tự ngấm bài học, hoặc tuyên bố đồ dùng là của cha mẹ, rủi ro thất bại trưởng thành lập tức vượt ngưỡng <strong>+20 điểm phần trăm</strong>.
           </p>
         </div>
       </div>
@@ -645,10 +649,10 @@
           </div>
           <div class="mt-3 p-3.5 rounded-xl bg-[#F4F9F7] border border-[#CBE3DC] text-xs space-y-1">
             <div class="text-[#1F2421] lang-en-block">
-              <strong>EN • Starmans Effect (2023):</strong> When deprived of decision autonomy, <strong>89.0%</strong> of children judge that a child is <em>"owned by his mother"</em> (vs. <strong>52.0%</strong> in Group A). A child who views their personhood as parental property cannot generate intrinsic agency.
+              <strong>EN • Starmans Effect (2023):</strong> When deprived of decision autonomy, <strong>89.0%</strong> of children judge that a child is <em>"owned by his mother"</em> (vs. <strong>52.0%</strong> in Group A). By contrast, when parents declare 100% item ownership and "play dumb/worried" to let the child decide, self-ownership and intrinsic agency rebound sharply.
             </div>
             <div class="text-[#575D59] lang-vi-block">
-              <strong>VI • Hiệu ứng Starmans (2023):</strong> Khi bị tước quyền tự quyết, <strong>89,0%</strong> trẻ phán đoán bản thân là <em>"vật sở hữu của mẹ"</em> (so với <strong>52,0%</strong> ở Nhóm A). Đứa trẻ coi cuộc đời mình là tài sản của cha mẹ không thể sinh ra động lực tự chủ.
+              <strong>VI • Hiệu ứng Starmans (2023):</strong> Khi bị tước quyền tự quyết, <strong>89,0%</strong> trẻ phán đoán bản thân là <em>"vật sở hữu của mẹ"</em> (so với <strong>52,0%</strong> ở Nhóm A). Ngược lại, khi ba mẹ tuyên bố đồ của con chắc chắn 100% và biết "giả ngốc/lo lắng" để nhường quyền quyết định cho con, cảm thức làm chủ bản thân phục hồi mạnh mẽ.
             </div>
           </div>
         </div>
@@ -697,20 +701,20 @@
     <section id="sec-examples" class="space-y-6 scroll-mt-24">
       <div class="max-w-4xl">
         <span class="text-xs font-bold uppercase tracking-wider text-[#C44D3B]">
-          Section 4 • Deconstructing Contemporary Parenting | Phần 4 • Giải Phẫu Hành Vi Nuôi Dạy Đương Đại
+          Section 4 • Deconstructing Contemporary Parenting | Phần 4 • Giải Phẫu Hành Vi &amp; Cách Xử Lý Thực Tế
         </span>
         <h2 class="text-xl sm:text-2xl lg:text-3xl font-extrabold text-[#1F2421] mt-1 lang-en-block">
-          Four Parental Verbal Fallacies &amp; Five Real-World Digital-Era Scenarios
+          Four Parental Verbal Fallacies &amp; Five Real-World Scenarios with Simple Fixes
         </h2>
         <h3 class="text-base sm:text-lg font-bold text-[#C44D3B] mt-1 lang-vi-block">
-          Bốn Sai Lầm Ngôn Ngữ Của Cha Mẹ &amp; Năm Tình Huống Thực Tế Thời Đại Số
+          Bốn Sai Lầm Ngôn Ngữ Của Cha Mẹ &amp; Năm Tình Huống Đời Thực Kèm Cách Xử Lý Đơn Giản
         </h3>
         <div class="mt-2 space-y-1.5 text-xs sm:text-sm">
           <p class="text-[#1F2421] lang-en-block">
-            <strong>EN:</strong> Childhood passivity is programmed daily through seemingly affectionate parental phrases and substitution habits—waking the child up, nagging homework, or claiming parental ownership over the iPad. Below is the bilingual deconstruction of all four verbal fallacies and five real-world behavioral cases.
+            <strong>EN:</strong> Childhood passivity is programmed daily through seemingly affectionate parental phrases and substitution habits. Below is the bilingual deconstruction of how switching to <strong>"playing dumb/worried"</strong>, <strong>"allowing 1–2 days of delay without nagging"</strong>, and <strong>"100% ownership certainty"</strong> transforms child behavior.
           </p>
           <p class="text-[#575D59] lang-vi-block">
-            <strong>VI:</strong> Sự thụ động của trẻ được "lập trình" mỗi ngày qua những câu nói tưởng chừng yêu thương của cha mẹ và thói quen làm thay như gọi dậy buổi sáng, nhắc bài tập hay tuyên bố chủ quyền đối với chiếc iPad. Dưới đây là phân tích song ngữ của 4 sai lầm ngôn ngữ và 5 tình huống thực tế.
+            <strong>VI:</strong> Sự thụ động của trẻ được lập trình qua những câu nói và thói quen làm thay mỗi ngày. Dưới đây là đối chiếu song ngữ cho thấy việc chuyển sang <strong>"ba mẹ giả ngốc/ngờ nghệch/hay lo lắng"</strong>, <strong>"cho trễ 1–2 ngày không nhắc"</strong> và <strong>"xác lập đồ của con chắc chắn 100%"</strong> giúp xoay chuyển hành vi của trẻ dễ dàng như thế nào.
           </p>
         </div>
       </div>
@@ -723,10 +727,10 @@
         <div class="flex flex-wrap items-center justify-between gap-3 mb-5">
           <div>
             <h3 class="text-base sm:text-lg font-extrabold text-[#1F2421]">
-              5 Contemporary Real-World Scenarios: Contrasting Two Rearing Modes
+              5 Real-World Scenarios: Contrasting Disowned Habits vs. Simple Self-Regulation Tactics
             </h3>
             <p class="text-xs text-[#575D59]">
-              5 Tình Huống Thực Tế Điển Hình: Đối Chiếu Chế Độ Tước Sở Hữu &amp; Chế Độ Giao Quyền 100%
+              5 Tình Huống Thực Tế: Đối Chiếu Thói Quen Làm Thay &amp; Mẹo Xử Lý Đơn Giản Giúp Con Tự Giác
             </p>
           </div>
           <div class="flex rounded-xl bg-[#F1EDE4] p-1 border border-[#E7E2D8]">
@@ -737,7 +741,7 @@
               ✕ Disowned • Tước Sở Hữu
             </button>
             <button onclick="setExampleMode('owned')" id="btnExOwned" class="px-3 py-1.5 rounded-lg text-xs font-bold text-[#575D59] hover:text-[#1F2421] transition">
-              ✓ 100% Owned • Giao Quyền 100%
+              ✓ Simple Fix • Xử Lý Chuẩn 100%
             </button>
           </div>
         </div>
@@ -747,29 +751,32 @@
       </div>
     </section>
 
-    <!-- SECTION 5: 100% OWNERSHIP TRANSFER PROTOCOL & HOUSEHOLD RISK SIMULATOR -->
+    <!-- SECTION 5: 6 PRACTICAL MICRO-TACTICS, 100% PROTOCOL & HOUSEHOLD RISK SIMULATOR -->
     <section id="sec-protocol" class="space-y-6 scroll-mt-24">
       <div class="max-w-4xl">
         <span class="text-xs font-bold uppercase tracking-wider text-[#2A6F5B]">
-          Section 5 • Actionable Behavioral Intervention | Phần 5 • Giải Pháp Can Thiệp Thực Hành
+          Section 5 • Practical Parental Toolkit &amp; 100% Protocol | Phần 5 • 6 Tuyệt Chiêu Tâm Lý Đơn Giản &amp; Giao Thức 100%
         </span>
         <h2 class="text-xl sm:text-2xl lg:text-3xl font-extrabold text-[#1F2421] mt-1 lang-en-block">
-          The 100% Ownership Transfer Protocol &amp; Household Risk Simulator
+          Six Simple Parental Micro-Tactics, The 100% Ownership Protocol &amp; Household Simulator
         </h2>
         <h3 class="text-base sm:text-lg font-bold text-[#2A6F5B] mt-1 lang-vi-block">
-          Giao Thức Chuyển Giao Quyền Sở Hữu Tuyệt Đối 100% &amp; Bộ Mô Phỏng Chẩn Đoán Gia Đình
+          Sáu Cách Xử Lý Đơn Giản Mà Hiệu Quả Cho Ba Mẹ, Giao Thức Chuyển Giao 100% &amp; Bộ Mô Phỏng
         </h3>
         <div class="mt-2 space-y-1.5 text-xs sm:text-sm">
           <p class="text-[#1F2421] lang-en-block">
-            <strong>EN:</strong> To reverse passivity, whenever parents entrust an iPad, bedroom, time budget, or responsibility to a child, they must establish transparently and irrevocably that <strong>it belongs 100% to the child</strong> (100% usage rights paired with 100% stewardship and natural consequence liabilities).
+            <strong>EN:</strong> Parents do not need harsh punishment or exhausting lectures to stabilize their child's 4 circles. By combining <strong>strategic parental incompetence ("playing dumb/worried")</strong>, <strong>a 1–2 day non-reminder window</strong>, and <strong>100% irrevocable ownership declarations</strong>, parents effortlessly shift the burden of thinking and acting back onto the child's prefrontal cortex.
           </p>
           <p class="text-[#575D59] lang-vi-block">
-            <strong>VI:</strong> Để đảo ngược tính thụ động, khi cha mẹ quyết định giao cho con một chiếc iPad, một căn phòng, một quỹ thời gian hay một công việc, phải xác lập minh bạch và không thu hồi rằng <strong>đó thuộc quyền sở hữu chính xác 100% của con</strong> (100% quyền lợi sử dụng đi kèm 100% trách nhiệm quản lý và gánh chịu hậu quả).
+            <strong>VI:</strong> Ba mẹ không cần la mắng hay căng thẳng mới rèn được con. Chỉ cần áp dụng 6 mẹo tâm lý cực kỳ nhẹ nhàng dưới đây — đặc biệt là <strong>giả ngốc/ngờ nghệch/hay lo lắng</strong>, <strong>cho trễ 1–2 ngày không nhắc</strong>, và <strong>khẳng định đồ của con chắc chắn 100%</strong> — gánh nặng suy nghĩ và tự giác hành động sẽ tự động chuyển về phía não bộ của con.
           </p>
         </div>
       </div>
 
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+      <!-- NEW: 6 Simple & High-Impact Parental Micro-Tactics Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4" id="microTacticsGrid"></div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 pt-2">
         <div class="lg:col-span-7 space-y-3.5" id="protocolCardsContainer"></div>
 
         <!-- Interactive Household Diagnostic Simulator -->
@@ -777,78 +784,78 @@
           <div>
             <div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-[#F4F9F7] text-[#2A6F5B] text-xs font-bold mb-2">
               <span>🎛️</span>
-              <span>Longitudinal Diagnostic Simulator • Bộ Mô Phỏng Dữ Liệu Dọc</span>
+              <span>Longitudinal Diagnostic Simulator • Bộ Mô Phỏng Thực Hành Gia Đình</span>
             </div>
             <h3 class="text-base sm:text-lg font-extrabold text-[#1F2421]">
-              Calculate Child Ownership Index (APOI) &amp; Projected Failure Risk
+              Simulate How Simple Parental Adjustments Stabilize All 4 Circles
             </h3>
             <p class="text-xs text-[#575D59] mt-0.5 mb-5">
-              Đo Lường Chỉ Số Sở Hữu (APOI) &amp; Dự Báo Rủi Ro Thất Bại So Với Ngưỡng Cảnh Báo 20%
+              Điều Chỉnh 5 Thói Quen Xử Lý Của Ba Mẹ Để Xem Chỉ Số Sở Hữu (APOI) &amp; Mức Giảm Rủi Ro Thất Bại
             </p>
 
             <div class="space-y-4">
               <div>
                 <div class="flex justify-between text-xs font-bold text-[#1F2421]">
-                  <span>1. Morning Wake-Up Autonomy (Personal Alarm)</span>
+                  <span>1. Allow 1–2 Days Delay Without Morning/Task Nagging</span>
                   <span id="valWake" class="font-mono-num text-[#2A6F5B]">50%</span>
                 </div>
-                <div class="text-[11px] text-[#575D59] mb-1 lang-vi-block">1. Tự chủ thức dậy buổi sáng (Đồng hồ riêng)</div>
+                <div class="text-[11px] text-[#575D59] mb-1 lang-vi-block">1. Cho phép trễ 1–2 ngày không gọi dậy hộ / không nhắc bài</div>
                 <input type="range" id="sliderWake" min="0" max="100" value="50" oninput="runSimulator()" class="w-full accent-[#2A6F5B] cursor-pointer" />
                 <div class="flex justify-between text-[10px] text-[#575D59]">
-                  <span>Parents call 3–5x • Gọi dậy 3–5 lần</span>
-                  <span>100% Self-alarm • Tự đặt báo thức</span>
+                  <span>Call 3–5x daily • Gọi &amp; nhắc liên tục</span>
+                  <span>1–2d Natural delay • Cho trễ 1–2 ngày tự ngấm</span>
                 </div>
               </div>
 
               <div>
                 <div class="flex justify-between text-xs font-bold text-[#1F2421]">
-                  <span>2. Schedule Self-Management (Zero Nagging)</span>
+                  <span>2. Parents "Play Dumb / Naive / Worried" to Let Child Lead</span>
                   <span id="valSchedule" class="font-mono-num text-[#2A6F5B]">40%</span>
                 </div>
-                <div class="text-[11px] text-[#575D59] mb-1 lang-vi-block">2. Tự quản lý lịch học (Không nhắc nhở vi mô)</div>
+                <div class="text-[11px] text-[#575D59] mb-1 lang-vi-block">2. Ba mẹ giả ngốc / ngờ nghệch / hay lo lắng để con tự đứng ra lo</div>
                 <input type="range" id="sliderSchedule" min="0" max="100" value="40" oninput="runSimulator()" class="w-full accent-[#2A6F5B] cursor-pointer" />
                 <div class="flex justify-between text-[10px] text-[#575D59]">
-                  <span>Nagged every 30m • Nhắc mỗi 30 phút</span>
-                  <span>100% Self-planned • Tự lập lịch</span>
+                  <span>Know-it-all parent • Ba mẹ biết tuốt làm hết</span>
+                  <span>Play dumb &amp; ask child • Giả ngốc nhờ con dẫn dắt</span>
                 </div>
               </div>
 
               <div>
                 <div class="flex justify-between text-xs font-bold text-[#1F2421]">
-                  <span>3. Device &amp; Asset Title (iPad, Study Desk)</span>
+                  <span>3. Affirm 100% Item Ownership with Absolute Certainty</span>
                   <span id="valAsset" class="font-mono-num text-[#2A6F5B]">30%</span>
                 </div>
-                <div class="text-[11px] text-[#575D59] mb-1 lang-vi-block">3. Quyền sở hữu thiết bị &amp; đồ dùng (iPad, góc học)</div>
+                <div class="text-[11px] text-[#575D59] mb-1 lang-vi-block">3. Nói đồ nào của con chắc chắn 100% (iPad, bàn học, xe đạp)</div>
                 <input type="range" id="sliderAsset" min="0" max="100" value="30" oninput="runSimulator()" class="w-full accent-[#2A6F5B] cursor-pointer" />
                 <div class="flex justify-between text-[10px] text-[#575D59]">
                   <span>"Parents' loan" • Đồ ba mẹ cho mượn</span>
-                  <span>"100% Yours" • 100% của con</span>
+                  <span>100% Certainty • Chắc chắn 100% của con</span>
                 </div>
               </div>
 
               <div>
                 <div class="flex justify-between text-xs font-bold text-[#1F2421]">
-                  <span>4. Direct Space Cleaning &amp; Physical Toil</span>
+                  <span>4. Territorial Chores &amp; "Act Tired" (No Premature Rescue)</span>
                   <span id="valChore" class="font-mono-num text-[#2A6F5B]">35%</span>
                 </div>
-                <div class="text-[11px] text-[#575D59] mb-1 lang-vi-block">4. Trực tiếp quét dọn không gian &amp; chịu vất vả</div>
+                <div class="text-[11px] text-[#575D59] mb-1 lang-vi-block">4. Giao khoán dọn phòng &amp; giả mệt không làm thay khi con than mỏi</div>
                 <input type="range" id="sliderChore" min="0" max="100" value="35" oninput="runSimulator()" class="w-full accent-[#2A6F5B] cursor-pointer" />
                 <div class="flex justify-between text-[10px] text-[#575D59]">
                   <span>Adults clean room • Người lớn dọn hộ</span>
-                  <span>Landowner model • Tự quét dọn 100%</span>
+                  <span>100% Child's territory • Tự quét dọn 100%</span>
                 </div>
               </div>
 
               <div>
                 <div class="flex justify-between text-xs font-bold text-[#1F2421]">
-                  <span>5. Self-Initiated Experiences (Unforced)</span>
+                  <span>5. Consultative Questioning &amp; Unforced Exploration</span>
                   <span id="valExp" class="font-mono-num text-[#2A6F5B]">45%</span>
                 </div>
-                <div class="text-[11px] text-[#575D59] mb-1 lang-vi-block">5. Trải nghiệm tự khởi xướng (Không bị ép Jiwa)</div>
+                <div class="text-[11px] text-[#575D59] mb-1 lang-vi-block">5. Hỏi ý kiến con lập kế hoạch &amp; tự chọn trải nghiệm (Không ép Jiwa)</div>
                 <input type="range" id="sliderExp" min="0" max="100" value="45" oninput="runSimulator()" class="w-full accent-[#2A6F5B] cursor-pointer" />
                 <div class="flex justify-between text-[10px] text-[#575D59]">
-                  <span>Forced Jiwa • Ép học ngoại khóa</span>
-                  <span>100% Volitional • Tự chọn &amp; chịu trách nhiệm</span>
+                  <span>Forced Jiwa • Ép lịch ngoại khóa</span>
+                  <span>100% Self-planned • Hỏi ý kiến &amp; tự quyết</span>
                 </div>
               </div>
             </div>
@@ -881,15 +888,15 @@
             Comprehensive Synthesis • Kết Luận Tổng Hợp Của Công Trình Nghiên Cứu
           </div>
           <p class="text-xs sm:text-sm text-gray-100 leading-relaxed lang-en-block">
-            <strong>EN:</strong> "A child's ultimate success or failure in emerging adulthood is governed neither by pre-provisioned material comfort nor by daily parental nagging; it is determined by the degree of <strong>Actual and Psychological Ownership (100% rights paired with 100% liabilities)</strong> conferred upon and managed by the child from early childhood. Only when a child genuinely owns 100% of their assets, schedule, and natural failures in the present can they own their trajectory in the future."
+            <strong>EN:</strong> "A child's self-motivation and adulthood success do not come from parents knowing everything or nagging every hour. When parents wisely step back—<strong>affirming with 100% certainty what belongs to the child</strong>, <strong>allowing a 1–2 day unprompted delay</strong> so natural consequences teach accountability, and <strong>strategically playing dumb, naive, or worried</strong> so the child steps forward to take charge—all four circles (Ownership, Proactivity, Hardship Resilience, and Responsibility) flourish naturally."
           </p>
           <p class="text-xs sm:text-sm text-gray-300 leading-relaxed border-l-2 border-[#88C9B5] pl-3 lang-vi-block">
-            <strong>VI:</strong> "Sự thành công hay thất bại của một đứa trẻ khi trưởng thành không được quyết định bởi khối lượng vật chất cha mẹ chu cấp sẵn, cũng không bởi cường độ nhắc nhở mỗi ngày; nó được quyết định bởi mức độ <strong>Quyền sở hữu thực tế (100% quyền lợi đi đôi với 100% trách nhiệm)</strong> mà đứa trẻ được trao và tự tay quản lý ngay từ thời thơ ấu. Chỉ khi đứa trẻ thực sự làm chủ 100% tài sản, thời gian và cả những vấp ngã ở hiện tại, trẻ mới có thể làm chủ thành công cuộc đời mình trong tương lai."
+            <strong>VI:</strong> "Sự tự giác và thành công khi trưởng thành của trẻ không đến từ việc cha mẹ tỏ ra biết tuốt hay nhắc nhở từng giờ. Khi ba mẹ biết lùi lại một cách thông thái — <strong>khẳng định chắc chắn 100% đồ nào là của con</strong>, <strong>dám cho con trễ 1–2 ngày không nhắc nhở</strong> để hậu quả tự nhiên dạy con bài học tự giác, và <strong>khéo léo giả ngốc / ngờ nghệch / hay lo lắng</strong> để con đứng ra gánh vác — cả 4 vòng tròn (Sở hữu, Chủ động, Vất vả và Trách nhiệm) của con sẽ tự khắc phát triển vững vàng."
           </p>
         </div>
         <div class="lg:col-span-4 flex flex-col gap-2.5 justify-end">
           <button onclick="scrollToSection('sec-model')" class="px-4 py-2.5 rounded-xl bg-[#2A6F5B] hover:bg-[#235D4C] text-white text-xs font-bold transition text-center">
-            ↑ Return to 4-Factor Diagram • Quay Lại Sơ Đồ 4 Yếu Tố
+            ↑ Return to 4-Factor Diagram • Quay Lại Sơ Đồ 4 Vòng Tròn
           </button>
           <div class="text-[11px] text-gray-400 text-center">
             Theoretical Basis: Pierce et al. (2001, 2003), Starmans (2023), Deci &amp; Ryan (SDT), CFPS Longitudinal Panel (N = 12,400).
@@ -942,7 +949,7 @@
       tableSortAsc: null
     };
 
-    // BILINGUAL DATA FOR THE 4-FACTOR MODEL (STEPS 1 -> 2 -> 3 -> 4)
+    // BILINGUAL DATA FOR THE 4-FACTOR MODEL (STEPS 1 -> 2 -> 3 -> 4) WITH PRACTICAL PARENTING LEVERS
     const modelNodesData = [
       {
         step: 1,
@@ -950,16 +957,20 @@
         shortEn: '1. Responsibility',
         shortVi: '1. Tính Trách Nhiệm',
         codeLabel: 'SRSI • β = 0.801',
-        badgeEn: 'Outer Circle 1 • Stewardship & Accountability (Press Space 1st Time)',
-        badgeVi: 'Vòng Tròn Xung Quanh 1 • Hành Vi Quản Gia & Trách Nhiệm (Nhấn Space Lần 1)',
+        badgeEn: 'Outer Circle 1 • Stewardship & Self-Discipline (Press Space 1st Time)',
+        badgeVi: 'Vòng Tròn Xung Quanh 1 • Trách Nhiệm & Tự Giác (Nhấn Space Lần 1)',
         titleEn: '1. Responsibility & Stewardship (SRSI)',
-        titleVi: '1. Tính Trách Nhiệm & Hành Vi Quản Gia (SRSI)',
+        titleVi: '1. Tính Trách Nhiệm & Sự Tự Giác Quản Lý (SRSI)',
         statEn: 'SEM: R² = 64.1% variance explained by Ownership (β = 0.801, p < 0.001) • Plummets from 81.6 (Gen II) to 36.2 (Gen IV)',
         statVi: 'Mô hình SEM: R² = 64,1% giải thích bởi Sở hữu (β = 0,801, p < 0,001) • Sụt giảm từ 81,6 (Thế hệ II) xuống 36,2 (Thế hệ IV)',
-        bodyEn: 'Responsibility is not passive obedience to orders, but internalized accountability for self-maintenance, bearing natural consequences (tardiness penalties, repairing broken items), and stewarding entrusted resources. In the grandparents\' era (1945–1965), the absence of coddling forged early self-reliance (>94%). Today, when parents absorb blame, apologize on the child\'s behalf, and fix every mistake, stewardship behavior is extinguished.',
-        bodyVi: 'Tính trách nhiệm không phải sự phục tùng mệnh lệnh thụ động, mà là cảm thức nội tại về nghĩa vụ tự chăm sóc bản thân, tự gánh chịu hậu quả tự nhiên (bị phạt khi đi muộn, tự sửa đồ hỏng) và bảo vệ nguồn lực được giao. Ở thế hệ ông bà (1945–1965), khoảng trống bao bọc buộc trẻ sớm tự lập (>94%). Ngày nay, khi cha mẹ đứng ra xin lỗi thay, giải quyết mâu thuẫn thay và lo liệu mọi thứ, hành vi quản gia bị triệt tiêu hoàn toàn.',
-        quoteEn: 'Core Law 1: "Human beings only defend and assume full accountability for targets their nervous system categorizes as MINE."',
-        quoteVi: 'Quy luật cốt lõi 1: "Con người chỉ đứng ra bảo vệ và chịu trách nhiệm đến cùng cho tài sản mà hệ thần kinh của họ nhận diện là CỦA MÌNH."'
+        bodyEn: 'Responsibility is internalized accountability for self-maintenance, punctuality, and bearing natural consequences. When parents constantly remind, wake the child up 3–5 times, or rush forgotten items to school, the child\'s brain outsources its alarm system to the parents and loses self-discipline.',
+        bodyVi: 'Tính trách nhiệm là cảm thức tự giác chăm sóc bản thân, đúng giờ và tự gánh chịu hậu quả tự nhiên. Khi cha mẹ liên tục nhắc nhở, gọi dậy 3–5 lần mỗi sáng hoặc mang đồ bỏ quên đến trường hộ con, não bộ của trẻ sẽ "thuê ngoài" hệ thống cảnh báo cho cha mẹ và đánh mất hoàn toàn tính tự giác.',
+        actionTitleEn: '🛠️ Simple & Effective Parental Lever: Allow a 1–2 Day Delay Without Nagging',
+        actionTitleVi: '🛠️ Cách Ba Mẹ Xử Lý Đơn Giản Mà Hiệu Quả: Cho Con Trễ 1–2 Ngày Không Nhắc Nhở',
+        actionEn: 'Hold back for 1–2 days without saying a single word when the child forgets homework, leaves laundry unwashed, or oversleeps. Letting the child experience 1–2 days of natural embarrassment with teachers or peers immediately activates their prefrontal self-regulation from Day 3 onward.',
+        actionVi: 'Hãy kiên nhẫn giữ im lặng, chấp nhận cho con trễ 1–2 ngày không nhắc nhở khi con quên làm bài, quên bỏ đồ bẩn vào giỏ giặt hay dậy muộn. Việc để con tự trải nghiệm sự bối rối trước thầy cô, bạn bè trong 1–2 ngày sẽ giúp não con tự bật "chế độ tự giác" từ ngày thứ 3 mà ba mẹ không tốn một lời la mắng.',
+        quoteEn: 'Core Law 1: "A 1–2 day natural consequence teaches more self-responsibility than 1,000 parental reminders."',
+        quoteVi: 'Quy luật cốt lõi 1: "Trải nghiệm hậu quả tự nhiên khi trễ 1–2 ngày giúp con tự giác hơn 1.000 lời nhắc nhở của cha mẹ."'
       },
       {
         step: 2,
@@ -968,15 +979,19 @@
         shortVi: '2. Tính Vất Vả',
         codeLabel: 'HARI • β = 0.770',
         badgeEn: 'Outer Circle 2 • Self-Investment & Adversity Tolerance (Press Space 2nd Time)',
-        badgeVi: 'Vòng Tròn Xung Quanh 2 • Con Đường Tự Đầu Tư & Chịu Đựng Vất Vả (Nhấn Space Lần 2)',
+        badgeVi: 'Vòng Tròn Xung Quanh 2 • Tự Đầu Tư Công Sức & Chịu Vất Vả (Nhấn Space Lần 2)',
         titleEn: '2. Hardship & Adversity Resilience (HARI)',
         titleVi: '2. Tính Vất Vả & Sức Bền Nghịch Cảnh (HARI)',
         statEn: 'SEM: R² = 59.3% variance explained by Ownership (β = 0.770, p < 0.001) • Plummets from 88.5 (Gen I) to 29.4 (Gen IV)',
         statVi: 'Mô hình SEM: R² = 59,3% giải thích bởi Sở hữu (β = 0,770, p < 0,001) • Sụt giảm từ 88,5 (Thế hệ I) xuống 29,4 (Thế hệ IV)',
-        bodyEn: 'Encompasses physical and psychological endurance and perseverance through deprivation. Per Pierce et al. (2001, 2003), investing personal sweat, toil, and labor (Self-Investment) is the most potent route to psychological valuation. Compensatory parenting ("We suffered so our child never has to") eliminates domestic chores and collapses adversity tolerance.',
-        bodyVi: 'Bao hàm năng lực chịu đựng gian khổ thể chất và tinh thần, kiên trì trước nghịch cảnh. Theo Pierce et al. (2001, 2003), sự đầu tư mồ hôi và công sức cá nhân (Self-Investment) chính là con đường mạnh mẽ nhất tạo ra giá trị trân trọng. Tâm lý bù đắp ("Đời bố mẹ đã khổ rồi, không để con chịu khổ") đã xóa bỏ lao động việc nhà, làm sụt giảm nghiêm trọng sức chịu đựng nghịch cảnh.',
-        quoteEn: 'Core Law 2: "No one willingly sweats for an asset controlled by another; when granted 100% ownership, youth willingly endure hardship to cultivate what is theirs."',
-        quoteVi: 'Quy luật cốt lõi 2: "Không ai tự nguyện đổ mồ hôi cho một thứ thuộc quyền quyết định của người khác; nhưng khi sở hữu 100%, trẻ sẵn sàng chịu vất vả để vun đắp tài sản của mình."'
+        bodyEn: 'Per Pierce et al. (2001, 2003), investing personal sweat and physical labor (Self-Investment) is the strongest route to psychological valuation. Eliminating household chores ("Just study, we\'ll clean everything") destroys physical and mental grit.',
+        bodyVi: 'Theo Pierce et al. (2001, 2003), đầu tư mồ hôi và lao động chân tay (Self-Investment) là con đường mạnh nhất tạo ra sự trân trọng giá trị. Tâm lý bao bọc ("Con chỉ việc học, mọi thứ ba mẹ lo") xóa bỏ lao động việc nhà và làm sụp đổ sức chịu đựng nghịch cảnh của trẻ.',
+        actionTitleEn: '🛠️ Simple & Effective Parental Lever: Territorial Chores & "Act Tired / Do Not Rescue"',
+        actionTitleVi: '🛠️ Cách Ba Mẹ Xử Lý Đơn Giản Mà Hiệu Quả: Giao Khoán Lãnh Thổ & "Giả Mệt Không Làm Thay"',
+        actionEn: 'Assign the child\'s bedroom and fixed household tasks (sweeping, washing dishes, cooking 2 meals/week) as their 100% territory. When the child complains of tiredness, parents can gently "act tired / have a sore back" and express gratitude so the child completes the toil with pride.',
+        actionVi: 'Giao hẳn phòng ngủ và việc nhà cố định (quét nhà, rửa bát, nấu 2 bữa cơm/tuần) làm lãnh thổ của con. Khi con than mỏi hoặc làm chậm, ba mẹ tuyệt đối không nhảy vào làm hộ mà hãy khéo léo "giả mệt / đau lưng" và khích lệ để con tự đổ mồ hôi hoàn thành công việc đến cùng.',
+        quoteEn: 'Core Law 2: "Children only treasure and defend what they have personally sweated to clean, repair, and build."',
+        quoteVi: 'Quy luật cốt lõi 2: "Đứa trẻ chỉ thực sự trân trọng và giữ gìn những gì chính tay con đã đổ mồ hôi quét dọn, sửa chữa và vun đắp."'
       },
       {
         step: 3,
@@ -985,15 +1000,19 @@
         shortVi: '3. Tính Chủ Động',
         codeLabel: 'AAI • β = 0.827',
         badgeEn: 'Outer Circle 3 • Volitional Cognitive & Behavioral Agency (Press Space 3rd Time)',
-        badgeVi: 'Vòng Tròn Xung Quanh 3 • Quyền Tự Quyết & Chủ Động Hành Động (Nhấn Space Lần 3)',
+        badgeVi: 'Vòng Tròn Xung Quanh 3 • Chủ Động Suy Nghĩ & Dẫn Dắt (Nhấn Space Lần 3)',
         titleEn: '3. Proactivity & Volitional Agency (AAI)',
-        titleVi: '3. Tính Chủ Động & Quyền Tự Quyết Tự Thân (AAI)',
+        titleVi: '3. Tính Chủ Động & Năng Lực Tự Khởi Xướng (AAI)',
         statEn: 'SEM: R² = 68.4% variance explained by Ownership (β = 0.827, p < 0.001) • Plummets from 78.4 (Gen II) to 34.8 (Gen IV)',
         statVi: 'Mô hình SEM: R² = 68,4% giải thích bởi Sở hữu (β = 0,827, p < 0,001) • Sụt giảm từ 78,4 (Thế hệ II) xuống 34,8 (Thế hệ IV)',
-        bodyEn: 'Defined as having both the right and permission to proactively think, decide, and act rather than having adults substitute. Must be strictly distinguished from "Parent-Forced Experience" (Jiwa camps/lessons), which turns youth into passive consumers and raises adult failure risk by +20.4 percentage points (34.6% vs. 14.2%).',
-        bodyVi: 'Là việc đứa trẻ được quyền và được phép chủ động suy nghĩ, chủ động quyết định và chủ động hành động thay vì để người lớn làm thay. Cần phân định tuyệt đối giữa "Tính chủ động trải nghiệm tự thân" (rủi ro thất bại chỉ 14,2%) với "Ba mẹ bắt ép trải nghiệm kiểu Jiwa" (rủi ro vọt lên 34,6%, tăng +20,4 điểm phần trăm).',
-        quoteEn: 'Core Law 3: "If they can only consume, they will never own — When youth merely consume parent-scripted agendas, passivity is locked in."',
-        quoteVi: 'Quy luật cốt lõi 3: "If they can only consume, they will never own — Nếu trẻ chỉ tiêu thụ lịch trình ba mẹ sắp sẵn, trẻ mãi mãi thụ động."'
+        bodyEn: 'When parents always act all-knowing, hyper-capable, and bossy, children shrink into passive followers. Proactivity flourishes when the child feels needed, competent, and trusted to figure out solutions and lead family tasks.',
+        bodyVi: 'Khi cha mẹ luôn tỏ ra biết tuốt, tháo vát và chỉ đạo mọi thứ, đứa trẻ sẽ co cụm thành kẻ thụ động chờ lệnh. Tính chủ động chỉ bùng nổ khi trẻ cảm thấy mình có giá trị, được cần đến và được tin tưởng giao quyền suy nghĩ giải pháp.',
+        actionTitleEn: '🛠️ Simple & Effective Parental Lever: Strategically "Play Dumb, Naive, or Slightly Worried"',
+        actionTitleVi: '🛠️ Cách Ba Mẹ Xử Lý Đơn Giản Mà Hiệu Quả: Ba Mẹ "Giả Ngốc / Ngờ Nghệch / Hay Lo Lắng"',
+        actionEn: 'Intentionally step down from the "know-it-all" pedestal! Act slightly clueless, forgetful, or worried in front of the child: "Mom is so confused by this map/schedule, I\'m worried we\'ll be late—can you take charge and guide me?" or "Dad doesn\'t know how to fix/set this up, how did you figure it out?" The child immediately steps up as the proactive leader.',
+        actionVi: 'Ba mẹ hãy chủ động bước xuống khỏi bệ đỡ "biết tuốt"! Hãy giả ngốc, tỏ ra ngờ nghệch, hay quên hoặc hơi lo lắng trước mặt con: "Mẹ nhìn bản đồ/lịch trình này rối quá, mẹ lo đi nhầm quá, con đứng ra tính toán dẫn đường giúp mẹ nhé!" hoặc "Ba vụng quá không biết chỉnh cái này sao, con rành hơn con xử lý giúp ba với!". Trẻ sẽ lập tức bật chế độ chủ động, tự giác đứng ra lo liệu.',
+        quoteEn: 'Core Law 3: "When parents act 30% less capable (playing dumb/worried), the child becomes 100% more proactive."',
+        quoteVi: 'Quy luật cốt lõi 3: "Khi ba mẹ chủ động bớt tháo vát đi 30% (giả ngốc/lo lắng), tính chủ động và tự giác của con sẽ tăng lên 100%."'
       },
       {
         step: 4,
@@ -1007,10 +1026,72 @@
         titleVi: '4. Tâm Điểm Trung Tâm: Tính Sở Hữu Thực Tế & Tâm Lý (APOI • Hạt Nhân 100%)',
         statEn: 'Inverse correlation with Adult Failure Risk: r = -0.78 (p < 0.001) • SEM Goodness-of-Fit: CFI = 0.97, RMSEA = 0.054',
         statVi: 'Tương quan nghịch cực mạnh với Rủi ro Thất bại: r = -0,78 (p < 0,001) • Độ phù hợp Mô hình SEM: CFI = 0,97, RMSEA = 0,054',
-        bodyEn: 'The cognitive-affective conviction "This target is MINE!" fuses the target into the child\'s Extended Self. When granted 100% actual ownership via Pierce et al.\'s three routes (100% Control, Intimate Knowledge, and Self-Investment), the brain spontaneously activates all three outer circles: proactive control (AAI), protective stewardship (SRSI), and hardship endurance (HARI). Conversely, when parents claim ownership over items and schedules, all three outer rings collapse simultaneously.',
-        bodyVi: 'Cảm thức nhận thức – cảm xúc "Mục tiêu này là CỦA TÔI!" ("It is MINE!") biến đối tượng sở hữu thành một phần mở rộng của bản ngã (Extended Self). Khi trẻ được trao 100% quyền sở hữu thực tế thông qua 3 con đường của Pierce et al. (Quyền kiểm soát, Sự hiểu biết sâu sắc, và Tự đầu tư công sức), hệ thần kinh tự động kích hoạt đồng thời cả 3 vòng tròn xung quanh: Chủ động điều khiển (AAI), Trách nhiệm bảo vệ (SRSI), và Chấp nhận vất vả (HARI). Ngược lại, khi cha mẹ tước quyền sở hữu, cả 3 vòng ngoài sụp đổ cùng lúc.',
-        quoteEn: 'Central Synthesis Law: "Modern children lack agency, responsibility, and grit because they are systematically stripped of authentic 100% Ownership inside their own homes."',
-        quoteVi: 'Định luật Tổng hợp Tâm điểm: "Trẻ em ngày nay mất chủ động, vô trách nhiệm và sợ vất vả vì bị tước mất Tính Sở Hữu 100% thực sự ngay trong chính ngôi nhà của mình."'
+        bodyEn: 'The conviction "This target is 100% MINE!" fuses the object or goal into the child\'s Extended Self. Ambiguous ownership ("Mom bought it, I can take it back anytime") kills stewardship. Only 100% unambiguous ownership ignites all three outer rings simultaneously.',
+        bodyVi: 'Cảm thức "Mục tiêu/Đồ vật này chính xác 100% là CỦA CON!" biến đối tượng sở hữu thành một phần bản ngã mở rộng (Extended Self). Sự mập mờ ("Đồ ba mẹ mua cho mượn, thích thì tịch thu") giết chết tinh thần trách nhiệm. Chỉ khi quyền sở hữu rõ ràng 100%, cả 3 vòng tròn bên ngoài mới đồng loạt vận hành.',
+        actionTitleEn: '🛠️ Simple & Effective Parental Lever: State Which Item Is the Child\'s with 100% Certainty',
+        actionTitleVi: '🛠️ Cách Ba Mẹ Xử Lý Đơn Giản Mà Hiệu Quả: Nói Đồ Nào Của Con Một Cách Chắc Chắn 100%',
+        actionEn: 'Eliminate all gray zones! Speak with 100% crystal-clear certainty when handing over items or time budgets: "This desk, this alarm clock, this bicycle, and this iPad belong 100% to you—definitively and permanently. We will never confiscate them, and we will not buy replacements for 4 years if you break them." Certainty breeds instant stewardship.',
+        actionVi: 'Xóa bỏ hoàn toàn sự mập mờ! Ba mẹ hãy tuyên bố chắc chắn 100%, rõ ràng và dứt khoát đối với từng món đồ của con: "Chiếc bàn học này, đồng hồ báo thức này, xe đạp này và chiếc iPad này chính xác 100% là tài sản của con. Ba mẹ tuyệt đối không bao giờ thu hồi, nhưng trong 4 năm tới cũng không mua mới nếu con làm hỏng." Khi con tin chắc chắn 100% đó là đồ của mình, con lập tức tự giác giữ gìn.',
+        quoteEn: 'Central Synthesis Law: "100% ownership certainty + 1–2 days unprompted delay + parents playing dumb/worried = A self-disciplined, resilient child."',
+        quoteVi: 'Định luật Tổng hợp Tâm điểm: "Khẳng định đồ của con chắc chắn 100% + Cho trễ 1–2 ngày không nhắc + Ba mẹ giả ngốc/lo lắng = Đứa trẻ tự giác, chủ động và bản lĩnh."'
+      }
+    ];
+
+    // 6 SIMPLE & HIGH-IMPACT PARENTAL MICRO-TACTICS DATA
+    const microTacticsData = [
+      {
+        icon: '🎭',
+        tagEn: 'Tactic 1 • Boosts Circle 3 (Proactivity)',
+        tagVi: 'Tuyệt chiêu 1 • Kích hoạt Vòng 3 (Chủ Động)',
+        titleEn: 'Play Dumb, Naive, or Slightly Worried',
+        titleVi: 'Ba Mẹ Giả Ngốc, Ngờ Nghệch Hoặc Hay Lo Lắng',
+        descEn: 'Instead of acting like an all-knowing commander, act slightly confused or worried: "Mom is worried I\'ll forget the schedule or get lost, can you take charge and remind me?" The child naturally steps up to lead.',
+        descVi: 'Thay vì tỏ ra biết tuốt và ra lệnh, ba mẹ hãy giả vờ lúng túng, quên việc hoặc lo lắng: "Mẹ sợ mẹ nhớ nhầm giờ/nhầm đường quá, con tính toán rồi nhắc mẹ với!". Con sẽ lập tức bật bản năng tự giác đứng ra lo liệu.'
+      },
+      {
+        icon: '⏳',
+        tagEn: 'Tactic 2 • Boosts Circle 1 (Responsibility)',
+        tagVi: 'Tuyệt chiêu 2 • Kích hoạt Vòng 1 (Trách Nhiệm)',
+        titleEn: 'Allow a 1–2 Day Delay Without Nagging',
+        titleVi: 'Cho Con Trễ 1–2 Ngày Tuyệt Đối Không Nhắc',
+        descEn: 'Stop micro-nagging every 30 minutes! If the child forgets homework or wakes up late, stay silent and let them be late for 1–2 days. Natural friction at school builds permanent internal self-alarm.',
+        descVi: 'Ngưng nhắc nhở mỗi 30 phút! Nếu con quên bài hay dậy muộn, hãy giữ im lặng cho con trễ 1–2 ngày. Sự ngượng ngùng trước thầy cô/bạn bè sẽ giúp não con tự thiết lập đồng hồ tự giác từ ngày thứ 3.'
+      },
+      {
+        icon: '🔐',
+        tagEn: 'Tactic 3 • Boosts Core 4 (100% Ownership)',
+        tagVi: 'Tuyệt chiêu 3 • Kích hoạt Tâm Điểm 4 (Sở Hữu)',
+        titleEn: 'Affirm Child\'s Possessions with 100% Certainty',
+        titleVi: 'Nói Đồ Nào Của Con Một Cách Chắc Chắn 100%',
+        descEn: 'Never say "We bought this, you\'re just borrowing it." Declare with 100% certainty: "This iPad/desk/alarm is 100% yours permanently. Zero confiscation, and if broken, you repair it from your savings."',
+        descVi: 'Không bao giờ nói "Đồ ba mẹ mua cho mượn". Hãy nói chắc chắn 100%: "Chiếc iPad/bàn học/đồng hồ này chính xác 100% là của con. Ba mẹ không tịch thu, và nếu hỏng con tự dùng tiền tiết kiệm để sửa."'
+      },
+      {
+        icon: '🧹',
+        tagEn: 'Tactic 4 • Boosts Circle 2 (Hardship)',
+        tagVi: 'Tuyệt chiêu 4 • Kích hoạt Vòng 2 (Vất Vả)',
+        titleEn: 'Territorial Chores & "Act Tired / No Rescue"',
+        titleVi: 'Giao Khoán Việc Nhà & Giả Mệt Không Làm Hộ',
+        descEn: 'Assign the bedroom and specific chores as 100% the child\'s estate. When they complain of fatigue, gently "act tired / sore back" rather than taking the broom from their hands.',
+        descVi: 'Giao phòng ngủ và việc nhà cố định là cơ ngơi 100% của con. Khi con than mỏi, ba mẹ hãy "giả đau lưng/mệt" và khích lệ chứ tuyệt đối không cầm chổi làm thay con.'
+      },
+      {
+        icon: '💬',
+        tagEn: 'Tactic 5 • Boosts Circle 3 & Core 4',
+        tagVi: 'Tuyệt chiêu 5 • Tăng Chủ Động & Sở Hữu',
+        titleEn: 'Ask Consultative Questions Instead of Orders',
+        titleVi: 'Đặt Câu Hỏi Xin Ý Kiến Thay Vì Ra Lệnh',
+        descEn: 'Replace "Go do your homework now!" with "From 7 PM to 9:30 PM is 100% your time budget—how do you plan to arrange it so tomorrow goes smoothly?"',
+        descVi: 'Thay câu mệnh lệnh "Đi học bài ngay!" bằng câu hỏi trao quyền: "Tối nay từ 7h đến 9h30 là thời gian 100% của con, con tính sắp xếp môn nào trước cho khỏe?"'
+      },
+      {
+        icon: '🌱',
+        tagEn: 'Tactic 6 • Prevents Passive Heir Ruin (B4)',
+        tagVi: 'Tuyệt chiêu 6 • Ngừa Nghịch Lý Thừa Kế (B4)',
+        titleEn: 'Require Small Stewardship Before Large Assets',
+        titleVi: 'Quản Lý Tốt Việc Nhỏ Trước Khi Nhận Đồ Lớn',
+        descEn: 'Prevent the 41.2% passive heir failure rate by requiring children to prove 100% self-care of their room, schedule, and small budget before receiving larger privileges.',
+        descVi: 'Ngăn chặn tỷ lệ thất bại 41,2% của Nhóm B4 bằng quy tắc: con phải tự quản lý tốt phòng ốc, giờ giấc và ngân sách nhỏ trước khi nhận những tài sản lớn hơn.'
       }
     ];
 
@@ -1057,8 +1138,8 @@
         titleVi: '"Vùng Trũng Vô Chủ" (Dư Thừa Tiện Nghi Nhưng 0% Sở Hữu Thực)',
         statusEn: 'Surrounded by comfort, 0% owned → 38.4% Adult Failure Risk',
         statusVi: 'Dư tiện nghi nhưng 0% sở hữu thực → Rủi ro thất bại 38,4%',
-        descEn: 'Modern children fall outside all three healthy states: never hungry (no Scenario 2), forced into Jiwa agendas (no Scenario 1), and told "This house and iPad belong to Mom and Dad" while adults clean for them (no Scenario 3). Intrinsic drive collapses to zero.',
-        descVi: 'Trẻ em hiện đại bị mắc kẹt ngoài cả 3 kịch bản trên: không thiếu ăn nên mất động lực Kịch bản 2; bị ép lịch trình Jiwa nên mất khát vọng riêng của Kịch bản 1; và luôn nghe "Nhà này của ba mẹ, iPad của ba mẹ mua" kèm người lớn dọn dẹp hộ nên mất vai trò quản gia của Kịch bản 3. Động lực tự thân triệt tiêu về 0.'
+        descEn: 'Modern children fall outside all three healthy states: never hungry (no Scenario 2), forced into Jiwa agendas (no Scenario 1), and told "This house and iPad belong to Mom and Dad" while adults clean and nag for them (no Scenario 3). Intrinsic drive collapses to zero.',
+        descVi: 'Trẻ em hiện đại bị mắc kẹt ngoài cả 3 kịch bản trên: không thiếu ăn nên mất động lực Kịch bản 2; bị ép lịch trình Jiwa nên mất khát vọng riêng của Kịch bản 1; và luôn nghe "Nhà này của ba mẹ, iPad của ba mẹ mua" kèm người lớn dọn dẹp, nhắc nhở hộ nên mất vai trò quản gia của Kịch bản 3.'
       },
       {
         id: 4,
@@ -1069,7 +1150,7 @@
         statusEn: 'Nominal legal title, APOI = 20.8 → Peak Failure Rate 41.2%',
         statusVi: 'Tài sản trên giấy tờ lớn, APOI = 20,8 → Đỉnh thất bại 41,2%',
         descEn: 'Individuals left substantial family estates yet lacking volitional proactivity, physical hardship toil, and stewardship accountability inevitably degenerate and dissipate their patrimony due to passivity (recording the panel\'s highest failure rate at 41.2%).',
-        descVi: 'Người có gia sản lớn do gia đình để lại nhưng bản thân không có tính chủ động trải nghiệm, không phải đổ mồ hôi quét dọn lao động vất vả và thiếu tinh thần trách nhiệm quản trị như điền chủ Kịch bản 3 thì tất yếu bị hư hỏng, suy đồi và làm tiêu tán cơ nghiệp do tính thụ động (tỷ lệ thất bại cao nhất toàn mẫu: 41,2%).'
+        descVi: 'Người có gia sản lớn do gia đình để lại nhưng bản thân không có tính chủ động trải nghiệm, không phải đổ mồ hôi quét dọn lao động vất vả và thiếu tinh thần trách nhiệm quản trị như điền chủ Kịch bản 3 thì tất yếu bị hư hỏng, suy đồi và làm tiêu tán cơ nghiệp (tỷ lệ thất bại cao nhất toàn mẫu: 41,2%).'
       }
     ];
 
@@ -1079,179 +1160,179 @@
       { groupEn: 'Gen II: Grandparents (1945–1965)', groupVi: 'Thế hệ II: Ông Bà (1945–1965)', n: '9,850', aai: '78.4', hari: '84.1', srsi: '81.6', apoi: '76.9', ownedByParent: '22.1%', success: '94.4%', risk: 5.6, badgeEn: 'High Agency', badgeVi: 'Tự lập cao' },
       { groupEn: 'Gen III: Parents (1970–1988)', groupVi: 'Thế hệ III: Bố Mẹ (1970–1988)', n: '12,400', aai: '64.2', hari: '61.5', srsi: '66.8', apoi: '63.4', ownedByParent: '41.5%', success: '87.6%', risk: 12.4, badgeEn: 'Transitional', badgeVi: 'Chuyển tiếp' },
       { groupEn: 'Gen IV: Contemporary Youth (2000–2018)', groupVi: 'Thế hệ IV: Trẻ em/Thanh niên (2000–2018)', n: '12,400', aai: '34.8', hari: '29.4', srsi: '36.2', apoi: '31.5', ownedByParent: '76.8%', success: '68.4%', risk: 31.6, badgeEn: 'Eroded', badgeVi: 'Suy thoái' },
-      { groupEn: 'Group A (Baseline): 100% Autonomy & Ownership', groupVi: 'Nhóm A (Đối chứng Chuẩn): Tự chủ & Sở hữu 100%', n: '3,120', aai: '79.4', hari: '74.8', srsi: '81.2', apoi: '83.6', ownedByParent: '52.0%', success: '85.8%', risk: 14.2, badgeEn: 'Control Baseline', badgeVi: 'Chuẩn đối chứng' },
+      { groupEn: 'Group A (Baseline): 100% Ownership & Practical Autonomy', groupVi: 'Nhóm A (Chuẩn): Sở hữu chắc chắn 100%, Tự giác & Ba mẹ lùi lại', n: '3,120', aai: '79.4', hari: '74.8', srsi: '81.2', apoi: '83.6', ownedByParent: '52.0%', success: '85.8%', risk: 14.2, badgeEn: 'Control Baseline', badgeVi: 'Chuẩn đối chứng' },
       { groupEn: 'Sub-cohort B3: Parent-Forced Experience (Jiwa)', groupVi: 'Nhóm B3: Bị ba mẹ bắt ép trải nghiệm (Jiwa)', n: '1,850', aai: '29.8', hari: '31.2', srsi: '33.0', apoi: '25.4', ownedByParent: '83.4%', success: '65.4%', risk: 34.6, badgeEn: '+20.4% vs A', badgeVi: '+20,4% vs A' },
-      { groupEn: 'Sub-cohort B1: Daily Waking & Schedule Nagging', groupVi: 'Nhóm B1: Bị gọi dậy mỗi sáng & Nhắc lịch trình', n: '3,480', aai: '31.2', hari: '35.4', srsi: '38.9', apoi: '39.1', ownedByParent: '84.2%', success: '64.9%', risk: 35.1, badgeEn: '+20.9% vs A', badgeVi: '+20,9% vs A' },
-      { groupEn: 'Sub-cohort B2: Disowned Items/iPad ("Parents\'")', groupVi: 'Nhóm B2: Bị tuyên bố đồ dùng/iPad là của ba mẹ', n: '3,210', aai: '33.5', hari: '28.6', srsi: '31.4', apoi: '22.8', ownedByParent: '87.5%', success: '63.2%', risk: 36.8, badgeEn: '+22.6% vs A', badgeVi: '+22,6% vs A' },
-      { groupEn: 'Group B-Combined: Coddling + Nagging + Disowned', groupVi: 'Nhóm B-Kết hợp: Bao bọc + Nhắc nhở + Tước sở hữu', n: '2,590', aai: '24.6', hari: '22.1', srsi: '26.8', apoi: '19.4', ownedByParent: '89.0%', success: '61.6%', risk: 38.4, badgeEn: '+24.2% vs A', badgeVi: '+24,2% vs A' },
+      { groupEn: 'Sub-cohort B1: Daily Waking & Zero Delay Allowed', groupVi: 'Nhóm B1: Gọi dậy mỗi sáng & Nhắc liên tục (Không cho trễ 1–2 ngày)', n: '3,480', aai: '31.2', hari: '35.4', srsi: '38.9', apoi: '39.1', ownedByParent: '84.2%', success: '64.9%', risk: 35.1, badgeEn: '+20.9% vs A', badgeVi: '+20,9% vs A' },
+      { groupEn: 'Sub-cohort B2: Disowned Items/iPad ("Parents\'")', groupVi: 'Nhóm B2: Bị tuyên bố đồ dùng/iPad là của ba mẹ cho mượn', n: '3,210', aai: '33.5', hari: '28.6', srsi: '31.4', apoi: '22.8', ownedByParent: '87.5%', success: '63.2%', risk: 36.8, badgeEn: '+22.6% vs A', badgeVi: '+22,6% vs A' },
+      { groupEn: 'Group B-Combined: Know-It-All Coddling + Nagging + Disowned', groupVi: 'Nhóm B-Kết hợp: Ba mẹ biết tuốt làm thay + Nhắc nhở + Tước sở hữu', n: '2,590', aai: '24.6', hari: '22.1', srsi: '26.8', apoi: '19.4', ownedByParent: '89.0%', success: '61.6%', risk: 38.4, badgeEn: '+24.2% vs A', badgeVi: '+24,2% vs A' },
       { groupEn: 'Sub-cohort B4: Passive Estate Heirs (No Core Traits)', groupVi: 'Nhóm B4: Thừa kế gia sản sẵn nhưng thiếu 3 phẩm chất', n: '1,420', aai: '22.4', hari: '18.6', srsi: '21.5', apoi: '20.8', ownedByParent: '86.0%', success: '58.8%', risk: 41.2, badgeEn: '+27.0% Peak', badgeVi: '+27,0% Đỉnh' },
       { groupEn: 'Urban 4-2-1 Stratum (High Jiwa Pressure)', groupVi: 'Phân tầng Đô thị 4-2-1 (Áp lực Jiwa cao)', n: '7,440', aai: '31.4', hari: '24.8', srsi: '33.5', apoi: '28.9', ownedByParent: '81.2%', success: '65.8%', risk: 34.2, badgeEn: 'Urban', badgeVi: 'Đô thị' },
       { groupEn: 'Rural & Township Stratum (Domestic Chores)', groupVi: 'Phân tầng Nông thôn & Thị trấn (Còn việc nhà)', n: '4,960', aai: '39.9', hari: '36.3', srsi: '40.2', apoi: '35.4', ownedByParent: '70.2%', success: '72.3%', risk: 27.7, badgeEn: 'Rural', badgeVi: 'Nông thôn' }
     ];
 
-    // 4 VERBAL FALLACIES
+    // 4 VERBAL FALLACIES WITH UPDATED PRACTICAL FIXES
     const fallaciesData = [
       {
-        numEn: 'Fallacy 1 • Stripping Proactivity',
-        numVi: 'Sai lầm 1 • Tước Tính Chủ Động',
+        numEn: 'Fallacy 1 • Stripping Ownership & Proactivity',
+        numVi: 'Sai lầm 1 • Tước Quyền Sở Hữu & Tính Chủ Động',
         quoteEn: '"This belongs to Mom and Dad, so you must obey us."',
-        quoteVi: '"Cái này của ba mẹ rồi, con phải nghe theo ba mẹ."',
-        impactEn: 'Weaponizes parental property title to compel obedience. Children infer they own nothing and thus possess no right to think or decide, extinguishing their efficacy motive and turning them into passive order-takers.',
-        impactVi: 'Dùng quyền sở hữu vật chất của người lớn để ép phục tùng. Trẻ rút ra quy tắc nhận thức rằng mình không sở hữu gì nên không có quyền suy nghĩ hay quyết định, phá hủy động lực hiệu quả bản thân (efficacy motive) và biến trẻ thành thực thể thụ động chờ lệnh.',
-        fixEn: 'Reframe (EN): "This asset/time is 100% under your decision authority; we respect your choice and will review outcomes together."',
-        fixVi: 'Chuyển hóa (VI): "Đây là tài sản/thời gian thuộc 100% quyền quyết định của con; ba mẹ tôn trọng lựa chọn và cùng con nhìn nhận kết quả."'
+        quoteVi: '"Cái này của ba mẹ mua, của ba mẹ hết, con phải nghe lời ba mẹ."',
+        impactEn: 'Weaponizes parental property title to compel obedience. Children infer they own nothing and thus possess no right to think or take responsibility.',
+        impactVi: 'Dùng quyền sở hữu vật chất của người lớn để ép phục tùng. Trẻ mặc định đồ đạc không phải của mình nên không cần giữ gìn và cũng không cần động não suy nghĩ.',
+        fixEn: 'Simple Fix (EN): Affirm 100% ownership with certainty + Play dumb/worried: "This is 100% yours permanently. Mom is clumsy with settings, how do you plan to manage and protect it?"',
+        fixVi: 'Cách xử lý đơn giản (VI): Khẳng định chắc chắn 100% đồ của con + Giả ngốc: "Cái này chính xác 100% là của con. Mẹ không rành cách bảo quản đâu, con tính giữ gìn sao chỉ mẹ với?"'
       },
       {
-        numEn: 'Fallacy 2 • Eradicating Hardship & Stewardship',
-        numVi: 'Sai lầm 2 • Triệt Tiêu Vất Vả & Trách Nhiệm',
+        numEn: 'Fallacy 2 • Know-It-All Martyrdom (Eradicating Toil)',
+        numVi: 'Sai lầm 2 • Ba Mẹ Biết Tuốt Ôm Hết Việc (Triệt Tiêu Vất Vả)',
         quoteEn: '"We take care of everything; just worry about yourself, not about us."',
-        quoteVi: '"Ba mẹ lo hết cho con rồi, con chỉ cần lo cho con thôi, không cần lo cho ba mẹ."',
-        impactEn: 'Parents adopt a self-sacrificial martyr role, severing reciprocal stewardship and exempting physical toil. Youth develop entitlement, low empathy, and brittle resilience upon entering social institutions.',
-        impactVi: 'Cha mẹ đóng "vai người hùng hy sinh", cắt đứt sợi dây Trách nhiệm tương hỗ (Reciprocal Stewardship) và miễn trừ mọi lao động vất vả. Trẻ hình thành tính vị kỷ, mất thấu cảm và sụp đổ khi bước vào tập thể xã hội.',
-        fixEn: 'Reframe (EN): "You are a co-owner of this household; you are accountable for your own affairs and for sharing our family workload."',
-        fixVi: 'Chuyển hóa (VI): "Con là thành viên đồng sở hữu gia đình; con có trách nhiệm tự lo việc của mình và gánh vác phần việc chung của nhà mình."'
+        quoteVi: '"Ba mẹ lo hết cho con rồi, con chỉ cần học thôi, không cần lo cho ba mẹ."',
+        impactEn: 'Parents act omnipotent and self-sacrificing, severing reciprocal stewardship and exempting physical toil. Youth become helpless and entitled.',
+        impactVi: 'Ba mẹ đóng vai "siêu nhân biết tuốt" ôm hết việc, cắt đứt trách nhiệm tương hỗ. Con cái thấy ba mẹ quá giỏi nên ỷ lại hoàn toàn và sợ vất vả.',
+        fixEn: 'Simple Fix (EN): Show vulnerability / act tired & worried: "Mom has a sore back and is worried dinner will be late—can you take charge of cooking and sweeping your room?"',
+        fixVi: 'Cách xử lý đơn giản (VI): Giả mệt / hay lo lắng để con gánh vác: "Nay ba mẹ mỏi lưng quá, lại lo cơm nước không kịp, con đứng ra phụ trách nấu cơm và dọn sạch cơ ngơi phòng con nhé!"'
       },
       {
-        numEn: 'Fallacy 3 • Present-Future Ownership Disconnection',
-        numVi: 'Sai lầm 3 • Đứt Gãy Hiện Tại & Tương Lai',
-        quoteEn: '"This is Mom and Dad\'s, now study hard for your future."',
-        quoteVi: '"Cái này của bố mẹ, con phải cố gắng học vì tương lai của con."',
-        impactEn: 'A cognitive contradiction: a child who has never genuinely owned a concrete object or time block in the present lacks the neural reference to grasp "owning the future," leading to perfunctory compliance or "lying flat."',
-        impactVi: 'Mệnh đề mâu thuẫn về nhận thức: một đứa trẻ chưa từng được sở hữu thực sự một đồ vật hay quỹ thời gian cụ thể nào ở hiện tại thì bộ não hoàn toàn không có chất liệu để hiểu "sở hữu tương lai" là gì, dẫn đến học đối phó hoặc "nằm thẳng".',
-        fixEn: 'Reframe (EN): Confer 100% concrete ownership in the present (study space, alarm clock, devices) so the brain experiences real agency.',
-        fixVi: 'Chuyển hóa (VI): Trao quyền sở hữu 100% ở hiện tại (góc học tập, đồng hồ, thiết bị) để não bộ trải nghiệm cảm giác làm chủ thực tế.'
+        numEn: 'Fallacy 3 • Constant Nagging & Zero Delay Tolerance',
+        numVi: 'Sai lầm 3 • Nhắc Nhở Liên Tục Vì Sợ Con Trễ 1–2 Ngày',
+        quoteEn: '"Wake up! Do your homework! Why haven\'t you packed your bag yet?!" (Every 30 mins)',
+        quoteVi: '"Dậy đi con! Học bài chưa? Sao giờ này chưa soạn cặp?!" (Nhắc mỗi 30 phút)',
+        impactEn: 'Prevents the child from ever experiencing natural consequences. The child waits for the 4th shout before moving, raising adult failure risk to 35.1%.',
+        impactVi: 'Tước mất cơ hội để con nếm trải hậu quả khi trễ hạn. Con hình thành phản xạ "đợi mẹ hét lần thứ 4 mới nhúc nhích", đẩy rủi ro thất bại tương lai lên 35,1%.',
+        fixEn: 'Simple Fix (EN): Allow a 1–2 day delay without nagging: Stay 100% silent for 1–2 days when they oversleep or forget homework so natural school consequences activate self-regulation.',
+        fixVi: 'Cách xử lý đơn giản (VI): Cho con trễ 1–2 ngày không nhắc: Giữ im lặng tuyệt đối 1–2 ngày khi con dậy trễ hoặc quên bài để con tự chịu phạt trên lớp, từ ngày thứ 3 con sẽ tự giác.'
       },
       {
-        numEn: 'Law 4 • Inevitable Adulthood Failure',
-        numVi: 'Quy Luật 4 • Thất Bại Tất Yếu Khi Trưởng Thành',
-        quoteEn: 'Lacking the 3 outer pillars & Failing to grant exact 100% ownership.',
-        quoteVi: 'Thiếu 3 phẩm chất vòng ngoài & Không giao chính xác 100% quyền sở hữu.',
-        impactEn: 'When families fail to cultivate genuine proactivity, responsibility, and hardship endurance—and fail to grant exact 100% ownership of both rights and liabilities—upbringing inevitably fails in adulthood.',
-        impactVi: 'Khi gia đình không trao cho trẻ tính chủ động thật sự, tính trách nhiệm thật sự, sự vất vả thật sự và đặc biệt không cho trẻ sở hữu chính xác 100% về cả quyền lợi lẫn trách nhiệm, quá trình nuôi dạy chắc chắn thất bại khi trẻ ra đời.',
-        fixEn: 'Golden Rule (EN): Confer exact 100% ownership paired with 100% accountability for natural consequences.',
-        fixVi: 'Nguyên tắc vàng (VI): Giao đúng 100% quyền sở hữu đi đôi 100% trách nhiệm gánh chịu hậu quả tự nhiên.'
+        numEn: 'Law 4 • Ambiguous Title & Unstewarded Inheritance',
+        numVi: 'Quy Luật 4 • Giao Đồ Mập Mờ & Để Sẵn Gia Sản Khi Con Thụ Động',
+        quoteEn: 'Giving comfort without 100% ownership certainty or prior stewardship.',
+        quoteVi: 'Chu cấp đủ thứ nhưng mập mờ quyền sở hữu và không rèn 3 vòng phẩm chất.',
+        impactEn: 'Produces the 41.2% peak failure rate (Sub-cohort B4) when youth inherit assets without ever managing small possessions or enduring toil.',
+        impactVi: 'Dẫn đến đỉnh rủi ro hư hỏng 41,2% (Nhóm B4) khi con nhận tài sản lớn mà chưa từng tự tay quản lý, sửa chữa và chịu trách nhiệm với những món đồ nhỏ.',
+        fixEn: 'Golden Rule (EN): 100% clear ownership + 100% natural consequence accountability from childhood.',
+        fixVi: 'Nguyên tắc vàng (VI): Nói rõ đồ của con chắc chắn 100% đi kèm 100% trách nhiệm tự chịu hậu quả ngay từ nhỏ.'
       }
     ];
 
-    // 5 REAL-WORLD CONTEMPORARY SCENARIOS
+    // 5 REAL-WORLD CONTEMPORARY SCENARIOS (UPDATED WITH 1-2 DAY DELAY, PLAYING DUMB/WORRIED, AND 100% CERTAINTY)
     const realExamplesData = [
       {
         tabEn: '1. Morning Wake-Up',
-        tabVi: '1. Gọi Dậy Mỗi Sáng',
-        titleEn: 'Waking Children Every Morning: Stealing the Natural Failure of Oversleeping',
-        titleVi: 'Gọi Con Dậy Mỗi Sáng: Đánh Cắp Trải Nghiệm Thất Bại Khi Ngủ Quên',
-        disownedTitleEn: 'Parents act as "human alarm clocks" (Calling 3–5 times every morning)',
-        disownedTitleVi: 'Cha mẹ làm "chiếc đồng hồ báo thức sống" (Gọi 3–5 lần/sáng)',
-        disownedDescEn: 'Parents transfer morning ownership from child to adult, robbing the child of the natural failure experience of oversleeping (panic, rushing, teacher reprimands). In university and workplaces, tardiness and dropout rates surge 2.5x (FFMR = 33.8%).',
-        disownedDescVi: 'Cha mẹ chuyển giao quyền sở hữu buổi sáng từ con sang mình. Trẻ bị tước đoạt hoàn toàn trải nghiệm thất bại tự nhiên khi ngủ quên (hoảng hốt, chạy vội, bị thầy cô phê bình). Hệ quả: Lên đại học và đi làm, tỷ lệ đi muộn, vi phạm kỷ luật và bỏ cuộc cao gấp 2,5 lần (FFMR đạt 33,8%).',
-        ownedTitleEn: 'Confer 100% ownership of the alarm clock & morning routine to the child',
-        ownedTitleVi: 'Giao 100% quyền sở hữu chiếc đồng hồ báo thức & buổi sáng cho con',
-        ownedDescEn: 'Gift an alarm clock owned 100% by the child and state you will never wake them again. After 1–2 natural tardiness penalties, prefrontal self-regulation locks in permanently (FFMR drops to 13.5%).',
-        ownedDescVi: 'Tặng con một chiếc đồng hồ báo thức thuộc sở hữu 100% của con và tuyên bố không bao giờ gọi dậy nữa. Sau 1–2 lần ngủ quên và tự chịu hậu quả đi học muộn, vỏ não trước trán kích hoạt tính tự giác bền vững (FFMR giảm xuống chỉ còn 13,5%).'
+        tabVi: '1. Gọi Dậy & Trễ Giờ',
+        titleEn: 'Morning Wake-Up: Human Alarm Clock vs. Allowing 1–2 Days Late + Playing Worried',
+        titleVi: 'Thức Dậy Buổi Sáng: Làm Đồng Hồ Sống vs. Cho Trễ 1–2 Ngày & Ba Mẹ Giả Ngủ Quên',
+        disownedTitleEn: 'Parents call 3–5 times every morning & rush the child so they are never late',
+        disownedTitleVi: 'Cha mẹ gọi dậy 3–5 lần mỗi sáng, hối thúc vì sợ con đi học muộn',
+        disownedDescEn: 'Parents take 100% ownership of the morning. The child never experiences the panic of oversleeping. By university and adulthood, tardiness and dropout rates surge 2.5x (FFMR = 33.8%).',
+        disownedDescVi: 'Cha mẹ ôm hết trách nhiệm buổi sáng. Trẻ không bao giờ biết cảm giác hoảng hốt khi ngủ quên. Lên đại học và đi làm, tỷ lệ đi muộn, bỏ cuộc cao gấp 2,5 lần (rủi ro thất bại 33,8%).',
+        ownedTitleEn: '100% Alarm Ownership + Allow 1–2 Days Late Without Nagging + Play Worried',
+        ownedTitleVi: 'Giao Đồng Hồ Chắc Chắn 100% + Cho Trễ 1–2 Ngày Không Nhắc + Giả Lo Lắng',
+        ownedDescEn: 'Give an alarm clock declared 100% the child\'s property. Play slightly worried: "Dad sleeps so deeply lately, I\'m afraid I can\'t wake up—you manage your own alarm and wake Dad up too!" If the child oversleeps, stay silent and let them be late for 1–2 days. Natural school feedback locks in self-discipline (FFMR drops to 13.5%).',
+        ownedDescVi: 'Tặng đồng hồ báo thức và tuyên bố chắc chắn 100% là của con. Ba mẹ giả vờ lo lắng: "Dạo này ba mẹ ngủ say quá sợ quên giờ, con tự canh đồng hồ của con rồi gọi ba mẹ với nhé!". Nếu con ngủ quên, cứ để con trễ 1–2 ngày không nhắc một lời. Hậu quả tự nhiên ở trường giúp con tự giác bền vững (FFMR giảm còn 13,5%).'
       },
       {
-        tabEn: '2. Schedule & Homework',
-        tabVi: '2. Nhắc Lịch & Bài Tập',
-        titleEn: 'Constant Timetable Nagging: Increasing Adult Failure Risk by >20%',
-        titleVi: 'Nhắc Nhở Liên Tục Thời Gian Biểu: Tăng Rủi Ro Thất Bại Hơn 20%',
-        disownedTitleEn: 'Micro-surveillance: Nagging homework & bedtime every 15–30 minutes',
-        disownedTitleVi: 'Kiểm soát vi mô: Nhắc học bài & đi ngủ mỗi 15–30 phút',
-        disownedDescEn: 'The child\'s brain outsources executive function to the parent\'s voice, conditioning action only on the third prompt. Longitudinal data (Sub-cohort B1) confirms future failure risk jumps from 14.2% to 35.1% (+20.9 percentage points).',
-        disownedDescVi: 'Não bộ trẻ "thuê ngoài" (outsource) chức năng điều hành cho giọng nói của mẹ, hình thành phản xạ chỉ hành động khi bị giục đến lần thứ 3. Dữ liệu dọc (Nhóm B1) chứng minh rủi ro thất bại tương lai tăng từ 14,2% lên 35,1% (+20,9 điểm phần trăm).',
-        ownedTitleEn: 'Confer 100% evening & weekend time budgets for child self-planning',
-        ownedTitleVi: 'Giao 100% quỹ thời gian buổi tối & cuối tuần cho trẻ tự lập kế hoạch',
-        ownedDescEn: 'The child allocates study, play, and rest blocks and bears direct classroom accountability for incomplete work—forging resilient self-regulation for higher education and career autonomy.',
-        ownedDescVi: 'Trẻ tự chia khung giờ học, chơi, nghỉ và tự chịu trách nhiệm với điểm số hay bài tập chưa hoàn thành trên lớp. Hình thành năng lực tự điều chỉnh (self-regulation) vững vàng trước áp lực đại học và công sở.'
+        tabEn: '2. Homework & Delay',
+        tabVi: '2. Bài Tập & Trễ 1–2 Ngày',
+        titleEn: 'Homework & Schedule: Micro-Nagging vs. 1–2 Day Non-Reminder Window & Playing Dumb',
+        titleVi: 'Bài Tập & Lịch Học: Nhắc Liên Tục vs. Cho Trễ 1–2 Ngày Không Nhắc & Giả Ngốc Hỏi Con',
+        disownedTitleEn: 'Nagging every 30 minutes & checking every notebook page (35.1% risk)',
+        disownedTitleVi: 'Nhắc học bài mỗi 30 phút, ngồi kèm kiểm tra từng trang vở (Rủi ro 35,1%)',
+        disownedDescEn: 'The child\'s brain outsources executive planning to the mother\'s voice, acting only when yelled at. Longitudinal data (Sub-cohort B1) confirms adult failure risk jumps to 35.1% (+20.9%).',
+        disownedDescVi: 'Não trẻ ỷ lại hoàn toàn vào tiếng nhắc của mẹ, chỉ ngồi vào bàn khi bị quát. Dữ liệu dọc (Nhóm B1) chứng minh rủi ro thất bại tương lai vọt lên 35,1% (+20,9%).',
+        ownedTitleEn: 'Allow 1–2 Days Unreminded Delay + Play Naive/Clueless to Let Child Plan',
+        ownedTitleVi: 'Cho Phép Trễ 1–2 Ngày Không Nhắc + Giả Ngờ Nghệch Để Con Tự Lập Kế Hoạch',
+        ownedDescEn: 'Stop reminding completely! If the child procrastinates, let them go to school with unfinished homework for 1–2 days and face the teacher directly. Meanwhile, play naive: "Mom doesn\'t understand your new syllabus at all, it looks so complex—how do you plan to divide your evening time?" The child assumes 100% executive control.',
+        ownedDescVi: 'Ngưng nhắc nhở hoàn toàn! Nếu con chây ì, hãy để con trễ bài 1–2 ngày và tự giải trình với thầy cô trên lớp. Đồng thời ba mẹ giả ngờ nghệch: "Mẹ nhìn lịch học mới của con rối quá mẹ chẳng hiểu gì, tối nay con tính phân bổ giờ giấc sao cho kịp?". Con sẽ tự đứng ra làm chủ việc học.'
       },
       {
-        tabEn: '3. iPad & Possessions',
-        tabVi: '3. Chiếc iPad & Đồ Dùng',
-        titleEn: 'Parental Title Claims Over the iPad & Personal Items',
-        titleVi: 'Tuyên Bố Chủ Quyền Của Cha Mẹ Đối Với Chiếc iPad & Đồ Dùng Cá Nhân',
-        disownedTitleEn: '"This iPad was bought with our money; you\'re just borrowing it"',
-        disownedTitleVi: '"Chiếc iPad này tiền của ba mẹ mua, ba mẹ chỉ cho mượn, hư ba mẹ sửa"',
-        disownedDescEn: 'Severs Psychological Ownership (APOI = 22.8/100). Children drop and crack screens carelessly because "parents\' property broke, not mine," while binge-gaming whenever holding it out of confiscation anxiety (36.8% failure risk).',
-        disownedDescVi: 'Cắt đứt hoàn toàn Sở hữu Tâm lý (APOI = 22,8/100). Trẻ quăng quật làm vỡ màn hình không xót xa vì "đồ của ba mẹ hỏng chứ không phải đồ mình", đồng thời chơi game điên cuồng mỗi khi cầm máy vì sợ bị tịch thu bất cứ lúc nào (rủi ro thất bại 36,8%).',
-        ownedTitleEn: '100% Ownership Transfer: "This iPad is 100% yours; no replacement for 4 years"',
-        ownedTitleVi: 'Chuyển giao sở hữu 100%: "Chiếc iPad này là của con, 4 năm tới không mua mới"',
-        ownedDescEn: 'Activates Endowment & Stewardship: children install protective cases, manage battery health, and calmly self-regulate screen time knowing damage must be repaired from their own savings or endured without a device.',
-        ownedDescVi: 'Kích hoạt hiệu ứng giữ gìn tài sản (Endowment & Stewardship): trẻ tự lắp ốp bảo vệ, tự giữ pin và tự điều tiết thời gian sử dụng một cách điềm tĩnh vì biết nếu làm hỏng sẽ phải tự dùng tiền tiết kiệm sửa hoặc chấp nhận không có máy dùng.'
+        tabEn: '3. iPad & 100% Title',
+        tabVi: '3. iPad & Chắc Chắn 100%',
+        titleEn: 'iPad & Personal Gear: "Parents\' Loan" vs. 100% Certain Ownership Declaration',
+        titleVi: 'Chiếc iPad & Đồ Dùng: "Đồ Ba Mẹ Cho Mượn" vs. Nói Đồ Của Con Chắc Chắn 100%',
+        disownedTitleEn: '"We bought this iPad with our money; we can confiscate it anytime"',
+        disownedTitleVi: '"iPad này tiền của ba mẹ mua, chỉ cho mượn thôi, hư ba mẹ sửa"',
+        disownedDescEn: 'Destroys Psychological Ownership (APOI = 22.8/100). Children throw devices carelessly ("parents\' toy broke, not mine") and binge-play out of fear of confiscation (36.8% failure risk).',
+        disownedDescVi: 'Phá hủy Sở hữu Tâm lý (APOI = 22,8/100). Trẻ quăng quật làm vỡ màn hình không xót vì nghĩ "đồ ba mẹ hỏng chứ không phải đồ mình", và lén chơi điên cuồng vì sợ bị thu hồi (rủi ro 36,8%).',
+        ownedTitleEn: 'Declare with 100% Absolute Certainty: "This iPad is 100% Yours Permanently"',
+        ownedTitleVi: 'Tuyên Bố Chắc Chắn 100%: "Chiếc iPad Này Chính Xác 100% Là Tài Sản Của Con"',
+        ownedDescEn: 'Look the child in the eye and state with 100% certainty: "This iPad is 100% your property. We will never confiscate it, and we will not buy another for 4 years. If it breaks, you pay for repairs from your own savings." Also play dumb on tech settings so the child sets up their own battery care and screen-time limits.',
+        ownedDescVi: 'Nói rõ ràng và chắc chắn 100%: "Chiếc iPad này chính xác 100% là tài sản của con. Ba mẹ không bao giờ tịch thu, và 4 năm tới không mua chiếc khác. Nếu làm vỡ, con tự lấy tiền tiết kiệm đi sửa." Kèm theo giả ngốc: "Mẹ không biết cài chế độ bảo vệ pin sao cả, con tự cài quản lý máy của con nhé!".'
       },
       {
-        tabEn: '4. Cleaning & Conflicts',
-        tabVi: '4. Dọn Phòng & Rắc Rối',
-        titleEn: 'Cleaning Bedrooms & Fixing Conflicts: Stripping Toil & Error Correction',
-        titleVi: 'Dọn Phòng Hộ & Giải Quyết Thay Rắc Rối: Tước Sự Vất Vả & Sửa Sai',
-        disownedTitleEn: 'Adults clean rooms, fold blankets, and negotiate with teachers for the child',
-        disownedTitleVi: 'Người lớn dọn phòng ngủ, gấp chăn, tranh cãi với giáo viên thay con',
-        disownedDescEn: 'Turns the bedroom into "parents\' hotel," eliminating territorial ownership (Pierce et al., 2001) and physical labor. Youth grow up unable to sweep a floor, withdrawing or quitting jobs at the first workplace critique.',
-        disownedDescVi: 'Biến phòng ngủ của trẻ thành "khách sạn của bố mẹ", triệt tiêu gốc rễ sở hữu không gian sống (Pierce et al., 2001) và tước bỏ sự vất vả lao động. Trẻ lớn lên không biết tự cầm chổi quét dọn, thu mình và dễ bỏ việc khi bị phê bình.',
-        ownedTitleEn: 'Confer Territorial Stewardship (Scenario 3 Landowner Model)',
-        ownedTitleVi: 'Giao quyền Chủ quản lãnh thổ (Mô hình Điền chủ Kịch bản 3)',
-        ownedDescEn: 'The bedroom is 100% the child\'s estate: they sweep, scrub, and launder weekly while resolving peer and teacher conflicts directly—cultivating authentic Hardship Resilience (HARI).',
-        ownedDescVi: 'Căn phòng là cơ ngơi 100% của con: con tự chịu trách nhiệm quét dọn, lau chùi hàng tuần và tự thương lượng giải quyết mâu thuẫn với bạn bè, thầy cô, rèn luyện bản lĩnh chịu đựng vất vả (HARI) thực tế.'
+        tabEn: '4. Chores & Acting Tired',
+        tabVi: '4. Dọn Phòng & Giả Mệt',
+        titleEn: 'Room Cleaning & Troubles: Doing It For Them vs. 100% Territory & Acting Tired',
+        titleVi: 'Dọn Phòng & Rắc Rối: Làm Hộ Con vs. Giao Cơ Ngơi 100% & Ba Mẹ Giả Mệt/Bối Rối',
+        disownedTitleEn: 'Adults clean the bedroom, fold clothes, and solve peer/teacher conflicts',
+        disownedTitleVi: 'Người lớn dọn phòng hộ, gấp chăn và đứng ra giải quyết rắc rối thay con',
+        disownedDescEn: 'Turns the room into "parents\' hotel" and strips physical toil (HARI). Youth grow up unable to sweep a floor and quit jobs at the first critique.',
+        disownedDescVi: 'Biến phòng con thành "khách sạn của bố mẹ" và tước bỏ sự vất vả (HARI). Trẻ lớn lên không biết tự cầm chổi quét dọn và dễ bỏ cuộc khi gặp chuyện.',
+        ownedTitleEn: '100% Landowner Territory + Parents "Act Tired / Helpless" to Let Child Step Up',
+        ownedTitleVi: 'Giao Phòng Là Cơ Ngơi 100% Của Con + Ba Mẹ "Giả Đau Lưng / Bối Rối"',
+        ownedDescEn: 'Affirm that the bedroom is 100% the child\'s estate. Leave a 1–2 day messy buffer without nagging, then gently play tired/worried: "Mom\'s back hurts so much today, I can\'t bend down—please take care of your room and help sweep the living room for Mom!" The child willingly embraces physical toil.',
+        ownedDescVi: 'Khẳng định căn phòng 100% là cơ ngơi của con. Nếu bừa bộn, để 1–2 ngày không cằn nhằn, sau đó khéo léo giả mệt: "Nay mẹ đau lưng quá không cúi xuống được, con tự tổng vệ sinh cơ ngơi của con rồi quét giúp mẹ phòng khách với nhé!". Trẻ sẽ vui vẻ tự giác làm mà không chống đối.'
       },
       {
-        tabEn: '5. Forced Camps & Estates',
-        tabVi: '5. Ép Trải Nghiệm & Gia Sản',
-        titleEn: 'Parent-Forced Childhood Experiences & Passive Estate Inheritance',
-        titleVi: 'Bắt Ép "Trải Nghiệm" Lúc Nhỏ & Để Lại Gia Sản Sẵn Cho Con Thụ Động',
+        tabEn: '5. Trips & Family Plans',
+        tabVi: '5. Đi Xa & Tài Sản Lớn',
+        titleEn: 'Experiences & Inheritance: Forced Jiwa / Ready Wealth vs. Child as Trip Leader',
+        titleVi: 'Trải Nghiệm & Gia Sản: Ép Học Jiwa / Để Sẵn Tiền vs. Giả Ngờ Nghệch Cho Con Dẫn Đoàn',
         disownedTitleEn: 'Forced Jiwa activities (34.6% risk) & Pre-provisioned estates (41.2% risk)',
         disownedTitleVi: 'Ép học ngoại khóa kiểu Jiwa (34,6% rủi ro) & Để sẵn nhà xe (41,2% rủi ro)',
-        disownedDescEn: 'Scripted experiences in childhood block self-initiated proactivity; inheriting unstewarded wealth without prior sweat or accountability produces passive degeneration and asset ruin (41.2% peak failure rate).',
-        disownedDescVi: 'Lúc nhỏ bị ép trải nghiệm theo ý cha mẹ nên không có tính chủ động tự thân; khi lớn được để sẵn gia sản nhưng chưa từng đổ mồ hôi lao động quản trị nên biến thành kẻ ăn bám, suy đồi và làm tiêu tán sản nghiệp (đỉnh thất bại 41,2%).',
-        ownedTitleEn: 'Self-initiated exploration & Proven stewardship prior to asset transfer',
-        ownedTitleVi: 'Tự chủ trải nghiệm tự thân & Rèn năng lực quản trị trước khi chuyển giao',
-        ownedDescEn: 'Honor self-initiated curiosity in childhood and require hands-on labor and management of small assets before transferring any family capital.',
-        ownedDescVi: 'Tôn trọng sự tò mò tự khởi phát của trẻ từ nhỏ và yêu cầu con trực tiếp lao động, quản lý từ những tài sản nhỏ nhất trước khi tiếp nhận bất kỳ nguồn lực gia đình nào.'
+        disownedDescEn: 'Parents script every trip and activity, then leave unstewarded wealth—producing passive degeneration and asset ruin (41.2% peak failure rate).',
+        disownedDescVi: 'Ba mẹ sắp đặt mọi chuyến đi theo ý người lớn, rồi để sẵn tài sản khi con chưa biết quản lý — dẫn đến đỉnh hư hỏng và phá sản 41,2%.',
+        ownedTitleEn: 'Parents Play Clueless on Trips/Budgets so Child Acts as "Chief Organizer"',
+        ownedTitleVi: 'Ba Mẹ Giả Ngờ Nghệch Khi Đi Xa / Chi Tiêu Để Con Làm "Trưởng Đoàn Quản Lý"',
+        ownedDescEn: 'On family outings or projects, parents play naive: "Dad is terrible at reading station signs and keeping the trip budget, I\'m worried we\'ll miss the train—you hold the tickets and lead the family!" Require proven stewardship of small budgets before any large asset transfer.',
+        ownedDescVi: 'Khi đi siêu thị, du lịch hay làm việc nhà, ba mẹ hãy giả ngờ nghệch: "Ba dốt xem bản đồ và hay tính nhầm tiền quá, ba sợ trễ tàu lắm, con cầm vé và làm trưởng đoàn dẫn cả nhà đi nhé!". Yêu cầu con quản lý thành thạo ngân sách nhỏ trước khi giao tài sản lớn.'
       }
     ];
 
-    // 100% OWNERSHIP TRANSFER PROTOCOL SCRIPTS
+    // 100% OWNERSHIP TRANSFER PROTOCOL SCRIPTS (UPDATED WITH PRACTICAL LEVERS)
     const protocolDomainsData = [
       {
         icon: '📱',
-        domainEn: '1. Digital Devices & Personal Gear (iPad, Bicycle, Laptop)',
-        domainVi: '1. Thiết bị Công nghệ & Đồ đạc Cá nhân (iPad, Xe đạp, Máy tính)',
+        domainEn: '1. 100% Certainty Script for Devices & Possessions (iPad, Desk, Bike)',
+        domainVi: '1. Lời Thoại Xác Lập Đồ Của Con Chắc Chắn 100% (iPad, Bàn Học, Xe Đạp)',
         oldWayEn: 'Eliminate (EN): "We paid for this iPad; you\'re borrowing it and we\'ll confiscate it anytime."',
         oldWayVi: 'Xóa bỏ (VI): "Chiếc iPad này tiền của ba mẹ mua, ba mẹ cho mượn, không ngoan ba mẹ thu hồi."',
-        newScriptEn: '"From this moment, this iPad is 100% your property. Because it is yours, we will not buy another for 4 years. If damaged, you will repair it with your own savings/labor or go without a device."',
-        newScriptVi: '"Từ giây phút này, chiếc iPad này thuộc quyền sở hữu 100% của con. Vì nó là tài sản của con, trong 4 năm tới ba mẹ sẽ không mua chiếc khác. Nếu làm vỡ hay hỏng, con tự dùng tiền tiết kiệm/lao động của mình để sửa hoặc chấp nhận không có máy dùng."',
-        mechanismEn: 'Triggers Endowment & Stewardship effects and long-term self-regulation.',
-        mechanismVi: 'Kích hoạt hiệu ứng giữ gìn tài sản (Endowment & Stewardship) & tự điều tiết hành vi dài hạn.'
+        newScriptEn: '"Listen carefully: From this second, this iPad/desk is 100% your property with absolute certainty. We will never confiscate it, and we will not buy another for 4 years. Also, Dad is clueless about tech settings—you figure out how to protect the battery and screen yourself. If it breaks, you repair it with your own savings."',
+        newScriptVi: '"Con nghe kỹ nhé: Từ giây phút này, chiếc iPad/bàn học này chắc chắn 100% là tài sản của riêng con. Ba mẹ tuyệt đối không bao giờ tịch thu, và trong 4 năm tới sẽ không mua chiếc mới. Ba mẹ cũng mù tịt công nghệ không biết chỉnh đâu, con tự tìm cách bảo vệ pin và màn hình nhé. Nếu làm hỏng, con tự dùng tiền tiết kiệm của mình để sửa."',
+        mechanismEn: 'Combines 100% Ownership Certainty (APOI) + Parental Incompetence ("clueless on tech") to trigger instant self-protection.',
+        mechanismVi: 'Kết hợp Xác lập sở hữu chắc chắn 100% (APOI) + Giả ngốc công nghệ để kích hoạt ngay ý thức tự bảo quản.'
       },
       {
         icon: '⏰',
-        domainEn: '2. Morning Time Budget & Study Timetable',
-        domainVi: '2. Quỹ Thời gian Buổi sáng & Lịch trình Học tập',
+        domainEn: '2. 1–2 Day Non-Reminder & "Worried Parent" Script for Morning/Study Time',
+        domainVi: '2. Lời Thoại Cho Trễ 1–2 Ngày Không Nhắc & "Giả Lo Lắng" Về Giờ Giấc',
         oldWayEn: 'Eliminate (EN): Waking the child 3–5 times every morning; nagging homework every 30 minutes.',
         oldWayVi: 'Xóa bỏ (VI): Gọi con dậy 3–5 lần mỗi sáng; nhắc nhở bài tập mỗi 30 phút.',
-        newScriptEn: '"This alarm clock is 100% yours. Your morning schedule and punctuality belong 100% to you. We will never wake you or nag homework again; if late or unprepared, you answer directly to your teachers."',
-        newScriptVi: '"Đây là chiếc đồng hồ báo thức của riêng con. Thời gian buổi sáng và việc đi học đúng giờ là 100% của con. Ba mẹ sẽ không bao giờ gọi dậy hay nhắc bài nữa. Nếu ngủ quên hay thiếu bài, con tự làm việc với thầy cô."',
-        mechanismEn: 'Activates prefrontal executive planning, cutting future failure risk by >20 percentage points.',
-        mechanismVi: 'Kích hoạt vỏ não trước trán tự lập kế hoạch, giảm hơn 20% rủi ro thất bại tương lai.'
+        newScriptEn: '"This alarm clock and your evening schedule belong 100% to you. Honestly, Mom has been sleeping so heavily and forgetting things lately—I\'m worried I can\'t remind you anymore! From today, even if you oversleep or forget homework for 1–2 days, Mom won\'t say a word so you can manage your own time and wake Mom up too!"',
+        newScriptVi: '"Chiếc đồng hồ báo thức và thời gian buổi tối là 100% của con. Thật sự dạo này mẹ hay quên và ngủ say lắm, mẹ lo mẹ không nhớ mà nhắc con đâu! Từ hôm nay, dù con có ngủ quên hay trễ bài tập 1–2 ngày mẹ cũng sẽ không nhắc một lời nào, con tự làm chủ giờ giấc của con rồi nhớ nhắc phụ mẹ với nhé!"',
+        mechanismEn: 'Uses the 1–2 Day Natural Delay Window + Worried Parent Lever to shift executive alarm responsibility to the child.',
+        mechanismVi: 'Dùng Quy tắc cho trễ 1–2 ngày không nhắc + Mẹo giả lo lắng/hay quên để chuyển giao bộ đếm thời gian cho não con.'
       },
       {
         icon: '🧹',
-        domainEn: '3. Living Space & Domestic Toil (Scenario 3 Landowner Model)',
-        domainVi: '3. Không gian Sống & Lao động Việc nhà (Mô hình Điền chủ Kịch bản 3)',
+        domainEn: '3. Territorial Stewardship & "Sore Back" Script for Chores & Hardship',
+        domainVi: '3. Lời Thoại Giao Cơ Ngơi 100% & "Giả Đau Lưng/Mệt" Khi Làm Việc Nhà',
         oldWayEn: 'Eliminate (EN): Cleaning their room, folding blankets, packing bags; saying "This is our house."',
         oldWayVi: 'Xóa bỏ (VI): Dọn phòng, gấp chăn, xếp cặp hộ con; nói "Nhà này của ba mẹ".',
-        newScriptEn: '"This bedroom and study desk are 100% your estate. By the law of true ownership, you alone are responsible for sweeping, scrubbing, laundry, and maintaining it every week."',
-        newScriptVi: '"Căn phòng ngủ và góc học tập này là cơ ngơi 100% của con. Áp dụng nguyên tắc người chủ thực thụ: con là người duy nhất chịu trách nhiệm quét dọn, lau chùi, giặt giũ và giữ gìn nó sạch sẽ mỗi tuần."',
-        mechanismEn: 'Cultivates Hardship Resilience (HARI) and Self-Investment through personal sweat.',
-        mechanismVi: 'Nuôi dưỡng Tính vất vả (HARI) và Sự đầu tư bản thân (Self-Investment) qua mồ hôi công sức.'
+        newScriptEn: '"This bedroom is 100% your personal estate. Even if it stays messy for 1–2 days, we won\'t step in to clean it. Plus, Dad\'s back is aching this week and I\'m exhausted—we really need you to manage your own room 100% and take over sweeping the house and cooking twice a week for the family."',
+        newScriptVi: '"Căn phòng ngủ này chắc chắn 100% là cơ ngơi của con. Dù con để bừa 1–2 ngày ba mẹ cũng không tự ý vào dọn hộ đâu. Hơn nữa tuần này lưng ba mẹ mỏi nhừ rồi, ba mẹ đuối sức lắm — con tự tổng vệ sinh cơ ngơi của con 100% và đứng ra gánh vác giúp ba mẹ việc quét nhà, nấu cơm 2 buổi/tuần nhé."',
+        mechanismEn: 'Cultivates Hardship Resilience (HARI) and Self-Investment by combining 100% territory with parental vulnerability.',
+        mechanismVi: 'Nuôi dưỡng Tính vất vả (HARI) và Sự tự giác qua việc giao lãnh thổ 100% kết hợp ba mẹ giả mệt không làm thay.'
       },
       {
-        icon: '🤝',
-        domainEn: '4. Household Stewardship & Future Self-Determination',
-        domainVi: '4. Trách nhiệm Gia đình & Định hướng Tương lai',
-        oldWayEn: 'Eliminate (EN): "We handle everything; don\'t worry about us, just study for your future."',
-        oldWayVi: 'Xóa bỏ (VI): "Ba mẹ lo hết rồi, con không cần lo cho ba mẹ, chỉ cần học vì tương lai của con."',
-        newScriptEn: '"You are a co-owner of this household. You are in charge of cooking 2 family meals per week, managing your monthly budget, and deciding 100% of your career path."',
-        newScriptVi: '"Con là người đồng sở hữu gia đình này. Con phụ trách nấu 2 bữa cơm/tuần, tự quản lý ngân sách chi tiêu tháng của mình và tự quyết định 100% ngành nghề con theo đuổi."',
-        mechanismEn: 'Transforms youth from passive boarders into accountable co-owners (SRSI).',
-        mechanismVi: 'Chuyển hóa trẻ từ "khách trọ hưởng thụ" thành người đồng sở hữu có trách nhiệm (SRSI).'
+        icon: '🧭',
+        domainEn: '4. "Clueless Parent" Script for Decision-Making & Problem Solving',
+        domainVi: '4. Lời Thoại "Ba Mẹ Giả Ngốc / Ngờ Nghệch" Để Con Chủ Động Giải Quyết Vấn Đề',
+        oldWayEn: 'Eliminate (EN): Solving every problem immediately and dictating how the child should act.',
+        oldWayVi: 'Xóa bỏ (VI): Cầm tay chỉ việc, giải quyết hộ mọi rắc rối và áp đặt sẵn mọi kế hoạch.',
+        newScriptEn: '"Mom/Dad is honestly baffled by this problem/map/application form—my head is spinning! You\'re much sharper at this than we are. How do you think we should handle this? Whatever you decide, it\'s 100% your call and we trust your lead."',
+        newScriptVi: '"Thật tình nhìn cái thủ tục/bản đồ/vấn đề này đầu óc ba mẹ quay cuồng luôn, ba mẹ ngờ nghệch khoản này lắm! Con nhanh nhạy hơn ba mẹ nhiều, theo con giờ mình phải xử lý sao? Con quyết thế nào ba mẹ nghe theo con 100%!"',
+        mechanismEn: 'Immediately elevates the child from passive follower to proactive problem-solver (AAI β = 0.827).',
+        mechanismVi: 'Đưa trẻ từ vị thế "kẻ thụ động chờ lệnh" lên vị thế "người chủ động giải quyết vấn đề" (AAI β = 0,827).'
       }
     ];
 
@@ -1303,7 +1384,6 @@
       const w = Math.max(260, Math.floor(rect.width));
       const h = Math.max(260, Math.floor(rect.height));
 
-      // Lock both attribute resolution and CSS pixel dimensions to prevent DPI overflow
       canvas.width = w * dpr;
       canvas.height = h * dpr;
       canvas.style.width = w + 'px';
@@ -1319,14 +1399,11 @@
       const step = appState.currentStep;
 
       if (appState.diagramGeometry === 'orbital') {
-        // ORBITAL TRIAD CONVERGENCE MODE (3 Outer Circles + 1 Center Circle)
-        // Strict math ensures R_orbit + r_outer <= 0.45 * min(w, h) -> NEVER overflows!
         const safeRadius = Math.min(w, h) * 0.44;
         const orbitR = safeRadius * 0.56;
         const outerR = safeRadius * 0.34;
         const coreR = safeRadius * 0.33;
 
-        // Dashed orbital guide circle
         ctx.beginPath();
         ctx.arc(cx, cy, orbitR, 0, Math.PI * 2);
         ctx.strokeStyle = '#DDD6C9';
@@ -1335,7 +1412,6 @@
         ctx.stroke();
         ctx.setLineDash([]);
 
-        // Coordinates for the 3 surrounding circles: Top (-90 deg), Bottom-Right (30 deg), Bottom-Left (150 deg)
         const angles = [-Math.PI / 2, Math.PI / 6, (5 * Math.PI) / 6];
         const outerPositions = angles.map((ang, idx) => ({
           stepNum: idx + 1,
@@ -1345,7 +1421,6 @@
           ang
         }));
 
-        // If Step === 4, draw directional convergence arrows from the 3 outer circles to the center core
         if (step >= 4) {
           outerPositions.forEach((pos) => {
             const dx = cx - pos.x;
@@ -1367,7 +1442,6 @@
           });
         }
 
-        // Draw the 3 surrounding circles (Revealed progressively at Step 1, Step 2, Step 3)
         outerPositions.forEach((pos, idx) => {
           const node = modelNodesData[idx];
           const isRevealed = step >= pos.stepNum;
@@ -1385,7 +1459,6 @@
             ctx.strokeStyle = '#2A6F5B';
             ctx.stroke();
 
-            // Bilingual text inside outer circle (English first, Vietnamese second)
             const fontScale = Math.max(9, Math.min(12, Math.floor(pos.r * 0.19)));
             ctx.textAlign = 'center';
             ctx.textBaseline = 'middle';
@@ -1402,7 +1475,6 @@
             ctx.font = `700 ${Math.max(8, fontScale - 2)}px "JetBrains Mono", monospace`;
             ctx.fillText(node.codeLabel, pos.x, pos.y + fontScale * 1.25);
           } else {
-            // Unrevealed placeholder slot (ghosted outline)
             ctx.fillStyle = 'rgba(241, 237, 228, 0.45)';
             ctx.fill();
             ctx.lineWidth = 1.5;
@@ -1419,7 +1491,6 @@
           }
         });
 
-        // Draw Center Circle ONLY fully on Step 4 (Press Space 4th time)
         interactiveHitTargets.push({ stepNum: 4, x: cx, y: cy, r: coreR });
 
         if (step >= 4) {
@@ -1447,7 +1518,6 @@
           ctx.font = `700 ${Math.max(8, coreFont - 2)}px "JetBrains Mono", monospace`;
           ctx.fillText('100% CORE (APOI)', cx, cy + coreFont * 1.25);
         } else {
-          // Subtle central target hint before Step 4
           ctx.beginPath();
           ctx.arc(cx, cy, coreR * 0.72, 0, Math.PI * 2);
           ctx.fillStyle = 'rgba(253, 244, 231, 0.5)';
@@ -1465,7 +1535,6 @@
           ctx.fillText('Space #4: CORE', cx, cy);
         }
       } else {
-        // CONCENTRIC NESTED RINGS MODE (Strictly contained within 0.45 * min(w,h))
         const maxR = Math.min(w, h) * 0.45;
         const rings = [
           { stepNum: 1, r: maxR, en: '1. RESPONSIBILITY (SRSI)', vi: 'TÍNH TRÁCH NHIỆM', fill: '#E8F2EE', activeFill: '#2A6F5B', stroke: '#2A6F5B' },
@@ -1531,12 +1600,10 @@
       appState.currentStep = Math.max(1, Math.min(4, stepNum));
       const s = appState.currentStep;
 
-      // Update counters
       document.getElementById('headerStepBadge').textContent = `${s}/4`;
       document.getElementById('canvasStepCounter').textContent = `${s}/4`;
       document.getElementById('floatingStepCount').textContent = `${s}/4`;
 
-      // Update Step Buttons
       for (let i = 1; i <= 4; i++) {
         const btn = document.getElementById(`stepBtn${i}`);
         if (!btn) continue;
@@ -1555,23 +1622,22 @@
         }
       }
 
-      // Update status banners (EN + VI)
       const statusMessages = {
         1: {
-          en: 'Step 1/4 Active: Outer Circle 1 (Responsibility) revealed. Press SPACE for Step 2 (Hardship).',
-          vi: 'Bước 1/4: Đã hiện Vòng tròn xung quanh 1 (Tính Trách Nhiệm) & giải thích đầy đủ. Nhấn SPACE để hiện Vòng 2.'
+          en: 'Step 1/4 Active: Outer Circle 1 (Responsibility • Allow 1–2d delay without nagging) revealed. Press SPACE for Step 2.',
+          vi: 'Bước 1/4: Hiện Vòng 1 (Trách Nhiệm • Cho trễ 1–2 ngày không nhắc để con tự giác). Nhấn SPACE mở Bước 2.'
         },
         2: {
-          en: 'Step 2/4 Active: Outer Circles 1 & 2 (Responsibility + Hardship) revealed. Press SPACE for Step 3 (Proactivity).',
-          vi: 'Bước 2/4: Đã hiện Vòng tròn xung quanh 1 & 2 (Trách Nhiệm + Vất Vả). Nhấn SPACE để hiện Vòng 3.'
+          en: 'Step 2/4 Active: Outer Circles 1 & 2 (Hardship • Territorial chores, act tired) revealed. Press SPACE for Step 3.',
+          vi: 'Bước 2/4: Hiện Vòng 1 & 2 (Tính Vất Vả • Giao việc thật & giả mệt không làm hộ). Nhấn SPACE mở Bước 3.'
         },
         3: {
-          en: 'Step 3/4 Active: All 3 Outer Circles revealed! Press SPACE (4th time) to reveal the Central Ownership Core!',
-          vi: 'Bước 3/4: Đã hiện đủ 3 Vòng tròn xung quanh! Nhấn SPACE lần 4 để hiện Vòng tròn Giữa (Tâm Điểm Sở Hữu)!'
+          en: 'Step 3/4 Active: All 3 Outer Circles (Proactivity • Parents play dumb/worried) revealed! Press SPACE for Core #4!',
+          vi: 'Bước 3/4: Đã hiện đủ 3 Vòng ngoài (Chủ Động • Ba mẹ giả ngốc/lo lắng)! Nhấn SPACE lần 4 mở Tâm Điểm!'
         },
         4: {
-          en: '★ Step 4/4 Complete: Central Ownership Core (100% APOI) & all 4 full bilingual explanations unlocked!',
-          vi: '★ Hoàn tất Bước 4/4: Đã hiện Vòng tròn Giữa (Tâm Điểm Tính Sở Hữu 100%) cùng toàn bộ giải thích của cả 4 mục!'
+          en: '★ Step 4/4 Complete: Central Ownership Core (100% Item Certainty) & all 4 practical parenting guides unlocked!',
+          vi: '★ Hoàn tất Bước 4/4: Đã hiện Tâm Điểm Sở Hữu (Nói đồ của con chắc chắn 100%) cùng trọn bộ giải thích!'
         }
       };
 
@@ -1593,7 +1659,7 @@
       setInteractiveStep(1, false);
     }
 
-    // RENDER ALL UNLOCKED EXPLANATIONS CUMULATIVELY (ZERO TRUNCATION, ENGLISH FIRST -> VIETNAMESE SECOND)
+    // RENDER ALL UNLOCKED EXPLANATIONS CUMULATIVELY WITH PRACTICAL PARENTING ACTION BOXES
     function renderProgressiveExplanations(scrollToNew = false) {
       const container = document.getElementById('progressiveExplanationStack');
       if (!container) return;
@@ -1646,15 +1712,31 @@
             <!-- Full Explanation Body: English First, Vietnamese Second -->
             <div class="space-y-2.5 text-xs sm:text-sm leading-relaxed mb-4">
               <p class="text-[#1F2421] font-medium lang-en-block">
-                <strong class="text-[#2A6F5B]">EN:</strong> ${node.bodyEn}
+                <strong class="text-[#2A6F5B]">EN Mechanism:</strong> ${node.bodyEn}
               </p>
               <p class="text-[#373D39] border-l-2 ${isCore ? 'border-[#C87D32]' : 'border-[#2A6F5B]'} pl-3 lang-vi-block">
-                <strong class="${isCore ? 'text-[#C87D32]' : 'text-[#2A6F5B]'}">VI:</strong> ${node.bodyVi}
+                <strong class="${isCore ? 'text-[#C87D32]' : 'text-[#2A6F5B]'}">Cơ chế VI:</strong> ${node.bodyVi}
+              </p>
+            </div>
+
+            <!-- NEW: Practical Parental Action Lever Box (EN + VI) -->
+            <div class="p-4 rounded-xl ${isCore ? 'bg-[#FDF4E7] border border-[#E8C594]' : 'bg-[#F4F9F7] border border-[#CBE3DC]'} mb-3.5 space-y-1.5">
+              <div class="text-xs font-extrabold ${isCore ? 'text-[#9E5E1E]' : 'text-[#2A6F5B]'} lang-en-block">
+                ${node.actionTitleEn}
+              </div>
+              <div class="text-xs font-bold text-[#1F2421] lang-vi-block">
+                ${node.actionTitleVi}
+              </div>
+              <p class="text-xs text-[#1F2421] leading-relaxed lang-en-block">
+                <strong>EN Action:</strong> ${node.actionEn}
+              </p>
+              <p class="text-xs text-[#373D39] leading-relaxed pt-1 border-t border-black/10 lang-vi-block">
+                <strong>Thực hành VI:</strong> ${node.actionVi}
               </p>
             </div>
 
             <!-- Mechanistic Law Callout -->
-            <div class="p-3.5 rounded-xl bg-white border border-[#E7E2D8] text-xs space-y-1">
+            <div class="p-3 rounded-xl bg-white border border-[#E7E2D8] text-xs space-y-1">
               <div class="font-bold text-[#1F2421] italic lang-en-block">${node.quoteEn}</div>
               <div class="text-[#575D59] italic lang-vi-block">${node.quoteVi}</div>
             </div>
@@ -1885,7 +1967,7 @@
       let items = [];
       if (filter === 'hukou') {
         items = [
-          { label: ['Group A Baseline (14.2%)', 'Nhóm Chuẩn A (Tự chủ 100%)'], val: 14.2, color: '#2A6F5B' },
+          { label: ['Group A Baseline (14.2%)', 'Nhóm Chuẩn A (Sở hữu 100%)'], val: 14.2, color: '#2A6F5B' },
           { label: ['Rural & Township (27.7%)', 'Nông thôn & Thị trấn'], val: 27.7, color: '#C87D32' },
           { label: ['Urban 4-2-1 Jiwa (34.2%)', 'Đô thị 4-2-1 Jiwa'], val: 34.2, color: '#C44D3B' }
         ];
@@ -1925,10 +2007,10 @@
       const box = document.getElementById('riskChartCallout');
       box.innerHTML = `
         <div class="text-[#1F2421] lang-en-block">
-          <strong>EN • Key Finding:</strong> Combined coddling and disownership pushes adult failure risk to <strong>38.4% (+24.2% vs. Group A)</strong>, while <strong>Sub-cohort B4 (passive estate heirs lacking core traits)</strong> hits the sample's highest ruin rate at <strong>41.2% (+27.0%)</strong>.
+          <strong>EN • Practical Takeaway:</strong> Moving from Sub-cohort B1/B2 (35.1%–36.8% risk) to Group A (14.2% risk) requires just three simple shifts: <strong>allow 1–2 days delay without nagging</strong>, <strong>state 100% item ownership with certainty</strong>, and <strong>play dumb/worried</strong> so the child leads.
         </div>
         <div class="text-[#575D59] lang-vi-block">
-          <strong>VI • Phát hiện cốt lõi:</strong> Bao bọc kết hợp tước sở hữu đẩy rủi ro thất bại lên <strong>38,4% (+24,2% so với Nhóm A)</strong>, trong khi <strong>Nhóm B4 (có gia sản để lại nhưng thiếu 3 phẩm chất)</strong> chạm đỉnh hư hỏng cao nhất toàn mẫu ở mức <strong>41,2% (+27,0%)</strong>.
+          <strong>VI • Điểm mấu chốt thực hành:</strong> Để chuyển con từ Nhóm B1/B2 (rủi ro 35,1%–36,8%) sang Nhóm A an toàn (14,2%), ba mẹ chỉ cần 3 thay đổi nhỏ: <strong>cho con trễ 1–2 ngày không nhắc</strong>, <strong>nói đồ của con chắc chắn 100%</strong>, và <strong>giả ngốc/lo lắng</strong> để con tự đứng ra lo liệu.
         </div>
       `;
     }
@@ -2106,7 +2188,7 @@
       const disownedCardHtml = `
         <div class="p-5 rounded-xl border border-[#F2D3CE] bg-[#FDF6F5] space-y-2">
           <div class="inline-block px-2.5 py-0.5 rounded-full text-[11px] font-extrabold bg-[#C44D3B] text-white">
-            ✕ Disowned Mode • Chế Độ Tước Sở Hữu
+            ✕ Disowned &amp; Over-Managed Mode • Chế Độ Làm Thay &amp; Nhắc Nhở
           </div>
           <h4 class="text-sm sm:text-base font-extrabold text-[#1F2421] lang-en-block">${item.disownedTitleEn}</h4>
           <div class="text-xs font-bold text-[#C44D3B] lang-vi-block">${item.disownedTitleVi}</div>
@@ -2118,7 +2200,7 @@
       const ownedCardHtml = `
         <div class="p-5 rounded-xl border border-[#CBE3DC] bg-[#F4F9F7] space-y-2">
           <div class="inline-block px-2.5 py-0.5 rounded-full text-[11px] font-extrabold bg-[#2A6F5B] text-white">
-            ✓ 100% Ownership Mode • Chế Độ Giao Quyền 100%
+            ✓ Simple Self-Regulation Fix • Xử Lý Đơn Giản Giúp Con Tự Giác
           </div>
           <h4 class="text-sm sm:text-base font-extrabold text-[#1F2421] lang-en-block">${item.ownedTitleEn}</h4>
           <div class="text-xs font-bold text-[#2A6F5B] lang-vi-block">${item.ownedTitleVi}</div>
@@ -2162,7 +2244,29 @@
       renderRealExamples();
     }
 
-    // SECTION 5: PROTOCOL CARDS & SIMULATOR
+    // SECTION 5: RENDER 6 MICRO-TACTICS, PROTOCOL CARDS & SIMULATOR
+    function renderMicroTactics() {
+      const grid = document.getElementById('microTacticsGrid');
+      if (!grid) return;
+      grid.innerHTML = microTacticsData.map((m) => `
+        <div class="card-elevated rounded-2xl p-5 bg-white hover:border-[#2A6F5B] transition flex flex-col justify-between space-y-2.5">
+          <div>
+            <div class="flex items-center justify-between gap-2 mb-2">
+              <span class="text-2xl">${m.icon}</span>
+              <span class="px-2.5 py-0.5 rounded-full text-[10px] font-extrabold bg-[#F4F9F7] text-[#2A6F5B] border border-[#CBE3DC]">
+                ${m.tagEn}
+              </span>
+            </div>
+            <div class="text-[10px] font-bold text-[#C87D32] mb-1 lang-vi-block">${m.tagVi}</div>
+            <h4 class="text-sm font-extrabold text-[#1F2421] lang-en-block">${m.titleEn}</h4>
+            <div class="text-xs font-bold text-[#2A6F5B] mb-2 lang-vi-block">${m.titleVi}</div>
+            <p class="text-xs text-[#1F2421] leading-relaxed lang-en-block"><strong>EN:</strong> ${m.descEn}</p>
+          </div>
+          <p class="text-xs text-[#575D59] leading-relaxed pt-2 border-t border-[#F1EDE4] lang-vi-block"><strong>VI:</strong> ${m.descVi}</p>
+        </div>
+      `).join('');
+    }
+
     function renderProtocolCards() {
       const container = document.getElementById('protocolCardsContainer');
       container.innerHTML = protocolDomainsData.map((p, idx) => `
@@ -2238,10 +2342,10 @@
         verdictBox.className = 'p-3.5 rounded-xl bg-[#FDF6F5] border border-[#F2D3CE] text-xs leading-relaxed space-y-1.5';
         verdictBox.innerHTML = `
           <div class="text-[#1F2421] lang-en-block">
-            <strong class="text-[#C44D3B]">⚠️ Exceeds +20% Alert Threshold (+${diffStr}% vs. Baseline):</strong> The child is trapped in the <em>"Ownership Dead Zone."</em> Immediately apply the 100% Ownership Transfer Protocol to morning alarms, devices, and room sweeping.
+            <strong class="text-[#C44D3B]">⚠️ Exceeds +20% Alert Threshold (+${diffStr}% vs. Baseline):</strong> The child is in the <em>"Ownership Dead Zone."</em> Start applying the 3 simplest fixes immediately: <strong>state 100% item ownership with certainty</strong>, <strong>allow a 1–2 day delay without nagging</strong>, and <strong>play dumb/worried</strong> so the child takes charge.
           </div>
           <div class="text-[#575D59] lang-vi-block">
-            <strong class="text-[#C44D3B]">⚠️ Vượt ngưỡng cảnh báo +20% (+${diffStr}% so với Chuẩn):</strong> Trẻ đang nằm trong <em>"Vùng trũng Vô chủ"</em>. Cần áp dụng ngay Giao thức Chuyển giao Sở hữu 100% đối với đồng hồ báo thức, thiết bị cá nhân và việc tự quét dọn không gian sống.
+            <strong class="text-[#C44D3B]">⚠️ Vượt ngưỡng cảnh báo +20% (+${diffStr}% so với Chuẩn):</strong> Trẻ đang ở <em>"Vùng trũng Vô chủ"</em>. Ba mẹ hãy áp dụng ngay 3 mẹo đơn giản nhất: <strong>nói đồ của con chắc chắn 100%</strong>, <strong>cho phép trễ 1–2 ngày không nhắc</strong>, và <strong>giả ngốc/lo lắng</strong> để con tự đứng ra lo liệu.
           </div>
         `;
       } else if (diffFromBaseline >= 8) {
@@ -2250,10 +2354,10 @@
         verdictBox.className = 'p-3.5 rounded-xl bg-[#FDF4E7] border border-[#F0DEC2] text-xs leading-relaxed space-y-1.5';
         verdictBox.innerHTML = `
           <div class="text-[#1F2421] lang-en-block">
-            <strong class="text-[#C87D32]">◈ Transitional Zone (+${diffStr}% vs. Baseline):</strong> Partial autonomy exists, yet parental nagging or title claims remain. Raise 100% ownership transfer levels to bring failure risk down toward the ~14.2% baseline.
+            <strong class="text-[#C87D32]">◈ Transitional Zone (+${diffStr}% vs. Baseline):</strong> The child has partial autonomy, but parents still step in too quickly. Hold back for a full 1–2 days without nagging and "play dumb/tired" more often to push APOI above 75.
           </div>
           <div class="text-[#575D59] lang-vi-block">
-            <strong class="text-[#C87D32]">◈ Vùng Chuyển Tiếp (+${diffStr}% so với Chuẩn):</strong> Trẻ đã có một phần tự chủ nhưng vẫn còn sự nhắc nhở hoặc tuyên bố sở hữu từ cha mẹ. Hãy nâng mức giao quyền sở hữu 100% để đưa rủi ro về ngưỡng an toàn (~14,2%).
+            <strong class="text-[#C87D32]">◈ Vùng Chuyển Tiếp (+${diffStr}% so với Chuẩn):</strong> Trẻ đã có một phần tự giác nhưng ba mẹ vẫn còn sốt ruột nhắc nhở sớm. Hãy kiên nhẫn cho con trễ đủ 1–2 ngày không nhắc và "giả ngốc/giả mệt" nhiều hơn để đưa rủi ro về vùng an toàn (~14,2%).
           </div>
         `;
       } else {
@@ -2262,10 +2366,10 @@
         verdictBox.className = 'p-3.5 rounded-xl bg-[#F4F9F7] border border-[#CBE3DC] text-xs leading-relaxed space-y-1.5';
         verdictBox.innerHTML = `
           <div class="text-[#1F2421] lang-en-block">
-            <strong class="text-[#2A6F5B]">✓ Autonomous Safe Zone (+${diffStr}% vs. Baseline):</strong> Your household aligns with the <em>100% Ownership Transfer Protocol</em>, fostering robust Proactivity, Responsibility, and Hardship Resilience.
+            <strong class="text-[#2A6F5B]">✓ Autonomous Safe Zone (+${diffStr}% vs. Baseline):</strong> All 4 circles are developing stably! By affirming 100% ownership, allowing 1–2 day natural delays, and wisely playing dumb/worried, you have unlocked your child's intrinsic self-regulation.
           </div>
           <div class="text-[#575D59] lang-vi-block">
-            <strong class="text-[#2A6F5B]">✓ Vùng An Toàn Tự Chủ (+${diffStr}% so với Chuẩn):</strong> Gia đình đang vận hành chuẩn xác theo <em>Giao thức Chuyển giao Sở hữu 100%</em>. Trẻ có nền tảng vững chắc về Tính chủ động, Tính trách nhiệm và Tính chịu đựng vất vả.
+            <strong class="text-[#2A6F5B]">✓ Vùng An Toàn Tự Giác (+${diffStr}% so với Chuẩn):</strong> Cả 4 vòng tròn của con đang phát triển rất ổn định! Nhờ nói đồ của con chắc chắn 100%, cho phép trễ 1–2 ngày không nhắc và khéo léo giả ngốc/lo lắng, ba mẹ đã kích hoạt thành công tính tự giác nội tại của con.
           </div>
         `;
       }
@@ -2285,7 +2389,6 @@
 
     // INITIALIZATION & EVENT LISTENERS (SPACEBAR + CANVAS CLICK + RESIZE OBSERVER)
     document.addEventListener('DOMContentLoaded', () => {
-      // Global Spacebar Listener (Triggers step-by-step circle reveal without scrolling page)
       window.addEventListener('keydown', (e) => {
         const tag = (e.target && e.target.tagName) ? e.target.tagName.toLowerCase() : '';
         if (tag === 'input' || tag === 'textarea' || tag === 'select') return;
@@ -2295,7 +2398,6 @@
         }
       });
 
-      // Canvas Click/Touch Hit Detection
       const canvas = document.getElementById('fourFactorCanvas');
       canvas.addEventListener('click', (e) => {
         const rect = canvas.getBoundingClientRect();
@@ -2310,7 +2412,6 @@
               return;
             }
           }
-          // Clicking anywhere else on the canvas advances to the next step
           advanceSpaceStep();
         } else {
           const sorted = [...interactiveHitTargets].sort((a, b) => a.r - b.r);
@@ -2323,7 +2424,6 @@
         }
       });
 
-      // ResizeObserver ensures the canvas never overflows when switching mobile/PC orientations
       const shell = document.getElementById('diagramShell');
       if (window.ResizeObserver && shell) {
         const ro = new ResizeObserver(() => {
@@ -2334,7 +2434,6 @@
         window.addEventListener('resize', drawFourFactorCanvas);
       }
 
-      // Initialize all views starting cleanly at Step 1
       setInteractiveStep(1, false);
       initGenerationalChart();
       renderScenarios();
@@ -2343,6 +2442,7 @@
       renderStatsTable();
       renderFallacies();
       renderRealExamples();
+      renderMicroTactics();
       renderProtocolCards();
       runSimulator();
     });
