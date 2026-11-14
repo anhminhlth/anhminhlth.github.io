@@ -3,6 +3,158 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sitemap (Bí mật)</title>
+    <style>
+        /* CSS thu gọn, chữ nhỏ dễ nhìn */
+        body { font-family: 'Roboto', sans-serif; background: #F4F6F8; color: #111827; font-size: 14px; margin: 0; padding: 15px; }
+        .container { max-width: 750px; margin: 0 auto; background: white; padding: 15px 20px; border-radius: 8px; box-shadow: 0 1px 3px rgba(0,0,0,0.1); border-top: 3px solid #10B981; }
+        
+        h2 { font-size: 1.15rem; color: #065F46; margin: 0 0 15px 0; border-bottom: 1px solid #E5E7EB; padding-bottom: 8px; }
+        
+        .loading { font-style: italic; color: #6B7280; font-size: 13px; }
+        
+        /* Nhóm thư mục */
+        .folder-group { margin-bottom: 15px; }
+        .folder-title { font-weight: bold; color: #1E3A8A; background: #EFF6FF; padding: 6px 10px; border-radius: 4px; font-size: 13px; margin-bottom: 5px; display: inline-block; border: 1px solid #BFDBFE; }
+        
+        /* Danh sách file */
+        ul { list-style: none; padding: 0; margin: 0; }
+        li { margin-bottom: 4px; border-left: 2px solid #E5E7EB; margin-left: 8px; padding-left: 10px; }
+        
+        a.item-link { text-decoration: none; color: #374151; display: flex; align-items: center; padding: 6px 8px; border-radius: 4px; transition: 0.2s; border: 1px solid transparent; }
+        a.item-link:hover { background: #F9FAFB; border-color: #D1D5DB; color: #111827; }
+        
+        .icon { font-size: 14px; margin-right: 8px; color: #6B7280; }
+        .title-text { font-weight: bold; color: #047857; margin-right: 10px; font-size: 14px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 60%; }
+        .path-text { font-size: 12px; color: #9CA3AF; font-style: italic; margin-left: auto; }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h2>🗂️ Quản lý hệ thống trang</h2>
+        <div id="page-list">
+            <div class="loading">Đang quét toàn bộ hệ thống...</div>
+        </div>
+    </div>
+
+    <script>
+        const owner = 'anhminhlth';
+        const repo = 'anhminhlth.github.io';
+        let activeBranch = 'main';
+
+        // Hàm gọi API đọc đệ quy (recursive=1)
+        async function fetchRepoTree() {
+            async function getTree(branchName) {
+                const res = await fetch(`https://api.github.com/repos/${owner}/${repo}/git/trees/${branchName}?recursive=1`);
+                if (!res.ok) throw new Error('Not found');
+                return res.json();
+            }
+
+            let data;
+            try {
+                data = await getTree('main');
+                activeBranch = 'main';
+            } catch (e) {
+                try {
+                    data = await getTree('master');
+                    activeBranch = 'master';
+                } catch (err) {
+                    document.getElementById('page-list').innerHTML = '<div class="loading">Lỗi: Không thể tải dữ liệu nhánh.</div>';
+                    return;
+                }
+            }
+
+            // 1. Lọc ra toàn bộ các file .html (ẩn file index.html gốc và th.html)
+            const htmlFiles = data.tree.filter(item => 
+                item.type === 'blob' && 
+                item.path.endsWith('.html') && 
+                !item.path.startsWith('.') &&
+                item.path !== 'index.html' &&
+                item.path !== 'th.html'
+            );
+
+            // 2. Phân loại file theo từng thư mục
+            const groupedFolders = {};
+            htmlFiles.forEach(file => {
+                const parts = file.path.split('/');
+                const fileName = parts.pop();
+                const folderName = parts.length > 0 ? parts.join('/') : 'Thư mục gốc (Root)';
+                
+                if (!groupedFolders[folderName]) {
+                    groupedFolders[folderName] = [];
+                }
+                groupedFolders[folderName].push({ path: file.path, name: fileName });
+            });
+
+            // 3. Hiển thị ra HTML
+            const container = document.getElementById('page-list');
+            container.innerHTML = '';
+
+            // Sắp xếp để thư mục gốc hiện đầu tiên, sau đó đến các thư mục con
+            const sortedFolders = Object.keys(groupedFolders).sort((a, b) => {
+                if (a === 'Thư mục gốc (Root)') return -1;
+                if (b === 'Thư mục gốc (Root)') return 1;
+                return a.localeCompare(b);
+            });
+
+            sortedFolders.forEach(folder => {
+                const groupDiv = document.createElement('div');
+                groupDiv.className = 'folder-group';
+                
+                const folderTitle = document.createElement('div');
+                folderTitle.className = 'folder-title';
+                folderTitle.innerHTML = folder === 'Thư mục gốc (Root)' ? '🏠 / (Gốc)' : `📁 /${folder}`;
+                groupDiv.appendChild(folderTitle);
+
+                const ul = document.createElement('ul');
+                
+                groupedFolders[folder].forEach(file => {
+                    const li = document.createElement('li');
+                    const link = document.createElement('a');
+                    link.className = 'item-link';
+                    
+                    // Xử lý đường dẫn sạch: bỏ .html, nếu là thư mục/index.html thì chỉ lấy /thư-mục/
+                    let cleanPath = file.path.replace(/\.html$/, '');
+                    if (cleanPath.endsWith('/index')) {
+                        cleanPath = cleanPath.replace(/\/index$/, '/');
+                    }
+                    
+                    link.href = `/${cleanPath}`;
+                    // Tên mặc định tạm thời trước khi lấy được title
+                    const tempName = file.name.replace('.html', '');
+                    link.innerHTML = `<span class="icon">📄</span> <span class="title-text">${tempName}</span> <span class="path-text">/${file.path}</span>`;
+                    
+                    // Chạy ngầm đọc nội dung từng file để lấy thẻ <title>
+                    const rawUrl = `https://raw.githubusercontent.com/${owner}/${repo}/${activeBranch}/${file.path}`;
+                    fetch(rawUrl)
+                        .then(res => res.text())
+                        .then(html => {
+                            const match = html.match(/<title>(.*?)<\/title>/i);
+                            if (match && match[1]) {
+                                link.querySelector('.title-text').textContent = match[1];
+                            }
+                        }).catch(e => console.log('Lỗi fetch title'));
+
+                    li.appendChild(link);
+                    ul.appendChild(li);
+                });
+                
+                groupDiv.appendChild(ul);
+                container.appendChild(groupDiv);
+            });
+        }
+
+        // Bắt đầu chạy
+        fetchRepoTree();
+    </script>
+</body>
+</html>
+<!-- <!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Danh sách Trang</title>
     <style>
         body { font-family: 'Roboto', sans-serif; background: #F4F6F8; padding: 20px; color: #111827; }
@@ -56,3 +208,4 @@
 
 </body>
 </html>
+-->
