@@ -1,0 +1,1064 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cẩm nang Phân tích Ngành nghề Freelance & Kinh doanh số (2026–2027)</title>
+  <style>
+    :root {
+      --bg: #f4f6f9;
+      --surface: #ffffff;
+      --surface-alt: #f8fafc;
+      --text: #0f172a;
+      --text-muted: #475569;
+      --border: #e2e8f0;
+      --primary: #1d4ed8;
+      --primary-light: #eff6ff;
+      --primary-dark: #1e40af;
+      --success: #047857;
+      --success-bg: #ecfdf5;
+      --warning: #b45309;
+      --warning-bg: #fffbeb;
+      --danger: #b91c1c;
+      --danger-bg: #fef2f2;
+      --radius: 12px;
+      --shadow: 0 2px 10px rgba(15, 23, 42, 0.06);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      font-size: 15px;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 16px;
+    }
+
+    /* Header */
+    .hero {
+      background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 100%);
+      color: #ffffff;
+      padding: 28px 24px;
+      border-radius: var(--radius);
+      margin-bottom: 20px;
+      box-shadow: var(--shadow);
+    }
+
+    .hero h1 {
+      font-size: clamp(1.35rem, 2.5vw, 1.9rem);
+      font-weight: 700;
+      margin-bottom: 8px;
+      letter-spacing: -0.02em;
+    }
+
+    .hero p {
+      color: #cbd5e1;
+      font-size: 0.95rem;
+      max-width: 880px;
+    }
+
+    .hero-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 14px;
+    }
+
+    .hero-badge {
+      background: rgba(255, 255, 255, 0.14);
+      border: 1px solid rgba(255, 255, 255, 0.22);
+      padding: 4px 12px;
+      border-radius: 999px;
+      font-size: 0.8rem;
+      font-weight: 500;
+    }
+
+    /* Navigation Tabs */
+    .tabs-wrapper {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: var(--bg);
+      padding: 6px 0 12px 0;
+    }
+
+    .tabs-nav {
+      display: flex;
+      gap: 8px;
+      overflow-x: auto;
+      scrollbar-width: thin;
+      padding: 6px;
+      background: var(--surface);
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow);
+    }
+
+    .tab-btn {
+      flex: 0 0 auto;
+      border: none;
+      background: transparent;
+      color: var(--text-muted);
+      font-weight: 600;
+      font-size: 0.88rem;
+      padding: 10px 16px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      white-space: nowrap;
+    }
+
+    .tab-btn:hover {
+      background: var(--surface-alt);
+      color: var(--primary);
+    }
+
+    .tab-btn.active {
+      background: var(--primary);
+      color: #ffffff;
+    }
+
+    /* Tab Panels */
+    .tab-panel {
+      display: none;
+      animation: fadeIn 0.25s ease;
+    }
+
+    .tab-panel.active {
+      display: block;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(4px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Cards & Grids */
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 20px;
+      margin-bottom: 18px;
+      box-shadow: var(--shadow);
+    }
+
+    .card-title {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      border-bottom: 2px solid var(--primary-light);
+      padding-bottom: 8px;
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 16px;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 16px;
+    }
+
+    .grid-4 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+      gap: 14px;
+    }
+
+    /* KPI / Stat Boxes */
+    .stat-box {
+      background: var(--surface-alt);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 14px 16px;
+    }
+
+    .stat-label {
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: var(--text-muted);
+      font-weight: 600;
+    }
+
+    .stat-val {
+      font-size: 1.25rem;
+      font-weight: 800;
+      color: var(--primary-dark);
+      margin: 4px 0;
+    }
+
+    .stat-sub {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+    }
+
+    /* Alerts */
+    .alert {
+      padding: 12px 16px;
+      border-radius: 8px;
+      font-size: 0.9rem;
+      margin-bottom: 14px;
+      border-left: 4px solid;
+    }
+
+    .alert-info { background: var(--primary-light); border-color: var(--primary); color: #1e3a8a; }
+    .alert-success { background: var(--success-bg); border-color: var(--success); color: #065f46; }
+    .alert-warn { background: var(--warning-bg); border-color: var(--warning); color: #78350f; }
+
+    /* Tables */
+    .table-responsive {
+      width: 100%;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      margin-bottom: 12px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 640px;
+      font-size: 0.88rem;
+    }
+
+    th, td {
+      padding: 11px 13px;
+      text-align: left;
+      border-bottom: 1px solid var(--border);
+      vertical-align: top;
+    }
+
+    th {
+      background: #f1f5f9;
+      font-weight: 700;
+      color: var(--text);
+      white-space: nowrap;
+    }
+
+    tr:last-child td {
+      border-bottom: none;
+    }
+
+    tr:hover td {
+      background: #f8fafc;
+    }
+
+    /* Tags & Badges */
+    .tag {
+      display: inline-block;
+      padding: 2px 8px;
+      border-radius: 6px;
+      font-size: 0.76rem;
+      font-weight: 600;
+      white-space: nowrap;
+    }
+
+    .tag-green { background: var(--success-bg); color: var(--success); }
+    .tag-blue { background: var(--primary-light); color: var(--primary-dark); }
+    .tag-amber { background: var(--warning-bg); color: var(--warning); }
+    .tag-red { background: var(--danger-bg); color: var(--danger); }
+
+    /* Step Lists & Checklists */
+    ol.steps, ul.clean-list {
+      padding-left: 20px;
+      margin: 8px 0;
+    }
+
+    ol.steps li, ul.clean-list li {
+      margin-bottom: 8px;
+    }
+
+    .checklist-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      padding: 10px 12px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      margin-bottom: 8px;
+      background: var(--surface-alt);
+      cursor: pointer;
+      transition: background 0.15s ease;
+    }
+
+    .checklist-item:hover {
+      background: var(--primary-light);
+    }
+
+    .checklist-item input[type="checkbox"] {
+      margin-top: 4px;
+      width: 17px;
+      height: 17px;
+      accent-color: var(--primary);
+      cursor: pointer;
+      flex-shrink: 0;
+    }
+
+    .checklist-item.done span {
+      text-decoration: line-through;
+      color: var(--text-muted);
+    }
+
+    /* SWOT & Canvas Grid */
+    .swot-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 12px;
+    }
+
+    .swot-box {
+      padding: 14px;
+      border-radius: 8px;
+      border: 1px solid;
+    }
+
+    .swot-s { background: #ecfdf5; border-color: #a7f3d0; }
+    .swot-w { background: #fffbeb; border-color: #fde68a; }
+    .swot-o { background: #eff6ff; border-color: #bfdbfe; }
+    .swot-t { background: #fef2f2; border-color: #fecaca; }
+
+    .swot-box h4 {
+      font-size: 0.92rem;
+      margin-bottom: 6px;
+    }
+
+    .canvas-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 12px;
+    }
+
+    .canvas-cell {
+      background: var(--surface-alt);
+      border: 1px solid var(--border);
+      border-top: 3px solid var(--primary);
+      border-radius: 8px;
+      padding: 12px 14px;
+    }
+
+    .canvas-cell h4 {
+      font-size: 0.88rem;
+      color: var(--primary-dark);
+      margin-bottom: 6px;
+      text-transform: uppercase;
+    }
+
+    /* Tax Calculator Widget */
+    .calc-box {
+      background: var(--surface-alt);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 16px;
+    }
+
+    .calc-controls {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 12px;
+      margin-bottom: 14px;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 0.82rem;
+      font-weight: 600;
+      margin-bottom: 4px;
+      color: var(--text-muted);
+    }
+
+    .form-group input, .form-group select {
+      width: 100%;
+      padding: 9px 11px;
+      border: 1px solid #cbd5e1;
+      border-radius: 6px;
+      font-size: 0.92rem;
+      background: #fff;
+    }
+
+    .calc-result {
+      background: #ffffff;
+      border: 1px solid var(--primary);
+      border-radius: 8px;
+      padding: 14px 16px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 12px;
+    }
+
+    footer {
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 0.82rem;
+      padding: 16px 0 28px 0;
+    }
+
+    @media (max-width: 640px) {
+      .container { padding: 10px; }
+      .hero { padding: 20px 16px; }
+      .card { padding: 15px; }
+      .tab-btn { padding: 8px 12px; font-size: 0.82rem; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header class="hero">
+      <h1>Cẩm nang Phân tích Ngành nghề Freelance & Kinh doanh số (2026–2027)</h1>
+      <p>Khung đánh giá chi tiết các mô hình tạo thu nhập trực tuyến: Tự động hóa/Kỹ thuật số, Video AI & YouTube không lộ mặt, Tiếp thị liên kết (Affiliate) và Sản phẩm số — kèm cơ cấu đầu tư, quy trình đăng ký, cách tính thuế cập nhật 2026 và lộ trình doanh thu từ 10 triệu lên 100 triệu VNĐ/tháng.</p>
+      <div class="hero-badges">
+        <span class="hero-badge">Dữ liệu cập nhật 11/2026</span>
+        <span class="hero-badge">Tỷ giá quy đổi tham khảo: 25.800 VNĐ/USD</span>
+        <span class="hero-badge">Ngưỡng miễn thuế HKD 2026: 1 tỷ/năm</span>
+        <span class="hero-badge">Mô hình vận hành độc lập / Bất đồng bộ</span>
+      </div>
+    </header>
+
+    <div class="tabs-wrapper">
+      <nav class="tabs-nav" aria-label="Điều hướng nội dung">
+        <button class="tab-btn active" onclick="openTab(event, 'tab-overview')">1. Tổng quan Ngành nghề</button>
+        <button class="tab-btn" onclick="openTab(event, 'tab-invest')">2. Đầu tư & Chuẩn bị</button>
+        <button class="tab-btn" onclick="openTab(event, 'tab-register')">3. Kênh & Cách Đăng ký</button>
+        <button class="tab-btn" onclick="openTab(event, 'tab-tax')">4. Thuế & Pháp lý 2026</button>
+        <button class="tab-btn" onclick="openTab(event, 'tab-swot')">5. SWOT & Canvas</button>
+        <button class="tab-btn" onclick="openTab(event, 'tab-roadmap')">6. KPI 10Tr → 100Tr</button>
+      </nav>
+    </div>
+
+    <!-- TAB 1: TỔNG QUAN NGÀNH NGHỀ -->
+    <section id="tab-overview" class="tab-panel active">
+      <div class="card">
+        <h2 class="card-title">So sánh toàn diện 5 nhóm mô hình Freelance & Kinh doanh số</h2>
+        <div class="alert alert-info">
+          <strong>Nguyên tắc kết hợp hai động cơ:</strong> Để đạt dòng tiền ngay trong Tháng 1 (10 triệu VNĐ), nên dùng các mô hình thu tiền trực tiếp (<strong>Freelance Automation/Tech hoặc Dịch vụ Video AI / Sản phẩm số</strong>) làm <em>Động cơ 1</em>, đồng thời dành thời gian xây tài sản tích lũy (<strong>YouTube Faceless + Affiliate</strong>) làm <em>Động cơ 2</em>.
+        </div>
+        <div class="table-responsive">
+          <table>
+            <thead>
+              <tr>
+                <th>Nhóm ngành nghề</th>
+                <th>Tính chất vận hành</th>
+                <th>Đơn giá / Biên lợi nhuận tham khảo</th>
+                <th>Khả năng đạt 10Tr Tháng 1</th>
+                <th>Độ trễ thanh toán</th>
+                <th>Tiềm năng mở rộng (6–12 tháng)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>1. AI Automation & No-Code Tech</strong><br><span class="tag tag-green">Tạo tiền nhanh Tháng 1</span></td>
+                <td>Thiết lập quy trình n8n, Make.com, kết nối API/CRM/AI. Trao đổi bất đồng bộ qua văn bản & video Loom.</td>
+                <td>Dự án đơn lẻ trên Upwork: 500–2.000 USD; tích hợp lớn: 2.000–5.000 USD; ước tính theo giờ: 40–100 USD/giờ.</td>
+                <td><span class="tag tag-green">Cao</span><br>(Kịch bản 2 gói nhập môn 250 USD)</td>
+                <td>5–14 ngày sau nghiệm thu</td>
+                <td>30–100+ triệu/tháng (kết hợp gói bảo trì định kỳ)</td>
+              </tr>
+              <tr>
+                <td><strong>2. Video AI & YouTube Faceless</strong><br><span class="tag tag-amber">Tài sản dài hạn</span></td>
+                <td>Viết kịch bản gốc, dựng hình ảnh/clip AI (Kling), lồng tiếng AI (ElevenLabs), hậu kỳ CapCut. Độc lập 100%.</td>
+                <td>Video dài chia 55% doanh thu quảng cáo (RPM quốc tế thường 3–9+ USD theo blog ngành; Shorts &lt;0,20 USD/1k view).</td>
+                <td><span class="tag tag-red">Rất thấp (AdSense)</span><br>Khả thi nếu nhận dựng video AI thuê</td>
+                <td>45–90+ ngày để bật YPP + chu kỳ ngày 21–26</td>
+                <td>20–100+ triệu/tháng (AdSense ngoại + YouTube Shopping)</td>
+              </tr>
+              <tr>
+                <td><strong>3A. Affiliate TMĐT Việt Nam</strong><br>(Shopee, TikTok Shop)</td>
+                <td>Làm video ngắn review công năng (quay cận sản phẩm, không cần lộ mặt), tối ưu từ khóa và giỏ hàng.</td>
+                <td>Hoa hồng 5–30%; Shopee trừ 0,98% phí dịch vụ và tạm khấu trừ 10% thuế sàn (từ 01/10/2026).</td>
+                <td><span class="tag tag-amber">Trung bình</span><br>(Đòi hỏi sản lượng video và đơn cao ngay từ đầu)</td>
+                <td>Shopee cá nhân: 2 lần/tuần (sau ~2 tuần); TikTok: 21–30 ngày</td>
+                <td>10–50+ triệu/tháng (phụ thuộc khối lượng đơn hoàn tất)</td>
+              </tr>
+              <tr>
+                <td><strong>3B. Affiliate Công cụ & SaaS Quốc tế</strong></td>
+                <td>Viết hướng dẫn SEO, video hướng dẫn sử dụng phần mềm bằng tiếng Anh, tặng kèm bộ mẫu quy trình.</td>
+                <td>Tùy chương trình hãng phần mềm (không có bảng chuẩn chung; thường chia sẻ % theo lượt đăng ký mới hoặc định kỳ).</td>
+                <td><span class="tag tag-red">Thấp</span><br>(Cần thời gian tích lũy lưu lượng tìm kiếm)</td>
+                <td>30–60 ngày đối soát theo hãng</td>
+                <td>30–100+ triệu/tháng nếu xây được tệp người đăng ký định kỳ</td>
+              </tr>
+              <tr>
+                <td><strong>4. Sản phẩm số & POD</strong><br>(Etsy, Gumroad)</td>
+                <td>Đóng gói mẫu Notion, Excel/Sheets, bộ workflow JSON, file thiết kế/in ấn bán tự động 24/7.</td>
+                <td>Biên lợi nhuận sau phí sàn trực tiếp thường ~80–87% (ví dụ Gumroad thu 10% + $0,50 + 2,9% + $0,30).</td>
+                <td><span class="tag tag-amber">Trung bình</span><br>(Kịch bản ~34 đơn 15 USD nếu tự kéo được traffic)</td>
+                <td>Gumroad: Thứ Sáu hàng tuần (≥100 USD); Etsy: theo lịch cài</td>
+                <td>20–80 triệu/tháng (làm 1 lần, bán lặp lại không cần tồn kho)</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="grid-3">
+        <div class="stat-box">
+          <div class="stat-label">Cảnh báo chính sách YouTube</div>
+          <div class="stat-val">01/02/2027</div>
+          <div class="stat-sub">Ngưỡng xét duyệt YPP cho kênh mới dự kiến tăng gấp đôi lên 8.000 giờ xem (365 ngày) hoặc 20 triệu view Shorts (90 ngày). Video AI phải có tính nguyên bản và gắn nhãn AI.</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-label">Chênh lệch CPM theo địa lý</div>
+          <div class="stat-val">~20x CPM</div>
+          <div class="stat-sub">Số liệu tháng 6/2025 từ AIR Media-Tech (3.000+ kênh) ghi nhận CPM khán giả Mỹ đạt 14,67 USD so với 0,74 USD tại Ấn Độ. Nên ưu tiên nội dung tiếng Anh.</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-label">Cửa ngõ Etsy tại Việt Nam</div>
+          <div class="stat-val">Hỗ trợ VND</div>
+          <div class="stat-sub">Việt Nam nằm trong danh sách hỗ trợ trực tiếp Etsy Payments, cho phép mở shop cá nhân (Individual) và rút VND thẳng về ngân hàng nội địa.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB 2: ĐẦU TƯ & CHUẨN BỊ -->
+    <section id="tab-invest" class="tab-panel">
+      <div class="card">
+        <h2 class="card-title">Cấu trúc đầu tư Trang thiết bị & Phần mềm hàng tháng</h2>
+        <div class="table-responsive">
+          <table>
+            <thead>
+              <tr>
+                <th>Nhóm chi phí</th>
+                <th>Mức Tinh gọn (0–600k/tháng)</th>
+                <th>Mức Tiêu chuẩn (1,2–2,2 triệu/tháng)</th>
+                <th>Mức Chuyên nghiệp (3–4,5 triệu/tháng)</th>
+                <th>Ghi chú tối ưu chi phí (2026)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Thiết bị phần cứng</strong><br>(Đầu tư 1 lần nếu nâng cấp)</td>
+                <td>Tận dụng máy tính và smartphone sẵn có (0 VNĐ)</td>
+                <td>Laptop RTX 4060 8GB VRAM, 16GB RAM (19–29 triệu VNĐ tùy hãng/ưu đãi)</td>
+                <td>Mac Mini M4 16GB/512GB (25–27 triệu VNĐ) + Màn hình rời</td>
+                <td>Apple Store VN ngừng bản 256GB từ 5/2026 (khởi điểm từ 20,5tr); các đại lý bán bản 16GB/256GB ~21,5–22tr. Luôn ưu tiên micro thu âm rõ tiếng.</td>
+              </tr>
+              <tr>
+                <td><strong>AI Chatbot & Code</strong></td>
+                <td>Gói miễn phí hoặc 1 gói nâng cấp đại lý (~250k VNĐ)</td>
+                <td>ChatGPT Plus hoặc Claude Pro chính chủ ($20 ≈ 516–540k VNĐ/tháng)</td>
+                <td>Claude Pro + Cursor Pro chính chủ (~1,08 triệu VNĐ/tháng)</td>
+                <td>Đại lý VN bán rẻ hơn 22–54% giá gốc, nhưng nên dùng tài khoản chính chủ/dùng riêng cho công việc B2B để bảo mật dữ liệu.</td>
+              </tr>
+              <tr>
+                <td><strong>AI Video & Giọng nói</strong></td>
+                <td>CapCut Free + Kling Free (66 credit/ngày, 720p có watermark)</td>
+                <td>CapCut Pro riêng (~129k/tháng) + Kling Standard ($6,99 ≈ 170–180k)</td>
+                <td>Kling Pro ($19,99 ≈ 490–516k) + ElevenLabs Pro + CapCut Pro</td>
+                <td>Mua CapCut Pro dùng riêng 6 tháng (~490k, ~2.700đ/ngày) tiết kiệm và ổn định hơn bản share 30–50k dễ bị khóa thiết bị sau 1–2 tuần.</td>
+              </tr>
+              <tr>
+                <td><strong>Hạ tầng Automation & Web</strong></td>
+                <td>Make.com Free + Notion Free + GitHub (0 VNĐ)</td>
+                <td>Dự trù ngân sách thuê VPS/Hosting + Tên miền (~150–250k VNĐ/tháng)</td>
+                <td>Gói trả phí nền tảng Automation + VPS riêng (~400–500k VNĐ/tháng)</td>
+                <td>Ước tính ngân sách tham khảo cho giai đoạn triển khai; kiểm tra giá thực tế từng nhà cung cấp tại thời điểm đăng ký.</td>
+              </tr>
+              <tr>
+                <td><strong>Phí tiếp cận khách (Bidding)</strong></td>
+                <td>0 VNĐ (dùng tối đa 10 Connects free/tháng + tối ưu Gig Fiverr)</td>
+                <td>300k–500k VNĐ mua gói Connects Upwork ($0,15/Connect)</td>
+                <td>800k–1,5 triệu VNĐ (Upwork Freelancer Plus $19,99 + Connects)</td>
+                <td>Trả lời thư mời (Invitation) trên Upwork không tốn Connects; gói Plus kèm 100 Connects/tháng và miễn phí Direct Contract.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="grid-2">
+        <div class="card">
+          <h2 class="card-title">Lộ trình nghiên cứu & học thực chiến (14 ngày đầu)</h2>
+          <ol class="steps">
+            <li><strong>Ngày 1–2 (Khảo sát cầu thị trường):</strong> Lọc 20 tin tuyển dụng mới nhất trên Upwork theo từ khóa ngành và 10 sản phẩm bán chạy trên Etsy/Gumroad; ghi lại 5 vấn đề doanh nghiệp chi tiền nhiều nhất.</li>
+            <li><strong>Ngày 3–7 (Học kiểu "Clone & Ship"):</strong> Dùng AI (Claude/ChatGPT) làm trợ giảng 1-kèm-1 hướng dẫn dựng lại chính xác 3–5 quy trình mẫu từ các bài toán đã lọc; đóng gói ngay thành file mẫu kèm video demo quay màn hình 90 giây.</li>
+            <li><strong>Ngày 8–10 (Xây hồ sơ & Sản phẩm mồi):</strong> Đăng 3 dự án mẫu vào Portfolio Upwork, thiết lập 2 gói dịch vụ trên Fiverr và niêm yết 2 sản phẩm mẫu đầu tiên lên Gumroad/Etsy (giá 9–19 USD).</li>
+            <li><strong>Ngày 11–14 (Chạy thử tiếp cận):</strong> Mỗi ngày gửi 5 đề xuất cá nhân hóa có giải pháp mẫu đính kèm hoặc đăng 1–2 nội dung kéo traffic; theo dõi tỷ lệ phản hồi để chỉnh sửa tiêu đề và 3 giây mở đầu.</li>
+          </ol>
+        </div>
+
+        <div class="card">
+          <h2 class="card-title">Sự chuẩn bị bắt buộc trước khi vận hành</h2>
+          <ul class="clean-list">
+            <li><strong>Đệm tài chính an toàn:</strong> Tách riêng quỹ dự phòng sinh hoạt tối thiểu 3–6 tháng và ngân sách mua công cụ tháng đầu; không vay nợ chạy quảng cáo khi chưa kiểm chứng tỷ lệ chuyển đổi.</li>
+            <li><strong>Giấy tờ & Định danh số:</strong> CCCD gắn chip còn hạn, Hộ chiếu (xác minh nhanh sàn quốc tế), cài đặt VNeID mức độ 2 và đồng bộ mã số thuế cá nhân theo số định danh CCCD.</li>
+            <li><strong>Tài khoản ngân hàng & Thẻ:</strong> Mở tài khoản ngân hàng VN chính chủ tách riêng cho dòng tiền kinh doanh và 1 thẻ Visa/Mastercard Debit để thanh toán phần mềm, xác minh Etsy/Upwork.</li>
+            <li><strong>Hạ tầng thu âm & Kỷ luật giờ giấc:</strong> Trang bị micro rõ tiếng để quay video màn hình Loom hoặc thu mẫu âm thanh, thiết lập khối thời gian làm việc tập trung 4–6 giờ/ngày.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB 3: KÊNH & CÁCH ĐĂNG KÝ -->
+    <section id="tab-register" class="tab-panel">
+      <div class="card">
+        <h2 class="card-title">So sánh cổng nhận tiền quốc tế từ Việt Nam (2026)</h2>
+        <div class="table-responsive">
+          <table>
+            <thead>
+              <tr>
+                <th>Tiêu chí</th>
+                <th>Wise (Ưu tiên nhận khách trực tiếp)</th>
+                <th>Payoneer (Ưu tiên rút từ Sàn Freelance)</th>
+                <th>PayPal (Bắt buộc cho một số cổng như Gumroad)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Phí nhận USD nội địa (ACH)</strong></td>
+                <td><strong>0 USD (Miễn phí)</strong>; Wire nội địa Mỹ 6,11 USD</td>
+                <td>0–1% tùy quốc gia nguồn gửi</td>
+                <td>Phí nhận thanh toán thương mại quốc tế cao</td>
+              </tr>
+              <tr>
+                <td><strong>Phí rút / Quy đổi sang VND</strong></td>
+                <td>Tỷ giá thực (Mid-market) + phí minh bạch khoảng 0,43–0,57%</td>
+                <td>Rút cùng loại tiền tệ: 1,50 USD ($4 nếu &lt;$400); rút khác tiền tệ về bank VN mất tới <strong>~2%</strong> ẩn trong tỷ giá</td>
+                <td>Chênh lệch tỷ giá quy đổi ~3% + phí rút cố định 60.000 VNĐ/lần</td>
+              </tr>
+              <tr>
+                <td><strong>Phí duy trì thường niên</strong></td>
+                <td>Không có phí duy trì hàng tháng/năm</td>
+                <td><strong>29,95 USD/năm</strong> nếu tổng tiền nhận trong 12 tháng dưới 6.000 USD</td>
+                <td>Không có phí duy trì tài khoản cá nhân</td>
+              </tr>
+              <tr>
+                <td><strong>Tích hợp sàn lớn</strong></td>
+                <td>Không tích hợp trực tiếp Fiverr; rút ACH từ Upwork mất 2,99 USD/lần (từ 01/09/2026)</td>
+                <td>Tích hợp trực tiếp Upwork, Fiverr, Amazon, Patreon</td>
+                <td>Tích hợp Upwork, Fiverr, Gumroad (Gumroad thu 2% phí rút qua PayPal)</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="grid-2">
+        <div class="card">
+          <h2 class="card-title">Cách đăng ký: Freelance & Sản phẩm số quốc tế</h2>
+          <ol class="steps">
+            <li><strong>Upwork (upwork.com):</strong> Đăng ký tên thật trùng CCCD/Hộ chiếu → Cập nhật Tax Info cá nhân ngoài Mỹ → Tạo hồ sơ chuyên 1 ngách (VD: <em>n8n & AI Workflow Automation</em>) → Đăng 3 dự án mẫu có video demo → Liên kết Payoneer hoặc tài khoản ngân hàng VN (Direct to Local Bank 0,99 USD/lần).</li>
+            <li><strong>Fiverr (fiverr.com):</strong> Đăng ký Seller → Tạo 3–5 gói Gig chia 3 mức giá (Basic/Standard/Premium) với thời gian giao 2–5 ngày → Mô tả quy trình trao đổi qua tin nhắn và tài liệu → Xác minh danh tính và nối cổng Payoneer.</li>
+            <li><strong>Etsy (etsy.com):</strong> Chọn quốc gia cửa hàng <strong>Việt Nam</strong>, chọn loại hình <strong>Individual</strong> (Etsy chưa hỗ trợ loại hình Business tại VN) → Điền tài khoản ngân hàng VND trùng tên pháp lý + thẻ thanh toán quốc tế → Hoàn tất xác minh tiền gửi thử hoặc sao kê trong 30–60 ngày sau đơn đầu tiên.</li>
+            <li><strong>Gumroad (gumroad.com):</strong> Tạo tài khoản miễn phí → Đăng sản phẩm số (ZIP, PDF, link Notion, template JSON) → Thiết lập rút tiền qua <strong>PayPal</strong> (không hỗ trợ Payoneer/Wise) → Kéo lưu lượng trực tiếp để hưởng mức phí 10% + 0,50 USD + phí thẻ thay vì mức 30% của Discover.</li>
+          </ol>
+        </div>
+
+        <div class="card">
+          <h2 class="card-title">Cách đăng ký: YouTube & Affiliate Việt Nam</h2>
+          <ol class="steps">
+            <li><strong>YouTube Partner Program & AdSense:</strong> Bật xác minh 2 bước (2-Step Verification) cho tài khoản Google → Tối ưu kênh chuẩn chủ đề → Đạt ngưỡng YPP vào <em>YouTube Studio → Earn</em> liên kết AdSense cá nhân → Vào <em>Manage tax info</em> nộp <strong>Form W-8BEN</strong> trước 10/12 hàng năm để tránh khấu trừ phạt 24% toàn cầu (chỉ giữ 30% trên doanh thu từ khán giả Mỹ).</li>
+            <li><strong>Shopee Affiliate (affiliate.shopee.vn):</strong> Đăng nhập tài khoản Shopee cá nhân → Khai báo thông tin ngân hàng trùng CCCD + mã số thuế → Xác nhận biểu mẫu dự kiến doanh thu năm (≤ 1 tỷ hoặc &gt; 1 tỷ) theo yêu cầu sàn → Lấy link chia sẻ hoặc gắn Shopee Video (cấm chạy quảng cáo từ khóa chứa chữ "Shopee").</li>
+            <li><strong>TikTok Shop Affiliate Việt Nam:</strong> Đạt điều kiện cơ bản (≥ 18 tuổi, <strong>≥ 1.000 followers</strong> cho quyền gắn giỏ hàng đầy đủ) → Vào <em>Công cụ tác giả → TikTok Shop cho nhà sáng tạo</em> → Xác minh CCCD qua NFC → Điền chính xác Tên (First name) và Họ + Tên đệm (Last name) trùng tài khoản ngân hàng.</li>
+          </ol>
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB 4: THUẾ & PHÁP LÝ 2026 -->
+    <section id="tab-tax" class="tab-panel">
+      <div class="card">
+        <h2 class="card-title">Hệ thống quy định Thuế Cá nhân & Hộ kinh doanh năm 2026</h2>
+        <div class="alert alert-success">
+          <strong>3 Thay đổi lớn từ 2026:</strong> (1) Bãi bỏ hoàn toàn lệ phí môn bài và thuế khoán từ 01/01/2026; (2) Chính thức nâng ngưỡng doanh thu không phải nộp thuế GTGT và TNCN lên <strong>1 tỷ đồng/năm</strong> (Nghị định 141/2026/NĐ-CP); (3) <strong>Giảm 30% số thuế TNCN</strong> phải nộp trong năm 2026 và 2027 cho HKD có doanh thu ≤ 10 tỷ đồng/năm (Nghị định 398/2026/NĐ-CP).
+        </div>
+        <div class="table-responsive">
+          <table>
+            <thead>
+              <tr>
+                <th>Nhóm quy mô (Doanh thu năm)</th>
+                <th>Thuế GTGT</th>
+                <th>Thuế TNCN (Áp dụng giảm 30% năm 2026–2027 nếu DT ≤ 10 tỷ)</th>
+                <th>Sổ sách, Hóa đơn & Kê khai</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Nhóm 1: ≤ 1 tỷ đồng/năm</strong><br>(≤ 83,3 triệu/tháng)</td>
+                <td><span class="tag tag-green">Miễn (0đ)</span></td>
+                <td><span class="tag tag-green">Miễn (0đ)</span></td>
+                <td>Sổ đơn giản S1a-HKD; không bắt buộc hóa đơn; thông báo doanh thu 1 lần/năm hạn chót <strong>31/01 năm sau</strong> (Mẫu 01/TKN-CNKD).</td>
+              </tr>
+              <tr>
+                <td><strong>Nhóm 2: &gt; 1 – 3 tỷ đồng/năm</strong><br>(83,4 – 250 triệu/tháng)</td>
+                <td>Tính trực tiếp trên toàn bộ doanh thu:<br><code>Doanh thu × % GTGT</code></td>
+                <td>Được chọn 1 trong 2 cách (rồi giảm 30%):<br>• <em>Cách 1:</em> <code>(DT - 1 tỷ) × % TNCN</code><br>• <em>Cách 2:</em> <code>(DT - Chi phí) × 15%</code></td>
+                <td>Bắt buộc hóa đơn điện tử; sổ S2a-HKD (hoặc sổ S2b–S3a nếu tính theo lợi nhuận; khoản chi ≥ 5 triệu phải chuyển khoản); kê khai <strong>theo quý</strong>.</td>
+              </tr>
+              <tr>
+                <td><strong>Nhóm 3: &gt; 3 – 50 tỷ đồng/năm</strong></td>
+                <td><code>Doanh thu × % GTGT</code></td>
+                <td><code>(DT - Chi phí) × 17%</code> (giảm 30% nếu DT ≤ 10 tỷ)</td>
+                <td>Bắt buộc hóa đơn điện tử, sổ kế toán chi tiết; kê khai <strong>theo quý</strong>.</td>
+              </tr>
+              <tr>
+                <td><strong>Nhóm 4: &gt; 50 tỷ đồng/năm</strong></td>
+                <td>Kê khai như doanh nghiệp</td>
+                <td><code>(DT - Chi phí) × 20%</code></td>
+                <td>Hệ thống sổ sách & báo cáo tài chính như doanh nghiệp; kê khai <strong>theo tháng</strong>.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="grid-2">
+          <div>
+            <h3 style="font-size: 0.98rem; margin: 10px 0 6px 0;">Tỷ lệ thuế suất & tối ưu cho Freelancer</h3>
+            <ul class="clean-list">
+              <li><strong>Dịch vụ kỹ thuật, tư vấn không bao thầu NVL:</strong> 5% GTGT + 2% TNCN (Tổng 7%).</li>
+              <li><strong>Nội dung số, giải trí số, quảng cáo số:</strong> Một số bảng hướng dẫn NĐ 68/2026 liệt kê 5% GTGT + 5% TNCN (10%); một số bảng hoặc hướng dẫn cũ ghi chú khác nhau ở cột GTGT — cần kiểm tra mã ngành với chi cục thuế khi vượt 1 tỷ/năm.</li>
+              <li><strong>Chọn Cách 1 hay Cách 2 (Nhóm 1–3 tỷ):</strong> Freelancer ít chi phí đầu vào nên ưu tiên <strong>Cách 1</strong> vì chỉ tính % TNCN trên phần doanh thu <em>vượt quá 1 tỷ đồng</em>, thấp hơn nhiều so với mức 15% trên lợi nhuận của Cách 2.</li>
+              <li><strong>Thù lao hợp đồng dịch vụ DN trong nước (không lập HKD):</strong> Tạm khấu trừ 10% TNCN tại nguồn cho khoản chi từ <strong>5 triệu đồng/lần</strong> trở lên (từ 01/07/2026).</li>
+            </ul>
+          </div>
+          <div>
+            <h3 style="font-size: 0.98rem; margin: 10px 0 6px 0;">Quy định Affiliate TMĐT & Thu nhập nước ngoài</h3>
+            <ul class="clean-list">
+              <li><strong>Khấu trừ 10% sàn TMĐT (từ 01/10/2026):</strong> Shopee tạm khấu trừ 5% GTGT + 5% TNCN trước khi chi trả. Nếu tổng doanh thu kinh doanh cả năm <strong>≤ 1 tỷ đồng</strong>, cá nhân giữ lại chứng từ khấu trừ và bảng đối soát để làm thủ tục <strong>hoàn thuế nộp thừa</strong> theo Điều 10 NĐ 117/2025/NĐ-CP.</li>
+              <li><strong>Thu nhập xuyên biên giới (Upwork, AdSense, Wise):</strong> Cá nhân cư trú (≥ 183 ngày/năm tại VN) phải kê khai thu nhập toàn cầu (kể cả tiền để trên ví quốc tế). Quy đổi theo tỷ giá mua vào của ngân hàng ngày nhận tiền; kê khai qua <code>canhantmdt.gdt.gov.vn</code> hoặc eTax Mobile bằng VNeID mức 2 và thông báo toàn bộ số tài khoản/ví kinh doanh cho cơ quan thuế.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- INTERACTIVE TAX CALCULATOR -->
+      <div class="card">
+        <h2 class="card-title">Công cụ ước tính Thuế Hộ kinh doanh (Theo luật 2026)</h2>
+        <div class="calc-box">
+          <div class="calc-controls">
+            <div class="form-group">
+              <label for="revInput">Doanh thu trung bình/tháng (triệu VNĐ)</label>
+              <input type="number" id="revInput" value="100" min="0" step="5" oninput="calcTax2026()" />
+            </div>
+            <div class="form-group">
+              <label for="sectorSelect">Nhóm ngành nghề kinh doanh</label>
+              <select id="sectorSelect" onchange="calcTax2026()">
+                <option value="0.05|0.02">Dịch vụ kỹ thuật / Freelance (5% GTGT + 2% TNCN)</option>
+                <option value="0.05|0.05">Nội dung số / Quảng cáo số (5% GTGT + 5% TNCN)</option>
+                <option value="0.01|0.005">Phân phối, bán hàng hóa (1% GTGT + 0,5% TNCN)</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="costInput">Chi phí hợp lý có hóa đơn (% doanh thu)</label>
+              <input type="number" id="costInput" value="10" min="0" max="95" step="5" oninput="calcTax2026()" />
+            </div>
+          </div>
+          <div class="calc-result" id="taxOutput">
+            <!-- JS populated -->
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB 5: SWOT & CANVAS -->
+    <section id="tab-swot" class="tab-panel">
+      <div class="card">
+        <h2 class="card-title">Phân tích SWOT theo Ngành nghề trọng tâm</h2>
+        <div class="swot-grid">
+          <div class="swot-box swot-s">
+            <h4>Strengths (Điểm mạnh cốt lõi)</h4>
+            <ul class="clean-list">
+              <li><strong>Automation/Tech:</strong> Giá trị hợp đồng cao (250–2.000+ USD), làm việc bất đồng bộ qua văn bản/Loom, chi phí đầu vào thấp.</li>
+              <li><strong>Video AI & Sản phẩm số:</strong> Không cần lộ mặt, làm 1 lần bán lặp lại nhiều lần hoặc tạo view dài hạn.</li>
+            </ul>
+          </div>
+          <div class="swot-box swot-w">
+            <h4>Weaknesses (Điểm yếu cần kiểm soát)</h4>
+            <ul class="clean-list">
+              <li><strong>Freelance mới:</strong> Tốn chi phí Connects (Upwork) và thời gian xây dựng 3–5 đánh giá đầu tiên.</li>
+              <li><strong>YouTube/Affiliate:</strong> Độ trễ doanh thu 1–4 tháng, đòi hỏi kỷ luật xuất bản đều đặn trước khi có tiền.</li>
+            </ul>
+          </div>
+          <div class="swot-box swot-o">
+            <h4>Opportunities (Cơ hội 2026–2027)</h4>
+            <ul class="clean-list">
+              <li>Doanh nghiệp SME toàn cầu tăng mạnh nhu cầu tự động hóa bằng n8n/Make và AI Agent.</li>
+              <li>Chính sách VN miễn thuế HKD ≤ 1 tỷ/năm, giảm 30% TNCN (≤ 10 tỷ) và Etsy hỗ trợ rút trực tiếp VND.</li>
+            </ul>
+          </div>
+          <div class="swot-box swot-t">
+            <h4>Threats (Thách thức & Rủi ro)</h4>
+            <ul class="clean-list">
+              <li>YouTube dự kiến tăng gấp đôi ngưỡng YPP cho kênh mới từ 01/02/2027 và siết chặt nội dung AI lặp lại (Inauthentic Content).</li>
+              <li>Cạnh tranh giá toàn cầu và biến động chính sách khấu trừ/kiểm duyệt của các sàn.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <h2 class="card-title">Business Model Canvas (Mô hình kinh doanh tinh gọn 9 ô)</h2>
+        <div class="canvas-grid">
+          <div class="canvas-cell">
+            <h4>1. Đối tác chính</h4>
+            <p>Upwork, Fiverr, YouTube, Etsy, Gumroad, Shopee; Cổng thanh toán Wise, Payoneer, PayPal; Nhà cung cấp công cụ AI & hạ tầng máy chủ.</p>
+          </div>
+          <div class="canvas-cell">
+            <h4>2. Hoạt động chính</h4>
+            <p>Phân tích bài toán khách hàng và gửi đề xuất kèm video demo; Thiết kế workflow/sản phẩm số; Sản xuất video/nội dung hướng dẫn kéo traffic miễn phí.</p>
+          </div>
+          <div class="canvas-cell">
+            <h4>3. Nguồn lực chính</h4>
+            <p>Tư duy phân tích hệ thống & quy trình doanh nghiệp; Thư viện quy trình mẫu (Blueprint Library) tái sử dụng; Bộ công cụ AI chuyên dụng.</p>
+          </div>
+          <div class="canvas-cell">
+            <h4>4. Giải pháp giá trị</h4>
+            <p>Tiết kiệm 10–20 giờ vận hành mỗi tuần cho doanh nghiệp nhỏ trong 72h; Cung cấp bộ mẫu kỹ thuật và hướng dẫn giải quyết nút thắt thực tế.</p>
+          </div>
+          <div class="canvas-cell">
+            <h4>5. Quan hệ khách hàng</h4>
+            <p>Tương tác bất đồng bộ qua tài liệu Scope of Work, hướng dẫn bằng video quay màn hình, chuỗi email tự động cho người nhận tài liệu mẫu.</p>
+          </div>
+          <div class="canvas-cell">
+            <h4>6. Kênh phân phối</h4>
+            <p>Sàn việc làm quốc tế (Upwork/Fiverr); Kênh tìm kiếm YouTube/Blog SEO; Chợ sản phẩm số (Etsy/Gumroad) và sàn TMĐT nội địa.</p>
+          </div>
+          <div class="canvas-cell">
+            <h4>7. Phân khúc khách hàng</h4>
+            <p>Chủ doanh nghiệp SMEs/Agency tại Mỹ, Úc, EU cần tự động hóa quy trình; Người mua template số & khán giả công nghệ nói tiếng Anh.</p>
+          </div>
+          <div class="canvas-cell">
+            <h4>8. Cơ cấu chi phí</h4>
+            <p>Cố định 500k–2 triệu/tháng (AI, hạ tầng, Connects); Biến đổi theo phí sàn (0–20%); Thuế 0đ (≤ 1 tỷ/năm) và ~5,2%–10% khi vượt ngưỡng.</p>
+          </div>
+          <div class="canvas-cell">
+            <h4>9. Dòng doanh thu</h4>
+            <p>Phí thiết lập dự án (250–2.000+ USD); Phí bảo trì hàng tháng (Retainer); Bán template số lặp lại; Hoa hồng Affiliate & YouTube AdSense.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB 6: KPI 10TR -> 100TR -->
+    <section id="tab-roadmap" class="tab-panel">
+      <div class="card">
+        <h2 class="card-title">Kịch bản KPI hàng ngày hướng tới 10 triệu VNĐ Tháng 1 (~388 USD)</h2>
+        <div class="table-responsive">
+          <table>
+            <thead>
+              <tr>
+                <th>Mô hình triển khai</th>
+                <th>Ước tính thực nhận / Đơn vị (Minh họa)</th>
+                <th>Mục tiêu sản lượng Tháng 1</th>
+                <th>Hành động bắt buộc mỗi ngày (Thứ 2 – Thứ 7)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Freelance Automation (Upwork/Fiverr)</strong></td>
+                <td>~220,50 USD (~5,69 triệu VNĐ) / gói 250 USD (sau giả định 10% phí Upwork & 2% rút)</td>
+                <td><strong>2 dự án hoàn thành</strong> (~11,38 triệu VNĐ)</td>
+                <td>Viết <strong>5–7 đề xuất cá nhân hóa/ngày</strong> + quay 1 video Loom 90 giây demo chạy thử giải pháp; tối ưu Gig Fiverr hàng tuần.</td>
+              </tr>
+              <tr>
+                <td><strong>Sản phẩm số (Gumroad / Etsy)</strong></td>
+                <td>~11,65 USD (~300k VNĐ) / template 15 USD (sau phí Gumroad + ~5% PayPal/FX)</td>
+                <td><strong>34 đơn hàng</strong> (~1,1 đơn/ngày)</td>
+                <td>Đóng gói <strong>1–2 bộ template/tuần</strong>; đăng <strong>1 bài hướng dẫn/case study mỗi ngày</strong> lên Reddit, X, Shorts gắn link trực tiếp.</td>
+              </tr>
+              <tr>
+                <td><strong>Affiliate TMĐT VN (Shopee/TikTok)</strong></td>
+                <td>~22.500 VNĐ / đơn (giả định đơn 250k, hoa hồng 10%, trừ 10% thuế sàn; ~22.280đ sau phí 0,98%)</td>
+                <td><strong>445–449 đơn hàng</strong> (~15 đơn/ngày)</td>
+                <td>Đăng đều <strong>2–3 video ngắn/ngày</strong> quay cận công năng/so sánh sản phẩm; rà soát tỷ lệ nhấp giỏ hàng cuối mỗi tuần.</td>
+              </tr>
+              <tr>
+                <td><strong>YouTube Faceless & Affiliate Phần mềm</strong></td>
+                <td>Kịch bản minh họa: RPM video dài 5–8 USD/1k view (từ dải 3–9+ USD)</td>
+                <td>Tháng 1: <strong>0đ AdSense</strong> (tích lũy kênh; sau bật YPP cần 1.615–2.584 view/ngày)</td>
+                <td>Xuất bản <strong>3 video dài/tuần + 1 Shorts/ngày</strong> bằng tiếng Anh gắn nhãn AI; chèn link Affiliate & quà tặng mẫu ngay từ video đầu.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="card">
+        <h2 class="card-title">Lộ trình nhân quy mô: 10 → 20 → 30 → 50 → 100 triệu VNĐ/tháng</h2>
+        <div class="grid-4">
+          <div class="stat-box">
+            <div class="stat-label">Tháng 1: Sinh tồn</div>
+            <div class="stat-val">10 Triệu</div>
+            <div class="stat-sub"><strong>~388 USD.</strong> Dành 70% lực hoàn thành 2 dự án Automation nhỏ (250 USD/gói) lấy đánh giá 5 sao đầu tiên + khởi tạo kênh YouTube/Gumroad.</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-label">Tháng 2–3: Tối ưu giá</div>
+            <div class="stat-val">20–30 Triệu</div>
+            <div class="stat-sub"><strong>~775–1.163 USD.</strong> Nâng giá gói dự án lên mức entry 500–800 USD (2 dự án/tháng); đóng gói quy trình đã làm thành template bán trên Etsy/Gumroad (3–5tr/tháng).</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-label">Tháng 4–6: Bảo trì & Thụ động</div>
+            <div class="stat-val">50 Triệu</div>
+            <div class="stat-sub"><strong>~1.938 USD.</strong> Chuyển khách cũ sang gói Retainer 400–600 USD/tháng (3 khách = 30–40tr) + Kênh YouTube bật YPP & Affiliate (10–20tr). Dùng Wise giảm phí FX.</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-label">Tháng 7–12: Hệ thống</div>
+            <div class="stat-val">100 Triệu</div>
+            <div class="stat-sub"><strong>~3.876 USD.</strong> 1–2 dự án tích hợp AI đa ứng dụng (2.000+ USD) hoặc 3–4 gói Retainer (45–50tr) + Sản phẩm số & Affiliate (25–30tr) + YouTube (25tr). Đăng ký HKD.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <h2 class="card-title">Checklist hành động tương tác (Lưu trạng thái trên trình duyệt)</h2>
+        <div id="checklistContainer">
+          <label class="checklist-item"><input type="checkbox" onchange="toggleCheck(this)" /><span>1. Hoàn thiện hồ sơ CCCD/Hộ chiếu, mở tài khoản ngân hàng riêng & cài đặt VNeID mức độ 2.</span></label>
+          <label class="checklist-item"><input type="checkbox" onchange="toggleCheck(this)" /><span>2. Đăng ký thành công Wise (kích hoạt tài khoản nhận USD ACH) và Payoneer (liên kết bank VN).</span></label>
+          <label class="checklist-item"><input type="checkbox" onchange="toggleCheck(this)" /><span>3. Cài đặt môi trường thực hành (Make Free / n8n tự chạy / Công cụ AI chính chủ dùng riêng).</span></label>
+          <label class="checklist-item"><input type="checkbox" onchange="toggleCheck(this)" /><span>4. Hoàn thành 3–5 quy trình mẫu (Blueprint) kèm video demo 90 giây bằng tiếng Anh.</span></label>
+          <label class="checklist-item"><input type="checkbox" onchange="toggleCheck(this)" /><span>5. Mở Upwork + Fiverr (điền đúng Tax Info VN), đăng Portfolio và bắt đầu gửi 5 proposal/ngày.</span></label>
+          <label class="checklist-item"><input type="checkbox" onchange="toggleCheck(this)" /><span>6. Đăng bán 2 bộ template đầu tiên trên Gumroad/Etsy (xác minh Etsy Payments VN) & lập kênh YouTube ngách quốc tế.</span></label>
+          <label class="checklist-item"><input type="checkbox" onchange="toggleCheck(this)" /><span>7. Ghi chép doanh thu theo ngày vào sổ S1a-HKD; kiểm tra điều kiện hoàn thuế 10% nếu làm Affiliate sàn TMĐT và kê khai cuối năm trước 31/01.</span></label>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      Tài liệu tham khảo cấu trúc kinh doanh số, phí nền tảng và chính sách thuế Việt Nam cập nhật giai đoạn 2026–2027. Các con số doanh thu ước tính là kịch bản minh họa; kết quả thực tế phụ thuộc vào chất lượng thực thi và biến động thị trường.
+    </footer>
+  </div>
+
+  <script>
+    function openTab(evt, tabId) {
+      var panels = document.getElementsByClassName("tab-panel");
+      for (var i = 0; i < panels.length; i++) {
+        panels[i].classList.remove("active");
+      }
+      var btns = document.getElementsByClassName("tab-btn");
+      for (var i = 0; i < btns.length; i++) {
+        btns[i].classList.remove("active");
+      }
+      document.getElementById(tabId).classList.add("active");
+      evt.currentTarget.classList.add("active");
+    }
+
+    function formatVND(num) {
+      return Math.round(num).toLocaleString("vi-VN") + " VNĐ";
+    }
+
+    function calcTax2026() {
+      var monthlyRev = Math.max(0, parseFloat(document.getElementById("revInput").value) |
+
+| 0);
+      var costPct = Math.min(95, Math.max(0, parseFloat(document.getElementById("costInput").value) |
+
+| 0));
+      var annualRev = monthlyRev * 12 * 1000000;
+      var rates = document.getElementById("sectorSelect").value.split("|");
+      var vatRate = parseFloat(rates[0]);
+      var pitRate = parseFloat(rates[1]);
+      var out = document.getElementById("taxOutput");
+
+      var threshold = 1000000000; // 1 tỷ VNĐ/năm theo NĐ 141/2026
+      var vatTax = 0;
+      var pitTaxSelected = 0;
+      var pitMethod1 = 0;
+      var pitMethod2 = 0;
+      var groupLabel = "";
+      var noteMethod = "";
+
+      if (annualRev <= threshold) {
+        groupLabel = "Nhóm 1 (≤ 1 tỷ/năm) — MIỄN THUẾ GTGT & TNCN";
+        noteMethod = "Kê khai thông báo doanh thu 1 lần/năm (hạn 31/01).";
+      } else if (annualRev <= 3000000000) {
+        groupLabel = "Nhóm 2 (> 1 – 3 tỷ/năm) — Được chọn Cách 1 hoặc Cách 2 (+ Giảm 30% TNCN)";
+        vatTax = annualRev * vatRate;
+        pitMethod1 = ((annualRev - threshold) * pitRate) * 0.7;
+        pitMethod2 = (annualRev * (1 - costPct / 100) * 0.15) * 0.7;
+        pitTaxSelected = Math.min(pitMethod1, pitMethod2);
+        if (pitMethod1 <= pitMethod2) {
+          noteMethod = "Tối ưu nhất: Chọn Cách 1 (theo doanh thu vượt 1 tỷ). Cách 2 mất " + formatVND(pitMethod2) + " TNCN.";
+        } else {
+          noteMethod = "Tối ưu nhất: Chọn Cách 2 (15% lợi nhuận). Cách 1 mất " + formatVND(pitMethod1) + " TNCN.";
+        }
+      } else if (annualRev <= 50000000000) {
+        groupLabel = "Nhóm 3 (> 3 – 50 tỷ/năm) — Bắt buộc tính TNCN trên Lợi nhuận (17%)";
+        vatTax = annualRev * vatRate;
+        var pitRaw = annualRev * (1 - costPct / 100) * 0.17;
+        pitTaxSelected = annualRev <= 10000000000 ? pitRaw * 0.7 : pitRaw;
+        noteMethod = annualRev <= 10000000000 ? "Đã áp dụng giảm 30% TNCN (DT ≤ 10 tỷ theo NĐ 398/2026)." : "DT > 10 tỷ: không áp dụng giảm 30% TNCN.";
+      } else {
+        groupLabel = "Nhóm 4 (> 50 tỷ/năm) — Bắt buộc tính TNCN trên Lợi nhuận (20%)";
+        vatTax = annualRev * vatRate;
+        pitTaxSelected = annualRev * (1 - costPct / 100) * 0.20;
+        noteMethod = "Áp dụng chế độ sổ sách & kê khai tháng như doanh nghiệp.";
+      }
+
+      var totalTax = vatTax + pitTaxSelected;
+      var effectivePct = annualRev > 0 ? ((totalTax / annualRev) * 100).toFixed(2) : "0.00";
+
+      out.innerHTML =
+        '<div><strong>Phân nhóm:</strong> ' + groupLabel + '<br>' +
+        '<strong>Tổng doanh thu năm:</strong> ' + formatVND(annualRev) + '<br>' +
+        '<span style="font-size:0.84rem;color:#475569;">' + noteMethod + '</span></div>' +
+        '<div><strong>Thuế GTGT/năm:</strong> ' + formatVND(vatTax) + '<br>' +
+        '<strong>Thuế TNCN tối ưu/năm:</strong> ' + formatVND(pitTaxSelected) + '</div>' +
+        '<div><strong>Tổng thuế dự kiến/năm:</strong> <span style="color:#1d4ed8;font-weight:800">' + formatVND(totalTax) + '</span><br>' +
+        '<strong>Tỷ lệ thuế hiệu dụng:</strong> ' + effectivePct + '% doanh thu</div>';
+    }
+
+    function toggleCheck(checkbox) {
+      var label = checkbox.closest(".checklist-item");
+      if (checkbox.checked) {
+        label.classList.add("done");
+      } else {
+        label.classList.remove("done");
+      }
+      saveChecklist();
+    }
+
+    function saveChecklist() {
+      try {
+        var boxes = document.querySelectorAll("#checklistContainer input[type='checkbox']");
+        var state = [];
+        boxes.forEach(function (b) { state.push(b.checked); });
+        localStorage.setItem("freelance_checklist_2026", JSON.stringify(state));
+      } catch (e) {}
+    }
+
+    function loadChecklist() {
+      try {
+        var saved = JSON.parse(localStorage.getItem("freelance_checklist_2026") |
+
+| "[]");
+        var boxes = document.querySelectorAll("#checklistContainer input[type='checkbox']");
+        boxes.forEach(function (b, idx) {
+          if (saved[idx]) {
+            b.checked = true;
+            b.closest(".checklist-item").classList.add("done");
+          }
+        });
+      } catch (e) {}
+    }
+
+    window.addEventListener("DOMContentLoaded", function () {
+      calcTax2026();
+      loadChecklist();
+    });
+  </script>
+</body>
+</html>
+```</report>
+
+Tôi đã bổ sung phần phân tích tình trạng burnout, quy trình 4 bước phục hồi (kết hợp tận dụng đệm tài chính từ Bảo hiểm thất nghiệp theo quy định 2026) và bảng lộ trình triển khai nhịp độ chậm ở mức năng lượng thấp ngay vào phần đầu của báo cáo nghiên cứu, đồng thời giữ nguyên toàn bộ các phân tích và mã nguồn HTML phía sau. Hãy cho tôi biết nếu bạn muốn chỉnh sửa thêm phần nào khác.
+
+> *Thông tin này chỉ mang tính chất tham khảo. Để được tư vấn y tế hoặc chẩn đoán, hãy tham khảo ý kiến chuyên gia.*
