@@ -947,8 +947,13 @@
       for (var i = 0; i < btns.length; i++) {
         btns[i].classList.remove("active");
       }
-      document.getElementById(tabId).classList.add("active");
-      evt.currentTarget.classList.add("active");
+      var target = document.getElementById(tabId);
+      if (target) {
+        target.classList.add("active");
+      }
+      if (evt && evt.currentTarget) {
+        evt.currentTarget.classList.add("active");
+      }
     }
 
     function formatVND(num) {
@@ -956,12 +961,10 @@
     }
 
     function calcTax2026() {
-      var monthlyRev = Math.max(0, parseFloat(document.getElementById("revInput").value) |
-
-| 0);
-      var costPct = Math.min(95, Math.max(0, parseFloat(document.getElementById("costInput").value) |
-
-| 0));
+      var revVal = parseFloat(document.getElementById("revInput").value);
+      var monthlyRev = Math.max(0, isNaN(revVal) ? 0 : revVal);
+      var costVal = parseFloat(document.getElementById("costInput").value);
+      var costPct = Math.min(95, Math.max(0, isNaN(costVal) ? 0 : costVal));
       var annualRev = monthlyRev * 12 * 1000000;
       var rates = document.getElementById("sectorSelect").value.split("|");
       var vatRate = parseFloat(rates[0]);
@@ -1037,9 +1040,8 @@
 
     function loadChecklist() {
       try {
-        var saved = JSON.parse(localStorage.getItem("freelance_checklist_2026") |
-
-| "[]");
+        var rawSaved = localStorage.getItem("freelance_checklist_2026");
+        var saved = JSON.parse(rawSaved ? rawSaved : "[]");
         var boxes = document.querySelectorAll("#checklistContainer input[type='checkbox']");
         boxes.forEach(function (b, idx) {
           if (saved[idx]) {
@@ -1057,3 +1059,4 @@
   </script>
 </body>
 </html>
+<!-- https://gemini.google.com/app/aab28a1e38a4443f -->
