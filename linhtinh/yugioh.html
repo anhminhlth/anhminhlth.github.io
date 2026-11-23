@@ -1,0 +1,868 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Cẩm Nang Chuẩn Yu-Gi-Oh! Forbidden Memories (SLUS-01411 — Full 722 Lá)</title>
+<style>
+  :root {
+    --bg: #0b0e14;
+    --bg-card: #131924;
+    --bg-soft: #1a2232;
+    --gold: #eab308;
+    --gold-dim: #a16207;
+    --cyan: #22d3ee;
+    --blue: #3b82f6;
+    --purple: #a855f7;
+    --pink: #ec4899;
+    --green: #22c55e;
+    --red: #ef4444;
+    --text: #f1f5f9;
+    --muted: #94a3b8;
+    --border: #263145;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background: radial-gradient(circle at top, #171f30 0%, var(--bg) 55%);
+    color: var(--text);
+    line-height: 1.6;
+    padding-bottom: 60px;
+  }
+  header {
+    background: linear-gradient(135deg, #1b1628 0%, #0f172a 60%, #1c1917 100%);
+    border-bottom: 2px solid var(--gold-dim);
+    padding: 18px 14px 12px;
+    text-align: center;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 6px 24px rgba(0,0,0,0.55);
+  }
+  header h1 {
+    font-size: clamp(1.1rem, 3.2vw, 1.7rem);
+    color: var(--gold);
+    letter-spacing: 0.4px;
+    text-transform: uppercase;
+  }
+  header p {
+    font-size: 0.84rem;
+    color: var(--muted);
+    margin-top: 4px;
+  }
+  .tabs {
+    display: flex;
+    gap: 6px;
+    overflow-x: auto;
+    padding: 12px 6px 4px;
+    max-width: 1180px;
+    margin: 0 auto;
+    scrollbar-width: thin;
+  }
+  .tab-btn {
+    flex: 0 0 auto;
+    background: var(--bg-soft);
+    color: var(--muted);
+    border: 1px solid var(--border);
+    padding: 9px 14px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 0.85rem;
+    transition: all 0.2s ease;
+    white-space: nowrap;
+  }
+  .tab-btn:hover { color: var(--text); border-color: var(--gold-dim); }
+  .tab-btn.active {
+    background: linear-gradient(135deg, #ca8a04, #eab308);
+    color: #0b0e14;
+    border-color: var(--gold);
+    box-shadow: 0 0 14px rgba(234,179,8,0.35);
+  }
+  main { max-width: 1180px; margin: 18px auto 0; padding: 0 14px; }
+  .panel { display: none; animation: fadeIn 0.25s ease; }
+  .panel.active { display: block; }
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: translateY(0); } }
+
+  .section-box {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 18px;
+    margin-bottom: 18px;
+  }
+  h2 {
+    color: var(--gold);
+    font-size: 1.22rem;
+    margin-bottom: 10px;
+    border-left: 4px solid var(--gold);
+    padding-left: 10px;
+  }
+  h3 {
+    color: var(--cyan);
+    font-size: 1.03rem;
+    margin: 14px 0 8px;
+  }
+  .badge {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 999px;
+    font-size: 0.73rem;
+    font-weight: 700;
+    vertical-align: middle;
+  }
+  .b-gold { background: rgba(234,179,8,0.18); color: #fde047; border: 1px solid rgba(234,179,8,0.45); }
+  .b-red { background: rgba(239,68,68,0.18); color: #fca5a5; border: 1px solid rgba(239,68,68,0.45); }
+  .b-cyan { background: rgba(34,211,238,0.16); color: #67e8f9; border: 1px solid rgba(34,211,238,0.4); }
+  .b-green { background: rgba(34,197,94,0.16); color: #86efac; border: 1px solid rgba(34,197,94,0.4); }
+  .b-purple { background: rgba(168,85,247,0.18); color: #d8b4fe; border: 1px solid rgba(168,85,247,0.45); }
+
+  .alert {
+    background: rgba(234,179,8,0.09);
+    border: 1px solid rgba(234,179,8,0.35);
+    border-radius: 10px;
+    padding: 12px 14px;
+    margin: 12px 0;
+    font-size: 0.91rem;
+  }
+  .alert.danger {
+    background: rgba(239,68,68,0.09);
+    border-color: rgba(239,68,68,0.4);
+  }
+
+  .grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(290px, 1fr)); gap: 14px; }
+
+  .duelist-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(265px, 1fr));
+    gap: 12px;
+    margin-top: 10px;
+  }
+  .duelist-card {
+    background: var(--bg-soft);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 12px;
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+  }
+  .duelist-card img {
+    width: 64px;
+    height: 64px;
+    border-radius: 10px;
+    object-fit: cover;
+    border: 2px solid var(--gold-dim);
+    background: #0f172a;
+    flex-shrink: 0;
+  }
+  .duelist-info h4 { font-size: 0.95rem; color: #fff; margin-bottom: 3px; }
+  .duelist-info p { font-size: 0.82rem; color: var(--muted); margin-top: 4px; }
+
+  .deck-summary {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin: 10px 0 14px;
+  }
+  .stat-pill {
+    background: var(--bg-soft);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 8px 12px;
+    font-size: 0.85rem;
+  }
+  .stat-pill strong { color: var(--gold); }
+
+  .card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(174px, 1fr));
+    gap: 12px;
+    margin-top: 12px;
+  }
+  .ygo-card {
+    background: var(--bg-soft);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    position: relative;
+    transition: transform 0.18s ease, border-color 0.18s ease;
+  }
+  .ygo-card:hover { transform: translateY(-3px); border-color: var(--gold); }
+  .qty-tag {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    background: var(--gold);
+    color: #0b0e14;
+    font-weight: 800;
+    font-size: 0.78rem;
+    padding: 2px 7px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.5);
+  }
+  .id-tag {
+    position: absolute;
+    top: 8px;
+    left: 8px;
+    background: rgba(11,14,20,0.85);
+    color: var(--cyan);
+    font-weight: 700;
+    font-size: 0.7rem;
+    padding: 2px 6px;
+    border-radius: 6px;
+    border: 1px solid var(--border);
+  }
+  .ygo-card img {
+    width: 112px;
+    height: 162px;
+    object-fit: cover;
+    border-radius: 6px;
+    margin: 6px 0 8px;
+    background: #0b0e14;
+    border: 1px solid #334155;
+  }
+  .ygo-name { font-weight: 700; font-size: 0.86rem; color: #fff; line-height: 1.25; }
+  .ygo-meta { font-size: 0.76rem; color: var(--gold); margin-top: 4px; font-weight: 600; }
+  .ygo-sub { font-size: 0.74rem; color: var(--muted); margin-top: 3px; }
+  .ygo-pass { font-family: monospace; font-size: 0.71rem; color: #93c5fd; margin-top: 5px; }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 10px 0;
+    font-size: 0.85rem;
+  }
+  th, td {
+    border: 1px solid var(--border);
+    padding: 8px 10px;
+    text-align: left;
+    vertical-align: top;
+  }
+  th { background: #1e293b; color: var(--gold); }
+  tr:nth-child(even) td { background: rgba(255,255,255,0.02); }
+  .table-wrap { overflow-x: auto; }
+
+  .subtabs { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 14px; }
+  .subtab-btn {
+    background: #0f172a;
+    color: var(--muted);
+    border: 1px solid var(--border);
+    padding: 7px 13px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 0.84rem;
+  }
+  .subtab-btn.active {
+    background: var(--blue);
+    color: #fff;
+    border-color: #60a5fa;
+  }
+  .subpanel { display: none; }
+  .subpanel.active { display: block; }
+
+  .step-list { padding-left: 20px; margin: 8px 0; }
+  .step-list li { margin-bottom: 7px; font-size: 0.91rem; }
+  .calc-box {
+    background: #0f172a;
+    border: 1px solid var(--cyan);
+    border-radius: 12px;
+    padding: 14px;
+    margin-top: 12px;
+  }
+  .calc-row { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; margin-top: 8px; }
+  select, input[type="number"] {
+    background: var(--bg-soft);
+    color: #fff;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 7px 10px;
+    font-size: 0.88rem;
+  }
+  .calc-result {
+    font-size: 1.28rem;
+    font-weight: 800;
+    color: var(--gold);
+    margin-top: 10px;
+  }
+  footer {
+    text-align: center;
+    color: var(--muted);
+    font-size: 0.8rem;
+    margin-top: 28px;
+    padding: 0 14px;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Yu-Gi-Oh! Forbidden Memories — Cẩm Nang Chuẩn Xác</h1>
+  <p>PS1 SLUS-01411 (Full 722 Lá) • DuckStation Android (BIOS SCPH1001.BIN) • Kiểm toán chi tiết từng lá &amp; cốt truyện</p>
+  <nav class="tabs" id="mainTabs">
+    <button class="tab-btn active" data-tab="rules">0. Luật chuẩn &amp; Sửa lỗi</button>
+    <button class="tab-btn" data-tab="story">1. Cốt truyện &amp; Qua màn</button>
+    <button class="tab-btn" data-tab="deck2">2. Bộ Mạnh Nhất (40 lá)</button>
+    <button class="tab-btn" data-tab="deck3">3. Bộ Twin-Headed TD</button>
+    <button class="tab-btn" data-tab="deck4">4. Bộ Ghép Bài 9999</button>
+    <button class="tab-btn" data-tab="deck5">5. Chủ đề Nam / Nữ / Máy</button>
+    <button class="tab-btn" data-tab="games">6. Game Bàn Cờ &amp; Cài Giả Lập</button>
+  </nav>
+</header>
+
+<main>
+  <!-- TAB 0: LUẬT CHUẨN -->
+  <section class="panel active" id="tab-rules">
+    <div class="section-box">
+      <h2>Phân biệt bản gốc Vanilla SLUS-01411 và bản Full 722 lá</h2>
+      <div class="alert">
+        <strong>Điểm mấu chốt tránh nhầm lẫn:</strong> ROM Mỹ <code>SLUS-01411</code> có tổng cộng 722 lá bài (<code>#001</code>–<code>#722</code>). Ở <strong>bản gốc chưa mod/chưa nạp save 722 lá</strong>, có 82 lá không rơi khi đấu (gồm 33 lá không thể mở vào Thư viện nếu không có 999.999 Star Chips, quái Tế lễ như <code>Blue-Eyes Ultimate Dragon</code> / <code>Gate Guardian</code>, lá dung hợp <code>Swords of Revealing Light</code>, và 2 lá bất khả thi hoàn toàn là <code>#721 Dark Magic Ritual</code> &amp; <code>#722 Magician of Black Chaos</code>). Khi chơi <strong>bản Full 722 lá</strong>, mọi quái vật đều gọi thẳng ra sân 1 lá/lượt mà <strong>không cần hiến tế hay bài Tế lễ</strong>.
+      </div>
+      <div class="grid-2">
+        <div class="section-box" style="margin:0;background:var(--bg-soft)">
+          <h3>Quy tắc Dung hợp &amp; Trang bị chuẩn ROM</h3>
+          <ul class="step-list">
+            <li><strong>Bộ bài đúng 40 lá</strong>, tối đa 3 bản sao cùng tên; không có hiệu ứng quái vật, không cần <code>Polymerization</code>.</li>
+            <li><strong>Ghép thất bại:</strong> Lá chọn thứ nhất vào Mộ, lá chọn thứ hai ở lại trên sân. Có thể ghép trực tiếp Trang bị vào quái vật ngay trên tay trong 1 lượt.</li>
+            <li><strong>Twin-Headed Thunder Dragon (#613, 2800/2100):</strong> Ghép <code>Rồng + Sấm</code> với <strong>ít nhất 1 lá có ATK ≥ 1600</strong> (nếu cả 2 đều &lt; 1600 chỉ ra <code>Thunder Dragon</code> 1600). <code>Thunder Dragon</code> ghép với mọi Rồng (và các lá Sấm tương thích) ra ngay THTD.</li>
+            <li><strong>Miễn nhiễm đặc biệt:</strong> THTD mang tộc <strong>Thunder</strong> nên <strong>không bị diệt bởi Dragon Capture Jar</strong>, nhưng vẫn ăn cả <code>Dragon Treasure</code>, <code>Mountain (+500)</code> và <code>Umi (+500)</code>.</li>
+            <li><strong>Trang bị:</strong> Chỉ duy nhất <code>Megamorph</code> tăng <strong>+1000</strong> (mọi quái); <code>Bright Castle</code> tăng <strong>+500</strong> (mọi quái); chỉ số tối đa khóa trần <strong>9999/9999</strong>. <code>BEUD</code>/<code>BEWD</code>/<code>BSD</code> chỉ gắn được 3 lá (<code>Dragon Treasure</code>, <code>Megamorph</code>, <code>Bright Castle</code>); <code>Meteor B. Dragon</code> chỉ gắn được 4 lá (thêm <code>Salamandra</code>).</li>
+          </ul>
+        </div>
+        <div class="section-box" style="margin:0;background:var(--bg-soft)">
+          <h3>Hành tinh Bảo hộ (+500) &amp; 6 Địa hình</h3>
+          <p style="font-size:0.88rem;margin-bottom:8px;">Khi tấn công, chữ <em>Guardian Star</em> hiện <strong style="color:#fde047">Vàng (+500 cho bạn)</strong> hoặc <strong style="color:#fca5a5">Đỏ (+500 cho địch)</strong>. Hai nhóm hoàn toàn độc lập:</p>
+          <p><span class="badge b-gold">Nhóm 1</span> <strong>☉ Sun &gt; ☾ Moon &gt; ♀ Venus &gt; ☿ Mercury &gt; ☉ Sun</strong></p>
+          <p style="margin-top:6px;"><span class="badge b-cyan">Nhóm 2</span> <strong>♂ Mars &gt; ♃ Jupiter &gt; ♄ Saturn &gt; ♅ Uranus &gt; ♇ Pluto &gt; ♆ Neptune &gt; ♂ Mars</strong></p>
+          <div class="table-wrap" style="margin-top:10px;">
+            <table>
+              <thead><tr><th>Địa hình</th><th>Pass FM (55 SC)</th><th>+500 ATK/DEF</th><th>-500 ATK/DEF</th></tr></thead>
+              <tbody>
+                <tr><td>#330 Forest</td><td>87430998</td><td>Insect, Beast, Plant, Beast-Warrior</td><td>Không</td></tr>
+                <tr><td>#331 Wasteland</td><td>23424603</td><td>Dinosaur, Zombie, Rock</td><td>Không</td></tr>
+                <tr><td><strong>#332 Mountain</strong></td><td>50913601</td><td><strong>Dragon, Winged Beast, Thunder</strong></td><td><strong>Không</strong></td></tr>
+                <tr><td>#333 Sogen</td><td>86318356</td><td>Warrior, Beast-Warrior</td><td>Không</td></tr>
+                <tr><td>#334 Umi</td><td>22702055</td><td>Aqua, Thunder, Fish, Sea Serpent</td><td><strong>Machine, Pyro</strong></td></tr>
+                <tr><td>#335 Yami</td><td>59197169</td><td>Fiend, Spellcaster</td><td><strong>Fairy</strong></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+      <div class="alert danger" style="margin-top:14px;">
+        <strong>Cảnh báo 6 đối thủ sở hữu Con Mắt Ngàn Năm (Nhìn xuyên bài úp):</strong> <code>Heishin (1st)</code>, <code>Pegasus</code>, <code>Heishin 2nd</code>, <code>Seto 3rd</code>, <code>DarkNite</code> và <code>Nitemare</code>. Không đặt bẫy giả hay úp quái yếu để dụ nhóm đối thủ này!
+      </div>
+    </div>
+  </section>
+
+  <!-- TAB 1: CỐT TRUYỆN ĐẦY ĐỦ -->
+  <section class="panel" id="tab-story">
+    <div class="section-box">
+      <h2>Giai đoạn 1: Ai Cập cổ đại &amp; Đêm đảo chính (Ancient Egypt — Prologue)</h2>
+      <p>Bạn nhập vai <strong>Hoàng tử trẻ của triều đại Amenhotep (Atem)</strong>, người say mê Đấu Bài Ma Thuật và thường trốn khỏi cung điện đi chơi cùng hai người bạn dân thường <strong>Jono</strong> và <strong>Teana</strong>, trái ý sư phụ kiêm cố vấn trung thành <strong>Simon Muran</strong>. Trong bóng tối, <strong>Đại pháp sư Heishin</strong> vừa khám phá kho báu cấm chứa Hắc Ma Lực và cấu kết cùng cánh tay phải kiêu ngạo <strong>Tư tế Seto</strong> để cướp ngôi và đoạt <strong>Trò Chơi Ngàn Năm (Millennium Puzzle)</strong>.</p>
+      <ol class="step-list">
+        <li><strong>Pharaoh's Palace → Card Shop:</strong> Đấu thắng <strong>Simon Muran</strong> (mở khóa Free Duel — ông là nguồn cày sớm <code>Time Wizard</code>) rồi sang <code>Card Shop</code> lưu game.</li>
+        <li><strong>Dueling Grounds:</strong> Đấu tùy chọn <strong>Teana</strong>, sau đó chọn <code>Talk to Someone Else</code> để đấu <strong>Villager 1, Villager 2 và Villager 3</strong>. <em>(Lưu ý: đây là cơ hội duy nhất trong cả game để gặp Villager 3!)</em></li>
+        <li><strong>Town Plaza (Quảng trường Thị trấn):</strong> Cùng Teana xem lễ hội pháp sư mang âm khí hắc ám của Heishin. Chứng kiến <strong>Priest Seto</strong> đánh bại và sỉ nhục <strong>Jono</strong>. Nhận lời thách đấu của Seto; Seto bị thuộc hạ gọi về gặp Heishin nên hẹn đấu lại tại Dueling Grounds.</li>
+        <li><strong>Quay lại Dueling Grounds:</strong> Đấu giao hữu với <strong>Jono</strong> (nguồn rớt <code>Baby Dragon</code>), rồi đấu <strong>Seto (1st)</strong>. Sau khi thua, Seto nhận ra bạn là Hoàng tử và rút lui.</li>
+        <li><strong>Đêm đảo chính tại Pharaoh's Palace:</strong> Simon giục bạn đi ngủ. Đêm đó Heishin đột kích cung điện, dùng <strong>Millennium Rod</strong> đánh trọng thương Simon. Seto bắt hầu nữ và đe dọa hành quyết Đức Vua và Hoàng hậu nếu bạn không giao Puzzle. Bạn từ chối; Simon lê thân mang Puzzle đến giục bạn chạy (<strong>chọn Run</strong>).</li>
+        <li><strong>Heishin (1st) — Trận thua bắt buộc (Scripted Loss):</strong> Heishin chặn đường ép đấu trên sân <code>Yami</code>. Game buộc bạn phải thua trận này (dù thắng vẫn phải đánh lại). Khi thua, Simon cản Heishin để bạn <strong>đập vỡ Millennium Puzzle</strong> và dùng ma thuật phong ấn linh hồn hai thầy trò vào bên trong, chờ người ở tương lai ghép lại.</li>
+      </ol>
+      <div class="duelist-grid" id="story-p1"></div>
+    </div>
+
+    <div class="section-box">
+      <h2>Giai đoạn 2: Thời hiện đại — Giải KC Cup &amp; Gom 7 Bảo bối (Domino City)</h2>
+      <p>Hàng ngàn năm sau tại Domino City (Nhật Bản), cậu bé <strong>Yugi Muto</strong> giải được Millennium Puzzle và tỉnh dậy sau giấc mơ về Ai Cập cổ đại. Yugi tham dự giải <strong>Kaiba Corporation World Championship (KC Cup)</strong> gồm 9 trận cố định. Sau 4 trận Vòng loại, <strong>Shadi</strong> xuất hiện, dùng <strong>Millennium Key</strong> mở tâm trí Yugi gặp <strong>Hoàng tử Atem</strong>; Hoàng tử trao cho Yugi <strong>6 lá bài trắng</strong> để hấp thụ 6 Bảo bối Ngàn Năm của các đối thủ vòng Chung kết. Khi Yugi đánh bại <strong>Seto Kaiba</strong> giành <strong>Millennium Rod</strong>, đủ 7 Bảo bối hội tụ mở cánh cổng đưa Hoàng tử trở về Ai Cập cổ đại.</p>
+      <div class="duelist-grid" id="story-p2"></div>
+    </div>
+
+    <div class="section-box">
+      <h2>Giai đoạn 3: Trở về Ai Cập hoang tàn &amp; Mở khóa Forbidden Ruins</h2>
+      <p>Linh hồn <strong>Simon Muran</strong> đánh thức bạn lần cuối trong Puzzle, báo rằng Heishin đã chiếm Ai Cập và giấu 5 Bảo bối tại 5 Thánh địa do 5 Đại pháp sư canh giữ, rồi ông tan biến vĩnh viễn. Thao tác chuẩn để không bị kẹt màn:</p>
+      <ol class="step-list">
+        <li><strong>Shrine of Glory:</strong> Tỉnh dậy giữa phế tích, thoát ra bản đồ.</li>
+        <li><strong>King's Valley:</strong> Gặp người giữ mộ <strong>Sadin</strong> hỏi về <code>Forbidden Ruins</code> (ông cần Bản đồ mới dẫn đi được).</li>
+        <li><strong>Old Dueling Grounds → Hidden Dueling Ground:</strong> Về đấu trường cũ bị phá nát gặp <strong>Jono</strong>; cậu dẫn bạn xuống <strong>Hidden Dueling Ground</strong> dưới lòng đất gặp <strong>Teana</strong>. Đây là điểm <strong>Save game mới</strong> và có thể đấu tùy chọn <code>Jono 2nd</code>, <code>Teana 2nd</code>, Villager 1 &amp; 2.</li>
+        <li><strong>Pharaoh's Palace:</strong> Đánh thắng <strong>Mage Soldier</strong> gác cung điện hoang, rồi vào <strong>phòng cũ của Simon Muran</strong> lấy <strong>Tấm Bản Đồ (Map)</strong>.</li>
+        <li><strong>King's Valley → Forbidden Ruins:</strong> Đưa Bản đồ cho Sadin để mở đường vào <strong>Forbidden Ruins</strong> xem bích họa vị trí 5 Thánh địa. <strong>Seto</strong> xuất hiện giả vờ liên minh xúi bạn đi hạ 5 High Mage; Sadin cảnh báo đừng tin Seto.</li>
+      </ol>
+      <div class="duelist-grid" id="story-p3"></div>
+    </div>
+
+    <div class="section-box">
+      <h2>Giai đoạn 4: 5 Thánh địa Nguyên tố, Cứu Teana &amp; Mẹo bỏ qua Labyrinth Mage</h2>
+      <p>Bạn có thể đánh 5 Thánh địa theo <strong>bất kỳ thứ tự nào</strong>. Luôn dùng <code>Mountain</code> hoặc <code>Umi</code> để phá địa hình mặc định (+500) của chủ đền. Đặc biệt, <strong>Meadow Mage</strong> là mỏ cày S/A-POW tốt nhất toàn game (rớt <code>Meteor B. Dragon</code>, <code>Skull Knight</code>, <code>Dark Magician</code>).</p>
+      <div class="alert">
+        <strong>MẸO VÀNG RÚT NGẮN BOSS CUỐI (7 TRẬN → 6 TRẬN) &amp; ĐƯỜNG MÊ CUNG:</strong><br/>
+        Sau khi hạ <strong>2 đến 4 High Mage</strong> (chưa hạ đủ 5!), hãy quay về <strong>Hidden Dueling Ground</strong>. Jono báo <strong>Seto đã bắt cóc Teana</strong> đưa về <strong>Vast Shrine</strong>. Hãy tới <code>Vast Shrine</code> → hạ <strong>Labyrinth Mage</strong> → đi chính xác 4 hướng trong Mê cung: <strong>Phải → Phải → Trái → Phải (Right → Right → Left → Right)</strong> → đánh thắng <strong>Seto 2nd</strong> để cứu Teana. Làm bước này giúp bạn vừa mở khóa Seto 2nd trong Free Duel, vừa <strong>xóa Labyrinth Mage khỏi chuỗi Boss cuối không lưu game</strong>! Sau đó hạ nốt các High Mage còn lại rồi Save kỹ trước khi đột kích Vast Shrine.
+      </div>
+      <div class="duelist-grid" id="story-p4"></div>
+    </div>
+
+    <div class="section-box">
+      <h2>Giai đoạn 5: Đột kích Vast Shrine &amp; Chuỗi 6 Trùm cuối (Final 6 Gauntlet)</h2>
+      <p>Bước vào <strong>Vast Shrine</strong> lần cuối, bạn phải thắng liên tiếp <strong>6 trận không được lưu trong game gốc</strong> (trên DuckStation hãy dùng <em>Save State</em> sau mỗi trận!). Cả 6 trận đều mở màn trên sân <strong>Yami</strong> và 4 trùm cuối đều có <strong>Millennium Eye</strong>.</p>
+      <ol class="step-list">
+        <li><strong>Guardian Sebek &amp; Guardian Neku:</strong> Hai vệ binh của Heishin chặn đường trong hành lang Vast Shrine. Đổi sân sang <code>Mountain</code>/<code>Umi</code> để tước +500 của Neku.</li>
+        <li><strong>Heishin 2nd:</strong> Đánh bại Heishin trong đại điện để đoạt <strong>Millennium Rod</strong>.</li>
+        <li><strong>Seto 3rd (Sự phản bội tại Forbidden Ruins):</strong> Quay về <code>Forbidden Ruins</code> gặp Seto, hắn lật mặt thừa nhận lợi dụng bạn thu thập 7 Bảo bối để triệu hồi ác thần <strong>DarkNite</strong>. Trận khó bậc nhất game với <code>Blue-Eyes Ultimate Dragon (4500)</code> có thể được hắn gắn thêm trang bị!</li>
+        <li><strong>DarkNite (Ác thần Trò chơi Bóng tối):</strong> Seto vừa thua thì <strong>Heishin</strong> lộ diện (hắn giả thua!) cướp trọn 7 Bảo bối triệu hồi <strong>DarkNite</strong>. Ác thần khinh bỉ phản bội giao ước, <strong>phong ấn Heishin vào lá bài rồi thiêu rụi tại chỗ</strong>. Hoàng tử thách đấu buộc DarkNite hứa rút lui nếu thua.</li>
+        <li><strong>Nitemare (Trùm cuối thực sự) &amp; Kết thúc:</strong> Thua trận, DarkNite lật lọng biến thành hình dạng thật <strong>Nitemare</strong> (tay bài tối đa 20 lá, thuần quái vật mạnh nhất game). Hạ Nitemare để trục xuất ác thần về cõi bóng tối. Seto biến mất vĩnh viễn; Hoàng tử chôn vùi <code>Forbidden Ruins</code>, thống nhất Ai Cập và đăng cơ trở thành vị Pharaoh vĩ đại.</li>
+      </ol>
+      <div class="duelist-grid" id="story-p5"></div>
+    </div>
+  </section>
+
+  <!-- TAB 2: BỘ MẠNH NHẤT -->
+  <section class="panel" id="tab-deck2">
+    <div class="section-box">
+      <h2>Bộ bài 40 lá mạnh nhất để đi màn dễ dàng (24 Quái gọi thẳng + 16 Hỗ trợ)</h2>
+      <div class="subtabs">
+        <button class="subtab-btn active" data-sub="d2a">Bộ 2A: Bản Full 722 Lá (Tối Thượng)</button>
+        <button class="subtab-btn" data-sub="d2b">Bộ 2B: Bản Gốc Vanilla SLUS-01411 (Cày tay)</button>
+      </div>
+      <div class="subpanel active" id="sub-d2a">
+        <div class="deck-summary">
+          <div class="stat-pill">Tổng số lá: <strong>40 / 40</strong></div>
+          <div class="stat-pill">Quái vật gọi thẳng: <strong>24 lá (3000–4500 ATK)</strong></div>
+          <div class="stat-pill">Phép / Bẫy / Đồ: <strong>16 lá (Tương thích 100%)</strong></div>
+          <div class="stat-pill">BEUD + Mountain: <strong>5000 ATK (Max 9999)</strong></div>
+        </div>
+        <p style="font-size:0.9rem;color:var(--muted)">Toàn bộ 24 quái vật đều gọi thẳng 3000–4500 ATK không cần ghép hay hiến tế; 6 lá trang bị (<code>3× Megamorph</code>, <code>3× Bright Castle</code>) tương thích 24/24 lá. <code>Mountain</code> nâng 12 quái Rồng (+500) và xóa sạch sân trùm.</p>
+        <div class="card-grid" id="grid-deck2a"></div>
+      </div>
+      <div class="subpanel" id="sub-d2b">
+        <div class="deck-summary">
+          <div class="stat-pill">Tổng số lá: <strong>40 / 40</strong></div>
+          <div class="stat-pill">Quái cày/mua hợp lệ: <strong>24 lá (2400–3500 ATK)</strong></div>
+          <div class="stat-pill">Phép / Bẫy / Đồ: <strong>16 lá</strong></div>
+        </div>
+        <div class="alert">Lưu ý bản Vanilla gốc chưa unlock: <code>Swords of Revealing Light</code> chỉ ghép được trong trận từ <code>Dark-piercing Light + Shadow Spell</code>; nếu chưa mở khóa sẵn trong save thì thay 2 lá này bằng <code>2× Widespread Ruin</code> hoặc <code>2× Dark Energy</code>.</div>
+        <div class="card-grid" id="grid-deck2b"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TAB 3: TWIN-HEADED THUNDER DRAGON -->
+  <section class="panel" id="tab-deck3">
+    <div class="section-box">
+      <h2>Bộ bài 40 lá chủ lực Twin-Headed Thunder Dragon (20 Quái + 20 Hỗ trợ)</h2>
+      <div class="deck-summary">
+        <div class="stat-pill">Tổng số lá: <strong>40 / 40</strong></div>
+        <div class="stat-pill">Chủ lực: <strong>3× THTD + 3× Thunder Dragon</strong></div>
+        <div class="stat-pill">Trang bị gắn THTD: <strong>14/14 lá (+8500 ATK)</strong></div>
+        <div class="stat-pill">Trần sức mạnh: <strong>9999 / 9999</strong></div>
+      </div>
+      <div class="alert">
+        <strong>Mạng lưới ghép 100% không lỗi:</strong> Cả 8 lá Rồng (<code>Red-Eyes</code>, <code>Kaiser Dragon</code>, <code>Meteor Dragon</code>) đều ≥ 1600 ATK nên ghép với <strong>bất kỳ lá nào trong 9 lá Sấm</strong> đều tạo thẳng <code>Twin-Headed Thunder Dragon (2800)</code>. Ngoài ra, <code>Thunder Dragon</code> ghép với mọi Rồng (và các lá Sấm tương thích) ra ngay THTD, còn <code>Red-Eyes + Meteor Dragon</code> tạo thêm <strong>Meteor B. Dragon (3500)</strong>!
+      </div>
+      <div class="card-grid" id="grid-deck3"></div>
+    </div>
+  </section>
+
+  <!-- TAB 4: GHÉP BÀI 9999 -->
+  <section class="panel" id="tab-deck4">
+    <div class="section-box">
+      <h2>Bộ bài 40 lá Động cơ Dung hợp Đa trục chạm trần 9999 ATK (20 Quái + 20 Hỗ trợ)</h2>
+      <div class="deck-summary">
+        <div class="stat-pill">Tổng số lá: <strong>40 / 40</strong></div>
+        <div class="stat-pill">Siêu quái dung hợp: <strong>MBD (3500) • BSD (3200) • THTD (2800)</strong></div>
+        <div class="stat-pill">Chủ lực 9999: <strong>MBD, THTD &amp; Summoned Skull đều chạm 9999!</strong></div>
+      </div>
+      <div class="calc-box">
+        <strong style="color:var(--cyan)">Máy tính kiểm chứng 9999 ATK chuẩn ROM:</strong>
+        <div class="calc-row">
+          <label>Quái vật:
+            <select id="calcMonster">
+              <option value="3500|Mountain">Meteor B. Dragon (3500)</option>
+              <option value="2800|Mountain">Twin-Headed Thunder Dragon (2800)</option>
+              <option value="2500|Yami">Summoned Skull (2500)</option>
+              <option value="3200|Mountain">B. Skull Dragon (3200)</option>
+              <option value="3000|Sogen">Black Luster Soldier (3000)</option>
+              <option value="2900|Yami">Cosmo Queen (2900)</option>
+              <option value="3000|None">Metalzoa (3000)</option>
+            </select>
+          </label>
+          <label>Megamorph (0-3): <input id="calcMM" type="number" min="0" max="3" value="3" style="width:62px"/></label>
+          <label>Trang bị +500 hợp lệ (0-12): <input id="calcEq" type="number" min="0" max="12" value="6" style="width:68px"/></label>
+          <label><input id="calcField" type="checkbox" checked/> Có địa hình +500</label>
+          <label><input id="calcGS" type="checkbox"/> Khắc hành tinh +500</label>
+        </div>
+        <div class="calc-result" id="calcOut">Tổng ATK: 9999</div>
+      </div>
+      <div class="card-grid" id="grid-deck4"></div>
+    </div>
+  </section>
+
+  <!-- TAB 5: CHỦ ĐỀ NAM / NỮ / MÁY -->
+  <section class="panel" id="tab-deck5">
+    <div class="section-box">
+      <h2>Ba bộ bài 40 lá theo chủ đề: Nam tướng là người • Chuẩn Nữ • Chuyên Máy móc</h2>
+      <div class="subtabs">
+        <button class="subtab-btn active" data-sub="d5a">5a. Nam Tướng Là Người</button>
+        <button class="subtab-btn" data-sub="d5b">5b. Chuẩn Nữ (+9000 ATK)</button>
+        <button class="subtab-btn" data-sub="d5c">5c. Chuyên Máy Móc</button>
+      </div>
+      <div class="subpanel active" id="sub-d5a">
+        <div class="deck-summary">
+          <div class="stat-pill">Tổng: <strong>40 lá (20 Nam + 20 Hỗ trợ)</strong></div>
+          <div class="stat-pill">Chủ lực: <strong>BLS (3000) &amp; Magician of Black Chaos (2800)</strong></div>
+          <div class="stat-pill">Trang bị đồng bộ: <strong>14 lá (+8500 → 9999 ATK)</strong></div>
+        </div>
+        <p style="font-size:0.88rem;color:var(--muted)">100% Chiến binh &amp; Pháp sư nam mang hình hài con người. BLS, MoBC, Gaia và Swordstalker gắn được cả 5 loại trang bị (14/14 lá = +8500 ATK). Mang 1 <code>Sogen</code> (+500 Warrior) và 1 <code>Mountain</code> để xóa sân địch.</p>
+        <div class="card-grid" id="grid-deck5a"></div>
+      </div>
+      <div class="subpanel" id="sub-d5b">
+        <div class="deck-summary">
+          <div class="stat-pill">Tổng: <strong>40 lá (20 Nữ + 20 Hỗ trợ)</strong></div>
+          <div class="stat-pill">Chủ lực: <strong>Cosmo Queen (2900) • Mystical Sand (2100)</strong></div>
+          <div class="stat-pill">Trang bị đồng bộ: <strong>15/15 lá (+9000 ATK → 100% chạm 9999!)</strong></div>
+        </div>
+        <p style="font-size:0.88rem;color:var(--muted)">Mọi lá bài Nữ trong bộ bài đều gắn được đủ cả 15 trang bị (<code>Megamorph</code>, <code>Bright Castle</code>, <code>Cyber Shield</code>, <code>Electro-whip</code>, <code>Malevolent Nuzzler</code> = +9000 ATK), đảm bảo lá nào cũng vượt 9999 ATK! Dùng <code>Mountain</code> để buff <code>Harpie Lady Sisters</code> và xóa sân <code>Yami</code> khi cần bảo vệ <code>Gyakutenno Megami</code> (Fairy).</p>
+        <div class="card-grid" id="grid-deck5b"></div>
+      </div>
+      <div class="subpanel" id="sub-d5c">
+        <div class="deck-summary">
+          <div class="stat-pill">Tổng: <strong>40 lá (20 Máy + 20 Hỗ trợ)</strong></div>
+          <div class="stat-pill">Chủ lực: <strong>Metalzoa (3000) • Labyrinth Tank (2400)</strong></div>
+          <div class="stat-pill">Trang bị đồng bộ: <strong>15 lá (+9000 ATK → 9999 ATK)</strong></div>
+        </div>
+        <div class="alert"><strong>Bí mật tộc Máy móc:</strong> <code>Umi</code> giảm -500 toàn bộ tộc Machine nên <code>1× Mountain</code> là khiên xóa sân cực kỳ thiết yếu; đồng thời <code>Laser Cannon Armor</code> gắn được cho cả 20/20 Robot trong bộ bài này! Toàn bộ 20 quái Máy móc đều cày/mua được hợp lệ trên cả bản gốc lẫn bản 722 lá.</div>
+        <div class="card-grid" id="grid-deck5c"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TAB 6: GAME BÀN CỜ & CÀI ĐẶT -->
+  <section class="panel" id="tab-games">
+    <div class="section-box">
+      <h2>4 Tựa Game Yu-Gi-Oh! Di Chuyển Nhân Vật Trên Bàn Cờ Đáng Chơi Nhất</h2>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Tên game</th><th>Hệ máy &amp; Mã đĩa</th><th>Lối chơi di chuyển trên bàn cờ</th><th>Giả lập Samsung Android</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>1. Yu-Gi-Oh! The Duelists of the Roses</strong><br/><span class="badge b-gold">Hậu bản trực tiếp FM — Đúng game nhất!</span></td>
+              <td>PlayStation 2<br/>USA <code>SLUS-20515</code></td>
+              <td>Bàn cờ <strong>7×7 ô địa hình</strong> (Forest, Meadow, Mountain, Ocean, Wasteland, Labyrinth, Crush, Toon). Điều khiển <strong>Deck Leader (Thủ lĩnh)</strong> đi lại 1–2 ô/lượt, triệu hồi quân bài xung quanh Thủ lĩnh, dung hợp trực tiếp và áp sát tiêu diệt Thủ lĩnh địch.</td>
+              <td><strong>NetherSX2 Classic (v2.1-3668)</strong><br/>Cần BIOS <code>SCPH-39001.bin</code></td>
+            </tr>
+            <tr>
+              <td><strong>2. Yu-Gi-Oh! Capsule Monster Coliseum</strong><br/><span class="badge b-cyan">Cờ Quái Vật 3D</span></td>
+              <td>PlayStation 2<br/>(2004)</td>
+              <td>Cờ chiến thuật theo lượt trên bàn cờ 3D theo manga <em>Capsule Monster Chess</em>: điều khiển đội hình quái vật di chuyển, tận dụng địa hình thuộc tính, tiến hóa cấp độ, dung hợp và hạ toàn bộ quái địch hoặc phá <strong>Biểu tượng (Symbol)</strong>.</td>
+              <td><strong>NetherSX2 Classic</strong><br/>Dùng chung BIOS PS2 ở trên</td>
+            </tr>
+            <tr>
+              <td><strong>3. Yu-Gi-Oh! The Falsebound Kingdom</strong><br/><span class="badge b-purple">Hậu bản cốt truyện FM</span></td>
+              <td>Nintendo GameCube<br/>(2002)</td>
+              <td>Tiếp nối cốt truyện <em>Forbidden Memories</em> (DarkNite &amp; NiteMare quay lại). Điều khiển các tướng (Yugi, Kaiba, Joey) dẫn đội 3 quái vật hành quân trên bản đồ lớn chiếm cứ điểm và đánh trận kiểu RPG.</td>
+              <td><strong>Dolphin Emulator</strong> (Google Play, 64-bit)<br/><strong>Không cần BIOS</strong></td>
+            </tr>
+            <tr>
+              <td><strong>4. Yu-Gi-Oh! Dungeon Dice Monsters</strong><br/><span class="badge b-green">Siêu nhẹ 60 FPS</span></td>
+              <td>Game Boy Advance<br/>(2001)</td>
+              <td>Tung xúc xắc trải thành đường mê cung trên bàn cờ, triệu hồi quái vật di chuyển từng ô tiến vào đánh Trái tim của đối thủ.</td>
+              <td><strong>RetroArch (nhân mGBA)</strong><br/><strong>Không cần BIOS</strong></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>Hướng dẫn cài đặt NetherSX2 (PS2) chi tiết trên điện thoại Samsung Android</h3>
+      <ol class="step-list">
+        <li><strong>Cài APK NetherSX2 Classic:</strong> Vào <em>Cài đặt → Ứng dụng → Truy cập đặc biệt → Cài đặt ứng dụng không xác định</em> bật cho trình duyệt/File Manager, tải bản <strong>NetherSX2 Classic v2.1-3668 (bản signed)</strong> từ GitHub phát hành của dự án và cài đặt.</li>
+        <li><strong>Tạo thư mục chuẩn tránh lỗi Android Scoped Storage:</strong> Dùng <strong>My Files</strong> hoặc <strong>ZArchiver</strong> tạo thư mục ở bộ nhớ gốc: <code>/Internal Storage/Emulation/PS2/bios/</code> và <code>/Internal Storage/Emulation/PS2/games/</code> (không đặt trong <code>/Android/data/</code>).</li>
+        <li><strong>Giải nén BIOS PS2:</strong> Giải nén file BIOS hệ USA (<code>SCPH-39001</code> hoặc <code>SCPH-70012</code>) ra file <code>scph39001.bin</code> (đuôi <code>.bin</code> <strong>viết thường</strong>, dung lượng chuẩn 4,0 MB = 4.194.304 bytes) bỏ vào <code>bios/</code>.</li>
+        <li><strong>Chép ROM game:</strong> Chép file <code>.iso</code> hoặc <code>.chd</code> của <em>The Duelists of the Roses (SLUS-20515)</em> và <em>Capsule Monster Coliseum</em> vào <code>games/</code>.</li>
+        <li><strong>Thiết lập lần đầu:</strong> Mở NetherSX2 → <code>Next</code> → chọn <strong>Optimal/Safe</strong> → mục <em>Import BIOS</em> chọn <code>scph39001.bin</code> → mục <em>Add Game Directory</em> chọn thư mục <code>games/</code> → nhấn <strong>Use This Folder → Allow</strong>.</li>
+        <li><strong>Tinh chỉnh Samsung mượt 60 FPS:</strong> Samsung chip <strong>Snapdragon</strong> dùng <code>Vulkan</code>, chỉnh <em>Upscale</em> <code>2x–3x Native</code>. Samsung chip <strong>Exynos (Mali GPU)</strong> dùng <code>Vulkan</code> (hoặc OpenGL) + bật <strong>Threaded Presentation</strong> trong phần Graphics.</li>
+      </ol>
+    </div>
+  </section>
+</main>
+
+<footer>
+  Cẩm nang ngoại tuyến Yu-Gi-Oh! Forbidden Memories (SLUS-01411 — Full 722 Lá) • Dữ liệu chỉ số, mật khẩu, dung hợp &amp; tương thích trang bị đối chiếu từ ROM gốc.
+</footer>
+
+<script>
+function makeFallback(title, sub, isPortrait) {
+  const w = isPortrait ? 128 : 160;
+  const h = isPortrait ? 128 : 230;
+  const safeT = String(title).replace(/[&<>"]/g, '');
+  const safeS = String(sub || '').replace(/[&<>"]/g, '');
+  const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="${w}" height="${h}" viewBox="0 0 ${w} ${h}">
+    <defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#1e293b"/><stop offset="100%" stop-color="#0f172a"/></linearGradient></defs>
+    <rect width="${w}" height="${h}" rx="10" fill="url(#g)" stroke="#ca8a04" stroke-width="3"/>
+    <circle cx="${w/2}" cy="${h*0.36}" r="${isPortrait?24:32}" fill="rgba(234,179,8,0.18)" stroke="#eab308" stroke-width="2"/>
+    <text x="${w/2}" y="${h*0.39}" fill="#fde047" font-size="${isPortrait?18:22}" font-weight="bold" font-family="sans-serif" text-anchor="middle">${safeT.slice(0,2).toUpperCase()}</text>
+    <text x="${w/2}" y="${h*0.72}" fill="#f1f5f9" font-size="${isPortrait?11:12}" font-weight="bold" font-family="sans-serif" text-anchor="middle">${safeT.slice(0,18)}</text>
+    <text x="${w/2}" y="${h*0.86}" fill="#94a3b8" font-size="10" font-family="sans-serif" text-anchor="middle">${safeS.slice(0,20)}</text>
+  </svg>`;
+  return 'data:image/svg+xml;charset=UTF-8,' + encodeURIComponent(svg);
+}
+
+function cardImgUrl(imgId) {
+  const clean = parseInt(String(imgId).replace(/\D/g, ''), 10);
+  return `https://images.ygoprodeck.com/images/cards_small/${clean}.jpg`;
+}
+function duelistImgUrl(slug) {
+  return `https://fusion.lukadevv.com/assets/duelists/${slug}.webp`;
+}
+
+const STORY = {
+  p1: [
+    { name: "Simon Muran", slug: "simon_muran", tag: "Cố vấn • Cung điện", desc: "Bài yếu nhất game (300-700 ATK). Thắng để mở Free Duel (cày sớm Time Wizard ~2,9%) rồi sang Card Shop lưu game." },
+    { name: "Teana", slug: "teana", tag: "Bạn thân • Dueling Grounds", desc: "Hay đặt quái thủ yếu 300-500 ATK. Rất dễ tập ghép bài cơ bản." },
+    { name: "Villager 1 / 2 / 3", slug: "villager3", tag: "Dân làng • Dễ bỏ lỡ!", desc: "Chọn 'Talk to Someone Else'. Đây là LẦN DUY NHẤT gặp Villager 3 để mở khóa Free Duel (Villager 1 cũng rớt Time Wizard)." },
+    { name: "Jono", slug: "jono", tag: "Bạn thân • Dueling Grounds", desc: "Bài yếu, có tỷ lệ rớt Baby Dragon trong Free Duel." },
+    { name: "Priest Seto (1st)", slug: "seto", tag: "Cánh tay phải Heishin", desc: "Chướng ngại đầu game: ghép Ushi Oni (2150) & gọi Gaia (2300). Thắng gọn bằng Thousand Dragon / THTD." },
+    { name: "Heishin (1st)", slug: "heishin", tag: "Trận thua cốt truyện • Mắt Ngàn Năm", desc: "Sân Yami, cầm siêu quái và nhìn xuyên bài úp. Bắt buộc thua để đập vỡ Puzzle sang thời hiện đại." }
+  ],
+  p2: [
+    { name: "Rex Raptor", slug: "rex_raptor", tag: "Vòng loại 1 • Khủng long", desc: "Ghép lên 1600-2200 ATK. Mỏ cày Rồng & Sấm tuyệt vời đầu game." },
+    { name: "Weevil Underwood", slug: "weevil_underwood", tag: "Vòng loại 2 • Côn trùng", desc: "Chủ yếu hành tinh Jupiter (~2000 ATK). Khắc bằng hành tinh Mars hoặc Flame Cerebrus/THTD." },
+    { name: "Mai Valentine", slug: "mai_valentine", tag: "Vòng loại 3 • Harpie", desc: "Có Harpie's Feather Duster quét Phép/Bẫy úp! Không nên úp bẫy, đánh thẳng bằng THTD." },
+    { name: "Bandit Keith", slug: "bandit_keith", tag: "Vòng loại 4 • Máy/Quỷ", desc: "Zoa (2600) + Metalmorph -> Metalzoa (3000). Dứt điểm nhanh; mỏ cày A-TEC lấy Metalmorph." },
+    { name: "Shadi", slug: "shadi", tag: "CK 1 • Giữ Key & Scales", desc: "AI thụ động (~1500-2000 ATK). Mỏ cày S/A-TEC số 1 để săn Raigeki." },
+    { name: "Yami Bakura", slug: "yami_bakura", tag: "CK 2 • Giữ Ring", desc: "Tường thủ 3000 DEF (Millennium Shield, Labyrinth Wall). Dùng Raigeki hoặc THTD + Mountain/Umi (3300)." },
+    { name: "Pegasus", slug: "pegasus", tag: "CK 3 • Mắt Ngàn Năm", desc: "Nhìn bài úp! Có Raigeki, Dragon Capture Jar, MBD (hiếm). Dùng THTD miễn nhiễm DCJ. Cày S-TEC lấy Megamorph!" },
+    { name: "Isis", slug: "isis", tag: "CK 4 • Giữ Necklace", desc: "Bộ Thủy/Rồng + Umi + Swords of Revealing Light. Cày tốt Dragon Treasure, Umi, Widespread Ruin." },
+    { name: "Seto Kaiba", slug: "kaiba", tag: "Chung kết • Giữ Rod", desc: "3 lá Blue-Eyes White Dragon (3000, Sun). Dùng THTD+Mountain/Umi (3300) hoặc quái Mercury + đồ." }
+  ],
+  p3: [
+    { name: "Mage Soldier", slug: "mage_soldier", tag: "Pharaoh's Palace", desc: "Chặn cửa cung điện hoang. Mạnh nhất Summoned Skull (2500) / THTD (2800). Thắng xong vào phòng Simon lấy Map." },
+    { name: "Jono 2nd", slug: "jono_2nd", tag: "Hidden Dueling Ground (Tùy chọn)", desc: "Cầm Red-Eyes B. Dragon (2400). Cày S/A-POW rơi Red-Eyes và Meteor B. Dragon (hiếm)." },
+    { name: "Teana 2nd", slug: "teana_2nd", tag: "Hidden Dueling Ground (Tùy chọn)", desc: "Dùng Mystical Sand (2100) và Yami. Khá dễ thắng." }
+  ],
+  p4: [
+    { name: "High Mage Secmeton", slug: "high_mage_secmeton", tag: "Ocean Shrine • Giữ Necklace", desc: "Sân Umi: Crab Turtle, Suijin (3000 trên Umi), Raigeki. Nhẹ nhất nhóm High Mage; THTD cũng hưởng +500 Umi." },
+    { name: "High Mage Martis", slug: "high_mage_martis", tag: "Desert Shrine • Giữ Scales", desc: "Sân Wasteland: Bracchio-raidus (2700), Labyrinth Wall (3000 DEF), Summoned Skull (2500). Dễ thắng." },
+    { name: "High Mage Atenza", slug: "high_mage_atenza", tag: "Mountain Shrine • Giữ Ring", desc: "Sân Mountain: B. Skull Dragon (3700), THTD (3300), Shadow Spell. Đổi sân Umi cắt +500 của BSD." },
+    { name: "High Mage Anubisius", slug: "high_mage_anubisius", tag: "Forest Shrine • Giữ Key", desc: "Rất khó! Perfectly Ultimate Great Moth (4000 trên Forest). Xóa Forest ngay, dùng Mars khắc Jupiter." },
+    { name: "Meadow Mage", slug: "meadow_mage", tag: "Meadow Shrine • MỎ CÀY SỐ 1", desc: "Gác cổng cực dễ cày S/A-POW rớt Meteor B. Dragon (3500), Skull Knight (2650), Dark Magician (2500)." },
+    { name: "High Mage Kepura", slug: "high_mage_kepura", tag: "Meadow Shrine • Giữ Eye", desc: "Khó nhất 5 High Mage! Gate Guardian (4250 trên Sogen), BSD (3200). Xóa Sogen + dùng MBD (Sun) / Raigeki." },
+    { name: "Labyrinth Mage", slug: "labyrinth_mage", tag: "Vast Shrine • Mê cung R-R-L-R", desc: "Dùng Gate Guardian (3750), Wall Shadow, Labyrinth Tank. Thắng xong đi: Phải → Phải → Trái → Phải." },
+    { name: "Seto 2nd", slug: "seto_2nd", tag: "Vast Shrine • Cứu Teana", desc: "Gate Guardian (3750), BEWD, BLS, Metalzoa (3000). Đánh trước khi hạ đủ 5 High Mage để bỏ Labyrinth Mage ở Boss cuối!" }
+  ],
+  p5: [
+    { name: "Guardian Sebek", slug: "guardian_sebek", tag: "Final 1/6 • Vệ binh 1", desc: "Sân Yami: Metalzoa (3000), Zoa (3100), Labyrinth Tank, tường 3000 DEF. Vượt mốc 3300 ATK là thắng." },
+    { name: "Guardian Neku", slug: "guardian_neku", tag: "Final 2/6 • Vệ binh 2", desc: "Sân Yami: Skull Knight (3150), Zoa (3100), Summoned Skull (3000), Kazejin (2900). Đổi sân Mountain/Umi." },
+    { name: "Heishin 2nd", slug: "heishin_2nd", tag: "Final 3/6 • Mắt Ngàn Năm", desc: "Gate Guardian (3750), MBD (3500), BSD (3200), Megamorph, Raigeki. Cần quái ≥3800-4300 ATK." },
+    { name: "Seto 3rd", slug: "seto_3rd", tag: "Final 4/6 • Phản bội • Mắt Ngàn Năm", desc: "Cực khó! Blue-Eyes Ultimate Dragon (4500, biết gắn trang bị!), Gate Guardian, MBD. Dùng BEUD/MBD+đồ hoặc Mercury." },
+    { name: "DarkNite", slug: "darknite", tag: "Final 5/6 • Mắt Ngàn Năm", desc: "Thiêu sống Heishin! Dùng Cosmo Queen (3400 trên Yami, hành tinh Venus khắc Mercury!), MBD, BSD." },
+    { name: "Nitemare", slug: "nitemare", tag: "Final 6/6 • Trùm cuối • Hand 20 lá", desc: "Thuần siêu quái: BEUD (4500), Gate Guardian (3750), PUGM (3500), MBD (3500). Dùng Swords câu lượt + đồ vượt 5000+." }
+  ]
+};
+
+// imgId = official passcode for YGOProDeck card image; fmPass = verified Forbidden Memories Password / Star Chip cost
+const DECKS = {
+  deck2a: [
+    { id:"380", name:"Blue-Eyes Ultimate Dragon", qty:3, type:"Dragon", stats:"4500 / 3800", gs:"Sun / Venus", imgId:"23995346", fmPass:"Không có Pass FM (Full 722)", note:"5000 trên Mountain" },
+    { id:"374", name:"Gate Guardian", qty:3, type:"Warrior", stats:"3750 / 3400", gs:"Moon / Mars", imgId:"25833572", fmPass:"Không có Pass FM (Full 722)", note:"Mạnh nhì game" },
+    { id:"713", name:"Meteor B. Dragon", qty:3, type:"Dragon", stats:"3500 / 2000", gs:"Mars / Sun", imgId:"90660762", fmPass:"Không có Pass FM (Drop/722)", note:"4000 trên Mountain" },
+    { id:"067", name:"Perfectly Ultimate Great Moth", qty:3, type:"Insect", stats:"3500 / 3000", gs:"Jupiter / Moon", imgId:"48579379", fmPass:"48579379 (999.999 SC)", note:"Công thủ cực dày" },
+    { id:"217", name:"B. Skull Dragon", qty:3, type:"Dragon", stats:"3200 / 2500", gs:"Moon / Jupiter", imgId:"11901678", fmPass:"11901678 (999.999 SC)", note:"3700 trên Mountain" },
+    { id:"001", name:"Blue-Eyes White Dragon", qty:3, type:"Dragon", stats:"3000 / 2500", gs:"Sun / Mars", imgId:"89631139", fmPass:"89631139 (999.999 SC)", note:"3500 trên Mountain" },
+    { id:"364", name:"Black Luster Soldier", qty:3, type:"Warrior", stats:"3000 / 2500", gs:"Moon / Uranus", imgId:"05405694", fmPass:"Không có Pass FM (Full 722)", note:"Miễn nhiễm DCJ" },
+    { id:"392", name:"Metalzoa", qty:3, type:"Machine", stats:"3000 / 2300", gs:"Moon / Mars", imgId:"50705071", fmPass:"50705071 (999.999 SC)", note:"Mars cân Moth" },
+    { id:"337", name:"Raigeki", qty:3, type:"Magic", stats:"Quét quái địch", gs:"—", imgId:"12580477", fmPass:"12580477 (999.999 SC)", note:"Diệt sạch sân địch" },
+    { id:"348", name:"Swords of Revealing Light", qty:2, type:"Magic", stats:"Khóa 3 lượt", gs:"—", imgId:"72302403", fmPass:"72302403 (999.999 SC)", note:"Lật bài & chặn công" },
+    { id:"686", name:"Widespread Ruin", qty:2, type:"Trap", stats:"Diệt quái công", gs:"—", imgId:"77754944", fmPass:"77754944 (999.999 SC)", note:"Diệt luôn BEUD 4500" },
+    { id:"672", name:"Harpie's Feather Duster", qty:1, type:"Magic", stats:"Quét Phép/Bẫy", gs:"—", imgId:"18144506", fmPass:"18144506 (999.999 SC)", note:"Phá hàng sau trùm" },
+    { id:"332", name:"Mountain", qty:2, type:"Field", stats:"+500 Rồng/Sấm", gs:"—", imgId:"50913601", fmPass:"50913601 (55 SC)", note:"Buff 12 Rồng, xóa Yami" },
+    { id:"657", name:"Megamorph", qty:3, type:"Equip", stats:"+1000 Mọi quái", gs:"—", imgId:"22046459", fmPass:"22046459 (50.000 SC)", note:"Tương thích 24/24" },
+    { id:"668", name:"Bright Castle", qty:3, type:"Equip", stats:"+500 Mọi quái", gs:"—", imgId:"82878489", fmPass:"82878489 (800 SC)", note:"Tương thích 24/24" }
+  ],
+  deck2b: [
+    { id:"713", name:"Meteor B. Dragon", qty:3, type:"Dragon", stats:"3500 / 2000", gs:"Mars / Sun", imgId:"90660762", fmPass:"Không có Pass (Cày Meadow)", note:"Cày Meadow Mage" },
+    { id:"001", name:"Blue-Eyes White Dragon", qty:3, type:"Dragon", stats:"3000 / 2500", gs:"Sun / Mars", imgId:"89631139", fmPass:"89631139 (999.999 SC)", note:"Cày Seto 3rd" },
+    { id:"392", name:"Metalzoa", qty:3, type:"Machine", stats:"3000 / 2300", gs:"Moon / Mars", imgId:"50705071", fmPass:"50705071 (999.999 SC)", note:"Cày Guardian Sebek" },
+    { id:"613", name:"Twin-Headed Thunder Dragon", qty:3, type:"Thunder", stats:"2800 / 2100", gs:"Pluto / Moon", imgId:"54752875", fmPass:"54752875 (1.900 SC)", note:"Mua 1900 SC / Heishin" },
+    { id:"707", name:"Skull Knight", qty:3, type:"Spellcaster", stats:"2650 / 2250", gs:"Mercury / Neptune", imgId:"02504891", fmPass:"02504891 (999.999 SC)", note:"Mercury khắc BEUD!" },
+    { id:"391", name:"Zoa", qty:3, type:"Fiend", stats:"2600 / 1900", gs:"Moon / Mercury", imgId:"24311372", fmPass:"24311372 (999.999 SC)", note:"Mercury khắc BEUD!" },
+    { id:"371", name:"Sanga of the Thunder", qty:3, type:"Thunder", stats:"2600 / 2200", gs:"—", imgId:"25955164", fmPass:"25955164 (999.999 SC)", note:"Ghép THTD / gọi thẳng" },
+    { id:"082", name:"Red-Eyes B. Dragon", qty:3, type:"Dragon", stats:"2400 / 2000", gs:"—", imgId:"74677422", fmPass:"74677422 (999.999 SC)", note:"Cày Jono 2nd" },
+    { id:"337", name:"Raigeki", qty:3, type:"Magic", stats:"Quét quái địch", gs:"—", imgId:"12580477", fmPass:"12580477 (999.999 SC)", note:"Cày S-TEC Shadi" },
+    { id:"348", name:"Swords of Revealing Light", qty:2, type:"Magic", stats:"Khóa 3 lượt", gs:"—", imgId:"72302403", fmPass:"72302403 (999.999 SC)", note:"Vanilla đổi 2× WSR" },
+    { id:"686", name:"Widespread Ruin", qty:1, type:"Trap", stats:"Diệt quái công", gs:"—", imgId:"77754944", fmPass:"77754944 (999.999 SC)", note:"Cày Isis / Kepura" },
+    { id:"332", name:"Mountain", qty:2, type:"Field", stats:"+500 Rồng/Sấm", gs:"—", imgId:"50913601", fmPass:"50913601 (55 SC)", note:"Mua 55 SC" },
+    { id:"657", name:"Megamorph", qty:3, type:"Equip", stats:"+1000 Mọi quái", gs:"—", imgId:"22046459", fmPass:"22046459 (50.000 SC)", note:"Cày S-TEC Pegasus" },
+    { id:"668", name:"Bright Castle", qty:3, type:"Equip", stats:"+500 Mọi quái", gs:"—", imgId:"82878489", fmPass:"82878489 (800 SC)", note:"Mua 800 SC / Pegasus" },
+    { id:"315", name:"Dragon Treasure", qty:2, type:"Equip", stats:"+500 Rồng/THTD", gs:"—", imgId:"01435851", fmPass:"01435851 (800 SC)", note:"Mua 800 SC / Isis" }
+  ],
+  deck3: [
+    { id:"613", name:"Twin-Headed Thunder Dragon", qty:3, type:"Thunder", stats:"2800 / 2100", gs:"Pluto / Moon", imgId:"54752875", fmPass:"54752875 (1.900 SC)", note:"Ăn 14/14 đồ → 9999!" },
+    { id:"425", name:"Thunder Dragon", qty:3, type:"Thunder", stats:"1600 / 1500", gs:"—", imgId:"31786629", fmPass:"31786629 (230 SC)", note:"+ Mọi Rồng / Sấm → THTD" },
+    { id:"371", name:"Sanga of the Thunder", qty:2, type:"Thunder", stats:"2600 / 2200", gs:"—", imgId:"25955164", fmPass:"25955164 (999.999 SC)", note:"+ Mọi Rồng → THTD" },
+    { id:"458", name:"Kaminari Attack", qty:2, type:"Thunder", stats:"1900 / 1400", gs:"Pluto / Venus", imgId:"09653271", fmPass:"09653271 (290 SC)", note:"+ Mọi Rồng → THTD" },
+    { id:"045", name:"Oscillo Hero #2", qty:2, type:"Thunder", stats:"1000 / 500", gs:"—", imgId:"27324313", fmPass:"27324313 (30 SC)", note:"+ Rồng 1600+ / TD → THTD" },
+    { id:"082", name:"Red-Eyes B. Dragon", qty:3, type:"Dragon", stats:"2400 / 2000", gs:"—", imgId:"74677422", fmPass:"74677422 (999.999 SC)", note:"+ Sấm → THTD; + MD → MBD" },
+    { id:"427", name:"Kaiser Dragon", qty:2, type:"Dragon", stats:"2300 / 2000", gs:"—", imgId:"94566432", fmPass:"94566432 (900 SC)", note:"+ Mọi Sấm → THTD" },
+    { id:"712", name:"Meteor Dragon", qty:3, type:"Dragon", stats:"1800 / 2000", gs:"—", imgId:"64271667", fmPass:"64271667 (999.999 SC)", note:"+ Sấm → THTD; + REBD → MBD" },
+    { id:"337", name:"Raigeki", qty:2, type:"Magic", stats:"Quét quái địch", gs:"—", imgId:"12580477", fmPass:"12580477 (999.999 SC)", note:"Dọn bàn khẩn cấp" },
+    { id:"348", name:"Swords of Revealing Light", qty:2, type:"Magic", stats:"Khóa 3 lượt", gs:"—", imgId:"72302403", fmPass:"72302403 (999.999 SC)", note:"Tích đồ đẩy THTD 9999" },
+    { id:"332", name:"Mountain", qty:2, type:"Field", stats:"+500 20/20 Quái", gs:"—", imgId:"50913601", fmPass:"50913601 (55 SC)", note:"THTD lên ngay 3300" },
+    { id:"657", name:"Megamorph", qty:3, type:"Equip", stats:"+1000 Mọi quái", gs:"—", imgId:"22046459", fmPass:"22046459 (50.000 SC)", note:"+3000 cho THTD" },
+    { id:"668", name:"Bright Castle", qty:3, type:"Equip", stats:"+500 Mọi quái", gs:"—", imgId:"82878489", fmPass:"82878489 (800 SC)", note:"+1500 cho THTD" },
+    { id:"315", name:"Dragon Treasure", qty:3, type:"Equip", stats:"+500 Rồng/THTD", gs:"—", imgId:"01435851", fmPass:"01435851 (800 SC)", note:"+1500 cho THTD" },
+    { id:"308", name:"Beast Fangs", qty:3, type:"Equip", stats:"+500 THTD/Thú", gs:"—", imgId:"46009906", fmPass:"46009906 (800 SC)", note:"+1500 cho THTD" },
+    { id:"303", name:"Dark Energy", qty:2, type:"Equip", stats:"+500 THTD/Dark", gs:"—", imgId:"04614116", fmPass:"04614116 (800 SC)", note:"+1000 cho THTD" }
+  ],
+  deck4: [
+    { id:"082", name:"Red-Eyes B. Dragon", qty:3, type:"Dragon", stats:"2400 / 2000", gs:"—", imgId:"74677422", fmPass:"74677422 (999.999 SC)", note:"Trục 3 fusion: MBD/BSD/THTD" },
+    { id:"712", name:"Meteor Dragon", qty:3, type:"Dragon", stats:"1800 / 2000", gs:"—", imgId:"64271667", fmPass:"64271667 (999.999 SC)", note:"+ REBD → MBD (3500)" },
+    { id:"039", name:"Curse of Dragon", qty:3, type:"Dragon", stats:"2000 / 1500", gs:"Saturn / Pluto", imgId:"28279543", fmPass:"28279543 (999.999 SC)", note:"+ Mọi Sấm → THTD (2800)" },
+    { id:"425", name:"Thunder Dragon", qty:3, type:"Thunder", stats:"1600 / 1500", gs:"—", imgId:"31786629", fmPass:"31786629 (230 SC)", note:"+ Mọi Rồng/Sấm → THTD" },
+    { id:"458", name:"Kaminari Attack", qty:3, type:"Thunder", stats:"1900 / 1400", gs:"Pluto / Venus", imgId:"09653271", fmPass:"09653271 (290 SC)", note:"+ Mọi Rồng → THTD" },
+    { id:"045", name:"Oscillo Hero #2", qty:2, type:"Thunder", stats:"1000 / 500", gs:"—", imgId:"27324313", fmPass:"27324313 (30 SC)", note:"30 SC; + Rồng 1600+ → THTD" },
+    { id:"022", name:"Summoned Skull", qty:3, type:"Fiend", stats:"2500 / 1200", gs:"Moon / Pluto", imgId:"70781052", fmPass:"70781052 (999.999 SC)", note:"+ REBD → BSD; ăn 11 đồ!" },
+    { id:"337", name:"Raigeki", qty:2, type:"Magic", stats:"Quét quái địch", gs:"—", imgId:"12580477", fmPass:"12580477 (999.999 SC)", note:"Phá tường 3000 & BEUD" },
+    { id:"348", name:"Swords of Revealing Light", qty:2, type:"Magic", stats:"Khóa 3 lượt", gs:"—", imgId:"72302403", fmPass:"72302403 (999.999 SC)", note:"An toàn xếp combo 9999" },
+    { id:"332", name:"Mountain", qty:2, type:"Field", stats:"+500 MBD/BSD/THTD", gs:"—", imgId:"50913601", fmPass:"50913601 (55 SC)", note:"MBD 4000 → chạm 9999!" },
+    { id:"657", name:"Megamorph", qty:3, type:"Equip", stats:"+1000 Mọi quái", gs:"—", imgId:"22046459", fmPass:"22046459 (50.000 SC)", note:"Cốt lõi 9999 (+3000)" },
+    { id:"668", name:"Bright Castle", qty:3, type:"Equip", stats:"+500 Mọi quái", gs:"—", imgId:"82878489", fmPass:"82878489 (800 SC)", note:"Cốt lõi 9999 (+1500)" },
+    { id:"315", name:"Dragon Treasure", qty:3, type:"Equip", stats:"+500 MBD/BSD/THTD", gs:"—", imgId:"01435851", fmPass:"01435851 (800 SC)", note:"MBD/BSD/THTD (+1500)" },
+    { id:"303", name:"Dark Energy", qty:3, type:"Equip", stats:"+500 THTD/Skull", gs:"—", imgId:"04614116", fmPass:"04614116 (800 SC)", note:"THTD & Skull (+1500)" },
+    { id:"308", name:"Beast Fangs", qty:2, type:"Equip", stats:"+500 THTD/Skull", gs:"—", imgId:"46009906", fmPass:"46009906 (800 SC)", note:"THTD & Skull (+1000)" }
+  ],
+  deck5a: [
+    { id:"364", name:"Black Luster Soldier", qty:3, type:"Warrior", stats:"3000 / 2500", gs:"Moon / Uranus", imgId:"05405694", fmPass:"Không có Pass FM (Full 722)", note:"Ăn 14/14 đồ → 9999!" },
+    { id:"722", name:"Magician of Black Chaos", qty:3, type:"Spellcaster", stats:"2800 / 2600", gs:"Mercury / Mars", imgId:"30208479", fmPass:"Không có Pass FM (Full 722)", note:"Ăn 14/14 đồ; Mercury khắc BEUD" },
+    { id:"716", name:"Garma Sword", qty:3, type:"Warrior", stats:"2550 / 2150", gs:"Moon / Uranus", imgId:"90844184", fmPass:"Không có Pass FM (Full 722)", note:"Ăn 12+ đồ → 9999!" },
+    { id:"035", name:"Dark Magician", qty:3, type:"Spellcaster", stats:"2500 / 2100", gs:"Mercury / Mars", imgId:"46986414", fmPass:"46986414 (999.999 SC)", note:"3000 trên Yami; khắc BEUD" },
+    { id:"038", name:"Gaia the Fierce Knight", qty:3, type:"Warrior", stats:"2300 / 2100", gs:"—", imgId:"06368038", fmPass:"06368038 (999.999 SC)", note:"Ăn 14/14 đồ → 9999!" },
+    { id:"378", name:"Swordstalker", qty:3, type:"Warrior", stats:"2000 / 1600", gs:"Moon / Saturn", imgId:"50005633", fmPass:"50005633 (400 SC)", note:"Ăn 14/14 đồ → 9999!" },
+    { id:"033", name:"Judge Man", qty:2, type:"Warrior", stats:"2200 / 1500", gs:"Sun / Saturn", imgId:"30113682", fmPass:"30113682", note:"2700 Sogen; Sun khắc GG" },
+    { id:"337", name:"Raigeki", qty:2, type:"Magic", stats:"Quét quái địch", gs:"—", imgId:"12580477", fmPass:"12580477 (999.999 SC)", note:"Dọn bàn" },
+    { id:"348", name:"Swords of Revealing Light", qty:2, type:"Magic", stats:"Khóa 3 lượt", gs:"—", imgId:"72302403", fmPass:"72302403 (999.999 SC)", note:"Chờ đồ cho tướng nam" },
+    { id:"333", name:"Sogen", qty:1, type:"Field", stats:"+500 Warrior", gs:"—", imgId:"86318356", fmPass:"86318356 (55 SC)", note:"Buff 14/20 chiến binh" },
+    { id:"332", name:"Mountain", qty:1, type:"Field", stats:"Xóa sân bất lợi", gs:"—", imgId:"50913601", fmPass:"50913601 (55 SC)", note:"Không trừ điểm đội hình" },
+    { id:"657", name:"Megamorph", qty:3, type:"Equip", stats:"+1000 (20/20)", gs:"—", imgId:"22046459", fmPass:"22046459 (50.000 SC)", note:"+3000 mọi nam tướng" },
+    { id:"668", name:"Bright Castle", qty:3, type:"Equip", stats:"+500 (20/20)", gs:"—", imgId:"82878489", fmPass:"82878489 (800 SC)", note:"+1500 mọi nam tướng" },
+    { id:"303", name:"Dark Energy", qty:3, type:"Equip", stats:"+500 (18/20)", gs:"—", imgId:"04614116", fmPass:"04614116 (800 SC)", note:"Tất cả trừ Judge Man" },
+    { id:"302", name:"Sword of Dark Destruction", qty:3, type:"Equip", stats:"+500 (15/20)", gs:"—", imgId:"37120512", fmPass:"37120512 (800 SC)", note:"BLS, MoBC, Garma, Gaia, SS" },
+    { id:"651", name:"Kunai with Chain", qty:2, type:"Equip", stats:"+500 (14+/20)", gs:"—", imgId:"37390589", fmPass:"37390589 (800 SC)", note:"BLS, MoBC, Gaia, SS, Judge" }
+  ],
+  deck5b: [
+    { id:"708", name:"Cosmo Queen", qty:3, type:"Spellcaster", stats:"2900 / 2450", gs:"Venus / Uranus", imgId:"38999506", fmPass:"Không có Pass FM (Full 722)", note:"3400 trên Yami; +9000 đồ!" },
+    { id:"531", name:"Mystical Sand", qty:3, type:"Rock", stats:"2100 / 1700", gs:"Mercury / Saturn", imgId:"32751480", fmPass:"32751480 (500 SC)", note:"Mercury khắc BEUD; +9000 đồ" },
+    { id:"572", name:"Empress Judge", qty:3, type:"Warrior", stats:"2100 / 1700", gs:"Uranus / Venus", imgId:"15237615", fmPass:"15237615", note:"10 trang bị; +9000 đồ" },
+    { id:"551", name:"Dark Elf", qty:3, type:"Spellcaster", stats:"2000 / 800", gs:"—", imgId:"21417692", fmPass:"21417692", note:"2500 trên Yami; +9000 đồ" },
+    { id:"063", name:"Harpie Lady Sisters", qty:3, type:"Winged Beast", stats:"1950 / 2100", gs:"—", imgId:"12206212", fmPass:"12206212 (999.999 SC)", note:"2450 Mountain; +9000 đồ" },
+    { id:"532", name:"Gemini Elf", qty:3, type:"Spellcaster", stats:"1900 / 900", gs:"Sun / Uranus", imgId:"69140098", fmPass:"69140098", note:"2400 Yami; Sun khắc GG" },
+    { id:"090", name:"Gyakutenno Megami", qty:2, type:"Fairy", stats:"1800 / 2000", gs:"—", imgId:"31122090", fmPass:"31122090", note:"Thủ 2000; +9000 → 9999!" },
+    { id:"337", name:"Raigeki", qty:2, type:"Magic", stats:"Quét quái địch", gs:"—", imgId:"12580477", fmPass:"12580477 (999.999 SC)", note:"Dọn bàn" },
+    { id:"348", name:"Swords of Revealing Light", qty:2, type:"Magic", stats:"Khóa 3 lượt", gs:"—", imgId:"72302403", fmPass:"72302403 (999.999 SC)", note:"Tích bộ trang bị nữ" },
+    { id:"332", name:"Mountain", qty:1, type:"Field", stats:"+500 Harpie / Xóa Yami", gs:"—", imgId:"50913601", fmPass:"50913601 (55 SC)", note:"Bảo vệ Gyakutenno khỏi Yami" },
+    { id:"657", name:"Megamorph", qty:3, type:"Equip", stats:"+1000 (20/20)", gs:"—", imgId:"22046459", fmPass:"22046459 (50.000 SC)", note:"100% Nữ tướng (+3000)" },
+    { id:"668", name:"Bright Castle", qty:3, type:"Equip", stats:"+500 (20/20)", gs:"—", imgId:"82878489", fmPass:"82878489 (800 SC)", note:"100% Nữ tướng (+1500)" },
+    { id:"317", name:"Cyber Shield", qty:3, type:"Equip", stats:"+500 (20/20)", gs:"—", imgId:"63224564", fmPass:"63224564", note:"100% Nữ tướng (+1500)" },
+    { id:"316", name:"Electro-whip", qty:3, type:"Equip", stats:"+500 (20/20)", gs:"—", imgId:"37820550", fmPass:"37820550", note:"100% Nữ tướng (+1500)" },
+    { id:"321", name:"Malevolent Nuzzler", qty:3, type:"Equip", stats:"+500 (20/20)", gs:"—", imgId:"99597615", fmPass:"99597615 (800 SC)", note:"100% Nữ tướng (+1500)" }
+  ],
+  deck5c: [
+    { id:"392", name:"Metalzoa", qty:3, type:"Machine", stats:"3000 / 2300", gs:"Moon / Mars", imgId:"50705071", fmPass:"50705071 (999.999 SC)", note:"Ăn 15/15 đồ → 9999!" },
+    { id:"370", name:"Labyrinth Tank", qty:3, type:"Machine", stats:"2400 / 2400", gs:"Moon / Mercury", imgId:"99551425", fmPass:"99551425 (999.999 SC)", note:"Mercury khắc BEUD; 15/15 đồ" },
+    { id:"390", name:"Launcher Spider", qty:3, type:"Machine", stats:"2200 / 2500", gs:"Mars / Pluto", imgId:"87322377", fmPass:"87322377 (999.999 SC)", note:"Thủ 2500; ăn 15/15 đồ" },
+    { id:"407", name:"Machine King", qty:3, type:"Machine", stats:"2200 / 2000", gs:"Mars / Sun", imgId:"46700124", fmPass:"46700124 (800 SC)", note:"Sun khắc GG; ăn 15/15 đồ" },
+    { id:"645", name:"Royal Guard", qty:2, type:"Machine", stats:"1900 / 2200", gs:"Uranus / Mercury", imgId:"39239728", fmPass:"39239728 (700 SC)", note:"Mercury khắc BEUD; 12/15 đồ" },
+    { id:"415", name:"Mechanicalchacer", qty:2, type:"Machine", stats:"1850 / 800", gs:"—", imgId:"07359741", fmPass:"07359741 (120 SC)", note:"120 SC; ăn 15/15 đồ" },
+    { id:"408", name:"Giant Mech-soldier", qty:2, type:"Machine", stats:"1750 / 1900", gs:"Moon / Neptune", imgId:"72299832", fmPass:"72299832 (400 SC)", note:"Neptune khắc MBD; 15/15 đồ" },
+    { id:"388", name:"Pendulum Machine", qty:2, type:"Machine", stats:"1750 / 2000", gs:"Mercury / Neptune", imgId:"24433920", fmPass:"24433920 (1.000 SC)", note:"Khắc cả BEUD & MBD; 15/15 đồ" },
+    { id:"337", name:"Raigeki", qty:2, type:"Magic", stats:"Quét quái địch", gs:"—", imgId:"12580477", fmPass:"12580477 (999.999 SC)", note:"Dọn bàn" },
+    { id:"348", name:"Swords of Revealing Light", qty:2, type:"Magic", stats:"Khóa 3 lượt", gs:"—", imgId:"72302403", fmPass:"72302403 (999.999 SC)", note:"Tích đồ lắp giáp" },
+    { id:"332", name:"Mountain", qty:1, type:"Field", stats:"Xóa Umi (-500 Máy)", gs:"—", imgId:"50913601", fmPass:"50913601 (55 SC)", note:"Bảo vệ Machine & phá Yami" },
+    { id:"657", name:"Megamorph", qty:3, type:"Equip", stats:"+1000 (20/20)", gs:"—", imgId:"22046459", fmPass:"22046459 (50.000 SC)", note:"100% Machine (+3000)" },
+    { id:"668", name:"Bright Castle", qty:3, type:"Equip", stats:"+500 (20/20)", gs:"—", imgId:"82878489", fmPass:"82878489 (800 SC)", note:"100% Machine (+1500)" },
+    { id:"325", name:"Machine Conversion Factory", qty:3, type:"Equip", stats:"+500 (20/20)", gs:"—", imgId:"25769732", fmPass:"25769732 (999.999 SC)", note:"100% Machine (+1500)" },
+    { id:"305", name:"Laser Cannon Armor", qty:3, type:"Equip", stats:"+500 (20/20)", gs:"—", imgId:"77007920", fmPass:"77007920 (800 SC)", note:"Gắn được 20/20 Máy (+1500)" },
+    { id:"303", name:"Dark Energy", qty:3, type:"Equip", stats:"+500 (18/20)", gs:"—", imgId:"04614116", fmPass:"04614116 (800 SC)", note:"Tất cả trừ Royal Guard (+1500)" }
+  ]
+};
+
+Object.keys(STORY).forEach(k => {
+  const el = document.getElementById('story-' + k);
+  if (!el) return;
+  el.innerHTML = STORY[k].map(d => {
+    const fb = makeFallback(d.name, d.tag, true);
+    return `<div class="duelist-card">
+      <img src="${duelistImgUrl(d.slug)}" alt="${d.name}" loading="lazy" onerror="this.onerror=null;this.src='${fb}'" />
+      <div class="duelist-info">
+        <h4>${d.name}</h4>
+        <span class="badge ${d.tag.includes('Mắt') ? 'b-red' : d.tag.includes('MỎ') ? 'b-green' : 'b-gold'}">${d.tag}</span>
+        <p>${d.desc}</p>
+      </div>
+    </div>`;
+  }).join('');
+});
+
+Object.keys(DECKS).forEach(k => {
+  const el = document.getElementById('grid-' + k);
+  if (!el) return;
+  el.innerHTML = DECKS[k].map(c => {
+    const fb = makeFallback(c.name, c.stats, false);
+    return `<div class="ygo-card">
+      <span class="id-tag">#${c.id}</span>
+      <span class="qty-tag">×${c.qty}</span>
+      <img src="${cardImgUrl(c.imgId)}" alt="${c.name}" loading="lazy" onerror="this.onerror=null;this.src='${fb}'" />
+      <div class="ygo-name">${c.name}</div>
+      <div class="ygo-meta">${c.type} • ${c.stats}</div>
+      <div class="ygo-sub">${c.gs !== '—' ? '★ ' + c.gs + '<br/>' : ''}${c.note}</div>
+      <div class="ygo-pass">${c.fmPass}</div>
+    </div>`;
+  }).join('');
+});
+
+document.querySelectorAll('#mainTabs .tab-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('#mainTabs .tab-btn').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('main > .panel').forEach(p => p.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById('tab-' + btn.dataset.tab).classList.add('active');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+});
+
+document.querySelectorAll('.subtabs').forEach(group => {
+  group.querySelectorAll('.subtab-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const parent = btn.closest('.section-box');
+      group.querySelectorAll('.subtab-btn').forEach(b => b.classList.remove('active'));
+      parent.querySelectorAll('.subpanel').forEach(sp => sp.classList.remove('active'));
+      btn.classList.add('active');
+      document.getElementById('sub-' + btn.dataset.sub).classList.add('active');
+    });
+  });
+});
+
+function updateCalc() {
+  const parts = document.getElementById('calcMonster').value.split('|');
+  const base = parseInt(parts[0], 10);
+  const fieldName = parts[1];
+  const mm = Math.max(0, Math.min(3, parseInt(document.getElementById('calcMM').value, 10) || 0));
+  const eq = Math.max(0, Math.min(12, parseInt(document.getElementById('calcEq').value, 10) || 0));
+  const useField = document.getElementById('calcField').checked && fieldName !== 'None';
+  const useGS = document.getElementById('calcGS').checked;
+  const raw = base + mm * 1000 + eq * 500 + (useField ? 500 : 0) + (useGS ? 500 : 0);
+  const capped = Math.min(9999, raw);
+  const tag = capped >= 9999 ? ' — ĐẠT TRẦN TUYỆT ĐỐI 9999!' : capped >= 4500 ? ' — Vượt ngưỡng BEUD (4500)!' : '';
+  document.getElementById('calcOut').textContent = `Tổng ATK: ${capped} (Thực tính: ${raw})${tag}`;
+}
+['calcMonster','calcMM','calcEq','calcField','calcGS'].forEach(id => {
+  document.getElementById(id).addEventListener('input', updateCalc);
+  document.getElementById(id).addEventListener('change', updateCalc);
+});
+updateCalc();
+</script>
+</body>
+</html>
