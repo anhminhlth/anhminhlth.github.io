@@ -1,0 +1,1148 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bản Đồ Hướng Nghiệp &amp; Đầu Tư 1 Tỷ (2026–2036) – Đặng Phạm Anh Huy (Tom)</title>
+  <style>
+    :root {
+      --bg: #f4f7fb;
+      --surface: #ffffff;
+      --surface-alt: #f8fafc;
+      --ink: #0f172a;
+      --ink-soft: #475569;
+      --muted: #64748b;
+      --border: #e2e8f0;
+      --primary: #1a56db;
+      --primary-dark: #103a9e;
+      --primary-light: #eff6ff;
+      --teal: #0d9488;
+      --teal-light: #f0fdfa;
+      --amber: #d97706;
+      --amber-light: #fffbeb;
+      --danger: #dc2626;
+      --danger-light: #fef2f2;
+      --success: #15803d;
+      --success-light: #f0fdf4;
+      --radius: 12px;
+      --shadow: 0 2px 10px rgba(15, 23, 42, 0.06);
+    }
+
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background: var(--bg);
+      color: var(--ink);
+      line-height: 1.55;
+      font-size: 15px;
+    }
+
+    /* Header */
+    .hero {
+      background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 60%, #0f766e 100%);
+      color: #fff;
+      padding: 28px 20px 22px;
+    }
+    .container {
+      max-width: 1140px;
+      margin: 0 auto;
+    }
+    .hero-top {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 16px;
+    }
+    .badge {
+      display: inline-block;
+      background: rgba(255,255,255,0.16);
+      border: 1px solid rgba(255,255,255,0.28);
+      padding: 4px 12px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.3px;
+      margin-bottom: 8px;
+    }
+    .hero h1 {
+      margin: 0 0 6px;
+      font-size: clamp(20px, 3vw, 28px);
+      line-height: 1.25;
+      font-weight: 800;
+    }
+    .hero p {
+      margin: 0;
+      color: #cbd5e1;
+      font-size: 14px;
+      max-width: 780px;
+    }
+    .btn-print {
+      background: #fff;
+      color: #0f172a;
+      border: none;
+      padding: 9px 16px;
+      border-radius: 8px;
+      font-weight: 700;
+      font-size: 13px;
+      cursor: pointer;
+      white-space: nowrap;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.18);
+    }
+    .btn-print:hover { background: #e2e8f0; }
+
+    .hero-kpis {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(175px, 1fr));
+      gap: 10px;
+      margin-top: 18px;
+    }
+    .hero-kpi {
+      background: rgba(255,255,255,0.1);
+      border: 1px solid rgba(255,255,255,0.18);
+      border-radius: 10px;
+      padding: 10px 14px;
+    }
+    .hero-kpi .lbl { font-size: 11px; color: #cbd5e1; text-transform: uppercase; letter-spacing: 0.4px; }
+    .hero-kpi .val { font-size: 16px; font-weight: 800; margin-top: 2px; color: #fff; }
+    .hero-kpi .sub { font-size: 11.5px; color: #94a3b8; }
+
+    /* Sticky Tabs */
+    .tabs-wrap {
+      position: sticky;
+      top: 0;
+      z-index: 40;
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      box-shadow: 0 2px 8px rgba(15,23,42,0.04);
+    }
+    .tabs {
+      display: flex;
+      overflow-x: auto;
+      gap: 4px;
+      padding: 8px 16px;
+      scrollbar-width: thin;
+    }
+    .tab-btn {
+      border: none;
+      background: transparent;
+      color: var(--ink-soft);
+      font-weight: 600;
+      font-size: 13.5px;
+      padding: 9px 14px;
+      border-radius: 8px;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: all 0.15s ease;
+    }
+    .tab-btn:hover { background: var(--surface-alt); color: var(--ink); }
+    .tab-btn.active {
+      background: var(--primary);
+      color: #fff;
+      box-shadow: 0 2px 6px rgba(26,86,219,0.28);
+    }
+
+    /* Main content */
+    main { padding: 20px 16px 48px; }
+    .tab-panel { display: none; animation: fadeIn 0.2s ease; }
+    .tab-panel.active { display: block; }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: translateY(0); } }
+
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 20px;
+      margin-bottom: 18px;
+      box-shadow: var(--shadow);
+    }
+    .card h2 {
+      margin: 0 0 12px;
+      font-size: 18px;
+      color: var(--ink);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      border-bottom: 2px solid var(--primary-light);
+      padding-bottom: 8px;
+    }
+    .card h3 {
+      margin: 14px 0 8px;
+      font-size: 15.5px;
+      color: var(--primary-dark);
+    }
+    p { margin: 0 0 10px; }
+    ul, ol { margin: 0 0 12px; padding-left: 20px; }
+    li { margin-bottom: 5px; }
+
+    /* Alerts & Callouts */
+    .callout {
+      border-left: 4px solid var(--primary);
+      background: var(--primary-light);
+      padding: 12px 14px;
+      border-radius: 0 8px 8px 0;
+      margin: 12px 0;
+      font-size: 14px;
+    }
+    .callout.warn { border-color: var(--amber); background: var(--amber-light); }
+    .callout.danger { border-color: var(--danger); background: var(--danger-light); }
+    .callout.success { border-color: var(--success); background: var(--success-light); }
+
+    /* Grids */
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 16px;
+    }
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 14px;
+    }
+
+    /* Tables */
+    .table-wrap {
+      overflow-x: auto;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      margin: 10px 0 14px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 640px;
+      font-size: 13.5px;
+    }
+    th, td {
+      padding: 10px 12px;
+      text-align: left;
+      border-bottom: 1px solid var(--border);
+      vertical-align: top;
+    }
+    th {
+      background: #f1f5f9;
+      font-weight: 700;
+      color: var(--ink);
+      white-space: nowrap;
+    }
+    tr:last-child td { border-bottom: none; }
+    tr:hover td { background: #f8fafc; }
+
+    /* Pills & Tags */
+    .tag {
+      display: inline-block;
+      padding: 2px 9px;
+      border-radius: 999px;
+      font-size: 11.5px;
+      font-weight: 700;
+    }
+    .tag-blue { background: #dbeafe; color: #1e40af; }
+    .tag-green { background: #dcfce7; color: #166534; }
+    .tag-amber { background: #fef3c7; color: #92400e; }
+    .tag-red { background: #fee2e2; color: #991b1b; }
+    .tag-gray { background: #e2e8f0; color: #334155; }
+
+    /* Industry & Branch Cards */
+    .ind-card {
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 16px;
+      background: var(--surface-alt);
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .ind-card.top-pick {
+      border: 2px solid var(--primary);
+      background: #f8fbff;
+    }
+    .ind-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+    .ind-title { font-weight: 800; font-size: 15.5px; color: var(--ink); }
+
+    /* Branch Map Steps */
+    .branch-step {
+      border-left: 3px solid #cbd5e1;
+      padding: 6px 0 6px 12px;
+      margin-bottom: 8px;
+      font-size: 13.5px;
+    }
+    .top-pick .branch-step { border-left-color: var(--primary); }
+    .branch-step strong { display: block; color: var(--ink); font-size: 13px; }
+
+    /* Visual CSS Bars */
+    .bar-row { margin-bottom: 12px; }
+    .bar-meta {
+      display: flex;
+      justify-content: space-between;
+      font-size: 13px;
+      font-weight: 600;
+      margin-bottom: 4px;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+    .bar-track {
+      height: 16px;
+      background: #e2e8f0;
+      border-radius: 999px;
+      overflow: hidden;
+      display: flex;
+    }
+    .bar-seg { height: 100%; }
+
+    /* SWOT & Canvas */
+    .swot-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 14px;
+    }
+    .swot-box {
+      border-radius: 10px;
+      padding: 15px;
+      border: 1px solid var(--border);
+    }
+    .swot-s { background: #f0fdf4; border-color: #bbf7d0; }
+    .swot-w { background: #fffbeb; border-color: #fde68a; }
+    .swot-o { background: #eff6ff; border-color: #bfdbfe; }
+    .swot-t { background: #fef2f2; border-color: #fecaca; }
+    .swot-box h3 { margin-top: 0; font-size: 15px; }
+
+    .canvas-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 12px;
+    }
+    .canvas-cell {
+      background: var(--surface-alt);
+      border: 1px solid var(--border);
+      border-top: 3px solid var(--primary);
+      border-radius: 8px;
+      padding: 12px;
+      font-size: 13.5px;
+    }
+    .canvas-cell h4 {
+      margin: 0 0 6px;
+      font-size: 13px;
+      text-transform: uppercase;
+      color: var(--primary-dark);
+      letter-spacing: 0.3px;
+    }
+
+    /* Interactive Checklist */
+    .check-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      padding: 10px 12px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      margin-bottom: 8px;
+      background: var(--surface-alt);
+      cursor: pointer;
+    }
+    .check-item input { margin-top: 3px; width: 17px; height: 17px; cursor: pointer; }
+    .check-item.done { background: var(--success-light); border-color: #86efac; }
+    .check-item.done span { text-decoration: line-through; color: var(--muted); }
+    .progress-bar-wrap {
+      background: #e2e8f0;
+      height: 10px;
+      border-radius: 999px;
+      overflow: hidden;
+      margin: 8px 0 14px;
+    }
+    .progress-bar-fill {
+      background: var(--teal);
+      height: 100%;
+      width: 0%;
+      transition: width 0.25s ease;
+    }
+
+    /* Simulator box */
+    .sim-controls {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 12px;
+      background: var(--surface-alt);
+      padding: 14px;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      margin-bottom: 14px;
+    }
+    .sim-controls label { display: block; font-size: 12.5px; font-weight: 700; margin-bottom: 4px; color: var(--ink-soft); }
+    .sim-controls select, .sim-controls input[type="range"] { width: 100%; padding: 6px 8px; border-radius: 6px; border: 1px solid #cbd5e1; }
+    .sim-result {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 10px;
+    }
+    .sim-kpi {
+      background: var(--primary-light);
+      border: 1px solid #bfdbfe;
+      border-radius: 8px;
+      padding: 12px;
+    }
+    .sim-kpi .k-lbl { font-size: 11.5px; color: var(--ink-soft); font-weight: 600; }
+    .sim-kpi .k-val { font-size: 19px; font-weight: 800; color: var(--primary-dark); margin-top: 3px; }
+
+    footer {
+      text-align: center;
+      color: var(--muted);
+      font-size: 12.5px;
+      padding: 18px;
+      border-top: 1px solid var(--border);
+      background: var(--surface);
+    }
+
+    @media print {
+      .tabs-wrap, .btn-print { display: none !important; }
+      .tab-panel { display: block !important; page-break-inside: avoid; margin-bottom: 24px; }
+      body { background: #fff; font-size: 11.5pt; }
+      .card { box-shadow: none; border: 1px solid #cbd5e1; }
+      .hero { background: #0f172a !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    }
+  </style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="container">
+    <div class="hero-top">
+      <div>
+        <div class="badge">HỒ SƠ CHIẾN LƯỢC HỌP GIA ĐÌNH THÁNG 01/2027 • CẬP NHẬT 11/2026</div>
+        <h1>Bản Đồ Hướng Nghiệp &amp; Đầu Tư 1 Tỷ Đồng – Đặng Phạm Anh Huy (Tom)</h1>
+        <p>Sinh ngày 30/09/2011 • Lớp 10 Chuyên Anh – THPT Chuyên Trần Đại Nghĩa (TP.HCM) • IELTS ~7.5 • Mục tiêu: Công việc trí óc bền vững, đầu tư nhẹ, độc lập mua nhà &amp; xe tuổi 25–26 (2036–2037).</p>
+      </div>
+      <button class="btn-print" onclick="window.print()">In / Lưu PDF</button>
+    </div>
+
+    <div class="hero-kpis">
+      <div class="hero-kpi">
+        <div class="lbl">Ngành Ưu Tiên #1</div>
+        <div class="val">B2B Hãng FDI</div>
+        <div class="sub">Technical Sales / KAM / Supply Chain</div>
+      </div>
+      <div class="hero-kpi">
+        <div class="lbl">Ngành Ưu Tiên #2</div>
+        <div class="val">Xây Dựng QS / BIM</div>
+        <div class="sub">Hợp đồng FIDIC / B2B Vật liệu</div>
+      </div>
+      <div class="hero-kpi">
+        <div class="lbl">Đào Tạo Tối Ưu</div>
+        <div class="val">VGU / CLC Tiếng Anh</div>
+        <div class="sub">Song bằng Đức, dư 300–400tr đầu tư</div>
+      </div>
+      <div class="hero-kpi">
+        <div class="lbl">Mốc Tài Sản 2036 (25t)</div>
+        <div class="val">~2,68 Tỷ (Xe + Cọc)</div>
+        <div class="sub">Mua đứt tiền mặt ~6,29 tỷ (rất khó ở 25t)</div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<nav class="tabs-wrap" aria-label="Điều hướng nội dung">
+  <div class="container tabs" role="tablist">
+    <button class="tab-btn active" role="tab" data-tab="overview">1. Tổng Quan &amp; Chân Dung</button>
+    <button class="tab-btn" role="tab" data-tab="industries">2. Thẩm Định 4 Ngành</button>
+    <button class="tab-btn" role="tab" data-tab="education">3. Du Học vs VN &amp; Quỹ 1 Tỷ</button>
+    <button class="tab-btn" role="tab" data-tab="finance">4. Bài Toán Nhà &amp; Xe Tuổi 25</button>
+    <button class="tab-btn" role="tab" data-tab="swot">5. SWOT &amp; Personal Canvas</button>
+    <button class="tab-btn" role="tab" data-tab="roadmap">6. Bản Đồ Lộ Trình &amp; Checklist</button>
+  </div>
+</nav>
+
+<main class="container">
+
+  <!-- TAB 1: OVERVIEW -->
+  <section id="tab-overview" class="tab-panel active">
+    <div class="card">
+      <h2>Kết Luận Điều Hành Cho Cuộc Họp Gia Đình Tháng 01/2027</h2>
+      <div class="callout success">
+        <strong>Khuyến nghị trục chính:</strong> Chọn chương trình đại học <strong>chuẩn Đức/quốc tế dạy 100% tiếng Anh ngay tại TP.HCM</strong> (ưu tiên ĐH Việt Đức – VGU hệ song bằng kèm 1 học kỳ trao đổi Đức, hoặc HCMIU / UEH-ISB / Bách Khoa TA) để chỉ chi 298–332 triệu đến tuổi 20 và 600–700 triệu toàn khóa, <strong>bảo toàn 300–400 triệu làm quỹ đầu tư lãi kép sớm</strong>. Tập trung vào lõi <strong>Kinh doanh B2B Hãng FDI (Technical Sales / KAM)</strong> hoặc <strong>Xây dựng tầng cổ cồn trắng (QS quốc tế / FIDIC / BIM)</strong>.
+      </div>
+      <div class="grid-3">
+        <div class="ind-card">
+          <div class="ind-title">1. Chọn đúng "Tầng giá trị"</div>
+          <p>Khoảng cách thu nhập tại TP.HCM 2026 không nằm ở tên ngành mà ở tầng gia nhập: thợ sửa chữa/bác sĩ thú y làm thuê chỉ 10–30 triệu/tháng, trong khi B2B Hãng FDI, QS Manager, Technical Service Manager đạt 45–120+ triệu/tháng.</p>
+        </div>
+        <div class="ind-card">
+          <div class="ind-title">2. Chưa đi thẳng Đức tuổi 18</div>
+          <p>Đi thẳng Dự bị (STK) + ĐH Đức tốn ~963 triệu chỉ đến tuổi 20 (tỷ giá EUR ~29–30k), cạn vốn dư, đồng thời có tỷ lệ bỏ học lịch sử cao nếu tính tự kỷ luật và tiếng Đức chưa đủ chín.</p>
+        </div>
+        <div class="ind-card">
+          <div class="ind-title">3. Nút thắt số 1 là "Sức ỳ"</div>
+          <p>Học nhanh + IELTS 7.5 là lợi thế hiếm, nhưng thói quen ít vận động và ù lì là rủi ro lớn nhất. Phải hóa giải bằng giao quyền tự chủ (Thuyết Tự Quyết SDT), thể thao lịch cứng và làm thêm hợp pháp ngay từ lớp 10–11.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>Giải Mã Chân Dung Anh Huy (Thực Tế 2026 vs. Hồ Sơ Sinh Trắc UKid 2017)</h2>
+      <div class="callout warn">
+        <strong>Hiệu chuẩn khoa học về hồ sơ UKid (2017):</strong> Tổng quan tâm lý học đo lường chỉ ra DMIT thiếu bằng chứng thực nghiệm chuẩn hóa và không được các hiệp hội tâm lý lớn (APA, BPS) công nhận làm công cụ dự báo nghề nghiệp; hơn nữa bản đo lập từ lúc Huy 5 tuổi. Gia đình chỉ dùng các chỉ số dưới đây để <em>tham chiếu định tính</em> và bổ sung bài test chuẩn hóa (O*NET RIASEC, Big Five) cùng thực địa triển lãm tháng 12/2026.
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Khía cạnh</th>
+              <th>Thực tế tuổi 15 (Tháng 11/2026)</th>
+              <th>Tham chiếu UKid 2017 (giả thuyết)</th>
+              <th>Hàm ý định hướng nghề nghiệp</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Học thuật &amp; Ngoại ngữ</strong></td>
+              <td>Lớp 10 Chuyên Anh Trần Đại Nghĩa; IELTS ~7.5; tiếp thu nhanh.</td>
+              <td>TFRC = 120 (học đa ngành tốt); Logic #2 (13,02%); 2 bán cầu cân bằng (51,7% / 48,3%).</td>
+              <td>Đủ sức học ngành lai <strong>Kinh tế – Kỹ thuật – Quản trị</strong> (không nên chỉ học Ngôn ngữ thuần dễ bị AI bào mòn).</td>
+            </tr>
+            <tr>
+              <td><strong>Tính chủ động &amp; Kỷ luật</strong></td>
+              <td>Hơi ù lì, ít làm việc nhà, dễ trì hoãn nếu thiếu cấu trúc.</td>
+              <td>60% UL (chịu ảnh hưởng môi trường, cần đôn đốc) + 20% UW (hào hứng lúc đầu, mau chán).</td>
+              <td>Cần môi trường có lộ trình rõ, áp lực bạn bè tích cực và phản hồi thành tích nhanh; tránh du học tự bơi quá sớm.</td>
+            </tr>
+            <tr>
+              <td><strong>Giao tiếp &amp; Vai trò</strong></td>
+              <td>Giao tiếp tiếng Anh tốt; muốn công việc hợp lý, tránh lao động tay chân nặng.</td>
+              <td>Thùy trước trán nổi trội nhất (25,83%: Quản lý #1 – 13,33%, Lãnh đạo #2 – 12,50%); Holland Xã hội &amp; Kinh doanh dẫn đầu.</td>
+              <td>Hợp vai trò <strong>B2B Key Account, Điều phối dự án, Đại diện thương mại hãng</strong>.</td>
+            </tr>
+            <tr>
+              <td><strong>Kênh tiếp thu</strong></td>
+              <td>Ít vận động nhưng dễ chán khi đọc lý thuyết khô cứng.</td>
+              <td>VAK thiên Vận động – Trải nghiệm (39,1%) và Thính giác (34,4%); Quan sát tĩnh #10 (6,7%).</td>
+              <td>Học qua thực tế: đi triển lãm SECC, làm trợ giảng/phiên dịch hợp pháp, rèn thể thao lịch cứng.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- TAB 2: 4 INDUSTRIES -->
+  <section id="tab-industries" class="tab-panel">
+    <div class="card">
+      <h2>Đánh Giá Chi Tiết 4 Nhóm Ngành Trọng Tâm Tại Việt Nam (2026–2036)</h2>
+      <div class="grid-2">
+
+        <div class="ind-card top-pick">
+          <div class="ind-head">
+            <span class="ind-title">1. Kinh Doanh B2B Vai Trò Hãng FDI</span>
+            <span class="tag tag-green">ƯU TIÊN #1 • 9,5/10</span>
+          </div>
+          <p><strong>Lý do &amp; Vĩ mô:</strong> FDI đăng ký 10T/2026 đạt 54,85 tỷ USD (+74%); riêng khối Đức có 576 công ty (520 dự án hoạt động 08/2026, 75% khối Sales/Service đóng tại TP.HCM). Nhu cầu nhân sự trẻ hiểu kỹ thuật + tiếng Anh giỏi đại diện hãng cực khan hiếm và kháng AI cao.</p>
+          <p><strong>Chuyên ngành học:</strong> Business &amp; Engineering, Quản trị Chuỗi cung ứng (Supply Chain), Quản trị Kinh doanh quốc tế kết hợp dữ liệu/kỹ thuật.</p>
+          <p><strong>Luận điểm đầu tư:</strong> Vốn học tập nhẹ, thu nhập bứt phá nhờ cơ cấu Lương cứng + Hoa hồng/KPI B2B, dễ chuyển chéo sang các hãng Xây dựng, HVAC lẫn Pet Care.</p>
+          <p><strong>Ví dụ Luận văn tốt nghiệp:</strong> <em>Chiến lược Go-to-Market và quản trị Key Account cho hãng thiết bị tự động hóa Đức vào chuỗi nhà máy bán dẫn – phòng sạch tại Đông Nam Bộ.</em></p>
+          <p><strong>Lương TP.HCM 2026 (Gross):</strong> Technical Sales 25–45tr • KAM/BDM 45–80tr • Sales Director/Chief Rep 100–220tr/tháng (chưa gồm thưởng KPI/hoa hồng).</p>
+          <p><strong>Hãng mục tiêu:</strong> Bosch, Siemens, Schneider Electric, ABB, Schaeffler, Ziehl-Abegg (Đồng Nai), Messer Gases, BASF, Henkel, Atlas Copco, DKSH, Grundfos.</p>
+        </div>
+
+        <div class="ind-card top-pick">
+          <div class="ind-head">
+            <span class="ind-title">2. Xây Dựng Tầng "Cổ Cồn Trắng" (QS / BIM)</span>
+            <span class="tag tag-blue">ƯU TIÊN #2 • 8,5/10</span>
+          </div>
+          <p><strong>Lý do &amp; Vĩ mô:</strong> Siêu chu kỳ hạ tầng 2026–2035 (Metro số 2 TP.HCM khởi công 01/2026, đường sắt Thủ Thiêm – Long Thành 2,5 tỷ USD, cao tốc/đường sắt Bắc–Nam, Data Center và nhà xưởng FDI chuẩn LEED).</p>
+          <p><strong>Chuyên ngành học:</strong> Kỹ thuật &amp; Quản lý Xây dựng (BCE – VGU song bằng ĐH Biberach Đức), Quản lý Xây dựng hệ tiếng Anh (ĐH Bách Khoa TP.HCM). <em>Tránh làm kỹ sư giám sát hiện trường nắng gió!</em></p>
+          <p><strong>Luận điểm đầu tư:</strong> Vào lõi thương mại và số hóa: <strong>QS quốc tế (hợp đồng FIDIC, chứng chỉ RICS)</strong>, <strong>BIM 5D</strong> hoặc <strong>B2B Vật liệu xây dựng</strong> — làm văn phòng máy lạnh, tiếng Anh là đòn bẩy nhân đôi thu nhập.</p>
+          <p><strong>Ví dụ Luận văn tốt nghiệp:</strong> <em>Ứng dụng mô hình BIM 5D tích hợp quản trị biến động chi phí và giải quyết tranh chấp phát sinh theo hợp đồng FIDIC cho dự án đường sắt đô thị TP.HCM.</em></p>
+          <p><strong>Lương TP.HCM 2026 (Gross):</strong> BIM Coord 30–60tr • Project/BIM Manager 40–80tr • QS Manager 45–120tr • Project Director 70–180tr/tháng.</p>
+          <p><strong>Hãng mục tiêu:</strong> Turner &amp; Townsend (Q.3), Arcadis, Mace, Artelia, Hilti Việt Nam, Sika, Knauf, Häfele, Obayashi, Shimizu, Coteccons (khối FDI).</p>
+        </div>
+
+        <div class="ind-card">
+          <div class="ind-head">
+            <span class="ind-title">3. Thiết Bị Gia Đình &amp; HVAC / BMS / Smart Home</span>
+            <span class="tag tag-amber">CHỌN LỌC #3 • 7,0/10</span>
+          </div>
+          <p><strong>Lý do &amp; Vĩ mô:</strong> Thị trường HVAC VN ước đạt 3,91 tỷ USD (2026) lên 5,48 tỷ USD (2031, CAGR 6,96%; Data Center tăng 8,24%/năm); dịch vụ bảo trì chiếm 19,5% doanh thu và kháng AI rất tốt.</p>
+          <p><strong>Cảnh báo bẫy:</strong> Thợ điện lạnh/bảo hành trực tiếp tại TP.HCM chỉ hưởng 10,5–25tr/tháng, lao động tay chân nặng, lãng phí IELTS 7.5. <strong>Chỉ chọn nếu đi tầng Kỹ sư/Quản lý Hậu mãi (After-Sales / Technical Service Manager) hoặc B2B Smart Building/BMS.</strong></p>
+          <p><strong>Chuyên ngành học:</strong> Cơ điện tử (VGU), Kỹ thuật Nhiệt – Lạnh / Điện – Tự động hóa / Quản lý Công nghiệp (ĐH Bách Khoa TP.HCM).</p>
+          <p><strong>Ví dụ Luận văn tốt nghiệp:</strong> <em>Mô hình bảo trì dự báo (Predictive Maintenance) bằng IoT và tối ưu biên lợi nhuận dịch vụ hậu mãi cho hệ thống VRF/Chiller tòa nhà hạng A.</em></p>
+          <p><strong>Lương TP.HCM 2026 (Gross):</strong> KTV trực tiếp 10,5–25tr • After-Sales Manager 20–35tr (MNC/ô tô 35–70tr) • Technical Service Manager MNC 52,5–105tr/tháng.</p>
+          <p><strong>Hãng mục tiêu:</strong> Daikin, Panasonic, LG (cam kết mở rộng 1 tỷ USD tại VN), Mitsubishi Electric, Bosch, Siemens Smart Infrastructure, Schneider Electric (EcoStruxure), Samsung.</p>
+        </div>
+
+        <div class="ind-card">
+          <div class="ind-head">
+            <span class="ind-title">4. Ngành Thú Cưng (Pet Care / Animal Health)</span>
+            <span class="tag tag-gray">DỰ PHÒNG #4 • 6,0/10</span>
+          </div>
+          <p><strong>Lý do &amp; Vĩ mô:</strong> Thức ăn thú cưng VN đạt 124 triệu USD năm 2025 (theo USDA GAIN; các hãng nghiên cứu ước 142–168 triệu USD năm 2025–2026, CAGR 7,3%–9,4%/năm); tỷ lệ dùng thức ăn công nghiệp mới 38%, thực phẩm bổ sung tăng 11,2%/năm.</p>
+          <p><strong>Cảnh báo bẫy:</strong> Không khuyến nghị học 5 năm Bác sĩ Thú y nếu thiếu đam mê lâm sàng (vất vả, lương làm thuê TP.HCM 7–30tr/tháng). <strong>Cửa vào tốt nhất là khối B2B / Brand / KAM tại các hãng Pet Food &amp; Dược thú y đa quốc gia.</strong></p>
+          <p><strong>Chuyên ngành học:</strong> Quản trị Kinh doanh / Marketing / Supply Chain (không cần bằng Thú y để làm thương mại/chuỗi cung ứng).</p>
+          <p><strong>Ví dụ Luận văn tốt nghiệp:</strong> <em>Chiến lược mở rộng kênh B2B phòng khám thú y và thương mại điện tử đa kênh cho dòng dinh dưỡng chức năng thú cưng cao cấp tại TP.HCM.</em></p>
+          <p><strong>Lương TP.HCM 2026 (Gross):</strong> Bác sĩ thú y 7–30tr • Kinh doanh B2B/Phát triển thị trường hãng Animal Health 15–65tr+/tháng (gồm hoa hồng).</p>
+          <p><strong>Hãng mục tiêu:</strong> Mars Petcare / Royal Canin, Nestlé Purina, Boehringer Ingelheim Animal Health, Zoetis (Q.10), Virbac, MSD, Pet Mart, Paddy, PetPro, PetCare.</p>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>So Sánh Nhanh Cơ Hội Thăng Tiến &amp; Phổ Lương 2026 Tại TP.HCM</h2>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Ngành &amp; Phân tầng vị trí</th>
+              <th>Mới ra trường (0–1 năm)</th>
+              <th>Chuyên viên (2–4 năm)</th>
+              <th>Quản lý (5+ năm)</th>
+              <th>Tính chất công việc</th>
+              <th>Phù hợp Anh Huy?</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>B2B Hãng FDI (Technical Sales → KAM)</strong></td>
+              <td>14 – 25 tr</td>
+              <td>25 – 50 tr (+KPI)</td>
+              <td>60 – 120+ tr</td>
+              <td>Văn phòng + gặp đối tác B2B, dùng tiếng Anh/Đức</td>
+              <td><span class="tag tag-green">Rất phù hợp</span></td>
+            </tr>
+            <tr>
+              <td><strong>Xây dựng Quốc tế (QS / FIDIC / BIM)</strong></td>
+              <td>12 – 18 tr</td>
+              <td>25 – 45 tr</td>
+              <td>55 – 120 tr</td>
+              <td>Văn phòng dự án, phần mềm, hợp đồng quốc tế</td>
+              <td><span class="tag tag-blue">Phù hợp cao</span></td>
+            </tr>
+            <tr>
+              <td><strong>HVAC / Thiết bị (Tầng After-Sales Mgr)</strong></td>
+              <td>12 – 18 tr</td>
+              <td>22 – 38 tr</td>
+              <td>45 – 105 tr</td>
+              <td>Quản trị vận hành dịch vụ, đối tác kỹ thuật</td>
+              <td><span class="tag tag-amber">Chọn lọc</span></td>
+            </tr>
+            <tr>
+              <td><strong>HVAC / Gia dụng (Tầng Thợ trực tiếp)</strong></td>
+              <td>8 – 12 tr</td>
+              <td>12 – 18 tr</td>
+              <td>18 – 25 tr</td>
+              <td>Lao động tay chân nặng, di chuyển ngoài trời</td>
+              <td><span class="tag tag-red">Không khuyến nghị</span></td>
+            </tr>
+            <tr>
+              <td><strong>Thú y lâm sàng (Làm thuê phòng khám)</strong></td>
+              <td>7 – 10 tr</td>
+              <td>12 – 20 tr</td>
+              <td>20 – 30 tr</td>
+              <td>Chuyên môn y học, trực ca, tiếp xúc vật nuôi</td>
+              <td><span class="tag tag-red">Không khuyến nghị</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- TAB 3: EDUCATION & 1 BILLION BUDGET -->
+  <section id="tab-education" class="tab-panel">
+    <div class="card">
+      <h2>So Sánh Trực Quan Phân Bổ Trần Ngân Sách 1 Tỷ VNĐ (6 Phương Án)</h2>
+      <p style="color:var(--ink-soft); font-size:13.5px;">Màu từng đoạn: <span class="tag tag-gray">Chuẩn bị Lớp 10–12</span> <span class="tag tag-blue">Chi ĐH đến tuổi 20</span> <span class="tag tag-amber">Năm 3–4 / Trao đổi / Chứng chỉ</span> <span class="tag tag-green">Quỹ dư đầu tư sớm</span></p>
+
+      <div class="bar-row">
+        <div class="bar-meta"><span>A2. Công lập CLC Tiếng Anh TP.HCM (HCMIU / UEH-ISB / BK)</span><span style="color:var(--success)">Chi đến 20t: 332tr • Dư đầu tư: +400tr</span></div>
+        <div class="bar-track">
+          <div class="bar-seg" style="width:11%; background:#94a3b8" title="Chuẩn bị: 110tr"></div>
+          <div class="bar-seg" style="width:22.2%; background:#1a56db" title="Đến tuổi 20: 222tr"></div>
+          <div class="bar-seg" style="width:26.8%; background:#f59e0b" title="Năm 3-4 & Chứng chỉ: 268tr"></div>
+          <div class="bar-seg" style="width:40%; background:#16a34a" title="Quỹ dư đầu tư: 400tr"></div>
+        </div>
+      </div>
+
+      <div class="bar-row">
+        <div class="bar-meta"><span>A1. ĐH Việt Đức (VGU – Học bổng 50%) + 1 học kỳ tại Đức ★ Khuyên dùng</span><span style="color:var(--success)">Chi đến 20t: 298tr • Dư đầu tư: +300tr</span></div>
+        <div class="bar-track">
+          <div class="bar-seg" style="width:12%; background:#94a3b8"></div>
+          <div class="bar-seg" style="width:17.8%; background:#1a56db"></div>
+          <div class="bar-seg" style="width:40.2%; background:#f59e0b"></div>
+          <div class="bar-seg" style="width:30%; background:#16a34a"></div>
+        </div>
+      </div>
+
+      <div class="bar-row">
+        <div class="bar-meta"><span>A1b. ĐH Việt Đức (VGU – Không học bổng) + 1 học kỳ tại Đức</span><span>Chi đến 20t: 405tr • Dư đầu tư: +80tr</span></div>
+        <div class="bar-track">
+          <div class="bar-seg" style="width:12%; background:#94a3b8"></div>
+          <div class="bar-seg" style="width:28.5%; background:#1a56db"></div>
+          <div class="bar-seg" style="width:51.5%; background:#f59e0b"></div>
+          <div class="bar-seg" style="width:8%; background:#16a34a"></div>
+        </div>
+      </div>
+
+      <div class="bar-row">
+        <div class="bar-meta"><span>B3. Du học nghề Đức (Ausbildung có lương 3 năm)</span><span style="color:var(--teal)">Chi đến 20t: 250tr • Dư đầu tư: +700tr (trần nghề thấp hơn)</span></div>
+        <div class="bar-track">
+          <div class="bar-seg" style="width:17%; background:#94a3b8"></div>
+          <div class="bar-seg" style="width:8%; background:#1a56db"></div>
+          <div class="bar-seg" style="width:5%; background:#f59e0b"></div>
+          <div class="bar-seg" style="width:70%; background:#16a34a"></div>
+        </div>
+      </div>
+
+      <div class="bar-row">
+        <div class="bar-meta"><span>B2. Du học Ba Lan (ĐH Công lập Tiếng Anh 3 năm)</span><span style="color:var(--amber)">Chi đến 20t: 750tr • Dư: 0tr (cần làm thêm năm 3)</span></div>
+        <div class="bar-track">
+          <div class="bar-seg" style="width:12%; background:#94a3b8"></div>
+          <div class="bar-seg" style="width:63%; background:#1a56db"></div>
+          <div class="bar-seg" style="width:25%; background:#f59e0b"></div>
+        </div>
+      </div>
+
+      <div class="bar-row">
+        <div class="bar-meta"><span>B1. Đi thẳng ĐH Đức (Dự bị STK 1 năm + Cử nhân 3 năm)</span><span style="color:var(--danger)">Chi đến 20t: 963tr • Dư: 0tr (phải tự cày ~1.000€/th năm 3–4!)</span></div>
+        <div class="bar-track">
+          <div class="bar-seg" style="width:16%; background:#94a3b8"></div>
+          <div class="bar-seg" style="width:80.3%; background:#dc2626"></div>
+          <div class="bar-seg" style="width:3.7%; background:#f59e0b"></div>
+        </div>
+      </div>
+
+      <div class="callout danger">
+        <strong>Cảnh báo cập nhật du học Đức &amp; RMIT (2026–2027):</strong>
+        <ul style="margin-bottom:0;">
+          <li><strong>Trường chuyên VN không mặc nhiên vào thẳng ĐH Đức:</strong> Bằng THPT VN (từ 2025 thi 4 môn, TB ≥ 6,5) vẫn qua 1 năm Dự bị (Studienkolleg) hoặc học xong 2 năm ĐH chính quy tại VN mới vào thẳng năm 1 Đức.</li>
+          <li><strong>Chi phí Đức tăng:</strong> Tài khoản phong tỏa 11.904 EUR/năm (~355–366 triệu/năm theo tỷ giá 29–30k); một số trường top thu học phí ngoài EU (TUM tăng lên 2.300–3.400 EUR/kỳ từ 2027/28; FAU thu từ hè 2027; Baden-Württemberg thu 1.500 EUR/kỳ).</li>
+          <li><strong>RMIT Việt Nam vượt trần 1 tỷ:</strong> Học phí dự kiến 2027 là 394,7 triệu/năm (1,184 tỷ cho 3 năm Kinh doanh; 1,579 tỷ cho 4 năm Kỹ thuật) nếu không có học bổng lớn.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>So Sánh Chi Tiết Các Trường &amp; Quốc Gia Mục Tiêu (Cập Nhật 2026–2027)</h2>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Phương án / Trường tiêu biểu</th>
+              <th>Học phí công bố 2026–2027</th>
+              <th>Học bổng / Hỗ trợ</th>
+              <th>Điểm mạnh nổi bật</th>
+              <th>Rủi ro / Hạn chế</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>ĐH Việt Đức (VGU)</strong><br>BCE (Xây dựng), BBA, BDE, Cơ điện tử</td>
+              <td>43,7–46,6 tr/kỳ (~350–373 tr/4 năm)</td>
+              <td>HB Tài năng 25%–100% (SAT ≥1361 / TestAS ≥175); HB DAAD đi Đức</td>
+              <td>Song bằng Đức–Việt, 100% tiếng Anh, 1 kỳ trao đổi Đức, 98% có việc (theo công bố trường), học tiếng Đức song song.</td>
+              <td>Cơ sở chính ở Bến Cát (Bình Dương cũ), cần ở KTX hoặc đi xe bus trường.</td>
+            </tr>
+            <tr>
+              <td><strong>HCMIU / UEH-ISB / Bách Khoa (TA)</strong><br>Supply Chain, BBus, Quản lý XD, HVAC</td>
+              <td>59–80 tr/năm (~236–320 tr/toàn khóa); Western Sydney VN ~493 tr/2,8 năm</td>
+              <td>HB duy trì ĐHQG/UEH; Western Sydney có HB 30%–75%</td>
+              <td>Học ngay nội thành TP.HCM, tiết kiệm sinh hoạt phí, giữ lại ~400 triệu đầu tư sớm.</td>
+              <td>Cần kiểm tra trạng thái Anabin H+ nếu định sang Đức học Master/làm việc sau này.</td>
+            </tr>
+            <tr>
+              <td><strong>ĐH Ứng dụng Đức (THWS / Rhine-Waal)</strong><br>B.Eng Business &amp; Engineering (TA)</td>
+              <td>0 EUR học phí; phí kỳ 118–350 EUR; SHP ≥ 11.904 EUR/năm</td>
+              <td>Làm thêm 140 ngày/năm (13,90 EUR/giờ); Minijob 556 EUR miễn thuế</td>
+              <td>Chương trình TWIN Anh–Đức thực chiến, có 20 tuần thực tập công ty Đức, hưởng lương Euro sau tốt nghiệp.</td>
+              <td>Qua 1 năm STK; tổng vốn 4 năm ~1,5–1,7 tỷ nếu không tự làm thêm; rủi ro bỏ học cao nếu chưa tự lập.</td>
+            </tr>
+            <tr>
+              <td><strong>Ba Lan / Áo / Ý</strong><br>UW, SGH Warsaw, WU Vienna, ĐH công Ý</td>
+              <td>Ba Lan: 2,5–5k EUR/năm; Áo: ~1,5k EUR/năm; Ý: 0–4k EUR/năm</td>
+              <td>Ý có HB DSU (miễn HP + 3,3–8,1k EUR) nếu tài sản gia đình thấp (ISPE)</td>
+              <td>Học 100% tiếng Anh ngay bậc Cử nhân 3 năm; rẻ hơn nhiều so với Anh/Mỹ/Úc/Hà Lan.</td>
+              <td>Hết sạch 1 tỷ; Ý xét tài sản ISPE chặt với gia đình có nhà tại TP.HCM; Áo thi đầu vào cạnh tranh.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- TAB 4: AGE 25 FINANCE -->
+  <section id="tab-finance" class="tab-panel">
+    <div class="card">
+      <h2>Kiểm Định Mục Tiêu Tuổi 25 (Năm 2036): Mua Nhà &amp; Xe Thực Tế Cần Bao Nhiêu?</h2>
+      <div class="grid-3">
+        <div class="sim-kpi">
+          <div class="k-lbl">Ô tô phổ thông lăn bánh 2036</div>
+          <div class="k-val">~731 Triệu VNĐ</div>
+          <div style="font-size:12px; color:var(--ink-soft);">Từ ~600tr năm 2026 (VF5/Vios/VF6), +2%/năm</div>
+        </div>
+        <div class="sim-kpi" style="background:var(--teal-light); border-color:#99f6e4;">
+          <div class="k-lbl">Vốn tự có: Xe + Cọc 35% Căn hộ vùng ven</div>
+          <div class="k-val" style="color:var(--teal);">~2,68 Tỷ VNĐ</div>
+          <div style="font-size:12px; color:var(--ink-soft);">Căn hộ 62m² giá 5,55 tỷ (2036) + vay 3,89 tỷ (~36,2tr/th)</div>
+        </div>
+        <div class="sim-kpi" style="background:var(--danger-light); border-color:#fecaca;">
+          <div class="k-lbl">Mua đứt 100% tiền mặt Nhà + Xe (2036)</div>
+          <div class="k-val" style="color:var(--danger);">~6,29 Tỷ VNĐ</div>
+          <div style="font-size:12px; color:var(--ink-soft);">Không khả thi chỉ bằng tiền lương ở tuổi 25</div>
+        </div>
+      </div>
+
+      <h3>Công Cụ Mô Phỏng Kịch Bản Tích Lũy Tài Sản Đến Tuổi 25–28</h3>
+      <div class="sim-controls">
+        <div>
+          <label for="simScenario">Chọn Kịch Bản Sự Nghiệp</label>
+          <select id="simScenario">
+            <option value="s2" selected>Cơ sở: VGU/CLC + B2B Hãng / QS (Dư 300tr)</option>
+            <option value="s3">Tích cực: Top B2B FDI + Tốt nghiệp sớm (Dư 400tr)</option>
+            <option value="s4">Du học Đức &amp; Làm tại Đức (Dư 0tr)</option>
+            <option value="s1">Thận trọng: Kỹ thuật/Thú y thường (Dư 50tr)</option>
+          </select>
+        </div>
+        <div>
+          <label for="simAge">Chọn Độ Tuổi Kiểm Tra: <strong id="simAgeLbl">25 tuổi (2036)</strong></label>
+          <input type="range" id="simAge" min="22" max="28" value="25" />
+        </div>
+      </div>
+      <div class="sim-result" id="simOut"></div>
+    </div>
+
+    <div class="card">
+      <h2>Bảng So Sánh Kịch Bản Tích Lũy Tài Sản Ròng Theo Năm (Đơn vị: Triệu VNĐ)</h2>
+      <p style="font-size:13.5px; color:var(--ink-soft);">Mô phỏng theo biểu thuế TNCN 2026 (giảm trừ bản thân 15,5 triệu/tháng; trần BHXH/BHYT 50,6 triệu; trần BHTN 106,2 triệu). Giả định khi làm tại TP.HCM, Huy ở cùng gia đình đến tuổi 25 để tối ưu tỷ lệ tiết kiệm.</p>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Năm (Tuổi)</th>
+              <th>S1: Thận trọng (KTV/Thú y)</th>
+              <th>S2: Cơ sở (VGU/CLC + B2B/QS)</th>
+              <th>S3: Tích cực (Top B2B FDI)</th>
+              <th>S4: Du học &amp; Làm tại Đức</th>
+              <th>Ghi chú cột mốc</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>2030 (19t)</td><td>56</td><td>372</td><td>513</td><td>0</td><td>Năm 2 ĐH – bắt đầu sinh lãi quỹ dư</td></tr>
+            <tr><td>2031 (20t)</td><td>66</td><td>433</td><td>622</td><td>0</td><td>Chạm mốc 20 tuổi (trần ngân sách gia đình)</td></tr>
+            <tr><td>2032 (21t)</td><td>82</td><td>513</td><td>923</td><td>0</td><td>S3 tốt nghiệp hệ 3 năm đi làm sớm</td></tr>
+            <tr><td>2033 (22t)</td><td>101</td><td>654</td><td>1.362</td><td>103</td><td>S1, S2 tốt nghiệp 4 năm; S4 viết luận văn Đức</td></tr>
+            <tr><td>2034 (23t)</td><td>182</td><td>946</td><td>2.026</td><td>552</td><td>Bắt đầu tăng tốc tiết kiệm lương chính</td></tr>
+            <tr><td>2035 (24t)</td><td>289</td><td>1.393</td><td>2.988</td><td>1.111</td><td>S3 vượt mốc 2,68 tỷ ngay tuổi 24</td></tr>
+            <tr style="background:#eff6ff; font-weight:700;">
+              <td><strong>2036 (25t) ★</strong></td>
+              <td>435</td>
+              <td>2.014</td>
+              <td>4.265</td>
+              <td>1.785</td>
+              <td><strong>Mốc kiểm định tuổi 25 (Cần ~2,68 tỷ)</strong></td>
+            </tr>
+            <tr><td>2037 (26t)</td><td>634</td><td><strong>2.818</strong></td><td>5.871</td><td>2.582</td><td>S2 vượt mốc 2,68 tỷ; S4 sát mốc</td></tr>
+            <tr><td>2038 (27t)</td><td>886</td><td>3.858</td><td>7.792</td><td><strong>3.509</strong></td><td>S4 vượt mốc dễ dàng bằng tiết kiệm Euro</td></tr>
+            <tr><td>2039 (28t)</td><td>1.193</td><td>5.111</td><td>10.056</td><td>4.585</td><td>S2 &amp; S4 xây dựng nền tài sản vững chắc</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- TAB 5: SWOT & CANVAS -->
+  <section id="tab-swot" class="tab-panel">
+    <div class="card">
+      <h2>Ma Trận SWOT Cá Nhân Hóa Cho Anh Huy (2026–2031)</h2>
+      <div class="swot-grid">
+        <div class="swot-box swot-s">
+          <h3>Điểm Mạnh (Strengths)</h3>
+          <ul>
+            <li>IELTS ~7.5 ngay lớp 10 Chuyên Anh Trần Đại Nghĩa (đi trước mặt bằng 3–4 năm).</li>
+            <li>Tốc độ tiếp thu nhanh, giao tiếp tốt, dễ thích nghi môi trường quốc tế.</li>
+            <li>Gia đình có quỹ đầu tư 1 tỷ đồng rõ ràng và đồng hành chiến lược sớm.</li>
+            <li>Sống tại TP.HCM – trung tâm lớn nhất của khối doanh nghiệp FDI Đức/Âu tại VN.</li>
+          </ul>
+        </div>
+        <div class="swot-box swot-w">
+          <h3>Điểm Yếu (Weaknesses)</h3>
+          <ul>
+            <li>Ít vận động, thể lực nền chưa cao; còn sức ỳ và ít chủ động việc nhà.</li>
+            <li>Dễ hào hứng lúc đầu nhưng mau chán nếu thiếu cấu trúc và phản hồi nhanh.</li>
+            <li>Chưa kiểm chứng học lực Toán–Lý nâng cao và trải nghiệm kinh doanh thực tế.</li>
+          </ul>
+        </div>
+        <div class="swot-box swot-o">
+          <h3>Cơ Hội (Opportunities)</h3>
+          <ul>
+            <li>FDI 2026 bùng nổ (54,85 tỷ USD 10T); 576 hãng Đức (75% sales/service ở TP.HCM).</li>
+            <li>Siêu chu kỳ hạ tầng Long Thành – Metro – Data Center đẩy mạnh lương QS/BIM.</li>
+            <li>VGU &amp; công lập tiếng Anh giúp giữ lại 300–400tr đầu tư lãi kép từ tuổi 18.</li>
+            <li>Luật thuế TNCN 2026 (giảm trừ 15,5tr) tăng mạnh thu nhập ròng người trẻ.</li>
+          </ul>
+        </div>
+        <div class="swot-box swot-t">
+          <h3>Thách Thức (Threats)</h3>
+          <ul>
+            <li>AI thay thế nhanh nhóm việc văn phòng cấp thấp, nhập liệu và dịch thuật cơ bản.</li>
+            <li>Giá nhà TP.HCM leo thang nhanh hơn tốc độ tăng lương mặt bằng phổ thông.</li>
+            <li>Du học Đức ngày càng tốn kém (EUR ~29–30k, một số trường thu học phí) và rủi ro bỏ học cao.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>Personal Business Model Canvas (Thiết Kế Sự Nghiệp 2026–2036)</h2>
+      <div class="canvas-grid">
+        <div class="canvas-cell"><h4>1. Đối Tác Đồng Hành</h4>Ba mẹ (cố vấn &amp; vốn hạt giống), VGU/HCMIU/UEH, AHK Vietnam, EuroCham, DAAD, Mentor tại Bosch/Siemens/Hilti/T&amp;T.</div>
+        <div class="canvas-cell"><h4>2. Hoạt Động Then Chốt</h4>Học song ngữ Anh–Đức; học qua dự án &amp; triển lãm SECC; rèn thể thao 3 buổi/tuần; thành thạo AI/Excel/BIM/CRM; thực tập MNC sớm.</div>
+        <div class="canvas-cell"><h4>3. Tài Nguyên Cốt Lõi</h4>IELTS 8.0+, Đức B1–B2, Song bằng Đức–Việt (hoặc CLC), Chứng chỉ quốc tế (PMP/RICS/CSCP), thể lực bền, quỹ dư đầu tư 300–400tr.</div>
+        <div class="canvas-cell"><h4>4. Giá Trị Đem Lại</h4>Cầu nối hiếm <strong>"Song ngữ + Hiểu kỹ thuật + Thương mại B2B"</strong> giúp hãng ngoại thắng thầu, mở rộng khách hàng và vận hành trơn tru tại VN.</div>
+        <div class="canvas-cell"><h4>5. Quan Hệ Khách Hàng</h4>Tư vấn giải pháp B2B dài hạn (Consultative Selling), xây niềm tin chuyên môn sâu thay vì bán hàng chèo kéo ngắn hạn.</div>
+        <div class="canvas-cell"><h4>6. Kênh Tiếp Cận</h4>LinkedIn chuyên nghiệp, German Career Day (AHK TP.HCM), Triển lãm B2B SECC, chương trình Management Trainee &amp; thực tập sinh MNC.</div>
+        <div class="canvas-cell"><h4>7. Khách Hàng / Nhà Tuyển Dụng</h4>Tập đoàn Đức–Âu–Mỹ–Nhật mảng Công nghiệp, Xây dựng, HVAC/BMS, Pet Care MNC đóng trụ sở tại TP.HCM – Đông Nam Bộ.</div>
+        <div class="canvas-cell"><h4>8. Cấu Trúc Chi Phí</h4>Ngân sách trần 1 tỷ VNĐ (thực chi giáo dục 600–700tr); nỗ lực chuyển hóa thói quen vận động và kỷ luật tự học trong 24 tháng.</div>
+        <div class="canvas-cell"><h4>9. Dòng Thu Nhập</h4>Tuổi 16–21: Làm thêm hợp pháp 3–10tr/th; Tuổi 22–25: Lương + hoa hồng B2B (22tr → 60–85tr/th) + Lãi kép quỹ dư 300–400tr.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TAB 6: ROADMAP, BRANCHES, HABITS & CHECKLIST -->
+  <section id="tab-roadmap" class="tab-panel">
+    <div class="card">
+      <h2>Bản Đồ 3 Nhánh Đầu Tư Từ Lớp 10 Đến Tuổi 25–26 (2026–2036)</h2>
+      <div class="grid-3">
+        <div class="ind-card top-pick">
+          <div class="ind-head">
+            <span class="ind-title">Nhánh 1: VGU / CLC TP.HCM</span>
+            <span class="tag tag-green">TRỤC CHÍNH</span>
+          </div>
+          <div class="branch-step"><strong>2027–2029 (Lớp 10–12)</strong>IELTS 8.0+, SAT ≥1.400 / TestAS săn HB VGU 50–100%, Tiếng Đức A1–B1, trợ giảng &amp; SECC.</div>
+          <div class="branch-step"><strong>2029–2031 (Đến 20 tuổi)</strong>Học VGU (BCE/BBA/BDE) hoặc HCMIU/UEH; chi ~298–332tr; đầu tư quỹ dư 300–400tr.</div>
+          <div class="branch-step"><strong>2031–2033 (Tuổi 20–22)</strong>1 kỳ trao đổi Đức (VGU/DAAD); Paid Intern tại Bosch/Siemens/Hilti/T&amp;T; thi CAPM/RICS.</div>
+          <div class="branch-step"><strong>2033–2036 (Tuổi 25–26)</strong>KAM / Project QS (45–80tr+); tài sản <strong>2,01–4,27 tỷ (25t)</strong> → <strong>2,82–5,87 tỷ (26t)</strong>.</div>
+        </div>
+
+        <div class="ind-card">
+          <div class="ind-head">
+            <span class="ind-title">Nhánh 2: Đi Thẳng Đức / Ba Lan</span>
+            <span class="tag tag-amber">DỰ PHÒNG EU</span>
+          </div>
+          <div class="branch-step"><strong>2027–2029 (Lớp 10–12)</strong>Bắt buộc tiếng Đức B2 (nếu đi Đức), thi TestAS 115+, làm APS, kiểm tra nghiêm tính tự lập.</div>
+          <div class="branch-step"><strong>2029–2031 (Đến 20 tuổi)</strong>1 năm STK + Năm 1 B.Eng (THWS/Rhine-Waal) hoặc ĐH Ba Lan; chi 750–963tr (dư 0tr).</div>
+          <div class="branch-step"><strong>2031–2033 (Tuổi 20–22)</strong>Tự làm thêm 140 ngày/năm (13,90 €/giờ) nuôi thân; thực tập doanh nghiệp 20 tuần tại Đức.</div>
+          <div class="branch-step"><strong>2033–2036 (Tuổi 25–27)</strong>Làm kỹ sư kinh tế tại Đức (~48–55k €/năm); tích lũy ~1,78 tỷ (25t) → <strong>3,51 tỷ (27t)</strong>.</div>
+        </div>
+
+        <div class="ind-card">
+          <div class="ind-head">
+            <span class="ind-title">Nhánh 3: Ngách HVAC / Pet MNC</span>
+            <span class="tag tag-gray">CHỌN LỌC</span>
+          </div>
+          <div class="branch-step"><strong>2027–2029 (Lớp 10–12)</strong>Đi HVACR &amp; Petfair SECC (06/2027) kiểm chứng đam mê; củng cố Lý (HVAC) hoặc Data (Pet).</div>
+          <div class="branch-step"><strong>2029–2031 (Đến 20 tuổi)</strong>Cơ điện tử/Nhiệt–Lạnh (VGU/BK) hoặc QTKD/Supply Chain (UEH/HCMIU); giữ quỹ dư 300–400tr.</div>
+          <div class="branch-step"><strong>2031–2033 (Tuổi 20–22)</strong>Thực tập tại Daikin, Panasonic, Schneider (BMS) hoặc Mars/Royal Canin, Boehringer Ingelheim.</div>
+          <div class="branch-step"><strong>2033–2036 (Tuổi 25–26)</strong>After-Sales / Technical Service Manager (45–105tr) hoặc Pet B2B KAM (40–70tr).</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>Phá Bỏ Tính "Ù Lì" Theo Khoa Học Hành Vi &amp; Việc Làm Thêm Hợp Pháp</h2>
+      <div class="grid-2">
+        <div class="ind-card">
+          <div class="ind-title">4 Nguyên Tắc Phá Sức Ì (Thuyết Tự Quyết SDT)</div>
+          <ol>
+            <li><strong>Trao quyền tự chủ (Autonomy):</strong> Không sai vặt lặt vặt; giao Huy làm "chủ quy trình" 2 đầu việc gia đình (vd: kiểm kê/bảo trì thiết bị nhỏ trong nhà + tự nấu 2 bữa tối/tuần).</li>
+            <li><strong>Công thức "Khi… thì…" cho thể thao:</strong> Cố định 17h30 Thứ 3–5–7 tập môn Huy tự chọn (bơi/gym/cầu lông) 45 phút <em>trước khi</em> mở máy tính/điện thoại.</li>
+            <li><strong>Phản hồi bằng thành quả thật (Competence):</strong> Cho đi triển lãm B2B và kiếm tiền từ tiếng Anh để tạo vòng lặp tự hào và kỷ luật nội tại.</li>
+            <li><strong>Quản lý tiền mini từ lớp 10:</strong> Tự lập bảng Excel theo dõi chi tiêu hàng tháng, gắn trực tiếp với bài toán mua xe/nhà tuổi 25.</li>
+          </ol>
+        </div>
+        <div class="ind-card">
+          <div class="ind-title">Việc Làm Thêm Hợp Pháp (Bộ Luật Lao Động 2019)</div>
+          <div class="callout danger" style="margin:4px 0 8px; padding:8px 10px; font-size:13px;">
+            <strong>Cấm tuyệt đối dưới 18 tuổi (Điều 147):</strong> Không làm tại công trường xây dựng, không bảo trì/sửa chữa máy móc thiết bị, không làm đêm; bắt buộc có đồng ý của cha mẹ.
+          </div>
+          <ul>
+            <li><strong>Tuổi 15–17 (Lớp 10–11):</strong> Trợ giảng/gia sư tiếng Anh cuối tuần (100–250k/ca 1,5h); tham quan viết thu hoạch tại hội chợ B2B SECC.</li>
+            <li><strong>Tuổi 17–18 (Hè 11–12):</strong> Phiên dịch gian hàng triển lãm SECC (~600k/buổi 4h) tại <em>Vietbuild, HVACR, Petfair</em>; trợ lý dịch/nghiên cứu online.</li>
+            <li><strong>Tuổi 18–22 (Đại học):</strong> Giáo viên IELTS part-time (480k–1,2tr/2h); Intern tại EuroCham/AHK; Paid Corporate Intern tại Bosch/Siemens/Hilti/T&amp;T.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>Lộ Trình Hành Động Chi Tiết Theo Thời Gian (11/2026 – 2036)</h2>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Giai đoạn</th>
+              <th>Hành động trọng tâm</th>
+              <th>Mục tiêu đo lường (KPI)</th>
+              <th>Ngân sách dự kiến</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>11–12/2026</strong><br>(Chuẩn bị)</td>
+              <td>Làm test O*NET RIASEC + Big Five; đi thực địa <strong>Vietnam Expo/Hardware (03–05/12/2026 SECC)</strong> &amp; <strong>Vietbuild Home (09–13/12/2026 Sky Expo)</strong>.</td>
+              <td>Bài thu hoạch 1 trang do Tom viết; bảng điểm HK1 lớp 10 (Toán–Lý–Anh).</td>
+              <td>~2 triệu</td>
+            </tr>
+            <tr>
+              <td><strong>Tháng 01/2027</strong><br>(Họp Gia Đình)</td>
+              <td>Chốt trục ngành (#1 B2B Hãng / #2 QS-BIM); ký Hợp đồng Thể lực &amp; Tự quản; đăng ký tiếng Đức A1 (Viện Goethe TP.HCM).</td>
+              <td>Biên bản thống nhất gia đình; lịch thể thao &amp; tiếng Đức cố định.</td>
+              <td>~15 triệu</td>
+            </tr>
+            <tr>
+              <td><strong>2027–2028</strong><br>(Lớp 11)</td>
+              <td>Học tiếng Đức A2→B1; luyện thi SAT (mục tiêu ≥1.400) hoặc Digital TestAS; tự học Excel/AI; dự <strong>Petfair VN (23–25/06/2027 SECC)</strong>; làm trợ giảng IELTS.</td>
+              <td>Bằng Đức B1; SAT ≥1.380; duy trì thể thao 12 tháng; thu nhập đầu tay.</td>
+              <td>~65 triệu</td>
+            </tr>
+            <tr>
+              <td><strong>2028–06/2029</strong><br>(Lớp 12)</td>
+              <td>Thi IELTS 8.0–8.5; nộp học bổng VGU (BCE/BBA/BDE) + dự phòng HCMIU/UEH-ISB; chỉ kích hoạt APS đi thẳng Đức nếu kỷ luật &amp; tiếng Đức B2 xuất sắc.</td>
+              <td>Trúng tuyển kèm học bổng 50%–100% VGU (hoặc CLC); THPT TB ≥8,0.</td>
+              <td>~40 triệu</td>
+            </tr>
+            <tr>
+              <td><strong>2029–2031</strong><br>(ĐH Năm 1–2 • đến 20t)</td>
+              <td>Giữ GPA top 15% duy trì học bổng; thi Đức B2; làm thêm hợp pháp (IELTS/SECC/EuroCham Intern); <strong>đầu tư quỹ dư 300–400 triệu vào ETF/tài sản an toàn</strong>.</td>
+              <td>Tổng chi đến tuổi 20 dừng ở ~298–332 triệu; bắt đầu lãi kép quỹ dư.</td>
+              <td>~178–222 triệu</td>
+            </tr>
+            <tr>
+              <td><strong>2031–2033</strong><br>(ĐH Năm 3–4 • 20–22t)</td>
+              <td>Đi 1 học kỳ trao đổi tại Đức (VGU/DAAD); thực tập có lương 6 tháng tại hãng FDI; thi CAPM / nền tảng RICS / Supply Chain; viết luận văn thực chiến.</td>
+              <td>Song bằng Đức–Việt loại Giỏi; nhận job offer trước khi ra trường.</td>
+              <td>~268–402 triệu</td>
+            </tr>
+            <tr>
+              <td><strong>2033–2036</strong><br>(Tuổi 22–25)</td>
+              <td>MT/Technical Sales/Junior QS (22–35tr) → KAM/Project QS (45–80tr+); lấy chứng chỉ PMP/CSCP/MRICS; ở cùng gia đình giai đoạn đầu tối ưu tiết kiệm.</td>
+              <td>Tích lũy 2,01–4,27 tỷ ở tuổi 25 (2,82–5,87 tỷ tuổi 26) → Mua xe + đặt cọc nhà.</td>
+              <td>Tự chủ tài chính</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>Checklist Tương Tác Chuẩn Bị Họp Gia Đình Tháng 01/2027 (Tự Lưu Trên Thiết Bị)</h2>
+      <div style="display:flex; justify-content:space-between; font-size:13px; font-weight:700;">
+        <span>Tiến độ hoàn thành chuẩn bị</span>
+        <span id="checkProgressTxt">0 / 7 mục (0%)</span>
+      </div>
+      <div class="progress-bar-wrap"><div class="progress-bar-fill" id="checkProgressBar"></div></div>
+      <div id="checklistContainer"></div>
+      <button onclick="resetChecklist()" style="margin-top:8px; padding:6px 12px; border-radius:6px; border:1px solid #cbd5e1; background:#fff; cursor:pointer; font-size:12.5px;">Đặt lại danh sách</button>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  Hồ sơ định hướng cá nhân hóa cho Đặng Phạm Anh Huy (Tom) • Dữ liệu thị trường, học phí, thuế &amp; giá tài sản cập nhật tháng 11/2026 • Xem tốt trên cả Điện thoại, Máy tính bảng &amp; Máy tính.
+</footer>
+
+<script>
+  const tabBtns = document.querySelectorAll('.tab-btn');
+  const tabPanels = document.querySelectorAll('.tab-panel');
+  tabBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      tabBtns.forEach(b => b.classList.remove('active'));
+      tabPanels.forEach(p => p.classList.remove('active'));
+      btn.classList.add('active');
+      document.getElementById('tab-' + btn.dataset.tab).classList.add('active');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  });
+
+  const simData = {
+    s1: { name: "Thận trọng (KTV/Thú y)", values: {22:101, 23:182, 24:289, 25:435, 26:634, 27:886, 28:1193}, note: "Cần nâng cấp sang tầng B2B/Quản lý để rút ngắn khoảng cách." },
+    s2: { name: "Cơ sở (VGU/CLC + B2B/QS)", values: {22:654, 23:946, 24:1393, 25:2014, 26:2818, 27:3858, 28:5111}, note: "Gần chạm mốc ở tuổi 25 và vượt an toàn mốc xe + cọc nhà ở tuổi 26." },
+    s3: { name: "Tích cực (Top B2B FDI + Dư 400tr)", values: {22:1362, 23:2026, 24:2988, 25:4265, 26:5871, 27:7792, 28:10056}, note: "Vượt xa mốc 2,68 tỷ ngay tuổi 24–25; đủ mua xe + đặt cọc căn hộ nội đô." },
+    s4: { name: "Du học Đức & Làm tại Đức", values: {22:103, 23:552, 24:1111, 25:1785, 26:2582, 27:3509, 28:4585}, note: "Chậm 1 năm đầu do STK và hết quỹ 1 tỷ, nhưng bứt tốc mạnh bằng Euro từ tuổi 26–27." }
+  };
+
+  function updateSim() {
+    const sc = document.getElementById('simScenario').value;
+    const age = parseInt(document.getElementById('simAge').value, 10);
+    const yr = 2011 + age;
+    document.getElementById('simAgeLbl').textContent = age + " tuổi (" + yr + ")";
+    const wealth = simData[sc].values[age];
+    const targetEquity = 2675;
+    const gap = wealth - targetEquity;
+    const statusHtml = gap >= 0
+      ? '<span style="color:#15803d;">ĐẠT MỐC (+' + gap.toLocaleString('vi-VN') + ' tr)</span>'
+      : '<span style="color:#dc2626;">Thiếu ' + Math.abs(gap).toLocaleString('vi-VN') + ' tr</span>';
+
+    document.getElementById('simOut').innerHTML = `
+      <div class="sim-kpi">
+        <div class="k-lbl">Tích lũy dự kiến tại tuổi ${age}</div>
+        <div class="k-val">${(wealth/1000).toFixed(2)} Tỷ VNĐ</div>
+        <div style="font-size:12px; color:#475569;">(${wealth.toLocaleString('vi-VN')} triệu VNĐ)</div>
+      </div>
+      <div class="sim-kpi" style="background:#f8fafc; border-color:#cbd5e1;">
+        <div class="k-lbl">So với mốc Xe + Cọc 35% Nhà (2,68 tỷ)</div>
+        <div class="k-val" style="font-size:16px;">${statusHtml}</div>
+        <div style="font-size:12px; color:#475569;">${simData[sc].note}</div>
+      </div>
+    `;
+  }
+  document.getElementById('simScenario').addEventListener('change', updateSim);
+  document.getElementById('simAge').addEventListener('input', updateSim);
+  updateSim();
+
+  const checklistItems = [
+    "Hoàn thành bài trắc nghiệm khoa học O*NET Interest Profiler (Holland RIASEC) & Big Five cho Tom (trước 15/12/2026).",
+    "Ba và Tom cùng đi thực địa triển lãm Vietnam Expo / Hardware (03–05/12/2026 SECC) hoặc Vietbuild Home (09–13/12/2026 Sky Expo).",
+    "Tom viết bản thu hoạch 1 trang: 3 gian hàng/ngành ấn tượng nhất và công việc muốn thử.",
+    "Tổng kết bảng điểm HK1 lớp 10 (đặc biệt Toán, Vật lý, Tin học, Tiếng Anh) để đánh giá ngưỡng ngành lai kỹ thuật.",
+    "Họp gia đình Tháng 01/2027: Thống nhất trục ngành ưu tiên (#1 B2B Hãng FDI / #2 Xây dựng QS-BIM) và mô hình VGU/CLC so với du học.",
+    "Ký Hợp đồng Tự chủ & Thể lực (Tom tự chọn 1 môn thể thao 3 buổi/tuần + làm chủ 2 đầu việc gia đình cố định).",
+    "Đăng ký khóa Tiếng Đức A1 (Viện Goethe TP.HCM) & lập kế hoạch luyện SAT / Digital TestAS săn học bổng."
+  ];
+  const STORAGE_KEY = "tom_career_checklist_2027";
+  let checkedState = JSON.parse(localStorage.getItem(STORAGE_KEY) || "[]");
+
+  function renderChecklist() {
+    const box = document.getElementById('checklistContainer');
+    box.innerHTML = "";
+    let doneCount = 0;
+    checklistItems.forEach((txt, idx) => {
+      const isDone = !!checkedState[idx];
+      if (isDone) doneCount++;
+      const label = document.createElement('label');
+      label.className = 'check-item' + (isDone ? ' done' : '');
+      label.innerHTML = `<input type="checkbox" ${isDone ? 'checked' : ''} data-idx="${idx}" /><span>${txt}</span>`;
+      label.querySelector('input').addEventListener('change', e => {
+        checkedState[idx] = e.target.checked;
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(checkedState));
+        renderChecklist();
+      });
+      box.appendChild(label);
+    });
+    const pct = Math.round((doneCount / checklistItems.length) * 100);
+    document.getElementById('checkProgressTxt').textContent = `${doneCount} / ${checklistItems.length} mục (${pct}%)`;
+    document.getElementById('checkProgressBar').style.width = pct + '%';
+  }
+  function resetChecklist() {
+    checkedState = [];
+    localStorage.removeItem(STORAGE_KEY);
+    renderChecklist();
+  }
+  renderChecklist();
+</script>
+</body>
+</html>
+<!-- https://gemini.google.com/app/e2a6d29ae3b3d189 -->
