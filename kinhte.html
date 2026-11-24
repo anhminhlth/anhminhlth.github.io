@@ -1,0 +1,1760 @@
+<!DOCTYPE html>
+<html lang="vi" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Báo Cáo Chiến Lược Vĩ Mô, Chính Sự Mỹ & Tài Sản Việt Nam | Xuất bản 23/11/2026</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"></script>
+  <style>
+    :root {
+      --bg-body: #070b14;
+      --bg-surface: #0f172a;
+      --bg-card: #131d33;
+      --bg-card-hover: #1a2744;
+      --bg-elevated: #1e293b;
+      --border-subtle: rgba(148, 163, 184, 0.16);
+      --border-strong: rgba(245, 158, 11, 0.4);
+      --text-primary: #f8fafc;
+      --text-secondary: #cbd5e1;
+      --text-muted: #94a3b8;
+      --accent-gold: #f59e0b;
+      --accent-gold-soft: rgba(245, 158, 11, 0.14);
+      --accent-blue: #3b82f6;
+      --accent-blue-soft: rgba(59, 130, 246, 0.15);
+      --accent-cyan: #06b6d4;
+      --accent-emerald: #10b981;
+      --accent-emerald-soft: rgba(16, 185, 129, 0.15);
+      --accent-red: #ef4444;
+      --accent-red-soft: rgba(239, 68, 68, 0.15);
+      --accent-purple: #a855f7;
+      --shadow-card: 0 10px 30px -10px rgba(0, 0, 0, 0.55);
+      --radius-lg: 16px;
+      --radius-md: 12px;
+      --radius-sm: 8px;
+    }
+
+    [data-theme="light"] {
+      --bg-body: #f1f5f9;
+      --bg-surface: #ffffff;
+      --bg-card: #ffffff;
+      --bg-card-hover: #f8fafc;
+      --bg-elevated: #e2e8f0;
+      --border-subtle: rgba(15, 23, 42, 0.1);
+      --border-strong: rgba(217, 119, 6, 0.45);
+      --text-primary: #0f172a;
+      --text-secondary: #334155;
+      --text-muted: #64748b;
+      --accent-gold: #d97706;
+      --accent-gold-soft: rgba(217, 119, 6, 0.12);
+      --accent-blue: #1d4ed8;
+      --accent-blue-soft: rgba(29, 78, 216, 0.1);
+      --accent-cyan: #0891b2;
+      --accent-emerald: #059669;
+      --accent-emerald-soft: rgba(5, 150, 105, 0.12);
+      --accent-red: #dc2626;
+      --accent-red-soft: rgba(220, 38, 38, 0.1);
+      --accent-purple: #7c3aed;
+      --shadow-card: 0 8px 24px -8px rgba(15, 23, 42, 0.08);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Be Vietnam Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: var(--bg-body);
+      color: var(--text-primary);
+      line-height: 1.62;
+      min-height: 100vh;
+      transition: background 0.25s ease, color 0.25s ease;
+    }
+    .mono { font-family: 'JetBrains Mono', monospace; }
+
+    /* Top Live Ticker Bar */
+    .ticker-bar {
+      background: linear-gradient(90deg, #0b1326 0%, #172542 50%, #0b1326 100%);
+      border-bottom: 1px solid var(--border-subtle);
+      color: #e2e8f0;
+      font-size: 0.78rem;
+      padding: 8px 16px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+    }
+    .ticker-items {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      align-items: center;
+    }
+    .ticker-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      white-space: nowrap;
+    }
+    .dot-live {
+      width: 8px; height: 8px; border-radius: 50%;
+      background: #10b981;
+      box-shadow: 0 0 8px #10b981;
+      display: inline-block;
+    }
+    .up { color: #34d399; font-weight: 600; }
+    .down { color: #f87171; font-weight: 600; }
+    .warn { color: #fbbf24; font-weight: 600; }
+    [data-theme="light"] .up { color: #059669; }
+    [data-theme="light"] .down { color: #dc2626; }
+    [data-theme="light"] .warn { color: #b45309; }
+
+    /* Hero Header */
+    .hero-header {
+      background: radial-gradient(circle at 12% 15%, rgba(245, 158, 11, 0.14), transparent 45%),
+                  radial-gradient(circle at 88% 20%, rgba(59, 130, 246, 0.16), transparent 45%),
+                  var(--bg-surface);
+      border-bottom: 1px solid var(--border-subtle);
+      padding: 28px 20px 20px;
+    }
+    .container {
+      max-width: 1380px;
+      margin: 0 auto;
+    }
+    .hero-top {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 16px;
+      margin-bottom: 18px;
+    }
+    .badge-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 10px;
+    }
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.74rem;
+      font-weight: 700;
+      padding: 4px 10px;
+      border-radius: 999px;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+    }
+    .badge-gold { background: var(--accent-gold-soft); color: var(--accent-gold); border: 1px solid var(--border-strong); }
+    .badge-blue { background: var(--accent-blue-soft); color: var(--accent-blue); border: 1px solid rgba(59,130,246,0.3); }
+    .badge-red { background: var(--accent-red-soft); color: var(--accent-red); border: 1px solid rgba(239,68,68,0.3); }
+    .badge-green { background: var(--accent-emerald-soft); color: var(--accent-emerald); border: 1px solid rgba(16,185,129,0.3); }
+
+    h1.hero-title {
+      font-size: clamp(1.45rem, 2.8vw, 2.25rem);
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      line-height: 1.22;
+      margin-bottom: 8px;
+    }
+    .hero-subtitle {
+      color: var(--text-secondary);
+      font-size: 0.94rem;
+      max-width: 860px;
+    }
+    .header-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+    }
+    .btn {
+      appearance: none;
+      border: 1px solid var(--border-subtle);
+      background: var(--bg-card);
+      color: var(--text-primary);
+      padding: 9px 14px;
+      border-radius: var(--radius-sm);
+      font-family: inherit;
+      font-size: 0.82rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.2s ease;
+    }
+    .btn:hover { background: var(--bg-card-hover); border-color: var(--accent-gold); transform: translateY(-1px); }
+    .btn-primary {
+      background: linear-gradient(135deg, #f59e0b, #d97706);
+      color: #0b1120;
+      border-color: transparent;
+      font-weight: 700;
+    }
+    .btn-primary:hover { filter: brightness(1.08); color: #0b1120; }
+
+    /* Sticky Tab Navigation */
+    .nav-wrapper {
+      position: sticky;
+      top: 0;
+      z-index: 90;
+      background: var(--bg-surface);
+      border-bottom: 1px solid var(--border-subtle);
+      backdrop-filter: blur(12px);
+      padding: 10px 16px;
+    }
+    .tabs-bar {
+      display: flex;
+      gap: 8px;
+      overflow-x: auto;
+      scrollbar-width: thin;
+      padding-bottom: 4px;
+    }
+    .tab-btn {
+      appearance: none;
+      border: 1px solid var(--border-subtle);
+      background: transparent;
+      color: var(--text-secondary);
+      padding: 9px 15px;
+      border-radius: 999px;
+      font-family: inherit;
+      font-size: 0.84rem;
+      font-weight: 600;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: all 0.2s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .tab-btn:hover { color: var(--text-primary); background: var(--bg-card); }
+    .tab-btn.active {
+      background: linear-gradient(135deg, rgba(245, 158, 11, 0.2), rgba(59, 130, 246, 0.2));
+      color: var(--text-primary);
+      border-color: var(--accent-gold);
+      box-shadow: 0 0 0 1px rgba(245, 158, 11, 0.25);
+    }
+    .tab-btn.tab-info-special {
+      border-color: var(--accent-purple);
+      background: rgba(168, 85, 247, 0.14);
+      color: #d8b4fe;
+    }
+    [data-theme="light"] .tab-btn.tab-info-special { color: #6d28d9; }
+    .hidden-tab { display: none !important; }
+
+    /* Main Content & Panels */
+    main.main-content {
+      padding: 24px 18px 60px;
+    }
+    .tab-panel { display: none; animation: fadeIn 0.25s ease; }
+    .tab-panel.active { display: block; }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: translateY(0); } }
+
+    /* Grids & Cards */
+    .kpi-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(215px, 1fr));
+      gap: 14px;
+      margin-bottom: 22px;
+    }
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+      gap: 18px;
+      margin-bottom: 20px;
+    }
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 16px;
+      margin-bottom: 20px;
+    }
+    .card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      padding: 20px;
+      box-shadow: var(--shadow-card);
+    }
+    .card-accent-gold { border-top: 3px solid var(--accent-gold); }
+    .card-accent-blue { border-top: 3px solid var(--accent-blue); }
+    .card-accent-red { border-top: 3px solid var(--accent-red); }
+    .card-accent-green { border-top: 3px solid var(--accent-emerald); }
+    .card-accent-cyan { border-top: 3px solid var(--accent-cyan); }
+    .card-accent-purple { border-top: 3px solid var(--accent-purple); }
+
+    .kpi-label { font-size: 0.76rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.04em; font-weight: 700; margin-bottom: 6px; }
+    .kpi-value { font-size: 1.55rem; font-weight: 800; letter-spacing: -0.02em; line-height: 1.2; margin-bottom: 4px; }
+    .kpi-sub { font-size: 0.78rem; color: var(--text-secondary); }
+
+    .section-heading {
+      font-size: 1.22rem;
+      font-weight: 800;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+    .card-title {
+      font-size: 1.02rem;
+      font-weight: 700;
+      margin-bottom: 10px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+    .card p { font-size: 0.9rem; color: var(--text-secondary); margin-bottom: 10px; }
+    .card p:last-child { margin-bottom: 0; }
+
+    /* Callout Boxes */
+    .callout {
+      border-radius: var(--radius-md);
+      padding: 15px 18px;
+      margin-bottom: 18px;
+      border-left: 4px solid var(--accent-gold);
+      background: var(--accent-gold-soft);
+      font-size: 0.9rem;
+    }
+    .callout-red { border-left-color: var(--accent-red); background: var(--accent-red-soft); }
+    .callout-green { border-left-color: var(--accent-emerald); background: var(--accent-emerald-soft); }
+    .callout-blue { border-left-color: var(--accent-blue); background: var(--accent-blue-soft); }
+    .callout strong { color: var(--text-primary); }
+
+    /* Tables */
+    .table-wrap {
+      overflow-x: auto;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--border-subtle);
+      margin: 12px 0;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.84rem;
+      min-width: 620px;
+    }
+    th, td {
+      padding: 11px 13px;
+      text-align: left;
+      border-bottom: 1px solid var(--border-subtle);
+      vertical-align: top;
+    }
+    th {
+      background: var(--bg-elevated);
+      color: var(--text-primary);
+      font-weight: 700;
+      font-size: 0.77rem;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+    }
+    tr:hover td { background: rgba(148, 163, 184, 0.05); }
+    td strong { color: var(--text-primary); }
+
+    /* Chart Containers */
+    .chart-box {
+      position: relative;
+      height: 300px;
+      width: 100%;
+      margin-top: 10px;
+    }
+
+    /* Lists */
+    ul.clean-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 9px;
+      margin-top: 8px;
+    }
+    ul.clean-list li {
+      font-size: 0.88rem;
+      color: var(--text-secondary);
+      padding-left: 18px;
+      position: relative;
+    }
+    ul.clean-list li::before {
+      content: "▸";
+      color: var(--accent-gold);
+      position: absolute;
+      left: 0;
+      font-weight: 700;
+    }
+
+    /* Timeline */
+    .timeline {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 12px;
+      margin-top: 12px;
+    }
+    .tl-item {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-left: 3px solid var(--accent-blue);
+      border-radius: var(--radius-sm);
+      padding: 12px 14px;
+    }
+    .tl-item.urgent { border-left-color: var(--accent-red); }
+    .tl-item.gold { border-left-color: var(--accent-gold); }
+    .tl-item.green { border-left-color: var(--accent-emerald); }
+    .tl-date { font-size: 0.76rem; font-weight: 700; color: var(--accent-gold); margin-bottom: 4px; }
+    .tl-title { font-size: 0.88rem; font-weight: 700; color: var(--text-primary); margin-bottom: 4px; }
+    .tl-desc { font-size: 0.8rem; color: var(--text-muted); }
+
+    /* Interactive Calculators */
+    .calc-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 12px;
+      margin-bottom: 14px;
+    }
+    .input-group label {
+      display: block;
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: var(--text-secondary);
+      margin-bottom: 5px;
+    }
+    .input-group input, .input-group select, .input-group textarea {
+      width: 100%;
+      padding: 9px 12px;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border-subtle);
+      background: var(--bg-surface);
+      color: var(--text-primary);
+      font-family: inherit;
+      font-size: 0.88rem;
+    }
+    .slider-row {
+      display: grid;
+      grid-template-columns: 190px 1fr 56px;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 10px;
+      font-size: 0.85rem;
+    }
+    .slider-row input[type="range"] { width: 100%; accent-color: var(--accent-gold); }
+    .calc-result-box {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-strong);
+      border-radius: var(--radius-md);
+      padding: 16px;
+      margin-top: 12px;
+    }
+
+    /* Source Pill */
+    .source-note {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      margin-top: 10px;
+      padding-top: 8px;
+      border-top: 1px dashed var(--border-subtle);
+    }
+
+    /* Prompt Box for &info=1 */
+    .prompt-area {
+      width: 100%;
+      min-height: 290px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.8rem;
+      line-height: 1.55;
+      padding: 14px;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--border-subtle);
+      background: #060a12;
+      color: #e2e8f0;
+      resize: vertical;
+    }
+    .toast {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      background: #10b981;
+      color: #06281e;
+      font-weight: 700;
+      font-size: 0.86rem;
+      padding: 11px 18px;
+      border-radius: 10px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.4);
+      opacity: 0;
+      pointer-events: none;
+      transform: translateY(10px);
+      transition: all 0.25s ease;
+      z-index: 999;
+    }
+    .toast.show { opacity: 1; transform: translateY(0); }
+
+    footer.site-footer {
+      border-top: 1px solid var(--border-subtle);
+      background: var(--bg-surface);
+      padding: 22px 20px;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    @media (max-width: 768px) {
+      .grid-2, .grid-3 { grid-template-columns: 1fr; }
+      .slider-row { grid-template-columns: 1fr; gap: 4px; }
+      .hero-header { padding: 20px 14px 16px; }
+      main.main-content { padding: 16px 12px 48px; }
+      .chart-box { height: 260px; }
+    }
+    @media print {
+      .nav-wrapper, .header-actions, .ticker-bar { display: none !important; }
+      .tab-panel { display: block !important; page-break-after: always; }
+      body { background: #fff; color: #000; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Live Market Ticker -->
+  <div class="ticker-bar">
+    <div class="ticker-items">
+      <span class="ticker-chip"><span class="dot-live"></span> <strong>CẬP NHẬT: 23/11/2026 — 23:01 GMT+7</strong></span>
+      <span class="ticker-chip">XAU/USD: <strong class="mono up">$3.668 (+3,6%)</strong></span>
+      <span class="ticker-chip">SJC: <strong class="mono warn">130,0–135,0 Tr</strong></span>
+      <span class="ticker-chip">VN-Index: <strong class="mono up">1.697,14 (+0,49%)</strong></span>
+      <span class="ticker-chip">Brent: <strong class="mono down">$88,72–90,36</strong></span>
+      <span class="ticker-chip">DXY: <strong class="mono warn">103,88–104,22</strong></span>
+      <span class="ticker-chip">USD VCB / Tự do: <strong class="mono warn">25.990 / 26.290</strong></span>
+      <span class="ticker-chip">US 10Y: <strong class="mono">4,98%</strong></span>
+      <span class="ticker-chip">NVDA (23/11): <strong class="mono up">+30–35% (Huang tái bổ nhiệm)</strong></span>
+    </div>
+  </div>
+
+  <!-- Hero Header -->
+  <header class="hero-header">
+    <div class="container">
+      <div class="hero-top">
+        <div>
+          <div class="badge-row">
+            <span class="badge badge-gold">📅 Xuất bản: 23/11/2026 • 23:01 GMT+7</span>
+            <span class="badge badge-blue">🇻🇳 Việt Nam &amp; Toàn Cầu</span>
+            <span class="badge badge-red">🇺🇸 Hậu Midterms 2026 &amp; Chiến Sự Iran</span>
+            <span class="badge badge-green">📊 Phiên bản Executive v2026.11.23</span>
+          </div>
+          <h1 class="hero-title">Trung Tâm Phân Tích Vĩ Mô Toàn Cầu, Chính Sự Mỹ &amp; Phân Bổ Tài Sản Việt Nam</h1>
+          <p class="hero-subtitle">
+            Nghiên cứu đa tầng về <strong>Giá Vàng • Cổ Phiếu VN • BĐS TP.HCM Mở Rộng • Xăng Dầu • USD &amp; Lãi Suất</strong> dưới tác động của Quốc hội Mỹ khóa 120, chu kỳ lãi suất Fed Kevin Warsh, chiến sự Trung Đông – Venezuela và lộ trình nâng hạng FTSE Russell.
+          </p>
+        </div>
+        <div class="header-actions">
+          <button class="btn" id="themeToggleBtn" onclick="toggleTheme()">☀️ Chế độ Sáng</button>
+          <button class="btn" onclick="window.print()">🖨️ In / Lưu PDF</button>
+          <button class="btn btn-primary" onclick="switchTab('tab-strategy')">🎯 Xem Khuyến Nghị &amp; Mô Phỏng</button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Sticky Navigation Tabs -->
+  <nav class="nav-wrapper">
+    <div class="container">
+      <div class="tabs-bar" id="tabsBar">
+        <button class="tab-btn active" data-tab="tab-overview" onclick="switchTab('tab-overview')">🌐 Tổng Quan &amp; Lịch Sự Kiện</button>
+        <button class="tab-btn" data-tab="tab-us-geo" onclick="switchTab('tab-us-geo')">🏛️ Chính Sự Mỹ &amp; Chiến Sự</button>
+        <button class="tab-btn" data-tab="tab-gold-oil" onclick="switchTab('tab-gold-oil')">🥇 Vàng &amp; ⛽ Xăng Dầu</button>
+        <button class="tab-btn" data-tab="tab-stocks" onclick="switchTab('tab-stocks')">📈 Cổ Phiếu VN</button>
+        <button class="tab-btn" data-tab="tab-realestate" onclick="switchTab('tab-realestate')">🏙️ BĐS TP.HCM &amp; Hạ Tầng</button>
+        <button class="tab-btn" data-tab="tab-fx-rates" onclick="switchTab('tab-fx-rates')">💵 USD, Lãi Suất &amp; Ngân Hàng</button>
+        <button class="tab-btn" data-tab="tab-intel" onclick="switchTab('tab-intel')">🕵️ Tin Hành Lang &amp; Rủi Ro Ẩn</button>
+        <button class="tab-btn" data-tab="tab-strategy" onclick="switchTab('tab-strategy')">🎯 Chiến Lược &amp; Mô Phỏng</button>
+        <!-- Conditional Tab triggered ONLY when URL has &info=1 or ?info=1 -->
+        <button class="tab-btn tab-info-special hidden-tab" id="infoTabBtn" data-tab="tab-info" onclick="switchTab('tab-info')">⚙️ About &amp; Prompt Cập Nhật (&amp;info=1)</button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Main Dashboard Content -->
+  <main class="main-content">
+    <div class="container">
+
+      <!-- ==================== TAB 1: OVERVIEW ==================== -->
+      <section class="tab-panel active" id="tab-overview">
+        <div class="callout">
+          <strong>⚡ Tóm tắt điều hành (23/11/2026):</strong> Đảng Dân chủ vừa thắng "Làn sóng Xanh" lưỡng viện Mỹ (nhậm chức 03/01/2027), Fed thời Kevin Warsh chuẩn bị tăng thêm 25 bps vào ngày 09/12/2026 (92% xác suất theo CME FedWatch 17/11), chiến tranh Mỹ–Israel–Iran bước sang tháng thứ 9 trong khi Mỹ mở rộng kiểm soát dầu mỏ Venezuela ("Học thuyết Donroe") và CEO Jensen Huang vừa được tái bổ nhiệm tại Nvidia tối 23/11 kéo cổ phiếu tăng 30%–35%. Tại Việt Nam, GDP 9 tháng tăng 9,01% &amp; FDI đăng ký lập đỉnh 17 năm (54,85 tỷ USD), nhưng CPI 10T đã vượt mục tiêu (4,57%) và dự trữ ngoại hối mỏng (~87,6–88 tỷ USD). <strong>Hành động cốt lõi:</strong> Bán 50%–70% USD nhàn rỗi chuyển sang tiết kiệm online 6,8%–7,0%; không bán tháo vàng ở đáy nhưng tỉa bớt 25%–35% SJC khi hồi về 140–145 triệu để né bẫy nén chênh lệch; tích lũy dần cổ phiếu VN30/FTSE (P/E ngoài Vingroup 9,1–9,4x); chỉ mua BĐS TP.HCM thứ cấp cắt lỗ 10%–15% bằng vốn tự có (tránh vay thả nổi 11%–15%).
+        </div>
+
+        <div class="kpi-grid">
+          <div class="card card-accent-gold">
+            <div class="kpi-label">Vàng Thế Giới / SJC (23/11)</div>
+            <div class="kpi-value mono">$3.668 <span style="font-size:0.95rem;color:var(--accent-gold);">/ 135,0 Tr</span></div>
+            <div class="kpi-sub">XAU bật <span class="up">+3,6%</span> từ đáy 14T • Chênh SJC vs TG: <span class="down">+20,1–22,9 Tr</span> • Spread 5–6 Tr</div>
+          </div>
+          <div class="card card-accent-blue">
+            <div class="kpi-label">Chứng Khoán VN-Index (23/11)</div>
+            <div class="kpi-value mono">1.697,14 <span class="up" style="font-size:0.95rem;">+0,49%</span></div>
+            <div class="kpi-sub">Thanh khoản 12.691 tỷ • Ngoại bán YTD <span class="down">-127.294 tỷ</span> • P/E Ex-Vin <span class="up">9,1–9,4x</span></div>
+          </div>
+          <div class="card card-accent-cyan">
+            <div class="kpi-label">Dầu Brent / Xăng E10 RON95</div>
+            <div class="kpi-value mono">$88,72 <span style="font-size:0.95rem;color:var(--accent-cyan);">/ 19.100đ</span></div>
+            <div class="kpi-sub">Brent giảm 3 tuần (-20% T11) • Diesel VN: <span class="warn">26.347đ</span> • Thuế TTĐB xăng 0% đến 31/3/27</div>
+          </div>
+          <div class="card card-accent-red">
+            <div class="kpi-label">USD/VND (TT / VCB / Tự Do)</div>
+            <div class="kpi-value mono">25.990 <span style="font-size:0.95rem;color:var(--accent-red);">/ 26.290</span></div>
+            <div class="kpi-sub">Tỷ giá TT đỉnh <span class="warn">25.668</span> • DXY 103,88–104,22 • Dự trữ ngoại hối mỏng ~1,9–2,5T NK</div>
+          </div>
+          <div class="card card-accent-green">
+            <div class="kpi-label">Lãi Suất Online 12M / Vay Nhà</div>
+            <div class="kpi-value mono">6,8–7,0% <span style="font-size:0.95rem;color:var(--accent-red);">/ 11–15%</span></div>
+            <div class="kpi-sub">Big4 quầy chỉ 5,4% vs online 6,8% • NHNN thanh tra lãi ngầm từ 13/11 • CPI 10T: 4,57%</div>
+          </div>
+          <div class="card card-accent-purple">
+            <div class="kpi-label">BĐS TP.HCM Mở Rộng (Q3/26)</div>
+            <div class="kpi-value mono">75 Tr <span style="font-size:0.95rem;color:var(--accent-purple);">/ 60 Tr/m²</span></div>
+            <div class="kpi-sub">Sơ cấp neo cứng • Thứ cấp cắt lỗ <span class="down">-4% đến -13%</span> • Thuế đất bỏ hoang 0,2% (1/7/27)</div>
+          </div>
+        </div>
+
+        <div class="grid-2">
+          <div class="card">
+            <div class="card-title">
+              <span>🇻🇳 Bức Tranh Vĩ Mô Việt Nam 2026: "Tăng Trưởng Mạnh – Bộ Đệm Kéo Căng"</span>
+              <span class="badge badge-green">GDP 9T: +9,01%</span>
+            </div>
+            <ul class="clean-list">
+              <li><strong>Động lực tăng trưởng đột phá:</strong> GDP Q3/2026 tăng <strong>9,95% YoY</strong> (9T: 9,01% — đỉnh 15 năm); IIP 10T +12,4% (T10 +15%), PMI T10 đạt 52,3. Xuất khẩu phần cứng chuỗi cung ứng AI chiếm hơn 70% đà tăng xuất khẩu (World Bank, 20/11).</li>
+              <li><strong>Dòng vốn FDI &amp; Đầu tư công lập kỷ lục:</strong> FDI đăng ký 10T đạt <strong>54,85 tỷ USD (+74% YoY — đỉnh 17 năm)</strong>; FDI giải ngân <strong>24,08 tỷ USD (+13,1%)</strong>. Đầu tư công giải ngân đến 12/11 đạt 730.006 tỷ đồng (75,3% kế hoạch Thủ tướng giao).</li>
+              <li><strong>Dự báo GDP 2026–2027:</strong> World Bank 7,4%; ADB 7,8% (2026) / 7,6% (2027); IMF 9,2% (2026) / 8,9% (2027); UOB 8,5%; Standard Chartered 9,5% (2026) &amp; 11% (2027); Chính phủ Thủ tướng Lê Minh Hưng đặt mục tiêu tăng trưởng 2 con số.</li>
+              <li><strong>Ba điểm nghẽn vĩ mô cần giám sát:</strong> (1) CPI bình quân 10T đạt <strong>4,57%</strong> (T10: 5,09% YoY) vượt mục tiêu 4,5%; (2) Tổng XNK đến 15/11 vượt 1.070,26 tỷ USD nhưng lũy kế <strong>nhập siêu 11,74 tỷ USD</strong> do nhập tư liệu sản xuất tăng 38,2%; (3) Dự trữ ngoại hối quanh 87,6 tỷ USD (chính thức 18/6) – ước ~88 tỷ USD (1,9–2,5 tháng nhập khẩu).</li>
+            </ul>
+            <div class="source-note">Nguồn: Cục Thống kê (NSO), Bộ Tài chính, Cục Hải quan, NHNN, World Bank (20/11), IMF (19/11), ADB, Standard Chartered.</div>
+          </div>
+
+          <div class="card">
+            <div class="card-title">
+              <span>📊 So Sánh Tốc Độ Dự Báo GDP Việt Nam 2026–2027 (Các Định Chế)</span>
+              <span class="badge badge-blue">Đơn vị: % YoY</span>
+            </div>
+            <div class="chart-box">
+              <canvas id="chartGdpForecast"></canvas>
+            </div>
+            <div class="source-note">Nguồn tổng hợp: Cục Thống kê, World Bank, ADB, UOB, IMF, Standard Chartered, SSI Research, VinaCapital (Cập nhật T11/2026).</div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-title">
+            <span>⏱️ Đồng Hồ Sự Kiện Trọng Yếu Chi Phối Thị Trường (24/11/2026 → Q3/2027)</span>
+            <span class="badge badge-gold">Roadmap Định Vị Dòng Tiền</span>
+          </div>
+          <div class="timeline">
+            <div class="tl-item">
+              <div class="tl-date">24–25/11/2026</div>
+              <div class="tl-title">Nghỉ lễ VN &amp; Công bố PCE Mỹ T10</div>
+              <div class="tl-desc">TTCK VN nghỉ Ngày Văn hóa VN 24/11 (mở lại 25/11). Tối 25/11 Mỹ công bố PCE T10 (ước 3,8%) &amp; Fed Beige Book — chốt cược FOMC.</div>
+            </div>
+            <div class="tl-item gold">
+              <div class="tl-date">27–29/11/2026</div>
+              <div class="tl-title">Đấu giá Thủ Thiêm &amp; Họp OPEC+</div>
+              <div class="tl-desc">27/11: Đấu giá 4 lô Thủ Thiêm (&gt;16.600 tỷ, lô &gt;1 tỷ/m²). 28/11: Bầu cử Đài Loan. 29/11: OPEC+ chốt hạn ngạch dầu 2027 sau vụ UAE rút lui.</div>
+            </div>
+            <div class="tl-item urgent">
+              <div class="tl-date">08–11/12/2026</div>
+              <div class="tl-title">FOMC Tăng Lãi Suất &amp; Hạn Chót Shutdown Mỹ</div>
+              <div class="tl-desc">09/12: 92% xác suất Fed tăng +25 bps lên 4,00–4,25% (CME 17/11). 11/12: Hạn chót ngân sách Mỹ; tháng 12 đỉnh đáo hạn TPDN VN 55.800 tỷ.</div>
+            </div>
+            <div class="tl-item green">
+              <div class="tl-date">24/12/2026</div>
+              <div class="tl-title">Sân Bay Long Thành Bay Thương Mại</div>
+              <div class="tl-desc">0h ngày 24/12 chính thức khai thác GĐ1 (20–30 chuyến/ngày, Tết tăng 30–40 chuyến); chuẩn bị khởi công 5 tuyến Metro TP.HCM (&gt;167 km).</div>
+            </div>
+            <div class="tl-item urgent">
+              <div class="tl-date">03/01 &amp; 10/01/2027</div>
+              <div class="tl-title">Quốc Hội Dân Chủ 120 &amp; Đình Chiến Mỹ–Trung</div>
+              <div class="tl-desc">03/01: Quốc hội Dân chủ nhậm chức (rủi ro Israel ép đánh Iran trước mốc này). 10/01: Hết hạn đình chiến thuế Mỹ–Trung.</div>
+            </div>
+            <div class="tl-item urgent">
+              <div class="tl-date">28/02 &amp; 22/03/2027</div>
+              <div class="tl-title">Phán Quyết Sec.301 IP &amp; FTSE Đợt 2</div>
+              <div class="tl-desc">28/02: Hạn chót USTR điều tra Sở hữu trí tuệ VN. Tháng 3: Fed tăng nhịp cuối (4,25–4,50%); 22/03: FTSE bơm vốn Đợt 2 (+20%).</div>
+            </div>
+            <div class="tl-item gold">
+              <div class="tl-date">01/04 &amp; Q2/2027</div>
+              <div class="tl-title">Hết Thuế Xăng 0%, CCP &amp; X-Date Mỹ</div>
+              <div class="tl-desc">01/04: Hết hạn NQ 45 thuế TTĐB xăng 0%. Dự kiến vận hành CCP chứng khoán VN. 21/06: FTSE Đợt 3 (+35%). Căng thẳng trần nợ công Mỹ $41,1T.</div>
+            </div>
+            <div class="tl-item green">
+              <div class="tl-date">01/07 &amp; 20/09/2027</div>
+              <div class="tl-title">Thuế Đất Bỏ Hoang 0,2% &amp; FTSE Hoàn Tất</div>
+              <div class="tl-desc">01/07: Hiệu lực Luật Đất đai sửa đổi &amp; Thuế đất bỏ hoang 0,2%. 20/09: FTSE bơm Đợt 4 (+35%, hoàn tất 100%). Cuối 2027: Fed bắt đầu hạ lãi suất.</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==================== TAB 2: US POLITICS & GEOPOLITICS ==================== -->
+      <section class="tab-panel" id="tab-us-geo">
+        <h2 class="section-heading">🏛️ Chính Sự Mỹ Sau "Làn Sóng Xanh" 2026 &amp; Các Điểm Nóng Chiến Sự Quanh Mỹ</h2>
+
+        <div class="grid-2">
+          <div class="card card-accent-blue">
+            <div class="card-title">
+              <span>🇺🇸 Kết Quả Bầu Cử Giữa Kỳ Mỹ 03/11/2026 (Quốc Hội Khóa 120)</span>
+              <span class="badge badge-blue">Blue Wave — Lớn nhất từ Watergate (Garrett Graff)</span>
+            </div>
+            <p>Đảng Dân chủ giành lại quyền kiểm soát cả hai viện Quốc hội Mỹ (nhậm chức ngày <strong>03/01/2027</strong>) khi cử tri bất mãn với giá xăng vượt 4 USD/gallon, diesel vượt 6 USD/gallon (+69% YoY) và chiến tranh Iran kéo dài.</p>
+            <div class="chart-box" style="height:240px;">
+              <canvas id="chartUsCongress"></canvas>
+            </div>
+            <ul class="clean-list">
+              <li><strong>Thượng viện (35/35 ghế đã chốt tới 18/11):</strong> Dân chủ <strong>56 ghế (+9)</strong> gồm 54 Dem + 2 Độc lập vs Cộng hòa <strong>44 ghế (-9)</strong>. Lật 9 ghế của Cộng hòa gồm 8 bang từng bầu Trump (Alaska, Iowa, Kansas, Mississippi, North Carolina, Ohio, South Carolina, Texas) cùng bang Maine (đánh bại Susan Collins).</li>
+              <li><strong>Hạ viện (431/435 ghế đã chốt):</strong> Dân chủ tăng từ 215 lên <strong>258 ghế</strong> vs Cộng hòa giảm từ 219 xuống <strong>173 ghế</strong> (4 ghế chưa ngã ngũ). Lãnh đạo Hakeem Jeffries chuẩn bị làm Chủ tịch Hạ viện.</li>
+              <li><strong>Hệ quả kinh tế – chính trị:</strong> Chính phủ chia rẽ (Trump giữ quyền phủ quyết, Quốc hội nắm ngân sách &amp; trát điều tra). Dân chủ cam kết che chắn độc lập Fed, điều tra nguồn thu dầu Venezuela, rà soát thuế quan hành pháp và tăng giám sát AI/trung tâm dữ liệu (Thống đốc đắc cử Texas Gina Hinojosa đòi tạm dừng ưu đãi thuế Data Center mới).</li>
+            </ul>
+            <div class="source-note">Nguồn: Ballotpedia (18–19/11/2026), AP News, The Guardian, Al Jazeera, KQED, Anadolu Agency, Jenner &amp; Block.</div>
+          </div>
+
+          <div class="card card-accent-red">
+            <div class="card-title">
+              <span>💣 Đồng Hồ Tài Khóa Mỹ &amp; Chu Kỳ Fed Thời Tân Chủ Tịch Kevin Warsh</span>
+              <span class="badge badge-red">Nợ công 40,33T–40,68T / Trần 41,1T</span>
+            </div>
+            <ul class="clean-list">
+              <li><strong>Trần nợ công chạm vách:</strong> Nợ quốc gia Mỹ vượt 40T USD ngày 18/08/2026; Bộ Tài chính Mỹ báo cáo nợ chịu trần chốt 31/10 là <strong>40,33 nghìn tỷ USD</strong> (còn dư địa 777 tỷ USD, cạn ~200 tỷ USD/tháng), còn bộ đếm ước tính <em>US Debt Clock</em> cuối T11 ghi nhận ~<strong>40,68 nghìn tỷ USD</strong> (98,98% trần 41,1T, dư ~91 ngày). Bộ trưởng Tài chính Scott Bessent sẽ phải dùng biện pháp đặc biệt đầu xuân 2027 trước X-Date giữa–cuối 2027. Thâm hụt FY2026 ~1,9–1,99 nghìn tỷ USD.</li>
+              <li><strong>Hạn chót đóng cửa Chính phủ:</strong> <strong>11/12/2026</strong> (sau 3 lần gián đoạn năm tài khóa 2026, gồm 76 ngày đóng cửa DHS). Một số nghị sĩ Dân chủ dọa chặn gia hạn nếu vẫn cấp vốn tấn công Iran.</li>
+              <li><strong>Fed đảo chiều tăng lãi suất:</strong> Tăng +25 bps tháng 9/2026 (lần đầu từ 2023) lên <strong>3,75%–4,00%</strong>, giữ nguyên 10–2 ngày 28/10 (Lisa Cook &amp; Beth Hammack đòi tăng tiếp). Chủ tịch <strong>Kevin Warsh</strong> công bố giảm số kỳ họp chốt lãi suất xuống 7 lần (cuối 2027) và 6 lần (2028).</li>
+              <li><strong>Kỳ họp 08–09/12/2026:</strong> Biên bản FOMC (18/11) rất diều hâu sau CPI T10 (+0,4% MoM) &amp; PCE T9 (3,6%). CME FedWatch (17/11) định giá <strong>92% tăng +25 bps</strong> (8% tăng +50 bps theo cảnh báo của Thống đốc Christopher Waller). Goldman Sachs &amp; Morgan Stanley dự báo đỉnh <strong>4,25%–4,50% vào Q1/2027</strong> rồi cắt giảm cuối 2027–2028.</li>
+              <li><strong>Xung đột Trump – Fed:</strong> Ngày 21/11 TT Trump chỉ trích Fed và dẫn ví dụ Ấn Độ tăng trưởng 7%, nhưng Thượng viện Dân chủ khóa 120 sẽ bảo vệ tính độc lập của Fed.</li>
+            </ul>
+            <div class="source-note">Nguồn: Federal Reserve Statement &amp; Minutes (18/11), US Treasury / MASEconomics, US Debt Clock, CBO, Goldman Sachs, Morgan Stanley.</div>
+          </div>
+        </div>
+
+        <div class="grid-3">
+          <div class="card card-accent-red">
+            <div class="card-title"><span>🔥 Chiến Tranh Mỹ – Israel – Iran (Tháng Thứ 9)</span><span class="badge badge-red">48,3 Tỷ USD+</span></div>
+            <p>Khởi phát ngày 28/02/2026 (<em>Operation Epic Fury / Roaring Lion</em>, sát hại Lãnh tụ Tối cao Ali Khamenei), chi phí trực tiếp phía Mỹ tính tới 13/11 vượt <strong>48,3 tỷ USD</strong> (chưa tính thiệt hại căn cứ).</p>
+            <ul class="clean-list">
+              <li><strong>Thực địa tuần 16–23/11:</strong> Iran tập kích 3 đợt tên lửa/UAV vào Bahrain (Hạm đội 5 Mỹ) &amp; Kuwait; Houthi <em>tuyên bố đánh trúng</em> nhà máy lọc dầu Petrol Rabigh (Saudi Arabia, 22/11), bắn tên lửa vào Riyadh &amp; xây công sự dọc Bab al-Mandab; ngày 23/11 Iran tuyên bố phá phong tỏa hải quân Mỹ (<em>Task Force Iron Gate</em>).</li>
+              <li><strong>Ngoại giao ngầm:</strong> Netanyahu &amp; Giám đốc Mossad Roman Gofman ép Mỹ không kích lại trước 03/01/2027. Qatar họp kín Berlin với Kushner &amp; Witkoff rồi bay tới Tehran, nhưng Iran giữ cứng "7 điều kiện" (gỡ trừng phạt, gỡ phong tỏa, giữ uranium).</li>
+              <li><strong>Rạn nứt Mỹ:</strong> Thượng viện khóa cũ bác nghị quyết War Powers (48–51) ngày 19/11; Phó TT JD Vance bị cho là ngầm đổ lỗi thua bầu cử giữa kỳ cho cuộc chiến.</li>
+            </ul>
+          </div>
+
+          <div class="card card-accent-gold">
+            <div class="card-title"><span>🌎 Mỹ – Venezuela ("Học Thuyết Donroe") &amp; Cuba</span><span class="badge badge-gold">65 Tỷ Thùng</span></div>
+            <p>Ngày 03/01/2026 lực lượng Mỹ bắt giữ TT Nicolás Maduro (đang giam tại Brooklyn). Quyền TT Delcy Rodríguez sửa Luật Dầu khí, cắt thuế tài nguyên từ 30% xuống 15% và mở cửa tư nhân hóa.</p>
+            <ul class="clean-list">
+              <li><strong>Thỏa thuận 18/11/2026 tại Caracas:</strong> Bộ trưởng Quốc phòng Mỹ Pete Hegseth ký hiệp định quân sự Mỹ–Venezuela. Mỹ nắm <strong>35% cổ phần công ty mẹ NABEP</strong> (17 mỏ dầu, ~1/5 trữ lượng); cùng thỏa thuận song phương 28/08 chi phối đa số ước <strong>65 tỷ thùng trữ lượng</strong> và dự án mở rộng của Chevron (chi phí &lt;20 USD/bbl theo Bộ Năng lượng Mỹ, mục tiêu gấp đôi sản lượng trong &lt;5 năm).</li>
+              <li><strong>Tác động địa chiến lược:</strong> Hegseth tuyên bố thương vụ khiến "Eo biển Hormuz vô nghĩa với Tây bán cầu" — yếu tố dài hạn đè giá dầu toàn cầu.</li>
+              <li><strong>Rủi ro chính trị:</strong> Mỹ nắm ~12–13 tỷ USD doanh thu dầu Venezuela thiếu giám sát minh bạch → mục tiêu điều tra lớn của Hạ viện Dân chủ 2027. Mỹ tiếp tục phong tỏa dầu Cuba.</li>
+            </ul>
+          </div>
+
+          <div class="card card-accent-cyan">
+            <div class="card-title"><span>⚔️ Nga – Ukraine, APEC 3 Bên, Sec.301 &amp; Cú Sốc Nvidia</span><span class="badge badge-blue">23/11 Hot</span></div>
+            <ul class="clean-list">
+              <li><strong>Ukraine (Ngày 1.729+):</strong> Mỹ trung gian đàm phán tại Abu Dhabi (10–11/11) sau khi Putin đồng ý nối lại đàm phán 3 bên hồi cuối T10; nhưng Lầu Năm Góc chỉ trích Kyiv đánh sâu vào Nga, còn Medvedev dọa học thuyết hạt nhân.</li>
+              <li><strong>APEC Thâm Quyến (19–20/11):</strong> Thượng đỉnh 3 bên Trump–Tập–Putin bàn hạt nhân &amp; tăng cung xăng dầu tinh chế, nhưng <strong>không có đột phá thuế quan</strong>. Đình chiến Mỹ–Trung hết hạn <strong>10/01/2027</strong>.</li>
+              <li><strong>Thuế Section 301 với Việt Nam:</strong> Tòa Tối cao Mỹ (23/02) bác thuế đối ứng IEEPA 20%; Mỹ áp <strong>12,5% Section 301</strong> từ 24/07/2026 (+Section 232 50% với thép/nhôm). Hai điều tra mở: <strong>Sở hữu trí tuệ (IP — hạn chót 28/02/2027)</strong> &amp; <strong>Dư thừa công suất</strong> (nhắm thặng dư 178 tỷ USD năm 2025).</li>
+              <li><strong>Địa chấn AI Nvidia (23/11):</strong> Sau khi Jensen Huang từ chức ngày 12/11 kéo Nasdaq rơi 10% &amp; Bitcoin thủng 60.000 USD, tối 23/11 HĐQT Nvidia <strong>tái bổ nhiệm Jensen Huang</strong> → NVDA vọt <strong>+30%–35% (+900 tỷ USD vốn hóa, Guardian)</strong>, Nasdaq bật ~6% (Financial Express).</li>
+            </ul>
+          </div>
+        </div>
+        <div class="source-note">Nguồn: ISW, Critical Threats, Al-Monitor (23/11), AP News, Reuters, Military Times, US Dept. of Energy, USTR, ASEAN Briefing, The Guardian Live (23/11), Financial Express (23/11).</div>
+      </section>
+
+      <!-- ==================== TAB 3: GOLD & OIL ==================== -->
+      <section class="tab-panel" id="tab-gold-oil">
+        <h2 class="section-heading">🥇 Thị Trường Vàng (XAU/USD &amp; SJC) &amp; ⛽ Xăng Dầu Toàn Cầu – Việt Nam</h2>
+
+        <div class="grid-2">
+          <div class="card card-accent-gold">
+            <div class="card-title">
+              <span>📈 Quỹ Đạo Vàng Thế Giới 2026–2028 (Thực Tế &amp; Dự Báo UBS / Goldman Sachs)</span>
+              <span class="badge badge-gold">XAU tối 23/11: 3.668 USD</span>
+            </div>
+            <div class="chart-box">
+              <canvas id="chartGoldPath"></canvas>
+            </div>
+            <p style="margin-top:10px;">Sau cú rơi -37% từ đỉnh lịch sử 5.595 USD (T1/2026) xuống đáy 14 tháng 3.524,8 USD (21/11) do Fed tăng lãi suất &amp; bán giải chấp chéo từ cổ phiếu AI/Bitcoin, XAU/USD đã bật tăng 130 USD tối 23/11. <strong>Bệ đỡ cấu trúc vững:</strong> NHTW toàn cầu mua ròng <strong>321,2 tấn trong Q3 (+42% YoY)</strong>, lũy kế 9T đạt 675 tấn (WGC). UBS dự báo 5.000 USD cuối 2027; Goldman Sachs dự báo 4.650 USD cuối 2027 và <strong>5.600 USD cuối 2028</strong>.</p>
+          </div>
+
+          <div class="card card-accent-red">
+            <div class="card-title">
+              <span>⚠️ Bẫy Nén Chênh Lệch Vàng SJC (Độ Nhạy Theo Premium +5Tr / +12Tr / +20Tr)</span>
+              <span class="badge badge-red">Chênh hiện tại: +20,1–22,9 Tr</span>
+            </div>
+            <div class="chart-box">
+              <canvas id="chartSjcTrap"></canvas>
+            </div>
+            <p style="margin-top:10px;"><strong>Cảnh báo cốt lõi:</strong> Dù Nghị định 232/2025 đã bỏ độc quyền SJC (11 hồ sơ xin phép), nút thắt nhập khẩu vàng nguyên liệu vẫn chưa mở, đẩy chênh lệch lên +20–23 triệu/lượng và spread mua–bán lên kỷ lục <strong>5–6 triệu/lượng</strong>. Nếu XAU tăng +36,3% lên 5.000 USD nhưng NHNN mở nhập khẩu nén chênh lệch từ +21Tr về +6Tr, người mua SJC tại 135Tr hôm nay chỉ lãi <strong>+21,7%</strong>.</p>
+          </div>
+        </div>
+
+        <div class="card" style="margin-bottom:20px;">
+          <div class="card-title">
+            <span>📋 Bảng Giá Vàng Trong Nước Kết Phiên 23/11/2026 &amp; Khung Pháp Lý Mới</span>
+            <span class="badge badge-gold">Đơn vị: Triệu VND/lượng</span>
+          </div>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Thương hiệu / Tham chiếu</th>
+                  <th>SJC Mua vào</th>
+                  <th>SJC Bán ra</th>
+                  <th>Spread SJC</th>
+                  <th>Vàng Nhẫn 9999 (Mua – Bán)</th>
+                  <th>Ghi chú pháp lý &amp; rủi ro doanh nghiệp</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td><strong>SJC</strong></td><td class="mono">130,0</td><td class="mono"><strong>135,0</strong></td><td class="mono down">5,0 Tr</td><td class="mono">128,8 – 134,8 (Spread 6,0Tr)</td><td>+1,5Tr ngày 23/11; mua đầu năm 152,8Tr lỗ 22,8Tr (sáng lỗ 24,3Tr)</td></tr>
+                <tr><td><strong>DOJI</strong></td><td class="mono">130,0</td><td class="mono"><strong>135,0</strong></td><td class="mono down">5,0 Tr</td><td class="mono">129,8 – 134,8 (+1,8Tr)</td><td>Nhẫn Hưng Thịnh Vượng hồi mạnh nhất phiên 23/11</td></tr>
+                <tr><td><strong>PNJ</strong></td><td class="mono">130,0</td><td class="mono"><strong>135,0</strong></td><td class="mono down">5,0 Tr</td><td class="mono">127,0 – 132,5 (+1,0Tr)</td><td><span class="down">Khủng hoảng thu đổi 21.000 tỷ kim cương</span>; SJC/Nhẫn vẫn trả T/T+1</td></tr>
+                <tr><td><strong>Bảo Tín Minh Châu</strong></td><td class="mono">129,5</td><td class="mono"><strong>135,0</strong></td><td class="mono down">5,5 Tr</td><td class="mono">129,5 – 134,5 (+1,2Tr)</td><td>Thuộc DS thanh tra dự phòng PCRT 2027 (kim khí/đá quý, trừ vàng miếng)</td></tr>
+                <tr><td><strong>Mi Hồng (TP.HCM)</strong></td><td class="mono">132,0</td><td class="mono"><strong>134,0</strong></td><td class="mono up">2,0 Tr</td><td class="mono">—</td><td>Giá thu mua cao nhất &amp; spread hẹp nhất thị trường (15h00 ngày 23/11)</td></tr>
+                <tr><td><strong>Quy đổi Thế giới (3.668 USD @ VCB 25.990)</strong></td><td colspan="2" class="mono"><strong>114,94 Tr</strong> (chưa thuế/phí)</td><td class="mono warn">+20,06 Tr</td><td colspan="2"><strong>NĐ 390/2026 (16/10):</strong> Giao dịch ≥<strong>5 triệu/ngày</strong> bắt buộc không tiền mặt. <strong>Thuế 0,1% vàng miếng:</strong> chưa thu. <strong>Sàn vàng quốc gia:</strong> NHNN đề xuất chưa lập.</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="source-note">Nguồn: CafeF, Báo Nghệ An, 24h, VnEconomy, ZNews (23/11/2026), World Gold Council Q3/2026, Luật Việt Nam (NĐ 232/2025, NĐ 390/2026, Luật Thuế TNCN 2025).</div>
+        </div>
+
+        <div class="grid-2">
+          <div class="card card-accent-cyan">
+            <div class="card-title">
+              <span>⛽ Dầu Thô Toàn Cầu: Dư Cung 2027 Áp Đảo Chiến Sự Hormuz</span>
+              <span class="badge badge-blue">OPEC+ Họp 29/11/2026</span>
+            </div>
+            <ul class="clean-list">
+              <li><strong>Giá dầu tối 23/11/2026:</strong> Brent rơi sâu về <strong>88,72–90,36 USD/thùng</strong> (sáng 91,97); WTI về <strong>82,12–82,92 USD/thùng</strong> — giảm tuần thứ 3 liên tiếp (~20% từ đỉnh 118 USD cuối T10).</li>
+              <li><strong>Cấu trúc dư cung 2027:</strong> Lưu lượng Hormuz phục hồi, nguồn cung toàn cầu T10 đạt 105,4 mb/d trong khi cầu dầu 2026 giảm -2,7 mb/d (còn 102,3 mb/d) → IEA dự báo <strong>dư cung 3,8 triệu thùng/ngày năm 2027</strong>.</li>
+              <li><strong>Rạn nứt OPEC+:</strong> <strong>UAE chính thức rút khỏi OPEC &amp; OPEC+ từ 01/05/2026</strong> (mở rộng công suất lên 5 mb/d). Cuộc họp 29/11 sẽ đấu tranh gay gắt về đường cơ sở 2027. COP31 tại Thổ Nhĩ Kỳ đổ vỡ (22/11).</li>
+              <li><strong>Dự báo Brent 2027:</strong> EIA 86 USD; Morgan Stanley 86,30 USD; Goldman Sachs 88 USD BQ → <strong>78 USD cuối 2027</strong>; JM Financial 70 USD. <em>Rủi ro đuôi:</em> Tồn kho đất liền đáy từ 2016 → nếu chiến sự Iran leo thang, dầu có thể vọt lại <strong>132 USD</strong> (Goldman).</li>
+              <li><strong>Nút thắt Diesel:</strong> Diesel bán buôn châu Âu vẫn ~180 USD/bbl (+77% so với trước chiến tranh), dự kiến neo cao tới giữa 2027 (Morgan Stanley).</li>
+            </ul>
+          </div>
+
+          <div class="card card-accent-green">
+            <div class="card-title">
+              <span>🇻🇳 Giá Xăng Dầu Việt Nam (Kỳ 19/11/2026) &amp; Cảnh Báo Mốc 01/04/2027</span>
+              <span class="badge badge-green">5 Kỳ Giảm Liên Tiếp</span>
+            </div>
+            <div class="table-wrap">
+              <table style="min-width:440px;">
+                <thead>
+                  <tr><th>Mặt hàng (Vùng 1)</th><th>Giá bán lẻ</th><th>So với kỳ 12/11</th><th>Giảm từ đỉnh T3–4</th><th>Quỹ BOG</th></tr>
+                </thead>
+                <tbody>
+                  <tr><td><strong>Xăng E5 RON92</strong></td><td class="mono up"><strong>18.576 đ/l</strong></td><td class="mono">-823 đ</td><td class="mono">-11.534 đ</td><td>Trích 200đ</td></tr>
+                  <tr><td><strong>Xăng E10 RON95-III</strong></td><td class="mono up"><strong>19.100 đ/l</strong></td><td class="mono">-745 đ</td><td class="mono">-12.320 đ</td><td>Trích 200đ</td></tr>
+                  <tr><td><strong>Dầu Diesel 0.05S</strong></td><td class="mono warn"><strong>26.347 đ/l</strong></td><td class="mono">-475 đ</td><td class="mono">-18.433 đ</td><td>0 đ</td></tr>
+                  <tr><td><strong>Dầu Mazut 180CST</strong></td><td class="mono"><strong>18.671 đ/kg</strong></td><td class="mono">-1.071 đ</td><td>Giảm sâu</td><td>Trích 800đ</td></tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="callout callout-blue" style="margin-top:10px;margin-bottom:0;">
+              <strong>Lưu ý chính sách cực quan trọng:</strong> Giá xăng VN đang thấp hơn khu vực (Diesel 26.347đ vs Thái Lan 31.335đ, TQ 30.970đ, Lào 37.956đ) nhờ <strong>Nghị quyết 45/2026/NQ-CP miễn thuế TTĐB xăng về 0% (01/11/2026 – 31/03/2027)</strong> — vốn giúp xăng hạ 1.500–1.800+ đ/lít từ 01/11. Cần đề phòng cú bật kỹ thuật ngày <strong>01/04/2027</strong> nếu không gia hạn, cùng đề xuất xóa bỏ Quỹ BOG từ 2027.
+            </div>
+          </div>
+        </div>
+        <div class="source-note">Nguồn: IEA Oil Market Report (13/11), EIA, Reuters, Báo Lao Động (23/11), Petrolimex, Bộ Công Thương, Wood Mackenzie (UAE exit OPEC).</div>
+      </section>
+
+      <!-- ==================== TAB 4: VN STOCKS ==================== -->
+      <section class="tab-panel" id="tab-stocks">
+        <h2 class="section-heading">📈 Thị Trường Chứng Khoán Việt Nam: Nghịch Lý Định Giá Đáy &amp; Sóng Nâng Hạng FTSE Russell</h2>
+
+        <div class="kpi-grid">
+          <div class="card">
+            <div class="kpi-label">VN-Index (23/11/2026)</div>
+            <div class="kpi-value mono">1.697,14 <span class="up" style="font-size:0.9rem;">+8,35đ</span></div>
+            <div class="kpi-sub">Chiết khấu -12% từ đỉnh 1.927,94 (18/5) • Nghỉ lễ 24/11</div>
+          </div>
+          <div class="card">
+            <div class="kpi-label">P/E Toàn Sàn / Ex-Vingroup</div>
+            <div class="kpi-value mono up">10,5x / 9,4x</div>
+            <div class="kpi-sub">Ngang đáy COVID-19 T3/2020 • Rẻ hơn Thái Lan (14,3x), Malaysia (14,9x)</div>
+          </div>
+          <div class="card">
+            <div class="kpi-label">Khối Ngoại Bán Ròng YTD</div>
+            <div class="kpi-value mono down">-127.294 Tỷ</div>
+            <div class="kpi-sub">Vượt kỷ lục 125.162 tỷ năm 2025 • Phiên 23/11: -418,9 tỷ HoSE</div>
+          </div>
+          <div class="card">
+            <div class="kpi-label">Dư Nợ Margin / LNST 9T</div>
+            <div class="kpi-value mono warn">457,5K Tỷ / +48,9%</div>
+            <div class="kpi-sub">Margin lập đỉnh Q3 • Top 10 mã (VIC/VHM) đóng góp 83% tăng trưởng</div>
+          </div>
+        </div>
+
+        <div class="grid-2">
+          <div class="card card-accent-blue">
+            <div class="card-title">
+              <span>🚀 Lộ Trình Giải Ngân Nâng Hạng FTSE Russell (4 Đợt: 1,5–4 Tỷ USD)</span>
+              <span class="badge badge-green">Hiệu lực từ 21/09/2026</span>
+            </div>
+            <div class="chart-box" style="height:245px;">
+              <canvas id="chartFtseTranches"></canvas>
+            </div>
+            <p style="margin-top:10px;">Việt Nam trở thành quốc gia thứ 49 trong <strong>FTSE All-World</strong> (hệ thống <strong>KRX</strong> chạy từ 05/05/2025; mô hình <strong>CCP</strong> dự kiến vận hành Q1–Q2/2027 hướng tới <strong>MSCI</strong>). <strong>90% dòng vốn thụ động còn ở phía trước</strong> trong năm 2027!</p>
+            <div style="font-size:0.82rem;background:var(--bg-surface);padding:10px 12px;border-radius:8px;border:1px solid var(--border-subtle);margin-top:8px;">
+              <strong>27 cổ phiếu rổ FTSE Global All Cap:</strong><br>
+              • <strong>Large Cap (3 — All-World):</strong> VCB, VIC, VHM<br>
+              • <strong>Mid Cap (3 — All-World):</strong> BID, HPG, VPB<br>
+              • <strong>Small Cap (21):</strong> FPT, GEX, HDB, HCM, MCH, MSN, NVL, SHB, STB, SSB, SSI, TCX, VNM, VCI, VJC, MSB, VRE, VPL, VIX, VND, VCK
+            </div>
+          </div>
+
+          <div class="card card-accent-purple">
+            <div class="card-title">
+              <span>🎯 Phân Hóa Tăng Trưởng Lợi Nhuận 2027 &amp; Mục Tiêu VN-Index</span>
+              <span class="badge badge-gold">Mục tiêu 2027: 1.940 – 2.280</span>
+            </div>
+            <div class="chart-box" style="height:245px;">
+              <canvas id="chartSectorProfit"></canvas>
+            </div>
+            <ul class="clean-list" style="margin-top:10px;">
+              <li><strong>Điểm sáng 2027:</strong> Thép/Hạ tầng (HPG Dung Quất 2), Bán lẻ, Chứng khoán &amp; Công nghiệp dự báo tăng <strong>+19%–21%</strong>; Ngân hàng dẫn dắt với <strong>+14%</strong>. Phiên 23/11 ngoại mua ròng mạnh <strong>POW (+176,4 tỷ), GMD (+61 tỷ), HVN (+35,3 tỷ), FPT (+25 tỷ)</strong>.</li>
+              <li><strong>Vùng cảnh báo đỏ:</strong> Dầu khí &amp; Năng lượng dự báo giảm lợi nhuận <strong>-41%</strong> từ nền đột biến 2026 (BSR 10T lãi &gt;27.000 tỷ); <strong>PNJ</strong> giảm sàn về 12.600đ (-87% từ cuối 2025) do dự kiến lỗ ~6.270 tỷ &amp; kế hoạch phát hành 550 triệu CP.</li>
+              <li><strong>Mục tiêu VN-Index 2027:</strong> SSI Research <strong>1.940</strong>; TS. Lê Đức Khánh <strong>2.000–2.100</strong>; Vietcap (bản 6/2026) <strong>2.280</strong>. Ngưỡng kỹ thuật xác nhận đáy: giữ 1.650–1.680 và đóng tuần vượt <strong>1.770 (EMA200)</strong>.</li>
+            </ul>
+          </div>
+        </div>
+        <div class="source-note">Nguồn: Nhân Dân, CafeF, Vietstock (23/11/2026), Dragon Capital (FTSE 27 mã), DSC/MoneyF, SSI Research, VNDirect, Vietcap, UBCKNN.</div>
+      </section>
+
+      <!-- ==================== TAB 5: HCMC REAL ESTATE ==================== -->
+      <section class="tab-panel" id="tab-realestate">
+        <h2 class="section-heading">🏙️ Bất Động Sản Việt Nam &amp; Siêu Đô Thị TP.HCM Mở Rộng (&gt;14 Triệu Dân)</h2>
+
+        <div class="callout callout-blue">
+          <strong>Siêu đô thị TP.HCM sau sáp nhập (từ 01/07/2025):</strong> Hợp nhất TP.HCM cũ + Bình Dương + Bà Rịa – Vũng Tàu (~6.772 km², 14,0 triệu dân, 168 phường/xã/đặc khu). Sáng ngày <strong>23/11/2026</strong>, TP.HCM công bố Quy hoạch tổng thể 2025–2050 tầm nhìn 100 năm và mở rộng <strong>Trung tâm Tài chính Quốc tế VIFC-HCMC lên 17 thành viên với tổng vốn dự kiến huy động 7,7 tỷ USD</strong>.
+        </div>
+
+        <div class="grid-2">
+          <div class="card card-accent-gold">
+            <div class="card-title">
+              <span>📊 Mặt Bằng Giá BĐS TP.HCM Mở Rộng Q3/2026 (Triệu VND/m²)</span>
+              <span class="badge badge-red">Thanh khoản Q3 -66% QoQ</span>
+            </div>
+            <div class="chart-box">
+              <canvas id="chartHcmcPrices"></canvas>
+            </div>
+            <p style="margin-top:10px;">Thị trường phân cực rõ nét: <strong>Sơ cấp neo cứng</strong> (75Tr/m² toàn TP.HCM mới; 104Tr/m² TP.HCM cũ; 80% cung mới H1/26 &gt;120Tr/m²) do chi phí đất cao; ngược lại <strong>thị trường thứ cấp cắt lỗ diện rộng</strong> (nhà phố/biệt thự -13%, căn hộ -4% đến -7%, toàn quốc -5% đến -20% theo FERI). Khu <strong>Bình Dương cũ (Dĩ An, Thuận An: 43–63Tr/m², cho thuê ~4,5%–4,7% theo mốc tham chiếu 2024)</strong> hút giao dịch tốt nhất.</p>
+          </div>
+
+          <div class="card card-accent-green">
+            <div class="card-title">
+              <span>🚆 Siêu Chu Kỳ Hạ Tầng &amp; Nút Thắt Pháp Lý – Thuế TP.HCM 2026–2027</span>
+              <span class="badge badge-green">Sân bay Long Thành: 24/12</span>
+            </div>
+            <ul class="clean-list">
+              <li><strong>Sân bay Long Thành:</strong> Chính thức khai thác thương mại <strong>0h ngày 24/12/2026</strong> (GĐ1 20–30 chuyến/ngày, Tết 2027 lên 30–40 chuyến/ngày; VNA &amp; Vietjet tiên phong).</li>
+              <li><strong>Vành đai 3 &amp; Cao tốc:</strong> Bến Lức – Long Thành thông xe toàn tuyến 01/10/2026; Vành đai 3 TP.HCM &amp; Nút giao Tân Hiệp mục tiêu thông xe cuối T11/2026; mở rộng cao tốc TP.HCM – Long Thành hoàn thành T12/2026.</li>
+              <li><strong>Khởi công 5 tuyến Metro (&gt;167 km) cuối 2026:</strong> Đường sắt Thủ Thiêm – Long Thành (134.169 tỷ), Metro Bình Dương mới – Suối Tiên (55 nghìn tỷ), Thủ Dầu Một – Tao Đàn (113 nghìn tỷ), Metro 6 (Tân Sơn Nhất – Phú Hữu), nhánh Tây Bắc. Dự án &lt;1km ga Metro số 1 đạt chỉ số giá 230 vs 193 ở khu xa Metro (2018=100).</li>
+              <li><strong>Bảng giá đất &amp; Tiền sử dụng đất:</strong> NQ 87 (1/1/2026) giá đất cao nhất <strong>687,2 triệu/m²</strong> (Đồng Khởi/Nguyễn Huệ). Công thức hệ số <em>K = K1 × K2 × K3</em> bị HoREA cảnh báo làm tăng tiền sử dụng đất <strong>tới 2,6 lần</strong>. TP.HCM đã gỡ <strong>361/921 dự án</strong>; Tổ 1645 gỡ sổ cho 221.611 căn, Tổ 5013 gỡ &gt;87.500 sản phẩm.</li>
+              <li><strong>Đấu giá Thủ Thiêm (27/11/2026):</strong> 4 lô đất vàng khởi điểm <strong>16.667 tỷ đồng</strong> (lô 1.K3.5.HH &gt;1 tỷ/m²).</li>
+              <li><strong>Thuế đất bỏ hoang 0,2% (Chốt 20/11/2026):</strong> Hiệu lực <strong>01/07/2027</strong> (gấp 6,67 lần mức cơ sở 0,03%, không áp hạn mức); thu hồi dự án chậm &gt;60 tháng; nâng cọc đấu giá đất 20%–50%.</li>
+            </ul>
+          </div>
+        </div>
+        <div class="source-note">Nguồn: CBRE Q3/2026, Savills, DKRA Consulting, Batdongsan.com.vn, FERI, Báo Đấu Thầu (15/11), VnExpress, Thời báo Ngân hàng, Quốc hội khóa XVI (20/11/2026).</div>
+      </section>
+
+      <!-- ==================== TAB 6: USD & RATES ==================== -->
+      <section class="tab-panel" id="tab-fx-rates">
+        <h2 class="section-heading">💵 Tỷ Giá USD/VND, Dự Trữ Ngoại Hối &amp; Xu Hướng Lãi Suất Ngân Hàng</h2>
+
+        <div class="grid-2">
+          <div class="card card-accent-blue">
+            <div class="card-title">
+              <span>📉 Lợi Suất Thực Sau Lạm Phát (Trừ CPI 10T: 4,57%)</span>
+              <span class="badge badge-blue">Điểm hòa vốn USD: 27.757–28.130đ</span>
+            </div>
+            <div class="chart-box">
+              <canvas id="chartRealYield"></canvas>
+            </div>
+            <p style="margin-top:10px;">Gửi/giữ USD tiền mặt tại VN có lãi suất <strong>0%/năm</strong> (lợi suất thực <strong>-4,57%</strong>). Để thắng tiết kiệm VND trực tuyến 6,8%–7,0%, tỷ giá USD/VND 12 tháng tới phải tăng vọt +7% lên trên <strong>28.000đ</strong> — kịch bản có xác suất thấp khi UOB &amp; Techcombank dự báo tỷ giá 2027 chỉ biến động 1%–2% (thậm chí giảm nhẹ ~1,5%).</p>
+          </div>
+
+          <div class="card card-accent-gold">
+            <div class="card-title">
+              <span>🏦 Đường Cong Lãi Suất Huy Động Online (Khảo Sát 18/11/2026)</span>
+              <span class="badge badge-gold">Big4 Online 6,8% vs Quầy 5,4%</span>
+            </div>
+            <div class="chart-box">
+              <canvas id="chartBankRates"></canvas>
+            </div>
+            <ul class="clean-list" style="margin-top:10px;">
+              <li><strong>Công cụ kép mới của NHNN:</strong> Triển khai <strong>Swap 182 ngày tối đa 2 tỷ USD</strong> (~50.000 tỷ VND bơm ngày 9/11 phủ qua Tết 2027) + <strong>dựng sàn mua USD giao ngay 25.500đ</strong> (T2 &amp; T4 từ 11/11). Phiên 23/11 bơm ròng OMO 7.260 tỷ, lãi qua đêm ~4,5%.</li>
+              <li><strong>Xu hướng lãi suất:</strong> <em>Cuối 2026:</em> Giảm nhẹ thêm 0,2–0,5 đpt dưới đợt thanh tra lãi suất ngầm (13/11). <em>H1–Q3/2027:</em> <strong>Đi ngang ở nền cao</strong> do Fed đỉnh 4,25%–4,50%, nợ xấu Q3 mẫu DSC 2,08% (bao phủ 76%), và <strong>đáo hạn TPDN 2027 vọt lên 394.100 tỷ (+28,9%, BĐS 182.700 tỷ)</strong>. <em>Cuối 2027–2028:</em> Hạ bền vững theo Fed.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-title">
+            <span>📋 Biểu Lãi Suất Huy Động Trực Tuyến &amp; Lãi Vay Mua Nhà Tiêu Biểu (Tháng 11/2026)</span>
+            <span class="badge badge-green">Đơn vị: %/năm</span>
+          </div>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Ngân hàng</th>
+                  <th>Online 3M</th>
+                  <th>Online 6M</th>
+                  <th>Online 12M</th>
+                  <th>Online 18M</th>
+                  <th>Tại quầy 12M</th>
+                  <th>Vay mua nhà (Ưu đãi / Thả nổi ước tính)</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td><strong>Big4 (VCB, BIDV, VTB, Agri)</strong></td><td class="mono">4,75%</td><td class="mono">6,60%</td><td class="mono up"><strong>6,80%</strong></td><td class="mono">6,60–6,80%</td><td class="mono">5,40%</td><td>9,0% (12M) / <strong>10,5%–12,5%</strong> (NOXH &lt;35t: 6,5%)</td></tr>
+                <tr><td><strong>VCBNeo / Sacombank / MBV</strong></td><td class="mono">4,75%</td><td class="mono">6,50–7,00%</td><td class="mono up"><strong>7,00%</strong></td><td class="mono">7,00%</td><td class="mono">5,70–6,50%</td><td>Sacombank: 8–9% / <strong>11,0%–12,5%</strong></td></tr>
+                <tr><td><strong>PGBank / VIB / BVBank</strong></td><td class="mono">4,45–4,75%</td><td class="mono">5,70–6,90%</td><td class="mono up"><strong>6,90–7,00%</strong></td><td class="mono">5,90–6,80%</td><td class="mono">6,20–7,00%</td><td>VIB: 9–9,5% / <strong>11,0%–12,5%</strong></td></tr>
+                <tr><td><strong>VPBank (Thường / VIP ≥10 tỷ)</strong></td><td class="mono">4,65%</td><td class="mono">6,60%</td><td class="mono up"><strong>6,70% (VIP 9,1%)</strong></td><td class="mono up"><strong>7,10%</strong></td><td class="mono">6,70%</td><td>Ngắn hạn 5,8–7,2%; CĐ 13,2% / <strong>12%–15%</strong></td></tr>
+                <tr><td><strong>Techcombank / MB / TPBank</strong></td><td class="mono">4,55–4,70%</td><td class="mono">5,30–6,05%</td><td class="mono">5,35–6,25%</td><td class="mono">5,35–5,85%</td><td class="mono">4,85–5,60%</td><td>TCB 3,99–10% / <strong>11,5%–13,0%</strong> (Đã giảm mạnh LS huy động)</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="source-note">Nguồn: VietNamNet (18/11), VnEconomy (16/11), Thời báo Ngân hàng, Báo Lao Động, FiinGroup (Báo cáo TPDN T10/2026), Techcombank Research, Nowland/Thương Gia.</div>
+        </div>
+      </section>
+
+      <!-- ==================== TAB 7: CORRIDOR INTEL & HIDDEN RISKS ==================== -->
+      <section class="tab-panel" id="tab-intel">
+        <h2 class="section-heading">🕵️ Hồ Sơ Tin Hành Lang, Tín Hiệu Chính Sách Ngầm &amp; Rủi Ro Đuôi (Có Kiểm Chứng)</h2>
+        <div class="callout callout-red">
+          <strong>Nguyên tắc minh bạch tình báo:</strong> Toàn bộ mục này chỉ tổng hợp các <em>tín hiệu hậu trường ngoại giao</em> (được AP/Reuters/Guardian/Al-Monitor xác nhận qua quan chức khu vực), <em>kế hoạch thanh tra – chính sách đang rà soát</em> và <em>rủi ro dây chuyền có chứng cứ định lượng</em>, loại bỏ tin đồn thất thiệt.
+        </div>
+
+        <div class="grid-2">
+          <div class="card card-accent-red">
+            <div class="card-title"><span>🚨 1. Cửa Sổ Rủi Ro 40 Ngày: Mossad Vận Động Đánh Iran Trước 03/01/2027</span><span class="badge badge-red">Tình báo ngoại giao</span></div>
+            <p>Theo 4 quan chức cấp cao khu vực (AP News &amp; Al-Monitor), Giám đốc Mossad Roman Gofman vừa họp với Giám đốc CIA John Ratcliffe và đặc phái viên Steve Witkoff nhằm thúc đẩy Trump tái khởi động không kích toàn diện Iran trước khi Quốc hội Dân chủ khóa 120 nhậm chức và hạn chế ngân sách chiến tranh. Các nước Vùng Vịnh + Qatar đang chạy đua ngoại giao tại Berlin–Tehran để ngăn leo thang. <strong>Hàm ý:</strong> Không bán sạch 100% vàng/USD phòng hộ trước 03/01/2027.</p>
+          </div>
+
+          <div class="card card-accent-gold">
+            <div class="card-title"><span>⚡ 2. Rạn Nứt Nội Bộ Nhà Trắng: Trump vs Phó TT JD Vance</span><span class="badge badge-gold">Hậu trường Washington</span></div>
+            <p>The Guardian (21/11) ghi nhận thông tin ông Trump không hài lòng sau phát biểu của Phó TT JD Vance quy thất bại bầu cử giữa kỳ cho chiến tranh Iran, đồng thời ông Vance né tránh xác nhận tuyên bố của ông Trump hồi tháng 2 về tiến độ vũ khí hạt nhân Iran. Điều này cho thấy phe MAGA cũng muốn kìm chân các chiến dịch quân sự tốn kém hơn 48,3 tỷ USD.</p>
+          </div>
+
+          <div class="card card-accent-red">
+            <div class="card-title"><span>🔍 3. NHNN Thanh Tra Ngầm Lãi Suất (13/11) &amp; Trừ Room Tín Dụng 2027</span><span class="badge badge-green">Đã triển khai</span></div>
+            <p>Từ 13/11/2026, cơ quan quản lý mở đợt thanh tra chuyên đề xử lý tình trạng ngân hàng cộng thêm lãi suất ngoài biểu niêm yết ("lãi suất đi đêm"), đi kèm chế tài nặng là <strong>cắt giảm chỉ tiêu tăng trưởng tín dụng năm 2027</strong>. Các gói VIP 8,9%–9,1% có thể bị thu hẹp sớm — nên chốt kỳ hạn online ngay cuối tháng 11.</p>
+          </div>
+
+          <div class="card card-accent-purple">
+            <div class="card-title"><span>💎 4. Khủng Hoảng Thanh Khoản 21.000 Tỷ Của PNJ &amp; Thanh Tra 2027</span><span class="badge badge-red">Rủi ro niềm tin</span></div>
+            <p>Hậu sự cố PNJ Lab (T7/2026), CEO Phan Quốc Công thừa nhận tài chính "hết sức khẩn cấp", tổng hàng thuộc diện tính toán thu đổi lên tới 21.000 tỷ (tồn kho 17.000 tỷ có phần thế chấp vay ngân hàng), giãn thanh toán kim cương 120 ngày 5 đợt và dự kiến lỗ 6.270 tỷ năm 2026. Song song, Cục IX Thanh tra Chính phủ đưa <strong>SJC, DOJI, PNJ, Phú Quý, BTMC</strong> vào DS thanh tra dự phòng PCRT 2027 mảng kim khí quý/đá quý (trừ vàng miếng/trang sức) sau khi chuyển Bộ Công an 7 cá nhân bán 2.084 tỷ vàng nguyên liệu không rõ nguồn gốc.</p>
+          </div>
+
+          <div class="card card-accent-gold">
+            <div class="card-title"><span>🪙 5. Nút Bấm Nhập Khẩu Vàng &amp; Thuế Vàng Miếng 0,1%</span><span class="badge badge-gold">Rủi ro nén Spread</span></div>
+            <p>Khung pháp lý đã đầy đủ: NĐ 232 (11 hồ sơ sản xuất vàng miếng), NĐ 390 (giao dịch ≥5 triệu không tiền mặt), Luật Thuế TNCN 2025 (thuế 0,1% trên giá bán vàng miếng tạm chưa thu). Khi NHNN mua lại được USD qua sàn 25.500đ đầu 2027 để bồi đắp dự trữ ngoại hối, việc cấp hạn mức nhập vàng có thể thu hẹp nhanh chênh lệch SJC 10–15 triệu/lượng.</p>
+          </div>
+
+          <div class="card card-accent-blue">
+            <div class="card-title"><span>🏠 6. Đề Xuất Thuế BĐS Thứ 2, Section 301 IP (28/02) &amp; NQ 403</span><span class="badge badge-blue">Biến số 2027</span></div>
+            <p>Sau thuế đất bỏ hoang 0,2% (hiệu lực 1/7/2027), Bộ Tài chính vẫn tiếp tục nghiên cứu cơ chế thuế nhà thứ 2 &amp; thuế theo thời gian nắm giữ (chưa ban hành luật). Ở mảng thương mại, USTR chốt điều tra IP với Việt Nam hạn <strong>28/02/2027</strong>; Chính phủ vừa ký <strong>NQ 403/NQ-CP (21/11/2026)</strong> siết C/O điện tử, chống chuyển tải và kiểm soát chất lượng FDI.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==================== TAB 8: STRATEGY & SIMULATORS ==================== -->
+      <section class="tab-panel" id="tab-strategy">
+        <h2 class="section-heading">🎯 Ma Trận Dự Báo 3 Chu Kỳ, Phán Quyết Hành Động &amp; Bộ Công Cụ Mô Phỏng Trực Tiếp</h2>
+
+        <!-- 3-Horizon Table -->
+        <div class="card" style="margin-bottom:20px;">
+          <div class="card-title">
+            <span>🔭 Bảng Tổng Hợp Dự Báo Biến Động: Ngắn Hạn – Trung Hạn – Dài Hạn (Kịch Bản Cơ Sở 55%)</span>
+            <span class="badge badge-gold">Cập nhật 23/11/2026</span>
+          </div>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Kênh Tài Sản</th>
+                  <th>Ngắn hạn (Vài ngày – 1 tháng: 24/11 – 25/12/2026)</th>
+                  <th>Trung hạn (6 – 9 tháng: Q1/2027 – Q3/2027)</th>
+                  <th>Dài hạn (1 – 2 năm+: Cuối 2027 – 2028 – 2030)</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>🥇 Vàng (XAU / SJC)</strong></td>
+                  <td>Giằng co quanh 3.500–3.880 USD (áp lực PCE 25/11 &amp; FOMC 9/12). SJC quanh 128–140 Tr, spread rộng 5–6 Tr.</td>
+                  <td>Đáy Q1/2027, bật mạnh lên <strong>4.200–4.800 USD</strong> nhờ Fed dừng tăng &amp; khủng hoảng trần nợ công Mỹ. SJC 145–165 Tr (chậm hơn TG nếu nén prem).</td>
+                  <td>Chu kỳ tăng lớn khi Fed cắt lãi suất (T11/27–28): XAU hướng <strong>5.000 → 5.600 USD</strong> (UBS/Goldman). SJC 170–190 Tr.</td>
+                </tr>
+                <tr>
+                  <td><strong>📈 Cổ phiếu VN</strong></td>
+                  <td>Tạo đáy 1.650–1.680, kháng cự 1.700–1.720. Hưởng ứng ngắn hạn từ Nvidia +30–35%, ngoại bán giảm dần.</td>
+                  <td>Bứt phá từ cuối Q1/2027 nhờ 3 đợt bơm vốn <strong>FTSE Russell (T3, T6, T9/2027)</strong> &amp; vận hành CCP → <strong>1.820–1.940</strong>.</td>
+                  <td>Nâng hạng sâu hướng MSCI + GDP 8,5%–10% + VIFC-HCMC → <strong>2.000–2.280 điểm</strong>.</td>
+                </tr>
+                <tr>
+                  <td><strong>🏙️ BĐS TP.HCM</strong></td>
+                  <td>Thị trường của người mua; đợi tín hiệu đấu giá Thủ Thiêm (27/11) &amp; Long Thành bay thương mại (24/12).</td>
+                  <td>Đáy giá thứ cấp Q1–Q2/2027 (áp lực 182,7K tỷ TPDN &amp; thuế đất bỏ hoang 0,2% ngày 1/7). Căn hộ ở thực hồi trước.</td>
+                  <td>Tăng bền vững +15%–30% tại các cực hạ tầng thật: 5 tuyến Metro mới, Vành đai 3, Long Thành, Bình Dương cũ.</td>
+                </tr>
+                <tr>
+                  <td><strong>⛽ Xăng dầu</strong></td>
+                  <td>Brent 85–95 USD (chờ OPEC+ 29/11). Xăng E10 RON95 VN quanh 18.300–19.300đ/lít.</td>
+                  <td>Brent hạ về 82–88 USD do dư cung; nhưng xăng VN có rủi ro tăng kỹ thuật ngày <strong>01/04/2027</strong> (hết thuế TTĐB 0%).</td>
+                  <td>Dư cung 3,8 mb/d + dầu Venezuela/UAE kéo Brent về <strong>70–82 USD</strong>; bỏ Quỹ BOG chuyển cơ chế thị trường.</td>
+                </tr>
+                <tr>
+                  <td><strong>💵 USD &amp; Lãi suất VN</strong></td>
+                  <td>USD VCB 25.900–26.050, tự do 26.150–26.350. Lãi huy động online giảm thêm 0,2–0,5 đpt do thanh tra NHNN.</td>
+                  <td>USD/VND ổn định/giảm nhẹ ~1,5% (25.600–26.300). Lãi suất online 12M <strong>đi ngang 6,3%–6,7%</strong>; lãi vay 10,5%–12,5%.</td>
+                  <td>Tỷ giá ổn định cao, dự trữ ngoại hối phục hồi; lãi suất hạ bền vững (huy động 5,5%–6%, vay 8,5%–10%) theo Fed.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Clear Decision Verdicts -->
+        <div class="grid-3">
+          <div class="card card-accent-gold">
+            <div class="card-title"><span>🥇 Phán Quyết: BÁN hay GIỮ Vàng?</span></div>
+            <p><strong>• Đu đỉnh 150–190 Tr:</strong> <span class="up">GIỮ</span>, không cắt lỗ đúng đáy 14 tháng khi spread 5–6 Tr và X-Date Mỹ 2027 đang tới gần.</p>
+            <p><strong>• Giữ từ nền thấp (&gt;40% TS):</strong> <span class="warn">CHỐT LỜI TỪNG PHẦN 25%–35%</span> khi SJC hồi 140–145 Tr để khóa khoản chênh nội–ngoại +20 Tr trước khi NHNN mở nhập khẩu.</p>
+            <p><strong>• Mua mới SJC:</strong> <span class="down">KHÔNG MUA ĐUỔI</span> ở 135 Tr; chỉ tích lũy nếu XAU test 3.500 USD &amp; chênh SJC co về &lt;12 Tr.</p>
+          </div>
+          <div class="card card-accent-red">
+            <div class="card-title"><span>💵 Phán Quyết: BÁN hay GIỮ USD?</span></div>
+            <p><strong>• Khuyến nghị:</strong> <span class="warn">BÁN 50%–70% USD NHÀN RỖI</span> tại vùng đỉnh 26.250đ (tự do) để chuyển sang Tiết kiệm VND Online 6,8%–7,0% hoặc Cổ phiếu VN30.</p>
+            <p><strong>• Bằng chứng định lượng:</strong> USD phải vọt lên <strong>27.757–28.130đ (+7%)</strong> mới hòa vốn gửi VND 12M, trong khi dự báo 2027 chỉ dao động 1%–2%.</p>
+            <p><strong>• Phòng hộ:</strong> Chỉ giữ lại 20%–30% USD phòng kịch bản chiến tranh Iran toàn diện trước 03/01/2027.</p>
+          </div>
+          <div class="card card-accent-green">
+            <div class="card-title"><span>🏙️ Phán Quyết: BĐS, Cổ Phiếu hay Ngân Hàng?</span></div>
+            <p><strong>• Gửi Ngân hàng Online (6,8%–7,0%):</strong> <span class="up">KHÓA NGAY 6–12M</span> làm "phòng chờ" sinh lãi thực dương +2,2%–2,4% trước khi ngân hàng hạ thêm 0,5% cuối năm.</p>
+            <p><strong>• Cổ phiếu VN30/FTSE:</strong> <span class="up">TÍCH LŨY 3 ĐỢT</span> (P/E ngoài Vingroup 9,1–9,4x, đón 90% vốn FTSE năm 2027).</p>
+            <p><strong>• BĐS TP.HCM:</strong> <span class="up">MUA CHỌN LỌC HÀNG THỨ CẤP CẮT LỖ (-10%–15%)</span> bằng vốn tự có (vay &lt;30%–40%); <span class="down">TRÁNH ĐÒN BẨY CAO</span> ở lãi thả nổi 11%–15%.</p>
+          </div>
+        </div>
+
+        <!-- LIVE INTERACTIVE CALCULATORS -->
+        <div class="grid-2">
+          <!-- Calculator 1: Portfolio Return Simulator -->
+          <div class="card card-accent-blue">
+            <div class="card-title">
+              <span>🧮 Máy Tính 1: Mô Phỏng Phân Bổ Vốn 24 Tháng (T11/2026 → T11/2028)</span>
+              <span class="badge badge-blue">Mô hình kịch bản</span>
+            </div>
+            <div class="calc-grid">
+              <div class="input-group">
+                <label for="simCapital">Tổng vốn đầu tư (Tỷ VND):</label>
+                <input type="number" id="simCapital" value="5" min="0.5" max="500" step="0.5" oninput="runPortfolioSim()" />
+              </div>
+              <div class="input-group">
+                <label for="simScenario">Chọn Kịch bản Vĩ mô Toàn cầu:</label>
+                <select id="simScenario" onchange="runPortfolioSim()">
+                  <option value="weighted">Kỳ vọng Gia quyền (55% Cơ sở / 20% Hòa bình / 25% Chiến tranh)</option>
+                  <option value="base">Kịch bản Cơ sở (55%): Iran giằng co, Fed đỉnh 4,5% rồi cắt cuối 2027</option>
+                  <option value="bull">Kịch bản Hòa bình / Risk-On (20%): Deal Mỹ–Iran, Dầu 70 USD, Mỹ giảm thuế VN</option>
+                  <option value="bear">Kịch bản Chiến tranh / Đình lạm (25%): Đánh Iran, Dầu 130 USD, Fed 5%</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="slider-row">
+              <span>🏦 Tiết kiệm Online (6,8–7%)</span>
+              <input type="range" id="wDeposit" min="0" max="100" value="25" oninput="runPortfolioSim()">
+              <strong class="mono" id="lblDeposit">25%</strong>
+            </div>
+            <div class="slider-row">
+              <span>📈 Cổ phiếu VN30/FTSE</span>
+              <input type="range" id="wStocks" min="0" max="100" value="30" oninput="runPortfolioSim()">
+              <strong class="mono" id="lblStocks">30%</strong>
+            </div>
+            <div class="slider-row">
+              <span>🏙️ BĐS TP.HCM (0% vay)</span>
+              <input type="range" id="wReCash" min="0" max="100" value="25" oninput="runPortfolioSim()">
+              <strong class="mono" id="lblReCash">25%</strong>
+            </div>
+            <div class="slider-row">
+              <span>🥇 Vàng Miếng SJC</span>
+              <input type="range" id="wGold" min="0" max="100" value="15" oninput="runPortfolioSim()">
+              <strong class="mono" id="lblGold">15%</strong>
+            </div>
+            <div class="slider-row">
+              <span>💵 USD Tiền mặt Tự do</span>
+              <input type="range" id="wUsd" min="0" max="100" value="5" oninput="runPortfolioSim()">
+              <strong class="mono" id="lblUsd">5%</strong>
+            </div>
+
+            <div style="display:flex;gap:8px;flex-wrap:wrap;margin:10px 0;">
+              <button class="btn" onclick="applyPreset(50,15,10,15,10)">🛡️ Gợi ý Phòng thủ</button>
+              <button class="btn" onclick="applyPreset(25,30,25,15,5)">⚖️ Gợi ý Cân bằng</button>
+              <button class="btn" onclick="applyPreset(15,40,35,10,0)">🔥 Gợi ý Tấn công</button>
+            </div>
+
+            <div class="calc-result-box" id="simOutput"></div>
+            <div class="chart-box" style="height:220px;margin-top:12px;">
+              <canvas id="chartSimCompare"></canvas>
+            </div>
+          </div>
+
+          <!-- Calculator 2: Mortgage Stress Test -->
+          <div class="card card-accent-red">
+            <div class="card-title">
+              <span>🏠 Máy Tính 2: Stress-Test Vay Mua Nhà TP.HCM (Lãi Ưu Đãi vs Thả Nổi)</span>
+              <span class="badge badge-red">Cảnh báo DTI &gt; 45%</span>
+            </div>
+            <div class="calc-grid">
+              <div class="input-group">
+                <label for="mPrice">Giá căn hộ/nhà TP.HCM (Tỷ VND):</label>
+                <input type="number" id="mPrice" value="5.0" min="1" max="100" step="0.2" oninput="runMortgageCalc()" />
+              </div>
+              <div class="input-group">
+                <label for="mDown">Vốn tự có (Tỷ VND):</label>
+                <input type="number" id="mDown" value="3.0" min="0" max="100" step="0.2" oninput="runMortgageCalc()" />
+              </div>
+              <div class="input-group">
+                <label for="mYears">Thời hạn vay (Năm):</label>
+                <input type="number" id="mYears" value="20" min="5" max="35" step="1" oninput="runMortgageCalc()" />
+              </div>
+              <div class="input-group">
+                <label for="mIncome">Thu nhập hộ gia đình (Triệu/tháng):</label>
+                <input type="number" id="mIncome" value="55" min="10" max="500" step="5" oninput="runMortgageCalc()" />
+              </div>
+              <div class="input-group">
+                <label for="mRatePromo">Lãi ưu đãi năm đầu (%/năm):</label>
+                <input type="number" id="mRatePromo" value="9.0" min="4" max="14" step="0.5" oninput="runMortgageCalc()" />
+              </div>
+              <div class="input-group">
+                <label for="mRateFloat">Lãi thả nổi dự kiến (%/năm):</label>
+                <input type="number" id="mRateFloat" value="13.5" min="8" max="18" step="0.5" oninput="runMortgageCalc()" />
+              </div>
+            </div>
+
+            <div class="calc-result-box" id="mortgageOutput"></div>
+            <div class="chart-box" style="height:220px;margin-top:12px;">
+              <canvas id="chartMortgage"></canvas>
+            </div>
+          </div>
+        </div>
+
+        <!-- Source Directory -->
+        <div class="card" style="margin-top:18px;">
+          <div class="card-title"><span>📚 Danh Mục Nguồn Dữ Liệu Xác Thực Của Báo Cáo (Cập Nhật 23/11/2026)</span></div>
+          <p style="font-size:0.82rem;line-height:1.7;">
+            <strong>Chính sự Mỹ &amp; Kinh tế Toàn cầu:</strong> Federal Reserve (FOMC Statement 28/10 &amp; Minutes 18/11), Ballotpedia, AP News, The Guardian, Al Jazeera, Al-Monitor, ISW, Critical Threats, US Dept. of Energy, US Treasury / CBO, USTR (Section 301 Notices), IEA (Oil Market Report 11/2026), EIA, World Gold Council (Q3/2026), Goldman Sachs, Morgan Stanley, UBS, Societe Generale, Trading Economics.<br>
+            <strong>Việt Nam &amp; TP.HCM:</strong> Cục Thống kê (NSO), Ngân hàng Nhà nước Việt Nam (NHNN), Bộ Công Thương, Bộ Tài chính, Cục Hải quan, Cổng TTĐT Chính phủ, Quốc hội khóa XVI (Luật Thuế sử dụng đất phi nông nghiệp 20/11/2026), UBCKNN, Dragon Capital, SSI Research, VNDirect, Vietcap, DSC, FiinGroup, CBRE Việt Nam, Savills, DKRA Consulting, Batdongsan.com.vn, HoREA, VnEconomy, Thời báo Tài chính Việt Nam, CafeF, Vietstock, VietNamNet, Báo Lao Động, Báo Đấu Thầu.
+          </p>
+        </div>
+      </section>
+
+      <!-- ==================== TAB 9 (CONDITIONAL &info=1): ABOUT & UPDATE PROMPT ==================== -->
+      <section class="tab-panel" id="tab-info">
+        <div class="callout" style="border-left-color:var(--accent-purple);background:rgba(168,85,247,0.14);">
+          <strong>🔓 Chế độ Quản trị &amp; Tái Cập Nhật đã kích hoạt (Tham số URL <code>&amp;info=1</code>):</strong> Tab này chỉ hiển thị khi địa chỉ mở tệp HTML có chứa <code>&amp;info=1</code> hoặc <code>?info=1</code>. Dùng để lưu liên kết cuộc hội thoại Gemini gốc và sao chép nhanh đoạn Prompt cập nhật số liệu cho các ngày mới trong tương lai.
+        </div>
+
+        <div class="grid-2">
+          <div class="card card-accent-purple">
+            <div class="card-title"><span>ℹ️ About — Hồ Sơ Xuất Bản &amp; Liên Kết Gemini Gốc</span></div>
+            <ul class="clean-list">
+              <li><strong>Tên ấn phẩm:</strong> Báo Cáo Chiến Lược Vĩ Mô Toàn Cầu, Chính Sự Mỹ &amp; Phân Bổ Tài Sản Việt Nam.</li>
+              <li><strong>Ngày xuất bản dữ liệu &amp; tệp HTML:</strong> <span class="mono">Thứ Hai, 23/11/2026 — 23:01 (GMT+7, TP.HCM)</span>.</li>
+              <li><strong>Động cơ phân tích:</strong> Gemini Deep Research Intelligence Synthesis (kiểm chứng đa nguồn, mô hình quy đổi chênh lệch vàng SJC, điểm hòa vốn tỷ giá USD/VND và mô phỏng 3 kịch bản 24 tháng).</li>
+              <li><strong>Trạng thái kích hoạt URL:</strong> <span class="mono up" id="urlDebugText">Đang phát hiện tham số info=1</span></li>
+            </ul>
+
+            <div style="margin-top:16px;padding-top:14px;border-top:1px solid var(--border-subtle);">
+              <label for="geminiLinkInput" style="display:block;font-size:0.82rem;font-weight:700;margin-bottom:6px;">🔗 Đường dẫn cuộc hội thoại Gemini gốc (Tự động lưu trong trình duyệt):</label>
+              <div style="display:flex;gap:8px;flex-wrap:wrap;">
+                <input type="url" id="geminiLinkInput" placeholder="Dán link cuộc trò chuyện Gemini này vào đây (ví dụ: https://gemini.google.com/app/...)" style="flex:1;min-width:220px;padding:9px 12px;border-radius:8px;border:1px solid var(--border-subtle);background:var(--bg-surface);color:var(--text-primary);font-size:0.84rem;" />
+                <button class="btn btn-primary" onclick="saveGeminiLink()">💾 Lưu Link</button>
+                <a id="openGeminiBtn" href="https://gemini.google.com/" target="_blank" rel="noopener" class="btn" style="text-decoration:none;">🚀 Mở Gemini</a>
+              </div>
+              <p style="font-size:0.76rem;color:var(--text-muted);margin-top:6px;">Mẹo: Sau khi dán link thread Gemini của bạn và bấm "Lưu Link", mỗi lần mở lại tệp HTML này với đuôi <code>?&amp;info=1</code> bạn có thể bấm "Mở Gemini" để quay thẳng về đúng cuộc hội thoại và chạy Prompt cập nhật.</p>
+            </div>
+          </div>
+
+          <div class="card card-accent-gold">
+            <div class="card-title">
+              <span>🔄 Quy Trình 3 Bước Cập Nhật Báo Cáo Cho Ngày Mới</span>
+              <span class="badge badge-gold">1-Click Workflow</span>
+            </div>
+            <ul class="clean-list">
+              <li><strong>Bước 1:</strong> Bấm nút <strong>"📋 Copy Prompt Cập Nhật"</strong> ở khung bên dưới.</li>
+              <li><strong>Bước 2:</strong> Mở lại cuộc hội thoại Gemini (bấm nút <em>Mở Gemini</em> bên trái) và dán đoạn Prompt đó. Gemini sẽ tự động tìm kiếm toàn bộ dữ liệu kinh tế – chính trị – chiến sự – giá vàng, chứng khoán, BĐS TP.HCM, xăng dầu, USD, lãi suất theo <strong>NGÀY HIỆN TẠI MỚI NHẤT</strong> và xuất lại trọn bộ tệp HTML mới giữ nguyên giao diện + tính năng <code>&amp;info=1</code>.</li>
+              <li><strong>Bước 3:</strong> Sao chép mã HTML mới từ kết quả Gemini, ghi đè vào tệp <code>.html</code> của bạn và trình chiếu ngay lập tức.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-title">
+            <span>📝 Master Prompt Cập Nhật Tự Động (Dán Trực Tiếp Vào Gemini)</span>
+            <button class="btn btn-primary" onclick="copyUpdatePrompt()">📋 Copy Prompt Cập Nhật</button>
+          </div>
+          <textarea class="prompt-area" id="updatePromptText" readonly>Hãy thực hiện cập nhật toàn diện (Deep Research) theo ĐÚNG NGÀY HÔM NAY (ghi rõ ngày giờ xuất bản GMT+7) cho Báo Cáo Chiến Lược Vĩ Mô Toàn Cầu, Chính Sự Mỹ & Phân Bổ Tài Sản Việt Nam mà chúng ta đã xây dựng trước đó (bản cũ ngày 23/11/2026), với đầy đủ các yêu cầu sau:
+
+1. CẬP NHẬT CHÍNH SỰ MỸ & CHIẾN SỰ TOÀN CẦU (BẮT BUỘC KHÔNG BỎ QUA):
+- Diễn biến mới nhất của Quốc hội Mỹ khóa 120 (Đảng Dân chủ nắm lưỡng viện), chính quyền TT Donald Trump, ngân sách/đóng cửa Chính phủ Mỹ, tiến độ Trần nợ công Mỹ ($41.1T / X-Date).
+- Quyết định lãi suất mới nhất của Fed (Chủ tịch Kevin Warsh), dữ liệu CPI/PCE/việc làm Mỹ mới nhất, DXY và lợi suất trái phiếu Mỹ 10Y.
+- Chiến sự liên quan đến Mỹ: Chiến tranh Mỹ–Israel–Iran & Eo biển Hormuz/Houthi, tình hình Venezuela ("Học thuyết Donroe") & Cuba, đàm phán Nga–Ukraine, quan hệ Mỹ–Trung (hết hạn đình chiến 10/01/2027), tiến độ thuế Section 301 đối với Việt Nam (mức 12,5% & kết quả điều tra IP 28/02/2027, Dư thừa công suất), biến động thị trường công nghệ/AI Mỹ (Nvidia, Nasdaq).
+
+2. CẬP NHẬT 5 KÊNH TÀI SẢN VIỆT NAM & VĨ MÔ MỚI NHẤT:
+- Giá Vàng: XAU/USD mới nhất, giá vàng miếng SJC & vàng nhẫn 9999 (SJC, DOJI, PNJ, BTMC, Mi Hồng), tính toán lại chênh lệch mua–bán, chênh lệch nội–ngoại, cập nhật chính sách vàng (NĐ 232, NĐ 390, hạn mức nhập khẩu vàng, thuế 0,1%, sàn vàng, tiến độ xử lý khủng hoảng PNJ).
+- Cổ phiếu VN: VN-Index mới nhất, thanh khoản, P/E (toàn sàn & ex-Vingroup), dòng vốn khối ngoại YTD, dư nợ margin, tiến độ giải ngân 4 đợt FTSE Russell (27 mã), hệ thống KRX/CCP và phân hóa nhóm ngành.
+- BĐS VN (chủ yếu TP.HCM mở rộng sau sáp nhập Bình Dương & BR-VT): mặt bằng giá sơ cấp/thứ cấp cắt lỗ, lợi suất cho thuê, kết quả đấu giá Thủ Thiêm, tình hình tháo gỡ pháp lý dự án, thuế đất bỏ hoang 0,2% (1/7/2027), tiến độ Sân bay Long Thành, Vành đai 3, 5 tuyến Metro mới và VIFC-HCMC.
+- Xăng dầu: Brent/WTI, quyết định mới nhất của OPEC+ (sau vụ UAE rút lui), giá bán lẻ xăng E5/E10 RON95/Diesel VN, Quỹ BOG và lộ trình thuế TTĐB 0% (hết hạn 31/03/2027).
+- USD & Lãi suất ngân hàng: Tỷ giá trung tâm NHNN, Vietcombank, chợ đen, dự trữ ngoại hối, cán cân thương mại, FDI, kiều hối, biểu lãi suất huy động Big4 (quầy vs online) & TMCP, lãi vay mua nhà ưu đãi vs thả nổi, nợ xấu và đáo hạn trái phiếu doanh nghiệp 2027.
+
+3. TIN HÀNH LANG, DỰ BÁO 3 CHU KỲ & KHUYẾN NGHỊ HÀNH ĐỘNG:
+- Tách bạch rõ tin chính thống vs tín hiệu hành lang/rủi ro đuôi mới nhất.
+- Dự báo biến động mới theo 3 chu kỳ: Ngắn hạn (vài ngày–1 tháng), Trung hạn (6–9 tháng), Dài hạn (1–2 năm+).
+- Cập nhật lại phép tính điểm hòa vốn USD vs gửi tiết kiệm VND, bẫy nén chênh lệch SJC, stress-test vay mua nhà và mô phỏng tỷ suất sinh lời 24 tháng (vốn 5 tỷ) để trả lời rõ: Nên BÁN/GIỮ Vàng & USD hay mua BĐS TP.HCM, mua Cổ phiếu hay gửi Ngân hàng (lãi sắp tới tăng hay giảm)?
+
+4. XUẤT LẠI 01 FILE HTML HOÀN CHỈNH:
+- Tạo lại 01 file HTML độc lập, responsive, thiết kế sang trọng chuyên nghiệp với đầy đủ 8 tab chuyên sâu + biểu đồ Chart.js cập nhật số liệu mới + 2 máy tính mô phỏng tương tác + nguồn dẫn rõ ràng + hiển thị ngày giờ xuất bản mới nhất.
+- BẮT BUỘC GIỮ NGUYÊN tính năng: nếu URL mở file HTML có chứa "&info=1" hoặc "?info=1" thì tự động hiện thêm Tab thứ 9 ("About & Prompt Cập Nhật") kèm ô lưu link Gemini và đoạn Prompt cập nhật cho lần chạy tiếp theo.</textarea>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container" style="display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;align-items:center;">
+      <div>
+        <strong>Báo Cáo Chiến Lược Vĩ Mô Toàn Cầu &amp; Tài Sản Việt Nam</strong> • Xuất bản: <span class="mono">23/11/2026 — 23:01 GMT+7</span><br>
+        <span>Lưu ý miễn trừ: Dữ liệu tổng hợp từ các tổ chức thống kê, ngân hàng trung ương và cơ quan báo chí uy tín tại thời điểm 23/11/2026; các mô phỏng 24 tháng mang tính tham khảo định lượng theo kịch bản, không phải cam kết lợi nhuận đầu tư.</span>
+      </div>
+      <div class="mono" style="font-size:0.75rem;">v2026.11.23 • Executive Responsive Terminal</div>
+    </div>
+  </footer>
+
+  <div class="toast" id="toastMsg">Đã sao chép!</div>
+
+  <script>
+    // =========================================================================
+    // 1. CONDITIONAL &info=1 TAB ACTIVATION + GEMINI LINK STORAGE
+    // =========================================================================
+    (function initInfoParam() {
+      const href = window.location.href || '';
+      const search = window.location.search || '';
+      const hash = window.location.hash || '';
+      const params = new URLSearchParams(search);
+      const hasInfo = params.get('info') === '1' || href.includes('&info=1') || href.includes('?info=1') || hash.includes('info=1');
+      if (hasInfo) {
+        const btn = document.getElementById('infoTabBtn');
+        if (btn) btn.classList.remove('hidden-tab');
+        const dbg = document.getElementById('urlDebugText');
+        if (dbg) dbg.textContent = 'ĐÃ KÍCH HOẠT (' + (search || hash || '&info=1') + ')';
+      }
+      try {
+        const saved = localStorage.getItem('macro_report_gemini_link');
+        if (saved) {
+          document.getElementById('geminiLinkInput').value = saved;
+          document.getElementById('openGeminiBtn').href = saved;
+        }
+      } catch (e) {}
+    })();
+
+    function saveGeminiLink() {
+      const val = document.getElementById('geminiLinkInput').value.trim();
+      if (!val) { showToast('Vui lòng dán đường dẫn Gemini hợp lệ!'); return; }
+      try { localStorage.setItem('macro_report_gemini_link', val); } catch (e) {}
+      document.getElementById('openGeminiBtn').href = val;
+      showToast('Đã lưu link Gemini gốc vào trình duyệt!');
+    }
+
+    function copyUpdatePrompt() {
+      const el = document.getElementById('updatePromptText');
+      el.select();
+      el.setSelectionRange(0, 99999);
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(el.value).then(() => showToast('Đã sao chép Master Prompt Cập Nhật!'));
+      } else {
+        document.execCommand('copy');
+        showToast('Đã sao chép Master Prompt Cập Nhật!');
+      }
+    }
+
+    function showToast(msg) {
+      const t = document.getElementById('toastMsg');
+      t.textContent = msg;
+      t.classList.add('show');
+      setTimeout(() => t.classList.remove('show'), 2600);
+    }
+
+    // =========================================================================
+    // 2. THEME TOGGLE & TAB SWITCHING
+    // =========================================================================
+    const chartRegistry = {};
+
+    function toggleTheme() {
+      const html = document.documentElement;
+      const isDark = html.getAttribute('data-theme') === 'dark';
+      html.setAttribute('data-theme', isDark ? 'light' : 'dark');
+      document.getElementById('themeToggleBtn').textContent = isDark ? '🌙 Chế độ Tối' : '☀️ Chế độ Sáng';
+      rebuildAllCharts();
+    }
+
+    function switchTab(tabId) {
+      document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      const panel = document.getElementById(tabId);
+      const btn = document.querySelector('.tab-btn[data-tab="' + tabId + '"]');
+      if (panel) panel.classList.add('active');
+      if (btn) btn.classList.add('active');
+      setTimeout(() => {
+        Object.values(chartRegistry).forEach(ch => { if (ch && ch.resize) ch.resize(); });
+      }, 60);
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    // =========================================================================
+    // 3. CHART.JS VISUALIZATIONS (SINGLE-AXIS STRICT, RESPONSIVE)
+    // =========================================================================
+    function getThemeColors() {
+      const light = document.documentElement.getAttribute('data-theme') === 'light';
+      return {
+        text: light ? '#1e293b' : '#cbd5e1',
+        grid: light ? 'rgba(15,23,42,0.08)' : 'rgba(148,163,184,0.12)',
+        gold: light ? '#d97706' : '#f59e0b',
+        blue: light ? '#1d4ed8' : '#3b82f6',
+        cyan: light ? '#0891b2' : '#06b6d4',
+        green: light ? '#059669' : '#10b981',
+        red: light ? '#dc2626' : '#ef4444',
+        purple: light ? '#7c3aed' : '#a855f7',
+        gray: light ? '#94a3b8' : '#64748b'
+      };
+    }
+
+    function makeChart(id, config) {
+      const ctx = document.getElementById(id);
+      if (!ctx || typeof Chart === 'undefined') return null;
+      if (chartRegistry[id]) chartRegistry[id].destroy();
+      chartRegistry[id] = new Chart(ctx, config);
+      return chartRegistry[id];
+    }
+
+    function rebuildAllCharts() {
+      const c = getThemeColors();
+      const baseOpt = (yTitle) => ({
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+          legend: { labels: { color: c.text, font: { family: 'Be Vietnam Pro', size: 11 } } },
+          tooltip: { bodyFont: { family: 'Be Vietnam Pro' }, titleFont: { family: 'Be Vietnam Pro' } }
+        },
+        scales: {
+          x: { ticks: { color: c.text, font: { size: 11 } }, grid: { color: c.grid } },
+          y: { ticks: { color: c.text, font: { size: 11 } }, grid: { color: c.grid }, title: { display: !!yTitle, text: yTitle, color: c.text, font: { size: 11 } } }
+        }
+      });
+
+      makeChart('chartGdpForecast', {
+        type: 'bar',
+        data: {
+          labels: ['World Bank', 'ADB', 'UOB', 'Thực tế 9T', 'IMF', 'Std Chartered'],
+          datasets: [
+            { label: 'Dự báo / Thực tế 2026 (%)', data: [7.4, 7.8, 8.5, 9.01, 9.2, 9.5], backgroundColor: c.blue, borderRadius: 6 },
+            { label: 'Dự báo 2027 (%)', data: [null, 7.6, null, null, 8.9, 11.0], backgroundColor: c.gold, borderRadius: 6 }
+          ]
+        },
+        options: baseOpt('Tăng trưởng GDP (% YoY)')
+      });
+
+      makeChart('chartUsCongress', {
+        type: 'bar',
+        data: {
+          labels: ['Thượng viện (100 ghế)', 'Hạ viện (431/435 đã chốt)'],
+          datasets: [
+            { label: 'Đảng Dân chủ (Khóa 120)', data: [56, 258], backgroundColor: c.blue, borderRadius: 6 },
+            { label: 'Đảng Cộng hòa (Khóa 120)', data: [44, 173], backgroundColor: c.red, borderRadius: 6 }
+          ]
+        },
+        options: { ...baseOpt('Số ghế'), indexAxis: 'y' }
+      });
+
+      makeChart('chartGoldPath', {
+        type: 'line',
+        data: {
+          labels: ['T1/26 Đỉnh', 'Q2/26 TB', 'Q3/26 TB', '21/11 Đáy', '23/11 Nay', 'T3/27', 'T6/27', 'Cuối 2027', 'Cuối 2028'],
+          datasets: [
+            { label: 'Thực tế XAU/USD', data: [5595, 4506, 4262, 3525, 3668, null, null, null, null], borderColor: c.text, backgroundColor: c.text, borderWidth: 3, tension: 0.25 },
+            { label: 'Dự báo UBS', data: [null, null, null, null, 3668, 4200, 4600, 5000, null], borderColor: c.blue, borderDash: [6, 4], borderWidth: 2.5, tension: 0.25 },
+            { label: 'Dự báo Goldman Sachs', data: [null, null, null, null, 3668, null, null, 4650, 5600], borderColor: c.gold, borderDash: [6, 4], borderWidth: 2.5, tension: 0.25, spanGaps: true }
+          ]
+        },
+        options: baseOpt('USD / ounce')
+      });
+
+      makeChart('chartSjcTrap', {
+        type: 'bar',
+        data: {
+          labels: ['$3.300', '$3.500', '$3.668 (Nay)', '$4.200', '$4.650', '$5.000', '$5.600'],
+          datasets: [
+            { label: 'SJC (Chênh +5 Tr)', data: [109.5, 115.8, 121.1, 138.0, 152.2, 163.3, 182.3], backgroundColor: c.green, borderRadius: 4 },
+            { label: 'SJC (Chênh +12 Tr)', data: [116.5, 122.8, 128.1, 145.0, 159.2, 170.3, 189.3], backgroundColor: c.blue, borderRadius: 4 },
+            { label: 'SJC (Chênh +20 Tr)', data: [124.5, 130.8, 136.1, 153.0, 167.2, 178.3, 197.3], backgroundColor: c.red, borderRadius: 4 }
+          ]
+        },
+        options: baseOpt('Triệu VND / lượng (FX 26k +1%)')
+      });
+
+      makeChart('chartFtseTranches', {
+        type: 'bar',
+        data: {
+          labels: ['Đợt 1 (21/09/26)', 'Đợt 2 (22/03/27)', 'Đợt 3 (21/06/27)', 'Đợt 4 (20/09/27)'],
+          datasets: [
+            { label: 'Tỷ trọng giải ngân từng đợt (%)', data: [10, 20, 35, 35], backgroundColor: [c.gray, c.cyan, c.blue, c.green], borderRadius: 6 }
+          ]
+        },
+        options: baseOpt('% Lộ trình giải ngân FTSE')
+      });
+
+      makeChart('chartSectorProfit', {
+        type: 'bar',
+        data: {
+          labels: ['Thép/BLẻ/CK/CN', 'Ngân hàng', 'Toàn TT (Ex-Vin)', 'Dầu khí & NL'],
+          datasets: [
+            { label: 'Dự báo LNST 2027 (% YoY - DSC)', data: [20, 14, 7, -41], backgroundColor: [c.green, c.blue, c.gold, c.red], borderRadius: 6 }
+          ]
+        },
+        options: baseOpt('% Tăng trưởng LNST 2027')
+      });
+
+      makeChart('chartHcmcPrices', {
+        type: 'bar',
+        data: {
+          labels: ['Biệt thự (Rao)', 'Nhà riêng (Rao)', 'CH Sơ cấp HCM cũ', 'CH Sơ cấp HCM mới', 'Chung cư (Rao)', 'Đất nền (Rao)', 'CH Thứ cấp CBRE', 'CH Bình Dương cũ'],
+          datasets: [
+            { label: 'Giá Q3/2026 (Triệu VND/m²)', data: [151, 117, 104, 75, 69, 61, 60, 53], backgroundColor: [c.purple, c.purple, c.red, c.blue, c.blue, c.gold, c.gold, c.green], borderRadius: 5 }
+          ]
+        },
+        options: { ...baseOpt('Triệu VND / m²'), indexAxis: 'y' }
+      });
+
+      makeChart('chartRealYield', {
+        type: 'bar',
+        data: {
+          labels: ['CP Ex-Vin (E/P)', 'VN-Index (E/P)', 'VIP Deposit ≥10B', 'TMCP Top Online', 'Big4 Online 12M', 'Big4 Quầy 12M', 'Thuê CH B.Dương', 'Thuê CH HCM cũ', 'USD tiền mặt VN'],
+          datasets: [
+            {
+              label: 'Lợi suất Thực vs CPI 4,57% (%/năm)',
+              data: [6.07, 4.86, 4.53, 2.43, 2.23, 0.83, -0.07, -2.17, -4.57],
+              backgroundColor: [c.green, c.green, c.cyan, c.blue, c.blue, c.gray, c.gold, c.red, c.red],
+              borderRadius: 5
+            }
+          ]
+        },
+        options: { ...baseOpt('Lợi suất thực (%/năm)'), indexAxis: 'y' }
+      });
+
+      makeChart('chartBankRates', {
+        type: 'bar',
+        data: {
+          labels: ['3 Tháng', '6 Tháng', '12 Tháng', '18 Tháng'],
+          datasets: [
+            { label: 'Big4 Online (%)', data: [4.75, 6.60, 6.80, 6.80], backgroundColor: c.blue, borderRadius: 5 },
+            { label: 'TMCP Top (VCBNeo/Sacombank/VPB)', data: [4.75, 6.90, 7.00, 7.10], backgroundColor: c.gold, borderRadius: 5 },
+            { label: 'Nhóm đã giảm mạnh (TCB/MB/TPB)', data: [4.60, 5.60, 5.90, 5.60], backgroundColor: c.gray, borderRadius: 5 }
+          ]
+        },
+        options: baseOpt('Lãi suất huy động online (%/năm)')
+      });
+
+      runPortfolioSim();
+      runMortgageCalc();
+    }
+
+    // =========================================================================
+    // 4. INTERACTIVE CALCULATOR 1: 24M PORTFOLIO SIMULATOR
+    // =========================================================================
+    const ASSET_RETURNS = {
+      deposit: { base: 14.0, bull: 12.5, bear: 16.5 },
+      stocks:  { base: 30.0, bull: 48.0, bear: -15.0 },
+      reCash:  { base: 22.0, bull: 35.0, bear: -5.0 },
+      gold:    { base: 22.0, bull: 8.0,  bear: 28.0 },
+      usd:     { base: 2.5,  bull: -2.0, bear: 9.5 }
+    };
+
+    function applyPreset(d, s, r, g, u) {
+      document.getElementById('wDeposit').value = d;
+      document.getElementById('wStocks').value = s;
+      document.getElementById('wReCash').value = r;
+      document.getElementById('wGold').value = g;
+      document.getElementById('wUsd').value = u;
+      runPortfolioSim();
+    }
+
+    function runPortfolioSim() {
+      const cap = parseFloat(document.getElementById('simCapital').value) || 5;
+      const scen = document.getElementById('simScenario').value;
+      const wD = parseInt(document.getElementById('wDeposit').value) || 0;
+      const wS = parseInt(document.getElementById('wStocks').value) || 0;
+      const wR = parseInt(document.getElementById('wReCash').value) || 0;
+      const wG = parseInt(document.getElementById('wGold').value) || 0;
+      const wU = parseInt(document.getElementById('wUsd').value) || 0;
+      const sumW = wD + wS + wR + wG + wU;
+
+      document.getElementById('lblDeposit').textContent = wD + '%';
+      document.getElementById('lblStocks').textContent = wS + '%';
+      document.getElementById('lblReCash').textContent = wR + '%';
+      document.getElementById('lblGold').textContent = wG + '%';
+      document.getElementById('lblUsd').textContent = wU + '%';
+
+      const norm = sumW > 0 ? sumW : 100;
+      const calcScen = (k) => (
+        (wD * ASSET_RETURNS.deposit[k] + wS * ASSET_RETURNS.stocks[k] +
+         wR * ASSET_RETURNS.reCash[k] + wG * ASSET_RETURNS.gold[k] +
+         wU * ASSET_RETURNS.usd[k]) / norm
+      );
+      const rBase = calcScen('base');
+      const rBull = calcScen('bull');
+      const rBear = calcScen('bear');
+      const rWeighted = 0.55 * rBase + 0.20 * rBull + 0.25 * rBear;
+
+      const selectedR = scen === 'base' ? rBase : scen === 'bull' ? rBull : scen === 'bear' ? rBear : rWeighted;
+      const finalVal = cap * (1 + selectedR / 100);
+      const profitVnd = finalVal - cap;
+      const warnSum = sumW !== 100 ? `<div class="warn" style="font-size:0.78rem;margin-bottom:6px;">⚠️ Tổng tỷ trọng hiện tại là ${sumW}% (hệ thống tự động chuẩn hóa về 100%).</div>` : '';
+
+      document.getElementById('simOutput').innerHTML = `
+        ${warnSum}
+        <div style="display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;align-items:center;">
+          <div>
+            <div style="font-size:0.76rem;color:var(--text-muted);text-transform:uppercase;font-weight:700;">Giá trị mô phỏng sau 24 tháng</div>
+            <div class="mono" style="font-size:1.45rem;font-weight:800;color:var(--accent-gold);">${finalVal.toFixed(2)} Tỷ VND</div>
+          </div>
+          <div>
+            <div style="font-size:0.76rem;color:var(--text-muted);text-transform:uppercase;font-weight:700;">Lãi / Lỗ Ròng 24T</div>
+            <div class="mono ${selectedR >= 0 ? 'up' : 'down'}" style="font-size:1.25rem;font-weight:800;">${selectedR >= 0 ? '+' : ''}${selectedR.toFixed(2)}% (${profitVnd >= 0 ? '+' : ''}${profitVnd.toFixed(2)} Tỷ)</div>
+          </div>
+        </div>
+        <div style="font-size:0.79rem;color:var(--text-secondary);margin-top:8px;">
+          Biên độ 3 kịch bản: <strong>Cơ sở:</strong> ${rBase >= 0 ? '+' : ''}${rBase.toFixed(1)}% • <strong>Hòa bình:</strong> ${rBull >= 0 ? '+' : ''}${rBull.toFixed(1)}% • <strong>Chiến tranh:</strong> <span class="${rBear >= 0 ? 'up' : 'down'}">${rBear >= 0 ? '+' : ''}${rBear.toFixed(1)}%</span>
+        </div>
+      `;
+
+      const c = getThemeColors();
+      makeChart('chartSimCompare', {
+        type: 'bar',
+        data: {
+          labels: ['Danh mục của bạn', '100% Tiết kiệm', '100% CP VN30', '100% Vàng SJC', '100% BĐS Vay 50%', '100% USD'],
+          datasets: [{
+            label: 'Tỷ suất sinh lời 24T (%) theo kịch bản đang chọn',
+            data: [
+              +selectedR.toFixed(2),
+              scen === 'weighted' ? 14.32 : ASSET_RETURNS.deposit[scen],
+              scen === 'weighted' ? 22.35 : ASSET_RETURNS.stocks[scen],
+              scen === 'weighted' ? 20.70 : ASSET_RETURNS.gold[scen],
+              scen === 'weighted' ? 7.60 : (scen === 'base' ? 12.0 : scen === 'bull' ? 40.0 : -28.0),
+              scen === 'weighted' ? 3.35 : ASSET_RETURNS.usd[scen]
+            ],
+            backgroundColor: [c.gold, c.cyan, c.blue, c.purple, c.red, c.gray],
+            borderRadius: 5
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: { legend: { display: false } },
+          scales: {
+            x: { ticks: { color: c.text, font: { size: 10 } }, grid: { color: c.grid } },
+            y: { ticks: { color: c.text, font: { size: 10 } }, grid: { color: c.grid }, title: { display: true, text: '% (24T)', color: c.text, font: { size: 10 } } }
+          }
+        }
+      });
+    }
+
+    // =========================================================================
+    // 5. INTERACTIVE CALCULATOR 2: MORTGAGE STRESS TEST
+    // =========================================================================
+    function calcAnnuity(principalMillion, annualRatePct, years) {
+      if (principalMillion <= 0) return 0;
+      const r = (annualRatePct / 100) / 12;
+      const n = years * 12;
+      return principalMillion * (r * Math.pow(1 + r, n)) / (Math.pow(1 + r, n) - 1);
+    }
+
+    function runMortgageCalc() {
+      const price = parseFloat(document.getElementById('mPrice').value) || 5;
+      const down = parseFloat(document.getElementById('mDown').value) || 0;
+      const years = parseInt(document.getElementById('mYears').value) || 20;
+      const income = parseFloat(document.getElementById('mIncome').value) || 50;
+      const rPromo = parseFloat(document.getElementById('mRatePromo').value) || 9.0;
+      const rFloat = parseFloat(document.getElementById('mRateFloat').value) || 13.5;
+
+      const loanBillion = Math.max(0, price - down);
+      const loanMillion = loanBillion * 1000;
+      const ltv = price > 0 ? (loanBillion / price) * 100 : 0;
+      const pmtPromo = calcAnnuity(loanMillion, rPromo, years);
+      const pmtFloat = calcAnnuity(loanMillion, rFloat, years);
+      const pmt15 = calcAnnuity(loanMillion, 15.0, years);
+      const dtiFloat = income > 0 ? (pmtFloat / income) * 100 : 0;
+
+      let statusHtml = '<span class="up">✅ AN TOÀN TÀI CHÍNH (DTI ≤ 40%)</span>';
+      if (dtiFloat > 50) statusHtml = '<span class="down">🚨 RỦI RO VỠ DÒNG TIỀN CAO (DTI &gt; 50%) — NÊN GIẢM VAY HOẶC CHỜ!</span>';
+      else if (dtiFloat > 40) statusHtml = '<span class="warn">⚠️ ÁP LỰC TRUNG BÌNH (DTI 40%–50%) — CẦN QUỸ DỰ PHÒNG 12 THÁNG</span>';
+
+      document.getElementById('mortgageOutput').innerHTML = `
+        <div style="display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;margin-bottom:8px;">
+          <div>
+            <div style="font-size:0.75rem;color:var(--text-muted);font-weight:700;">SỐ TIỀN VAY (LTV ${ltv.toFixed(0)}%)</div>
+            <div class="mono" style="font-size:1.3rem;font-weight:800;">${loanBillion.toFixed(2)} Tỷ VND</div>
+          </div>
+          <div>
+            <div style="font-size:0.75rem;color:var(--text-muted);font-weight:700;">TRẢ NĂM ĐẦU (${rPromo}%)</div>
+            <div class="mono up" style="font-size:1.25rem;font-weight:800;">${pmtPromo.toFixed(2)} Tr/tháng</div>
+          </div>
+          <div>
+            <div style="font-size:0.75rem;color:var(--text-muted);font-weight:700;">TRẢ THẢ NỔI (${rFloat}%)</div>
+            <div class="mono down" style="font-size:1.25rem;font-weight:800;">${pmtFloat.toFixed(2)} Tr/tháng</div>
+          </div>
+        </div>
+        <div style="font-size:0.82rem;margin-bottom:4px;">Tỷ lệ trả nợ / thu nhập khi thả nổi (DTI): <strong class="mono">${dtiFloat.toFixed(1)}%</strong> • Chênh lệch tăng thêm: <strong class="mono">+${(pmtFloat - pmtPromo).toFixed(2)} Tr/tháng</strong></div>
+        <div style="font-size:0.83rem;font-weight:700;">${statusHtml}</div>
+      `;
+
+      const c = getThemeColors();
+      makeChart('chartMortgage', {
+        type: 'bar',
+        data: {
+          labels: ['6,5% (NOXH)', rPromo + '% (Ưu đãi)', '11,5%', rFloat + '% (Thả nổi)', '15,0% (Sốc)'],
+          datasets: [{
+            label: 'Trả góp hàng tháng (Triệu VND)',
+            data: [
+              +calcAnnuity(loanMillion, 6.5, years).toFixed(2),
+              +pmtPromo.toFixed(2),
+              +calcAnnuity(loanMillion, 11.5, years).toFixed(2),
+              +pmtFloat.toFixed(2),
+              +pmt15.toFixed(2)
+            ],
+            backgroundColor: [c.green, c.blue, c.gold, c.red, '#991b1b'],
+            borderRadius: 5
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: { legend: { display: false } },
+          scales: {
+            x: { ticks: { color: c.text, font: { size: 10 } }, grid: { color: c.grid } },
+            y: { ticks: { color: c.text, font: { size: 10 } }, grid: { color: c.grid }, title: { display: true, text: 'Triệu VND/tháng', color: c.text, font: { size: 10 } } }
+          }
+        }
+      });
+    }
+
+    window.addEventListener('DOMContentLoaded', rebuildAllCharts);
+  </script>
+</body>
+</html>
