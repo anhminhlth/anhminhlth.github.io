@@ -1,0 +1,2577 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+<title>Yu-Gi-Oh! Tactical Board Collection — Cẩm Nang Toàn Tập 4 Game (Pro Edition v4.0)</title>
+<style>
+  :root {
+    --bg: #070b14;
+    --bg-card: #101727;
+    --bg-soft: #172136;
+    --bg-elev: #1e2b45;
+    --gold: #f5b700;
+    --gold-soft: #fde047;
+    --gold-dim: #a16207;
+    --cyan: #22d3ee;
+    --blue: #3b82f6;
+    --purple: #a855f7;
+    --pink: #ec4899;
+    --green: #22c55e;
+    --red: #ef4444;
+    --orange: #f97316;
+    --text: #f1f5f9;
+    --muted: #94a3b8;
+    --border: #253452;
+    --radius: 14px;
+    --shadow: 0 10px 28px rgba(0, 0, 0, 0.45);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background:
+      radial-gradient(circle at 15% 0%, rgba(245, 183, 0, 0.08) 0%, transparent 38%),
+      radial-gradient(circle at 85% 0%, rgba(34, 211, 238, 0.09) 0%, transparent 40%),
+      radial-gradient(circle at top center, #16233d 0%, var(--bg) 52%);
+    color: var(--text);
+    line-height: 1.6;
+    padding-bottom: 80px;
+    overflow-x: hidden;
+  }
+
+  /* HERO BANNER */
+  .hero {
+    background: linear-gradient(135deg, #1b1128 0%, #0d1629 48%, #21150f 100%);
+    padding: 20px 14px 14px;
+    text-align: center;
+    border-bottom: 1px solid rgba(245, 183, 0, 0.32);
+    position: relative;
+  }
+  .hero-kicker {
+    display: inline-block;
+    font-size: 0.7rem;
+    font-weight: 800;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+    color: #090d16;
+    background: linear-gradient(135deg, #fde047, #f5b700);
+    padding: 3px 10px;
+    border-radius: 999px;
+    margin-bottom: 8px;
+  }
+  .hero h1 {
+    font-size: clamp(1.16rem, 3.8vw, 1.88rem);
+    color: var(--gold);
+    letter-spacing: 0.4px;
+    text-transform: uppercase;
+    line-height: 1.25;
+    text-shadow: 0 2px 14px rgba(245, 183, 0, 0.22);
+  }
+  .hero p {
+    font-size: clamp(0.76rem, 2.3vw, 0.89rem);
+    color: var(--muted);
+    margin-top: 5px;
+    max-width: 900px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .hero-pills {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 6px;
+    margin-top: 10px;
+  }
+  .hero-pill {
+    font-size: 0.72rem;
+    font-weight: 700;
+    padding: 3px 9px;
+    border-radius: 999px;
+    background: rgba(15, 23, 42, 0.78);
+    border: 1px solid var(--border);
+    color: #cbd5e1;
+  }
+
+  /* STICKY TAB NAVIGATION */
+  .tab-bar-wrap {
+    position: sticky;
+    top: 0;
+    z-index: 95;
+    background: rgba(7, 11, 20, 0.95);
+    backdrop-filter: blur(12px);
+    border-bottom: 2px solid var(--gold-dim);
+    box-shadow: 0 6px 22px rgba(0, 0, 0, 0.55);
+  }
+  .tabs {
+    display: flex;
+    gap: 6px;
+    overflow-x: auto;
+    padding: 9px 10px;
+    max-width: 1260px;
+    margin: 0 auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+  .tabs::-webkit-scrollbar { display: none; }
+  .tab-btn {
+    flex: 0 0 auto;
+    min-height: 39px;
+    background: var(--bg-soft);
+    color: var(--muted);
+    border: 1px solid var(--border);
+    padding: 8px 13px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: 700;
+    font-size: 0.81rem;
+    transition: all 0.18s ease;
+    white-space: nowrap;
+  }
+  .tab-btn:hover { color: var(--text); border-color: var(--gold-dim); }
+  .tab-btn.active {
+    background: linear-gradient(135deg, #ca8a04, #f5b700);
+    color: #070b14;
+    border-color: var(--gold-soft);
+    box-shadow: 0 0 15px rgba(245, 183, 0, 0.35);
+  }
+
+  main { max-width: 1260px; margin: 16px auto 0; padding: 0 12px; }
+  .panel { display: none; animation: fadeIn 0.2s ease; }
+  .panel.active { display: block; }
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: translateY(0); } }
+
+  .section-box {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 16px;
+    margin-bottom: 16px;
+    box-shadow: var(--shadow);
+  }
+  h2 {
+    color: var(--gold);
+    font-size: clamp(1.04rem, 3vw, 1.3rem);
+    margin-bottom: 10px;
+    border-left: 4px solid var(--gold);
+    padding-left: 10px;
+    line-height: 1.3;
+  }
+  h3 {
+    color: var(--cyan);
+    font-size: clamp(0.94rem, 2.5vw, 1.07rem);
+    margin: 14px 0 8px;
+  }
+  p { font-size: 0.9rem; }
+  code {
+    background: rgba(148, 163, 184, 0.15);
+    color: #bae6fd;
+    padding: 1px 6px;
+    border-radius: 5px;
+    font-size: 0.84em;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  }
+  pre {
+    background: #050810;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 12px;
+    overflow-x: auto;
+    font-size: 0.78rem;
+    line-height: 1.55;
+    color: #e2e8f0;
+    margin: 10px 0;
+  }
+
+  /* BADGES & ALERTS */
+  .badge {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 999px;
+    font-size: 0.71rem;
+    font-weight: 800;
+    vertical-align: middle;
+    letter-spacing: 0.2px;
+  }
+  .b-gold { background: rgba(245,183,0,0.18); color: #fde047; border: 1px solid rgba(245,183,0,0.48); }
+  .b-red { background: rgba(239,68,68,0.18); color: #fca5a5; border: 1px solid rgba(239,68,68,0.48); }
+  .b-cyan { background: rgba(34,211,238,0.16); color: #67e8f9; border: 1px solid rgba(34,211,238,0.45); }
+  .b-green { background: rgba(34,197,94,0.16); color: #86efac; border: 1px solid rgba(34,197,94,0.45); }
+  .b-purple { background: rgba(168,85,247,0.18); color: #d8b4fe; border: 1px solid rgba(168,85,247,0.48); }
+  .b-orange { background: rgba(249,115,22,0.18); color: #fdba74; border: 1px solid rgba(249,115,22,0.48); }
+  .b-muted { background: rgba(148,163,184,0.15); color: #cbd5e1; border: 1px solid rgba(148,163,184,0.35); }
+
+  .tier-S { background: linear-gradient(135deg, #b91c1c, #ef4444); color: #fff; border: 1px solid #fca5a5; }
+  .tier-A { background: linear-gradient(135deg, #b45309, #f59e0b); color: #090d16; border: 1px solid #fde047; }
+  .tier-B { background: linear-gradient(135deg, #1d4ed8, #3b82f6); color: #fff; border: 1px solid #93c5fd; }
+  .tier-C { background: #334155; color: #cbd5e1; border: 1px solid #64748b; }
+
+  .alert {
+    background: rgba(245,183,0,0.08);
+    border: 1px solid rgba(245,183,0,0.38);
+    border-radius: 10px;
+    padding: 12px 14px;
+    margin: 12px 0;
+    font-size: 0.88rem;
+  }
+  .alert.danger { background: rgba(239,68,68,0.09); border-color: rgba(239,68,68,0.45); }
+  .alert.info { background: rgba(34,211,238,0.08); border-color: rgba(34,211,238,0.4); }
+  .alert.success { background: rgba(34,197,94,0.08); border-color: rgba(34,197,94,0.4); }
+
+  /* GRIDS & LISTS */
+  .grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(290px, 1fr)); gap: 14px; }
+  .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 12px; }
+
+  .step-list { padding-left: 18px; margin: 8px 0; }
+  .step-list li { margin-bottom: 8px; font-size: 0.89rem; }
+  .step-list ul { padding-left: 18px; margin-top: 5px; }
+
+  /* STAT PILLS */
+  .deck-summary { display: flex; flex-wrap: wrap; gap: 8px; margin: 10px 0 12px; }
+  .stat-pill {
+    background: var(--bg-soft);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 7px 11px;
+    font-size: 0.81rem;
+  }
+  .stat-pill strong { color: var(--gold); }
+
+  /* SUBTABS & FILTERS */
+  .subtabs, .filter-row { display: flex; flex-wrap: wrap; gap: 7px; margin: 10px 0 12px; }
+  .subtab-btn, .filter-btn {
+    min-height: 36px;
+    background: #0c1324;
+    color: var(--muted);
+    border: 1px solid var(--border);
+    padding: 7px 12px;
+    border-radius: 9px;
+    cursor: pointer;
+    font-weight: 700;
+    font-size: 0.8rem;
+    transition: all 0.15s ease;
+  }
+  .subtab-btn:hover, .filter-btn:hover { color: #fff; border-color: var(--cyan); }
+  .subtab-btn.active, .filter-btn.active {
+    background: linear-gradient(135deg, #2563eb, #1d4ed8);
+    color: #fff;
+    border-color: #60a5fa;
+  }
+  .subpanel { display: none; }
+  .subpanel.active { display: block; }
+
+  /* SEARCH & INPUTS */
+  .search-input {
+    width: 100%;
+    max-width: 480px;
+    background: #0a1020;
+    color: #fff;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 9px 13px;
+    font-size: 0.88rem;
+    margin: 6px 0 10px;
+  }
+  .search-input:focus { outline: none; border-color: var(--cyan); box-shadow: 0 0 0 2px rgba(34,211,238,0.2); }
+  select, input[type="number"] {
+    background: var(--bg-soft);
+    color: #fff;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 7px 10px;
+    font-size: 0.85rem;
+    min-height: 36px;
+  }
+
+  /* TABLES */
+  .table-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; margin: 10px 0; border-radius: 10px; border: 1px solid var(--border); }
+  table { width: 100%; border-collapse: collapse; font-size: 0.82rem; min-width: 560px; }
+  th, td { border-bottom: 1px solid var(--border); border-right: 1px solid rgba(37,52,82,0.55); padding: 8px 9px; text-align: left; vertical-align: top; }
+  th { background: #19253d; color: var(--gold); font-weight: 700; white-space: nowrap; }
+  tr:nth-child(even) td { background: rgba(255,255,255,0.02); }
+  tr:last-child td { border-bottom: none; }
+
+  /* SHOWCASE GAME CARDS */
+  .game-card {
+    background: var(--bg-soft);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.16s ease, border-color 0.16s ease;
+  }
+  .game-card:hover { transform: translateY(-2px); border-color: var(--gold); }
+  .game-banner {
+    padding: 14px;
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    border-bottom: 1px solid var(--border);
+  }
+  .game-banner img {
+    width: 72px;
+    height: 102px;
+    border-radius: 8px;
+    object-fit: cover;
+    border: 2px solid var(--gold);
+    flex-shrink: 0;
+    background: #070b14;
+  }
+  .game-body { padding: 13px 14px; font-size: 0.84rem; flex: 1; display: flex; flex-direction: column; justify-content: space-between; }
+  .game-body ul { padding-left: 17px; margin: 7px 0 10px; }
+  .game-body li { margin-bottom: 5px; color: var(--muted); }
+
+  /* INTERACTIVE CARD GRID (DECKS, ITEMS, DICE) */
+  .card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(178px, 1fr));
+    gap: 11px;
+    margin-top: 12px;
+  }
+  .ygo-card {
+    background: var(--bg-soft);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 10px 9px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    position: relative;
+    cursor: pointer;
+    transition: transform 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease;
+  }
+  .ygo-card:hover {
+    transform: translateY(-3px);
+    border-color: var(--gold);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.48);
+  }
+  .qty-tag {
+    position: absolute;
+    top: 7px;
+    right: 7px;
+    background: var(--gold);
+    color: #070b14;
+    font-weight: 800;
+    font-size: 0.72rem;
+    padding: 2px 7px;
+    border-radius: 7px;
+  }
+  .id-tag {
+    position: absolute;
+    top: 7px;
+    left: 7px;
+    background: rgba(7,11,20,0.9);
+    color: var(--cyan);
+    font-weight: 700;
+    font-size: 0.67rem;
+    padding: 2px 6px;
+    border-radius: 6px;
+    border: 1px solid var(--border);
+  }
+  .ygo-card img {
+    width: 110px;
+    height: 152px;
+    object-fit: cover;
+    border-radius: 7px;
+    margin: 14px 0 8px;
+    background: #070b14;
+    border: 1px solid #334155;
+  }
+  .ygo-name { font-weight: 700; font-size: 0.84rem; color: #fff; line-height: 1.25; }
+  .ygo-meta { font-size: 0.74rem; color: var(--gold-soft); margin-top: 4px; font-weight: 700; }
+  .ygo-sub { font-size: 0.72rem; color: var(--muted); margin-top: 4px; line-height: 1.38; }
+  .tap-hint { font-size: 0.67rem; color: var(--cyan); margin-top: 6px; font-weight: 700; }
+
+  /* ITEMS & TRAPS HORIZONTAL CARDS */
+  .item-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(310px, 1fr));
+    gap: 12px;
+    margin-top: 10px;
+  }
+  .item-card {
+    background: var(--bg-soft);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 12px;
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+    cursor: pointer;
+    transition: border-color 0.15s ease, transform 0.15s ease;
+  }
+  .item-card:hover { border-color: var(--gold); transform: translateY(-2px); }
+  .item-card img {
+    width: 68px;
+    height: 96px;
+    border-radius: 7px;
+    border: 1px solid var(--gold-dim);
+    flex-shrink: 0;
+    background: #070b14;
+  }
+  .item-body { flex: 1; min-width: 0; }
+  .item-body h4 { font-size: 0.92rem; color: #fff; line-height: 1.25; }
+  .item-body p { font-size: 0.8rem; color: var(--muted); margin-top: 4px; line-height: 1.45; }
+
+  /* INTERACTIVE 7x7 DOTR BOARD */
+  .dor-wrap {
+    display: grid;
+    grid-template-columns: minmax(260px, 385px) 1fr;
+    gap: 16px;
+    align-items: start;
+    margin: 12px 0;
+  }
+  .dor-board {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 3px;
+    background: #050810;
+    padding: 6px;
+    border-radius: 12px;
+    border: 2px solid var(--gold-dim);
+    aspect-ratio: 1 / 1;
+  }
+  .dor-cell {
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.65rem;
+    font-weight: 800;
+    cursor: pointer;
+    position: relative;
+    border: 1px solid rgba(255,255,255,0.14);
+    user-select: none;
+    transition: transform 0.12s ease, box-shadow 0.12s ease;
+    text-align: center;
+    line-height: 1.05;
+  }
+  .dor-cell:hover { transform: scale(1.05); z-index: 2; }
+  .dor-cell.summon-zone { box-shadow: inset 0 0 0 2px #fde047, 0 0 8px rgba(253,224,71,0.5); }
+  .dor-cell.hidden-mark::after {
+    content: "★";
+    position: absolute;
+    top: 1px;
+    right: 2px;
+    font-size: 0.62rem;
+    color: #fde047;
+    text-shadow: 0 0 4px #000;
+  }
+  .t-normal { background: #334155; color: #e2e8f0; }
+  .t-forest { background: #166534; color: #dcfce7; }
+  .t-mountain { background: #78350f; color: #fef3c7; }
+  .t-ocean { background: #0369a1; color: #e0f2fe; }
+  .t-meadow { background: #4d7c0f; color: #ecfccb; }
+  .t-wasteland { background: #a16207; color: #fef9c3; }
+  .t-dark { background: #4c1d95; color: #ede9fe; }
+  .t-toon { background: #be185d; color: #fce7f3; }
+  .t-crush { background: #991b1b; color: #fee2e2; }
+  .t-labyrinth { background: #3f3f46; color: #e4e4e7; border: 1px dashed #a1a1aa; }
+  .leader-badge { font-size: 0.92rem; filter: drop-shadow(0 1px 3px rgba(0,0,0,0.85)); }
+
+  /* INTERACTIVE CMC ATTRIBUTE CHECKER */
+  .attr-row { display: flex; flex-wrap: wrap; gap: 7px; margin: 8px 0; }
+  .attr-btn {
+    background: var(--bg-card);
+    color: var(--text);
+    border: 1px solid var(--border);
+    border-radius: 9px;
+    padding: 7px 11px;
+    font-size: 0.81rem;
+    font-weight: 700;
+    cursor: pointer;
+    min-height: 36px;
+  }
+  .attr-btn.active { background: var(--blue); border-color: #93c5fd; color: #fff; }
+  .attr-btn.win { background: rgba(34,197,94,0.22); border-color: var(--green); color: #86efac; }
+  .attr-btn.lose { background: rgba(239,68,68,0.22); border-color: var(--red); color: #fca5a5; }
+  .attr-btn.ally { background: rgba(245,183,0,0.22); border-color: var(--gold); color: #fde047; }
+  .info-out {
+    background: #0a1020;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 11px 13px;
+    font-size: 0.85rem;
+    color: var(--text);
+    margin-top: 8px;
+  }
+
+  /* ACCORDION (SAMSUNG TROUBLESHOOTING) */
+  .acc-item {
+    background: var(--bg-soft);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    margin-bottom: 8px;
+    overflow: hidden;
+  }
+  .acc-head {
+    width: 100%;
+    text-align: left;
+    background: transparent;
+    color: #fff;
+    border: none;
+    padding: 11px 13px;
+    font-weight: 700;
+    font-size: 0.86rem;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+  }
+  .acc-body {
+    display: none;
+    padding: 0 13px 12px;
+    font-size: 0.84rem;
+    color: var(--muted);
+    border-top: 1px solid rgba(37,52,82,0.5);
+    padding-top: 9px;
+  }
+  .acc-item.open .acc-body { display: block; }
+
+  /* ACTION BUTTONS */
+  .action-btn {
+    background: linear-gradient(135deg, #2563eb, #1d4ed8);
+    color: #fff;
+    border: none;
+    border-radius: 9px;
+    padding: 9px 14px;
+    font-size: 0.83rem;
+    font-weight: 700;
+    cursor: pointer;
+    min-height: 38px;
+  }
+  .action-btn.gold { background: linear-gradient(135deg, #ca8a04, #f5b700); color: #070b14; }
+  .action-btn.soft { background: var(--bg-elev); border: 1px solid var(--border); color: var(--text); }
+
+  /* CALCULATOR BOX */
+  .calc-box {
+    background: #0a1222;
+    border: 1px solid var(--cyan);
+    border-radius: 12px;
+    padding: 14px;
+    margin: 12px 0;
+  }
+  .calc-row { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; margin-top: 8px; }
+
+  /* MODAL */
+  .modal-backdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(4, 7, 14, 0.84);
+    backdrop-filter: blur(5px);
+    z-index: 200;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 14px;
+  }
+  .modal-backdrop.open { display: flex; }
+  .modal-box {
+    background: var(--bg-card);
+    border: 1px solid var(--gold);
+    border-radius: 16px;
+    max-width: 580px;
+    width: 100%;
+    max-height: 88vh;
+    overflow-y: auto;
+    padding: 18px;
+    box-shadow: 0 22px 64px rgba(0,0,0,0.78);
+    position: relative;
+  }
+  .modal-close {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    border: 1px solid var(--border);
+    background: var(--bg-soft);
+    color: #fff;
+    font-size: 1.05rem;
+    cursor: pointer;
+  }
+  .modal-top { display: flex; gap: 14px; align-items: flex-start; flex-wrap: wrap; }
+  .modal-top img {
+    width: 132px;
+    height: 186px;
+    object-fit: cover;
+    border-radius: 9px;
+    border: 2px solid var(--gold-dim);
+    background: #070b14;
+  }
+  .modal-info { flex: 1; min-width: 200px; }
+  .modal-info h3 { margin: 0 0 6px; color: var(--gold); font-size: 1.12rem; }
+  .modal-row { font-size: 0.85rem; margin-bottom: 6px; color: var(--text); }
+  .modal-row span { color: var(--muted); }
+
+  footer {
+    text-align: center;
+    color: var(--muted);
+    font-size: 0.78rem;
+    margin-top: 28px;
+    padding: 0 14px;
+  }
+
+  /* MOBILE RESPONSIVE (Samsung Galaxy 360px - 480px) */
+  @media (max-width: 768px) {
+    .dor-wrap { grid-template-columns: 1fr; }
+    .dor-board { max-width: 365px; margin: 0 auto; width: 100%; }
+  }
+  @media (max-width: 480px) {
+    main { padding: 0 8px; }
+    .section-box { padding: 13px 11px; border-radius: 12px; }
+    .card-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
+    .ygo-card { padding: 8px 6px; }
+    .ygo-card img { width: 92px; height: 128px; margin-top: 16px; }
+    .ygo-name { font-size: 0.78rem; }
+    .ygo-meta { font-size: 0.69rem; }
+    .ygo-sub { font-size: 0.67rem; }
+    .item-grid { grid-template-columns: 1fr; }
+    .modal-top { flex-direction: column; align-items: center; text-align: center; }
+    .modal-info { text-align: left; width: 100%; }
+    .stat-pill { font-size: 0.76rem; padding: 6px 9px; }
+  }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="hero-kicker">Pro Edition v4.0 • 100% Offline • Commercial Ready</div>
+  <h1>Yu-Gi-Oh! Tactical Board Collection — Cẩm Nang 4 Game</h1>
+  <p>The Duelists of the Roses (PS2) • Capsule Monster Coliseum (PS2) • The Falsebound Kingdom (GameCube) • Dungeon Dice Monsters (GBA)</p>
+  <div class="hero-pills">
+    <span class="hero-pill">Samsung Android 2026 Ready</span>
+    <span class="hero-pill">NetherSX2 v2.2n • Dolphin 2609b • mGBA</span>
+    <span class="hero-pill">61 Bẫy / Phép / Items Xếp Hạng S–C</span>
+    <span class="hero-pill">Zero-Hotlink SVG Art</span>
+  </div>
+</header>
+
+<div class="tab-bar-wrap">
+  <nav class="tabs" id="mainTabs" aria-label="Điều hướng chính">
+    <button class="tab-btn active" data-tab="overview">0. Tổng quan 4 Game</button>
+    <button class="tab-btn" data-tab="dotr">1. Duelists of Roses (PS2)</button>
+    <button class="tab-btn" data-tab="cmc">2. Capsule Coliseum (PS2)</button>
+    <button class="tab-btn" data-tab="tfk">3. Falsebound Kingdom (GC)</button>
+    <button class="tab-btn" data-tab="ddm">4. Dungeon Dice (GBA)</button>
+    <button class="tab-btn" data-tab="items">5. Kho Bài, Bẫy &amp; Items (S–C)</button>
+    <button class="tab-btn" data-tab="samsung">6. Cài Đặt Samsung Chi Tiết</button>
+    <button class="tab-btn" data-tab="tools">7. Công Cụ &amp; Kiểm Toán</button>
+    <button class="tab-btn" data-tab="about">8. About &amp; Cập Nhật</button>
+  </nav>
+</div>
+
+<main>
+  <!-- TAB 0: TỔNG QUAN 4 GAME -->
+  <section class="panel active" id="tab-overview">
+    <div class="section-box">
+      <h2>Bản Đồ Tổng Hợp 4 Tựa Game Yu-Gi-Oh! Chiến Thuật Bàn Cờ (Mở Rộng ×4)</h2>
+      <div class="alert success">
+        <strong>Nâng cấp toàn diện so với bản cẩm nang Forbidden Memories v2.0:</strong> Cả 4 tựa game dưới đây đều mở rộng đấu bài sang <strong>không gian bàn cờ di chuyển chiến thuật</strong>, sở hữu đầy đủ <strong>cơ chế hồi sinh hoặc phục hồi quân bài</strong> (<code>Monster Reborn</code>, <code>Mimicat</code>, <code>Resurrection Scroll</code>, phục hồi viên nang) và tối ưu chi tiết cho điện thoại Samsung Android trên 3 bộ giả lập chuẩn 2026.
+      </div>
+      <div class="grid-2" id="overviewGamesGrid"></div>
+    </div>
+
+    <div class="section-box">
+      <h2>Bảng So Sánh Trực Quan Cơ Chế, Quy Mô &amp; Yêu Cầu Giả Lập</h2>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Tựa Game</th>
+              <th>Hệ Máy &amp; Mã Đĩa USA</th>
+              <th>Quy Mô Đơn Vị</th>
+              <th>Bàn Cờ &amp; Di Chuyển</th>
+              <th>Cơ Chế Hồi Sinh / Phục Hồi</th>
+              <th>Giả Lập Samsung (2026)</th>
+              <th>Cần BIOS?</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>1. Duelists of the Roses</strong></td>
+              <td>PS2 • <code>SLUS-20515</code></td>
+              <td>854 lá playable</td>
+              <td>Lưới 7×7 • 10 địa hình • Thủ lĩnh đi 1–2 ô</td>
+              <td><code>Monster Reborn</code> (50 DC), <code>Mimicat</code> (80 DC)</td>
+              <td>NetherSX2 v2.2n (3668/4248)</td>
+              <td><span class="badge b-red">Có (scph39001.bin)</span></td>
+            </tr>
+            <tr>
+              <td><strong>2. Capsule Monster Coliseum</strong></td>
+              <td>PS2 • <code>SLUS-20940</code></td>
+              <td>200 quái 3D</td>
+              <td>25 đấu trường động • 8 hệ nguyên tố</td>
+              <td>Phục hồi viên nang (Surrender trick) &amp; SPA hồi PP</td>
+              <td>NetherSX2 v2.2n (chung app/BIOS)</td>
+              <td><span class="badge b-red">Có (scph39001.bin)</span></td>
+            </tr>
+            <tr>
+              <td><strong>3. The Falsebound Kingdom</strong></td>
+              <td>GameCube • <code>GYFEA4</code></td>
+              <td>177 quái RPG</td>
+              <td>Bản đồ 3D RTS chiếm thành + giao tranh 3v3</td>
+              <td><code>Monster Reborn</code> (750G) • Tướng tự tái sinh sau 5h</td>
+              <td>Dolphin 2609 / 2609b (64-bit)</td>
+              <td><span class="badge b-green">KHÔNG CẦN</span></td>
+            </tr>
+            <tr>
+              <td><strong>4. Dungeon Dice Monsters</strong></td>
+              <td>GBA • <code>AGB-AYDE-USA</code></td>
+              <td>124 xúc xắc (10 Item)</td>
+              <td>Tự mở mê cung 6 ô từ khối xúc xắc</td>
+              <td><code>Resurrection Scroll</code> (Item Lv2) • <code>Medical Aid Kit</code></td>
+              <td>RetroArch 1.22.2 (mGBA) / Pizza Boy A</td>
+              <td><span class="badge b-green">KHÔNG CẦN</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- TAB 1: DUELISTS OF THE ROSES (PS2) -->
+  <section class="panel" id="tab-dotr">
+    <div class="section-box">
+      <h2>1. Mô Phỏng Bàn Cờ 7×7 Tương Tác — The Duelists of the Roses (SLUS-20515)</h2>
+      <p style="color:var(--muted)">Chọn 1 trong 4 bản đồ chiến thuật mẫu (phủ đủ 10 loại địa hình), bật/tắt lớp đánh dấu <strong>Bài Ẩn (Find ★)</strong> và chạm vào bất kỳ ô tọa độ nào để xem quy tắc +500/-500, tốc độ di chuyển và bài ẩn tương ứng.</p>
+      <div class="filter-row" id="dorMapSwitch">
+        <button class="filter-btn active" data-map="stonehenge">Bản đồ 1: Stonehenge (Trùm cuối)</button>
+        <button class="filter-btn" data-map="chester">Bản đồ 2: Chester (Rừng &amp; Hoang địa)</button>
+        <button class="filter-btn" data-map="labyrinth">Bản đồ 3: Mê cung &amp; Nghiền nát</button>
+        <button class="filter-btn" data-map="pegasus">Bản đồ 4: Sân Toon (Pegasus)</button>
+        <button class="filter-btn" id="toggleHiddenBtn" data-hidden="0">Hiện tọa độ Bài Ẩn (Find ★)</button>
+      </div>
+      <div class="dor-wrap">
+        <div class="dor-board" id="dorBoard" aria-label="Bàn cờ 7x7 Duelists of the Roses"></div>
+        <div class="section-box" style="margin:0;background:var(--bg-soft)">
+          <h3 style="margin-top:0">Thông tin ô địa hình &amp; Luật Perfect Rule</h3>
+          <div id="dorInfo" class="info-out" style="margin-top:0">
+            Chạm vào một ô trên bàn cờ 7×7 để kiểm tra địa hình.<br/><br/>
+            <span class="badge b-red">🌹 Thủ lĩnh Đỏ (Lancaster - Yugi)</span> đứng ở <code>D7</code> với vùng triệu hồi 8 ô viền sáng vàng.<br/>
+            <span class="badge b-cyan" style="margin-top:5px">⚜️ Thủ lĩnh Trắng (York - Kaiba)</span> đứng ở <code>D1</code>.
+          </div>
+          <ul class="step-list" style="margin-top:10px;">
+            <li><strong>Bộ bài đúng 40 lá + 1 Thủ lĩnh (Deck Leader):</strong> Tổng <strong>Deck Cost (DC)</strong> của 40 lá (không tính Thủ lĩnh) phải <strong>≤ DC đối thủ</strong> mới được khiêu chiến trong Campaign.</li>
+            <li><strong>Di chuyển &amp; Triệu hồi:</strong> Bắt đầu với 4000 LP, 4 Summon Power (+3 SP/lượt). Quái đứng đúng địa hình thuận lợi (lật ngửa) đi được <strong>2 ô/lượt</strong> (hoặc đi chéo 1 ô).</li>
+            <li><strong>12 Cấp Thủ Lĩnh (<code>1LT</code> → <code>SD</code>):</strong> Phải lên tối thiểu <code>1LT</code> mới làm Thủ lĩnh; đạt <code>MAJ</code> mở kỹ năng ẩn <strong>Find</strong> tìm bài ẩn &amp; mở thêm mũi tên Slot. Mẹo cày EXP nhanh: đặt 3 bản sao cùng loài lật ngửa trên sân (99 EXP/lượt × số bản sao) rồi khóa Rex Raptor trong mê cung và bỏ lượt!</li>
+            <li><strong>Luân hồi (<code>L3</code> Reincarnation):</strong> Mở sau mỗi 5 trận đấu CPU — đổi 1 lá dư trong Chest lấy 3 lá mới có DC tương đương (dùng lá ~20 DC hoặc <code>Fake Trap</code> để săn 2 mảnh chân Exodia và <code>Mystical Sand</code>).</li>
+            <li><strong>Thắng bằng Exodia:</strong> Đặt <code>Exodia the Forbidden One</code> làm Thủ lĩnh + bày đủ 4 tay chân ngửa đúng vị trí quanh Thủ lĩnh và trụ qua 1 lượt của địch!</li>
+          </ul>
+        </div>
+      </div>
+
+      <h3>Bảng Đầy Đủ 10 Loại Địa Hình Chuẩn The Duelists of the Roses</h3>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Địa Hình (Lá Phép)</th><th>DC</th><th>Tăng +500 ATK/DEF &amp; Đi 2 Ô</th><th>Giảm -500 ATK/DEF / Tác Dụng Đặc Biệt</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Normal</strong> (Mặc định)</td><td>—</td><td>Không</td><td>Trung tính (±0), mọi quái đi 1 ô/lượt.</td></tr>
+            <tr><td><strong>Meadow</strong> (<code>#692 Sogen</code>)</td><td>30</td><td>Warrior, Beast-Warrior</td><td>Giảm -500 Spellcaster.</td></tr>
+            <tr><td><strong>Forest</strong> (<code>#689 Forest</code>)</td><td>30</td><td>Beast, Beast-Warrior, Plant, Insect, Pyro</td><td>Không trừ nặng (một số quái Demon/Fiend cũng hưởng lợi).</td></tr>
+            <tr><td><strong>Wasteland</strong> (<code>#690 Wasteland</code>)</td><td>30</td><td>Dinosaur, Zombie, Rock, Machine</td><td>Giảm -500 Aqua, Plant, Fish.</td></tr>
+            <tr><td><strong>Mountain</strong> (<code>#691 Mountain</code>)</td><td>30</td><td>Dragon, Winged-Beast, Thunder, Fairy</td><td>Địa hình vàng của đội Rồng &amp; Harpie.</td></tr>
+            <tr><td><strong>Sea</strong> (<code>#693 Umi</code>)</td><td>30</td><td>Aqua, Fish, Sea Serpent, Thunder</td><td>Giảm -500 Machine &amp; Pyro.</td></tr>
+            <tr><td><strong>Dark</strong> (<code>#694 Yami</code>)</td><td>30</td><td>Fiend, Spellcaster, Zombie</td><td>Giảm -500 Fairy.</td></tr>
+            <tr><td><strong>Toon</strong> (<code>#695 Toon World</code>)</td><td>—</td><td>Quái Toon (Toon Summoned Skull, Manga Ryu-Ran...)</td><td>Giảm -500 tất cả quái thường không phải Toon/Immortal.</td></tr>
+            <tr style="background:rgba(239,68,68,0.1)"><td><strong>Crush</strong> (Hiệu ứng/Bản đồ)</td><td>—</td><td>Tộc Immortal (Jowls, Souleater, Slate Warrior...)</td><td><strong>TIÊU DIỆT NGAY</strong> mọi quái không phải Immortal có ≥1500 ATK bước vào!</td></tr>
+            <tr><td><strong>Labyrinth</strong> (<code>#697 Labyrinth Wall</code>)</td><td>35</td><td>Tường chắn chặn di chuyển</td><td>Chỉ <code>Labyrinth Tank</code>, <code>Dungeon Worm</code>, <code>Shadow Ghoul</code> (hóa Wall Shadow), <code>Barrel Rock</code>/<code>Dharma Cannon</code> đi vào được.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="section-box">
+      <h2>Chiến Dịch, Bài Ẩn, Mật Khẩu &amp; 4 Bộ Bài 40 Lá Chuẩn DC</h2>
+      <div class="subtabs">
+        <button class="subtab-btn active" data-sub="dotr-bosses">1A. 21 Trùm 2 Phe (Đủ DC)</button>
+        <button class="subtab-btn" data-sub="dotr-secrets">1B. 20 Bài Ẩn (Find) &amp; Mật Khẩu (R3)</button>
+        <button class="subtab-btn" data-sub="dotr-decks">1C. 4 Bộ Bài 40 Lá (649 → 1790 DC)</button>
+      </div>
+
+      <div class="subpanel active" id="sub-dotr-bosses">
+        <input type="text" id="dotrBossSearch" class="search-input" placeholder="Tìm nhanh đấu thủ, phe (Lancaster/York), Thủ lĩnh hoặc địa hình..." />
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Đấu Thủ</th><th>Phe Địch</th><th>Deck Cost</th><th>Thủ Lĩnh (Deck Leader)</th><th>Địa Hình Chính</th><th>Chiến Thuật Phá Trận</th></tr></thead>
+            <tbody id="dotrBossTable"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="subpanel" id="sub-dotr-secrets">
+        <div class="grid-2">
+          <div>
+            <h3>20 Tọa Độ Bài Ẩn (Cần Thủ Lĩnh Hạng MAJ+)</h3>
+            <div class="table-wrap">
+              <table style="min-width:340px">
+                <thead><tr><th>Đối Thủ</th><th>Ô Tọa Độ</th><th>Lá Bài Ẩn Nhận Được</th></tr></thead>
+                <tbody id="dotrHiddenTable"></tbody>
+              </table>
+            </div>
+          </div>
+          <div>
+            <h3>Mật Khẩu Vàng Nhập Tại Màn Hình Build Deck (Nhấn <code>R3</code>)</h3>
+            <input type="text" id="dotrPassSearch" class="search-input" placeholder="Tìm tên bài để lấy mật khẩu 8 ký tự..." />
+            <div class="table-wrap">
+              <table style="min-width:340px">
+                <thead><tr><th>Tên Lá Bài</th><th>Mật Khẩu (R3)</th><th>Công Dụng / Ghi Chú</th></tr></thead>
+                <tbody id="dotrPassTable"></tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="subpanel" id="sub-dotr-decks">
+        <div class="filter-row" id="dotrDeckPicker">
+          <button class="filter-btn active" data-dkey="dotr1">Bộ 1: Low-DC Toàn Diện (649 DC)</button>
+          <button class="filter-btn" data-dkey="dotr2">Bộ 2: Pumpking Zombie Hồi Sinh (931 DC)</button>
+          <button class="filter-btn" data-dkey="dotr3">Bộ 3: Immortal Crush Lock (1173 DC)</button>
+          <button class="filter-btn" data-dkey="dotr4">Bộ 4: Săn Trùm Manawyddan (1790 DC)</button>
+        </div>
+        <div id="dotrDeckHeader" class="deck-summary"></div>
+        <div id="dotrDeckAlert" class="alert info"></div>
+        <div class="card-grid" id="dotrDeckGrid"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TAB 2: CAPSULE MONSTER COLISEUM (PS2) -->
+  <section class="panel" id="tab-cmc">
+    <div class="section-box">
+      <h2>2. Cờ Quái Vật 3D — Yu-Gi-Oh! Capsule Monster Coliseum (SLUS-20940)</h2>
+      <div class="grid-2">
+        <div class="section-box" style="margin:0;background:var(--bg-soft)">
+          <h3 style="margin-top:0">Vòng Xoay Tương Khắc 8 Thuộc Tính &amp; Biểu Tượng (Symbol)</h3>
+          <p style="font-size:0.83rem;color:var(--muted)">Chạm vào một hệ nguyên tố để xem ngay <strong>Khắc chế (Xanh lá)</strong>, <strong>Sợ hệ nào (Đỏ)</strong>, <strong>Đồng minh (Vàng)</strong> và hào quang Buff/Debuff của Symbol.</p>
+          <div style="margin-top:8px;font-size:0.77rem;color:var(--gold);font-weight:700;">Vòng 1 (Ánh sáng – Bóng tối – Đất – Sấm):</div>
+          <div class="attr-row" id="cmcCycle1"></div>
+          <div style="margin-top:6px;font-size:0.77rem;color:var(--cyan);font-weight:700;">Vòng 2 (Nước – Lửa – Mộc – Gió):</div>
+          <div class="attr-row" id="cmcCycle2"></div>
+          <div class="info-out" id="cmcAttrOut">Chọn một hệ thuộc tính bất kỳ ở trên để tra cứu hào quang Symbol &amp; tương khắc.</div>
+        </div>
+
+        <div class="section-box" style="margin:0;background:var(--bg-soft)">
+          <h3 style="margin-top:0">Luật Vàng MP / AP / PP, Cày EXP &amp; Mẹo Phục Hồi</h3>
+          <ul class="step-list">
+            <li><strong>Chọn <code>Custom Build</code> khi tạo file:</strong> Tránh chọn Starter Kit vì bộ mặc định phân bổ chỉ số yếu.</li>
+            <li><strong>3 Chỉ số sống còn:</strong> <code>MP</code> (giới hạn tổng điểm đội quân mang vào ải), <code>AP</code> (điểm triệu hồi quái &amp; tung kỹ năng SPA, tăng dần tới trần của ải), <code>PP</code> (máu của Symbol — về 0 là thua lập tức!).</li>
+            <li><strong>Bảng EXP tăng cấp (cần 100 EXP/cấp):</strong> Đánh thường / Phá Symbol theo cấp quái: Lv1 (10 / 100 EXP), Lv2 (5 / 50), Lv3 (4 / 40), Lv4 (3 / 30), Lv5–6 (2 / 20), Lv7–8 (1 / 10). Mẹo: ưu tiên nuôi quái tăng PP đều mỗi khi lên cấp.</li>
+            <li><strong>Mẹo phục hồi viên nang bị hủy:</strong> Vào trận bấm <code>X → Surrender → Try Again</code> để hồi ngay quân bị vỡ trận trước. <span style="color:#fca5a5;font-weight:700">CẢNH BÁO: Không dùng mẹo này ở Area 1 &amp; Area 2 nếu muốn mở khóa Firewing Pegasus!</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="section-box">
+      <h2>25 Đấu Trường (5 Areas), 17 Dung Hợp, 19 Tiến Hóa &amp; 8 Viên Nang Bí Mật</h2>
+      <div class="subtabs">
+        <button class="subtab-btn active" data-sub="cmc-areas">2A. 5 Đấu Trường (25 Ải)</button>
+        <button class="subtab-btn" data-sub="cmc-fusions">2B. 17 Dung Hợp &amp; 19 Tiến Hóa</button>
+        <button class="subtab-btn" data-sub="cmc-secrets">2C. 8 Viên Nang Bí Mật Shop Ông Nội</button>
+      </div>
+
+      <div class="subpanel active" id="sub-cmc-areas">
+        <div class="alert info"><strong>Mẹo săn bộ quái thứ 2 khi tái đấu Pegasus ở Area 5 (King Coliseum):</strong> Sau khi đã gặp bộ thứ nhất ở Area 3, lúc tái đấu Pegasus tại King Coliseum hãy thắng chọn lượt và chọn <strong>đi sau (Go Second)</strong> rồi chiếm lấy phía bàn cờ mà hắn thường chọn để mở bộ quái hiếm thứ 2 (<code>Oscillo Hero #2</code>, <code>Arsenal Bug</code>, <code>Jelly Fish</code>, <code>Illusionist Faceless Mage</code>). Ngoài ra, ải <em>Sealed Sanctuary</em> của Shadi (Area 5) là <strong>bản đồ duy nhất có ô +50 Wood</strong> để tiến hóa <code>Ancient Tree of Enlightenment</code> → <code>Trent</code>!</div>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Area</th><th>Đấu Thủ &amp; Đấu Trường</th><th>Hệ Symbol</th><th>Giới Hạn MP / AP</th><th>Bẫy Bản Đồ &amp; Quái Rơi Hiếm (***)</th></tr></thead>
+            <tbody id="cmcAreasTable"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="subpanel" id="sub-cmc-fusions">
+        <div class="alert danger"><strong>Luật Dung hợp vĩnh viễn:</strong> Nguyên liệu phải đạt đủ cấp, đang đứng <strong>liền kề nhau</strong>, chưa hành động và bạn phải có đủ AP bằng tổng AP nguyên liệu (nguyên liệu sẽ mất vĩnh viễn, chỉ giữ lại quái dung hợp Lv1!). Đặc biệt, muốn ghép <strong>Gate Guardian</strong> bắt buộc đặt <code>Sanga of the Thunder</code> đứng <strong>CHÍNH GIỮA</strong> <code>Suijin</code> và <code>Kazejin</code>!</div>
+        <div class="grid-2">
+          <div>
+            <h3>Toàn Bộ 17 Công Thức Dung Hợp</h3>
+            <div class="table-wrap">
+              <table style="min-width:340px">
+                <thead><tr><th>Quái Dung Hợp</th><th>Nguyên Liệu &amp; Cấp Tối Thiểu</th></tr></thead>
+                <tbody id="cmcFusionTable"></tbody>
+              </table>
+            </div>
+          </div>
+          <div>
+            <h3>Toàn Bộ 19 Nhánh Tiến Hóa (Level + Ô Thuộc Tính)</h3>
+            <div class="table-wrap">
+              <table style="min-width:340px">
+                <thead><tr><th>Dạng Tiến Hóa</th><th>Điều Kiện Gốc &amp; Ô Đất</th></tr></thead>
+                <tbody id="cmcEvoTable"></tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="subpanel" id="sub-cmc-secrets">
+        <p style="color:var(--muted)">Hoàn thành đúng điều kiện ẩn dưới đây rồi ghé cửa hàng Ông Nội (Grandpa's Shop) để mua đủ 8 viên nang đặc biệt của 8 nguyên tố:</p>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Hệ</th><th>Viên Nang Bí Mật</th><th>Điều Kiện Mở Khóa Trong Shop</th></tr></thead>
+            <tbody id="cmcSecretTable"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TAB 3: THE FALSEBOUND KINGDOM (GAMECUBE) -->
+  <section class="panel" id="tab-tfk">
+    <div class="section-box">
+      <h2>3. Vương Quốc Ảo Ảnh RTS/RPG — Yu-Gi-Oh! The Falsebound Kingdom (GYFEA4)</h2>
+      <div class="alert">
+        <strong>Cầu nối cốt truyện trực tiếp sau Forbidden Memories:</strong> Cựu nhà khoa học của Kaiba Corp là <strong>Scott Irvine</strong> đã bẫy Yugi, Kaiba, Mokuba và Joey vào vương quốc RPG thực tế ảo, sau đó tự hiến tế bản thân để đánh thức hai ác thần <strong>DarkNite &amp; NiteMare</strong> cùng sức mạnh của <strong>3 vị Thần Ai Cập</strong>!
+      </div>
+      <div class="grid-2">
+        <div class="section-box" style="margin:0;background:var(--bg-soft)">
+          <h3 style="margin-top:0">Cơ Chế Nguyên Soái (Marshal) &amp; Quản Trị Căn Cứ</h3>
+          <ul class="step-list">
+            <li><strong>Quy tắc tướng phòng thủ thành:</strong> Nguyên soái <strong>bước vào căn cứ sau cùng</strong> sẽ tự động làm người trấn giữ thành trì đó. Muốn đổi tướng thủ, cho tướng cần dùng đi ra ngoài rồi quay lại ngay.</li>
+            <li><strong>Đồng bộ màu Ngọc (Orb Matching):</strong> Màu ngọc của Nguyên soái phải khớp với màu ngọc của 3 quái vật trong tổ đội mới nhận thưởng chỉ số.</li>
+            <li><strong>Tái sinh &amp; bảo toàn tiến độ:</strong> Tướng bại trận tự tái sinh sau 5 giờ trong game với 50% máu. Toàn bộ EXP, cấp độ, vàng và vật phẩm đều được <strong>giữ nguyên kể cả khi thua màn</strong>.</li>
+            <li><strong>6 Công trình nâng cấp căn cứ:</strong> <code>Anti-Ground / Anti-Air Cannon</code> (bắn mất ~75% HP đội quân địch đi qua tầm), <code>Watch Tower</code> (nhân đôi tầm bắn pháo), <code>Barricade</code> (tăng chỉ số thủ thành), <code>Healer</code> (hồi máu bằng vàng), <code>Trade Union</code> (luôn có thương nhân), <code>Supply Unit</code> (nhập lại vật phẩm).</li>
+          </ul>
+        </div>
+        <div class="section-box" style="margin:0;background:var(--bg-soft)">
+          <h3 style="margin-top:0">Mở Khóa 3 Chiến Dịch &amp; 3 Thần Ai Cập (NG+)</h3>
+          <ul class="step-list">
+            <li><strong>Chiến dịch Yugi (Lượt 1 Màn 1 Lv1–2):</strong> Phá đảo &amp; hạ DarkNite/Obelisk → mở khóa vật phẩm <code>Soul of Obelisk</code> (triệu hồi <strong>Obelisk the Tormentor</strong>).</li>
+            <li><strong>Chiến dịch Kaiba (Lượt 2 Màn 1 Lv31–32):</strong> Phá đảo &amp; hạ DarkNite/Slifer → mở khóa vật phẩm <code>Slifer's Orb</code> (triệu hồi <strong>Slifer the Sky Dragon</strong>).</li>
+            <li><strong>Chiến dịch Joey (Mở khi phá đảo CẢ Yugi &amp; Kaiba — Lượt 3 Màn 1 Lv61):</strong> Đánh bại Marik trong tuyến Joey → nhận <code>Eye of Ra</code> (triệu hồi <strong>The Winged Dragon of Ra</strong> với <em>Almighty Blaze Cannon</em> &amp; Z-Attack <em>Almighty Blaze Nova</em>).</li>
+            <li><strong>Kỹ năng <code>Master of Egyptian Gods</code>:</strong> Dùng trong các lượt New Game Plus (sau tuyến Joey màn 1 lên Lv91) cho phép Nguyên soái triệu hồi các Thần Ai Cập áp đảo toàn bản đồ.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="section-box">
+      <h2>Đội Hình 3 Quái Tối Thượng, Đòn Phối Hợp &amp; Chiêu Mộ Yugi Màn 1–10</h2>
+      <div class="subtabs">
+        <button class="subtab-btn active" data-sub="tfk-squads">3A. 4 Đội Hình Meta &amp; Z-Attack</button>
+        <button class="subtab-btn" data-sub="tfk-yugi">3B. Điểm Chiêu Mộ Hiếm (Yugi Màn 1–10)</button>
+        <button class="subtab-btn" data-sub="tfk-fusions">3C. Dung Hợp &amp; Chuyển Cấp Trong Trận</button>
+      </div>
+
+      <div class="subpanel active" id="sub-tfk-squads">
+        <div class="grid-2" id="tfkSquadsGrid"></div>
+      </div>
+
+      <div class="subpanel" id="sub-tfk-yugi">
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Màn Chơi (Yugi Campaign)</th><th>Quái Vật / Tướng Chiêu Mộ Quan Trọng</th><th>Vị Trí &amp; Điều Kiện Kích Hoạt</th></tr></thead>
+            <tbody id="tfkYugiTable"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="subpanel" id="sub-tfk-fusions">
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Siêu Quái / Dạng Nâng Cấp</th><th>Nguyên Liệu Bắt Buộc</th><th>Vật Phẩm Kích Hoạt</th><th>Ghi Chú Sức Mạnh</th></tr></thead>
+            <tbody id="tfkFusionTable"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TAB 4: DUNGEON DICE MONSTERS (GBA) -->
+  <section class="panel" id="tab-ddm">
+    <div class="section-box">
+      <h2>4. Cờ Xúc Xắc Mê Cung — Yu-Gi-Oh! Dungeon Dice Monsters (AGB-AYDE-USA)</h2>
+      <div class="grid-2">
+        <div class="section-box" style="margin:0;background:var(--bg-soft)">
+          <h3 style="margin-top:0">Quy Tắc 15 Xúc Xắc, 6 Mặt Crest &amp; Luật Mở Đường</h3>
+          <ul class="step-list">
+            <li><strong>Luật ghép cặp Cấp độ (Bắt buộc nhớ!):</strong> Để triệu hồi (Dimension) một quái cấp X, trong bể 15 viên <strong>phải có ít nhất 2 viên cùng cấp X</strong> để tung ra ≥2 mặt <code>Sum</code> trùng cấp.</li>
+            <li><strong>Mở mê cung 6 ô:</strong> Mỗi lần Dimension thành công, nhấn <code>START</code> hoặc <code>R</code> để xoay hình trải 6 ô vuông nối đường tới Die Master đối phương, rồi nhấn <code>A</code>.</li>
+            <li><strong>6 Biểu tượng Crest:</strong> <code>Sum</code> (Sao đỏ — Triệu hồi), <code>Mov</code> (Mũi tên cam — Di chuyển), <code>Atk</code> (Kiếm — Tấn công), <code>Def</code> (Khiên — Phòng thủ), <code>Mag</code> (Ngôi sao xanh — Phép/Kỹ năng), <code>Tra</code> (Chữ X xanh — Bẫy/Kỹ năng).</li>
+            <li><strong>Kỹ năng di chuyển đặc biệt:</strong> Quái <strong>Flying</strong> tốn <code>2 Mov/ô</code> nhưng chỉ bị tấn công bởi Flying/Archery; quái <strong>Tunneling</strong> (<code>Mammoth Graveyard</code>, <code>Jirai Gumo</code>) đi xuyên qua ô có quái khác.</li>
+            <li><strong>Thắng bằng Exodia:</strong> Bày đủ 4 tay chân Lv3 trên mê cung rồi Dimension <code>Exodia the Forbidden One</code> (Lv4) → <strong>THẮNG TỨC THÌ</strong>!</li>
+          </ul>
+        </div>
+        <div class="section-box" style="margin:0;background:var(--bg-soft)">
+          <h3 style="margin-top:0">4 Xúc Xắc "Pin Năng Lượng" Cày Crest Mạnh Nhất Game</h3>
+          <div class="table-wrap">
+            <table style="min-width:340px">
+              <thead><tr><th>Xúc Xắc</th><th>Cấp</th><th>Mặt Crest Khủng Nhất</th><th>Vai Trò Meta</th></tr></thead>
+              <tbody>
+                <tr><td><strong>Energy Disc</strong></td><td>Lv1</td><td><code>3Mov</code> • <code>4Mov</code> • 4×Sum</td><td>Máy bơm Movement Lv1 số 1 (thường tung để lấy Mov chứ không đặt lên bàn).</td></tr>
+                <tr><td><strong>Thousand Dragon</strong></td><td>Lv2</td><td><code>7Atk</code> • <code>2Mov</code> • 3×Sum</td><td>Trùm bơm Attack crest cấp 2 kiêm chủ lực 30 ATK.</td></tr>
+                <tr><td><strong>Thousand-Eyes Restrict</strong></td><td>Lv4</td><td><code>5Mag</code> • 2Mov • 2Def</td><td>Máy bơm Magic crest mạnh nhất toàn game.</td></tr>
+                <tr style="background:rgba(245,183,0,0.09)"><td><strong>Metalzoa</strong></td><td>Lv4</td><td><code>8Mov</code> • <code>8Def</code> • <code>4Tra</code></td><td><strong>Vua bơm Crest toàn diện nhất game</strong> (1 viên cày 3 hệ!).</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="alert" style="margin-bottom:0"><strong>Mẹo khởi đầu mới (Reroll):</strong> Khi bắt đầu New Game, nên kiểm tra bể khởi đầu có <code>Baby Dragon</code>, <code>Curse of Dragon</code> (Flying) và <code>Rogue Doll</code> (2 mặt Atk) để vượt Division 1 nhanh gọn.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section-box">
+      <h2>3 Bộ 15 Xúc Xắc Meta &amp; Toàn Bộ 19 Giải Đấu (3 Hạng Đấu)</h2>
+      <div class="subtabs">
+        <button class="subtab-btn active" data-sub="ddm-pools">4A. 3 Bộ 15 Xúc Xắc Chuẩn (Đã Kiểm Toán)</button>
+        <button class="subtab-btn" data-sub="ddm-cups">4B. 19 Giải Đấu (Div 1 / Reverse / Dark + Yami Yugi)</button>
+      </div>
+
+      <div class="subpanel active" id="sub-ddm-pools">
+        <div class="filter-row" id="ddmPoolPicker">
+          <button class="filter-btn active" data-pkey="ddm1">Pool 1: Twin Swords Tempo Meta</button>
+          <button class="filter-btn" data-pkey="ddm2">Pool 2: Beast Đào Hầm &amp; Crater Wipe</button>
+          <button class="filter-btn" data-pkey="ddm3">Pool 3: Exodia Khống Chế &amp; Hồi Sinh</button>
+        </div>
+        <div id="ddmPoolHeader" class="deck-summary"></div>
+        <div id="ddmPoolAlert" class="alert info"></div>
+        <div class="card-grid" id="ddmPoolGrid"></div>
+      </div>
+
+      <div class="subpanel" id="sub-ddm-cups">
+        <div class="alert success"><strong>Cách mở khóa Dark Magician Girl (DMG):</strong> Thắng đủ giải đấu để kích hoạt thử thách ẩn <strong>Yami Yugi's Challenge</strong> (Division 3 — 9 vật cản, thưởng 1500G). Đánh bại Yami Yugi (đặc biệt khi đụng Marik, Yami Bakura và Yami Yugi) sẽ mở cơ hội mua DMG trong Shop Ông Nội!</div>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Hạng Đấu</th><th>Tên Giải Đấu</th><th>Độ Khó</th><th>Thưởng Gốc</th><th>Bố Trí Vật Cản &amp; Ghi Chú</th></tr></thead>
+            <tbody id="ddmCupsTable"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TAB 5: KHO LÁ BÀI, ITEMS, BẪY & PHÉP 4 GAME — ƯU TIÊN DÙNG -->
+  <section class="panel" id="tab-items">
+    <div class="section-box">
+      <h2>5. Từ Điển 61 Bẫy, Phép, Vật Phẩm, SPA &amp; Item Dice Của Cả 4 Game (Xếp Hạng S–C)</h2>
+      <p style="color:var(--muted)">Lọc nhanh theo từng game, theo chủng loại (Bẫy, Phép, Trang bị, Hồi sinh/Hồi máu, Kỹ năng SPA/Item Dice) hoặc theo <strong>mức ưu tiên nên dùng</strong>. Chạm vào từng mục để mở khung phân tích chiến thuật chi tiết!</p>
+
+      <div style="font-size:0.78rem;color:var(--gold);font-weight:700;margin-top:8px;">Lọc theo Game:</div>
+      <div class="filter-row" id="itemGameFilter">
+        <button class="filter-btn active" data-g="all">Tất cả 4 Game (61)</button>
+        <button class="filter-btn" data-g="dotr">1. Duelists of Roses (24)</button>
+        <button class="filter-btn" data-g="cmc">2. Capsule Coliseum SPA (12)</button>
+        <button class="filter-btn" data-g="tfk">3. Falsebound Kingdom (15)</button>
+        <button class="filter-btn" data-g="ddm">4. Dungeon Dice Items (10)</button>
+      </div>
+
+      <div style="font-size:0.78rem;color:var(--cyan);font-weight:700;">Lọc theo Loại &amp; Mức Ưu Tiên:</div>
+      <div class="filter-row" id="itemCatFilter">
+        <button class="filter-btn active" data-c="all">Mọi loại</button>
+        <button class="filter-btn" data-c="trap">Bẫy / Phản đòn</button>
+        <button class="filter-btn" data-c="spell">Phép / Dọn sân</button>
+        <button class="filter-btn" data-c="equip">Trang bị / Buff</button>
+        <button class="filter-btn" data-c="revive">Hồi sinh / Hồi máu</button>
+        <button class="filter-btn" data-c="dice">Item Dice / SPA Đặc biệt</button>
+      </div>
+      <div class="filter-row" id="itemTierFilter">
+        <button class="filter-btn active" data-t="all">Mọi hạng (S–C)</button>
+        <button class="filter-btn" data-t="S">★ Hạng S (Bắt buộc)</button>
+        <button class="filter-btn" data-t="A">Hạng A (Rất mạnh)</button>
+        <button class="filter-btn" data-t="B">Hạng B (Tình huống)</button>
+        <button class="filter-btn" data-t="C">Hạng C (Không ưu tiên)</button>
+      </div>
+
+      <input type="text" id="itemSearch" class="search-input" placeholder="Tìm nhanh (VD: Mirror Wall, Monster Reborn, Shock Shell, Energy Disc, Hồi sinh, Tê liệt)..." />
+      <div id="itemCountBar" class="deck-summary"></div>
+      <div class="item-grid" id="itemsGrid"></div>
+    </div>
+  </section>
+
+  <!-- TAB 6: CÀI ĐẶT CHI TIẾT 4 GAME TRÊN MÁY SAMSUNG ANDROID -->
+  <section class="panel" id="tab-samsung">
+    <div class="section-box">
+      <h2>6. Hướng Dẫn Cài Đặt 4 Bản Game Cực Kỳ Chi Tiết Trên Samsung Android (Chuẩn 2026)</h2>
+
+      <h3>Bước 0A: Chọn Đúng Dòng Chip Samsung Của Bạn Để Nhận Cấu Hình Tối Ưu Tức Thì</h3>
+      <div class="filter-row" id="samsungChipPicker">
+        <button class="filter-btn active" data-chip="snapdragon">Samsung Snapdragon / Adreno (S23 / S24 Ultra / S25 / Z Fold)</button>
+        <button class="filter-btn" data-chip="xclipse">Samsung Exynos 2400 / Xclipse 940 (S24 / S24+ / S24 FE)</button>
+        <button class="filter-btn" data-chip="mali">Samsung Exynos Mali / MediaTek (Galaxy A35 / A54 / A55 / M-Series)</button>
+      </div>
+      <div id="samsungChipOut" class="info-out"></div>
+
+      <h3>Bước 0B: Chuẩn Hóa Cây Thư Mục Ngoài <code>/Android/data/</code> &amp; Tối Ưu One UI 7 (Android 15+)</h3>
+      <div class="grid-2">
+        <div>
+          <p>Mở ứng dụng <strong>My Files (File của bạn)</strong> trên Samsung hoặc <strong>ZArchiver</strong>, tạo chính xác cây thư mục sau ngay ở <em>Bộ nhớ trong (Internal Storage)</em> để tránh các lỗi phân quyền Scoped Storage trên Android hiện đại:</p>
+<pre>/Internal Storage/Emulation/
+├── PS2/
+│   ├── bios/
+│   │   └── scph39001.bin      (Đúng 4.194.304 bytes, đuôi .bin VIẾT THƯỜNG!)
+│   └── games/
+│       ├── Yu-Gi-Oh! The Duelists of the Roses (USA).chd
+│       └── Yu-Gi-Oh! Capsule Monster Coliseum (USA).chd
+├── GameCube/
+│   └── Yu-Gi-Oh! The Falsebound Kingdom (USA).rvz
+└── GBA/
+    └── Yu-Gi-Oh! Dungeon Dice Monsters (USA).gba</pre>
+        </div>
+        <div class="section-box" style="margin:0;background:var(--bg-soft)">
+          <h3 style="margin-top:0">Cấu Hình Hệ Thống Samsung One UI 7 (Chống Tụt FPS)</h3>
+          <ol class="step-list">
+            <li><strong>Bật cài APK nguồn ngoài:</strong> <em>Cài đặt → Ứng dụng → Truy cập đặc biệt → Cài đặt ứng dụng không xác định</em> → Bật cho <strong>Chrome</strong>, <strong>My Files</strong> và <strong>ZArchiver</strong>.</li>
+            <li><strong>Mở chế độ Hiệu năng One UI 7 (GOS):</strong> Do One UI 7 đã bỏ mục <em>Game Booster Labs</em> cũ, hãy mở <strong>Gaming Hub → ⋮ (Thêm) → Game Booster → Game optimisation → chọn Performance</strong>.</li>
+            <li><strong>Khóa 60Hz riêng cho từng giả lập:</strong> Vào <em>Game Booster → Customisations for individual games</em> → chọn NetherSX2 &amp; Dolphin → đặt tần số quét <strong>60Hz</strong> (phù hợp tốc độ khung hình tối đa của game, giúp máy mát và ổn định hơn).</li>
+            <li><strong>Bật Priority Mode:</strong> Trong menu Game Booster bật <em>Priority Mode</em> để chặn thông báo bật lên khi đang điều khiển bàn cờ.</li>
+          </ol>
+        </div>
+      </div>
+    </div>
+
+    <div class="section-box">
+      <h2>Quy Trình Cài Đặt Từng Hệ Giả Lập Cho 4 Tựa Game</h2>
+      <div class="subtabs">
+        <button class="subtab-btn active" data-sub="sam-ps2">1. PS2: DotR + CMC (NetherSX2 v2.2n)</button>
+        <button class="subtab-btn" data-sub="sam-gc">2. GameCube: Falsebound Kingdom (Dolphin 2609b)</button>
+        <button class="subtab-btn" data-sub="sam-gba">3. GBA: Dungeon Dice (RetroArch 1.22.2 &amp; Pizza Boy A)</button>
+      </div>
+
+      <div class="subpanel active" id="sub-sam-ps2">
+        <div class="alert success"><strong>1 Ứng Dụng + 1 BIOS Chơi Cả 2 Siêu Phẩm PS2:</strong> <code>Yu-Gi-Oh! The Duelists of the Roses (SLUS-20515)</code> và <code>Yu-Gi-Oh! Capsule Monster Coliseum (SLUS-20940)</code> chạy trên cùng bản NetherSX2 v2.2n!</div>
+        <ol class="step-list">
+          <li><strong>Chọn đúng nhánh APK NetherSX2 (tránh bản AetherSX2 3064 cũ trên Play Store có quảng cáo):</strong>
+            <ul>
+              <li>Dùng <strong>NetherSX2 Classic v2.2n-3668</strong> (GitHub <code>Trixarian/NetherSX2-classic</code>) cho máy Samsung dùng <strong>Exynos Mali / tầm trung</strong> (tương thích tốt và nhẹ hơn).</li>
+              <li>Dùng <strong>NetherSX2 Patched v2.2n-4248</strong> (GitHub <code>Trixarian/NetherSX2-patch</code>) cho máy Samsung dùng <strong>Snapdragon Adreno mạnh</strong>.</li>
+              <li><em>Lưu ý nâng cấp:</em> Nếu trước đó đã cài AetherSX2 hoặc NetherSX2 cũ hơn v1.9a, hãy vào <em>Transfer Data → Export</em> sao lưu thẻ nhớ rồi <strong>gỡ hoàn toàn bản cũ</strong> trước khi cài APK mới.</li>
+            </ul>
+          </li>
+          <li><strong>Kiểm tra 3 lỗi BIOS PS2 thường gặp:</strong> (1) Đã giải nén file <code>scph39001.bin</code> khỏi <code>.zip/.7z</code>; (2) Đuôi <code>.bin</code> viết thường hoàn toàn (Android phân biệt HOA/thường); (3) Kích thước đúng <code>4.194.304 bytes</code> (4,0 MB) và đặt trong <code>/Internal Storage/Emulation/PS2/bios/</code>.</li>
+          <li><strong>Setup Wizard lần đầu:</strong> Mở NetherSX2 → nhấn <code>Next</code> → chọn preset <strong>Optimal/Safe</strong> → mục <em>Import BIOS</em> chọn <code>scph39001.bin</code> → mục <em>Game Directories</em> bấm dấu <code>+</code> trỏ tới <code>/Emulation/PS2/games/</code> → nhấn <strong>Use This Folder → Allow</strong>.</li>
+          <li><strong>Tinh chỉnh Graphics chuẩn xác cho 2 game Yu-Gi-Oh! PS2:</strong> Vào biểu tượng bánh răng <em>App Settings → Graphics</em>:
+            <ul>
+              <li><em>GPU Renderer:</em> <strong>Vulkan</strong> (khuyến nghị chung cho hiệu năng tốt nhất).</li>
+              <li><em>Upscale Multiplier:</em> <strong>2x–3x Native (720p–1080p)</strong> trên Snapdragon; <strong>1.5x–2x Native</strong> trên Exynos / Mali tầm trung.</li>
+              <li><em>Hardware Download Mode:</em> <strong>Disable Readbacks</strong> (tối ưu tốc độ dựng khung hình bàn cờ 3D).</li>
+              <li><em>Threaded Presentation:</em> <strong>BẮT BUỘC BẬT</strong> khi dùng bản Classic 3668 với Vulkan!</li>
+              <li><em>Aspect Ratio:</em> <code>16:9</code> kết hợp bật <em>Enable Widescreen Patches</em> (trong mục <em>System</em>) để hiển thị tràn viền trên màn hình Galaxy.</li>
+            </ul>
+          </li>
+          <li><strong>Mẹo nút cảm ứng &amp; Lưu game trên Samsung:</strong> Khi vào <em>Duelists of the Roses</em> lần đầu, đồng ý format Memory Card ảo 8MB (Slot 1). Để bấm <strong><code>L3</code> (Luân hồi)</strong> và <strong><code>R3</code> (Nhập mật khẩu)</strong> trong DotR, hãy mở menu tạm dừng → <em>Controller Settings → Touchscreen → Add/Remove Buttons</em> để hiển thị thêm 2 nút <code>L3/R3</code>!</li>
+        </ol>
+      </div>
+
+      <div class="subpanel" id="sub-sam-gc">
+        <div class="alert info"><strong>Không Cần BIOS!</strong> Chỉ cần tải Dolphin 64-bit chính chủ trên Google Play Store và chép file <code>Yu-Gi-Oh! The Falsebound Kingdom (USA).rvz</code> (hoặc <code>.iso</code>).</div>
+        <ol class="step-list">
+          <li><strong>Cài đặt Dolphin Emulator (bản 2609 / 2609b mới nhất cuối 2026):</strong> Mở Google Play Store tìm <strong>Dolphin Emulator</strong> (nhà phát triển <em>Dolphin Emulator</em>, yêu cầu Android 64-bit <code>arm64-v8a</code>).</li>
+          <li><strong>Nạp thư mục GameCube:</strong> Mở Dolphin → chạm nút <strong><code>+</code> (Add Games)</strong> ở góc dưới → trỏ tới <code>/Internal Storage/Emulation/GameCube/</code> → chọn <strong>Use This Folder → Allow</strong>.</li>
+          <li><strong>Cấu hình Graphics &amp; Shader chống khựng khi tung Z-Attack:</strong> Nhấn biểu tượng bánh răng → <em>Graphics Settings</em>:
+            <ul>
+              <li><em>Video Backend:</em> <strong>Vulkan</strong> (Snapdragon) hoặc <strong>OpenGL ES</strong> (Exynos / nếu thấy lỗi hiển thị).</li>
+              <li><em>Shader Compilation Mode:</em> Chọn <strong>Hybrid Ubershaders</strong> + bật <strong>Compile Shaders Before Starting</strong> để giảm khựng hình khi quái vật thi triển hiệu ứng phép thuật.</li>
+              <li><em>Enhancements → Internal Resolution:</em> Đặt <strong>2x Native (720p)</strong> (hoặc 1x–1.5x cho máy tầm trung).</li>
+            </ul>
+          </li>
+          <li><strong>NGUYÊN TẮC LƯU GAME AN TOÀN (TRÁNH LỖI <code>DSI Exception</code>):</strong> Trong lịch sử giả lập <em>The Falsebound Kingdom</em> trên các phiên bản Dolphin cũ từng ghi nhận lỗi treo <code>DSI exception in stmw/lmw</code> nếu chỉ dùng Save State kéo dài qua nhiều màn. Hãy <strong>luôn lưu bằng thẻ nhớ gốc trong game (Memory Card) sau mỗi nhiệm vụ</strong> và chỉ dùng Save State làm bản lưu phụ trong trận!</li>
+          <li><strong>Bố trí phím tay cầm GameCube trên màn hình Samsung:</strong> Trong trận bấm nút <strong><code>Z</code></strong> trên tay cầm ảo để kích hoạt đòn phối hợp Đôi/Ba (Z-Attack); kéo nút <code>Z</code> sang vị trí dễ bấm qua <em>Overlay Controls → Edit Layout</em>.</li>
+        </ol>
+      </div>
+
+      <div class="subpanel" id="sub-sam-gba">
+        <div class="alert success"><strong>Không Cần BIOS • Siêu Nhẹ 60 FPS Kể Cả Máy Samsung Đời Cũ!</strong> Có 2 lựa chọn tối ưu năm 2026 để chơi <code>Yu-Gi-Oh! Dungeon Dice Monsters (USA).gba</code>:</div>
+        <div class="grid-2">
+          <div class="section-box" style="margin:0;background:var(--bg-soft)">
+            <h3 style="margin-top:0">Cách 1 (Gọn nhẹ, không quảng cáo): Pizza Boy A</h3>
+            <ol class="step-list">
+              <li>Mở Google Play Store tải <strong>Pizza Boy A: GBA Emulator</strong> (bản Basic miễn phí, 0 quảng cáo, viết bằng C &amp; Assembly nên chạy mượt 60 FPS và ít hao pin; bản Pro bổ sung tua lại &amp; đồng bộ Google Drive).</li>
+              <li>Mở app → chọn thư mục <code>/Internal Storage/Emulation/GBA/</code> → mở file <code>Yu-Gi-Oh! Dungeon Dice Monsters (USA).gba</code>.</li>
+              <li>Tận dụng nút <strong>Fast Forward</strong> để tua nhanh hoạt ảnh tung xúc xắc và luôn bấm <strong>Save State</strong> trước mỗi trận vòng loại (vì bản gốc GBA không cho lưu giữa 4 trận trong một giải đấu!).</li>
+            </ol>
+          </div>
+          <div class="section-box" style="margin:0;background:var(--bg-soft)">
+            <h3 style="margin-top:0">Cách 2 (Đa hệ + RetroAchievements): RetroArch 1.22.2</h3>
+            <ol class="step-list">
+              <li><strong>Quan trọng:</strong> Tải file <strong>APK 64-bit trực tiếp từ trang chủ <code>retroarch.com</code></strong> (tài liệu Libretro không khuyến nghị bản Play Store vì thiếu <em>Core Downloader</em>!).</li>
+              <li>Mở RetroArch → vào <em>Online Updater → Core Downloader</em> → kéo xuống tải <strong><code>Nintendo - Game Boy Advance (mGBA)</code></strong>.</li>
+              <li>Quay về menu chính → <em>Load Content</em> → đi tới <code>/storage/emulated/0/Emulation/GBA/</code> → mở file <code>.gba</code> và chạy bằng nhân <code>mGBA</code>.</li>
+              <li>Vào <em>Quick Menu → On-Screen Overlay</em> chỉnh bố cục nút GBA và gắn phím tắt <em>Save State / Load State / Fast Forward</em>.</li>
+            </ol>
+          </div>
+        </div>
+      </div>
+
+      <h3>8 Lỗi Thường Gặp Nhất Trên Máy Samsung &amp; Cách Khắc Phục Tức Thì</h3>
+      <div id="samsungTroubleshoot"></div>
+    </div>
+  </section>
+
+  <!-- TAB 7: CÔNG CỤ TÍNH TOÁN & KIỂM TOÁN ĐA GAME -->
+  <section class="panel" id="tab-tools">
+    <div class="section-box">
+      <h2>7. Công Cụ Kiểm Tra Ngưỡng Deck Cost (DotR) &amp; Tra Cứu Công Thức CMC</h2>
+      <div class="calc-box">
+        <strong style="color:var(--cyan)">Công cụ 1: Kiểm tra bộ bài DotR đánh được những Trùm nào (theo tổng DC)</strong>
+        <div class="calc-row">
+          <label>Chọn nhanh bộ mẫu hoặc nhập DC của bạn:
+            <select id="dcPreset">
+              <option value="649">Bộ 1: Low-DC Toàn Diện (649 DC)</option>
+              <option value="931">Bộ 2: Pumpking Zombie Hồi Sinh (931 DC)</option>
+              <option value="1173">Bộ 3: Immortal Crush Lock (1173 DC)</option>
+              <option value="1790">Bộ 4: Săn Trùm Manawyddan (1790 DC)</option>
+            </select>
+          </label>
+          <label>Tổng DC thực tế: <input id="dcInput" type="number" min="40" max="3000" value="649" style="width:90px" /></label>
+        </div>
+        <div id="dcCheckOut" class="info-out"></div>
+      </div>
+
+      <div class="calc-box">
+        <strong style="color:var(--cyan)">Công cụ 2: Tra cứu nhanh Công thức Tiến hóa / Dung hợp CMC theo Quái đích</strong>
+        <div class="calc-row">
+          <label for="cmcQuickSelect">Chọn quái đích trong Capsule Monster Coliseum:</label>
+          <select id="cmcQuickSelect"></select>
+        </div>
+        <div id="cmcQuickOut" class="info-out"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TAB 8: ABOUT, LINK GỐC & HƯỚNG DẪN CẬP NHẬT -->
+  <section class="panel" id="tab-about">
+    <div class="section-box">
+      <h2>8. About — Thông Tin Phiên Bản Thương Mại &amp; Link Tham Khảo Gốc</h2>
+      <div class="deck-summary">
+        <div class="stat-pill">Phiên bản: <strong>Pro Edition v4.0 (×4 Scale — 9 Tabs)</strong></div>
+        <div class="stat-pill">Phạm vi: <strong>4 Game Bàn Cờ (DotR • CMC • TFK • DDM)</strong></div>
+        <div class="stat-pill">Cập nhật giả lập: <strong>Tháng 11/2026 (Samsung One UI 7+)</strong></div>
+        <div class="stat-pill">Chế độ hình ảnh: <strong>100% Offline SVG Art (Zero-Hotlink)</strong></div>
+      </div>
+
+      <div class="alert info">
+        <strong>Link phiên bản tham khảo gốc (Forbidden Memories v2.0 &amp; mạch nghiên cứu ban đầu):</strong><br/>
+        🔗 <a href="https://gemini.google.com/app/98b467bb332b961f" target="_blank" rel="noopener noreferrer" style="color:var(--gold-soft);font-weight:800;word-break:break-all;">https://gemini.google.com/app/98b467bb332b961f</a><br/>
+        <span style="font-size:0.82rem;color:var(--muted)">Giữ đường dẫn trên để đối chiếu lại bản cẩm nang PS1 Forbidden Memories v2.0 cũ (SLUS-01411 — Full 722 lá) hoặc tiếp tục mở rộng sang các phiên bản Yu-Gi-Oh! khác.</span>
+      </div>
+
+      <h3>Kiểm Toán Tự Động Toàn Bộ Dữ Liệu 4 Game (Chạy Sau Mỗi Lần Tự Chỉnh Sửa)</h3>
+      <p style="color:var(--muted)">Bấm nút dưới đây để kiểm tra toán học ngay lập tức: 4 bộ bài DotR (đúng 40/40 lá, ≤3 bản sao, tổng DC khớp chuẩn), 3 bể DDM (đúng 15/15 xúc xắc) và tổng số mục trong Kho Bẫy/Phép/Items:</p>
+      <div style="display:flex;flex-wrap:wrap;gap:8px;margin:10px 0;">
+        <button class="action-btn gold" id="runAuditBtn">Chạy kiểm toán toàn bộ dữ liệu ngay</button>
+        <button class="action-btn" id="copyDbBtn">Sao chép dữ liệu JSON (Decks + Items)</button>
+      </div>
+      <div id="auditOutput" class="info-out">Nhấn "Chạy kiểm toán toàn bộ dữ liệu ngay" để xem báo cáo kiểm định tự động.</div>
+    </div>
+
+    <div class="section-box">
+      <h2>Hướng Dẫn Chi Tiết Cách Tự Cập Nhật Thông Tin Bài, Vật Phẩm &amp; Game Trong File Này</h2>
+      <p>Toàn bộ nội dung trong file HTML được tách thành các khối dữ liệu JSON gọn gàng ngay trong thẻ <code>&lt;script&gt;</code> ở cuối file. Bạn có thể tự chỉnh sửa trực tiếp trên điện thoại Samsung (bằng app <strong>Acode</strong> hoặc <strong>QuickEdit</strong>) hoặc trên PC (<strong>VS Code</strong>) mà không cần chạm vào giao diện CSS:</p>
+
+      <h3>Bước 1: Thêm hoặc sửa Bẫy / Phép / Vật phẩm / SPA / Item Dice (mảng <code>ITEMS_DB</code>)</h3>
+      <p>Tìm dòng <code>const ITEMS_DB = [</code> và sao chép 1 khối đối tượng theo đúng mẫu sau:</p>
+<pre>{
+  game: "dotr",           // "dotr" | "cmc" | "tfk" | "ddm"
+  cat: "trap",            // "trap" | "spell" | "equip" | "revive" | "dice"
+  tier: "S",              // "S" (Bắt buộc) | "A" (Rất mạnh) | "B" (Tình huống) | "C" (Tránh)
+  code: "#829",           // Mã lá bài hoặc Cấp độ
+  name: "Mirror Wall",    // Tên chuẩn trong game
+  cost: "80 DC • Pass: 53297534",
+  effect: "Bẫy vĩnh cửu: giảm một nửa vĩnh viễn ATK quái địch khi tấn công.",
+  priority: "Ưu tiên #1 cho mọi bộ bài DotR; đặt bảo vệ Thủ lĩnh cực an toàn."
+}</pre>
+
+      <h3>Bước 2: Chỉnh sửa 4 Bộ bài 40 lá DotR (<code>DOTR_DECKS</code>) hoặc 3 Bể 15 xúc xắc DDM (<code>DDM_POOLS</code>)</h3>
+      <ul class="step-list">
+        <li>Tìm <code>const DOTR_DECKS = {</code>: mỗi lá bài gồm <code>id</code>, <code>name</code>, <code>qty</code> (1–3), <code>dc</code> (Deck Cost từng lá), <code>type</code>, <code>stats</code>, <code>pass</code>, <code>note</code>. Hệ thống tự cộng tổng DC và tổng lá khi bạn bấm nút <strong>Kiểm toán</strong> ở Tab 8.</li>
+        <li>Tìm <code>const DDM_POOLS = {</code>: đảm bảo tổng <code>qty</code> bằng đúng <strong>15 viên</strong> và mỗi cấp độ cần triệu hồi phải có tổng ≥2 viên cùng cấp.</li>
+        <li>Cập nhật công thức CMC (<code>CMC_FUSIONS</code>, <code>CMC_EVOS</code>), bảng trùm DotR (<code>DOTR_BOSSES</code>) hoặc thêm bước cài giả lập Samsung mới ngay trong thẻ <code>#tab-samsung</code>.</li>
+      </ul>
+
+      <h3>Bước 3: Chế Độ Hình Ảnh Thương Mại (Zero-Hotlink SVG vs Thư Mục Ảnh Cục Bộ)</h3>
+      <p>Để file bán ra <strong>không bao giờ bị lỗi ảnh hay dính khóa IP</strong> từ máy chủ bên thứ ba, cấu hình mặc định nằm ở đầu thẻ <code>&lt;script&gt;</code> là:</p>
+<pre>const ASSET_CONFIG = {
+  useLocalImages: false,       // false = Dùng bộ dựng SVG foil chuyên nghiệp 100% offline
+  localFolder: "./assets/"     // Nếu muốn tự chèn ảnh riêng, đổi thành true và bỏ file {slug}.jpg vào ./assets/
+};</pre>
+      <div class="alert danger" style="margin-bottom:0">
+        <strong>Lưu ý đóng gói khi kinh doanh file HTML:</strong> Bạn toàn quyền tùy biến thương hiệu, chỉnh sửa nội dung chiến thuật và phân phối file HTML cẩm nang này; tuyệt đối <strong>không đóng gói kèm file ROM game hay file BIOS (.bin)</strong> bản quyền của nhà phát hành.
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- DETAIL INSPECTOR MODAL -->
+<div class="modal-backdrop" id="detailModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+  <div class="modal-box">
+    <button class="modal-close" id="modalClose" aria-label="Đóng">✕</button>
+    <div class="modal-top">
+      <img id="modalImg" src="" alt="" />
+      <div class="modal-info">
+        <div id="modalBadges" style="margin-bottom:6px;display:flex;flex-wrap:wrap;gap:5px;"></div>
+        <h3 id="modalTitle"></h3>
+        <div class="modal-row"><span>Game / Phân loại:</span> <strong id="modalSub1"></strong></div>
+        <div class="modal-row"><span>Chỉ số / Chi phí / Mật khẩu:</span> <code id="modalSub2"></code></div>
+      </div>
+    </div>
+    <div style="margin-top:12px;border-top:1px solid var(--border);padding-top:10px;">
+      <div class="modal-row"><span>Công dụng chuẩn xác trong game:</span><br/><strong id="modalEffect" style="color:var(--cyan)"></strong></div>
+      <div class="modal-row" style="margin-top:8px;"><span>Đánh giá ưu tiên &amp; Chiến thuật thực chiến:</span><br/><span id="modalNote" style="color:var(--text)"></span></div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  Yu-Gi-Oh! Tactical Board Collection — Pro Edition v4.0 (DotR • CMC • TFK • DDM) • 100% Offline SVG Engine • Responsive Samsung Android &amp; PC.
+</footer>
+
+<script>
+// ==================== 0. ASSET & PROCEDURAL FOIL SVG ENGINE (ZERO-HOTLINK) ====================
+const ASSET_CONFIG = {
+  useLocalImages: false,
+  localFolder: "./assets/"
+};
+
+const THEME_MAP = {
+  dotr:    { c1: "#450a0a", c2: "#160a1d", accent: "#f5b700", emblem: "🌹", label: "PS2 • DOTR" },
+  cmc:     { c1: "#083344", c2: "#0f172a", accent: "#22d3ee", emblem: "💠", label: "PS2 • CMC" },
+  tfk:     { c1: "#1e1b4b", c2: "#090d16", accent: "#a855f7", emblem: "⚔️", label: "GC • TFK" },
+  ddm:     { c1: "#431407", c2: "#090d16", accent: "#fb923c", emblem: "🎲", label: "GBA • DDM" },
+  trap:    { c1: "#4a044e", c2: "#14071c", accent: "#ec4899", emblem: "⚡", label: "TRAP" },
+  spell:   { c1: "#064e3b", c2: "#061914", accent: "#22c55e", emblem: "✦", label: "MAGIC" },
+  equip:   { c1: "#1e3a8a", c2: "#091126", accent: "#38bdf8", emblem: "🛡️", label: "EQUIP" },
+  revive:  { c1: "#14532d", c2: "#081c11", accent: "#4ade80", emblem: "☥", label: "REVIVE" },
+  dice:    { c1: "#3f1d0b", c2: "#120905", accent: "#f59e0b", emblem: "⬡", label: "ITEM / SPA" },
+  monster: { c1: "#291a09", c2: "#0e1320", accent: "#f5b700", emblem: "★", label: "UNIT" }
+};
+
+function escXml(str) {
+  return String(str || "").replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
+}
+
+function makeCardSvg(title, topTag, bottomTag, themeKey, tierLetter) {
+  const th = THEME_MAP[themeKey] || THEME_MAP.monster;
+  const t1 = escXml(String(title || "").slice(0, 19));
+  const t2 = escXml(String(title || "").length > 19 ? String(title).slice(19, 36) : "");
+  const top = escXml(String(topTag || th.label).slice(0, 18));
+  const bot = escXml(String(bottomTag || "").slice(0, 22));
+  const badgeColor = tierLetter === "S" ? "#ef4444" : tierLetter === "A" ? "#f59e0b" : tierLetter === "B" ? "#3b82f6" : "#64748b";
+  const tierSvg = tierLetter
+    ? `<rect x="116" y="10" width="32" height="22" rx="6" fill="${badgeColor}" stroke="#fff" stroke-width="1"/>
+       <text x="132" y="25" fill="#fff" font-size="12" font-weight="800" font-family="sans-serif" text-anchor="middle">${escXml(tierLetter)}</text>`
+    : "";
+  const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="160" height="224" viewBox="0 0 160 224">
+    <defs>
+      <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0%" stop-color="${th.c1}"/>
+        <stop offset="100%" stop-color="${th.c2}"/>
+      </linearGradient>
+      <linearGradient id="foil" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0%" stop-color="${th.accent}" stop-opacity="0.32"/>
+        <stop offset="50%" stop-color="#ffffff" stop-opacity="0.06"/>
+        <stop offset="100%" stop-color="${th.accent}" stop-opacity="0.18"/>
+      </linearGradient>
+    </defs>
+    <rect x="2" y="2" width="156" height="220" rx="12" fill="url(#bg)" stroke="${th.accent}" stroke-width="3"/>
+    <rect x="9" y="9" width="142" height="206" rx="8" fill="none" stroke="${th.accent}" stroke-opacity="0.35" stroke-width="1.2"/>
+    <rect x="12" y="12" width="96" height="18" rx="5" fill="rgba(0,0,0,0.48)"/>
+    <text x="18" y="24" fill="${th.accent}" font-size="9.5" font-weight="800" font-family="sans-serif">${top}</text>
+    ${tierSvg}
+    <rect x="18" y="38" width="124" height="104" rx="10" fill="url(#foil)" stroke="${th.accent}" stroke-opacity="0.5" stroke-width="1.4"/>
+    <polygon points="80,48 118,90 80,132 42,90" fill="none" stroke="${th.accent}" stroke-opacity="0.45" stroke-width="1.5"/>
+    <circle cx="80" cy="90" r="26" fill="rgba(7,11,20,0.65)" stroke="${th.accent}" stroke-width="2"/>
+    <text x="80" y="99" fill="#ffffff" font-size="25" text-anchor="middle" font-family="sans-serif">${th.emblem}</text>
+    <text x="80" y="164" fill="#ffffff" font-size="11.5" font-weight="800" font-family="sans-serif" text-anchor="middle">${t1}</text>
+    ${t2 ? `<text x="80" y="179" fill="#e2e8f0" font-size="10.5" font-weight="700" font-family="sans-serif" text-anchor="middle">${t2}</text>` : ""}
+    <rect x="14" y="191" width="132" height="20" rx="5" fill="rgba(0,0,0,0.52)"/>
+    <text x="80" y="204" fill="#fde047" font-size="9.5" font-weight="700" font-family="sans-serif" text-anchor="middle">${bot}</text>
+  </svg>`;
+  return "data:image/svg+xml;charset=UTF-8," + encodeURIComponent(svg);
+}
+
+function getCardImage(slug, title, topTag, bottomTag, themeKey, tierLetter) {
+  if (ASSET_CONFIG.useLocalImages && slug) {
+    return ASSET_CONFIG.localFolder + slug + ".jpg";
+  }
+  return makeCardSvg(title, topTag, bottomTag, themeKey, tierLetter);
+}
+
+// ==================== 1. OVERVIEW 4 GAMES DATA ====================
+const OVERVIEW_GAMES = [
+  {
+    id: "dotr",
+    tab: "dotr",
+    title: "1. Yu-Gi-Oh! The Duelists of the Roses",
+    badge: "854 Lá • Hậu Bản Trực Tiếp FM",
+    bClass: "b-red",
+    platform: "PlayStation 2 (USA — SLUS-20515)",
+    emu: "NetherSX2 v2.2n • Cần BIOS scph39001.bin",
+    gradient: "linear-gradient(135deg, #450a0a, #17122b)",
+    bullets: [
+      "Bàn cờ 7×7 với 10 loại địa hình (+500/-500 & tăng tốc đi 2 ô/lượt).",
+      "2 chiến dịch Hoa Hồng Đỏ (Lancaster) & Hoa Hồng Trắng (York) gồm 21 đấu thủ + Custom Duel.",
+      "Đủ bài Hồi sinh (Monster Reborn, Mimicat), cày 12 cấp Thủ lĩnh (1LT→SD) & 20 bài ẩn (Find)."
+    ]
+  },
+  {
+    id: "cmc",
+    tab: "cmc",
+    title: "2. Yu-Gi-Oh! Capsule Monster Coliseum",
+    badge: "200 Quái 3D • 25 Đấu Trường Động",
+    bClass: "b-cyan",
+    platform: "PlayStation 2 (USA — SLUS-20940)",
+    emu: "NetherSX2 v2.2n • Dùng chung app & BIOS PS2",
+    gradient: "linear-gradient(135deg, #083344, #0f172a)",
+    bullets: [
+      "Cờ quái vật viên nang 3D theo lượt với vòng tương khắc 8 thuộc tính & hào quang Symbol.",
+      "5 Đấu trường (25 ải) với bẫy môi trường biến hóa (núi lửa phun lượt 6, sàn sụt đối xứng).",
+      "17 Dung hợp vĩnh viễn (Exodia, BEUD, Gate Guardian), 19 Tiến hóa & 8 Viên nang bí mật."
+    ]
+  },
+  {
+    id: "tfk",
+    tab: "tfk",
+    title: "3. Yu-Gi-Oh! The Falsebound Kingdom",
+    badge: "RTS + RPG 3v3 • 3 Thần Ai Cập",
+    bClass: "b-purple",
+    platform: "Nintendo GameCube (USA — GYFEA4)",
+    emu: "Dolphin 2609b (64-bit) • KHÔNG cần BIOS",
+    gradient: "linear-gradient(135deg, #2e1065, #0f172a)",
+    bullets: [
+      "Tiếp nối trực tiếp cốt truyện Forbidden Memories (DarkNite & NiteMare tái xuất).",
+      "3 chiến dịch Yugi, Kaiba & Joey; điều quân Nguyên soái chiếm thành, nâng cấp pháo đài & đấu 3v3.",
+      "Sở hữu Monster Reborn, Polymerization dung hợp trong trận & mở khóa Obelisk, Slifer, Ra."
+    ]
+  },
+  {
+    id: "ddm",
+    tab: "ddm",
+    title: "4. Yu-Gi-Oh! Dungeon Dice Monsters",
+    badge: "124 Xúc Xắc • 19 Giải Đấu",
+    bClass: "b-orange",
+    platform: "Game Boy Advance (USA — AGB-AYDE-USA)",
+    emu: "RetroArch 1.22.2 (mGBA) / Pizza Boy A • KHÔNG BIOS",
+    gradient: "linear-gradient(135deg, #431407, #0f172a)",
+    bullets: [
+      "Tung 3 viên xúc xắc từ bể 15 viên, trải khối lập phương thành đường mê cung 6 ô.",
+      "10 Item Dice đen chiến thuật (Energy Disc, Resurrection Scroll hồi sinh, Crater Creator quét bàn).",
+      "19 giải đấu qua 3 Division + thử thách ẩn Yami Yugi săn Dark Magician Girl & thắng tức thì bằng Exodia."
+    ]
+  }
+];
+
+// ==================== 2. DUELISTS OF THE ROSES DATA ====================
+const DOR_MAPS = {
+  stonehenge: [
+    ["dark","labyrinth","meadow","dark","meadow","labyrinth","dark"],
+    ["labyrinth","crush","normal","dark","normal","crush","labyrinth"],
+    ["meadow","normal","dark","dark","dark","normal","meadow"],
+    ["dark","dark","dark","crush","dark","dark","dark"],
+    ["meadow","normal","dark","dark","dark","normal","meadow"],
+    ["labyrinth","crush","normal","meadow","normal","crush","labyrinth"],
+    ["dark","labyrinth","meadow","meadow","meadow","labyrinth","dark"]
+  ],
+  chester: [
+    ["forest","forest","forest","forest","wasteland","wasteland","wasteland"],
+    ["forest","forest","normal","forest","normal","wasteland","wasteland"],
+    ["forest","normal","labyrinth","normal","labyrinth","normal","wasteland"],
+    ["wasteland","normal","normal","normal","normal","normal","forest"],
+    ["wasteland","normal","labyrinth","normal","labyrinth","normal","forest"],
+    ["wasteland","wasteland","normal","meadow","normal","forest","forest"],
+    ["mountain","forest","meadow","meadow","meadow","forest","mountain"]
+  ],
+  labyrinth: [
+    ["wasteland","labyrinth","crush","dark","crush","labyrinth","wasteland"],
+    ["ocean","labyrinth","normal","normal","normal","labyrinth","ocean"],
+    ["ocean","normal","labyrinth","crush","labyrinth","normal","ocean"],
+    ["crush","normal","normal","normal","normal","normal","crush"],
+    ["mountain","normal","labyrinth","crush","labyrinth","normal","mountain"],
+    ["mountain","labyrinth","normal","meadow","normal","labyrinth","mountain"],
+    ["mountain","forest","meadow","meadow","meadow","forest","mountain"]
+  ],
+  pegasus: [
+    ["toon","toon","toon","toon","toon","toon","toon"],
+    ["toon","toon","toon","toon","toon","toon","toon"],
+    ["toon","normal","toon","toon","toon","normal","toon"],
+    ["normal","normal","normal","toon","normal","normal","normal"],
+    ["meadow","normal","normal","normal","normal","normal","meadow"],
+    ["ocean","meadow","normal","meadow","normal","forest","mountain"],
+    ["ocean","meadow","meadow","meadow","meadow","forest","mountain"]
+  ]
+};
+
+const DOR_TERRAIN_INFO = {
+  normal:    { name: "Normal (Thường)", effect: "Trung tính (±0 ATK/DEF). Quái thường đi 1 ô/lượt." },
+  forest:    { name: "Forest (Rừng rậm)", effect: "+500 ATK/DEF & đi 2 ô/lượt cho Beast, Beast-Warrior, Plant, Insect, Pyro." },
+  mountain:  { name: "Mountain (Núi cao)", effect: "+500 ATK/DEF & đi 2 ô/lượt cho Dragon, Winged-Beast, Thunder, Fairy." },
+  ocean:     { name: "Sea / Ocean (Biển)", effect: "+500 cho Aqua, Fish, Sea Serpent, Thunder; -500 cho Machine & Pyro." },
+  meadow:    { name: "Meadow (Thảo nguyên)", effect: "+500 cho Warrior & Beast-Warrior; -500 cho Spellcaster." },
+  wasteland: { name: "Wasteland (Đất hoang)", effect: "+500 cho Dinosaur, Zombie, Rock, Machine; -500 cho Aqua, Plant, Fish." },
+  dark:      { name: "Dark (Bóng tối)", effect: "+500 cho Fiend, Spellcaster, Zombie; -500 cho Fairy." },
+  toon:      { name: "Toon (Thế giới Hoạt hình)", effect: "+500 cho Toon; -500 cho tất cả quái thường (trừ Immortal)." },
+  crush:     { name: "Crush (Nghiền nát)", effect: "Buff cho tộc Immortal; MỌI quái thường có ≥1500 ATK bước vào ô này sẽ bị TIÊU DIỆT NGAY LẬP TỨC!" },
+  labyrinth: { name: "Labyrinth (Tường Mê cung)", effect: "Chặn đường di chuyển! Chỉ Labyrinth Tank, Dungeon Worm, Shadow Ghoul (hóa Wall Shadow) hoặc Barrel Rock/Dharma Cannon đi vào được." }
+};
+
+const DOR_HIDDEN_COORD_MAP = {
+  "A1": "Necromancer → Eternal Rest",
+  "A4": "Pegasus → Electromagnetic Bagworm",
+  "A7": "Bakura (Shapesnatch) • Rex (Cold Wave) • Labyrinth Ruler (Catapult Turtle)",
+  "B4": "Richard Slysheen → Warrior Elimination",
+  "B6": "Darkness Ruler → Exile of the Wicked",
+  "C4": "Bandit Keith (Stain Storm) • Grandpa/Jasper (Dharma Cannon)",
+  "D1": "Yugi → Carat Idol",
+  "D4": "Shadi (Souleater) • Kaiba (Moisture Creature) • Manawyddan Red Rose (Brain Control)",
+  "D5": "Ishtar (Jowls of Dark Demise — ghi nhận D4/D5) • Tristan (Novox's Prayer)",
+  "D7": "Weevil → Eradicating Aerosol",
+  "E5": "Tea → Servant of Catabolism",
+  "E6": "Mako → Time Eater",
+  "E7": "Mai (Dust Tornado) • Joey (Rigras Leever)"
+};
+
+const DOTR_BOSSES = [
+  { name:"Bakura", side:"Lancaster (Đánh khi theo York)", dc:757, dl:"Dark Plant", terrain:"Forest", tip:"DC thấp nhất game (757)! Dùng Wasteland làm khô rừng hoặc áp sát dứt điểm sớm chặn hồi 50 LP/lượt." },
+  { name:"Necromancer", side:"York (Đánh khi theo Lancaster)", dc:795, dl:"Pumpking the King of Ghosts", terrain:"Wasteland", tip:"Zombie thủ rất thấp! Dùng bài đổi sân khỏi Wasteland và Shield & Sword (hoặc áp công nhanh)." },
+  { name:"Weevil Underwood", side:"York", dc:854, dl:"Basic Insect", terrain:"Forest / Wasteland", tip:"Cẩn thận Cocoon of Evolution lên Perfectly Ultimate Great Moth (3500); thắng nhanh ở góc trên trái." },
+  { name:"Ishtar", side:"York", dc:861, dl:"Witch of the Black Forest", terrain:"Aqua / Crush", tip:"Hay dung hợp và gài ô Crush. Đổi địa hình xóa Crush trước khi đẩy quái ≥1500 ATK lên." },
+  { name:"Tea", side:"Lancaster", dc:933, dl:"Dancing Elf", terrain:"Normal", tip:"Quái gốc nhỏ nhưng rất nhiều bài tăng sức mạnh & hồi LP. Cày Tea để lấy 3× Hourglass of Courage!" },
+  { name:"Rex Raptor", side:"York", dc:960, dl:"Two-Headed King Rex", terrain:"Wasteland / Labyrinth", tip:"Mỏ cày Rank Thủ lĩnh số 1! Chặn đầu hẻm mê cung và cẩn thận Eternal Rest." },
+  { name:"Joey", side:"Lancaster", dc:970, dl:"Flame Swordsman", terrain:"Meadow", tip:"Chiến binh + Battle Ox hưởng Meadow. Xóa Meadow và thủ sẵn Invisible Wire." },
+  { name:"Darkness Ruler", side:"York", dc:982, dl:"King of Yamimakai", terrain:"Dark", tip:"AI đơn giản; xóa địa hình Dark là mất toàn bộ thế mạnh Fiend." },
+  { name:"J. Shadi Morton", side:"Lancaster", dc:982, dl:"Millennium Golem", terrain:"Chia đôi bởi Crush", tip:"Không cướp được bài Shadi; xóa hàng ô Crush ở giữa rồi đẩy quân thẳng vào Thủ lĩnh." },
+  { name:"Mako", side:"Lancaster", dc:1001, dl:"Kairyu-Shin", terrain:"Sea (Umi)", tip:"Tung Wasteland biến biển thành đất hoang làm yếu toàn bộ đội Thủy." },
+  { name:"Margaret Mai Beaufort", side:"Lancaster", dc:1003, dl:"Harpie Lady", terrain:"Mountain", tip:"Harpie's Pet Dragon được buff tới 3400+ trên Mountain! Bắt buộc xóa Mountain ngay lập tức." },
+  { name:"Labyrinth Ruler", side:"York", dc:1016, dl:"Monster Tamer", terrain:"Labyrinth / Crush", tip:"Cầm Sanga, Suijin, Kazejin & Tế lễ Gate Guardian. Dùng Magical Labyrinth mở tường." },
+  { name:"Keith", side:"York", dc:1027, dl:"Slot Machine", terrain:"Wasteland / Labyrinth", tip:"Mạnh hơn mức DC! Cẩn thận Metalzoa & Slot Machine; dùng Stain Storm quét sạch Machine." },
+  { name:"Richard Slysheen of York", side:"York", dc:1039, dl:"Battle Steer", terrain:"Meadow", tip:"Cày đòn mạnh trên Meadow. Đổi sân xóa Meadow rồi tấn công trực diện Thủ lĩnh." },
+  { name:"Jasper Dice Tudor", side:"Lancaster", dc:1078, dl:"Exodia the Forbidden One", terrain:"Labyrinth", tip:"Ẩn sau tường mê cung để gom đủ 5 mảnh Exodia! Luôn giữ số bài trên sân hắn <5 lá và phá tường áp sát." },
+  { name:"T. Tristan Grey", side:"Lancaster", dc:1149, dl:"Karbonala Warrior", terrain:"Wasteland", tip:"Trận 'xả hơi' dễ nhất tuyến York, dùng để luyện cấp Thủ lĩnh rất tốt." },
+  { name:"C. Seto Rosenkreuz", side:"York", dc:1184, dl:"Blue-Eyes White Dragon", terrain:"Courtyard", tip:"3× BEWD, Swordstalker, nhiều bẫy & Thủ lĩnh đi 2 ô! Lùa 2 quái kẹp góc chặn đường chạy của Seto." },
+  { name:"Yugi", side:"Lancaster", dc:1206, dl:"Dark Magician", terrain:"Ô hỗn hợp", tip:"Dùng Spellcaster mạnh, Brain Control & Destiny Draw. Đổi sân thống nhất, nguồn cày bài cực xịn!" },
+  { name:"Pegasus Crawford", side:"York", dc:1254, dl:"Illusionist Faceless Mage", terrain:"Toon", tip:"Khó nhằn vì sân Toon & Change of Heart/Tremendous Fire. Phá sân Toon ngay lượt đầu là thắng!" },
+  { name:"Manawyddan fab Llyr (York Route)", side:"Trùm Cuối", dc:1891, dl:"Chakra", terrain:"Courtyard / Yami / Crush", tip:"Quái >4000 ATK trên Yami & Riryoku cắt nửa máu! Dùng Mirror Wall + Royal Decree + đổi sân." },
+  { name:"Manawyddan fab Llyr (Red Route)", side:"Trùm Cuối", dc:1985, dl:"Skull Knight", terrain:"Labyrinth / Crush / Yami", tip:"Phá ô Crush bên mình, giữ tường chặn đường địch tiếp cận bẫy, tích công lớn rồi phản công." },
+  { name:"Deck Master K (Custom Duel)", side:"Tùy Chọn", dc:0, dl:"Bản sao bộ bài của bạn", terrain:"Tự chọn 24 bản đồ", tip:"Dùng y hệt bộ bài bạn chọn — cách hợp lệ để cày thêm bản sao các lá hiếm bạn đang sở hữu!" }
+];
+
+const DOTR_HIDDEN_LIST = [
+  { opp:"Mai", coord:"E7", card:"Dust Tornado" },
+  { opp:"Yugi", coord:"D1", card:"Carat Idol" },
+  { opp:"Bakura", coord:"A7", card:"Shapesnatch" },
+  { opp:"Joey", coord:"E7", card:"Rigras Leever" },
+  { opp:"Mako", coord:"E6", card:"Time Eater" },
+  { opp:"Tea", coord:"E5", card:"Servant of Catabolism" },
+  { opp:"Jasper / Grandpa", coord:"C4 / D4", card:"Dharma Cannon" },
+  { opp:"Necromancer", coord:"A1", card:"Eternal Rest" },
+  { opp:"Weevil", coord:"D7", card:"Eradicating Aerosol" },
+  { opp:"Rex Raptor", coord:"A7", card:"Cold Wave" },
+  { opp:"Darkness Ruler", coord:"B6", card:"Exile of the Wicked" },
+  { opp:"Ishtar", coord:"D4 / D5", card:"Jowls of Dark Demise" },
+  { opp:"Tristan", coord:"D5", card:"Novox's Prayer" },
+  { opp:"Pegasus", coord:"A4", card:"Electromagnetic Bagworm" },
+  { opp:"Bandit Keith", coord:"C4", card:"Stain Storm" },
+  { opp:"J. Shadi Morton", coord:"D4", card:"Souleater" },
+  { opp:"Labyrinth Ruler", coord:"A7", card:"Catapult Turtle" },
+  { opp:"Richard Slysheen", coord:"B4", card:"Warrior Elimination" },
+  { opp:"Seto Rosenkreuz", coord:"D4", card:"Moisture Creature" },
+  { opp:"Manawyddan (Red)", coord:"D4", card:"Brain Control" }
+];
+
+const DOTR_PASSWORDS = [
+  { name:"Mirror Wall (#829)", pass:"53297534", note:"Bẫy vĩnh cửu hạng S: chia đôi vĩnh viễn ATK quái tấn công." },
+  { name:"Royal Decree (#825)", pass:"8TETQHE1", note:"Bẫy vĩnh cửu hạng S: vô hiệu hóa toàn bộ Bẫy đối thủ." },
+  { name:"Mimicat (#687)", pass:"69YDQM85", note:"Phép hồi sinh hạng S: hồi sinh & điều khiển 1 lá BẤT KỲ từ 2 Mộ." },
+  { name:"Change of Heart (#732)", pass:"SBYDQM8B", note:"Phép hạng S: cướp quyền điều khiển 1 lá bài bất kỳ trên sân 1 lượt." },
+  { name:"Gravity Bind (#806)", pass:"0HNFG9WX", note:"Bẫy hạng S: trói vĩnh viễn và trừ 1500 ATK/DEF quái địch." },
+  { name:"Dark Hole (#699)", pass:"UMJ10MQB", note:"Phép hạng S (50 DC): quét sạch toàn bộ quái & phép trên sân." },
+  { name:"Harpie's Feather Duster (#702)", pass:"8HJHQPNP", note:"Phép hạng A: xóa toàn bộ phép theo đường chữ thập." },
+  { name:"Crush Card (#794)", pass:"SRA7L5YR", note:"Biến ô xung quanh thành Crush terrain khi quái ≤1000 ATK bị diệt." },
+  { name:"Call of the Haunted (#745)", pass:"0RWZ6FN7", note:"Phép 1 DC siêu phẩm: biến toàn quân thành Zombie ăn buff Pumpking!" },
+  { name:"Acid Trap Hole (#811)", pass:"63QXGPJB", note:"Bẫy 30 DC: tiêu diệt quái ≤4000 ATK." },
+  { name:"Invisible Wire (#810)", pass:"L7YZYMGZ", note:"Bẫy 20 DC siêu rẻ: tiêu diệt quái ≤3000 ATK." },
+  { name:"Stain Storm (#722)", pass:"WB45LKJ3", note:"Quét sạch toàn bộ quái Machine (khắc cứng Bandit Keith)." },
+  { name:"Magical Neutralizing Force Field (#734)", pass:"QXEHGZJR", note:"Phép 10 DC: xóa buff/trói phép & phá toàn bộ Bẫy ngửa!" },
+  { name:"Exodia the Forbidden One", pass:"37689434", note:"Đầu Exodia — làm Thủ lĩnh kích hoạt thắng tức thì." },
+  { name:"Left Arm of the Forbidden One", pass:"A5CF6HSH", note:"Tay trái Exodia (2 chân kiếm qua Luân hồi L3)." },
+  { name:"Blue-Eyes White Dragon (#000)", pass:"UB0HA94H", note:"3000/2500 (55 DC) — Rồng chủ lực đỉnh cao." },
+  { name:"Red-Eyes B. Dragon (#007)", pass:"078HC3YB", note:"2400/2000 (44 DC) — + Metalmorph hóa Red-Eyes Black Metal Dragon." },
+  { name:"Seiyaryu (#001)", pass:"2H4D85J7", note:"2500/2300 (53 DC) — Mẹo: Luân hồi Seiyaryu có thể nhận bộ 3 Gate Guardian!" },
+  { name:"Meteor Dragon (#019)", pass:"86985631", note:"1800/2000 (38 DC) — nguyên liệu ghép Meteor B. Dragon." },
+  { name:"Kaiser Dragon (#003)", pass:"L7URE9YT", note:"2300/2000 (43 DC) — Rồng ánh sáng công ổn định." },
+  { name:"Curse of Dragon (#006)", pass:"SM63L3C3", note:"2000/1500 (40 DC) — tự biến ô giao tranh thành Wasteland!" },
+  { name:"Aqua Dragon", pass:"JXCB6FU7", note:"Tự biến ô giao tranh thành Sea (+500 ATK/DEF)." },
+  { name:"Barrel Dragon", pass:"GTJXSBJ7", note:"Siêu quái Machine 3 nòng bắn phá sân." },
+  { name:"Swordstalker (#146)", pass:"AH0PSHEB", note:"2000/1600 (41 DC) — tự cộng thêm sức mạnh từ Mộ về cuối trận." },
+  { name:"Magician of Faith", pass:"GME1S3UM", note:"Flip: hồi sinh 1 lá Phép từ cả hai Mộ về vùng triệu hồi!" },
+  { name:"Slate Warrior (#674)", pass:"73153736", note:"Tộc Immortal (38 DC) — chủ lực đánh ô Crush." },
+  { name:"Time Wizard (#036)", pass:"E52M0BSM", note:"14 DC — Flip biến mọi Rồng <2400 ATK thành Thousand Dragon (2400)!" },
+  { name:"Greenkappa", pass:"YBJMCD6Z", note:"Flip sao chép ATK/DEF quái mạnh nhất trên sân!" },
+  { name:"Goblin Fan (#814)", pass:"92886423", note:"Bẫy vĩnh cửu phản ngược sát thương Riryoku / đốt LP." },
+  { name:"Fairy King Truesdale", pass:"YF07QVEZ", note:"Thủ lĩnh thực vật/côn trùng mạnh cho đầu game." },
+  { name:"Robotic Knight", pass:"S5S7NKNH", note:"Thủ lĩnh tộc Máy móc." }
+];
+
+// 4 AUDITED 40-CARD DOTR DECKS (EXACT VERIFIED DC)
+const DOTR_DECKS = {
+  dotr1: {
+    label: "Bộ 1: Low-DC Toàn Diện (Mở khóa 100% Trùm)",
+    dl: "Pumpking the King of Ghosts (DC Thủ lĩnh không tính vào tổng 40 lá)",
+    target: "Tổng DC = 649 ≤ 757 (Khiêu chiến được MỌI đối thủ kể cả Bakura 757 & Necromancer 795!)",
+    cards: [
+      { id:"105", name:"Armored Zombie", qty:3, dc:15, type:"Zombie", stats:"1500 / 0", pass:"SVYMUH6K", note:"2000 trên Wasteland + tăng +100 mỗi lượt bởi Pumpking!" },
+      { id:"106", name:"Dragon Zombie", qty:3, dc:16, type:"Zombie", stats:"1600 / 0", pass:"47EBLHA7", note:"2100 trên Wasteland, chỉ tốn 16 DC siêu tiết kiệm!" },
+      { id:"107", name:"Clown Zombie", qty:3, dc:14, type:"Zombie", stats:"Zombie • 14 DC", pass:"—", note:"Siêu rẻ 14 DC; ăn buff Wasteland & Pumpking liên tục." },
+      { id:"036", name:"Time Wizard", qty:2, dc:14, type:"Spellcaster", stats:"500 / 400", pass:"E52M0BSM", note:"Flip biến các Rồng <2400 ATK của bạn thành Thousand Dragon (2400)!" },
+      { id:"021", name:"Baby Dragon", qty:3, dc:19, type:"Dragon", stats:"1200 / 700", pass:"E36HAZNM", note:"Kết hợp Time Wizard thành Thousand Dragon hoặc ghép Zombie thành Dragon Zombie." },
+      { id:"004", name:"Blackland Fire Dragon", qty:3, dc:23, type:"Dragon", stats:"1500 / 800", pass:"E1CTYFUR", note:"Rồng 4 sao giá rẻ; nâng thẳng lên Thousand Dragon." },
+      { id:"032", name:"Lesser Dragon", qty:2, dc:22, type:"Dragon", stats:"1200 / 1000", pass:"4HSPADYM", note:"Mảnh dung hợp đa năng với Machine/Zombie/Time Wizard." },
+      { id:"672", name:"Jowls of Dark Demise", qty:2, dc:18, type:"Immortal", stats:"Immortal • Crush", pass:"Tìm ở Ishtar D4/D5", note:"Immortal giá 18 DC, đứng an toàn trên ô Crush & kiểm soát chiến thuật." },
+      { id:"410", name:"Leghul", qty:2, dc:12, type:"Insect", stats:"300 / 350", pass:"—", note:"Flip dịch chuyển thẳng sang vùng triệu hồi của địch & hủy giao chiến!" },
+      { id:"745", name:"Call of the Haunted", qty:3, dc:1, type:"Magic", stats:"Đổi toàn quân thành Zombie", pass:"0RWZ6FN7", note:"Chỉ 1 DC! Biến Rồng/Thousand Dragon thành Zombie nhận buff Pumpking!" },
+      { id:"796", name:"Cursebreaker", qty:3, dc:1, type:"Power Up", stats:"Xóa trói phép & buff địch", pass:"—", note:"Chỉ 1 DC! Giữ nguyên địa hình & hạ thấp tổng DC bộ bài cực mạnh." },
+      { id:"780", name:"Megamorph", qty:3, dc:15, type:"Power Up", stats:"+300 Mọi quái", pass:"—", note:"Lưu ý: trong DotR cộng +300 nhưng siêu rẻ chỉ 15 DC!" },
+      { id:"690", name:"Wasteland", qty:2, dc:30, type:"Field", stats:"+500 Zombie/Rock/Dino/Machine", pass:"—", note:"Tăng +500 và mở bước đi 2 ô/lượt cho toàn đội Zombie." },
+      { id:"810", name:"Invisible Wire", qty:2, dc:20, type:"Trap", stats:"Diệt quái ≤3000 ATK", pass:"L7YZYMGZ", note:"Bẫy phá quái hiệu quả nhất tầm giá 20 DC." },
+      { id:"818", name:"Shadow of Eyes", qty:2, dc:20, type:"Trap", stats:"Ép quái thủ sang công", pass:"—", note:"Bẫy vĩnh cửu khắc cứng AI thích đặt quái thủ." },
+      { id:"716", name:"Dark-Piercing Light", qty:1, dc:15, type:"Magic", stats:"Lật ngửa toàn bộ bài địch", pass:"—", note:"Lộ diện bẫy và quái úp của đối phương." },
+      { id:"699", name:"Dark Hole", qty:1, dc:50, type:"Magic", stats:"Quét sạch quái & phép", pass:"UMJ10MQB", note:"Nút reset bàn cờ khi bị bao vây." }
+    ]
+  },
+  dotr2: {
+    label: "Bộ 2: Pumpking Zombie & Hồi Sinh Áp Đảo",
+    dl: "Pumpking the King of Ghosts (Hạng LTC+ mở +ATK & Extended Range)",
+    target: "Tổng DC = 931 ≤ 933 (Đánh gọn Tea 933, Rex 960, Joey 970, Mai 1003, Keith 1027, Seto 1184, Yugi 1206!)",
+    cards: [
+      { id:"108", name:"Pumpking the King of Ghosts", qty:2, dc:43, type:"Zombie", stats:"1800 / 2000", pass:"—", note:"Buff +100 ATK/DEF MỖI LƯỢT cho toàn bộ Zombie trên sân! Đặt 2 bản sao để cày EXP Thủ lĩnh siêu tốc." },
+      { id:"105", name:"Armored Zombie", qty:3, dc:15, type:"Zombie", stats:"1500 / 0", pass:"SVYMUH6K", note:"Chủ lực Zombie tốc độ 2 ô trên Wasteland." },
+      { id:"106", name:"Dragon Zombie", qty:3, dc:16, type:"Zombie", stats:"1600 / 0", pass:"47EBLHA7", note:"Đạt 2100+ ngay lượt đầu trên Wasteland." },
+      { id:"107", name:"Clown Zombie", qty:3, dc:14, type:"Zombie", stats:"Zombie • 14 DC", pass:"—", note:"Giá 14 DC siêu nhẹ, giữ tốc độ tràn bàn." },
+      { id:"298", name:"Castle of Dark Illusions", qty:2, dc:34, type:"Fiend", stats:"Fiend • 34 DC", pass:"—", note:"Tuyến thủ vững & hỗ trợ tốt đội hình Bóng tối/Zombie." },
+      { id:"390", name:"Hourglass of Courage", qty:2, dc:28, type:"Fairy", stats:"1100 / 1200", pass:"Cày Tea", note:"Hiệu ứng Destruction: trả 1000 LP để cộng +1000 ATK cho toàn quân mình!" },
+      { id:"294", name:"Summoned Skull", qty:2, dc:37, type:"Fiend", stats:"2500 / 1200", pass:"—", note:"Công 2500 cực khỏe với DC chỉ 37; dùng Call of the Haunted biến thành Zombie!" },
+      { id:"672", name:"Jowls of Dark Demise", qty:2, dc:18, type:"Immortal", stats:"Immortal • Crush", pass:"Ishtar D4/D5", note:"Đi xuyên ô Crush an toàn." },
+      { id:"745", name:"Call of the Haunted", qty:3, dc:1, type:"Magic", stats:"Biến toàn quân thành Zombie", pass:"0RWZ6FN7", note:"Chìa khóa 1 DC biến Summoned Skull & mọi quân thành Zombie!" },
+      { id:"796", name:"Cursebreaker", qty:3, dc:1, type:"Power Up", stats:"Xóa trói & buff địch", pass:"—", note:"1 DC giải khóa Gravity Bind / xóa buff địch." },
+      { id:"690", name:"Wasteland", qty:2, dc:30, type:"Field", stats:"+500 Zombie", pass:"—", note:"Phá địa hình Mountain của Mai & Sea của Mako." },
+      { id:"685", name:"Monster Reborn", qty:2, dc:50, type:"Magic", stats:"Hồi sinh 1 quái từ 2 Mộ", pass:"—", note:"Hồi sinh Pumpking, Summoned Skull hoặc cướp thẳng quái boss từ Mộ địch!" },
+      { id:"780", name:"Megamorph", qty:3, dc:15, type:"Power Up", stats:"+300 Mọi quái", pass:"—", note:"Tăng lực giá rẻ 15 DC." },
+      { id:"810", name:"Invisible Wire", qty:2, dc:20, type:"Trap", stats:"Diệt quái ≤3000 ATK", pass:"L7YZYMGZ", note:"Chặn đứng Blue-Eyes & Harpie's Pet Dragon." },
+      { id:"811", name:"Acid Trap Hole", qty:2, dc:30, type:"Trap", stats:"Diệt quái ≤4000 ATK", pass:"63QXGPJB", note:"Tiêu diệt gần như mọi siêu quái buff dưới 4000 ATK!" },
+      { id:"736", name:"Shield & Sword", qty:1, dc:30, type:"Magic", stats:"Đảo ATK/DEF toàn sân", pass:"—", note:"Phá các tường thủ 3000 DEF hoặc lật kèo." },
+      { id:"699", name:"Dark Hole", qty:1, dc:50, type:"Magic", stats:"Quét toàn sân", pass:"UMJ10MQB", note:"Xóa bàn trước khi dùng Monster Reborn." },
+      { id:"829", name:"Mirror Wall", qty:1, dc:80, type:"Trap", stats:"Chia đôi ATK kẻ công", pass:"53297534", note:"Bẫy vĩnh cửu hạng S khóa chặt mũi nhọn địch." },
+      { id:"820", name:"Fake Trap", qty:1, dc:5, type:"Trap", stats:"Chặn Feather Duster", pass:"—", note:"5 DC bảo vệ Mirror Wall khỏi Feather Duster." }
+    ]
+  },
+  dotr3: {
+    label: "Bộ 3: Immortal Crush Lock & Khống Chế Trùm",
+    dl: "Jowls of Dark Demise (Immortal — mở kỹ năng Terrain Change: Crush!)",
+    target: "Tổng DC = 1173 ≤ 1184 (Chuyên trị Seto 1184, Yugi 1206, Pegasus 1254 & Manawyddan!)",
+    cards: [
+      { id:"672", name:"Jowls of Dark Demise", qty:3, dc:18, type:"Immortal", stats:"Immortal • Water", pass:"Ishtar D4/D5", note:"Thủ lĩnh biến ô bước qua thành Crush & lật bài địch; quái thường ≥1500 ATK bước vào chết ngay!" },
+      { id:"673", name:"Souleater", qty:3, dc:27, type:"Immortal", stats:"Immortal • Earth", pass:"Shadi D4", note:"Hưởng +500 trên ô Crush mà không bị phá hủy." },
+      { id:"674", name:"Slate Warrior", qty:3, dc:38, type:"Immortal", stats:"Immortal • Wind", pass:"73153736", note:"Chủ lực Immortal hưởng +500 ATK/DEF trên ô Crush mà không bị hủy!" },
+      { id:"409", name:"Dungeon Worm", qty:2, dc:33, type:"Insect", stats:"1800 / 1500", pass:"—", note:"Đi xuyên tường Labyrinth để ám sát Thủ lĩnh địch!" },
+      { id:"390", name:"Hourglass of Courage", qty:2, dc:28, type:"Fairy", stats:"1100 / 1200", pass:"Cày Tea", note:"Tự nổ cộng +1000 ATK cho dàn Immortal." },
+      { id:"036", name:"Time Wizard", qty:2, dc:14, type:"Spellcaster", stats:"500 / 400", pass:"E52M0BSM", note:"Giá rẻ 14 DC, công cụ kiểm soát tình huống." },
+      { id:"410", name:"Leghul", qty:2, dc:12, type:"Insect", stats:"300 / 350", pass:"—", note:"Dịch chuyển sang vùng triệu hồi địch để mở thế gọng kìm." },
+      { id:"796", name:"Cursebreaker", qty:3, dc:1, type:"Power Up", stats:"Xóa trói & buff địch", pass:"—", note:"1 DC giữ trần tổng DC dưới 1184." },
+      { id:"745", name:"Call of the Haunted", qty:2, dc:1, type:"Magic", stats:"Đổi tộc (1 DC)", pass:"0RWZ6FN7", note:"1 DC hạ mạnh tổng DC để nhồi Bẫy hạng S." },
+      { id:"734", name:"Magical Neutralizing Force Field", qty:2, dc:10, type:"Magic", stats:"Xóa buff & phá Bẫy ngửa", pass:"QXEHGZJR", note:"Chỉ 10 DC — phá sạch Mirror Wall / Royal Decree ngửa của trùm!" },
+      { id:"794", name:"Crush Card", qty:2, dc:80, type:"Power Up", stats:"Tạo vòng ô Crush khi bị diệt", pass:"SRA7L5YR", note:"Gắn lên quái ≤1000 ATK (Jowls/Leghul) để nhuộm đỏ cả bàn cờ thành Crush!" },
+      { id:"806", name:"Gravity Bind", qty:2, dc:60, type:"Trap", stats:"Trói vĩnh viễn & -1500 ATK", pass:"0HNFG9WX", note:"Khóa cứng BEWD và Dark Magician ngay tại chỗ." },
+      { id:"829", name:"Mirror Wall", qty:1, dc:80, type:"Trap", stats:"Chia đôi ATK kẻ công", pass:"53297534", note:"Bức tường phòng thủ hạng S." },
+      { id:"825", name:"Royal Decree", qty:1, dc:80, type:"Trap", stats:"Vô hiệu hóa mọi Bẫy địch", pass:"8TETQHE1", note:"Bảo kê dàn Immortal trước bẫy của Seto/Manawyddan." },
+      { id:"685", name:"Monster Reborn", qty:2, dc:50, type:"Magic", stats:"Hồi sinh 1 quái từ 2 Mộ", pass:"—", note:"Hồi sinh Slate Warrior hoặc cướp quái khủng của trùm." },
+      { id:"687", name:"Mimicat", qty:1, dc:80, type:"Magic", stats:"Hồi sinh 1 lá BẤT KỲ từ 2 Mộ", pass:"69YDQM85", note:"Tái sử dụng Crush Card / Monster Reborn hoặc cướp phép của Yugi!" },
+      { id:"717", name:"Darkness Approaches", qty:2, dc:20, type:"Magic", stats:"Úp lại toàn bộ bài", pass:"—", note:"Kích hoạt lại hiệu ứng Flip liên tục!" },
+      { id:"810", name:"Invisible Wire", qty:2, dc:20, type:"Trap", stats:"Diệt quái ≤3000 ATK", pass:"L7YZYMGZ", note:"Phá nhanh quái đối thủ." },
+      { id:"820", name:"Fake Trap", qty:1, dc:5, type:"Trap", stats:"Chặn Feather Duster", pass:"—", note:"Giữ sống Mirror Wall & Royal Decree." },
+      { id:"698", name:"Magical Labyrinth", qty:2, dc:10, type:"Field", stats:"Dời ô tường Labyrinth", pass:"—", note:"Chỉ 10 DC — tự dựng tường khóa góc Thủ lĩnh địch!" }
+    ]
+  },
+  dotr4: {
+    label: "Bộ 4: Săn Trùm Cuối Manawyddan (Rồng + Hồi Sinh Tối Thượng)",
+    dl: "Blue-Eyes White Dragon (Hạng ADM đi 2 ô, SADM giảm 2 sao triệu hồi Rồng!)",
+    target: "Tổng DC = 1790 ≤ 1854 (Đủ điều kiện đè bẹp cả 2 phiên bản Manawyddan fab Llyr 1854–1891 & 1985 DC!)",
+    cards: [
+      { id:"000", name:"Blue-Eyes White Dragon", qty:3, dc:55, type:"Dragon", stats:"3000 / 2500", pass:"UB0HA94H", note:"3500 ATK & đi 2 ô trên Mountain!" },
+      { id:"007", name:"Red-Eyes B. Dragon", qty:3, dc:44, type:"Dragon", stats:"2400 / 2000", pass:"078HC3YB", note:"Ghép Meteor Dragon → Meteor B. Dragon (3500) hoặc Summoned Skull → B. Skull Dragon (3200)!" },
+      { id:"019", name:"Meteor Dragon", qty:3, dc:38, type:"Dragon", stats:"1800 / 2000", pass:"86985631", note:"Nguyên liệu vàng ghép Meteor B. Dragon ngay trên tay." },
+      { id:"006", name:"Curse of Dragon", qty:2, dc:40, type:"Dragon", stats:"2000 / 1500", pass:"SM63L3C3", note:"Tự chuyển ô chiến đấu thành Wasteland phá Yami của Manawyddan!" },
+      { id:"003", name:"Kaiser Dragon", qty:2, dc:43, type:"Dragon", stats:"2300 / 2000", pass:"L7URE9YT", note:"2800 ATK trên Mountain." },
+      { id:"294", name:"Summoned Skull", qty:2, dc:37, type:"Fiend", stats:"2500 / 1200", pass:"—", note:"Ghép Red-Eyes ra B. Skull Dragon (3200) hoặc tận dụng sân Yami địch thành 3000!" },
+      { id:"146", name:"Swordstalker", qty:2, dc:41, type:"Warrior", stats:"2000 / 1600", pass:"AH0PSHEB", note:"Hấp thụ sức mạnh Mộ cuối trận vượt 4000+ ATK!" },
+      { id:"390", name:"Hourglass of Courage", qty:2, dc:28, type:"Fairy", stats:"1100 / 1200", pass:"Cày Tea", note:"Nổ +1000 ATK cho cả dàn Rồng đánh thẳng xuyên 4500+." },
+      { id:"036", name:"Time Wizard", qty:1, dc:14, type:"Spellcaster", stats:"500 / 400", pass:"E52M0BSM", note:"Nâng Rồng nhỏ lên Thousand Dragon (2400)." },
+      { id:"796", name:"Cursebreaker", qty:2, dc:1, type:"Power Up", stats:"Xóa trói & buff địch", pass:"—", note:"Hủy buff Riryoku của Manawyddan với giá 1 DC!" },
+      { id:"745", name:"Call of the Haunted", qty:1, dc:1, type:"Magic", stats:"1 DC tối ưu trần", pass:"0RWZ6FN7", note:"Giữ tổng DC đúng 1790." },
+      { id:"691", name:"Mountain", qty:2, dc:30, type:"Field", stats:"+500 Rồng / Xóa Yami", pass:"—", note:"Xóa sân Yami trung tâm của Stonehenge và buff toàn dàn Rồng." },
+      { id:"780", name:"Megamorph", qty:3, dc:15, type:"Power Up", stats:"+300 Mọi quái", pass:"—", note:"Cộng đều rẻ 15 DC." },
+      { id:"685", name:"Monster Reborn", qty:2, dc:50, type:"Magic", stats:"Hồi sinh 1 quái từ 2 Mộ", pass:"—", note:"Kéo lại BEWD/MBD hoặc cướp bài mạnh từ Mộ Manawyddan." },
+      { id:"687", name:"Mimicat", qty:2, dc:80, type:"Magic", stats:"Hồi sinh 1 lá BẤT KỲ", pass:"69YDQM85", note:"Cướp ngược Riryoku, Raigeki hoặc quái trùm từ Mộ địch!" },
+      { id:"700", name:"Raigeki", qty:1, dc:80, type:"Magic", stats:"Quét quái theo hình chữ thập", pass:"—", note:"Mở toang hàng phòng ngự Stonehenge." },
+      { id:"699", name:"Dark Hole", qty:1, dc:50, type:"Magic", stats:"Quét toàn sân", pass:"UMJ10MQB", note:"Xóa sạch sân khi Manawyddan buff Riryoku." },
+      { id:"732", name:"Change of Heart", qty:1, dc:80, type:"Magic", stats:"Cướp 1 bài địch 1 lượt", pass:"SBYDQM8B", note:"Cướp quân chắn đường rồi đâm thẳng Thủ lĩnh!" },
+      { id:"733", name:"Brain Control", qty:1, dc:80, type:"Magic", stats:"Cướp quái ATK cao nhất địch", pass:"Manawyddan D4", note:"Lật kèo tức thì trước quái 4000+ ATK." },
+      { id:"702", name:"Harpie's Feather Duster", qty:1, dc:70, type:"Magic", stats:"Quét phép/bẫy chữ thập", pass:"8HJHQPNP", note:"Xóa hàng bẫy quanh Chakra/Skull Knight." },
+      { id:"829", name:"Mirror Wall", qty:1, dc:80, type:"Trap", stats:"Chia đôi ATK kẻ công", pass:"53297534", note:"Chặn đứng đòn công 4000+." },
+      { id:"825", name:"Royal Decree", qty:1, dc:80, type:"Trap", stats:"Vô hiệu mọi Bẫy địch", pass:"8TETQHE1", note:"Vô hiệu hóa Widespread Ruin & Magic Drain của trùm." },
+      { id:"789", name:"Riryoku", qty:1, dc:99, type:"Power Up", stats:"Cắt nửa LP địch cộng cho toàn quân", pass:"—", note:"Lá phép 99 DC kết liễu trong 1 lượt!" }
+    ]
+  }
+};
+
+// ==================== 3. CAPSULE MONSTER COLISEUM DATA ====================
+const CMC_CYCLES = {
+  1: [
+    { name:"Light", sym:"☀️", beats:"Dark", weak:"Thunder", ally:"Earth", buff:"+DEF Light & Earth, khuếch đại SPA hệ Light", debuff:"-PP hệ Dark" },
+    { name:"Dark", sym:"🌑", beats:"Earth", weak:"Light", ally:"Thunder", buff:"+ATK Dark, +DEF Thunder, khuếch đại SPA hệ Dark", debuff:"-PP hệ Earth" },
+    { name:"Earth", sym:"⛰️", beats:"Thunder", weak:"Dark", ally:"Light", buff:"+PP Earth, +ATK Light", debuff:"-ATK & -DEF hệ Thunder" },
+    { name:"Thunder", sym:"⚡", beats:"Light", weak:"Earth", ally:"Dark", buff:"+ATK Thunder & Dark", debuff:"-PP hệ Light" }
+  ],
+  2: [
+    { name:"Water", sym:"💧", beats:"Fire", weak:"Wind", ally:"Wood", buff:"+DEF Water & Wood", debuff:"-ATK & -DEF hệ Fire" },
+    { name:"Fire", sym:"🔥", beats:"Wood", weak:"Water", ally:"Wind", buff:"+ATK Fire & Wind", debuff:"-ATK & -DEF hệ Wood" },
+    { name:"Wood", sym:"🌿", beats:"Wind", weak:"Fire", ally:"Water", buff:"+ATK & +DEF Wood, +ATK Water", debuff:"-DEF hệ Wind" },
+    { name:"Wind", sym:"🌪️", beats:"Water", weak:"Wood", ally:"Fire", buff:"+DEF Wind & Fire", debuff:"-DEF hệ Water" }
+  ]
+};
+
+const CMC_AREAS = [
+  { area:"Area 1", boss:"Joey Wheeler — Forgotten Capital", el:"Fire", cap:"270 MP / 300 AP", info:"Nhiều ô lợi hệ Water; dùng Water đè 4× Fire Reaper dễ dàng." },
+  { area:"Area 1", boss:"Tristan Taylor — Condemned Warehouse", el:"Wood", cap:"300 MP / 300 AP", info:"Hành lang cực hẹp dễ kẹt quân; dùng Fire đốt Petit Moth & Earth trị Steel Scorpion." },
+  { area:"Area 1", boss:"Duke Devlin — Voltage Cage", el:"Dark", cap:"300 MP / 450 AP", info:"Bản đồ nhỏ, bắt buộc giữ chặt Symbol; cầm 3× Kuriboh & 2× Steel Scorpion." },
+  { area:"Area 1", boss:"Tea Gardner — Sacred Street", el:"Water", cap:"300 MP / 300 AP", info:"Quân địch hay tách cánh; phục kích cánh trái tiêu diệt Happy Lover/Skelengel." },
+  { area:"Area 1", boss:"Grandpa (Solomon) — Challenger's Stage", el:"Earth", cap:"350 MP / 400 AP", info:"BẪY: Bước vào ô giữa làm xoay 4 ô kề! Rơi hiếm: Right Arm of Exodia***, Cockroach Knight***." },
+  { area:"Area 2", boss:"Weevil Underwood — Ancient Forest of Origin", el:"Wood", cap:"500 MP / 450 AP", info:"Thời tiết biến đổi ngẫu nhiên. Rơi hiếm: Larvae Moth***, Shovel Crusher***, Cockroach Knight***." },
+  { area:"Area 2", boss:"Mako Tsunami — Sea of Miracles", el:"Water", cap:"580 MP / 450 AP", info:"Bờ biển lợi hệ Water; rơi hiếm Torike*** & Fiend Kraken***." },
+  { area:"Area 2", boss:"Rex Raptor — Tomb of Ancient Kings", el:"Earth", cap:"Trung cấp", info:"Mộ cổ lợi Earth; cẩn thận quái đặc biệt giữa trận." },
+  { area:"Area 2", boss:"Mai Valentine — Howling Winds Valley", el:"Wind", cap:"Trung cấp", info:"Thung lũng gió lợi Wind; dùng Wood khắc chế dàn Harpie." },
+  { area:"Area 2", boss:"Mokuba Kaiba — Guided Manor", el:"Thunder", cap:"Trung cấp", info:"Lợi hệ Thunder; mang Earth để xuyên giáp Thunder, rơi Shovel Crusher***." },
+  { area:"Area 3", boss:"Bakura — Moonlit Cherry Blossoms", el:"Dark", cap:"680 MP / 500 AP", info:"Ít điểm đứng giao tranh; cần tiến nhanh chiếm vị trí đẹp quanh cây anh đào." },
+  { area:"Area 3", boss:"Bandit Keith — Treasure Trove", el:"Dark", cap:"750 MP / 450 AP", info:"Rơi hiếm: Barrel Dragon (Dark)***." },
+  { area:"Area 3", boss:"Maximillion Pegasus — Imperfect Paradise", el:"Light", cap:"780 MP / 550 AP", info:"Đội hình đứng sát nhau; ưu tiên vị trí triệu hồi. Rơi hiếm: Ancient Tree of Enlightenment***, Rogue Doll***." },
+  { area:"Area 3", boss:"Odion — Burning Earth", el:"Earth", cap:"750 MP / 480 AP", info:"Nhiều bẫy sàn rải khắp bản đồ; rơi 2× Hitotsu-Me Giant***." },
+  { area:"Area 3", boss:"Marik Ishtar — Guru's Garden", el:"Dark", cap:"900 MP / 650 AP", info:"Đấu trường khối lập phương lạ mắt; rơi hiếm Zoa (Dark)***, 2× Ryu-Kishin***." },
+  { area:"Area 4", boss:"Shadi — Limitless Sanctuary", el:"Light", cap:"850 MP / 700 AP", info:"Symbol nằm giữa bản đồ còn quái bị tách ra rìa! Dùng quái đi chéo dài; rơi Launcher Spider***." },
+  { area:"Area 4", boss:"Seto Kaiba — City of Redemption", el:"Light", cap:"850 MP / 700 AP", info:"Rơi hiếm: Blue-Eyes White Dragon***, Gyakutenno Megami***, Mystic Horseman***, Battle Ox***." },
+  { area:"Area 4", boss:"Ishizu Ishtar — Crimson Valley", el:"Wind", cap:"900 MP / 650 AP", info:"Nhiều bẫy bản đồ & quân đánh bọc hậu; rơi hiếm Kazejin (Wind)***." },
+  { area:"Area 4", boss:"Yami Marik — Corridors of Madness", el:"Wind", cap:"900 MP / 680 AP", info:"BẪY: Bước lên 1 ô sẽ làm SỤT LÚN ô đối xứng bên kia! Rơi Blast Juggler***, Megasonic Eye***." },
+  { area:"Area 4", boss:"Yami Bakura — Wicked Ceremonial Site", el:"Dark", cap:"800 MP / 750 AP", info:"Sân Dark/Thunder không có Light; dùng Earth/Light tầm xa diệt Tri-Horned Dragon*** & Pumpking***." },
+  { area:"Area 5 (King)", boss:"Maximillion Pegasus — Shrine of Chaos", el:"Light", cap:"Cao cấp", info:"Tái đấu Pegasus! Chọn đi sau & lấy sân của hắn để săn bộ 2 (Oscillo Hero #2, Arsenal Bug, Jelly Fish, Faceless Mage)." },
+  { area:"Area 5 (King)", boss:"Ishizu Ishtar — Neverending Site", el:"Light", cap:"Cao cấp", info:"Rất khó nếu bạn dùng Symbol hệ Dark (Light khắc cứng Dark!)." },
+  { area:"Area 5 (King)", boss:"Yami Marik — Fire Mountain", el:"Fire", cap:"900 MP / 750 AP", info:"BẪY ĐỘNG: Núi lửa PHUN TRÀO DUNG NHAM cuối Lượt 6! Rơi Crimson Sunbird***, Megazowler***." },
+  { area:"Area 5 (King)", boss:"Shadi — Sealed Sanctuary", el:"Dark", cap:"999 MP / 450 AP", info:"BẢN ĐỒ DUY NHẤT CÓ +50 WOOD (tiến hóa Trent)! Rơi Thunder Dragon***, Ushi Oni***, Mega Thunderball***." },
+  { area:"Area 5 (King)", boss:"Seto Kaiba — Aerial Palace (TRÙM CUỐI)", el:"Light", cap:"Vô hạn MP / 999 AP", info:"Đấu toàn lực! Rơi 100% hàng hiếm: 2× Blue-Eyes White Dragon***, Meteor B. Dragon***, Suijin***, Destroyer Golem***." }
+];
+
+const CMC_FUSIONS = [
+  { res:"Summoned Lord Exodia", req:"Exodia Head Lv2 + Right Arm Lv2 + Left Arm Lv2 + Right Leg Lv2 + Left Leg Lv2 (5 mảnh đứng kề nhau)" },
+  { res:"Blue-Eyes Ultimate Dragon", req:"3× Blue-Eyes White Dragon (đều ≥ Lv2)" },
+  { res:"Gate Guardian", req:"Sanga of the Thunder Lv3 + Suijin Lv3 + Kazejin Lv3 (BẮT BUỘC đặt Sanga ở CHÍNH GIỮA!)" },
+  { res:"Twin-Headed Thunder Dragon", req:"2× Thunder Dragon (đều ≥ Lv4)" },
+  { res:"Harpie Lady Sisters", req:"3× Harpie Lady (đều ≥ Lv2)" },
+  { res:"Metalzoa", req:"Zoa Lv2 + Steel Scorpion Lv3" },
+  { res:"Gaia the Dragon Champion", req:"Curse of Dragon Lv3 + Gaia the Fierce Knight Lv3" },
+  { res:"Thousand Dragon", req:"Time Wizard Lv3 + Baby Dragon Lv5" },
+  { res:"Flame Swordsman", req:"Flame Manipulator Lv4 + Masaki the Legendary Swordsman Lv4" },
+  { res:"Darkfire Dragon", req:"Firegrass Lv5 + Petit Dragon Lv5" },
+  { res:"Cyber Saurus", req:"Blast Juggler Lv5 + Two-Headed King Rex Lv4" },
+  { res:"Kwagar Hercules", req:"Hercules Beetle Lv3 + Kuwagata Alpha Lv3" },
+  { res:"Kaminari Attack", req:"Ocubeam Lv5 + Mega Thunderball Lv5" },
+  { res:"Metal Dragon", req:"Lesser Dragon Lv3 + Steel Ogre Grotto #1 Lv3" },
+  { res:"Millennium Golem", req:"Destroyer Golem Lv5 + The Statue of Easter Island Lv5" },
+  { res:"Rabid Horseman", req:"Battle Ox Lv3 + Mystic Horseman Lv3" },
+  { res:"Flying Penguin", req:"Penguin Soldier Lv2 + Penguin Knight Lv2" }
+];
+
+const CMC_EVOS = [
+  { res:"Magician of Black Chaos", req:"Dark Magician Lv4 trên ô +40 Dark" },
+  { res:"Red-Eyes B. Metal Dragon", req:"Red-Eyes B. Dragon Lv4 trên ô +40 Dark (hoặc +60 Dark tùy bản đồ)" },
+  { res:"Perfectly Ultimate Great Moth", req:"Great Moth Lv4 trên ô +40 Wood" },
+  { res:"Great Moth", req:"Larvae Moth Lv3 trên ô +30 Wood" },
+  { res:"Larvae Moth", req:"Petit Moth Lv3 trên ô +30 Wood" },
+  { res:"Trent", req:"Ancient Tree of Enlightenment Lv3 trên ô +50 Wood (Shadi Area 5 hoặc buff SPA Hercules Beetle!)" },
+  { res:"Dark Witch", req:"LaMoon Lv4 trên ô +50 Light" },
+  { res:"Ryu-Kishin Powered", req:"Ryu-Kishin Lv5 (không cần ngưỡng ô)" },
+  { res:"Shining Friendship", req:"Petit Angel Lv5" },
+  { res:"Penguin Knight", req:"Penguin Soldier Lv3 trên ô +40 Water" },
+  { res:"High Tide Gyojin", req:"Root Water Lv6 trên ô +40 Water" },
+  { res:"Hysoube", req:"Psychic Kappa Lv6 trên ô +40 Water" },
+  { res:"Rock Spirit", req:"Haniwa Lv5 trên ô +40 Earth" },
+  { res:"Mon-Larvas", req:"Larvas Lv4" },
+  { res:"Fireyarou", req:"Flame Manipulator Lv3 (chú ý: tiến hóa xong không ghép Flame Swordsman được)" },
+  { res:"Hunter Spider", req:"Kumootoku Lv4" },
+  { res:"Tripwire Beast", req:"Electric Lizard Lv6" },
+  { res:"Manga Ryu-Ran", req:"Ryu-Ran Lv2 (biến đổi qua lại)" },
+  { res:"Ryu-Ran", req:"Manga Ryu-Ran Lv2 (biến đổi qua lại)" }
+];
+
+const CMC_SECRETS = [
+  { el:"DARK", name:"Exodia the Forbidden One", cond:"Đặt đủ cả 4 mảnh tay chân (Right/Left Arm & Leg) trong Capsule Deck rồi ghé Shop." },
+  { el:"LIGHT", name:"Blue-Eyes White Dragon (lá thứ 3)", cond:"Sở hữu sẵn 2× BEWD trong Capsule Deck (Lưu ý: biến mất khỏi Shop sau khi đã ghép BEUD!)." },
+  { el:"FIRE", name:"Firewing Pegasus", cond:"Vượt trọn Area 1 và Area 2 KHÔNG THUA và KHÔNG ĐẦU HÀNG trận nào!" },
+  { el:"EARTH", name:"Celtic Guardian", cond:"Đầu hàng (Surrender) đúng 20 lần tại Area 3 hoặc Area 4 (làm ở Area 3 sẽ mở bán từ Area 4)." },
+  { el:"WATER", name:"Sinister Serpent", cond:"Sở hữu tổng cộng từ 50 quái hệ Water trở lên." },
+  { el:"THUNDER", name:"Giant Mech-Soldier", cond:"Tổng thời gian chơi đạt trên 20 giờ và đã vượt Area 1." },
+  { el:"WIND", name:"Crow Goblin", cond:"Sau khi qua Area 1, sở hữu ít hơn 10 quái hệ Wind." },
+  { el:"WOOD", name:"Dungeon Worm", cond:"Sưu tầm đủ mọi quái hệ Wood khác (chỉ được mua 1 lần duy nhất!)." }
+];
+
+// ==================== 4. THE FALSEBOUND KINGDOM DATA ====================
+const TFK_SQUADS = [
+  {
+    name: "Đội 1: Tộc Spirit Đỉnh Meta (Téa / Ishizu)",
+    badge: "Mạnh Nhất Game (S+)",
+    bClass: "tier-S",
+    members: "Orion the Battle King • Embodiment of Apophis • Gyakutenno Megami (hoặc Fairy's Gift)",
+    items: "Power of Nature (+ATK & +AP) • Silver Bow and Arrow (không đánh hụt) • Swords of Revealing Light / Gift of the Mystical Elf",
+    note: "Gyakutenno Megami buff +1000 ATK cả đội, Orion công diện rộng giảm ATK địch, kết hợp Power of Nature đẩy AP lên rất cao."
+  },
+  {
+    name: "Đội 2: Máy Móc Hỗn Loạn (Kaiba / Keith)",
+    badge: "Khóa Kỹ Năng Địch (S)",
+    bClass: "tier-S",
+    members: "Slot Machine • Launcher Spider (Castle-Adept) • Red-Eyes Black Metal Dragon (Armor)",
+    items: "Shock Shell (gây Confusion mỗi đòn đánh!) • Red Medicine / Dian Keto • Deal of Phantom",
+    note: "Shock Shell khiến toàn bộ đội địch dính Hỗn loạn không thể tung phép, item hay kỹ năng đặc biệt; kết hợp Yami làm mù cực kỳ khó chịu."
+  },
+  {
+    name: "Đội 3: Chiến Binh Cận Chiến & Hợp Thể (Yugi / Joey)",
+    badge: "Công Vật Lý Cực Đại (A+)",
+    bClass: "tier-A",
+    members: "Black Luster Soldier • Buster Blader (Armor, diệt Rồng) • Swordstalker (Road/Castle/Night-Adept) — hoặc Rocket Warrior",
+    items: "Silver Bow and Arrow • Legendary Sword (+500 ATK) • Red Medicine • Deal of Phantom",
+    note: "Buster Blader giảm ~20% sát thương nhận vào nhờ Armor; hoặc thay bằng Alpha + Beta + Gamma + Polymerization hợp thể Valkyrion!"
+  },
+  {
+    name: "Đội 4: Harpie Tê Liệt & Đòn Phối Hợp Z-Attack (Mai)",
+    badge: "Khóa Trắng Lượt Địch (S)",
+    bClass: "tier-A",
+    members: "3× Harpie Lady (hoặc Dark Magician + Dark Magician Girl + Gemini Elf)",
+    items: "2–3× Electro-Whip (gây Tê liệt!) • Raimei / Swords of Revealing Light • Gift of the Mystical Elf",
+    note: "Tê liệt (Paralysis) là hiệu ứng mạnh nhất game vì địch mất trắng lượt! Dồn AP tung đòn ba Triangle Ecstasy Spark hoặc Dark Burning Magic."
+  }
+];
+
+const TFK_YUGI_RECRUITS = [
+  { m:"Mission 1: War Campaign", unit:"Silver Fang & Blackland Fire Dragon", loc:"Khu rừng giữa Makhad và Jakhud sau khi đánh bại Etos." },
+  { m:"Mission 2: Fury of the Empire", unit:"Mystic Horseman, Hane-Hane, Man-Eater Bug", loc:"Khu rừng phía nam căn cứ Croethe." },
+  { m:"Mission 3: Strategy", unit:"Winged Dragon, Guardian of the Fortress #1", loc:"Điều Yugi đi lên phía bắc Dyethruo." },
+  { m:"Mission 5: Turbulent Waters", unit:"Octoberser & Enchanting Mermaid", loc:"Phía đông Van-Lova (nằm giữa Tsughut và Thor-Mount)." },
+  { m:"Mission 6: Badlands", unit:"Summoned Skull, Dark Magician, Illusory Gentleman", loc:"Xung quanh Tower-Pegasi và Tower-Centauri." },
+  { m:"Mission 7: Crucial Battle", unit:"Gemini Elf (Lora)", loc:"Tại Dyovann — bắt buộc đưa 1 Elf khác làm đội trưởng nhóm tiến vào!" },
+  { m:"Mission 8: Refugees", unit:"Téa (Healer) & Baby Dragon", loc:"Téa tự gia nhập; cho Joey đi tới khúc cua núi Tây Nam nhận Baby Dragon không cần đánh." },
+  { m:"Mission 9: Break Free", unit:"Harpie Lady (Ocupete) & Sanga of Thunder", loc:"Đưa Mai tới Ce-Reizo (cần có Harpie) lấy Harpie thứ 2; đưa Shimon đi hướng tây nhận Sanga." },
+  { m:"Mission 10: Counterattack", unit:"Dark Magician Girl", loc:"Tự động gia nhập trong màn — ghép cùng Dark Magician mở đòn đôi Dark Burning Magic!" },
+  { m:"Mission Banishment / Dream World", unit:"Harpie Lady #3 & Alpha the Magnet Warrior", loc:"Harpie #3 sau khi giải phóng Kaepe-Town; Alpha khi giải phóng Memory Bridge (Dream World)." }
+];
+
+const TFK_FUSIONS = [
+  { res:"Blue-Eyes Ultimate Dragon", mat:"3× Blue-Eyes White Dragon trong cùng đội", item:"Polymerization (500G)", note:"Sức công phá khủng nhất tuyến Kaiba." },
+  { res:"Valkyrion the Magna Warrior", mat:"Alpha + Beta + Gamma The Magnet Warrior", item:"Polymerization (500G)", note:"Hợp thể ba đỉnh cao dễ kiếm, chỉ số vượt trội." },
+  { res:"Gate Guardian", mat:"Sanga of the Thunder + Kazejin + Suijin", item:"Polymerization (500G)", note:"Siêu pháo đài hợp thể ba nguyên tố." },
+  { res:"Meteor B. Dragon", mat:"Red-Eyes B. Dragon + Meteor Dragon", item:"Polymerization (500G)", note:"Hợp thể Rồng đôi sát thương cao." },
+  { res:"Cosmo Queen", mat:"Dark Elf + Mystical Elf", item:"Polymerization (500G)", note:"Pháp sư nữ đỉnh cao trong tuyến ghép bài." },
+  { res:"Magician of Black Chaos", mat:"Dark Magician", item:"Black Luster Ritual", note:"Chuyển cấp trực tiếp Dark Magician thành dạng Chaos!" },
+  { res:"Red-Eyes Black Metal / Metalzoa", mat:"Red-Eyes B. Dragon hoặc Zoa", item:"Metalmorph", note:"Nâng giáp lên tộc Máy móc — gắn thêm Shock Shell cực hiệu quả!" },
+  { res:"Perfectly Ultimate Great Moth", mat:"Larvae Moth", item:"Cocoon of Evolution", note:"Chỉ số tự nhiên cao bậc nhất nhóm quái không dung hợp." }
+];
+
+// ==================== 5. DUNGEON DICE MONSTERS DATA ====================
+const DDM_POOLS = {
+  ddm1: {
+    label: "Pool 1: Twin Swords Tempo Meta (Cân Mọi Giải Đấu)",
+    summary: "15/15 Xúc xắc • Lv1 (6) • Lv2 (6) • Lv3 (2) • Lv4 (1 pin Crest Metalzoa)",
+    alert: "Chiến thuật: Tung Battle Warrior + Time Wizard + Energy Disc (lấy 3Mov/4Mov) mở đường siêu tốc, rồi triệu hồi Knight of Twin Swords (đi 2 ô/Mov, đánh 3 lần/lượt) cộng buff Karbonala Warrior (+10 ATK) & Energy Disc (+20 ATK) kết liễu Die Master địch trong 2 lượt!",
+    dice: [
+      { name:"Battle Warrior", qty:2, lvl:1, cls:"Warrior", stats:"20HP • 20/10", crests:"Lv1 (4×Sum + tặng 1 Atk khi gọi)", note:"Triệu hồi xong tự tặng ngay +1 Attack crest! Quái Lv1 siêu mạnh." },
+      { name:"Time Wizard", qty:2, lvl:1, cls:"Spellcaster", stats:"10HP • 0/10", crests:"4×Sum, 2Mov, 3Mov", note:"Dimension diệt ngay quái ATK thấp nhất trên bàn + 2 mặt Mov cực khỏe!" },
+      { name:"Karbonala Warrior", qty:1, lvl:1, cls:"Warrior", stats:"Buff +10 ATK Warrior", crests:"Lv1 (4×Sum, gồm mặt 2Mov)", note:"Tăng +10 ATK cho Battle Warrior & Knight of Twin Swords." },
+      { name:"Energy Disc", qty:1, lvl:1, cls:"Item (Đen)", stats:"+20 ATK", crests:"4×Sum, 3Mov, 4Mov", note:"Động cơ bơm 3Mov/4Mov số 1 (thường không đặt mà chỉ tung lấy Mov!)." },
+      { name:"Knight of Twin Swords", qty:2, lvl:2, cls:"Warrior", stats:"30HP • 10/10", crests:"3×Sum, Mov, Atk, Def", note:"Chủ lực số 1: 1 Mov đi 2 ô, tấn công tối đa 3 lần/lượt!" },
+      { name:"Blast Lizard", qty:1, lvl:2, cls:"Beast", stats:"20HP • 10/10", crests:"3×Sum, Atk, Def, 4Tra", note:"Trả 3 Tra hủy 1 quái địch & hoàn lại Mag crest theo cấp quái đó!" },
+      { name:"Thousand Dragon", qty:1, lvl:2, cls:"Dragon", stats:"20HP • 30/20", crests:"3×Sum, 2Mov, 7Atk, Def", note:"Mặt 7Atk mạnh nhất game + chỉ số Lv2 cao nhất." },
+      { name:"Resurrection Scroll", qty:1, lvl:2, cls:"Item (Đen)", stats:"Hồi sinh 1 quái", crests:"3×Sum, 2Mov, 2Mag, Tra", note:"Hồi sinh Knight of Twin Swords hoặc Blast Lizard nếu bị hạ." },
+      { name:"Medical Aid Kit", qty:1, lvl:2, cls:"Item (Đen)", stats:"Hồi 20 HP (2 Tim)", crests:"3×Sum, 5Mov, Atk, Tra", note:"Vừa hồi 2 tim vừa sở hữu mặt 5Mov cực hiếm!" },
+      { name:"Meteor Dragon", qty:1, lvl:3, cls:"Dragon (Flying)", stats:"30HP • 20–30/30", crests:"2×Sum, 3Mov, 4Mov, Def, Mag", note:"Quái Bay mạnh nhất game, bỏ qua quái bộ binh địch." },
+      { name:"Strike Ninja", qty:1, lvl:3, cls:"Warrior", stats:"20HP • 20/10", crests:"2×Sum, Mov, 3Mov, Atk, Def", note:"Đi 3 ô/1 Mov! Trả 2 Tra chặn hoàn toàn đòn công/hiệu ứng." },
+      { name:"Metalzoa", qty:1, lvl:4, cls:"Spellcaster", stats:"20HP • 30/30", crests:"Sum, 8Mov, Atk, 8Def, Mag, 4Tra", note:"Pin Crest tối thượng (chỉ dùng tung lấy 8Mov/8Def/4Tra, không cần gọi!)." }
+    ]
+  },
+  ddm2: {
+    label: "Pool 2: Beast Đào Hầm & Crater Creator Quét Bàn",
+    summary: "15/15 Xúc xắc • Lv1 (7) • Lv2 (6) • Lv4 (2 — đủ cặp triệu hồi Crater Creator!)",
+    alert: "Chiến thuật: Dùng Mammoth Graveyard (Tunneler đi xuyên quái + buff Beast) và Jirai Gumo mở đường luồn lách vượt chướng ngại vật, dồn sát thương bằng Mystic Horseman (40 HP, +10 ATK/1 Mag), thủ sẵn cặp Lv4 Crater Creator + Metalzoa để quét sạch mê cung khi gặp kèo khó!",
+    dice: [
+      { name:"Mammoth Graveyard", qty:2, lvl:1, cls:"Beast (Tunneler)", stats:"10HP • 10/10", crests:"4×Sum, 5Mov, 2Mag", note:"Đào hầm xuyên qua quái khác + buff ATK tộc Beast + mặt 5Mov!" },
+      { name:"Time Wizard", qty:2, lvl:1, cls:"Spellcaster", stats:"10HP • 0/10", crests:"4×Sum, 2Mov, 3Mov", note:"Diệt ngay quái cản đường đầu trận." },
+      { name:"Jirai Gumo", qty:1, lvl:1, cls:"Beast (Tunneler)", stats:"20HP • Tunneler", crests:"4×Sum, 6Def, Mag", note:"Quái Lv1 đào hầm 20 HP kiêm pin 6Def." },
+      { name:"Kuriboh", qty:1, lvl:1, cls:"Beast", stats:"Lv1 • Pin 4Atk/2Def", crests:"4×Sum, 4Atk, 2Def", note:"Pin 4Atk cấp 1 siêu dễ tung." },
+      { name:"Energy Disc", qty:1, lvl:1, cls:"Item (Đen)", stats:"+20 ATK", crests:"4×Sum, 3Mov, 4Mov", note:"Bơm 3Mov/4Mov liên tục." },
+      { name:"Mystic Horseman", qty:2, lvl:2, cls:"Beast", stats:"40HP • 20/10", crests:"Lv2 (3×Sum + 1 Mag → +10 ATK)", note:"40 HP trâu bậc nhất Lv2; đốt 1 Mag tăng +10 ATK mỗi lượt!" },
+      { name:"Blast Lizard", qty:2, lvl:2, cls:"Beast", stats:"20HP • 10/10", crests:"3×Sum, Atk, Def, 4Tra", note:"Hưởng buff Beast + phá sạch quái địch bằng 3 Tra." },
+      { name:"Resurrection Scroll", qty:1, lvl:2, cls:"Item (Đen)", stats:"Hồi sinh 1 quái", crests:"3×Sum, 2Mov, 2Mag, Tra", note:"Tái triển khai Mystic Horseman 40 HP." },
+      { name:"Medical Aid Kit", qty:1, lvl:2, cls:"Item (Đen)", stats:"Hồi 20 HP", crests:"3×Sum, 5Mov, Atk, Tra", note:"Hồi 2 tim cho Mystic Horseman + cày 5Mov." },
+      { name:"Crater Creator", qty:1, lvl:4, cls:"Item (Đen)", stats:"Quét sạch toàn bàn", crests:"Sum, 4Mov, Atk, 2Atk, Def, 4Mag", note:"Hủy diệt TOÀN BỘ quái trong mê cung (ghép cặp Sum Lv4 với Metalzoa!)." },
+      { name:"Metalzoa", qty:1, lvl:4, cls:"Spellcaster", stats:"20HP • 30/30", crests:"Sum, 8Mov, Atk, 8Def, Mag, 4Tra", note:"Vừa làm pin Crest 8Mov/8Def/4Tra vừa mở cặp Lv4 cho Crater Creator!" }
+    ]
+  },
+  ddm3: {
+    label: "Pool 3: Exodia Thắng Tức Thì & Hồi Sinh Phòng Thủ",
+    summary: "15/15 Xúc xắc • Lv1 (4) • Lv2 (4) • Lv3 (5 gồm 4 mảnh) • Lv4 (2 — đủ cặp gọi Đầu Exodia!)",
+    alert: "Chiến thuật: Đặt Gluminizer làm chậm bước tiến địch (nhân đôi chi phí Mov), triệu hồi 4 mảnh Exodia Lv3 ở góc an toàn (bảo kê bằng Dark-Eyes Illusionist trả 5 Tra chặn đòn & 2× Resurrection Scroll hồi sinh nếu lỡ bị phá 1 mảnh), rồi tung cặp Lv4 gọi Exodia the Forbidden One để THẮNG NGAY LẬP TỨC!",
+    dice: [
+      { name:"Time Wizard", qty:2, lvl:1, cls:"Spellcaster", stats:"10HP • 0/10", crests:"4×Sum, 2Mov, 3Mov", note:"Triệt hạ sớm quái áp sát vùng an toàn." },
+      { name:"Mystical Elf", qty:1, lvl:1, cls:"Spellcaster", stats:"20HP • 10/20", crests:"4×Sum, 2Mov, 4Mag", note:"Hồi 10 LP cho toàn bộ đồng minh khi Dimension!" },
+      { name:"Sangan", qty:1, lvl:1, cls:"Spellcaster", stats:"Lv1 • Pin 4Mag/2Def", crests:"4×Sum, 2Def, 4Mag", note:"Cày 4Mag & 2Def." },
+      { name:"Resurrection Scroll", qty:2, lvl:2, cls:"Item (Đen)", stats:"Hồi sinh 1 quái", crests:"3×Sum, 2Mov, 2Mag, Tra", note:"Bảo hiểm kép: hồi sinh ngay bất kỳ mảnh tay chân Exodia nào bị phá!" },
+      { name:"Medical Aid Kit", qty:1, lvl:2, cls:"Item (Đen)", stats:"Hồi 20 HP", crests:"3×Sum, 5Mov, Atk, Tra", note:"Hồi máu + bơm 5Mov." },
+      { name:"Gluminizer", qty:1, lvl:2, cls:"Item (Đen)", stats:"×2 chi phí Mov", crests:"3×Sum, 2Mov, Atk, 2Def", note:"Câu giờ cực mạnh chống các bộ bài chạy nhanh của máy." },
+      { name:"Right Arm of the Forbidden One", qty:1, lvl:3, cls:"Spellcaster", stats:"10HP • 10/0", crests:"2×Sum, 2Mov, 3Mov, 4Atk, 2Def", note:"Mảnh Exodia 1/5 — giấu kỹ phía sau mê cung!" },
+      { name:"Left Arm of the Forbidden One", qty:1, lvl:3, cls:"Spellcaster", stats:"10HP • 10/0", crests:"2×Sum, Mov, 3Mov, Atk, Def", note:"Mảnh Exodia 2/5." },
+      { name:"Right Leg of the Forbidden One", qty:1, lvl:3, cls:"Spellcaster", stats:"10HP • 10/0", crests:"2×Sum, 2Mov, 3Mov, 2Atk, Def", note:"Mảnh Exodia 3/5." },
+      { name:"Left Leg of the Forbidden One", qty:1, lvl:3, cls:"Spellcaster", stats:"10HP • 10/0", crests:"2×Sum, 2Mov, Atk, Def, Mag", note:"Mảnh Exodia 4/5." },
+      { name:"Warp Vortex", qty:1, lvl:3, cls:"Item (Đen)", stats:"Dịch chuyển", crests:"2×Sum, Mov, Atk, Def, Tra", note:"Bổ sung mặt Sum Lv3 thứ 5 giúp tỷ lệ ra 4 mảnh Exodia cực cao." },
+      { name:"Exodia the Forbidden One", qty:1, lvl:4, cls:"Spellcaster", stats:"20HP • 20/20", crests:"Sum, Mov, 7Mov, 2Atk, 4Def, Tra", note:"THẮNG TỨC THÌ ngay khi Dimension nếu đủ 4 mảnh tay chân trên bàn!" },
+      { name:"Dark-Eyes Illusionist", qty:1, lvl:4, cls:"Spellcaster", stats:"10HP • 10/10", crests:"Sum, Mov, 2Atk, 2Def, Mag, 3Tra", note:"Đủ cặp Sum Lv4 gọi Exodia + trả 5 Tra vô hiệu hóa đòn công lên mảnh Exodia!" }
+    ]
+  }
+};
+
+const DDM_CUPS = [
+  { div:"Division 1", name:"The Lunch Selects Cup", diff:"Dễ", prize:"100G", desc:"Bàn trống không vật cản; tập mở đường nhanh với Lv1–Lv2." },
+  { div:"Division 1", name:"Black Crown Cup", diff:"Dễ", prize:"150G", desc:"Bàn thường; nguồn cày vàng mua xúc xắc đầu game." },
+  { div:"Division 1", name:"Gammon Preliminaries", diff:"Dễ", prize:"200G", desc:"Bàn thường." },
+  { div:"Division 1", name:"Domino Tournament", diff:"Dễ / Trung bình", prize:"250G", desc:"Bàn thường; có đấu thủ thú vị (gồm cả chú chó Jill)." },
+  { div:"Division 1", name:"Japan Rep Tournament", diff:"Trung bình", prize:"300G", desc:"Có 1 ô nước cấm ở chính giữa bàn cờ." },
+  { div:"Division 1", name:"World Championship", diff:"Trung bình (Trùm Div 1)", prize:"400G", desc:"Mở khi thắng 5 giải trên; 2 ô cấm (4 phải, 4 lên từ mỗi Die Master). Xem Credits 1!" },
+  { div:"Div 2: REVERSE", name:"Pharaoh's Treasure Cup", diff:"Trung bình", prize:"500G", desc:"2 vật cản (trái/phải 2 ô, lên 8 ô)." },
+  { div:"Div 2: REVERSE", name:"Anubis's Disciple Cup", diff:"Trung bình", prize:"550G", desc:"2 vật cản chặn trực diện đường trung lộ." },
+  { div:"Div 2: REVERSE", name:"Dominator's Holy War", diff:"Trung bình", prize:"600G", desc:"4 vật cản phân bố hai cánh." },
+  { div:"Div 2: REVERSE", name:"King's Title Cup", diff:"Trung bình", prize:"650G", desc:"4 vật cản lệch cánh trái." },
+  { div:"Div 2: REVERSE", name:"Millennium Kingdom Cup", diff:"Trung bình", prize:"700G", desc:"4 vật cản đối xứng 2 bên." },
+  { div:"Div 2: REVERSE", name:"Last Holy War Cup", diff:"Khá khó (Trùm Div 2)", prize:"800G", desc:"4 vật cản khóa chặt mặt tiền Die Master. Thắng xem Credits 2 & mở Div 3!" },
+  { div:"Div 3: DARK", name:"Dark Carnival", diff:"Khó", prize:"1000G", desc:"12 vật cản xếp hình kim tự tháp 2 bên biên (6 mỗi bên)." },
+  { div:"Div 3: DARK", name:"Dark Ceremony", diff:"Khó", prize:"1050G", desc:"12 vật cản xếp thành 2 hàng dọc ở cánh trái & cánh phải." },
+  { div:"Div 3: DARK", name:"Corridor of the Dead", diff:"Khó", prize:"1100G", desc:"5 vật cản chặn thẳng hàng giữa (cách 3, 6, 9, 12, 15 ô)." },
+  { div:"Div 3: DARK", name:"Sacrificial Guillotine", diff:"Khó", prize:"1150G", desc:"5 vật cản tạo hàng rào ngang ở hàng 4." },
+  { div:"Div 3: DARK", name:"Coliseum of the Dead", diff:"Khó", prize:"1200G", desc:"8 vật cản bố trí kiểu mê cung kép." },
+  { div:"Div 3: DARK", name:"The Last Judgment", diff:"Rất khó (Trùm Div 3)", prize:"1500G", desc:"Giải đấu cuối mạch chính (4 vật cản). Thắng xem Final Credits!" },
+  { div:"Div 3: SECRET", name:"Yami Yugi's Challenge", diff:"Cực khó (Thử thách ẩn)", prize:"1500G", desc:"9 vật cản! Đánh bại Yami Yugi để mở cơ hội mua Dark Magician Girl (DMG) trong Shop Ông Nội!" }
+];
+
+// ==================== 6. UNIFIED ITEMS, TRAPS, SPELLS, SPA & ITEM DICE DB (61 ENTRIES) ====================
+const ITEMS_DB = [
+  // --- DOTR (24 items) ---
+  { game:"dotr", cat:"trap", tier:"S", code:"#829", name:"Mirror Wall", cost:"80 DC • Pass: 53297534", effect:"Bẫy vĩnh cửu: khi quái địch tuyên bố tấn công, giảm một nửa VĨNH VIỄN sức mạnh của quái đó.", priority:"ƯU TIÊN #1 (S-Tier): Chặn đứng mọi đòn tấn công 4000+ của Seto & Manawyddan. Luôn giữ ít nhất 1–2 lá trong bộ." },
+  { game:"dotr", cat:"trap", tier:"S", code:"#825", name:"Royal Decree", cost:"80 DC • Pass: 8TETQHE1", effect:"Bẫy vĩnh cửu: kích hoạt vô hiệu hóa bất kỳ lá Bẫy nào của đối thủ.", priority:"ƯU TIÊN S-Tier: Bắt buộc phải có khi đánh Manawyddan & Seto để vô hiệu Mirror Force, Acid Trap Hole và Widespread Ruin." },
+  { game:"dotr", cat:"revive", tier:"S", code:"#687", name:"Mimicat", cost:"80 DC • Pass: 69YDQM85", effect:"Chọn, hồi sinh và điều khiển 1 lá bài BẤT KỲ (Quái, Phép hoặc Bẫy) từ cả hai Mộ!", priority:"ƯU TIÊN S-Tier: Lá hồi sinh mạnh nhất game — có thể cướp thẳng Riryoku, Raigeki hoặc siêu quái từ Mộ đối thủ." },
+  { game:"dotr", cat:"revive", tier:"S", code:"#685", name:"Monster Reborn", cost:"50 DC", effect:"Chọn, hồi sinh và điều khiển 1 Quái vật từ Mộ của bạn hoặc đối thủ.", priority:"ƯU TIÊN S-Tier: Rẻ hơn Mimicat 30 DC; dùng cho mọi bộ bài từ giữa game trở đi." },
+  { game:"dotr", cat:"spell", tier:"S", code:"#745", name:"Call of the Haunted", cost:"1 DC • Pass: 0RWZ6FN7", effect:"Biến toàn bộ quái vật của bạn trên sân thành tộc Zombie!", priority:"ƯU TIÊN S-Tier (1 DC!): Không phải lá hồi sinh như TCG mà là phép chuyển tộc 1 DC siêu lỗi khi đi cùng Pumpking (+100/lượt)!" },
+  { game:"dotr", cat:"equip", tier:"S", code:"#796", name:"Cursebreaker", cost:"1 DC", effect:"Hủy mọi hiệu ứng trói phép (Spellbind) và tăng/giảm chỉ số (giữ nguyên địa hình & năng lực Thủ lĩnh).", priority:"ƯU TIÊN S-Tier (1 DC!): Giải khóa Gravity Bind, xóa buff Riryoku địch và ép tổng DC xuống cực thấp!" },
+  { game:"dotr", cat:"trap", tier:"S", code:"#810", name:"Invisible Wire", cost:"20 DC • Pass: L7YZYMGZ", effect:"Bẫy dùng 1 lần: tiêu diệt quái địch có ATK ≤ 3000 khi kích hoạt.", priority:"ƯU TIÊN S-Tier: Tỷ lệ hiệu quả/DC tốt nhất game (chỉ 20 DC diệt luôn Blue-Eyes 3000!)." },
+  { game:"dotr", cat:"trap", tier:"S", code:"#811", name:"Acid Trap Hole", cost:"30 DC • Pass: 63QXGPJB", effect:"Bẫy dùng 1 lần: tiêu diệt quái địch có ATK ≤ 4000.", priority:"ƯU TIÊN S-Tier: Chỉ 30 DC hạ gục gần như toàn bộ boss buff mạnh." },
+  { game:"dotr", cat:"trap", tier:"S", code:"#806", name:"Gravity Bind", cost:"60 DC • Pass: 0HNFG9WX", effect:"Bẫy dùng 1 lần: trói phép VĨNH VIỄN quái địch và trừ 1500 sức mạnh.", priority:"ƯU TIÊN S-Tier: Biến siêu quái thành phế vật đứng chắn luôn đường tiến của chính đối thủ." },
+  { game:"dotr", cat:"equip", tier:"S", code:"#789", name:"Riryoku", cost:"99 DC", effect:"Cắt một nửa LP của đối thủ và cộng thẳng số LP vừa trừ vào sức mạnh của TẤT CẢ quái vật!", priority:"ƯU TIÊN S-Tier (Endgame): Vũ khí dứt điểm 1 lượt kinh hoàng nhất khi đánh Manawyddan (DC 1854+)." },
+  { game:"dotr", cat:"trap", tier:"S", code:"#827", name:"Mirror Force", cost:"99 DC", effect:"Khi bị tấn công, tiêu diệt TOÀN BỘ quái vật thế Công trên sân đối thủ.", priority:"ƯU TIÊN S-Tier: Quét sạch đội hình công của đối thủ, nhưng cân nhắc DC cao (99) ở đầu game." },
+  { game:"dotr", cat:"spell", tier:"S", code:"#700", name:"Raigeki", cost:"80 DC", effect:"Tiêu diệt mọi quái vật nằm trên hàng ngang và hàng dọc từ ô kích hoạt.", priority:"ƯU TIÊN S-Tier: Mở đường trực diện áp sát Thủ lĩnh đối phương." },
+  { game:"dotr", cat:"spell", tier:"S", code:"#699", name:"Dark Hole", cost:"50 DC • Pass: UMJ10MQB", effect:"Tiêu diệt toàn bộ quái vật và lá phép đang có trên bàn cờ.", priority:"ƯU TIÊN S-Tier: Chỉ 50 DC, rẻ hơn Raigeki và xoay chuyển thế trận cực mạnh." },
+  { game:"dotr", cat:"spell", tier:"S", code:"#732", name:"Change of Heart", cost:"80 DC • Pass: SBYDQM8B", effect:"Chọn bất kỳ 1 lá bài nào của đối thủ trên sân và điều khiển trong 1 lượt.", priority:"ƯU TIÊN S-Tier: Cướp quái chắn trước Thủ lĩnh địch rồi đâm thẳng kết thúc trận!" },
+  { game:"dotr", cat:"spell", tier:"S", code:"#715", name:"Swords of Revealing Light", cost:"80 DC", effect:"Lật ngửa toàn bộ bài địch và trói phép (Spellbind) trong 3 lượt.", priority:"ƯU TIÊN S-Tier: Khóa cứng bàn cờ 3 lượt để dồn thế bao vây Thủ lĩnh." },
+  { game:"dotr", cat:"spell", tier:"S", code:"#734", name:"Magical Neutralizing Force Field", cost:"10 DC • Pass: QXEHGZJR", effect:"Hủy trói phép, xóa tăng/giảm chỉ số VÀ phá hủy toàn bộ Bẫy ngửa trên sân!", priority:"ƯU TIÊN S-Tier (10 DC!): Bản nâng cấp hoàn hảo của Cursebreaker để đập nát Mirror Wall/Royal Decree địch." },
+  { game:"dotr", cat:"equip", tier:"A", code:"#780", name:"Megamorph", cost:"15 DC", effect:"Tăng +300 sức mạnh cho bất kỳ quái vật nào.", priority:"Hạng A: Không còn +1000 như Forbidden Memories nhưng cực rẻ (15 DC), lắp đa dụng cho mọi tộc." },
+  { game:"dotr", cat:"spell", tier:"A", code:"#733", name:"Brain Control", cost:"80 DC • Ẩn: Manawyddan D4", effect:"Chiếm quyền điều khiển quái có ATK cao nhất của đối thủ trong 1 lượt.", priority:"Hạng A: Hơi kém linh hoạt hơn Change of Heart nhưng cực mạnh trước quái 4000+." },
+  { game:"dotr", cat:"spell", tier:"A", code:"#702", name:"Harpie's Feather Duster", cost:"70 DC • Pass: 8HJHQPNP", effect:"Phá hủy toàn bộ phép/bẫy theo đường ngang & dọc từ ô kích hoạt.", priority:"Hạng A: Rất cần khi đột phá pháo đài bẫy của Seto và Manawyddan." },
+  { game:"dotr", cat:"equip", tier:"A", code:"#794", name:"Crush Card", cost:"80 DC • Pass: SRA7L5YR", effect:"Buff quái ≤1000 ATK; khi bị diệt trong chiến đấu, biến các ô xung quanh thành CRUSH terrain!", priority:"Hạng A: Hạt nhân của bộ bài Immortal Crush Lock." },
+  { game:"dotr", cat:"spell", tier:"A", code:"#736", name:"Shield & Sword", cost:"30 DC", effect:"Hoán đổi ATK và DEF của mọi quái vật trên sân.", priority:"Hạng A: Khắc tinh tuyệt đối của đội Zombie (0 DEF) và các tường thủ 3000 DEF." },
+  { game:"dotr", cat:"trap", tier:"A", code:"#818", name:"Shadow of Eyes", cost:"20 DC", effect:"Bẫy vĩnh cửu: tự động chuyển quái địch kết thúc di chuyển ở thế Thủ sang thế Công.", priority:"Hạng A: Chỉ 20 DC, cực lợi ở đầu game chống các đối thủ hay thủ như Tea." },
+  { game:"dotr", cat:"trap", tier:"B", code:"#820", name:"Fake Trap", cost:"5 DC", effect:"Vô hiệu hóa Harpie's Feather Duster.", priority:"Hạng B: Công dụng chính là đệm 5 DC hạ tổng DC bộ bài & làm nguyên liệu Luân hồi (L3) săn Exodia!" },
+  { game:"dotr", cat:"spell", tier:"C", code:"#709", name:"Sparks / Hinotama", cost:"2–5 DC", effect:"Gây 50–100 sát thương trực tiếp lên LP đối phương.", priority:"Hạng C (Không nên dùng): Sát thương quá nhỏ, chỉ phí chỗ trong bộ bài 40 lá." },
+
+  // --- CMC SPA (12 items) ---
+  { game:"cmc", cat:"dice", tier:"S", code:"SPA • Lv1", name:"Obliterate (Summoned Lord Exodia)", cost:"360 AP • 1 lần/trận", effect:"Gây sát thương diện rộng hủy diệt lên toàn bộ quân (cả địch lẫn ta) trong tầm ảnh hưởng!", priority:"ƯU TIÊN S-Tier: Tuyệt chiêu dọn bàn mạnh nhất CMC; nhớ rút quân mình ra khỏi tầm trước khi bắn." },
+  { game:"cmc", cat:"dice", tier:"S", code:"SPA • Lv1", name:"Neutron Blast Attack (Blue-Eyes Ultimate)", cost:"350 AP • 1 lần/trận", effect:"Sát thương diện rộng cực lớn lên TẤT CẢ kẻ địch trong tầm (không làm hại đồng minh!).", priority:"ƯU TIÊN S-Tier: An toàn hơn Obliterate vì chỉ đánh quân địch, chốt hạ cực mạnh ở King Coliseum." },
+  { game:"cmc", cat:"dice", tier:"S", code:"SPA • Lv3", name:"Flash Flare Blast (Red-Eyes B. Metal)", cost:"300 AP • 2 lần/trận", effect:"Gây sát thương lớn lên 1 mục tiêu BỎ QUA HOÀN TOÀN CHỈ SỐ DEF!", priority:"ƯU TIÊN S-Tier: Xuyên thủng mọi bức tường giáp dày ở Area 4 & 5 với tận 2 lần dùng." },
+  { game:"cmc", cat:"dice", tier:"S", code:"SPA • Lv3", name:"Chaos Scepter Blast (Magician of Black Chaos)", cost:"340 AP • 1 lần/trận", effect:"Gây sát thương diện rộng lên toàn bộ kẻ địch trong tầm đánh.", priority:"ƯU TIÊN S-Tier: Phá vỡ đội hình tụ cụm ở các bản đồ hành lang hẹp." },
+  { game:"cmc", cat:"trap", tier:"S", code:"SPA • Lv4", name:"Perfect Block (Kuriboh)", cost:"150 AP • 2 lần/trận", effect:"Vô hiệu hóa hoàn toàn 1 đòn tấn công của đối thủ trong 1 lượt!", priority:"ƯU TIÊN S-Tier: 'Lá bẫy sống' rẻ MP nhất game giúp bảo vệ Symbol hoặc mồi nhử boss cực đỉnh." },
+  { game:"cmc", cat:"dice", tier:"S", code:"SPA • Lv2", name:"White Lightning (Blue-Eyes White Dragon)", cost:"200 AP • 1 lần/trận", effect:"Gây sát thương lên toàn bộ kẻ địch trong tầm tấn công với chi phí AP rất mềm (200 AP).", priority:"ƯU TIÊN S-Tier: Dễ sở hữu hơn BEUD, hiệu suất AP/sát thương tuyệt vời." },
+  { game:"cmc", cat:"revive", tier:"A", code:"SPA • Heal", name:"Friends Again (Shining Friendship)", cost:"400 AP • 2 lần/trận", effect:"Hồi phục 80 PP cho toàn bộ đơn vị (cả địch lẫn ta) trong tầm ảnh hưởng.", priority:"Hạng A: Hồi máu cực dày cho đội hình chủ lực (chú ý vị trí đứng để tránh hồi cho địch)." },
+  { game:"cmc", cat:"revive", tier:"A", code:"SPA • Lv2", name:"Heart Beam (Happy Lover)", cost:"80 AP • 3 lần/trận", effect:"Hồi 30 PP cho 1 đồng minh chỉ với 80 AP (tối đa 3 lần).", priority:"Hạng A: Hồi máu đầu game (Area 1–3) siêu tiết kiệm AP." },
+  { game:"cmc", cat:"dice", tier:"A", code:"SPA • Lv3", name:"Lightning Strike (Summoned Skull)", cost:"220 AP • 1 lần/trận", effect:"Sát thương diện rộng lên toàn bộ kẻ địch trong tầm.", priority:"Hạng A: Chủ lực hệ Dark rất dễ cày sớm." },
+  { game:"cmc", cat:"spell", tier:"A", code:"SPA • Lv1", name:"Breath of Light (Magician of Faith)", cost:"80 AP • 3 lần/trận", effect:"Đưa tỷ lệ buff địa hình trên mục tiêu về 0% trong 1 lượt.", priority:"Hạng A: Khắc chế cực tốt các trùm đứng trên ô +40%/+50% nguyên tố." },
+  { game:"cmc", cat:"equip", tier:"B", code:"SPA • Lv3", name:"Metalmorph (Zoa)", cost:"185 AP • 2 lần/trận", effect:"Tăng +61 DEF cho bản thân trong 1 lượt.", priority:"Hạng B: Hữu ích khi cần câu giờ giữ chốt chặn trước boss." },
+  { game:"cmc", cat:"dice", tier:"B", code:"SPA • Lv2", name:"Shine of Dark (Pumpking)", cost:"200 AP • 3 lần/trận", effect:"Giảm 20% thuộc tính Earth trên bản đồ trong 2 lượt.", priority:"Hạng B: Chuyên dùng khi đối đầu các ải hệ Earth." },
+
+  // --- FALSEBOUND KINGDOM (15 items) ---
+  { game:"tfk", cat:"equip", tier:"S", code:"Buff Spirit", name:"Power of Nature", cost:"750G • 4 lần dùng", effect:"Tăng đồng thời CẢ ATK VÀ AP cho toàn bộ quái tộc Spirit trong trận!", priority:"ƯU TIÊN #1 (S-Tier): Lý do chính biến tộc Spirit thành thế lực áp đảo nhất toàn bộ Falsebound Kingdom." },
+  { game:"tfk", cat:"spell", tier:"S", code:"Magic Lv5", name:"Raigeki", cost:"1 lần • Ma thuật Lv5", effect:"Giáng sát thương khổng lồ lên toàn bộ 3 quái địch trước khi chúng kịp hành động!", priority:"ƯU TIÊN S-Tier: Càn quét ngay cả đội hình boss mạnh nhất ở cuối chiến dịch." },
+  { game:"tfk", cat:"spell", tier:"S", code:"Magic Lv3", name:"Swords of Revealing Light", cost:"Ma thuật Lv3", effect:"Làm choáng/tê liệt đội hình địch — tước quyền ra đòn của đối thủ!", priority:"ƯU TIÊN S-Tier: Yêu cầu chỉ Lv3 Magic mà hạ độ khó cả game xuống mức cực dễ." },
+  { game:"tfk", cat:"spell", tier:"S", code:"Magic Lv4", name:"Raimei", cost:"500G • 5 lần dùng", effect:"Gây sát thương VÀ làm Tê liệt toàn bộ đối phương với tận 5 lần sử dụng!", priority:"ƯU TIÊN S-Tier: Bản nâng cấp siêu bền của Swords of Revealing Light." },
+  { game:"tfk", cat:"revive", tier:"S", code:"Magic Lv3", name:"Gift of the Mystical Elf", cost:"Ma thuật Lv3", effect:"Phép hồi máu diện rộng mạnh và kinh tế nhất toàn game.", priority:"ƯU TIÊN S-Tier: Bắt buộc gắn cho mọi Pháp sư/Spirit cấp 3." },
+  { game:"tfk", cat:"equip", tier:"S", code:"Equip", name:"Silver Bow and Arrow", cost:"Trang bị Spirit/Warrior", effect:"Tăng mạnh ATK và độ chính xác (chống đánh hụt đòn thường) cho gần như toàn bộ Spirit & Warrior.", priority:"ƯU TIÊN S-Tier: Trang bị công bắt buộc phải có cho Black Luster Soldier, Orion, Buster Blader." },
+  { game:"tfk", cat:"equip", tier:"S", code:"Equip", name:"Shock Shell", cost:"Trang bị Machine", effect:"Mỗi đòn đánh của quái tộc Machine có khả năng gây trạng thái Hỗn loạn (Confusion)!", priority:"ƯU TIÊN S-Tier: Biến đội Máy móc (Slot Machine, Launcher Spider, REBMD) thành cỗ máy khóa kỹ năng địch." },
+  { game:"tfk", cat:"equip", tier:"S", code:"Equip", name:"Electro-Whip", cost:"900G • Harpie Lady", effect:"Cho phép đòn đánh của mọi Harpie Lady gây trạng thái Tê liệt (Paralysis)!", priority:"ƯU TIÊN S-Tier: Mua ngay tối thiểu 2 cái sớm nhất có thể trong chiến dịch Yugi (tại Dhithton / Van-Lova)." },
+  { game:"tfk", cat:"revive", tier:"S", code:"Consumable", name:"Dian Keto the Cure Master", cost:"1800G • 1 lần dùng", effect:"Hồi ĐẦY 100% HP cho cả 3 quái vật trong tổ đội cùng lúc.", priority:"ƯU TIÊN S-Tier (Giữa–Cuối game): Pha cứu nguy tuyệt đối trong các trận đấu Thần Ai Cập." },
+  { game:"tfk", cat:"revive", tier:"S", code:"Consumable", name:"Red Medicine", cost:"500G • 3 lần dùng", effect:"Hồi đầy 100% HP cho 1 quái vật (dùng được 3 lần).", priority:"ƯU TIÊN S-Tier: Ngang hạng với Dian Keto nhờ 3 lần dùng linh hoạt." },
+  { game:"tfk", cat:"revive", tier:"A", code:"Consumable", name:"Monster Reborn", cost:"750G • 1 lần dùng", effect:"Hồi sinh 1 quái vật bị hạ gục giữa trận với 50% lượng HP.", priority:"Hạng A: Cực kỳ quan trọng trong các màn boss cuối tránh mất đòn phối hợp Đôi/Ba." },
+  { game:"tfk", cat:"spell", tier:"A", code:"Fusion", name:"Polymerization", cost:"500G • 1 lần dùng", effect:"Dung hợp 2 hoặc 3 quái vật ngay trong trận (Valkyrion, BEUD, Gate Guardian, Cosmo Queen).", priority:"Hạng A: Mở khóa sức mạnh đột biến cho các tổ đội dung hợp." },
+  { game:"tfk", cat:"equip", tier:"A", code:"Equip", name:"Deal of Phantom", cost:"800G", effect:"Tăng +1 AP cho quái vật trang bị VÀ cộng thêm tỷ lệ né đòn!", priority:"Hạng A: Cứu cánh cho các quái công mạnh nhưng thiếu AP, cực bá khi đi cùng kỹ năng Lucky." },
+  { game:"tfk", cat:"equip", tier:"A", code:"Equip", name:"Legendary Sword / Book of Secret Arts", cost:"500G / 600G", effect:"Cộng +500 ATK cho Chiến binh (Legendary Sword) hoặc Pháp sư (Book of Secret Arts).", priority:"Hạng A–B: Trang bị nâng công ổn định kèm theo Silver Bow." },
+  { game:"tfk", cat:"spell", tier:"C", code:"Magic/Equip", name:"Hinotama / Snake Fang / Dragon Capture Jar", cost:"Phép yếu / Hẹp", effect:"Gây sát thương nhỏ, độc yếu hoặc chỉ khóa riêng Rồng.", priority:"Hạng C (Tránh dùng): Gây Tê liệt/Hỗn loạn hiệu quả hơn gấp nhiều lần so với đốt máu lẻ tẻ." },
+
+  // --- DUNGEON DICE MONSTERS — ALL 10 ITEM DICE (10 items) ---
+  { game:"ddm", cat:"dice", tier:"S", code:"Item • Lv1", name:"Energy Disc", cost:"Crests: 4×Sum, 3Mov, 4Mov", effect:"Tăng +20 ATK cho 1 quái vật khi đặt lên bàn.", priority:"ƯU TIÊN #1 (S-Tier): Đỉnh cao không chỉ ở +20 ATK mà ở 2 mặt 3Mov & 4Mov — động cơ chạy bàn Lv1 mạnh nhất game!" },
+  { game:"ddm", cat:"dice", tier:"S", code:"Item • Lv4", name:"Crater Creator", cost:"Crests: Sum, 4Mov, Atk, 2Atk, Def, 4Mag", effect:"TIÊU DIỆT TOÀN BỘ quái vật đang có mặt trong mê cung!", priority:"ƯU TIÊN S-Tier: Bom hạt nhân lật kèo chống lại các đội rush đầu game (nhớ ghép cặp cùng 1 viên Lv4 khác!)." },
+  { game:"ddm", cat:"revive", tier:"S", code:"Item • Lv2", name:"Resurrection Scroll", cost:"Crests: 3×Sum, 2Mov, 2Mag, Tra", effect:"Hồi sinh 1 quái vật đã bị tiêu diệt trở lại bàn cờ!", priority:"ƯU TIÊN S-Tier: Lá bài bảo hiểm bắt buộc cho bộ Exodia và các chủ lực Lv2–Lv3." },
+  { game:"ddm", cat:"revive", tier:"A", code:"Item • Lv2", name:"Medical Aid Kit", cost:"Crests: 3×Sum, 5Mov, Atk, Tra", effect:"Hồi phục 20 HP (2 Trái tim) cho 1 quái vật.", priority:"Hạng A: Cực ngon nhờ vừa giữ sống tank 40–50 HP vừa sở hữu mặt 5Mov siêu hiếm ở Lv2!" },
+  { game:"ddm", cat:"dice", tier:"A", code:"Item • Lv3", name:"Exploding Disc", cost:"Crests: 2×Sum, 2Mov, 3Mov, 2Def, 2Mag", effect:"Trừ ngay 20 HP (2 Trái tim) của 1 quái vật trên mê cung.", priority:"Hạng A: Quét gọn quái Lv1–Lv2 của địch mà không cần giao chiến, cộng thêm mặt 2Mov/3Mov." },
+  { game:"ddm", cat:"dice", tier:"A", code:"Item • Lv3", name:"Warp Vortex", cost:"Crests: 2×Sum, Mov, Atk, Def, Tra", effect:"Dịch chuyển tức thời quái vật từ ô Warp Vortex này sang ô Warp Vortex khác.", priority:"Hạng A (Combo): Cần đặt 2 viên để tạo cổng dịch chuyển đánh úp thẳng vào Die Master địch." },
+  { game:"ddm", cat:"trap", tier:"B", code:"Item • Lv2", name:"Gluminizer", cost:"Crests: 3×Sum, 2Mov, Atk, 2Def", effect:"Nhân đôi (×2) chi phí Movement Crest của toàn bộ quái vật trên bàn.", priority:"Hạng B: Rất tốt cho bộ bài Exodia câu giờ, nhưng làm chậm luôn cả quân mình." },
+  { game:"ddm", cat:"dice", tier:"B", code:"Item • Lv1", name:"Time Machine", cost:"Crests: 5×Sum, Tra", effect:"Đưa 1 quái vật quay trở về vị trí trước đó của nó.", priority:"Hạng B: Hiệu ứng đẩy lùi tầm trung, nhưng sở hữu tới 5 mặt Sum Lv1 để dễ ép cặp triệu hồi!" },
+  { game:"ddm", cat:"trap", tier:"C", code:"Item • Lv1", name:"Trap Bandit", cost:"Crests: 4×Sum, Mov, Tra", effect:"Phá hủy 1 Trap Crest trong bể Crest của đối thủ.", priority:"Hạng C (Không ưu tiên): Tác động quá nhỏ so với việc dùng Energy Disc hay Time Wizard cùng Lv1." },
+  { game:"ddm", cat:"trap", tier:"C", code:"Item • Lv1", name:"Declaration of Despair", cost:"Crests: 4×Sum, 2Mov, Mag", effect:"Phá hủy 1 Magic Crest trong bể Crest của đối thủ.", priority:"Hạng C (Không ưu tiên): Yếu hơn rất nhiều so với các xúc xắc Lv1 meta khác." }
+];
+
+// ==================== 7. SAMSUNG CHIP PROFILES & TROUBLESHOOTING ====================
+const SAMSUNG_PROFILES = {
+  snapdragon: {
+    title: "Samsung Snapdragon / GPU Adreno (S23 / S24 Ultra / S25 / Z Fold / Tab S9+)",
+    ps2: "Dùng <strong>NetherSX2 Patched v2.2n-4248</strong> (hoặc Classic 3668) • Renderer: <strong>Vulkan</strong> • Upscale: <strong>2x–3x Native (720p–1080p)</strong> • Hardware Download Mode: <strong>Disable Readbacks</strong>.",
+    gc: "Dùng <strong>Dolphin 2609b (Play Store 64-bit)</strong> • Backend: <strong>Vulkan</strong> • <strong>2x–3x Native</strong> • Hybrid Ubershaders + Compile Shaders Before Starting.",
+    gba: "<strong>Pizza Boy A</strong> hoặc <strong>RetroArch 1.22.2 (mGBA)</strong> → mượt 60 FPS, hỗ trợ Fast Forward nhanh.",
+    ui: "One UI 7 Game Booster: chọn <strong>Performance</strong> & đặt riêng tần số quét <strong>60Hz</strong> cho NetherSX2/Dolphin để máy mát hơn khi chơi lâu."
+  },
+  xclipse: {
+    title: "Samsung Exynos 2400 / GPU AMD RDNA 3 Xclipse 940 (Galaxy S24 / S24+ / S24 FE)",
+    ps2: "Dùng <strong>NetherSX2 Classic v2.2n-3668</strong> • Renderer: <strong>Vulkan</strong> • <strong>BẮT BUỘC BẬT Threaded Presentation</strong> • Upscale: <strong>2x Native (720p)</strong> • Hardware Download Mode: <strong>Disable Readbacks</strong>.",
+    gc: "Dùng <strong>Dolphin 2609b</strong> • Backend: <strong>Vulkan</strong> (nếu thấy lỗi bóng nhỏ chuyển sang OpenGL ES) • <strong>2x Native</strong> • Compile Shaders Before Starting.",
+    gba: "<strong>Pizza Boy A</strong> hoặc <strong>RetroArch (mGBA)</strong> → chạy mượt 60 FPS tiết kiệm pin.",
+    ui: "One UI 7 Game Booster: chuyển <strong>Game optimisation → Performance</strong>, bật <em>Priority Mode</em> và khóa <strong>60Hz</strong> để giảm nhiệt."
+  },
+  mali: {
+    title: "Samsung Exynos Mali / MediaTek Tầm Trung (Galaxy A35 / A54 / A55 / M-Series)",
+    ps2: "<strong>Khuyến nghị dùng NetherSX2 Classic v2.2n-3668</strong> (tối ưu tốt hơn cho GPU Mali) • Preset: <strong>Optimal/Safe</strong> • Renderer: <strong>Vulkan</strong> (hoặc OpenGL nếu lỗi texture) + <strong>BẬT Threaded Presentation</strong> + <strong>Disable Readbacks</strong> • Upscale: <strong>1x–1.5x Native</strong>.",
+    gc: "Dùng <strong>Dolphin 2609b</strong> • Backend: <strong>OpenGL ES</strong> (ổn định trên Mali đời cũ) hoặc Vulkan • <strong>1x–1.5x Native</strong>.",
+    gba: "<strong>Pizza Boy A</strong> (viết bằng C/Assembly rất nhẹ, 60 FPS cả trên máy cũ) hoặc RetroArch mGBA.",
+    ui: "Tắt bớt app chạy ngầm trong RAM, đặt Game Booster mức <strong>Performance</strong> và khóa tần số quét <strong>60Hz</strong> riêng cho giả lập."
+  }
+};
+
+const SAMSUNG_ISSUES = [
+  { q:"1. Lỗi 'BIOS Not Found' hoặc không thấy file BIOS trên NetherSX2", a:"Kiểm tra 3 nguyên nhân: (a) File <code>scph39001.bin</code> vẫn đang nằm trong file <code>.zip/.rar</code> chưa giải nén; (b) Đuôi file viết HOA thành <code>.BIN</code> — phải đổi thành <code>.bin</code> viết thường; (c) File bị đặt trong <code>/Android/data/</code> — hãy chuyển ra <code>/Internal Storage/Emulation/PS2/bios/</code>." },
+  { q:"2. Lỗi Android 14/15/16 không cho chọn thư mục (Scoped Storage)", a:"Không chọn thư mục gốc <code>Internal Storage</code>, <code>Downloads</code> hay <code>Android/data</code>. Tạo thư mục con riêng <code>/Emulation/PS2/games/</code> rồi bấm <em>Use This Folder → Allow</em>." },
+  { q:"3. Google Play Store tự động cập nhật đè AetherSX2 bản có quảng cáo lên NetherSX2", a:"Dùng đúng bản APK đã ký lại <strong>NetherSX2 Classic v2.2n-3668</strong> hoặc <strong>v2.2n-4248</strong> từ GitHub của Trixarian (tích hợp bản vá chống Play Store ghi đè), đồng thời tắt tự động cập nhật trên Play Store nếu trước đó từng cài AetherSX2." },
+  { q:"4. Game The Falsebound Kingdom bị treo đứng sau trận đánh trên Dolphin ('DSI Exception')", a:"Lỗi từng được ghi nhận trên các bản Dolphin cũ khi người chơi chỉ dựa vào Save State qua nhiều nhiệm vụ. Phòng tránh an toàn nhất: <strong>luôn lưu bằng Memory Card gốc trong game sau mỗi màn</strong> và dùng Save State làm bản phụ." },
+  { q:"5. Không tìm thấy nút L3 (Luân hồi) và R3 (Nhập Mật khẩu) trong Duelists of the Roses", a:"Trong lúc mở game trên NetherSX2, nhấn Back → <em>Controller Settings → Touchscreen → Add/Remove Buttons</em> → tick bật hiển thị <strong>L3</strong> và <strong>R3</strong> ngay trên màn hình cảm ứng." },
+  { q:"6. Tụt FPS rõ rệt sau khi cập nhật Samsung lên One UI 7", a:"One UI 7 đã bỏ mục <em>Game Booster Labs</em> cũ. Vào <strong>Gaming Hub → ⋮ → Game Booster → Game optimisation → Performance</strong>, đồng thời vào <em>Customisations for individual games</em> đặt tần số quét <strong>60Hz</strong> để giảm nhiệt và hạn chế bóp xung." },
+  { q:"7. RetroArch tải từ Google Play không có mục Core Downloader để tải mGBA", a:"Bản RetroArch trên Play Store bị cắt tính năng Core Downloader theo chính sách cửa hàng. Gỡ bản Play Store và tải trực tiếp <strong>APK 64-bit tại <code>retroarch.com</code></strong> (hoặc dùng <strong>Pizza Boy A</strong> trên Play Store)." },
+  { q:"8. Bị mất toàn bộ tiến độ giải đấu trong Dungeon Dice Monsters (GBA)", a:"Bản gốc DDM trên GBA không cho phép lưu giữa 4 trận trong một giải đấu. Hãy bấm nút <strong>Save State</strong> của Pizza Boy A / RetroArch ngay trước mỗi trận vòng loại!" }
+];
+
+// ==================== 8. RENDER ENGINE & INTERACTIVITY ====================
+// Render Overview 4 Games
+document.getElementById("overviewGamesGrid").innerHTML = OVERVIEW_GAMES.map(g => {
+  const img = getCardImage(g.id, g.title.slice(3), g.platform.split(" ")[0], g.id.toUpperCase(), g.id, "");
+  return `<div class="game-card">
+    <div class="game-banner" style="background:${g.gradient}">
+      <img src="${img}" alt="${g.title}" />
+      <div>
+        <span class="badge ${g.bClass}">${g.badge}</span>
+        <h3 style="margin:5px 0 3px;color:#fff;font-size:0.97rem;">${g.title}</h3>
+        <div style="font-size:0.76rem;color:#cbd5e1;">${g.platform}</div>
+      </div>
+    </div>
+    <div class="game-body">
+      <div>
+        <div style="font-size:0.8rem;color:var(--cyan);font-weight:700;">${g.emu}</div>
+        <ul>${g.bullets.map(b => `<li>${b}</li>`).join("")}</ul>
+      </div>
+      <div style="display:flex;gap:7px;flex-wrap:wrap;">
+        <button class="action-btn gold jump-tab-btn" data-jump="${g.tab}">Mở cẩm nang chi tiết →</button>
+        <button class="action-btn soft jump-tab-btn" data-jump="samsung">Cách cài Samsung</button>
+      </div>
+    </div>
+  </div>`;
+}).join("");
+
+// Render DotR 7x7 Interactive Board
+let currentDorMap = "stonehenge";
+let showDorHidden = false;
+const DOR_COLS = ["A","B","C","D","E","F","G"];
+
+function renderDorBoard() {
+  const grid = DOR_MAPS[currentDorMap] || DOR_MAPS.stonehenge;
+  let html = "";
+  for (let r = 0; r < 7; r++) {
+    for (let c = 0; c < 7; c++) {
+      const t = grid[r][c];
+      const coord = DOR_COLS[c] + (r + 1);
+      const isWhite = (r === 0 && c === 3);
+      const isRed = (r === 6 && c === 3);
+      const isSummon = (r >= 5 && c >= 2 && c <= 4 && !isRed);
+      const hasHidden = Boolean(DOR_HIDDEN_COORD_MAP[coord]);
+      let icon = "";
+      if (isWhite) icon = '<span class="leader-badge">⚜️</span>';
+      else if (isRed) icon = '<span class="leader-badge">🌹</span>';
+      html += `<div class="dor-cell t-${t} ${isSummon ? "summon-zone" : ""} ${(showDorHidden && hasHidden) ? "hidden-mark" : ""}" data-t="${t}" data-coord="${coord}" data-role="${isRed ? "red" : isWhite ? "white" : isSummon ? "summon" : ""}">
+        ${icon}<span>${coord}</span>
+      </div>`;
+    }
+  }
+  document.getElementById("dorBoard").innerHTML = html;
+}
+renderDorBoard();
+
+document.querySelectorAll("#dorMapSwitch .filter-btn[data-map]").forEach(btn => {
+  btn.addEventListener("click", () => {
+    document.querySelectorAll("#dorMapSwitch .filter-btn[data-map]").forEach(b => b.classList.remove("active"));
+    btn.classList.add("active");
+    currentDorMap = btn.dataset.map;
+    renderDorBoard();
+  });
+});
+document.getElementById("toggleHiddenBtn").addEventListener("click", function() {
+  showDorHidden = !showDorHidden;
+  this.classList.toggle("active", showDorHidden);
+  this.textContent = showDorHidden ? "Đang hiện Bài Ẩn (Find ★)" : "Hiện tọa độ Bài Ẩn (Find ★)";
+  renderDorBoard();
+});
+document.getElementById("dorBoard").addEventListener("click", e => {
+  const cell = e.target.closest(".dor-cell");
+  if (!cell) return;
+  const info = DOR_TERRAIN_INFO[cell.dataset.t];
+  const coord = cell.dataset.coord;
+  const role = cell.dataset.role;
+  const hiddenTxt = DOR_HIDDEN_COORD_MAP[coord]
+    ? `<div style="margin-top:7px;padding:7px 9px;border-radius:7px;background:rgba(245,183,0,0.14);border:1px solid rgba(245,183,0,0.45);color:#fde047;"><strong>★ Bài Ẩn tại tọa độ ${coord} (cần Thủ lĩnh MAJ+):</strong><br/>${DOR_HIDDEN_COORD_MAP[coord]}</div>`
+    : "";
+  const extra = role === "red" ? '<div style="margin-top:6px;"><span class="badge b-red">Thủ lĩnh Hoa Hồng Đỏ (Lancaster)</span> Có vùng triệu hồi 8 ô xung quanh viền vàng!</div>'
+    : role === "white" ? '<div style="margin-top:6px;"><span class="badge b-cyan">Thủ lĩnh Hoa Hồng Trắng (York)</span> Bao vây đủ 8 ô hoặc đánh về 0 LP để thắng!</div>'
+    : role === "summon" ? '<div style="margin-top:6px;"><span class="badge b-gold">Vùng Triệu Hồi</span> Có thể đặt bài từ tay trực tiếp xuống ô này.</div>'
+    : "";
+  document.getElementById("dorInfo").innerHTML =
+    `<strong>Ô tọa độ ${coord} — Địa hình ${info.name}</strong><p style="margin-top:5px;">${info.effect}</p>${extra}${hiddenTxt}`;
+});
+
+// Render DotR Bosses, Hidden & Passwords
+function renderDotrBosses() {
+  const q = (document.getElementById("dotrBossSearch").value || "").trim().toLowerCase();
+  const rows = DOTR_BOSSES.filter(b => `${b.name} ${b.side} ${b.dc} ${b.dl} ${b.terrain} ${b.tip}`.toLowerCase().includes(q));
+  document.getElementById("dotrBossTable").innerHTML = rows.map(b => {
+    const dcBadge = b.dc === 0 ? '<span class="badge b-cyan">Bằng Deck bạn</span>'
+      : b.dc >= 1800 ? `<span class="badge b-purple">${b.dc} DC</span>`
+      : b.dc <= 861 ? `<span class="badge b-red">${b.dc} DC</span>`
+      : `<span class="badge b-gold">${b.dc} DC</span>`;
+    return `<tr><td><strong>${b.name}</strong></td><td>${b.side}</td><td>${dcBadge}</td><td>${b.dl}</td><td>${b.terrain}</td><td>${b.tip}</td></tr>`;
+  }).join("");
+}
+document.getElementById("dotrBossSearch").addEventListener("input", renderDotrBosses);
+renderDotrBosses();
+
+document.getElementById("dotrHiddenTable").innerHTML = DOTR_HIDDEN_LIST.map(h =>
+  `<tr><td><strong>${h.opp}</strong></td><td><code>${h.coord}</code></td><td style="color:var(--gold-soft);font-weight:700">${h.card}</td></tr>`
+).join("");
+
+function renderDotrPass() {
+  const q = (document.getElementById("dotrPassSearch").value || "").trim().toLowerCase();
+  const rows = DOTR_PASSWORDS.filter(p => `${p.name} ${p.pass} ${p.note}`.toLowerCase().includes(q));
+  document.getElementById("dotrPassTable").innerHTML = rows.map(p =>
+    `<tr><td><strong>${p.name}</strong></td><td><code>${p.pass}</code></td><td>${p.note}</td></tr>`
+  ).join("");
+}
+document.getElementById("dotrPassSearch").addEventListener("input", renderDotrPass);
+renderDotrPass();
+
+// Render DotR 4 Verified Decks
+let currentDotrDeck = "dotr1";
+function renderDotrDeck() {
+  const dk = DOTR_DECKS[currentDotrDeck];
+  const totalQty = dk.cards.reduce((s, c) => s + c.qty, 0);
+  const totalDC = dk.cards.reduce((s, c) => s + c.qty * c.dc, 0);
+  document.getElementById("dotrDeckHeader").innerHTML = `
+    <div class="stat-pill">Bộ: <strong>${dk.label}</strong></div>
+    <div class="stat-pill">Tổng số lá: <strong>${totalQty} / 40 lá</strong></div>
+    <div class="stat-pill">Tổng Deck Cost: <strong>${totalDC} DC</strong></div>
+    <div class="stat-pill">Thủ lĩnh: <strong>${dk.dl}</strong></div>
+  `;
+  document.getElementById("dotrDeckAlert").innerHTML = `<strong>Ngưỡng khiêu chiến:</strong> ${dk.target}`;
+  document.getElementById("dotrDeckGrid").innerHTML = dk.cards.map((c, idx) => {
+    const tKey = c.type === "Trap" ? "trap" : (c.type === "Magic" || c.type === "Field") ? "spell" : c.type === "Power Up" ? "equip" : "dotr";
+    const img = getCardImage("dotr_" + c.id, c.name, "#" + c.id + " • " + c.dc + "DC", c.stats, tKey, "");
+    return `<div class="ygo-card inspect-dotr" data-dkey="${currentDotrDeck}" data-idx="${idx}">
+      <span class="id-tag">${c.dc} DC</span>
+      <span class="qty-tag">×${c.qty}</span>
+      <img src="${img}" alt="${c.name}" />
+      <div class="ygo-name">${c.name}</div>
+      <div class="ygo-meta">${c.type} • ${c.stats}</div>
+      <div class="ygo-sub">${c.note}</div>
+      <div class="tap-hint">Chạm xem chi tiết →</div>
+    </div>`;
+  }).join("");
+}
+document.querySelectorAll("#dotrDeckPicker .filter-btn").forEach(btn => {
+  btn.addEventListener("click", () => {
+    document.querySelectorAll("#dotrDeckPicker .filter-btn").forEach(b => b.classList.remove("active"));
+    btn.classList.add("active");
+    currentDotrDeck = btn.dataset.dkey;
+    renderDotrDeck();
+  });
+});
+renderDotrDeck();
+
+// Render CMC Attribute Wheel & Tables
+function buildCmcCycle(cycleNum, elId) {
+  document.getElementById(elId).innerHTML = CMC_CYCLES[cycleNum].map((a, idx) =>
+    `<button class="attr-btn" data-cyc="${cycleNum}" data-idx="${idx}">${a.sym} ${a.name}</button>`
+  ).join("");
+}
+buildCmcCycle(1, "cmcCycle1");
+buildCmcCycle(2, "cmcCycle2");
+
+document.querySelectorAll(".attr-btn").forEach(btn => {
+  btn.addEventListener("click", () => {
+    const cyc = Number(btn.dataset.cyc);
+    const idx = Number(btn.dataset.idx);
+    const arr = CMC_CYCLES[cyc];
+    const cur = arr[idx];
+    document.querySelectorAll(".attr-btn").forEach(b => b.classList.remove("active","win","lose","ally"));
+    document.querySelectorAll(`.attr-btn[data-cyc="${cyc}"]`).forEach(b => {
+      const n = arr[Number(b.dataset.idx)].name;
+      if (n === cur.name) b.classList.add("active");
+      else if (n === cur.beats) b.classList.add("win");
+      else if (n === cur.weak) b.classList.add("lose");
+      else if (n === cur.ally) b.classList.add("ally");
+    });
+    document.getElementById("cmcAttrOut").innerHTML =
+      `<strong>${cur.sym} Hệ ${cur.name}</strong> (Vòng ${cyc}):<br/>` +
+      `• <span style="color:#86efac;font-weight:700">Khắc chế mạnh: ${cur.beats}</span> | ` +
+      `<span style="color:#fca5a5;font-weight:700">Bị khắc bởi: ${cur.weak}</span> | ` +
+      `<span style="color:#fde047;font-weight:700">Đồng minh: ${cur.ally}</span><br/>` +
+      `• <strong>Hào quang Symbol:</strong> Buff <code>${cur.buff}</code> • Debuff địch: <code>${cur.debuff}</code>.`;
+  });
+});
+
+document.getElementById("cmcAreasTable").innerHTML = CMC_AREAS.map(a =>
+  `<tr><td><span class="badge ${a.area.includes("5") ? "b-purple" : "b-cyan"}">${a.area}</span></td><td><strong>${a.boss}</strong></td><td>${a.el}</td><td><code>${a.cap}</code></td><td>${a.info}</td></tr>`
+).join("");
+document.getElementById("cmcFusionTable").innerHTML = CMC_FUSIONS.map(f =>
+  `<tr><td><strong style="color:var(--gold-soft)">${f.res}</strong></td><td>${f.req}</td></tr>`
+).join("");
+document.getElementById("cmcEvoTable").innerHTML = CMC_EVOS.map(e =>
+  `<tr><td><strong style="color:var(--cyan)">${e.res}</strong></td><td>${e.req}</td></tr>`
+).join("");
+document.getElementById("cmcSecretTable").innerHTML = CMC_SECRETS.map(s =>
+  `<tr><td><span class="badge b-gold">${s.el}</span></td><td><strong>${s.name}</strong></td><td>${s.cond}</td></tr>`
+).join("");
+
+// Render TFK Squads, Recruits & Fusions
+document.getElementById("tfkSquadsGrid").innerHTML = TFK_SQUADS.map(s =>
+  `<div class="section-box" style="margin:0;background:var(--bg-soft)">
+    <span class="badge ${s.bClass}">${s.badge}</span>
+    <h3 style="margin-top:6px;color:#fff;">${s.name}</h3>
+    <p style="margin-top:5px;"><strong>Thành viên:</strong> <span style="color:var(--gold-soft)">${s.members}</span></p>
+    <p style="margin-top:5px;"><strong>Vật phẩm bắt buộc:</strong> <span style="color:var(--cyan)">${s.items}</span></p>
+    <p style="margin-top:5px;color:var(--muted);">${s.note}</p>
+  </div>`
+).join("");
+document.getElementById("tfkYugiTable").innerHTML = TFK_YUGI_RECRUITS.map(r =>
+  `<tr><td><strong>${r.m}</strong></td><td style="color:var(--gold-soft);font-weight:700">${r.unit}</td><td>${r.loc}</td></tr>`
+).join("");
+document.getElementById("tfkFusionTable").innerHTML = TFK_FUSIONS.map(f =>
+  `<tr><td><strong style="color:var(--gold-soft)">${f.res}</strong></td><td>${f.mat}</td><td><code>${f.item}</code></td><td>${f.note}</td></tr>`
+).join("");
+
+// Render DDM 3 Pools & 19 Tournaments
+let currentDdmPool = "ddm1";
+function renderDdmPool() {
+  const pl = DDM_POOLS[currentDdmPool];
+  const total = pl.dice.reduce((s, d) => s + d.qty, 0);
+  document.getElementById("ddmPoolHeader").innerHTML = `
+    <div class="stat-pill">Bộ xúc xắc: <strong>${pl.label}</strong></div>
+    <div class="stat-pill">Tổng số viên: <strong>${total} / 15 viên</strong></div>
+    <div class="stat-pill">Phân bổ cấp: <strong>${pl.summary.split("•").slice(1).join("•")}</strong></div>
+  `;
+  document.getElementById("ddmPoolAlert").innerHTML = pl.alert;
+  document.getElementById("ddmPoolGrid").innerHTML = pl.dice.map((d, idx) => {
+    const tKey = d.cls.includes("Item") ? "dice" : "ddm";
+    const img = getCardImage("ddm_" + idx, d.name, "LV" + d.lvl + " • " + d.cls.split(" ")[0], d.stats, tKey, "");
+    return `<div class="ygo-card inspect-ddm" data-pkey="${currentDdmPool}" data-idx="${idx}">
+      <span class="id-tag">Lv${d.lvl}</span>
+      <span class="qty-tag">×${d.qty}</span>
+      <img src="${img}" alt="${d.name}" />
+      <div class="ygo-name">${d.name}</div>
+      <div class="ygo-meta">${d.cls} • ${d.stats}</div>
+      <div class="ygo-sub">Crests: <code>${d.crests}</code><br/>${d.note}</div>
+      <div class="tap-hint">Chạm xem chi tiết →</div>
+    </div>`;
+  }).join("");
+}
+document.querySelectorAll("#ddmPoolPicker .filter-btn").forEach(btn => {
+  btn.addEventListener("click", () => {
+    document.querySelectorAll("#ddmPoolPicker .filter-btn").forEach(b => b.classList.remove("active"));
+    btn.classList.add("active");
+    currentDdmPool = btn.dataset.pkey;
+    renderDdmPool();
+  });
+});
+renderDdmPool();
+
+document.getElementById("ddmCupsTable").innerHTML = DDM_CUPS.map(c =>
+  `<tr><td><span class="badge ${c.div.includes("SECRET") ? "b-red" : c.div.includes("3") ? "b-purple" : c.div.includes("2") ? "b-cyan" : "b-green"}">${c.div}</span></td><td><strong>${c.name}</strong></td><td>${c.diff}</td><td><code>${c.prize}</code></td><td>${c.desc}</td></tr>`
+).join("");
+
+// Render Tab 5: Items, Traps, Spells, SPA & Item Dice Filter Engine
+const GAME_NAMES = { dotr:"Duelists of Roses", cmc:"Capsule Coliseum", tfk:"Falsebound Kingdom", ddm:"Dungeon Dice" };
+const CAT_NAMES = { trap:"Bẫy / Phản đòn", spell:"Phép / Dọn sân", equip:"Trang bị / Buff", revive:"Hồi sinh / Hồi máu", dice:"Item Dice / SPA" };
+let fGame = "all", fCat = "all", fTier = "all";
+
+function renderItems() {
+  const q = (document.getElementById("itemSearch").value || "").trim().toLowerCase();
+  const list = ITEMS_DB.filter(it => {
+    const gOk = fGame === "all" || it.game === fGame;
+    const cOk = fCat === "all" || it.cat === fCat;
+    const tOk = fTier === "all" || it.tier === fTier;
+    const txt = `${it.name} ${it.code} ${it.cost} ${it.effect} ${it.priority} ${GAME_NAMES[it.game]}`.toLowerCase();
+    return gOk && cOk && tOk && (!q || txt.includes(q));
+  });
+  const sCount = list.filter(x => x.tier === "S").length;
+  const aCount = list.filter(x => x.tier === "A").length;
+  document.getElementById("itemCountBar").innerHTML = `
+    <div class="stat-pill">Đang hiển thị: <strong>${list.length} / ${ITEMS_DB.length} mục</strong></div>
+    <div class="stat-pill">Hạng S (Bắt buộc): <strong>${sCount}</strong></div>
+    <div class="stat-pill">Hạng A (Rất mạnh): <strong>${aCount}</strong></div>
+  `;
+  const grid = document.getElementById("itemsGrid");
+  if (!list.length) {
+    grid.innerHTML = `<div class="alert">Không tìm thấy vật phẩm/lá bài phù hợp bộ lọc hiện tại. Hãy thử đổi sang "Tất cả 4 Game" hoặc xóa từ khóa tìm kiếm.</div>`;
+    return;
+  }
+  grid.innerHTML = list.map(it => {
+    const realIdx = ITEMS_DB.indexOf(it);
+    const img = getCardImage("item_" + realIdx, it.name, it.game.toUpperCase() + " • " + it.code, it.cost.split("•")[0], it.cat, it.tier);
+    const gBadge = it.game === "dotr" ? "b-red" : it.game === "cmc" ? "b-cyan" : it.game === "tfk" ? "b-purple" : "b-orange";
+    return `<div class="item-card inspect-item" data-idx="${realIdx}">
+      <img src="${img}" alt="${it.name}" />
+      <div class="item-body">
+        <div style="display:flex;flex-wrap:wrap;gap:5px;margin-bottom:4px;">
+          <span class="badge tier-${it.tier}">Hạng ${it.tier}</span>
+          <span class="badge ${gBadge}">${GAME_NAMES[it.game]}</span>
+          <span class="badge b-muted">${CAT_NAMES[it.cat]}</span>
+        </div>
+        <h4>${it.name} <span style="color:var(--cyan);font-size:0.78rem;">(${it.code})</span></h4>
+        <p style="font-family:monospace;color:#93c5fd;font-size:0.76rem;">${it.cost}</p>
+        <p><strong style="color:#fff;">Công dụng:</strong> ${it.effect}</p>
+        <p style="color:#fde047;"><strong>Ưu tiên dùng:</strong> ${it.priority}</p>
+      </div>
+    </div>`;
+  }).join("");
+}
+
+function bindFilterRow(rowId, attrName, setter) {
+  document.querySelectorAll(`#${rowId} .filter-btn`).forEach(btn => {
+    btn.addEventListener("click", () => {
+      document.querySelectorAll(`#${rowId} .filter-btn`).forEach(b => b.classList.remove("active"));
+      btn.classList.add("active");
+      setter(btn.dataset[attrName]);
+      renderItems();
+    });
+  });
+}
+bindFilterRow("itemGameFilter", "g", v => { fGame = v; });
+bindFilterRow("itemCatFilter", "c", v => { fCat = v; });
+bindFilterRow("itemTierFilter", "t", v => { fTier = v; });
+document.getElementById("itemSearch").addEventListener("input", renderItems);
+renderItems();
+
+// Render Samsung Chipset Profile & Troubleshooting Accordion
+function renderSamsungChip(chipKey) {
+  const p = SAMSUNG_PROFILES[chipKey];
+  document.getElementById("samsungChipOut").innerHTML = `
+    <strong style="color:var(--gold);font-size:0.95rem;">${p.title}</strong>
+    <ul class="step-list" style="margin-top:6px;margin-bottom:0;">
+      <li><strong>PS2 (DotR + CMC):</strong> ${p.ps2}</li>
+      <li><strong>GameCube (Falsebound Kingdom):</strong> ${p.gc}</li>
+      <li><strong>GBA (Dungeon Dice):</strong> ${p.gba}</li>
+      <li><strong>Hệ thống Samsung One UI 7:</strong> ${p.ui}</li>
+    </ul>
+  `;
+}
+document.querySelectorAll("#samsungChipPicker .filter-btn").forEach(btn => {
+  btn.addEventListener("click", () => {
+    document.querySelectorAll("#samsungChipPicker .filter-btn").forEach(b => b.classList.remove("active"));
+    btn.classList.add("active");
+    renderSamsungChip(btn.dataset.chip);
+  });
+});
+renderSamsungChip("snapdragon");
+
+document.getElementById("samsungTroubleshoot").innerHTML = SAMSUNG_ISSUES.map(item =>
+  `<div class="acc-item">
+    <button class="acc-head"><span>${item.q}</span><span>＋</span></button>
+    <div class="acc-body">${item.a}</div>
+  </div>`
+).join("");
+document.getElementById("samsungTroubleshoot").addEventListener("click", e => {
+  const head = e.target.closest(".acc-head");
+  if (!head) return;
+  const parent = head.closest(".acc-item");
+  parent.classList.toggle("open");
+  head.lastElementChild.textContent = parent.classList.contains("open") ? "－" : "＋";
+});
+
+// Tab 7 Tools: DotR DC Eligibility & CMC Quick Lookup
+function updateDcCheck() {
+  const val = parseInt(document.getElementById("dcInput").value, 10) || 0;
+  const campaignBosses = DOTR_BOSSES.filter(b => b.dc > 0);
+  const okList = campaignBosses.filter(b => b.dc >= val);
+  const lockedList = campaignBosses.filter(b => b.dc < val);
+  document.getElementById("dcCheckOut").innerHTML = `
+    <div><strong>Với tổng ${val} DC:</strong> Bạn đủ điều kiện khiêu chiến <span style="color:#86efac;font-weight:800;">${okList.length} / ${campaignBosses.length} Trùm Chiến Dịch</span>!</div>
+    <div style="margin-top:6px;color:#86efac;"><strong>✅ Đánh được ngay:</strong> ${okList.length ? okList.map(b => `${b.name} (${b.dc})`).join(", ") : "Không có (DC vượt ngưỡng 1985!)"}</div>
+    <div style="margin-top:5px;color:#fca5a5;"><strong>🔒 Bị khóa (cần hạ DC xuống):</strong> ${lockedList.length ? lockedList.map(b => `${b.name} (${b.dc})`).join(", ") : "Không có — mở khóa 100% toàn bản đồ!"}</div>
+  `;
+}
+document.getElementById("dcPreset").addEventListener("change", function() {
+  document.getElementById("dcInput").value = this.value;
+  updateDcCheck();
+});
+document.getElementById("dcInput").addEventListener("input", updateDcCheck);
+updateDcCheck();
+
+const cmcAllRecipes = [
+  ...CMC_FUSIONS.map(f => ({ label: "[Dung hợp] " + f.res, detail: f.req, tip: "Nguyên liệu phải đứng liền kề, chưa đi lượt đó, đủ tổng AP & sẽ bị tiêu hủy vĩnh viễn sau khi ghép." })),
+  ...CMC_EVOS.map(e => ({ label: "[Tiến hóa] " + e.res, detail: e.req, tip: "Di chuyển quái đạt đủ cấp độ lên đúng ô có điểm thuộc tính yêu cầu để chọn Evolve." }))
+];
+const cmcSel = document.getElementById("cmcQuickSelect");
+cmcSel.innerHTML = cmcAllRecipes.map((r, i) => `<option value="${i}">${r.label}</option>`).join("");
+function updateCmcQuick() {
+  const r = cmcAllRecipes[Number(cmcSel.value)];
+  document.getElementById("cmcQuickOut").innerHTML = `<strong>${r.label}</strong><br/><span style="color:var(--gold-soft)">Điều kiện: ${r.detail}</span><br/><span style="color:var(--muted)">Lưu ý: ${r.tip}</span>`;
+}
+cmcSel.addEventListener("change", updateCmcQuick);
+updateCmcQuick();
+
+// Modal Inspector
+function openModal(opts) {
+  document.getElementById("modalImg").src = opts.img;
+  document.getElementById("modalImg").alt = opts.title;
+  document.getElementById("modalBadges").innerHTML = opts.badgesHtml || "";
+  document.getElementById("modalTitle").textContent = opts.title;
+  document.getElementById("modalSub1").textContent = opts.sub1;
+  document.getElementById("modalSub2").textContent = opts.sub2;
+  document.getElementById("modalEffect").textContent = opts.effect;
+  document.getElementById("modalNote").textContent = opts.note;
+  document.getElementById("detailModal").classList.add("open");
+}
+document.getElementById("modalClose").addEventListener("click", () => document.getElementById("detailModal").classList.remove("open"));
+document.getElementById("detailModal").addEventListener("click", e => {
+  if (e.target.id === "detailModal") document.getElementById("detailModal").classList.remove("open");
+});
+
+document.addEventListener("click", e => {
+  const itEl = e.target.closest(".inspect-item");
+  if (itEl) {
+    const it = ITEMS_DB[Number(itEl.dataset.idx)];
+    if (!it) return;
+    openModal({
+      img: getCardImage("item_" + itEl.dataset.idx, it.name, it.game.toUpperCase() + " • " + it.code, it.cost.split("•")[0], it.cat, it.tier),
+      badgesHtml: `<span class="badge tier-${it.tier}">Ưu tiên Hạng ${it.tier}</span><span class="badge b-cyan">${GAME_NAMES[it.game]}</span>`,
+      title: it.name,
+      sub1: `${GAME_NAMES[it.game]} • ${CAT_NAMES[it.cat]} (${it.code})`,
+      sub2: it.cost,
+      effect: it.effect,
+      note: it.priority
+    });
+    return;
+  }
+  const dotrEl = e.target.closest(".inspect-dotr");
+  if (dotrEl) {
+    const c = DOTR_DECKS[dotrEl.dataset.dkey].cards[Number(dotrEl.dataset.idx)];
+    if (!c) return;
+    const tKey = c.type === "Trap" ? "trap" : (c.type === "Magic" || c.type === "Field") ? "spell" : c.type === "Power Up" ? "equip" : "dotr";
+    openModal({
+      img: getCardImage("dotr_" + c.id, c.name, "#" + c.id + " • " + c.dc + "DC", c.stats, tKey, ""),
+      badgesHtml: `<span class="badge b-red">The Duelists of the Roses</span><span class="badge b-gold">×${c.qty} lá • ${c.dc} DC/lá</span>`,
+      title: c.name,
+      sub1: `Mã #${c.id} • ${c.type}`,
+      sub2: `${c.stats} • Pass R3: ${c.pass}`,
+      effect: `Đóng góp ${c.qty * c.dc} DC vào tổng Deck Cost của bộ bài 40 lá.`,
+      note: c.note
+    });
+    return;
+  }
+  const ddmEl = e.target.closest(".inspect-ddm");
+  if (ddmEl) {
+    const d = DDM_POOLS[ddmEl.dataset.pkey].dice[Number(ddmEl.dataset.idx)];
+    if (!d) return;
+    const tKey = d.cls.includes("Item") ? "dice" : "ddm";
+    openModal({
+      img: getCardImage("ddm_" + ddmEl.dataset.idx, d.name, "LV" + d.lvl + " • " + d.cls.split(" ")[0], d.stats, tKey, ""),
+      badgesHtml: `<span class="badge b-orange">Dungeon Dice Monsters</span><span class="badge b-gold">Lv${d.lvl} • ×${d.qty} viên</span>`,
+      title: d.name,
+      sub1: `${d.cls} • ${d.stats}`,
+      sub2: `Mặt Crest: ${d.crests}`,
+      effect: `Cấp ${d.lvl} — cần ít nhất 2 viên cấp ${d.lvl} trong bể 15 viên để có thể Dimension lên mê cung.`,
+      note: d.note
+    });
+    return;
+  }
+  const jumpBtn = e.target.closest(".jump-tab-btn");
+  if (jumpBtn) {
+    switchMainTab(jumpBtn.dataset.jump);
+  }
+});
+
+// Tabs & Subtabs Controller
+function switchMainTab(tabId) {
+  document.querySelectorAll("#mainTabs .tab-btn").forEach(b => b.classList.toggle("active", b.dataset.tab === tabId));
+  document.querySelectorAll("main > .panel").forEach(p => p.classList.toggle("active", p.id === "tab-" + tabId));
+  window.scrollTo({ top: 0, behavior: "smooth" });
+}
+document.querySelectorAll("#mainTabs .tab-btn").forEach(btn => {
+  btn.addEventListener("click", () => switchMainTab(btn.dataset.tab));
+});
+document.querySelectorAll(".subtabs").forEach(group => {
+  group.querySelectorAll(".subtab-btn").forEach(btn => {
+    btn.addEventListener("click", () => {
+      const box = btn.closest(".section-box");
+      group.querySelectorAll(".subtab-btn").forEach(b => b.classList.remove("active"));
+      box.querySelectorAll(".subpanel").forEach(sp => sp.classList.remove("active"));
+      btn.classList.add("active");
+      document.getElementById("sub-" + btn.dataset.sub).classList.add("active");
+    });
+  });
+});
+
+// Tab 8: Automated Data Auditor & JSON Export
+document.getElementById("runAuditBtn").addEventListener("click", () => {
+  const dotrLines = Object.keys(DOTR_DECKS).map(k => {
+    const dk = DOTR_DECKS[k];
+    const total = dk.cards.reduce((s, c) => s + c.qty, 0);
+    const maxQ = Math.max(...dk.cards.map(c => c.qty));
+    const dc = dk.cards.reduce((s, c) => s + c.qty * c.dc, 0);
+    const ok = total === 40 && maxQ <= 3;
+    return `${ok ? "✅" : "❌"} <strong>[DotR] ${dk.label}</strong>: ${total}/40 lá | Max bản sao: ${maxQ} | Tổng DC: <code>${dc}</code>`;
+  });
+  const ddmLines = Object.keys(DDM_POOLS).map(k => {
+    const pl = DDM_POOLS[k];
+    const total = pl.dice.reduce((s, d) => s + d.qty, 0);
+    const ok = total === 15;
+    return `${ok ? "✅" : "❌"} <strong>[DDM] ${pl.label}</strong>: ${total}/15 xúc xắc`;
+  });
+  const campaignCount = DOTR_BOSSES.filter(b => b.dc > 0).length;
+  const statsLine = `✅ <strong>[Kho Dữ Liệu 4 Game]</strong>: ${ITEMS_DB.length} Bẫy/Phép/Items/SPA/Item Dice • ${campaignCount} Trùm Chiến Dịch DotR (+ Deck Master K) • ${CMC_AREAS.length} Ải CMC • ${CMC_FUSIONS.length} Dung hợp + ${CMC_EVOS.length} Tiến hóa CMC • ${DDM_CUPS.length} Giải đấu DDM.`;
+  document.getElementById("auditOutput").innerHTML = [...dotrLines, ...ddmLines, statsLine].join("<br/>");
+});
+
+document.getElementById("copyDbBtn").addEventListener("click", async () => {
+  try {
+    const payload = { DOTR_DECKS, DDM_POOLS, ITEMS_DB, CMC_FUSIONS, CMC_EVOS };
+    await navigator.clipboard.writeText(JSON.stringify(payload, null, 2));
+    document.getElementById("auditOutput").innerHTML = "✅ Đã sao chép toàn bộ cơ sở dữ liệu JSON (DotR Decks, DDM Pools, Items/Traps/Spells, CMC Recipes) vào bộ nhớ tạm!";
+  } catch (err) {
+    document.getElementById("auditOutput").innerHTML = "⚠️ Trình duyệt chặn tự động copy — mở trực tiếp mã nguồn file HTML và tìm mục <code>const ITEMS_DB = [</code> hoặc <code>const DOTR_DECKS = {</code>.";
+  }
+});
+</script>
+</body>
+</html>
