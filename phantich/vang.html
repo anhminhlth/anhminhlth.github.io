@@ -1,0 +1,2314 @@
+<!DOCTYPE html>
+<html lang="vi" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AURUM EXECUTIVE INTELLIGENCE — Báo Cáo Chiến Lược Thị Trường Vàng Toàn Cầu &amp; Việt Nam (26/11/2026)</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&family=JetBrains+Mono:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,600&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"></script>
+  <style>
+    :root {
+      /* Obsidian Bullion Theme (Swiss Private Bank Desk) */
+      --bg-body: #0b0a09;
+      --bg-surface: #13110e;
+      --bg-card: #1a1713;
+      --bg-card-hover: #221e18;
+      --bg-elevated: #26211a;
+      --border-subtle: rgba(212, 175, 55, 0.16);
+      --border-strong: rgba(212, 175, 55, 0.48);
+      --text-primary: #f6f1e7;
+      --text-secondary: #cfc5b4;
+      --text-muted: #9a8f7d;
+      --gold: #d4af37;
+      --gold-bright: #f2d06b;
+      --gold-soft: rgba(212, 175, 55, 0.13);
+      --emerald: #2eb872;
+      --emerald-soft: rgba(46, 184, 114, 0.13);
+      --crimson: #e05252;
+      --crimson-soft: rgba(224, 82, 82, 0.13);
+      --cobalt: #4b8fe2;
+      --cobalt-soft: rgba(75, 143, 226, 0.13);
+      --amber: #e69532;
+      --amber-soft: rgba(230, 149, 50, 0.14);
+      --plum: #b47fe8;
+      --plum-soft: rgba(180, 127, 232, 0.13);
+      --shadow-card: 0 14px 36px -14px rgba(0, 0, 0, 0.72);
+      --radius-lg: 14px;
+      --radius-md: 10px;
+      --radius-sm: 7px;
+    }
+
+    [data-theme="light"] {
+      /* Swiss Ivory Editorial Theme */
+      --bg-body: #f5f1ea;
+      --bg-surface: #fdfbf7;
+      --bg-card: #ffffff;
+      --bg-card-hover: #faf6ef;
+      --bg-elevated: #efe9de;
+      --border-subtle: rgba(138, 102, 24, 0.17);
+      --border-strong: rgba(154, 111, 20, 0.52);
+      --text-primary: #181410;
+      --text-secondary: #433a30;
+      --text-muted: #766a5b;
+      --gold: #9a6f14;
+      --gold-bright: #b5841b;
+      --gold-soft: rgba(154, 111, 20, 0.09);
+      --emerald: #137a47;
+      --emerald-soft: rgba(19, 122, 71, 0.09);
+      --crimson: #be2b2b;
+      --crimson-soft: rgba(190, 43, 43, 0.09);
+      --cobalt: #1d5bb8;
+      --cobalt-soft: rgba(29, 91, 184, 0.09);
+      --amber: #b45309;
+      --amber-soft: rgba(180, 83, 9, 0.09);
+      --plum: #6d28d9;
+      --plum-soft: rgba(109, 40, 217, 0.09);
+      --shadow-card: 0 10px 28px -10px rgba(42, 32, 16, 0.09);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Be Vietnam Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: var(--bg-body);
+      color: var(--text-primary);
+      line-height: 1.66;
+      min-height: 100vh;
+      transition: background 0.25s ease, color 0.25s ease;
+    }
+    .serif { font-family: 'Playfair Display', Georgia, serif; }
+    .mono { font-family: 'JetBrains Mono', monospace; font-variant-numeric: tabular-nums; }
+    .up { color: var(--emerald); font-weight: 700; }
+    .down { color: var(--crimson); font-weight: 700; }
+    .warn { color: var(--gold-bright); font-weight: 700; }
+    [data-theme="light"] .warn { color: var(--amber); }
+    .info-c { color: var(--cobalt); font-weight: 700; }
+
+    /* Top Live Bullion Ticker */
+    .ticker-bar {
+      background: linear-gradient(90deg, #090806 0%, #1d1810 50%, #090806 100%);
+      border-bottom: 1px solid rgba(212, 175, 55, 0.42);
+      color: #eee5d5;
+      font-size: 0.74rem;
+      padding: 8px 16px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      gap: 10px 16px;
+    }
+    .ticker-chip { display: inline-flex; align-items: center; gap: 5px; white-space: nowrap; }
+    .dot-pulse {
+      width: 8px; height: 8px; border-radius: 50%;
+      background: #d4af37; box-shadow: 0 0 10px #d4af37; display: inline-block;
+    }
+
+    /* Commercial Editorial Header */
+    .hero-header {
+      background:
+        radial-gradient(ellipse at 12% 0%, rgba(212, 175, 55, 0.16), transparent 52%),
+        radial-gradient(ellipse at 88% 10%, rgba(180, 127, 60, 0.11), transparent 48%),
+        var(--bg-surface);
+      border-bottom: 1px solid var(--border-subtle);
+      padding: 28px 20px 22px;
+    }
+    .container { max-width: 1440px; margin: 0 auto; }
+    .hero-grid {
+      display: grid;
+      grid-template-columns: auto 1fr auto;
+      gap: 20px;
+      align-items: center;
+    }
+    .brand-crest {
+      width: 68px; height: 68px;
+      border-radius: 14px;
+      border: 1px solid var(--border-strong);
+      background: linear-gradient(145deg, rgba(212,175,55,0.22), rgba(20,17,13,0.9));
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 8px 24px rgba(212,175,55,0.16);
+      flex-shrink: 0;
+    }
+    [data-theme="light"] .brand-crest { background: linear-gradient(145deg, #fff8e7, #efe2c1); }
+    .badge-row { display: flex; flex-wrap: wrap; gap: 7px; margin-bottom: 9px; }
+    .badge {
+      display: inline-flex; align-items: center; gap: 5px;
+      font-size: 0.7rem; font-weight: 700; padding: 3px 10px;
+      border-radius: 999px; letter-spacing: 0.04em; text-transform: uppercase;
+    }
+    .badge-gold { background: var(--gold-soft); color: var(--gold-bright); border: 1px solid var(--border-strong); }
+    [data-theme="light"] .badge-gold { color: var(--gold); }
+    .badge-red { background: var(--crimson-soft); color: var(--crimson); border: 1px solid rgba(224,82,82,0.36); }
+    .badge-green { background: var(--emerald-soft); color: var(--emerald); border: 1px solid rgba(46,184,114,0.36); }
+    .badge-blue { background: var(--cobalt-soft); color: var(--cobalt); border: 1px solid rgba(75,143,226,0.36); }
+    .badge-plum { background: var(--plum-soft); color: var(--plum); border: 1px solid rgba(180,127,232,0.36); }
+
+    h1.hero-title {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: clamp(1.5rem, 2.8vw, 2.38rem);
+      font-weight: 800; line-height: 1.18; letter-spacing: -0.01em;
+      margin-bottom: 8px;
+    }
+    .hero-title span.gold-accent {
+      background: linear-gradient(90deg, #f3d67a, #d4af37, #b88a1e);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    }
+    [data-theme="light"] .hero-title span.gold-accent {
+      background: linear-gradient(90deg, #8c620a, #b5841b, #785206);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    }
+    .hero-subtitle { color: var(--text-secondary); font-size: 0.91rem; max-width: 920px; }
+    .header-actions { display: flex; flex-wrap: wrap; gap: 8px; justify-content: flex-end; }
+
+    .btn {
+      appearance: none; border: 1px solid var(--border-subtle);
+      background: var(--bg-card); color: var(--text-primary);
+      padding: 8px 13px; border-radius: var(--radius-sm);
+      font-family: inherit; font-size: 0.8rem; font-weight: 600;
+      cursor: pointer; display: inline-flex; align-items: center; gap: 6px;
+      transition: all 0.2s ease; text-decoration: none;
+    }
+    .btn:hover { background: var(--bg-card-hover); border-color: var(--gold); transform: translateY(-1px); }
+    .btn-gold {
+      background: linear-gradient(135deg, #e7c663, #c49724);
+      color: #120f0a; border-color: transparent; font-weight: 700;
+    }
+    .btn-gold:hover { filter: brightness(1.07); color: #120f0a; }
+    .btn-outline-gold {
+      border-color: var(--border-strong); color: var(--gold-bright); background: var(--gold-soft);
+    }
+    [data-theme="light"] .btn-outline-gold { color: var(--gold); }
+
+    /* Sticky 10-Tab Navigation */
+    .nav-wrapper {
+      position: sticky; top: 0; z-index: 95;
+      background: var(--bg-surface);
+      border-bottom: 1px solid var(--border-subtle);
+      backdrop-filter: blur(12px);
+      padding: 10px 16px;
+      box-shadow: 0 6px 22px rgba(0, 0, 0, 0.28);
+    }
+    .tabs-bar { display: flex; gap: 7px; overflow-x: auto; scrollbar-width: thin; padding-bottom: 2px; }
+    .tab-btn {
+      appearance: none; border: 1px solid var(--border-subtle);
+      background: transparent; color: var(--text-secondary);
+      padding: 8px 14px; border-radius: 999px;
+      font-family: inherit; font-size: 0.8rem; font-weight: 600;
+      cursor: pointer; white-space: nowrap; transition: all 0.2s ease;
+      display: inline-flex; align-items: center; gap: 6px;
+    }
+    .tab-btn:hover { color: var(--text-primary); background: var(--bg-card); border-color: var(--border-strong); }
+    .tab-btn.active {
+      background: linear-gradient(135deg, rgba(212, 175, 55, 0.26), rgba(166, 124, 24, 0.14));
+      color: var(--text-primary); border-color: var(--gold);
+      box-shadow: 0 0 0 1px rgba(212, 175, 55, 0.32);
+    }
+    .tab-btn.tab-lab { border-color: rgba(46, 184, 114, 0.42); }
+    .tab-btn.tab-admin-active {
+      border-color: var(--plum); background: var(--plum-soft); color: var(--plum);
+    }
+
+    /* Main Content */
+    main.main-content { padding: 26px 18px 68px; }
+    .tab-panel { display: none; animation: fadeUp 0.22s ease; }
+    .tab-panel.active { display: block; }
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
+
+    /* Grids & Cards */
+    .kpi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(215px, 1fr)); gap: 14px; margin-bottom: 20px; }
+    .grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); gap: 18px; margin-bottom: 20px; }
+    .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(310px, 1fr)); gap: 16px; margin-bottom: 20px; }
+    .grid-4 { display: grid; grid-template-columns: repeat(auto-fit, minmax(245px, 1fr)); gap: 14px; margin-bottom: 20px; }
+
+    .card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      padding: 20px 22px;
+      box-shadow: var(--shadow-card);
+      margin-bottom: 18px;
+    }
+    .kpi-grid .card, .grid-2 .card, .grid-3 .card, .grid-4 .card { margin-bottom: 0; }
+    .card-gold { border-top: 3px solid var(--gold); }
+    .card-red { border-top: 3px solid var(--crimson); }
+    .card-green { border-top: 3px solid var(--emerald); }
+    .card-blue { border-top: 3px solid var(--cobalt); }
+    .card-plum { border-top: 3px solid var(--plum); }
+
+    .kpi-label { font-size: 0.72rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.05em; font-weight: 700; margin-bottom: 5px; }
+    .kpi-value { font-size: 1.46rem; font-weight: 800; letter-spacing: -0.02em; line-height: 1.2; margin-bottom: 5px; }
+    .kpi-sub { font-size: 0.77rem; color: var(--text-secondary); line-height: 1.46; }
+
+    .section-heading {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 1.42rem; font-weight: 700; margin-bottom: 15px;
+      display: flex; align-items: center; gap: 10px; flex-wrap: wrap;
+      letter-spacing: -0.01em;
+    }
+    .sub-heading {
+      font-size: 1.05rem; font-weight: 800; margin: 24px 0 12px;
+      padding-bottom: 8px; border-bottom: 1px solid var(--border-subtle);
+      display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px;
+    }
+    .card-title {
+      font-size: 0.99rem; font-weight: 700; margin-bottom: 11px;
+      display: flex; justify-content: space-between; align-items: center; gap: 8px; flex-wrap: wrap;
+    }
+    .card p { font-size: 0.88rem; color: var(--text-secondary); margin-bottom: 9px; }
+    .card p:last-child { margin-bottom: 0; }
+
+    /* Callouts */
+    .callout {
+      border-radius: var(--radius-md); padding: 16px 20px; margin-bottom: 18px;
+      border-left: 4px solid var(--gold); background: var(--gold-soft);
+      font-size: 0.89rem; color: var(--text-secondary);
+    }
+    .callout-red { border-left-color: var(--crimson); background: var(--crimson-soft); }
+    .callout-green { border-left-color: var(--emerald); background: var(--emerald-soft); }
+    .callout-blue { border-left-color: var(--cobalt); background: var(--cobalt-soft); }
+    .callout-plum { border-left-color: var(--plum); background: var(--plum-soft); }
+    .callout strong { color: var(--text-primary); }
+
+    /* Tables */
+    .table-wrap {
+      overflow-x: auto; border-radius: var(--radius-md);
+      border: 1px solid var(--border-subtle); margin: 10px 0;
+    }
+    table { width: 100%; border-collapse: collapse; font-size: 0.81rem; min-width: 620px; }
+    th, td { padding: 10px 12px; text-align: left; border-bottom: 1px solid var(--border-subtle); vertical-align: top; }
+    th {
+      background: var(--bg-elevated); color: var(--text-primary);
+      font-weight: 700; font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.04em;
+    }
+    tr:last-child td { border-bottom: none; }
+    tr:hover td { background: rgba(212, 175, 55, 0.055); }
+    td strong { color: var(--text-primary); }
+
+    /* Filter Pills */
+    .filter-row { display: flex; flex-wrap: wrap; gap: 7px; margin-bottom: 12px; }
+    .filter-btn {
+      appearance: none; border: 1px solid var(--border-subtle);
+      background: var(--bg-surface); color: var(--text-secondary);
+      padding: 6px 12px; border-radius: 999px; font-size: 0.78rem;
+      font-weight: 600; cursor: pointer; font-family: inherit;
+    }
+    .filter-btn.active { background: var(--gold); color: #110e09; border-color: var(--gold); font-weight: 700; }
+
+    /* Lists & Timelines */
+    ul.clean-list { list-style: none; display: flex; flex-direction: column; gap: 8px; margin-top: 6px; }
+    ul.clean-list li { font-size: 0.86rem; color: var(--text-secondary); padding-left: 17px; position: relative; }
+    ul.clean-list li::before { content: "◆"; color: var(--gold); position: absolute; left: 0; font-size: 0.65rem; top: 4px; }
+
+    .timeline { display: grid; grid-template-columns: repeat(auto-fit, minmax(245px, 1fr)); gap: 12px; margin-top: 10px; }
+    .tl-item {
+      background: var(--bg-surface); border: 1px solid var(--border-subtle);
+      border-left: 3px solid var(--gold); border-radius: var(--radius-sm); padding: 12px 14px;
+    }
+    .tl-item.urgent { border-left-color: var(--crimson); }
+    .tl-item.green { border-left-color: var(--emerald); }
+    .tl-item.blue { border-left-color: var(--cobalt); }
+    .tl-date { font-size: 0.74rem; font-weight: 700; color: var(--gold-bright); margin-bottom: 4px; }
+    [data-theme="light"] .tl-date { color: var(--gold); }
+    .tl-title { font-size: 0.86rem; font-weight: 700; color: var(--text-primary); margin-bottom: 4px; }
+    .tl-desc { font-size: 0.79rem; color: var(--text-muted); }
+
+    /* Strategy Phase Boxes */
+    .phase-box {
+      background: var(--bg-surface); border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md); padding: 17px 19px; margin-bottom: 14px;
+    }
+    .phase-header {
+      display: flex; justify-content: space-between; align-items: center;
+      flex-wrap: wrap; gap: 8px; margin-bottom: 12px; padding-bottom: 9px;
+      border-bottom: 1px dashed var(--border-subtle);
+    }
+
+    /* Rule Cards */
+    .rule-card {
+      background: var(--bg-surface); border: 1px solid var(--border-subtle);
+      border-left: 3px solid var(--gold); border-radius: var(--radius-md); padding: 13px 15px;
+    }
+    .rule-card.red-c { border-left-color: var(--crimson); }
+    .rule-card.green-c { border-left-color: var(--emerald); }
+    .rule-num { font-size: 0.71rem; font-weight: 800; color: var(--gold-bright); text-transform: uppercase; letter-spacing: 0.04em; margin-bottom: 3px; }
+    [data-theme="light"] .rule-num { color: var(--gold); }
+    .rule-title { font-size: 0.88rem; font-weight: 700; color: var(--text-primary); margin-bottom: 4px; }
+    .rule-desc { font-size: 0.8rem; color: var(--text-secondary); }
+
+    /* Charts */
+    .chart-box { position: relative; height: 300px; width: 100%; margin-top: 8px; }
+    .chart-box-sm { position: relative; height: 240px; width: 100%; margin-top: 8px; }
+
+    /* Interactive Calculators */
+    .calc-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(175px, 1fr)); gap: 11px; margin-bottom: 12px; }
+    .input-group label { display: block; font-size: 0.75rem; font-weight: 600; color: var(--text-secondary); margin-bottom: 4px; }
+    .input-group input, .input-group select {
+      width: 100%; padding: 8px 11px; border-radius: var(--radius-sm);
+      border: 1px solid var(--border-subtle); background: var(--bg-surface);
+      color: var(--text-primary); font-family: inherit; font-size: 0.84rem;
+    }
+    .slider-row {
+      display: grid; grid-template-columns: 205px 1fr 52px;
+      align-items: center; gap: 10px; margin-bottom: 8px; font-size: 0.82rem;
+    }
+    .slider-row input[type="range"] { width: 100%; accent-color: var(--gold); }
+    .calc-result-box {
+      background: var(--bg-surface); border: 1px solid var(--border-strong);
+      border-radius: var(--radius-md); padding: 14px 16px; margin-top: 10px;
+    }
+    .mini-stat-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(145px, 1fr));
+      gap: 10px; margin-bottom: 8px;
+    }
+    .mini-stat { background: var(--bg-card); border: 1px solid var(--border-subtle); border-radius: 8px; padding: 9px 11px; }
+    .mini-stat-label { font-size: 0.69rem; text-transform: uppercase; color: var(--text-muted); font-weight: 700; }
+    .mini-stat-val { font-size: 1.08rem; font-weight: 800; margin-top: 2px; }
+
+    /* Admin & Prompt Studio */
+    .admin-panel {
+      border: 1px solid var(--plum);
+      background: linear-gradient(180deg, rgba(180,127,232,0.08), var(--bg-card));
+      border-radius: var(--radius-lg); padding: 20px 22px; margin-top: 18px;
+    }
+    .admin-collapsed { display: none; }
+    .prompt-area {
+      width: 100%; min-height: 330px; font-family: 'JetBrains Mono', monospace;
+      font-size: 0.78rem; line-height: 1.56; padding: 14px; border-radius: var(--radius-md);
+      border: 1px solid var(--border-subtle); background: #080706; color: #efe7d8; resize: vertical;
+    }
+    .source-note {
+      font-size: 0.74rem; color: var(--text-muted);
+      margin-top: 11px; padding-top: 9px; border-top: 1px dashed var(--border-subtle);
+    }
+    .toast {
+      position: fixed; bottom: 24px; right: 24px; background: var(--gold); color: #120f0a;
+      font-weight: 700; font-size: 0.84rem; padding: 11px 18px; border-radius: 10px;
+      box-shadow: 0 10px 28px rgba(0,0,0,0.5); opacity: 0; pointer-events: none;
+      transform: translateY(10px); transition: all 0.25s ease; z-index: 999;
+    }
+    .toast.show { opacity: 1; transform: translateY(0); }
+
+    footer.site-footer {
+      border-top: 1px solid var(--border-subtle); background: var(--bg-surface);
+      padding: 24px 20px; font-size: 0.79rem; color: var(--text-muted);
+    }
+
+    @media (max-width: 820px) {
+      .hero-grid { grid-template-columns: 1fr; }
+      .header-actions { justify-content: flex-start; }
+      .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; }
+      .slider-row { grid-template-columns: 1fr; gap: 4px; }
+      main.main-content { padding: 16px 12px 48px; }
+      .chart-box { height: 255px; }
+    }
+    @media print {
+      .nav-wrapper, .header-actions, .ticker-bar, .filter-row { display: none !important; }
+      .tab-panel { display: block !important; page-break-after: always; }
+      body { background: #fff; color: #000; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Live Bullion & Macro Ticker -->
+  <div class="ticker-bar">
+    <span class="ticker-chip"><span class="dot-pulse"></span> <strong>XUẤT BẢN: 26/11/2026 — 10:28 GMT+7</strong></span>
+    <span class="ticker-chip">XAU/USD Live: <strong class="mono warn">$3.575</strong> <span class="down">(Đáy 25/11: $3.426)</span></span>
+    <span class="ticker-chip">SJC Bán Ra: <strong class="mono warn">134,1 Tr</strong> <span class="down">(Chênh VCB: +21,95 Tr)</span></span>
+    <span class="ticker-chip">Mi Hồng TP.HCM: <strong class="mono up">132,5–134,0 Tr (Sp 1,5 Tr)</strong></span>
+    <span class="ticker-chip">Nhẫn Phú Quý: <strong class="mono up">128,5–132,5 Tr</strong></span>
+    <span class="ticker-chip">Bạc XAG: <strong class="mono">$41,41</strong> (Au/Ag: 86,3x)</span>
+    <span class="ticker-chip">10Y TIPS Thực: <strong class="mono down">2,74%</strong></span>
+    <span class="ticker-chip">DXY: <strong class="mono">103,72</strong></span>
+    <span class="ticker-chip">USD VCB / Tự Do: <strong class="mono down">26.020 / 26.490đ</strong></span>
+    <span class="ticker-chip">Brent Spot / Futures: <strong class="mono down">$94,61 / $90,96</strong></span>
+    <span class="ticker-chip">VN-Index (9h30 26/11): <strong class="mono down">1.668,56 (-18,89)</strong></span>
+  </div>
+
+  <!-- Luxury Commercial Header -->
+  <header class="hero-header">
+    <div class="container">
+      <div class="hero-grid">
+        <div class="brand-crest" aria-label="Aurum Bullion Emblem">
+          <svg width="42" height="42" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <polygon points="32,4 58,19 58,45 32,60 6,45 6,19" stroke="#d4af37" stroke-width="2.5" fill="rgba(212,175,55,0.10)"/>
+            <polygon points="18,42 25,22 39,22 46,42" fill="url(#goldGrad)" stroke="#f6e094" stroke-width="1.5"/>
+            <line x1="23" y1="30" x2="41" y2="30" stroke="#181410" stroke-width="1.6" opacity="0.55"/>
+            <text x="32" y="39" text-anchor="middle" fill="#181410" font-family="Georgia,serif" font-weight="800" font-size="10">999.9</text>
+            <defs>
+              <linearGradient id="goldGrad" x1="18" y1="22" x2="46" y2="42" gradientUnits="userSpaceOnUse">
+                <stop stop-color="#f7df8a"/>
+                <stop offset="0.5" stop-color="#d4af37"/>
+                <stop offset="1" stop-color="#9e7416"/>
+              </linearGradient>
+            </defs>
+          </svg>
+        </div>
+        <div>
+          <div class="badge-row">
+            <span class="badge badge-gold">👑 Commercial Edition v2026.11.26-GOLD-PRO</span>
+            <span class="badge badge-red">⚡ Sốc PCE Lõi 3,3% • Thuế Mỹ VN 35% • Đỉnh Tấn Công Hormuz</span>
+            <span class="badge badge-blue">📅 Cập Nhật Live: 26/11/2026 • 10:28 GMT+7 (TP.HCM)</span>
+            <span class="badge badge-green">🎯 Chuyên Sâu Độc Lập Mảng Vàng (≤150 Nguồn Tinh Lọc)</span>
+          </div>
+          <h1 class="hero-title">AURUM EXECUTIVE INTELLIGENCE: <span class="gold-accent">Phân Tích Vàng Toàn Cầu, Chính Sự Mỹ &amp; Chiến Lược Đầu Tư Vàng Việt Nam 2026–2030</span></h1>
+          <p class="hero-subtitle">
+            Cẩm nang ra quyết định cấp định chế cho <strong>Vàng Miếng SJC • Vàng Nhẫn 9999 • Bạc &amp; XAU/USD</strong> — giải mã trọn vẹn trục Chính sự Mỹ (Fed Warsh, Blue Wave, Trần nợ $41,1T, Thuế 301), Chiến sự Iran–Hormuz, Dòng tiền NHTW/ETF/CFTC, Bẫy Nén Chênh Lệch, Khung Pháp Lý NĐ 232–390–TT 56, <strong>15 Biểu Đồ Đơn Trục</strong> và <strong>5 Bộ Máy Tính Mô Phỏng Định Lượng</strong>.
+          </p>
+        </div>
+        <div class="header-actions">
+          <button class="btn" id="themeToggleBtn" onclick="toggleTheme()">☀️ Swiss Ivory</button>
+          <button class="btn" onclick="window.print()">🖨️ In / Xuất PDF</button>
+          <button class="btn btn-gold" onclick="switchTab('tab-strategy')">🎯 Chiến Lược 3 Chu Kỳ</button>
+          <button class="btn btn-outline-gold" onclick="switchTab('tab-lab')">🧮 5 Máy Tính Pro</button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Sticky 10-Tab Navigation -->
+  <nav class="nav-wrapper">
+    <div class="container">
+      <div class="tabs-bar" id="tabsBar">
+        <button class="tab-btn active" data-tab="tab-overview" onclick="switchTab('tab-overview')">🏛️ 1. Tổng Quan &amp; Live 26/11</button>
+        <button class="tab-btn" data-tab="tab-us-geo" onclick="switchTab('tab-us-geo')">🇺🇸 2. Chính Sự Mỹ &amp; Chiến Sự</button>
+        <button class="tab-btn" data-tab="tab-fundamentals" onclick="switchTab('tab-fundamentals')">🌍 3. Cung–Cầu WGC, NHTW &amp; AISC</button>
+        <button class="tab-btn" data-tab="tab-vn-gold" onclick="switchTab('tab-vn-gold')">🇻🇳 4. Vàng VN &amp; Bẫy Chênh Lệch</button>
+        <button class="tab-btn" data-tab="tab-legal-intel" onclick="switchTab('tab-legal-intel')">⚖️ 5. Pháp Lý &amp; Tin Hành Lang</button>
+        <button class="tab-btn" data-tab="tab-tech-cycle" onclick="switchTab('tab-tech-cycle')">📊 6. Kỹ Thuật, Lịch Sử &amp; Dự Báo</button>
+        <button class="tab-btn" data-tab="tab-cross-asset" onclick="switchTab('tab-cross-asset')">🔄 7. Vàng vs 4 Kênh Tài Sản VN</button>
+        <button class="tab-btn" data-tab="tab-strategy" onclick="switchTab('tab-strategy')">🎯 8. Chiến Lược Thực Thi 3 Chu Kỳ</button>
+        <button class="tab-btn tab-lab" data-tab="tab-lab" onclick="switchTab('tab-lab')">🧮 9. Phòng Lab 5 Máy Tính Pro</button>
+        <button class="tab-btn" id="aboutTabBtn" data-tab="tab-about" onclick="switchTab('tab-about')">⚙️ 10. About &amp; Cập Nhật</button>
+      </div>
+    </div>
+  </nav>
+
+  <main class="main-content">
+    <div class="container">
+
+      <!-- ================================================================== -->
+      <!-- TAB 1: TỔNG QUAN & TÍN HIỆU LIVE 26/11/2026                        -->
+      <!-- ================================================================== -->
+      <section class="tab-panel active" id="tab-overview">
+        <div class="callout">
+          <strong>⚡ Bản Tin Điều Hành Khẩn (10:28 GMT+7 — Thứ Năm, 26/11/2026):</strong> Thị trường vàng vừa trải qua 48 giờ biến động cực đại. Đêm 25/11, sau khi GDP Mỹ quý III điều chỉnh tăng lên <strong>4,3%</strong> và lạm phát lõi PCE tháng 10 nóng lên <strong>3,3% YoY</strong> (vượt dự báo 3,2%), XAU/USD xuyên thủng mốc 3.500 USD xuống mức thấp nhất kể từ tháng 8/2025 tại <strong>3.426,40 USD/oz</strong> (-38,76% từ đỉnh 29/01), trước khi đảo chiều chữ V gần <strong>160 USD/oz</strong> chốt phiên New York tại 3.590,80 USD và giao dịch sáng 26/11 quanh <strong>3.575 USD/oz</strong> (biên độ 3.562–3.588 USD trong thanh khoản mỏng Lễ Tạ Ơn Mỹ). Tại Việt Nam, đề xuất thuế Mục 301 của USTR lên tới <strong>35%</strong> (20% nếu đạt thỏa thuận) công bố tối 25/11 đã đẩy VN-Index sáng 26/11 rơi về <strong>1.668,56 điểm</strong>, USD Vietcombank vượt <strong>26.020đ</strong>, USD tự do bật lên <strong>26.400–26.490đ</strong>, còn vàng miếng SJC giữ vùng <strong>129,1–134,1 triệu/lượng</strong> (chênh thế giới <strong>+21,95 triệu/lượng</strong>).<br>
+          <strong>Phán Quyết Tứ Trụ Ngay Hôm Nay:</strong> (1) <strong>TRÁNH MUA ĐUỔI SJC ở 134,1Tr</strong> vì bẫy nén chênh +21,95Tr &amp; spread 5,0–5,6Tr; (2) <strong>KHÔNG BÁN THÁO</strong> nếu đang kẹt hàng vùng 165–191Tr khi sàn chi phí AISC kỷ lục $1.930, NHTW gom +42% và sóng X-Date/Fed cắt lãi 2027–2028 vẫn còn nguyên; (3) <strong>CHỈ TÍCH LŨY DCA 3 BẬC VÀO NHẪN 9999</strong> (Phú Quý/Mi Hồng) khi XAU test vùng $3.340–$3.520 hoặc chênh nội–ngoại co về &lt;14Tr; (4) <strong>CHỐT 50%–70% USD NHÀN RỖI</strong> sang Tiết kiệm Online 6,8%–7,9% thay vì găm USD lãi 0%.
+        </div>
+
+        <div class="kpi-grid">
+          <div class="card card-gold">
+            <div class="kpi-label">XAU/USD Live (26/11) &amp; Đáy 25/11</div>
+            <div class="kpi-value mono">$3.575 <span class="down" style="font-size:0.86rem;">(Đáy $3.426)</span></div>
+            <div class="kpi-sub">-36,1% từ đỉnh 29/01 ($5.595) • Cần +56,5% để về đỉnh cũ • RSI 14 ngày quá bán <span class="warn">26,88</span></div>
+          </div>
+          <div class="card card-red">
+            <div class="kpi-label">Vàng Miếng SJC &amp; Chênh Nội–Ngoại</div>
+            <div class="kpi-value mono">129,1–134,1 Tr</div>
+            <div class="kpi-sub">Quy đổi VCB (26.020): 112,15Tr • Chênh VCB <span class="down">+21,95Tr (+19,57%)</span> • Spread 5,0–5,6Tr</div>
+          </div>
+          <div class="card card-green">
+            <div class="kpi-label">Tối Ưu Giao Dịch: Mi Hồng &amp; Phú Quý</div>
+            <div class="kpi-value mono">132,5 / 132,5 Tr</div>
+            <div class="kpi-sub">Mi Hồng (TP.HCM): <strong>132,5–134,0Tr</strong> (Spread <span class="up">1,5Tr</span>) • Nhẫn Phú Quý: <strong>128,5–132,5Tr</strong> (Sp 4Tr)</div>
+          </div>
+          <div class="card card-blue">
+            <div class="kpi-label">Lợi Suất Thực 10Y TIPS &amp; Fed 09/12</div>
+            <div class="kpi-value mono">2,74% <span class="down" style="font-size:0.86rem;">/ 96% Tăng</span></div>
+            <div class="kpi-sub">US 10Y danh nghĩa 4,866% • DXY 103,72 • Tương quan vàng vs TIPS 12T: <span class="down">-0,72</span></div>
+          </div>
+          <div class="card card-gold">
+            <div class="kpi-label">Cầu NHTW Q3 &amp; PBoC Tháng 10</div>
+            <div class="kpi-value mono up">321,2 Tấn (+42%)</div>
+            <div class="kpi-sub">PBoC mua tháng thứ <strong>24 liên tiếp</strong> (+25,8t T10 → 2.435t) • AISC sàn kỷ lục <strong>$1.930/oz</strong></div>
+          </div>
+          <div class="card card-red">
+            <div class="kpi-label">Bẫy Thanh Khoản ETF &amp; CFTC COT</div>
+            <div class="kpi-value mono down">-20 Tấn / 102,9K</div>
+            <div class="kpi-sub">ETF toàn cầu rút -$2,2B tuần 16–20/11 • SPDR 25/11 bán -4t còn <strong>1.027,3t</strong> • COT Z-score -0,62</div>
+          </div>
+        </div>
+
+        <div class="grid-2">
+          <div class="card card-gold">
+            <div class="card-title">
+              <span>📊 So Sánh Trực Quan Giá Mua – Bán 8 Sản Phẩm Vàng VN vs Giá Quy Đổi Quốc Tế (26/11)</span>
+              <span class="badge badge-red">Vàng TG Quy Đổi VCB: 112,15 Tr</span>
+            </div>
+            <div class="chart-box"><canvas id="chartDomesticCompare"></canvas></div>
+            <p style="font-size:0.8rem;margin-top:8px;"><strong>Điểm nhìn tức thì:</strong> Toàn bộ thị trường vàng thương hiệu trong nước đang giao dịch trên mặt bằng quy đổi quốc tế từ <strong>+19,85 đến +21,95 triệu/lượng</strong> (tính theo tỷ giá VCB). Riêng Mi Hồng TP.HCM trả giá thu mua vượt trội <strong>132,5 triệu</strong> (+3,4Tr trên SJC và +4,0Tr trên BTMC/Phú Quý).</p>
+          </div>
+
+          <div class="card">
+            <div class="card-title">
+              <span>🔄 Biến Động Chấn Động 48 Giờ Qua (So Sánh 24/11 → 26/11/2026)</span>
+              <span class="badge badge-red">Cập Nhật Trực Tiếp</span>
+            </div>
+            <div class="table-wrap">
+              <table style="min-width:460px;">
+                <thead><tr><th>Chỉ Báo Cốt Lõi</th><th>Mốc 24/11/2026</th><th>Mốc 26/11/2026 (10h28)</th><th>Tác Động Đến Chiến Lược Vàng</th></tr></thead>
+                <tbody>
+                  <tr><td><strong>XAU/USD Giao Ngay</strong></td><td class="mono">$3.617–$3.666</td><td class="mono warn"><strong>$3.575</strong> (Đáy 25/11: $3.426)</td><td>Đã test sâu dưới $3.500 &amp; xuất hiện lực bắt đáy $160/phiên</td></tr>
+                  <tr><td><strong>Vàng Miếng SJC</strong></td><td class="mono">130,0 – 135,0 Tr</td><td class="mono"><strong>129,1 – 134,1 Tr</strong></td><td>Giảm chậm hơn thế giới → chênh lệch giãn lên +21,95Tr</td></tr>
+                  <tr><td><strong>Vàng Miếng Mi Hồng</strong></td><td class="mono">133,0 – 135,0 Tr</td><td class="mono up"><strong>132,5 – 134,0 Tr</strong></td><td>Co spread xuống kỷ lục <strong>1,5Tr</strong> — nơi bán tốt nhất TP.HCM</td></tr>
+                  <tr><td><strong>Nhẫn PNJ 9999</strong></td><td class="mono">127,0 – 132,5 Tr</td><td class="mono down"><strong>126,5 – 132,0 Tr</strong> (Sớm 131,5)</td><td>PNJ bán giá thấp nhất TT để giải quyết khủng hoảng dòng tiền</td></tr>
+                  <tr><td><strong>Dầu Brent / WTI</strong></td><td class="mono">$86,82 / $79,70</td><td class="mono down"><strong>$94,61 / $83,95</strong> (Spot)</td><td>Bật mạnh do đỉnh tấn công thủy lôi Hormuz &amp; Houthi đánh Riyadh</td></tr>
+                  <tr><td><strong>USD VCB / Tự Do</strong></td><td class="mono">25.990 / 26.290đ</td><td class="mono down"><strong>26.020 / 26.490đ</strong></td><td>Tỷ giá bật tăng sau đề xuất thuế Mục 301 Mỹ 35%/20% lên VN</td></tr>
+                  <tr><td><strong>VN-Index</strong></td><td class="mono">1.697,14 (23/11)</td><td class="mono down"><strong>1.668,56</strong> (9h30 26/11)</td><td>Chịu sốc bán ngoại 5.676 tỷ (25/11) + tin thuế 35% sáng 26/11</td></tr>
+                  <tr><td><strong>Lạm Phát Mỹ (PCE T10)</strong></td><td class="mono">Chờ công bố</td><td class="mono down"><strong>3,8% / Lõi 3,3%</strong> (+GDP 4,3%)</td><td>Khóa chặt ~96% khả năng Fed tăng +25 bps ngày 09/12/2026</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-title">
+            <span>🧭 Ma Trận Truyền Dẫn 6 Biến Số Toàn Cầu Qua Bộ Lọc Chính Sách Vào Giá Vàng Việt Nam</span>
+            <span class="badge badge-gold">Cơ Chế Định Giá Hai Tầng</span>
+          </div>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>Động Lực / Biến Số Toàn Cầu &amp; Nội Địa</th><th>Tác Động XAU/USD</th><th>Tác Động SJC / Nhẫn VN</th><th>Kỳ Hạn Tác Động</th><th>Cách Nhà Đầu Tư Ứng Phó</th></tr></thead>
+              <tbody>
+                <tr><td><strong>Fed Warsh tăng 9/12 &amp; Q1/27 (4,25–4,5%)</strong></td><td class="down">Ép giảm / kìm dưới $3.800</td><td class="warn">Giảm ít hơn vì USD/VND tăng</td><td>Ngắn hạn (1–3T)</td><td>Chờ rũ sau FOMC 09/12 giải ngân Bậc 1</td></tr>
+                <tr><td><strong>Bão giải chấp AI / Cổ phiếu công nghệ Mỹ</strong></td><td class="down">Bán cưỡng bức ngắn hạn</td><td class="warn">Rung lắc mạnh, tạo điểm gom</td><td>Ngắn hạn (tức thời)</td><td>Giữ tiền mặt Online 1–3M đón nhịp quét</td></tr>
+                <tr><td><strong>Chiến sự Iran – Hormuz leo thang trước 3/1</strong></td><td class="up">Bật sốc trú ẩn $4.000+</td><td class="up">Cơ hội chốt bớt SJC giá cao</td><td>Ngắn – Trung hạn</td><td>Tỉa 25%–35% SJC giá vốn thấp tại Mi Hồng</td></tr>
+                <tr><td><strong>Thuế Mục 301 Mỹ (35%/20% VN) &amp; Tỷ giá</strong></td><td class="up">Tăng kỳ vọng lạm phát</td><td class="up">Đỡ giá vàng VN qua kênh FX</td><td>Q1/2027 (25/1–11/3)</td><td>Theo dõi chốt bán USD tự do vùng 26.400–26.600đ</td></tr>
+                <tr><td><strong>NHNN mở hạn mức nhập khẩu (NĐ 232)</strong></td><td>Trung tính</td><td class="down"><strong>Rủi ro nén chênh -10 đến -15Tr</strong></td><td>H1–H2/2027</td><td>Không mua đuổi khi chênh &gt;16Tr; đợi &lt;12–14Tr</td></tr>
+                <tr><td><strong>Trần nợ $41,1T (X-Date) &amp; Fed cắt cuối 27</strong></td><td class="up">Sóng lớn $4.650–$5.600</td><td class="up">Tăng bền vững 165–195Tr</td><td>Trung – Dài hạn</td><td>Nắm chặt Nhẫn 9999 &amp; chốt bậc thang 2027–2028</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="card card-gold">
+          <div class="card-title">
+            <span>⏱️ Đồng Hồ 10 Sự Kiện Sống Còn Quyết Định Xu Hướng Vàng (26/11/2026 → 2028)</span>
+            <span class="badge badge-gold">Lịch Trình Bắt Buộc Theo Dõi</span>
+          </div>
+          <div class="timeline">
+            <div class="tl-item urgent">
+              <div class="tl-date">26–30/11/2026</div>
+              <div class="tl-title">Tạ Ơn Mỹ, Bầu Cử Đài Loan, OPEC+ &amp; COT</div>
+              <div class="tl-desc">26/11: Mỹ nghỉ lễ (thanh khoản vàng mỏng dễ quét). 27/11: Đấu giá Thủ Thiêm. 28/11: Bầu cử Đài Loan. 29/11: OPEC+ kiểm toán hạn ngạch 2027. 30/11: Báo cáo CFTC COT mới.</div>
+            </div>
+            <div class="tl-item urgent">
+              <div class="tl-date">08–11/12/2026</div>
+              <div class="tl-title">FOMC Tăng Lãi Suất &amp; Hạn Chót Shutdown Mỹ</div>
+              <div class="tl-desc">09/12: ~96% Fed Warsh tăng +25 bps (4,00–4,25%) &amp; công bố Dot Plot 2027. 10/12: CPI Mỹ T11. 11/12: Hạn chót ngân sách chính phủ Mỹ (20% đóng cửa, 60% gia hạn CR).</div>
+            </div>
+            <div class="tl-item">
+              <div class="tl-date">15–18/12/2026</div>
+              <div class="tl-title">Hạn Quota Vàng VN, ECB, BoE &amp; BoJ</div>
+              <div class="tl-desc">Trước 15/12: Mốc pháp quy NHNN xét hạn mức nhập khẩu vàng năm mới. 17/12: ECB &amp; BoE họp lãi suất. 18/12: BoJ (58% tăng lên đỉnh 31 năm 1,50%).</div>
+            </div>
+            <div class="tl-item urgent">
+              <div class="tl-date">03/01 – 10/01/2027</div>
+              <div class="tl-title">Quốc Hội Dân Chủ 120 &amp; Hết Đình Chiến Trung–Mỹ</div>
+              <div class="tl-desc">03/01: Quốc hội Dân chủ nhậm chức (chấm dứt "cửa sổ 40 ngày" không kích Iran). 05/01: Hạn nộp ý kiến thuế 301. 10/01: Hết hạn đình chiến thuế quan &amp; 178 miễn trừ Mỹ–Trung.</div>
+            </div>
+            <div class="tl-item blue">
+              <div class="tl-date">25/01 – 11/03/2027</div>
+              <div class="tl-title">Lagarde Rời ECB &amp; Chốt Thuế Section 301 VN</div>
+              <div class="tl-desc">25/01: USTR điều trần công khai thuế dư thừa công suất. 07/02: Lagarde rời ghế ECB sớm. 28/02: Hạn chót Sec.301 IP VN. 11/03: Hạn cuối chốt mức thuế 35%/20% lên Việt Nam.</div>
+            </div>
+            <div class="tl-item green">
+              <div class="tl-date">Q2/2027 – Q3/2027</div>
+              <div class="tl-title">Đỉnh Lãi Suất Fed, Trần Nợ $41,1T &amp; Bão Repo</div>
+              <div class="tl-desc">Trần nợ Mỹ chạm X-Date (ước T2–T7/2027) &amp; rủi ro hút thanh khoản TGA/Repo; FTSE giải ngân +70% vào TTCK VN (T6 &amp; T9); Thuế đất bỏ hoang 0,2% hiệu lực 01/07/2027.</div>
+            </div>
+            <div class="tl-item green">
+              <div class="tl-date">Q4/2027 – 2028</div>
+              <div class="tl-title">Fed Đảo Chiều Cắt Lãi Suất &amp; Thanh Tra PCRT</div>
+              <div class="tl-desc">Q4/2027: Cục IX Thanh tra Chính phủ dự phòng thanh tra PCRT 5 hãng vàng lớn (45 ngày). Tháng 11/2027: Goldman Sachs dự báo Fed khởi động chu kỳ cắt 4 lần đưa vàng hướng $5.000–$5.600.</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================================================================== -->
+      <!-- TAB 2: CHÍNH SỰ MỸ, CHÍNH SÁCH TIỀN TỆ & CHIẾN SỰ QUANH MỸ         -->
+      <!-- ================================================================== -->
+      <section class="tab-panel" id="tab-us-geo">
+        <h2 class="section-heading">🇺🇸 Chính Sự Mỹ Hậu Midterms 2026, Làn Sóng Diều Hâu G10 &amp; Các Điểm Nóng Chiến Sự Quanh Mỹ</h2>
+
+        <div class="callout callout-red">
+          <strong>Tại sao Chính sự Mỹ &amp; Chiến sự là "nhịp tim" của giá vàng 2026–2028?</strong> Giá vàng hiện bị giằng xé giữa hai lực kéo lịch sử: <strong>lực nén ngắn hạn</strong> từ Cục Dự trữ Liên bang diều hâu (Fed Warsh + 9/10 NHTW G10 tăng lãi suất đẩy lợi suất thực TIPS lên 2,74%–2,88%) và <strong>lực đẩy dài hạn</strong> từ thâm hụt tài khóa Mỹ (nợ công ~40,68 nghìn tỷ USD áp sát trần 41,1 nghìn tỷ USD), Quốc hội chia rẽ cực độ sau "Blue Wave", chiến tranh Iran–Hormuz bước sang tháng thứ 9 và làn sóng bảo hộ thuế quan Mục 301 bùng phát trở lại ngày 25/11/2026.
+        </div>
+
+        <div class="grid-2">
+          <div class="card card-blue">
+            <div class="card-title">
+              <span>🏛️ Quốc Hội Khóa 120 ("Blue Wave") &amp; Đồng Hồ Tài Khóa Mỹ</span>
+              <span class="badge badge-blue">Nhậm Chức 03/01/2027</span>
+            </div>
+            <p>Cuộc bầu cử giữa kỳ ngày 03/11/2026 tạo nên cú đảo chiều lớn nhất kể từ thời Watergate: Đảng Dân chủ giành đa số tuyệt đối ở cả hai viện với <strong>56–44 ghế Thượng viện</strong> và <strong>258–173 ghế Hạ viện</strong> (mức đa số Hạ viện lớn nhất của Đảng Dân chủ từ năm 1990), chấm dứt quyền kiểm soát toàn diện của Đảng Cộng hòa và đẩy Washington vào 2 năm <strong>chính phủ chia rẽ sâu sắc</strong>.</p>
+            <div class="chart-box-sm"><canvas id="chartUsCongress"></canvas></div>
+            <ul class="clean-list" style="margin-top:10px;">
+              <li><strong>Chương trình 100 ngày trị giá 4,1 nghìn tỷ USD (CRFB):</strong> Lãnh đạo Dân chủ dự kiến đề xuất đảo ngược cắt giảm y tế OBBBA (1,6T), khôi phục trợ cấp ACA (405B), SNAP (250B) và bãi bỏ thuế quan 2025 (1,8T). Do <strong>không đủ 2/3 ghế để vượt quyền phủ quyết (veto) của TT Donald Trump</strong>, luật đơn lẻ khó đi qua — thay vào đó, quyền giám sát (trát điều tra chiến tranh Iran, hợp đồng dầu Venezuela $100B) và các đạo luật bắt buộc thông qua (ngân sách, trần nợ) sẽ trở thành chiến trường mặc cả gay gắt.</li>
+              <li><strong>Hạn chót Shutdown 11/12/2026:</strong> Nghị quyết tạm thời hiện tại (P.L. 119-103) hết hiệu lực ngày 11/12. Xác suất gia hạn ngắn hạn (CR) sang tháng 2/2027 là <strong>60%</strong>, đóng cửa chính phủ <strong>20%</strong>. Đảng Dân chủ (gồm Thượng nghị sĩ Patty Murray) phản đối cấp bổ sung 60 tỷ USD ngân sách cho chiến tranh Iran.</li>
+              <li><strong>Trần nợ công 41,1 nghìn tỷ USD (X-Date giữa 2027):</strong> Nợ công chịu trần đã vượt 40,33T (cuối T11 ~40,68T), ước chạm trần trong khoảng <strong>tháng 2 đến tháng 7/2027</strong>. Fitch cảnh báo nợ công Mỹ sẽ chạm 123% GDP năm 2028. Trong lịch sử (2011, 2023), căng thẳng X-Date thường là chất xúc tác tăng giá vàng hàng đầu.</li>
+            </ul>
+          </div>
+
+          <div class="card card-red">
+            <div class="card-title">
+              <span>🏦 Fed Kevin Warsh &amp; Làn Sóng Tăng Lãi Suất Đồng Bộ Khối G10</span>
+              <span class="badge badge-red">9/10 NHTW G10 Đang Tăng Lãi</span>
+            </div>
+            <div class="chart-box-sm"><canvas id="chartGlobalRates"></canvas></div>
+            <ul class="clean-list" style="margin-top:10px;">
+              <li><strong>Cú sốc vĩ mô Mỹ ngày 25/11/2026:</strong> GDP quý III điều chỉnh tăng lên <strong>4,3%</strong>; PCE toàn phần tháng 10 lên <strong>3,8% YoY</strong> (+0,3% MoM); <strong>PCE lõi tăng lên 3,3% YoY</strong> (vượt dự báo 3,2%, +0,3% tháng thứ 3 liên tiếp); Niềm tin tiêu dùng tháng 11 nhảy vọt lên <strong>103,3</strong> (đỉnh 2 năm). Báo cáo <strong>Beige Book (25/11)</strong> cho thấy 8/12 khu vực tăng trưởng nhẹ–vừa nhưng áp lực chi phí đầu vào từ <strong>thuế quan, cước vận tải và năng lượng</strong> tiếp diễn rộng khắp.</li>
+              <li><strong>Học thuyết Kevin Warsh &amp; FOMC 8–9/12:</strong> Chủ tịch Fed Kevin Warsh từ chối gọi điều kiện tài chính là "thắt chặt", bỏ định hướng trước (anti-guidance) và chủ trương <strong>thu hẹp mạnh bảng cân đối kế toán</strong> (hiện 6,741T USD; dự trữ ngân hàng 3,001T USD ≈ 11% tài sản). Thị trường định giá <strong>~96% tăng +25 bps ngày 09/12</strong> lên 4,00%–4,25% (Thống đốc Waller từng để ngỏ +50 bps). Goldman Sachs &amp; Morgan Stanley dự báo Fed đạt đỉnh <strong>4,25%–4,50% Q1/2027</strong> và cắt từ T11/2027; J.P. Morgan diều hâu hơn dự báo đỉnh 4,50%–4,75%.</li>
+              <li><strong>Đồng loạt thắt chặt G10:</strong> <strong>BoE</strong> tăng +25 bps lên <strong>4,00%</strong> (5/11, tỷ lệ 8–1, 1 phiếu đòi +50 bps; họp tiếp 17/12); <strong>ECB</strong> giữ lãi suất tiền gửi 2,50% / tái cấp vốn 2,65% nhưng đồng thuận tăng +25 bps ngày <strong>17/12</strong> giữa cú sốc năng lượng &amp; tin <strong>Christine Lagarde rời chức sớm ngày 07/02/2027</strong>; <strong>BoJ</strong> hiện ở 1,25% với <strong>58% xác suất tăng lên 1,50% ngày 17–18/12</strong> (đỉnh 31 năm khi lạm phát cơ bản Nhật đạt 2,2%); <strong>BoC</strong> (2,50%) và <strong>RBA</strong> (4,85%) đều đã tăng lãi suất.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="grid-3">
+          <div class="card card-red">
+            <div class="card-title"><span>🔥 Chiến Tranh Mỹ–Israel–Iran &amp; Điểm Sôi Hormuz</span><span class="badge badge-red">Đỉnh Tấn Công 23–25/11</span></div>
+            <ul class="clean-list">
+              <li><strong>Diễn biến 9 tháng chiến sự (&gt;$48,3B):</strong> Bắt đầu từ chiến dịch không kích ngày 28/02/2026; Bộ Quốc phòng Mỹ ghi nhận thiệt hại thiết bị tới <strong>3,7 tỷ USD</strong> (gồm ~60 máy bay). Bản ghi nhớ Islamabad (T6) đổ vỡ tháng 7 kéo theo phong tỏa biển (<em>Operation Economic Outcast</em> — Bộ trưởng Tài chính Bessent ngày 25/11 tuyên bố Iran không thể xuất giọt dầu nào từ tháng 8).</li>
+              <li><strong>Cao trào 23–25/11/2026:</strong> Tấn công hàng hải quanh Hormuz đạt <strong>mức cao nhất từ đầu chiến sự</strong>: Hải quân IRGC &amp; Iran tuyên bố 5–6 tàu dầu trúng thủy lôi cháy lớn trong 3 ngày 23–25/11; đạn đạo phát nổ cách Dubai 50 hải lý bên trong vịnh Ba Tư; <strong>Houthi đánh trúng tòa nhà tại Khu Tài chính Riyadh (24/11)</strong> làm 11 người bị thương; liên quân Saudi không kích cảng Hodeida (25/11); WSJ tiết lộ Mỹ điều tra tấn công mạng &amp; đe dọa đánh bom nhắm ~50 tàu dầu; Ynet đưa tin Triều Tiên hỗ trợ Iran tái thiết căn cứ tên lửa ngầm.</li>
+              <li><strong>Tác động Dầu &amp; Vàng:</strong> Dù xuất khẩu Vùng Vịnh qua đường ống vòng &amp; sang tải biển phục hồi ~18,9 mb/d, chuỗi sự cố mới đẩy <strong>Brent bật từ đáy 3 tháng của hợp đồng tương lai ($86,68 ngày 23/11) lên $90,30–$90,96 (futures) và $94,61–$95,14 (spot/benchmark sáng 26/11)</strong>. Tổng thống Trump cảnh báo khả năng nối lại không kích sau Năm Mới; đại diện ngành năng lượng Atlanta Fed (Beige Book 25/11) dự báo gián đoạn kéo dài sang 2027.</li>
+            </ul>
+          </div>
+
+          <div class="card card-gold">
+            <div class="card-title"><span>🌎 Venezuela ("Donroe"), Đài Loan &amp; Nga–Ukraine</span><span class="badge badge-gold">Bàn Cờ Năng Lượng</span></div>
+            <ul class="clean-list">
+              <li><strong>Venezuela hậu Maduro (65 tỷ thùng dầu):</strong> Sau khi bắt giữ Maduro (03/01/2026) và thỏa thuận với quyền TT Delcy Rodríguez (hạ thuế tài nguyên 30%→15%), Mỹ nắm quyền kiểm soát hơn <strong>65 tỷ thùng trữ lượng</strong>; nhập khẩu dầu Mỹ từ Venezuela đầu tháng 11 tăng gấp 10 lần lên <strong>603.000 thùng/ngày</strong>; ExxonMobil đang khảo sát 7 lô mỏ quay lại sau 20 năm. Tuy nhiên, các nghị sĩ Dân chủ đang chuẩn bị điều tra hợp đồng 100 tỷ USD này vào tháng 1/2027.</li>
+              <li><strong>Điểm nóng Đài Loan &amp; Biển Hoa Đông:</strong> Cuộc <strong>bầu cử địa phương 9-trong-1 của Đài Loan ngày 28/11/2026</strong> diễn ra ngay sau khi máy bay quân sự Nga 2 lần áp sát vùng nhận diện phòng không Đài Loan trong 3 ngày, kèm 2,58 triệu cuộc tấn công mạng/ngày vào cơ quan Đài Loan (ZeroFox) và PLA mở rộng tác chiến tàu ngầm tầm xa (ISW/AEI).</li>
+              <li><strong>Nga–Ukraine &amp; Thượng đỉnh APEC Thâm Quyến:</strong> Cuộc gặp 3 bên Trump–Tập–Putin tại Thâm Quyến (19/11) không tạo đột phá về Ukraine; xuồng không người lái Ukraine vừa đánh chìm tàu chiến Nga tại Libya (24/11), còn hòa đàm Abu Dhabi vẫn bế tắc.</li>
+            </ul>
+          </div>
+
+          <div class="card card-blue">
+            <div class="card-title"><span>🛃 Cú Sốc Thuế Section 301 Mới (25–26/11/2026)</span><span class="badge badge-red">VN Đối Mặt Trần 35% / 20%</span></div>
+            <p>Tối 25/11/2026, USTR Jamieson Greer công bố kết luận sơ bộ điều tra <strong>dư thừa công suất cơ cấu (Section 301)</strong> đối với 14 nền kinh tế nhằm thay thế thuế đối ứng IEEPA bị Tòa án Tối cao bác bỏ hồi tháng 2/2026:</p>
+            <div class="table-wrap" style="margin:6px 0;">
+              <table style="min-width:260px;font-size:0.75rem;">
+                <thead><tr><th>Đối Tác</th><th>Hiện Hành (24/7)</th><th>Đề Xuất / Có Deal</th><th>Trần Dự Phòng</th></tr></thead>
+                <tbody>
+                  <tr><td><strong>Việt Nam</strong></td><td class="mono">12,5%</td><td class="mono down"><strong>Tới 35% / 20%</strong></td><td class="mono">— (mục tiêu ICT, dệt may, xi măng)</td></tr>
+                  <tr><td><strong>Trung Quốc</strong></td><td class="mono">12,5% + cũ</td><td class="mono down"><strong>+20%</strong> (chồng cũ)</td><td class="mono down">Tới 40%–45%</td></tr>
+                  <tr><td><strong>ASEAN (ID/MY/TH/KH)</strong></td><td class="mono">10%–12,5%</td><td class="mono warn">18%</td><td class="mono">25%</td></tr>
+                  <tr><td><strong>EU / Nhật / Hàn / Đài Loan</strong></td><td class="mono">10%–12,5%</td><td class="mono">15% tổng</td><td class="mono">20%–25%</td></tr>
+                </tbody>
+              </table>
+            </div>
+            <p style="font-size:0.8rem;"><strong>Lộ trình tác động trực tiếp đến Vàng &amp; Tỷ giá VN:</strong> Hạn góp ý <strong>05/01/2027</strong> → Đình chiến Mỹ–Trung hết hạn <strong>10/01/2027</strong> → Điều trần công khai <strong>25/01/2027</strong> → Hạn chót Sec.301 IP riêng VN <strong>28/02/2027</strong> → Phán quyết cuối chậm nhất <strong>11/03/2027</strong>. Bộ Công Thương nhấn mạnh mức 35% chưa có hiệu lực và có hơn 2.100 mặt hàng được đề xuất miễn trừ, nhưng rủi ro đuôi này sẽ duy trì áp lực lên tỷ giá USD/VND suốt quý I/2027 — tạo <em>tấm đệm nâng đỡ giá vàng quy đổi trong nước</em>.</p>
+          </div>
+        </div>
+        <div class="source-note">Nguồn: Federal Reserve (Beige Book 25/11), Kitco, USTR (25/11), VnEconomy, MUFG Research (26/11), Stock Titan, KPMG Central Bank Scanner, BMO Economics, CentralBank.Watch, JINSA (25/11), CBS News, OilPrice, Trading Economics (26/11), ISW, CSIS.</div>
+      </section>
+
+      <!-- ================================================================== -->
+      <!-- TAB 3: CUNG - CẦU WGC, NGÂN HÀNG TRUNG ƯƠNG, ETF, CFTC & AISC     -->
+      <!-- ================================================================== -->
+      <section class="tab-panel" id="tab-fundamentals">
+        <h2 class="section-heading">🌍 Phẫu Thuật Cấu Trúc Cung – Cầu Vàng Toàn Cầu (WGC Q3/2026), NHTW, Dòng Tiền ETF, CFTC &amp; Sàn Chi Phí AISC</h2>
+
+        <div class="grid-2">
+          <div class="card card-gold">
+            <div class="card-title">
+              <span>📊 Bảng 1 WGC Q3/2026: Cán Cân Cung – Cầu Toàn Cầu (Đơn Vị: Tấn)</span>
+              <span class="badge badge-gold">9T/2026 Giá Trị Kỷ Lục $566B</span>
+            </div>
+            <div class="table-wrap">
+              <table style="min-width:480px;font-size:0.78rem;">
+                <thead><tr><th>Hạng Mục Cung / Cầu (WGC Q3/2026)</th><th>Q3/25</th><th>Q1/26</th><th>Q2/26</th><th>Q3/26</th><th>% YoY</th></tr></thead>
+                <tbody>
+                  <tr><td><strong>Sản lượng khai thác mỏ (Kỷ lục Q3)</strong></td><td class="mono">1.040,7</td><td class="mono">907,7</td><td class="mono">951,3</td><td class="mono up"><strong>1.070,9</strong></td><td class="mono up">+3%</td></tr>
+                  <tr><td><strong>Vàng tái chế (Đáy 3 năm)</strong></td><td class="mono">342,7</td><td class="mono">372,5</td><td class="mono">321,8</td><td class="mono down"><strong>314,5</strong></td><td class="mono down">-8%</td></tr>
+                  <tr><td>Phòng hộ ròng nhà khai thác (De-hedging)</td><td class="mono">-0,2</td><td class="mono">-21,8</td><td class="mono">-18,6</td><td class="mono">-16,8</td><td class="mono">—</td></tr>
+                  <tr style="background:var(--gold-soft);"><td><strong>TỔNG CUNG = TỔNG CẦU (Gồm OTC)</strong></td><td class="mono"><strong>1.383,2</strong></td><td class="mono"><strong>1.258,4</strong></td><td class="mono"><strong>1.254,5</strong></td><td class="mono"><strong>1.368,6</strong></td><td class="mono">-1%</td></tr>
+                  <tr><td><strong>Ngân hàng Trung ương mua ròng</strong></td><td class="mono">226,3</td><td class="mono">57,7</td><td class="mono">296,3</td><td class="mono up"><strong>321,2</strong></td><td class="mono up"><strong>+42%</strong></td></tr>
+                  <tr><td><strong>Quỹ ETF Vàng toàn cầu (Đảo chiều mạnh)</strong></td><td class="mono">225,7</td><td class="mono">62,4</td><td class="mono down">-47,3</td><td class="mono up"><strong>211,2</strong></td><td class="mono">-6%</td></tr>
+                  <tr><td><strong>Vàng miếng &amp; Tiền xu (Bar &amp; Coin)</strong></td><td class="mono">328,6</td><td class="mono">476,9</td><td class="mono">308,6</td><td class="mono down"><strong>267,8</strong></td><td class="mono down">-19%</td></tr>
+                  <tr><td><strong>Tiêu thụ Trang sức (Thấp nhất Q3 từ 2000)</strong></td><td class="mono">376,4</td><td class="mono">295,2</td><td class="mono">280,5</td><td class="mono down"><strong>312,9</strong></td><td class="mono down">-17%</td></tr>
+                  <tr><td><strong>Công nghệ &amp; Linh kiện AI (Đỉnh từ Q4/21)</strong></td><td class="mono">82,0</td><td class="mono">82,2</td><td class="mono">80,9</td><td class="mono up"><strong>84,8</strong></td><td class="mono up">+3%</td></tr>
+                  <tr><td>OTC &amp; Thay đổi tồn kho</td><td class="mono">144,2</td><td class="mono">284,0</td><td class="mono">335,5</td><td class="mono">170,7</td><td class="mono">+18%</td></tr>
+                  <tr><td><em>Giá LBMA PM bình quân quý (USD/oz)</em></td><td class="mono">$3.456,5</td><td class="mono">$4.872,9</td><td class="mono">$4.506,3</td><td class="mono warn"><strong>$4.262,2</strong></td><td class="mono up">+23%</td></tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="chart-box-sm" style="margin-top:12px;"><canvas id="chartWgcDemand"></canvas></div>
+            <p style="font-size:0.8rem;margin-top:8px;"><strong>Điểm bùng nổ công nghệ AI:</strong> Nhu cầu vàng cho điện tử tăng <strong>+5% YoY lên 72,5 tấn</strong> (cao nhất từ Q4/2017) nhờ máy chủ AI, bộ nhớ tốc độ cao, Wi-Fi 7 và vệ tinh quỹ đạo thấp (Đài Loan &amp; Hàn Quốc dẫn đầu).</p>
+          </div>
+
+          <div class="card card-green">
+            <div class="card-title">
+              <span>🏦 Làn Sóng Gom Vàng NHTW, Phi Đô-La Hóa &amp; Đường Cong Chi Phí AISC</span>
+              <span class="badge badge-green">PBoC: 24 Tháng • AISC: $1.930</span>
+            </div>
+            <div class="chart-box-sm"><canvas id="chartCbBuyers"></canvas></div>
+            <div class="chart-box-sm" style="margin-top:12px;"><canvas id="chartAiscCurve"></canvas></div>
+            <ul class="clean-list" style="margin-top:10px;">
+              <li><strong>PBoC tăng tốc bất chấp giá giảm:</strong> Sau khi mua 63 tấn trong Q3, Trung Quốc mua thêm <strong>25,8 tấn (830.000 oz) riêng tháng 10/2026</strong> — mức mua lớn nhất 3 năm và đánh dấu <strong>24 tháng tăng dự trữ liên tiếp</strong> (lũy kế 10T ~129 tấn), đưa kho vàng chính thức lên <strong>2.435 tấn</strong> (8,1% tổng tài sản dự trữ 3,778 nghìn tỷ USD).</li>
+              <li><strong>Phân hóa quốc gia (9T/2026):</strong> Dẫn đầu mua ròng là <strong>Ba Lan (+123t từ mức 550,2t cuối 2025, nhắm mục tiêu 700t)</strong>, <strong>Trung Quốc (+103t 9T / +129t 10T)</strong>, <strong>Uzbekistan (+57t)</strong>, <strong>Kazakhstan (+44t)</strong>, Séc (+5t Q3). Ngược lại, <strong>Thổ Nhĩ Kỳ (-82t)</strong>, <strong>Nga (-62t)</strong> và một số nước Vùng Vịnh bán bớt vàng để bù hụt thu ngân sách từ gián đoạn dầu. Khoảng <strong>63% tổng lượng mua 321,2 tấn Q3 là giao dịch ngầm chưa báo cáo</strong>.</li>
+              <li><strong>Khảo sát 76 NHTW (WGC 2026) vs IMF COFER Q2/2026:</strong> <strong>89%</strong> NHTW tin dự trữ vàng toàn cầu tăng 12 tháng tới; kỷ lục <strong>45%</strong> dự kiến tăng kho vàng của chính mình (53% ở khối mới nổi); <strong>74%</strong> dự báo tỷ trọng USD giảm trong 5 năm tới. Thực tế IMF COFER Q2/2026 ghi nhận USD hạ dần về <strong>56,70%</strong> (từ 71% năm 1999; EUR 20,60%; RMB 2,11%), còn ECB thống kê <strong>vàng đạt 27% tổng dự trữ chính thức cuối 2025</strong> (vượt 22% của US Treasuries, phần lớn nhờ hiệu ứng tăng giá vàng; tính theo giá cuối 2023 tỷ lệ là 16% vs 26%).</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="grid-3">
+          <div class="card card-red">
+            <div class="card-title"><span>📉 Dòng Tiền ETF Tháng 11 &amp; SPDR Gold Trust</span><span class="badge badge-red">Rút -20 Tấn / Tuần</span></div>
+            <ul class="clean-list">
+              <li><strong>Đảo chiều từ giữa T11:</strong> Sau khi hút +211,2 tấn Q3 (Châu Âu +92t dẫn đầu bởi Anh 53t; Bắc Mỹ +81t; Châu Á +34t) và +19 tấn tháng 10 lên đỉnh kỷ lục <strong>4.275 tấn</strong> ($542B AUM), các quỹ ETF toàn cầu bị rút ròng <strong>-20 tấn (-2,2 tỷ USD)</strong> trong tuần 16–20/11 (tổng -30 tấn trong 5 tuần), chủ yếu do nhà đầu tư Mỹ bán vàng bù margin cổ phiếu AI.</li>
+              <li><strong>SPDR Gold Trust (GLD) live 25/11:</strong> Quỹ lớn nhất thế giới bán ròng 10 tấn tuần trước và xả thêm <strong>-4,0 tấn</strong> trong phiên 25/11, kéo lượng nắm giữ về <strong>1.027,3 tấn</strong> (GLD giao dịch $316–$325 so với đỉnh 52 tuần $509,70).</li>
+              <li><strong>Tín hiệu đảo chiều cần theo dõi:</strong> Goldman Sachs &amp; Investing.com nhấn mạnh giá vàng khó vượt bền $3.800 cho tới khi dòng vốn ETF Bắc Mỹ ngừng rút ròng và quay lại tạo chứng chỉ quỹ mới (riêng ETF Trung Quốc đạt kỷ lục 310 tấn cuối T10).</li>
+            </ul>
+          </div>
+
+          <div class="card card-blue">
+            <div class="card-title"><span>🎯 Định Vị Phái Sinh CFTC COT (Báo Cáo 17/11)</span><span class="badge badge-blue">Z-Score: -0,62</span></div>
+            <ul class="clean-list">
+              <li><strong>Quỹ đầu cơ (Managed Money) rũ bỏ mạnh:</strong> Cắt giảm <strong>-9.399 đến -10.136 hợp đồng</strong> chỉ trong 1 tuần, đưa vị thế mua ròng (net long) về <strong>102.942–104.270 hợp đồng</strong> (thấp nhất từ ngày 09/06/2026; 33 quỹ mở vị thế bán khống, tăng từ 25 quỹ).</li>
+              <li><strong>Tay to thương mại gom đối ứng:</strong> Các ngân hàng tạo lập thị trường (Swap Dealers) đã đóng 14.265 HĐ bán khống, còn nhóm sản xuất/thương nhân giảm bán khống ròng từ 9.600 xuống 3.130 HĐ — dấu hiệu khối thương mại hấp thụ lượng thanh lý của quỹ đầu cơ.</li>
+              <li><strong>Vùng đảo chiều thống kê:</strong> Chỉ số COT 52 tuần hạ về <strong>24–27,8/100</strong> (Z-score -0,62). Dữ liệu từ 2006 cho thấy khi Z-score xuống dưới <strong>-1,5 đến -2,0</strong>, xác suất tạo đáy trung hạn tăng mạnh. Theo dõi báo cáo COT kế tiếp công bố <strong>Thứ Hai 30/11/2026</strong>.</li>
+            </ul>
+          </div>
+
+          <div class="card card-gold">
+            <div class="card-title"><span>⛏️ Chi Phí Mỏ AISC &amp; Bản Đồ Thuế Vàng Á–Âu</span><span class="badge badge-gold">AISC Kỷ Lục $1.930/oz</span></div>
+            <ul class="clean-list">
+              <li><strong>Lạm phát chi phí khai thác (+22% YoY):</strong> AISC bình quân toàn cầu quý II/2026 lập đỉnh <strong>1.930 USD/oz</strong> (tăng mạnh nhất từ Q1/2013; CapEx duy trì vọt +34% lên $441/oz; chi phí tiền mặt $1.215/oz). Tại 9 tập đoàn mỏ lớn nhất, AISC chạy từ <strong>$1.454–$2.244/oz</strong> (trung vị $1.907), tạo nền sàn chi phí cao gấp 1,7 lần năm 2021.</li>
+              <li><strong>Chênh lệch thị trường vật chất châu Á (26/11):</strong> <strong>Thượng Hải (SGE)</strong> chiết khấu <strong>-1,62%</strong> so với COMEX (vàng SGE miễn VAT 0%; ngoài SGE chịu VAT 13%, trang sức chịu VAT 7%); <strong>Ấn Độ</strong> áp tổng thuế vàng kỷ lục <strong>18,45%</strong> (15% NK + 3% GST), đẩy giá đường phố cao hơn COMEX +16,6%; <strong>Nhật Bản</strong> chịu thuế tiêu dùng 10% (đường phố +10,14%); trong khi Anh/EU/Úc/Canada <strong>miễn 0% thuế</strong> vàng đầu tư.</li>
+              <li><strong>Hạ tầng tài chính vàng mới:</strong> Vàng số hóa (Tokenized Gold) vượt <strong>6,1 tỷ USD</strong> (Tether Gold &gt;$3,3B); liên minh <strong>JPMorgan – HSBC – StoneX</strong> vừa thử nghiệm giao dịch &amp; cầm cố <strong>vàng miếng phân mảnh tại London</strong> không cần di chuyển vật lý.</li>
+            </ul>
+          </div>
+        </div>
+        <div class="source-note">Nguồn: World Gold Council (Gold Demand Trends Q3/2026, CBGR Survey 2026, China Gold Update 17/11, AISC series 2021–2026), Metals Focus, ScrapMonster (11/11), SAFE China, IMF COFER Q2/2026, ECB, CFTC COT / COTInsight / TheVaultReport (23–26/11), VnEconomy (26/11), CryptoRank, InvestingLive.</div>
+      </section>
+
+      <!-- ================================================================== -->
+      <!-- TAB 4: THỊ TRƯỜNG VÀNG VIỆT NAM & BẪY NÉN CHÊNH LỆCH               -->
+      <!-- ================================================================== -->
+      <section class="tab-panel" id="tab-vn-gold">
+        <h2 class="section-heading">🇻🇳 Toàn Cảnh Thị Trường Vàng – Bạc Việt Nam (26/11/2026) &amp; Giải Phẫu Bẫy Nén Chênh Lệch SJC</h2>
+
+        <div class="card card-gold">
+          <div class="card-title">
+            <span>📋 Bảng Giá Trực Tiếp 16 Sản Phẩm Vàng &amp; Bạc Nội Địa (Sáng 26/11/2026 • ~09:30 GMT+7)</span>
+            <span class="badge badge-red">Quy Đổi XAU $3.575 @ VCB 26.020 = 112,15 Tr/Lượng</span>
+          </div>
+          <div class="filter-row" id="goldFilterRow">
+            <button class="filter-btn active" onclick="filterGoldTable('all', this)">Tất cả (16 sản phẩm)</button>
+            <button class="filter-btn" onclick="filterGoldTable('bar', this)">🥇 Vàng Miếng SJC (7)</button>
+            <button class="filter-btn" onclick="filterGoldTable('ring', this)">💍 Vàng Nhẫn 9999 (6)</button>
+            <button class="filter-btn" onclick="filterGoldTable('other', this)">⚠️ Nữ Trang, Vàng Ngoài &amp; Bạc (3)</button>
+          </div>
+          <div class="table-wrap">
+            <table id="vnGoldTable">
+              <thead>
+                <tr>
+                  <th>Thương Hiệu &amp; Quy Cách Sản Phẩm</th>
+                  <th>Mua Vào (Tr)</th>
+                  <th>Bán Ra (Tr)</th>
+                  <th>Spread (Tr / %)</th>
+                  <th>Chênh TG (VCB)</th>
+                  <th>Chênh TG (Tự Do)</th>
+                  <th>Đánh Giá Thanh Khoản &amp; Rủi Ro Thực Chiến</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr data-cat="bar">
+                  <td><strong>Mi Hồng (TP.HCM 9h30) — Miếng SJC</strong> <span class="badge badge-green">Tối Ưu #1</span></td>
+                  <td class="mono up"><strong>132,50</strong></td><td class="mono">134,00</td>
+                  <td class="mono up"><strong>1,50 (1,12%)</strong></td>
+                  <td class="mono down">+21,85 Tr</td><td class="mono">+19,82 Tr</td>
+                  <td><strong>Nơi bán lại SJC giá cao nhất TP.HCM</strong> (+3,4Tr trên SJC, +4,0Tr trên BTMC/Phú Quý); tăng +500k chiều mua sáng 26/11.</td>
+                </tr>
+                <tr data-cat="bar">
+                  <td><strong>SJC (TP.HCM / Hà Nội) — Miếng SJC 1L</strong></td>
+                  <td class="mono">129,10</td><td class="mono">134,10</td>
+                  <td class="mono down">5,00 (3,73%)</td>
+                  <td class="mono down">+21,95 Tr</td><td class="mono">+19,92 Tr</td>
+                  <td>Chuẩn thanh khoản quốc gia; loại 0,5–2 chỉ bán 134,13Tr; cần giữ tuyệt đối nguyên vỉ tránh phí gia công lại.</td>
+                </tr>
+                <tr data-cat="bar">
+                  <td><strong>DOJI (SG / HN) — Miếng SJC</strong></td>
+                  <td class="mono">129,10</td><td class="mono">134,10</td>
+                  <td class="mono down">5,00 (3,73%)</td>
+                  <td class="mono down">+21,95 Tr</td><td class="mono">+19,92 Tr</td>
+                  <td>Đồng giá SJC; có hỗ trợ ứng dụng giao dịch trực tuyến liên kết TPBank; thuộc DS thanh tra dự phòng PCRT 2027.</td>
+                </tr>
+                <tr data-cat="bar">
+                  <td><strong>PNJ (TP.HCM / HN) — Miếng SJC</strong></td>
+                  <td class="mono">129,10</td><td class="mono">134,10</td>
+                  <td class="mono down">5,00 (3,73%)</td>
+                  <td class="mono down">+21,95 Tr</td><td class="mono">+19,92 Tr</td>
+                  <td>Vàng miếng SJC tại PNJ vẫn giữ giá chuẩn thị trường, tách biệt với đợt hạ giá sâu vàng nhẫn PNJ.</td>
+                </tr>
+                <tr data-cat="bar">
+                  <td><strong>Bảo Tín Mạnh Hải — Miếng SJC</strong></td>
+                  <td class="mono">129,10</td><td class="mono">134,10</td>
+                  <td class="mono down">5,00 (3,73%)</td>
+                  <td class="mono down">+21,95 Tr</td><td class="mono">+19,92 Tr</td>
+                  <td>Thu mua cao hơn Bảo Tín Minh Châu 600.000đ/lượng dù cùng bán 134,1Tr.</td>
+                </tr>
+                <tr data-cat="bar">
+                  <td><strong>Phú Quý — Miếng SJC</strong></td>
+                  <td class="mono">128,50</td><td class="mono">134,00</td>
+                  <td class="mono down">5,50 (4,10%)</td>
+                  <td class="mono down">+21,85 Tr</td><td class="mono">+19,82 Tr</td>
+                  <td>Bán thấp hơn SJC 100k nhưng spread rộng 5,5Tr; mạnh hơn ở sản phẩm Nhẫn 9999 &amp; Bạc thỏi.</td>
+                </tr>
+                <tr data-cat="bar">
+                  <td><strong>Bảo Tín Minh Châu — Miếng SJC</strong></td>
+                  <td class="mono down">128,50</td><td class="mono">134,10</td>
+                  <td class="mono down"><strong>5,60 (4,18%)</strong></td>
+                  <td class="mono down">+21,95 Tr</td><td class="mono">+19,92 Tr</td>
+                  <td><strong>Biên độ mua–bán vàng miếng rộng nhất thị trường sáng 26/11</strong>; bất lợi lớn khi cần bán gấp.</td>
+                </tr>
+                <tr data-cat="ring">
+                  <td><strong>Phú Quý — Nhẫn Tròn 999.9</strong> <span class="badge badge-green">Tối Ưu Tích Lũy</span></td>
+                  <td class="mono">128,50</td><td class="mono up"><strong>132,50</strong></td>
+                  <td class="mono up"><strong>4,00 (3,02%)</strong></td>
+                  <td class="mono warn">+20,35 Tr</td><td class="mono">+18,32 Tr</td>
+                  <td><strong>Lựa chọn tích lũy nhẫn thương hiệu tốt nhất</strong> (spread hẹp nhất khối HN/quốc gia, ngoài diện thuế 0,1% vàng miếng).</td>
+                </tr>
+                <tr data-cat="ring">
+                  <td><strong>Mi Hồng (TP.HCM 9h30) — Vàng Nhẫn 999</strong></td>
+                  <td class="mono up"><strong>132,50</strong></td><td class="mono">134,00</td>
+                  <td class="mono up"><strong>1,50 (1,12%)</strong></td>
+                  <td class="mono down">+21,85 Tr</td><td class="mono">+19,82 Tr</td>
+                  <td>Spread 1,5Tr lý tưởng cho giao dịch linh hoạt tại TP.HCM (lưu ý hàm lượng niêm yết 99,9% và nên bán lại ngay tại hệ thống Mi Hồng).</td>
+                </tr>
+                <tr data-cat="ring">
+                  <td><strong>DOJI — Nhẫn Hưng Thịnh Vượng 9999</strong></td>
+                  <td class="mono">128,50</td><td class="mono">133,50</td>
+                  <td class="mono">5,00 (3,75%)</td>
+                  <td class="mono down">+21,35 Tr</td><td class="mono">+19,32 Tr</td>
+                  <td>Thanh khoản tốt, ép vỉ chuẩn 9999, rẻ hơn SJC 600k/lượng.</td>
+                </tr>
+                <tr data-cat="ring">
+                  <td><strong>BTMC — Nhẫn Tròn Trơn VRTL 9999</strong></td>
+                  <td class="mono">128,50</td><td class="mono">133,50</td>
+                  <td class="mono">5,00 (3,75%)</td>
+                  <td class="mono down">+21,35 Tr</td><td class="mono">+19,32 Tr</td>
+                  <td>Uy tín lâu năm miền Bắc; giữ hóa đơn điện tử khi mua bán trên 5 triệu đồng.</td>
+                </tr>
+                <tr data-cat="ring">
+                  <td><strong>PNJ (9h11) — Nhẫn Trơn PNJ 999.9</strong> <span class="badge badge-red">Cảnh Báo</span></td>
+                  <td class="mono down">126,50</td><td class="mono up">132,00</td>
+                  <td class="mono down">5,50 (4,17%)</td>
+                  <td class="mono warn">+19,85 Tr</td><td class="mono">+17,82 Tr</td>
+                  <td>Sáng sớm niêm yết 126,0–131,5Tr (rẻ nhất TT) trước khi nhích +500k; <strong>cẩn trọng rủi ro niềm tin thanh khoản PNJ</strong>.</td>
+                </tr>
+                <tr data-cat="ring">
+                  <td><strong>SJC — Nhẫn Trơn 99,99% (1–5 chỉ)</strong></td>
+                  <td class="mono">127,90</td><td class="mono">133,90</td>
+                  <td class="mono down"><strong>6,00 (4,48%)</strong></td>
+                  <td class="mono down">+21,75 Tr</td><td class="mono">+19,72 Tr</td>
+                  <td><strong>Spread cao kỷ lục 6,0 triệu/lượng</strong> — kém hiệu quả hơn Nhẫn Phú Quý hoặc DOJI/BTMC.</td>
+                </tr>
+                <tr data-cat="other">
+                  <td><strong>Nữ Trang 99,99% (SJC / PNJ)</strong></td>
+                  <td class="mono">126,9 / 124,0</td><td class="mono">132,9 / 129,5</td>
+                  <td class="mono down">5,5–6,0 (+Công)</td>
+                  <td class="mono">+17,3–20,7 Tr</td><td class="mono">—</td>
+                  <td>Không dùng để đầu tư vì chịu thêm tiền công chế tác và khấu trừ lớn khi bán lại.</td>
+                </tr>
+                <tr data-cat="other">
+                  <td><strong>Vàng 9999 Tự Do / Mua Ngoài (PNJ / BTMC)</strong></td>
+                  <td class="mono down"><strong>116,00</strong></td><td class="mono">—</td>
+                  <td class="mono down"><strong>Mất 12–13%</strong></td>
+                  <td class="mono">Sát giá TG</td><td class="mono">—</td>
+                  <td><strong>Bẫy lớn:</strong> Bán vàng tiệm nhỏ không thương hiệu vào hãng lớn bị ép giá thu mua xuống 116Tr (thấp hơn 12,5–13,1Tr/lượng!).</td>
+                </tr>
+                <tr data-cat="other">
+                  <td><strong>Bạc Thỏi 999 (Phú Quý / DOJI — 8h36 26/11)</strong></td>
+                  <td class="mono">1,425 / 1,479</td><td class="mono">1,469 / 1,559</td>
+                  <td class="mono">3,0%–5,1%</td>
+                  <td class="mono">38,0–39,2 Tr/kg</td><td class="mono">—</td>
+                  <td>Kênh vệ tinh beta cao (tỷ số Au/Ag 86,3x cao hơn trung bình lịch sử); chỉ nên phân bổ tối đa 3%–5% vốn.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="grid-2">
+          <div class="card card-red">
+            <div class="card-title">
+              <span>⚠️ Bẫy Nén Chênh Lệch Vàng SJC (2027–2028): Toán Học Mất Lãi Ngầm</span>
+              <span class="badge badge-red">Bào Mòn Tới 15–19 Điểm %</span>
+            </div>
+            <div class="chart-box"><canvas id="chartSjcTrap"></canvas></div>
+            <p style="margin-top:10px;"><strong>Đọc hiểu cái bẫy:</strong> Nếu bạn mua SJC hôm nay ở <strong>134,1 triệu</strong> (chênh lệch +21,95Tr) và XAU/USD tăng <strong>+17,5%</strong> lên 4.200 USD (tỷ giá 26.500đ, spread thu về 3Tr), nhưng NHNN cấp hạn mức nhập khẩu đẩy chênh lệch nén từ +22Tr xuống còn <strong>+8Tr</strong>, giá thu mua SJC chỉ đạt <strong>140,5 triệu</strong> — bạn chỉ lãi ròng <strong>+4,8%</strong> (thấp hơn cả lãi tiết kiệm 6,9%)! Nếu chênh lệch co về +4Tr, bạn chỉ lãi <strong>+1,8%</strong>. Trái lại, nếu XAU thủng $3.500 về $3.340 đồng thời chênh nén về +8Tr, người mua hôm nay lỗ sâu <strong>-15,9%</strong> (giá thu mua 112,8Tr).</p>
+          </div>
+
+          <div class="card card-blue">
+            <div class="card-title">
+              <span>🆘 Pháp Y Người Mua Đỉnh 2026 &amp; Ngưỡng XAU Cần Để Về Bờ</span>
+              <span class="badge badge-red">Đỉnh Sau Tết 190,9Tr: Lỗ -61,8 đến -62,4Tr</span>
+            </div>
+            <div class="table-wrap">
+              <table style="min-width:460px;font-size:0.78rem;">
+                <thead>
+                  <tr><th>Giá Vốn SJC Đã Mua</th><th>Lỗ Hôm Nay (Bán SJC 129,1)</th><th>Cần Tăng Về Bờ</th><th>XAU Hòa Vốn (Prem +20Tr)</th><th>XAU Hòa Vốn (Prem +12Tr)</th><th>XAU Hòa Vốn (Prem +6Tr)</th></tr>
+                </thead>
+                <tbody>
+                  <tr><td><strong>145,0 Tr</strong></td><td class="mono down">-15,9 Tr (-11,0%)</td><td class="mono">+12,3%</td><td class="mono up">$3.967</td><td class="mono">$4.215</td><td class="mono warn">$4.400</td></tr>
+                  <tr><td><strong>152,8 Tr (01/01/26)</strong></td><td class="mono down">-23,7 Tr (-15,5%)</td><td class="mono">+18,4%</td><td class="mono up">$4.208</td><td class="mono">$4.456</td><td class="mono warn">$4.642</td></tr>
+                  <tr><td><strong>165,0 Tr</strong></td><td class="mono down">-35,9 Tr (-21,8%)</td><td class="mono">+27,8%</td><td class="mono">$4.586</td><td class="mono warn">$4.834</td><td class="mono down">$5.020</td></tr>
+                  <tr><td><strong>175,0 Tr (Vùng Q1/26)</strong></td><td class="mono down">-45,9 Tr (-26,2%)</td><td class="mono">+35,6%</td><td class="mono warn">$4.896</td><td class="mono down">$5.144</td><td class="mono down">$5.330</td></tr>
+                  <tr><td><strong>185,0 Tr</strong></td><td class="mono down">-55,9 Tr (-30,2%)</td><td class="mono">+43,3%</td><td class="mono down">$5.206</td><td class="mono down">$5.454</td><td class="mono down">$5.640</td></tr>
+                  <tr><td><strong>190,9 Tr (Đỉnh Sau Tết)</strong></td><td class="mono down"><strong>-61,8 Tr (-32,4%)</strong></td><td class="mono down"><strong>+47,9%</strong></td><td class="mono down">$5.389</td><td class="mono down"><strong>$5.637</strong></td><td class="mono down"><strong>$5.823</strong></td></tr>
+                </tbody>
+              </table>
+            </div>
+            <p style="font-size:0.8rem;margin-top:8px;"><em>*Tính tại tỷ giá 2027 giả định 26.500 VND/USD, phí hạ cánh +1% và spread chuẩn hóa 3,0Tr.</em> Người mua đỉnh 190,9Tr bán tại BTMC (128,5Tr) lỗ tới <strong>62,4 triệu/lượng</strong> (tại Mi Hồng 132,5Tr lỗ 58,4 triệu). Theo dự báo cuối 2028 của Goldman Sachs ($5.600), vị thế không đòn bẩy có cơ sở về bờ vào chu kỳ 2028 — hoặc rút ngắn 6–12 tháng nếu trung bình giá có kỷ luật ở Máy Tính 2 (Tab 9).</p>
+          </div>
+        </div>
+
+        <div class="grid-2">
+          <div class="card">
+            <div class="card-title"><span>💸 Chi Phí Ma Sát Khứ Hồi (10 Lượng ≈ 1,34 Tỷ VND — 26/11/2026)</span><span class="badge badge-gold">Phân Tích Phí Ẩn</span></div>
+            <div class="table-wrap">
+              <table style="min-width:460px;font-size:0.78rem;">
+                <thead><tr><th>Hình Thức (10 Lượng)</th><th>Vốn Bỏ Ra</th><th>Thực Thu Bán Ngay*</th><th>Tổng Hụt Ma Sát</th></tr></thead>
+                <tbody>
+                  <tr><td><strong>SJC Miếng tại Mi Hồng (TP.HCM)</strong></td><td class="mono">1.340,0 Tr</td><td class="mono up">1.323,7 Tr*</td><td class="mono up"><strong>16,3 Tr (1,22%)</strong></td></tr>
+                  <tr><td><strong>Nhẫn Tròn 9999 Phú Quý</strong></td><td class="mono">1.325,0 Tr</td><td class="mono up">1.285,0 Tr</td><td class="mono up"><strong>40,0 Tr (3,02%)</strong></td></tr>
+                  <tr><td><strong>SJC Miếng tại SJC / DOJI / PNJ</strong></td><td class="mono">1.341,0 Tr</td><td class="mono">1.289,7 Tr*</td><td class="mono warn">51,3 Tr (3,82%)</td></tr>
+                  <tr><td><strong>SJC Nhẫn Trơn (1–5 chỉ)</strong></td><td class="mono">1.339,0 Tr</td><td class="mono">1.279,0 Tr</td><td class="mono down">60,0 Tr (4,48%)</td></tr>
+                  <tr><td><strong>SJC Miếng móp méo / rách vỉ (~1Tr)</strong></td><td class="mono">1.341,0 Tr</td><td class="mono down">1.279,7 Tr*</td><td class="mono down"><strong>61,3 Tr (4,57%)</strong></td></tr>
+                  <tr><td><strong>Vàng 9999 tự do bán vào hãng lớn</strong></td><td class="mono">1.320,0 Tr</td><td class="mono down">1.160,0 Tr</td><td class="mono down"><strong>160,0 Tr (12,12%)</strong></td></tr>
+                </tbody>
+              </table>
+            </div>
+            <p style="font-size:0.77rem;color:var(--text-muted);margin-top:6px;">*Mục SJC đã tính sẵn dự phòng 0,1% thuế chuyển nhượng vàng miếng nếu áp dụng; Nhẫn 9999 không chịu loại thuế này.</p>
+          </div>
+
+          <div class="card card-gold">
+            <div class="card-title"><span>📉 Biểu Đồ Độ Kéo Tụt Ma Sát Khứ Hồi Ngày Đầu (% Giá Trị)</span><span class="badge badge-red">Vàng Không Thương Hiệu Mất 12,1%</span></div>
+            <div class="chart-box-sm"><canvas id="chartSpreadFriction"></canvas></div>
+            <p style="font-size:0.8rem;margin-top:8px;"><strong>Bối cảnh cầu vật chất VN (WGC Q3/2026):</strong> Giá neo cao khiến tiêu thụ vàng trang sức Việt Nam giảm mạnh nhất ASEAN (<strong>-39% YoY về 1,4 tấn</strong>), còn nhu cầu vàng miếng &amp; nhẫn đầu tư giảm <strong>-23% YoY về 5,9 tấn</strong>.</p>
+          </div>
+        </div>
+        <div class="source-note">Nguồn: SJC, DOJI, PNJ, BTMC, Phú Quý, Mi Hồng, Báo Lâm Đồng, CafeF, Báo Đà Nẵng, Lao Động (09:30 sáng 26/11/2026), WGC Q3/2026.</div>
+      </section>
+
+      <!-- ================================================================== -->
+      <!-- TAB 5: KHUNG PHÁP LÝ 2025-2027 & 8 HỒ SƠ TIN HÀNH LANG             -->
+      <!-- ================================================================== -->
+      <section class="tab-panel" id="tab-legal-intel">
+        <h2 class="section-heading">⚖️ Toàn Bộ Khung Pháp Lý Quản Lý Vàng Việt Nam (2025–2027) &amp; 8 Hồ Sơ Tin Hành Lang Đã Kiểm Chứng</h2>
+
+        <div class="card card-blue">
+          <div class="card-title">
+            <span>📜 5 Trụ Cột Pháp Lý Định Hình Cuộc Chơi Vàng Việt Nam Giai Đoạn 2025–2027</span>
+            <span class="badge badge-blue">Cập Nhật Hiệu Lực Tháng 10–11/2026</span>
+          </div>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>Văn Bản Pháp Lý</th><th>Ngày Hiệu Lực</th><th>Quy Định Cốt Lõi Thay Đổi Cuộc Chơi</th><th>Hàm Ý Thực Chiến Với Nhà Đầu Tư</th></tr></thead>
+              <tbody>
+                <tr>
+                  <td><strong>Nghị định 232/2025/NĐ-CP</strong><br>(Sửa NĐ 24/2012)</td>
+                  <td class="mono">10/10/2025</td>
+                  <td><strong>Xóa bỏ độc quyền Nhà nước sản xuất vàng miếng.</strong> Cấp phép sản xuất vàng miếng cho DN vốn điều lệ ≥1.000 tỷ &amp; NHTM vốn ≥50.000 tỷ (8 ngân hàng đủ chuẩn vốn: VCB, BIDV, VTB, Agri, TCB, MB, VPB, ACB). Đã có <strong>11 hồ sơ</strong> nộp về NHNN đang rà soát; hạn mức NK vàng nguyên liệu xét cấp <strong>trước 15/12 hàng năm</strong>.</td>
+                  <td>Khi giấy phép &amp; quota nhập khẩu được kích hoạt trong 2027, thế độc quyền cung SJC chấm dứt → <strong>chênh lệch +22Tr đối diện rủi ro nén mạnh</strong>.</td>
+                </tr>
+                <tr>
+                  <td><strong>Nghị định 390/2026/NĐ-CP</strong><br>(Sửa NĐ 24 &amp; NĐ 232)</td>
+                  <td class="mono warn"><strong>16/10/2026</strong></td>
+                  <td><strong>Bắt buộc thanh toán không dùng tiền mặt</strong> cho giao dịch mua/bán vàng giá trị từ <strong>05 triệu đồng/ngày/khách hàng</strong> trở lên. Bỏ Giấy chứng nhận đủ điều kiện sản xuất vàng trang sức (không còn là ngành kinh doanh có điều kiện); bổ sung vàng nguyên liệu cho linh kiện điện tử &amp; y tế.</td>
+                  <td>Mua dù chỉ <strong>0,5 chỉ vàng (~6,7Tr)</strong> đã bắt buộc chuyển khoản/quẹt thẻ; chấm dứt hoàn toàn việc mua bán ẩn danh bằng tiền mặt lớn.</td>
+                </tr>
+                <tr>
+                  <td><strong>Thông tư 56/2026/TT-NHNN</strong><br>(Sửa TT 34/2025)</td>
+                  <td class="mono">19/10/2026 &amp; <strong>01/2027</strong></td>
+                  <td><strong>Phân cấp cấp phép XNK vàng nguyên liệu</strong> (khai thác, gia công XK) về NHNN Chi nhánh Khu vực (3 ngày làm việc kiểm tra hồ sơ, 10 ngày làm việc cấp phép). Áp dụng mẫu báo cáo kết nối dữ liệu tồn kho &amp; giao dịch mới từ <strong>kỳ tháng 01/2027</strong> (báo cáo ngày chậm nhất 14h hôm sau; tháng ngày 8; quý ngày 15).</td>
+                  <td>Minh bạch hóa toàn bộ chuỗi tồn kho &amp; dòng vàng từ đầu năm 2027; đẩy mạnh quản lý hóa đơn điện tử từng giao dịch.</td>
+                </tr>
+                <tr>
+                  <td><strong>Thuế TNCN 0,1% Vàng Miếng</strong><br>(Luật Thuế TNCN 2025)</td>
+                  <td class="mono"><strong>Chưa áp dụng</strong></td>
+                  <td>Luật ghi nhận thuế suất <strong>0,1% trên giá bán mỗi lần chuyển nhượng vàng miếng</strong> nhằm chống đầu cơ, nhưng Bộ Tài chính khẳng định <strong>chưa thu ngay</strong> vì chờ quy định ngưỡng chịu thuế để miễn cho người dân tích lũy nhỏ.</td>
+                  <td><strong>Lợi thế cấu trúc cho Vàng Nhẫn 9999:</strong> Nhẫn trơn 9999 nằm ngoài diện chịu thuế chuyển nhượng vàng miếng 0,1%.</td>
+                </tr>
+                <tr>
+                  <td><strong>Sàn Giao Dịch Vàng &amp; Xử Phạt</strong><br>(NĐ 88/2019/NĐ-CP)</td>
+                  <td class="mono"><strong>Chưa lập sàn</strong></td>
+                  <td>NHNN đã báo cáo đề xuất <strong>chưa thành lập sàn giao dịch vàng trong giai đoạn hiện nay</strong>. NĐ 88/2019 phạt 10–20 triệu đồng nếu tái phạm mua/bán vàng miếng tại đơn vị không phép hoặc dùng vàng làm phương tiện thanh toán; phạt 30–50 triệu nếu không niêm yết giá công khai.</td>
+                  <td>Vàng vật chất tại <strong>38 tổ chức được cấp phép</strong> vẫn là kênh hợp pháp tại VN trong 2027; <strong>tránh xa các sàn vàng tài khoản / CFD chui</strong>.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="sub-heading">
+          <span>🕵️ 8 Hồ Sơ Tin Hành Lang, Tín Hiệu Ngầm &amp; Rủi Ro Đuôi (Chuẩn Kiểm Chứng)</span>
+          <span class="badge badge-red">Tách Rạch Ròi Sự Kiện vs Ngoại Giao Ngầm</span>
+        </div>
+
+        <div class="grid-2">
+          <div class="card card-red">
+            <div class="card-title"><span>💎 1. Pháp Y Khủng Hoảng Thanh Khoản PNJ (21.000 Tỷ Kim Cương)</span><span class="badge badge-red">Đang Diễn Ra</span></div>
+            <p>Hậu sự cố giám định kim cương tháng 7/2026, tân CEO Phan Quốc Công thừa nhận ngày 20/11 rằng tình hình tài chính PNJ đang <strong>"hết sức khẩn cấp"</strong>: tổng hàng thuộc diện cam kết thu đổi ước <strong>21.000 tỷ đồng</strong> (riêng tháng 7 mua lại gần 6.000 tỷ; tồn kho 17.000 tỷ gồm 7.000 tỷ kim cương chậm luân chuyển, một phần đã thế chấp vay ngân hàng), buộc giãn thanh toán thu đổi kim cương tới 120 ngày, điều chỉnh kế hoạch 2026 từ lãi 3.409 tỷ sang <strong>lỗ 6.271 tỷ đồng</strong>, 8 lãnh đạo cấp cao (gồm toàn bộ 3 thành viên HĐQT độc lập) từ nhiệm và cổ phiếu mất ~87% về 12.600–12.800đ. Chính áp lực thu tiền mặt đã khiến <strong>PNJ hạ giá bán nhẫn trơn 9999 xuống thấp nhất thị trường (131,5–132,0Tr)</strong>. <em>Lưu ý:</em> Vàng miếng SJC mua tại PNJ bán ở đâu cũng được, nhưng nên <strong>thận trọng với nhẫn thương hiệu riêng PNJ</strong> trong giai đoạn tái cấu trúc.</p>
+          </div>
+
+          <div class="card card-red">
+            <div class="card-title"><span>🔍 2. Danh Sách Thanh Tra Dự Phòng PCRT 2027 (Cục IX — TTCP)</span><span class="badge badge-red">Công Bố 18/11/2026</span></div>
+            <p>Thanh tra Chính phủ vừa giao Cục IX đưa cả 5 ông lớn <strong>SJC, DOJI, PNJ, Phú Quý và Bảo Tín Minh Châu</strong> vào danh sách thanh tra dự phòng về phòng chống rửa tiền (nếu triển khai sẽ bắt đầu Q4/2027, kéo dài 45 ngày, soi dữ liệu 2024–2026), sau khi kết luận trước đó chuyển Bộ Công an vụ <strong>7 cá nhân bán 2.084 tỷ đồng vàng nguyên liệu không rõ nguồn gốc</strong>. <em>Hành động bắt buộc:</em> Mọi giao dịch vàng của bạn từ 16/10/2026 trở đi cần <strong>lưu đủ sao kê chuyển khoản + hóa đơn điện tử VAT</strong> trùng tên chủ tài khoản để chứng minh nguồn gốc tài sản hợp pháp khi chốt lời hoặc chuyển đổi sang BĐS.</p>
+          </div>
+
+          <div class="card card-gold">
+            <div class="card-title"><span>💵 3. "Nút Bấm" Quota Nhập Khẩu Vàng &amp; Bộ Đệm Ngoại Hối $82,6 Tỷ</span><span class="badge badge-gold">Tín Hiệu Chính Sách</span></div>
+            <p>Các báo cáo ngân hàng (ACBS 10/11, WiGroup 25/11) chỉ ra thế lưỡng nan: Dự trữ ngoại hối Việt Nam hiện mới hồi nhẹ về <strong>82,6–82,7 tỷ USD (~1,8 tháng nhập khẩu)</strong>, thấp xa chuẩn tham chiếu 3 tháng và đỉnh 110 tỷ USD. Việc NHNN chào mua USD giao ngay ở sàn 25.500đ từ 11/11 nhưng chưa mua được nhiều vì tỷ giá liên ngân hàng vượt 25.600–26.020đ khiến NHNN <strong>khó sớm xả hạn mức nhập khẩu vàng quy mô lớn ngay tháng 12/2026</strong>. Tuy nhiên, nếu FDI giải ngân kỷ lục ($24,08B 10T), xuất siêu trở lại và kiều hối Q4 giúp tỷ giá hạ nhiệt đầu 2027, <strong>quota nhập khẩu sẽ là tác nhân nén chênh lệch SJC nhanh nhất</strong>.</p>
+          </div>
+
+          <div class="card card-red">
+            <div class="card-title"><span>🚨 4. Cửa Sổ 40 Ngày Mỹ–Israel–Iran Trước 03/01/2027</span><span class="badge badge-red">Ngoại Giao Ngầm</span></div>
+            <p>Các nguồn tin AP &amp; Al-Monitor ghi nhận Giám đốc Mossad vận động CIA và Nhà Trắng nối lại không kích cơ sở tên lửa/hạt nhân Iran trước khi Quốc hội Dân chủ khóa 120 nhậm chức ngày 03/01/2027 và siết ngân sách chiến tranh. Ngày 24/11, TT Trump cảnh báo khả năng không kích lại sau Năm Mới giữa lúc Tư lệnh IRGC Ahmad Vahidi tuyên bố "chiến tranh sẽ không còn giới hạn trong khu vực". <em>Ý nghĩa:</em> Phí bảo hiểm rủi ro tăng sốc ngắn hạn vẫn hiện hữu ít nhất qua tháng 1/2027 — không nên bán sạch lõi vàng phòng thủ trước mốc 03/01.</p>
+          </div>
+
+          <div class="card card-blue">
+            <div class="card-title"><span>🌊 5. Cảnh Báo Bão Thanh Khoản Repo / TGA Mỹ Giữa Năm 2027</span><span class="badge badge-blue">Goldman Sachs</span></div>
+            <p>Dự trữ ngân hàng tại Fed (Reserve Balances) cuối tháng 11 ở <strong>3,001 nghìn tỷ USD (~11% tổng tài sản)</strong> — áp sát ngưỡng từng châm ngòi khủng hoảng Repo tháng 9/2019. Khi Mỹ nâng trần nợ 41,1T năm 2027 và Kho bạc phát hành lớn trái phiếu nạp lại tài khoản TGA, thanh khoản USD có thể bị rút đột ngột trong ngắn hạn, dễ tạo ra <strong>nhịp bán tháo kỹ thuật chéo trên cả cổ phiếu và vàng</strong> trước khi buộc Fed Warsh nới lỏng thanh khoản — mở ra điểm gom vàng đẹp nhất năm 2027.</p>
+          </div>
+
+          <div class="card card-gold">
+            <div class="card-title"><span>🤖 6. Hiệu Ứng Giải Chấp Chéo Từ Biến Động Cổ Phiếu AI Mỹ</span><span class="badge badge-gold">Rủi Ro Kép</span></div>
+            <p>Phiên 20/11 và 25/11 xác nhận một cơ chế thị trường mới của năm 2026: khi nhóm cổ phiếu AI/công nghệ (Nvidia, Oracle, Nasdaq) giảm sâu (NVDA giảm -3,9%, ORCL -5,1% ngày 25/11), các quỹ đòn bẩy lập tức <strong>bán vàng để đáp ứng lệnh gọi ký quỹ (margin call)</strong> thay vì mua trú ẩn. Đây là nguyên nhân khiến XAU/USD rơi xuyên $3.500 xuống $3.426 ngày 25/11 ngay giữa lúc tấn công tàu dầu tại Hormuz đạt đỉnh.</p>
+          </div>
+
+          <div class="card card-blue">
+            <div class="card-title"><span>🛡️ 7. Rủi Ro Phí Gia Công Vàng SJC "1 Chữ" / Móp Méo / Rách Vỉ</span><span class="badge badge-blue">Thực Chiến Vật Chất</span></div>
+            <p>Hậu vụ án cựu lãnh đạo SJC gian lận trong 56 đợt gia công vàng móp méo (sản xuất trái phép hơn 6.200 lượng), NHNN kiểm soát chặt mọi hạn mức dập lại. Khi bán vàng miếng bị rách vỉ nhựa cứng, cong vênh hoặc móp méo, cửa hàng có thể trừ <strong>50.000đ – 1.500.000đ+/lượng</strong> phí gia công lại, thậm chí tạm ngưng thu mua lúc hết quota. Cần bảo quản nguyên vẹn vỉ niêm phong gốc.</p>
+          </div>
+
+          <div class="card card-green">
+            <div class="card-title"><span>🏦 8. Kênh Bán Vàng Bình Ổn Big4: Chỉ Bán, Không Mua Lại</span><span class="badge badge-green">Lưu Ý Vận Hành</span></div>
+            <p>Hệ thống đăng ký mua vàng miếng SJC trực tuyến qua app/website của 4 ngân hàng quốc doanh (Vietcombank, BIDV, VietinBank, Agribank) <strong>chỉ thực hiện chiều BÁN ra cho người dân, không thực hiện chiều MUA LẠI</strong>. Khi cần chốt lời, nhà đầu tư bắt buộc bán tại các doanh nghiệp được cấp phép (như Mi Hồng TP.HCM để tối ưu giá thu mua 132,5Tr hoặc SJC/DOJI/BTMC).</p>
+          </div>
+        </div>
+        <div class="source-note">Nguồn: Thư Viện Pháp Luật &amp; Luật Việt Nam (NĐ 232/2025, NĐ 390/2026, TT 56/2026, QĐ 2347/QĐ-NHNN, NĐ 88/2019), Doanh nghiệp &amp; Hội nhập (20/11), Dân Trí &amp; Thanh tra Chính phủ (18/11), VietnamFinance &amp; Chuyển Động Thị Trường (25/11), ACBS (10/11), WiGroup (25/11), Lao Động, Sức Khỏe &amp; Đời Sống.</div>
+      </section>
+
+      <!-- ================================================================== -->
+      <!-- TAB 6: PHÂN TÍCH KỸ THUẬT, LỊCH SỬ 6 CÚ SẬP & DỰ BÁO 12 ĐỊNH CHẾ   -->
+      <!-- ================================================================== -->
+      <section class="tab-panel" id="tab-tech-cycle">
+        <h2 class="section-heading">📊 Phân Tích Kỹ Thuật XAU/USD, Bài Học 6 Cú Sập Vàng Lịch Sử (1974–2026) &amp; Bảng Dự Báo 12 Định Chế (2026–2030)</h2>
+
+        <div class="grid-2">
+          <div class="card card-gold">
+            <div class="card-title">
+              <span>📈 Lộ Trình Thực Tế 2026 &amp; Dự Báo 2027–2028 Từ Các Ngân Hàng Đầu Tư</span>
+              <span class="badge badge-gold">XAU 26/11: $3.575</span>
+            </div>
+            <div class="chart-box"><canvas id="chartGoldPath"></canvas></div>
+            <div class="table-wrap" style="margin-top:10px;">
+              <table style="min-width:440px;font-size:0.77rem;">
+                <thead><tr><th>Chỉ Báo Kỹ Thuật XAU/USD (25–26/11/2026)</th><th>Giá Trị / Ngưỡng</th><th>Trạng Thái &amp; Ý Nghĩa</th></tr></thead>
+                <tbody>
+                  <tr><td><strong>Đường trung bình SMA 50 ngày / SMA 200 ngày</strong></td><td class="mono down">$3.999,53 / $4.229,69</td><td>Giá nằm sâu dưới cả 2 đường MA → xu hướng ngắn hạn Giảm</td></tr>
+                  <tr><td><strong>Chỉ báo xung lượng RSI (14 ngày) &amp; Stochastic</strong></td><td class="mono up"><strong>26,88</strong> (Quá bán sâu)</td><td>Stochastic quá bán 7 phiên liên tiếp → dễ có nhịp hồi kỹ thuật</td></tr>
+                  <tr><td><strong>Hỗ trợ sống còn (S1 / S2 / S3)</strong></td><td class="mono warn">$3.500 / <strong>$3.426–$3.431</strong> / $3.340</td><td>Thủng $3.426 mở cửa test $3.340 (cảnh báo Natixis T1/2027)</td></tr>
+                  <tr><td><strong>Kháng cự trọng yếu (R1 / R2 / R3 / Fib 38,2%)</strong></td><td class="mono">$3.595–3.605 / $3.651 / $3.800 / $4.267</td><td>Cần đóng cửa tuần trên $3.712–$3.800 để xác nhận đáy</td></tr>
+                  <tr><td><strong>Cấu trúc kỳ hạn COMEX (Contango)</strong></td><td class="mono">Chênh T12→T3/27: <strong>+$44,6/oz</strong></td><td>Bù hoãn mua (Contango) phản ánh chi phí lãi suất USD cao</td></tr>
+                  <tr><td><strong>Tỷ số Liên thị trường (Au/Ag &amp; Au/Brent)</strong></td><td class="mono"><strong>86,3x</strong> / 37,8 thùng/oz</td><td>Bạc giảm quá đà (-66% từ đỉnh $121,6) so với vàng (-36%)</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <div class="card card-red">
+            <div class="card-title">
+              <span>🕰️ Bài Học Lịch Sử: 6 Đại Chu Kỳ Sập Giá Vàng (1974–2026)</span>
+              <span class="badge badge-red">2026 Là Cú Rơi Nhanh Nhất Lịch Sử</span>
+            </div>
+            <div class="chart-box-sm"><canvas id="chartHistoryCrashes"></canvas></div>
+            <div class="table-wrap" style="margin-top:10px;">
+              <table style="min-width:460px;font-size:0.76rem;">
+                <thead><tr><th>Chu Kỳ Sập</th><th>Đỉnh → Đáy</th><th>Mức Giảm</th><th>Thời Gian Rơi</th><th>Về Đỉnh Cũ</th><th>Nguyên Nhân Cốt Lõi</th></tr></thead>
+                <tbody>
+                  <tr><td><strong>1974–1976</strong></td><td class="mono">$195 → $103</td><td class="mono down">-47,0%</td><td>20 tháng</td><td class="mono">~3,5 năm (1978)</td><td>Lạm phát hạ nhiệt tạm thời, USD mạnh</td></tr>
+                  <tr><td><strong>1980–1999</strong></td><td class="mono">$850 → $253</td><td class="mono down"><strong>-70,3%</strong></td><td>19 năm</td><td class="mono down"><strong>28 năm (2008)</strong></td><td>Fed Volcker nâng lãi ~20%, NHTW bán vàng</td></tr>
+                  <tr><td><strong>2008 (GFC)</strong></td><td class="mono">$1.032 → $682</td><td class="mono down">-33,9%</td><td>7 tháng</td><td class="mono up"><strong>1,5 năm (2009)</strong></td><td>Giải chấp tìm tiền mặt → 3 năm sau +125%</td></tr>
+                  <tr><td><strong>2011–2015</strong></td><td class="mono">$1.921 → $1.046</td><td class="mono down">-44,6%</td><td>4,3 năm</td><td class="mono warn"><strong>8,9 năm (2020)</strong></td><td>Kết thúc QE, TIPS tăng, GLD xả 272 tấn</td></tr>
+                  <tr><td><strong>2020–2022</strong></td><td class="mono">$2.075 → $1.615</td><td class="mono down">-21,9%</td><td>2 năm</td><td class="mono up"><strong>3,4 năm (2023)</strong></td><td>Fed tăng lãi nhanh nhất 40 năm → 3 năm sau +145%</td></tr>
+                  <tr style="background:var(--crimson-soft);"><td><strong>2026 (Đang mở)</strong></td><td class="mono">$5.595 → $3.426*</td><td class="mono down"><strong>-38,8%</strong></td><td class="mono down"><strong>10 tháng</strong></td><td class="mono warn">Dự kiến 2028</td><td>Fed Warsh, tăng margin CME, giải chấp AI, TIPS 2,88%</td></tr>
+                </tbody>
+              </table>
+            </div>
+            <p style="font-size:0.8rem;margin-top:6px;"><strong>Điểm khác biệt cấu trúc giữa 2026 với 1980 &amp; 2011:</strong> Giai đoạn 1980–1999 các NHTW phương Tây <em>bán ròng</em> vàng và nợ công Mỹ/GDP còn thấp; năm 2013 GLD mất tới 20% tồn kho. Năm 2026, nợ công Mỹ vượt 120% GDP, NHTW mua ròng <strong>675 tấn trong 9 tháng</strong> và tồn kho GLD mới chỉ giảm nhẹ — cấu trúc gần với cú sốc thanh khoản <strong>2008 &amp; 2022</strong> hơn là chu kỳ đóng băng thập niên 1980.</p>
+          </div>
+        </div>
+
+        <div class="card card-blue">
+          <div class="card-title">
+            <span>🏦 Biểu Đồ &amp; Bảng Tổng Hợp Dự Báo Giá Vàng 2026–2030 Từ 12 Định Chế Hàng Đầu</span>
+            <span class="badge badge-blue">Đồng Thuận 2027: $4.650 – $5.400/oz</span>
+          </div>
+          <div class="chart-box-sm" style="margin-bottom:14px;"><canvas id="chartBankTargets2027"></canvas></div>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>Tổ Chức / Ngân Hàng</th><th>Mục Tiêu Cuối 2026 / Ngắn Hạn</th><th>Mục Tiêu Năm 2027</th><th>Tầm Nhìn 2028 – 2030+</th><th>Luận Điểm Chính &amp; Điều Kiện Rủi Ro</th></tr></thead>
+              <tbody>
+                <tr><td><strong>Goldman Sachs</strong> (Cập nhật T11/26)</td><td class="mono">$4.150 (hạ từ $4.650)</td><td class="mono up"><strong>$4.650</strong> (cuối 2027)</td><td class="mono up"><strong>$5.600</strong> (cuối 2028)</td><td>Cầu NHTW ~60t/tháng giữ sàn; ngay cả khi Fed tăng 4 lần vẫn đạt $4.585; nếu ETF rút 300t vẫn $4.265. Fed cắt từ T11/2027.</td></tr>
+                <tr><td><strong>UBS Wealth Management</strong> (19/11)</td><td class="mono warn">Yếu ngắn hạn trước cắt lãi</td><td class="mono up"><strong>$5.000</strong> (T3: $4.200 → T6: $4.600)</td><td class="mono up">Tích cực (Rated Attractive)</td><td>Khuyến nghị giữ vị thế; động lực từ nợ công Mỹ, địa chính trị, NHTW và cầu Trung Quốc.</td></tr>
+                <tr><td><strong>Morgan Stanley</strong> (19/11)</td><td class="mono">Hàng hóa #1 cho 2027</td><td class="mono up"><strong>&gt;$5.000</strong> (H2/2027)</td><td class="mono up">Tăng trưởng cấu trúc</td><td>Chọn Vàng là hàng hóa số 1 năm 2027 bất chấp triển vọng kém của nhóm hàng hóa công nghiệp khác.</td></tr>
+                <tr><td><strong>Société Générale</strong> (T11/26)</td><td class="mono">+$3,3B quỹ chỉ số T1/27</td><td class="mono up"><strong>$5.000</strong> (trung bình $4.750)</td><td class="mono">—</td><td>Cơ cấu lại chỉ số hàng hóa tháng 1/2027 hút $3,3B dòng tiền; rủi ro trần nợ Mỹ đẩy vàng lên $5.000.</td></tr>
+                <tr><td><strong>J.P. Morgan</strong></td><td class="mono">$4.500 (TB Q4/26)</td><td class="mono up"><strong>$5.400 TB – $6.300 cuối năm</strong></td><td class="mono up">Kịch bản <strong>$8.000</strong> (2030)</td><td>Sàn cầu NHTW vững chắc; xu hướng cấu trúc dài hạn quan trọng hơn các nhịp rung lắc kỹ thuật.</td></tr>
+                <tr><td><strong>Citigroup (Citi)</strong></td><td class="mono">$4.500–$4.800 (0–3T)</td><td class="mono up"><strong>$5.000</strong> (Bull: $6.000)</td><td class="mono">Cơ sở $4.000–$5.000</td><td>"Giao dịch phòng vệ mất giá tiền tệ" quay lại khi căng thẳng Hormuz hạ nhiệt &amp; lãi thực giảm.</td></tr>
+                <tr><td><strong>Bank of America (BofA)</strong></td><td class="mono down">Thận trọng H1/2027</td><td class="mono up">TB $4.813 (Hồi H2/27; Bạc $75)</td><td class="mono up">Cực đoan $8.000</td><td>Cảnh báo nếu dầu vọt $150 giữ Fed diều hâu, vàng có thể bị nén quanh $3.500 trước khi bứt phá H2/2027.</td></tr>
+                <tr><td><strong>ANZ &amp; HSBC</strong></td><td class="mono">HSBC TB 2026: $4.490</td><td class="mono up"><strong>ANZ $4.800</strong> • HSBC $4.825</td><td class="mono">—</td><td>Đánh giá vàng đang tiệm cận vùng tạo đáy sau đợt bán tháo theo lợi suất trái phiếu.</td></tr>
+                <tr><td><strong>Wells Fargo &amp; Metals Focus</strong></td><td class="mono">$4.900–$5.100 (T8)</td><td class="mono up"><strong>$5.200–$5.400</strong> (MF: $5.330)</td><td class="mono">Đỉnh tạm $6.000</td><td>Metals Focus (đơn vị cung cấp dữ liệu WGC) kỳ vọng đỉnh ngắn hạn tiệm cận $6.000 trong 2027.</td></tr>
+                <tr><td><strong>World Bank (T10/26)</strong></td><td class="mono">TB 2026: $4.600</td><td class="mono"><strong>TB 2027: $4.250</strong></td><td class="mono">—</td><td>Dự báo bảo thủ nhất trong nhóm định chế đa phương do kỳ vọng giá năng lượng bình ổn.</td></tr>
+                <tr><td><strong>Natixis (Bernard Dahdah, 23/11)</strong></td><td class="mono down"><strong>Cảnh báo $3.340 (T1/27)</strong></td><td class="mono warn">Biên dưới $3.500</td><td class="mono">—</td><td>Góc nhìn phản biện cần dự phòng: nhịp hồi trên $3.600 có thể ngắn nếu Fed cứng rắn &amp; cổ phiếu AI tiếp tục xả.</td></tr>
+                <tr><td><strong>Incrementum (IGWT 2026)</strong></td><td class="mono">Vượt mục tiêu $4.800 sớm</td><td class="mono up">Siêu chu kỳ dài hạn</td><td class="mono up">Mô hình 2045: tới $20.800</td><td>Tỷ trọng phân bổ vàng của nhà đầu tư tư nhân toàn cầu vẫn thấp so với chuẩn lịch sử.</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="source-note">Nguồn: Kitco, InvestingLive (23–25/11), JuYou Finds, J2T, GoldenArkReserve, CoinCodex, Barchart, BrokerAlArab, TopAsiaFX, TheCapitalInvestment, Century Financial, Incrementum IGWT 2026.</div>
+        </div>
+      </section>
+
+      <!-- ================================================================== -->
+      <!-- TAB 7: SO SÁNH VÀNG VS 4 KÊNH TÀI SẢN VIỆT NAM (BÁN HAY GIỮ?)      -->
+      <!-- ================================================================== -->
+      <section class="tab-panel" id="tab-cross-asset">
+        <h2 class="section-heading">🔄 Bài Toán Chi Phí Cơ Hội: Giữ / Mua Vàng Hay Bán Vàng Để Gửi Ngân Hàng, Giữ USD, Mua Cổ Phiếu VN &amp; BĐS TP.HCM?</h2>
+
+        <div class="callout callout-blue">
+          <strong>Nguyên tắc phân bổ vốn 26/11/2026:</strong> Với lạm phát CPI bình quân 10 tháng năm 2026 tại Việt Nam đạt <strong>4,57%</strong> (tháng 10 chạm đỉnh 5 năm ở <strong>5,09%</strong>) và khảo sát VIRA dự báo CPI 2027 quanh <strong>4,5%–5,0%</strong>, mọi kênh đầu tư phải vượt ngưỡng ~4,6%/năm (~9,0% lũy kế 24 tháng) mới tạo tăng trưởng sức mua thực. Dưới đây là đối chiếu định lượng trực tiếp giữa Vàng với 4 kênh thay thế tại sáng 26/11/2026.
+        </div>
+
+        <div class="grid-2">
+          <div class="card card-gold">
+            <div class="card-title">
+              <span>📊 Kỳ Vọng Lợi Suất 24 Tháng (4 Kịch Bản) &amp; Ngưỡng Lạm Phát 9,0%</span>
+              <span class="badge badge-gold">Xếp Hạng 8 Kênh Việt Nam</span>
+            </div>
+            <div class="chart-box"><canvas id="chartChannel24m"></canvas></div>
+            <p style="margin-top:8px;"><strong>Thông điệp cốt lõi:</strong> Trên khung 24 tháng (T11/2026 → T11/2028), <strong>Vàng Nhẫn 9999 (+32,62%)</strong> vượt trội hơn <strong>Vàng miếng SJC (+27,77%)</strong> nhờ miễn thuế chuyển nhượng vàng miếng và spread hẹp hơn ở Phú Quý/Mi Hồng, song hành cùng <strong>Cổ phiếu VN30/FTSE (+26,50%)</strong> ở nhóm dẫn đầu. Ngược lại, <strong>USD tiền mặt tự do (+2,95%)</strong> và <strong>BĐS đòn bẩy vay 50% (+6,85%)</strong> bị bào mòn sức mua thực.</p>
+          </div>
+
+          <div class="card card-green">
+            <div class="card-title">
+              <span>🏦 Lợi Suất Thực Hiện Tại So Với CPI 4,57% &amp; Điểm Hòa Vốn Thắng Tiết Kiệm</span>
+              <span class="badge badge-green">Lãi Online Đỉnh: 7,9%/Năm</span>
+            </div>
+            <div class="chart-box"><canvas id="chartRealYield"></canvas></div>
+            <ul class="clean-list" style="margin-top:10px;">
+              <li><strong>Biểu lãi suất ngân hàng sáng 26/11/2026:</strong> <strong>Saigonbank dẫn đầu 7,9%/năm</strong> (kỳ hạn 13 tháng, quầy &amp; online; 12M là 6,7%); <strong>HDBank 7,2%</strong> (đặc biệt 12M); <strong>VPBank 7,1%</strong> (online 15–18M, nhưng từ 26/11 hạ 0,1–0,5% nhiều kỳ hạn khác); <strong>VCBNeo &amp; MBV 7,0%</strong>; <strong>BVBank 6,9%</strong>; <strong>LPBank</strong> vừa hạ 0,1% ngày 26/11 về <strong>6,7% (12M)</strong>; nhóm <strong>Big4</strong> niêm yết quầy 12M đồng loạt <strong>5,4%</strong> (24M 5,5%), còn <strong>Online phân hóa 5,4%–6,8%</strong> (Agribank, BIDV, VietinBank đạt <strong>6,8%</strong> — riêng gói V-Plus/V-Advance VietinBank <strong>7,0%</strong> tới 16/03/2027; Vietcombank niêm yết <strong>5,4%</strong> kỳ hạn 12M / 5,5% kỳ hạn 24M ở cả quầy lẫn online).</li>
+              <li><strong>Dự báo lãi suất 2027 (VIRA / WiGroup 25/11):</strong> 52% chuyên gia dự báo lãi suất thị trường 1 cuối 2027 chỉ <strong>giảm nhẹ ~0,5%/năm</strong> do 3 rào cản cứng: (1) NIM ngân hàng chạm đáy lịch sử ~3%; (2) Dự trữ ngoại hối mỏng ($82,6B = 1,8 tháng NK); (3) Fed dự kiến còn nâng thêm 0,5%–0,75%.</li>
+              <li><strong>Ngưỡng hòa vốn Vàng &amp; USD để thắng gửi VND Online (6,9%):</strong> Mua SJC hôm nay (134,1Tr), sau 12 tháng giá thu mua phải lên <strong>≥143,35Tr</strong> (bán ra ~146,35Tr) mới thắng gửi ngân hàng; Nhẫn Phú Quý (132,5Tr) cần thu mua lên <strong>≥141,64Tr</strong>. Với USD tự do (26.400đ), tỷ giá sau 12 tháng phải vọt lên <strong>28.195–28.486 VND/USD</strong> mới hòa vốn VND — vượt xa trần NHNN (26.960đ) và dự báo tăng 1%–2% của 45% chuyên gia VIRA.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-title"><span>⚖️ Ma Trận So Sánh Trực Diện 4 Quyết Định "Bán Vàng Để Làm Gì?" (26/11/2026)</span></div>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>Phương Án Chuyển Đổi Từ Vàng</th><th>Trạng Thái Kênh Đích Sáng 26/11/2026</th><th>Khi Nào NÊN Chốt 1 Phần Vàng Sang?</th><th>Khi Nào KHÔNG Nên Đổi?</th></tr></thead>
+              <tbody>
+                <tr>
+                  <td><strong>1. Bán Vàng → Gửi Tiết Kiệm Online (6,8%–7,9%)</strong></td>
+                  <td>Đỉnh lãi thực dương (+2,2% đến +3,3%); nhiều NH (VPBank, LPBank) vừa hạ nhẹ 0,1–0,5% từ 26/11.</td>
+                  <td>Nếu đang nắm vàng giá vốn thấp (&lt;105Tr) chiếm &gt;45% tài sản, hoặc khi SJC hồi lên 140–145Tr → khóa ngay sổ Online 12–13M.</td>
+                  <td>Không bán cắt lỗ vàng mua đỉnh 175–191Tr ở đáy 129,1Tr để lấy lãi 7% (mất 6–7 năm lãi mới bù được khoản lỗ gốc 32%).</td>
+                </tr>
+                <tr>
+                  <td><strong>2. Bán Vàng → Găm USD Tiền Mặt (26.400–26.490đ)</strong></td>
+                  <td>VCB 26.020đ, Tự do 26.400–26.490đ (+115đ sau tin thuế Mỹ 35%); lãi suất USD tại VN = 0%.</td>
+                  <td><strong>Hầu như KHÔNG NÊN</strong> (chỉ giữ tối đa 5%–10% USD nếu có nhu cầu chi tiêu ngoại tệ). Ngược lại, nên <strong>bán 50%–70% USD</strong> sang VND Online &amp; Nhẫn 9999 khi nén chênh.</td>
+                  <td>Không bán vàng dài hạn sang USD vì 74% NHTW thế giới dự kiến giảm tỷ trọng USD để đa dạng hóa sang chính Vàng.</td>
+                </tr>
+                <tr>
+                  <td><strong>3. Bán Vàng → Mua Cổ Phiếu VN (VN-Index 1.668,56)</strong></td>
+                  <td>VN-Index rơi -18,89đ sáng 26/11 sau phiên ngoại bán kỷ lục 5.676 tỷ (25/11) &amp; tin thuế Mục 301 35%; P/E Ex-Vin vùng ~9x; 90% vốn FTSE bơm trong 2027 (T3, T6, T9).</td>
+                  <td>Khi SJC bật tăng phòng thủ về 140–145Tr đồng thời VN-Index rũ sâu về vùng hỗ trợ cứng <strong>1.620–1.650</strong> → xoay 15%–25% lợi nhuận vàng sang cổ phiếu lõi nội địa FTSE (VCB, HPG, BID, ACB, MWG, VNM, KDH) bằng 100% tiền thịt.</td>
+                  <td>Không bán vàng mua cổ phiếu xuất khẩu sang Mỹ bị nhắm thuế 35% (dệt may, da giày, xi măng) hoặc bắt đáy mã khủng hoảng thanh khoản (PNJ); không dùng margin.</td>
+                </tr>
+                <tr>
+                  <td><strong>4. Bán Vàng → Mua BĐS TP.HCM Mở Rộng / Trả Nợ Vay</strong></td>
+                  <td>Sơ cấp HCM 75–76Tr/m² (+16% YoY), thứ cấp cắt lỗ -4% đến -13%; lãi vay ưu đãi 8,2–10,5% &amp; thả nổi 11%–15%; lợi suất thuê lõi chỉ 2,5–4%; thuế đất bỏ hoang 0,2% từ 01/07/2027; Đấu giá Thủ Thiêm 27/11 &amp; Long Thành bay 24/12.</td>
+                  <td><strong>RẤT NÊN BÁN 1 PHẦN VÀNG</strong> nếu bạn đang chịu lãi vay thả nổi <strong>13%–15%/năm</strong> (lãi vay vượt xa lợi suất an toàn) HOẶC chốt mua được căn hộ thứ cấp có sổ hồng <strong>cắt lỗ ≥12%–15%</strong> gần Metro/Bình Dương cũ bằng tiền mặt (0% vay) vào Q1–Q2/2027.</td>
+                  <td>Không bán vàng ở đáy để làm vốn mồi đi vay thêm 50%–70% ở lãi suất thả nổi 13%–15%, hoặc mua đất nền bỏ hoang vùng xa thiếu thanh khoản.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="source-note">Nguồn: Gia Đình Mới, Ngôi Sao, VnEconomy, VietnamBiz, Lao Động (biểu lãi suất &amp; xăng dầu 26/11), Vietnam Business Insider / VIRA (25/11), Fili &amp; BSC (VN-Index 25–26/11), Nhà Đầu Tư / CBRE / BookingReal (BĐS TP.HCM Q3–T11/2026), Cục Thống kê (CPI 10T).</div>
+        </div>
+      </section>
+
+      <!-- ================================================================== -->
+      <!-- TAB 8: CHIẾN LƯỢC THỰC THI 3 CHU KỲ & BỘ QUY TẮC HÀNH ĐỘNG         -->
+      <!-- ================================================================== -->
+      <section class="tab-panel" id="tab-strategy">
+        <h2 class="section-heading">🎯 Chiến Lược Thực Thi Đầu Tư Vàng 3 Chu Kỳ, 8 Hồ Sơ Vị Thế, 12 Quy Tắc Tự Động (IF→THEN) &amp; 10 Nguyên Tắc Sống Còn</h2>
+
+        <div class="sub-heading"><span>I. Lộ Trình Thực Thi Chi Tiết Theo 3 Chu Kỳ (26/11/2026 → 2030)</span><span class="badge badge-gold">Từng Tuần • Từng Quý</span></div>
+
+        <div class="phase-box" style="border-left:4px solid var(--crimson);">
+          <div class="phase-header">
+            <div>
+              <strong style="font-size:0.99rem;">CHU KỲ 1 — NGẮN HẠN (26/11/2026 – 31/12/2026 • ~5 Tuần): "KHÔNG FOMO ĐUỔI GIÁ — ĐÓN CÚ RŨ FOMC &amp; KHÓA LÃI TIẾT KIỆM"</strong>
+              <div style="font-size:0.79rem;color:var(--text-muted);">Biến số chi phối: Thanh khoản mỏng Tạ Ơn (26/11) • Bầu cử Đài Loan (28/11) • OPEC+ (29/11) • COT (30/11) • FOMC tăng +25bps (09/12) • Shutdown Mỹ (11/12) • Mốc Quota vàng NHNN (15/12) • ECB/BoE/BoJ (17–18/12)</div>
+            </div>
+            <span class="badge badge-red">Vùng XAU: $3.380 – $3.720 • SJC: 126 – 138 Tr</span>
+          </div>
+          <div class="grid-3" style="margin-bottom:0;">
+            <div>
+              <p><strong>Tuần 1 (26/11 – 02/12): Phòng thủ &amp; Tối ưu tiền mặt</strong></p>
+              <ul class="clean-list">
+                <li><strong>Không mua mới vàng miếng SJC</strong> tại 134,1Tr khi chênh lệch đang +21,95Tr và thanh khoản Mỹ mỏng dễ xuất hiện nhịp quét kỹ thuật.</li>
+                <li>Với tiền mặt chờ mua vàng: gửi ngay vào <strong>Tiết kiệm Online 1–3 tháng (4,75%) hoặc 6–13 tháng (6,8%–7,9% tại Saigonbank/VCBNeo/Agribank/BIDV/VietinBank)</strong> trước khi thêm nhiều ngân hàng hạ lãi theo VPBank &amp; LPBank.</li>
+                <li>Theo sát báo cáo <strong>CFTC COT ngày 30/11</strong>: nếu Z-score xuyên dưới -1,5, đó là tín hiệu đầu tiên cho thấy quỹ đầu cơ đã bán cạn.</li>
+              </ul>
+            </div>
+            <div>
+              <p><strong>Tuần 2–3 (03/12 – 15/12): Bắt nhịp rũ FOMC (09/12) &amp; Soi Quota (15/12)</strong></p>
+              <ul class="clean-list">
+                <li>Sau khi Fed Warsh nâng lãi +25 bps ngày 09/12 và công bố Dot Plot 2027 (kịch bản "bán theo tin đồn, mua theo sự thật"), nếu XAU giữ vững vùng <strong>$3.430–$3.520</strong>, giải ngân <strong>Bậc 1 DCA (25% ngân sách vàng)</strong> vào <strong>Nhẫn tròn 9999 Phú Quý</strong> hoặc <strong>Mi Hồng</strong>.</li>
+                <li>Kiểm tra chặt động thái cấp phép 11 hồ sơ &amp; hạn mức nhập khẩu vàng của NHNN quanh mốc <strong>15/12</strong>: nếu NHNN công bố cấp hạn mức lớn → tạm dừng mua để chờ chênh lệch nén xuống &lt;14Tr.</li>
+              </ul>
+            </div>
+            <div>
+              <p><strong>Tuần 4–5 (16/12 – 31/12): Giữ lõi qua "Cửa sổ 40 ngày Iran"</strong></p>
+              <ul class="clean-list">
+                <li>Cuộc họp ECB (17/12) và BoJ tăng lên 1,50% (18/12) có thể gây rung lắc ngắn hạn giữa tháng 12 — giữ sẵn <strong>Bậc 2 DCA (35%)</strong> cho kịch bản cảnh báo của Natixis nếu XAU test <strong>$3.340–$3.430</strong>.</li>
+                <li>Ngược lại, nếu Mỹ–Israel bất ngờ không kích lại Iran trước 03/01 đẩy SJC vọt lên <strong>142–148Tr</strong>, chủ động <strong>tỉa chốt lời 25%–30% lượng vàng miếng SJC</strong> giá vốn thấp tại Mi Hồng để khóa khoản chênh lệch cao.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="phase-box" style="border-left:4px solid var(--cobalt);">
+          <div class="phase-header">
+            <div>
+              <strong style="font-size:0.99rem;">CHU KỲ 2 — TRUNG HẠN (Q1/2027 – Q3/2027 • 6–9 Tháng): "HOÀN TẤT TÍCH LŨY KHI NÉN CHÊNH — ĐÓN SÓNG TRẦN NỢ MỸ $41,1T"</strong>
+              <div style="font-size:0.79rem;color:var(--text-muted);">Biến số chi phối: Quốc hội Dân chủ 03/01 • Hết đình chiến Trung–Mỹ 10/01 • Tái cơ cấu chỉ số $3,3B (T1) • Lagarde rời ECB 07/02 • Chốt thuế 301 VN (28/02–11/03) • Fed đạt đỉnh 4,25–4,50% • Khủng hoảng X-Date &amp; Repo giữa 2027</div>
+            </div>
+            <span class="badge badge-blue">Vùng XAU: $3.900 → $4.800 • SJC/Nhẫn: 145 – 172 Tr</span>
+          </div>
+          <div class="grid-3" style="margin-bottom:0;">
+            <div>
+              <p><strong>Q1/2027 (T1–T3): Hoàn tất vùng đáy vĩ mô &amp; Thuế quan</strong></p>
+              <ul class="clean-list">
+                <li>Tháng 1/2027: Dòng tiền tái cơ cấu chỉ số hàng hóa ~<strong>3,3 tỷ USD</strong> (Société Générale) hỗ trợ lực cầu kỹ thuật, song rủi ro thuế Mục 301 (điều trần 25/01, chốt chậm nhất 11/03) và nhịp tăng cuối của Fed sẽ tạo các nhịp rung lắc cuối cùng.</li>
+                <li>Kích hoạt <strong>Bậc 3 DCA (40% ngân sách vàng cuối cùng)</strong> bất cứ khi nào XAU &lt;$4.000 <strong>ĐỒNG THỜI</strong> chênh lệch nội–ngoại co về <strong>&lt;12–14Tr</strong> (tổng giá vốn bình quân ~<strong>125,2Tr/lượng</strong>).</li>
+              </ul>
+            </div>
+            <div>
+              <p><strong>Q2/2027 (T4–T6): Cơn bão Trần Nợ $41,1T &amp; Bão Repo TGA</strong></p>
+              <ul class="clean-list">
+                <li>Đụng độ giữa Quốc hội Dân chủ khóa 120 và TT Trump quanh trần nợ 41,1T (X-Date) đẩy nhu cầu phòng vệ rủi ro tín dụng Mỹ tăng mạnh, đưa XAU/USD tiến về vùng mục tiêu <strong>$4.400–$4.600</strong> (UBS).</li>
+                <li>Cảnh giác nhịp hút thanh khoản ngắn hạn khi Kho bạc Mỹ nạp lại TGA (Goldman Sachs) — tận dụng làm cơ hội gom thêm cổ phiếu VN đón FTSE Đợt 3 (21/06) và BĐS TP.HCM cắt lỗ đúng đỉnh đáo hạn TPDN T6/2027.</li>
+              </ul>
+            </div>
+            <div>
+              <p><strong>Q3/2027 (T7–T9): ETF Phương Tây Đảo Chiều Hút Ròng</strong></p>
+              <ul class="clean-list">
+                <li>Khi tăng trưởng Mỹ hạ nhiệt dưới lãi suất 4,5% và thị trường bắt đầu định giá chu kỳ cắt lãi suất của Fed, lợi suất thực 10Y TIPS trượt từ 2,7% về dưới 2,0% → <strong>dòng vốn ETF Bắc Mỹ (GLD) quay lại mua ròng mạnh</strong>.</li>
+                <li>XAU hướng <strong>$4.650–$4.850</strong>; người mua vàng đầu năm 2026 (152,8Tr) chính thức <strong>về bờ có lãi</strong>; bắt đầu thực hiện <strong>Bậc Chốt Lời #1 (25%)</strong> tại vùng thu mua 156–162Tr để tái cân bằng.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="phase-box" style="border-left:4px solid var(--emerald);">
+          <div class="phase-header">
+            <div>
+              <strong style="font-size:0.99rem;">CHU KỲ 3 — DÀI HẠN (Q4/2027 – 2028 – 2030 • 1–2 Năm+): "CHU KỲ CẮT LÃI FED, CHỐT LỜI BẬC THANG &amp; TRÁNH LẶP LẠI THẬP KỶ MẤT MÁT"</strong>
+              <div style="font-size:0.79rem;color:var(--text-muted);">Biến số chi phối: Fed hạ lãi suất 4 lần (T11/2027 → T9/2028 về 3,25–3,50%) • Thanh tra PCRT Vàng Q4/2027 • Bầu cử Tổng thống Mỹ 2028 • Tiếp diễn phi đô-la hóa NHTW (74% CBs)</div>
+            </div>
+            <span class="badge badge-green">Vùng XAU: $5.000 – $5.800+ • SJC/Nhẫn: 170 – 200 Tr</span>
+          </div>
+          <div class="grid-3" style="margin-bottom:0;">
+            <div>
+              <p><strong>Q4/2027 – H1/2028: Đỉnh Sóng Vàng Theo Chu Kỳ Cắt Lãi</strong></p>
+              <ul class="clean-list">
+                <li>Goldman Sachs dự phóng Fed bắt đầu hạ lãi từ tháng 11/2027, đưa XAU vượt <strong>$5.000/oz</strong> (UBS/Citi/Morgan Stanley) và tiến về <strong>$5.600/oz cuối 2028</strong> (Goldman Sachs) — kiểm định lại đỉnh cũ tháng 1/2026 ($5.595).</li>
+                <li>Thực hiện <strong>Bậc Chốt Lời #2 (35%)</strong> tại vùng $5.000–$5.200 (thu mua VN ~170–176Tr) và <strong>Bậc Chốt Lời #3 (25%)</strong> tại vùng $5.500–$5.800 (thu mua VN ~188–198Tr).</li>
+              </ul>
+            </div>
+            <div>
+              <p><strong>Kỷ Luật Bảo Toàn Thành Quả (Bài Học 1980 &amp; 2011)</strong></p>
+              <ul class="clean-list">
+                <li>Lịch sử cho thấy vàng từng mất <strong>9 năm (2011–2020)</strong> hoặc <strong>28 năm (1980–2008)</strong> mới vượt lại đỉnh cũ khi chu kỳ nới lỏng tiền tệ kết thúc.</li>
+                <li>Khi lãi suất thực Mỹ chạm đáy và tâm lý thị trường hưng phấn trở lại ở vùng $5.600–$6.000, không nên dồn toàn bộ vốn mà chủ động chuyển hóa lợi nhuận vàng sang tài sản sinh dòng tiền (cổ phiếu cổ tức cao hướng MSCI, BĐS cho thuê dọc Metro/VIFC-HCMC).</li>
+              </ul>
+            </div>
+            <div>
+              <p><strong>Tầm Nhìn 2029–2030: Lớp Bảo Hiểm Vĩnh Viễn (10%–15%)</strong></p>
+              <ul class="clean-list">
+                <li>Giữ vĩnh viễn <strong>10%–15% tổng tài sản ròng bằng Vàng Nhẫn 9999</strong> (không bán theo biến động ngắn hạn) để bảo vệ sức mua gia đình trước nợ công toàn cầu tiến tới 100%+ GDP và trật tự đa cực tiền tệ thập niên 2030 (J.P. Morgan nêu kịch bản dài hạn $8.000).</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="sub-heading"><span>II. Ma Trận Phán Quyết Chi Tiết Cho 8 Hồ Sơ Nhà Đầu Tư Vàng (Tại 26/11/2026)</span><span class="badge badge-blue">Cá Nhân Hóa Hành Động</span></div>
+        <div class="card">
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>Hồ Sơ Vị Thế Hiện Tại</th><th>Phán Quyết Rõ Ràng</th><th>Điểm Giá &amp; Kênh Thực Thi</th><th>Cơ Cấu Tối Ưu &amp; Lập Luận Định Lượng</th></tr></thead>
+              <tbody>
+                <tr><td><strong>1. Kẹt đỉnh sau Tết 2026 (175 – 190,9 Tr)</strong></td><td><span class="up">KHÔNG BÁN THÁO • CHỈ DCA KHI ĐỦ ĐIỀU KIỆN</span></td><td>Giữ nguyên bằng tiền thịt; nếu dư tiền mặt mới mua thêm ở 120–128Tr (Nhẫn Phú Quý) để kéo giá vốn xuống ~155–160Tr.</td><td>Bán hôm nay mất ngay -45,9 đến -62,4Tr/lượng (-26% đến -32%). Dùng Máy Tính 2 (Tab 9) để đo mốc XAU về bờ.</td></tr>
+                <tr><td><strong>2. Mua đầu năm 2026 (145 – 155 Tr)</strong></td><td><span class="up">NẮM GIỮ CHẶT TỚI Q3/2027</span></td><td>Bỏ qua nhiễu tháng 12; chốt từng phần khi thu mua đạt ≥162–175Tr.</td><td>Chỉ cần XAU hồi về $4.208–$4.642 là về bờ (nằm hoàn toàn trong dự báo cơ sở 2027 của Goldman Sachs &amp; UBS).</td></tr>
+                <tr><td><strong>3. Vàng giá vốn thấp (&lt;105 Tr) chiếm &gt;45% TS</strong></td><td><span class="warn">CHỐT TỈA 25%–35% KHÓA CHÊNH</span></td><td>Ưu tiên bán SJC tại <strong>Mi Hồng TP.HCM (132,5Tr)</strong> hoặc đợi nhịp giật Iran lên 138–145Tr.</td><td>Đổi phần chốt lời sang Tiết kiệm Online 7,0%–7,9% &amp; rải mua CP VN30 vùng 1.620–1.670 để tránh bẫy nén chênh +22Tr.</td></tr>
+                <tr><td><strong>4. Cầm 100% Tiền mặt VND muốn mua mới</strong></td><td><span class="down">KHÔNG ALL-IN Ở 134,1 TR</span></td><td>Gửi Online ngắn 1–3M (4,75%), chia <strong>DCA 3 bậc (25%/35%/40%)</strong> vào Nhẫn Phú Quý/Mi Hồng.</td><td>Mục tiêu kéo giá vốn bình quân về ~125,2Tr (-6,6% rẻ hơn hôm nay) khi XAU test $3.340–$3.520 &amp; chênh co &lt;12–14Tr.</td></tr>
+                <tr><td><strong>5. Cầm USD tự do (26.400–26.490đ)</strong></td><td><span class="warn">BÁN 50%–70% USD NGAY</span></td><td>Chốt bán vùng 26.350–26.500đ → 60% vào Tiết kiệm Online, 40% chờ DCA Nhẫn 9999 &amp; VN30.</td><td>USD cần vọt lên 28.200–28.500đ mới hòa vốn VND Online; bán USD khi căng tin thuế 35% là điểm đổi thuận lợi.</td></tr>
+                <tr><td><strong>6. Đang vay mua nhà TP.HCM (lãi nổi 13%–15%)</strong></td><td><span class="down">BÁN BỚT VÀNG TRẢ GỐC NỢ</span></td><td>Nếu DTI thả nổi &gt;45%, bán vàng tại Mi Hồng (132,5Tr) để hạ dư nợ về vùng an toàn DTI &lt;35%.</td><td>Lãi suất vay 14%–15% là chi phí chắc chắn, trong khi vàng biến động mạnh; tránh vòng xoáy mất khả năng trả nợ.</td></tr>
+                <tr><td><strong>7. Muốn bán vàng săn BĐS TP.HCM cắt lỗ</strong></td><td><span class="warn">CHỜ Q1–Q2/2027 MỚI ĐỔI</span></td><td>Giữ vàng qua Q1/2027 chờ nhịp hồi XAU &gt;$4.200 trùng đỉnh đáo hạn TPDN BĐS T6/2027.</td><td>Tránh bán vàng ở đáy 15 tháng để mua nhà quá sớm khi hàng thứ cấp TP.HCM vẫn đang chiết khấu dần tới giữa 2027.</td></tr>
+                <tr><td><strong>8. DN chế tác / Tiệm vàng truyền thống</strong></td><td><span class="info-c">CHUẨN HÓA NĐ 390 &amp; TT 56 NGAY</span></td><td>Tích hợp POS/chuyển khoản ≥5Tr, hóa đơn điện tử từng giao dịch, đồng bộ tồn kho trước 01/2027.</td><td>Bỏ giấy phép con trang sức nhưng thanh tra PCRT 2027 siết rất gắt đầu vào không chứng từ (bài học vụ 2.084 tỷ).</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="sub-heading"><span>III. Dashboard 12 Quy Tắc Kích Hoạt Hành Động Tự Động (IF → THEN Rules)</span><span class="badge badge-red">Kỷ Luật Loại Bỏ Cảm Xúc</span></div>
+        <div class="card">
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>#</th><th>Chỉ Báo Giám Sát</th><th>Ngưỡng Kích Hoạt (IF Trigger)</th><th>Hành Động Bắt Buộc (THEN Action)</th></tr></thead>
+              <tbody>
+                <tr><td class="mono">01</td><td><strong>XAU/USD vùng hỗ trợ cứng</strong></td><td>Test vùng <strong>$3.426 – $3.500</strong> sau FOMC 09/12 và giữ vững 2 phiên</td><td>Kích hoạt <strong>DCA Bậc 1 (25%)</strong> vào Nhẫn tròn 9999 Phú Quý / Mi Hồng.</td></tr>
+                <tr><td class="mono">02</td><td><strong>Cảnh báo Natixis / AI bán tháo</strong></td><td>XAU thủng $3.426 rơi về vùng <strong>$3.300 – $3.380</strong></td><td>Kích hoạt <strong>DCA Bậc 2 (35%)</strong> — vùng chiết khấu ~40% từ đỉnh với biên an toàn cao.</td></tr>
+                <tr><td class="mono">03</td><td><strong>Chênh lệch SJC vs Thế giới</strong></td><td>Thu hẹp xuống <strong>&lt; +12 đến +14 triệu/lượng</strong> (NHNN mở quota NĐ 232)</td><td>Tháo gỡ bẫy nén chênh → giải ngân <strong>DCA Bậc 3 (40%)</strong> nếu XAU &lt;$4.000.</td></tr>
+                <tr><td class="mono">04</td><td><strong>Xác nhận đảo chiều kỹ thuật</strong></td><td>XAU đóng cửa tuần trên <strong>$3.712 – $3.800</strong> kèm GLD quay lại mua ròng</td><td>Ngưng bán tỉa, chuyển sang trạng thái nắm giữ trung hạn hướng $4.650–$5.000.</td></tr>
+                <tr><td class="mono">05</td><td><strong>Sốc địa chính trị Iran trước 03/01</strong></td><td>Mỹ–Israel tái không kích, Brent vượt $115, SJC vọt <strong>&gt;145–150 Tr</strong></td><td>Tỉa chốt lời 25%–35% lượng SJC giá vốn thấp (giữ nguyên lõi 15%) để hưởng chênh cao.</td></tr>
+                <tr><td class="mono">06</td><td><strong>CFTC COT Managed Money</strong></td><td>Z-score 52 tuần rơi xuống dưới <strong>-1,5</strong> (từ mức -0,62 hiện tại)</td><td>Tín hiệu thống kê đáy lớn từ 2006 → sẵn sàng nâng tỷ trọng vàng lên tối đa khung cho phép.</td></tr>
+                <tr><td class="mono">07</td><td><strong>Lợi suất thực US 10Y TIPS</strong></td><td>Quay đầu thủng xuống dưới <strong>2,20%</strong> (từ mức 2,74% ngày 26/11)</td><td>Xác nhận lực nén tiền tệ hạ nhiệt → dòng tiền phương Tây chuẩn bị quay lại vàng.</td></tr>
+                <tr><td class="mono">08</td><td><strong>Động thái PBoC (Hàng tháng)</strong></td><td>PBoC ngừng mua ròng ≥2 tháng liên tiếp (chấm dứt chuỗi 24 tháng)</td><td>Hạ kỳ vọng đỉnh ngắn hạn, không mua mới ở vùng giá cao cho tới khi ETF bù đắp cầu.</td></tr>
+                <tr><td class="mono">09</td><td><strong>Tỷ giá USD Tự do VN</strong></td><td>Vượt <strong>26.550 – 26.700đ</strong> quanh hạn điều trần thuế 301 (T1–T2/2027)</td><td>Chốt bán thêm USD tiền mặt sang VND Online; không mua đuổi vàng giá cao theo FX.</td></tr>
+                <tr><td class="mono">10</td><td><strong>Phát ngôn Bộ Tài chính về Thuế 0,1%</strong></td><td>Ban hành Nghị định chốt ngưỡng &amp; ngày áp thuế 0,1% vàng miếng</td><td>Chuyển 100% dòng tiền tích lũy mới sang <strong>Vàng Nhẫn tròn trơn 9999</strong>.</td></tr>
+                <tr><td class="mono">11</td><td><strong>Mục tiêu chốt lời chu kỳ 2027–2028</strong></td><td>XAU chạm <strong>$4.800 / $5.200 / $5.600</strong></td><td>Chốt bậc thang đúng kỷ luật <strong>25% → 35% → 25%</strong>, giữ lại 15% làm lõi bảo hiểm vĩnh viễn.</td></tr>
+                <tr><td class="mono">12</td><td><strong>VN-Index thủng vùng hỗ trợ mạnh</strong></td><td>VN-Index rơi về <strong>1.600 – 1.630</strong> do tin thuế 35% trong khi vàng tăng</td><td>Xoay 15%–20% tiền mặt/lãi vàng sang CP nội địa sạch nợ (VCB, HPG, ACB, MWG, VNM) đón FTSE.</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="grid-2">
+          <div class="card card-gold">
+            <div class="card-title"><span>💼 Phân Bổ Tỷ Trọng Vàng Chuẩn Theo 4 Quy Mô Tài Sản</span><span class="badge badge-gold">Tối Ưu Hóa Việt Nam</span></div>
+            <div class="table-wrap">
+              <table style="min-width:440px;font-size:0.78rem;">
+                <thead><tr><th>Quy Mô Tài Sản Ròng</th><th>Tỷ Trọng Vàng Đề Xuất</th><th>Sản Phẩm Vàng Ưu Tiên</th><th>Phối Hợp Phần Vốn Còn Lại</th></tr></thead>
+                <tbody>
+                  <tr><td><strong>Dưới 1 Tỷ VND</strong></td><td class="mono warn"><strong>15% – 20%</strong></td><td>Nhẫn tròn 9999 (1–5 chỉ) tại Phú Quý / DOJI / Mi Hồng</td><td>45% Online 6,8–7,9% • 35%–40% CP VN30 (không mua BĐS vay)</td></tr>
+                  <tr><td><strong>1 – 5 Tỷ VND</strong></td><td class="mono warn"><strong>15% – 25%</strong></td><td>70% Nhẫn 9999 + 30% SJC (khi prem &lt;14Tr)</td><td>30% Online • 30% CP FTSE • 20% BĐS Bình Dương cũ (0% vay)</td></tr>
+                  <tr><td><strong>5 – 15 Tỷ VND</strong></td><td class="mono warn"><strong>15% – 20%</strong></td><td>60% Nhẫn 9999 + 40% SJC nguyên vỉ (lưu két chuẩn)</td><td>25% Online • 30% CP • 25%–30% BĐS TP.HCM cắt lỗ • 5% USD</td></tr>
+                  <tr><td><strong>Trên 15 Tỷ VND</strong></td><td class="mono warn"><strong>10% – 15%</strong></td><td>50% SJC (tính chuẩn hóa lớn) + 50% Nhẫn 9999 + 3% Bạc thỏi</td><td>20% VIP Deposit 8,9–9,1% • 25% CP • 40% BĐS dòng tiền • 5% USD</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <div class="card card-green">
+            <div class="card-title"><span>🛡️ 10 Nguyên Tắc Thực Chiến Chống Mất Tiền Oan Khi Giao Dịch Vàng VN</span></div>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">
+              <div class="rule-card green-c"><div class="rule-num">#1 • Chênh Lệch</div><div class="rule-title">Không mua SJC khi chênh &gt;16Tr</div><div class="rule-desc">Chênh hiện tại +21,95Tr chứa rủi ro bị nén đột ngột khi NHNN mở quota.</div></div>
+              <div class="rule-card green-c"><div class="rule-num">#2 • Tối Ưu Spread</div><div class="rule-title">Bán SJC TP.HCM chọn Mi Hồng</div><div class="rule-desc">Thu mua 132,5Tr cao hơn SJC 3,4Tr và cao hơn BTMC tới 4,0Tr/lượng.</div></div>
+              <div class="rule-card"><div class="rule-num">#3 • Chuyển Khoản</div><div class="rule-title">Tuân thủ NĐ 390 từ 5 triệu/ngày</div><div class="rule-desc">Luôn chuyển khoản từ tài khoản chính chủ &amp; lưu hóa đơn điện tử VAT.</div></div>
+              <div class="rule-card red-c"><div class="rule-num">#4 • Bảo Quản Vỉ</div><div class="rule-title">Giữ nguyên vỉ niêm phong SJC</div><div class="rule-desc">Móp méo/rách vỉ bị phạt gia công 50k–1,5Tr+/lượng hoặc từ chối mua.</div></div>
+              <div class="rule-card red-c"><div class="rule-num">#5 • Vàng Trôi Nổi</div><div class="rule-title">Tránh mua vàng không thương hiệu</div><div class="rule-desc">Khi bán lại hãng lớn bị ép giá xuống 116Tr (mất ngay 12%–13%).</div></div>
+              <div class="rule-card red-c"><div class="rule-num">#6 • Rủi Ro Riêng</div><div class="rule-title">Thận trọng Nhẫn PNJ &amp; Kim cương</div><div class="rule-desc">PNJ đang khủng hoảng 21.000 tỷ thu đổi; tránh sản phẩm cam kết mua lại.</div></div>
+              <div class="rule-card"><div class="rule-num">#7 • Tối Ưu Thuế</div><div class="rule-title">Ưu tiên Nhẫn 9999 ép vỉ</div><div class="rule-desc">Chia nhỏ linh hoạt, spread Phú Quý 4Tr &amp; ngoài diện thuế 0,1% vàng miếng.</div></div>
+              <div class="rule-card"><div class="rule-num">#8 • Đòn Bẩy</div><div class="rule-title">Không vay nợ ngân hàng mua vàng</div><div class="rule-desc">Lãi vay 12%–15%/năm kết hợp biến động 38% dễ quét sạch vốn tự có.</div></div>
+              <div class="rule-card red-c"><div class="rule-num">#9 • Sàn Chui</div><div class="rule-title">Tránh sàn vàng tài khoản / CFD lậu</div><div class="rule-desc">VN chưa lập sàn vàng; sàn ngoại không phép tiềm ẩn rủi ro pháp lý cao.</div></div>
+              <div class="rule-card green-c"><div class="rule-num">#10 • Thời Điểm</div><div class="rule-title">Tránh FOMO ngày Vía Thần Tài</div><div class="rule-desc">Người mua đỉnh sau Tết 2026 (190,9Tr) đang lỗ tới 61,8–62,4Tr/lượng.</div></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================================================================== -->
+      <!-- TAB 9: PHÒNG LAB 5 MÁY TÍNH MÔ PHỎNG ĐỊNH LƯỢNG PRO                -->
+      <!-- ================================================================== -->
+      <section class="tab-panel" id="tab-lab">
+        <h2 class="section-heading">🧮 Phòng Thí Nghiệm Mô Phỏng Đầu Tư Vàng (Bộ 5 Máy Tính Real-Time Theo Dữ Liệu 26/11/2026)</h2>
+
+        <div class="grid-2">
+          <!-- CALCULATOR 1: SJC Premium Compression & 0.1% PIT Simulator -->
+          <div class="card card-gold">
+            <div class="card-title">
+              <span>⚖️ Máy Tính 1: Mô Phỏng Bẫy Nén Chênh Lệch Vàng SJC / Nhẫn &amp; Thuế 0,1%</span>
+              <span class="badge badge-gold">Kiểm Định Ma Sát</span>
+            </div>
+            <div class="calc-grid">
+              <div class="input-group"><label for="c1Taels">Số lượng vàng (Lượng):</label><input type="number" id="c1Taels" value="10" min="0.5" step="0.5" oninput="runCalc1()" /></div>
+              <div class="input-group"><label for="c1Cost">Giá mua vào của bạn (Tr/lượng):</label><input type="number" id="c1Cost" value="134.1" min="50" max="220" step="0.5" oninput="runCalc1()" /></div>
+              <div class="input-group"><label for="c1TargetXau">XAU/USD mục tiêu ($/oz):</label><input type="number" id="c1TargetXau" value="5000" min="2500" max="8000" step="50" oninput="runCalc1()" /></div>
+              <div class="input-group"><label for="c1Fx">Tỷ giá USD/VND dự kiến:</label><input type="number" id="c1Fx" value="26500" min="24000" max="30000" step="100" oninput="runCalc1()" /></div>
+              <div class="input-group"><label for="c1Prem">Chênh nội–ngoại lúc bán (Tr):</label><input type="number" id="c1Prem" value="8" min="0" max="25" step="1" oninput="runCalc1()" /></div>
+              <div class="input-group"><label for="c1Spread">Spread mua–bán lúc bán (Tr):</label><input type="number" id="c1Spread" value="3.0" min="1.0" max="7.0" step="0.5" oninput="runCalc1()" /></div>
+              <div class="input-group">
+                <label for="c1Type">Loại sản phẩm (Thuế 0,1%):</label>
+                <select id="c1Type" onchange="runCalc1()">
+                  <option value="sjc">Vàng miếng SJC (dự phòng thuế 0,1%)</option>
+                  <option value="ring">Vàng nhẫn 9999 (miễn thuế 0,1%)</option>
+                </select>
+              </div>
+            </div>
+            <div class="calc-result-box" id="c1Output"></div>
+          </div>
+
+          <!-- CALCULATOR 2: Trapped Peak Buyer Rescue & Average-Down Simulator -->
+          <div class="card card-red">
+            <div class="card-title">
+              <span>🆘 Máy Tính 2: Giải Cứu Vị Thế "Đu Đỉnh" &amp; Chiến Lược Trung Bình Giá</span>
+              <span class="badge badge-red">Dành Cho Người Kẹt 150–191 Tr</span>
+            </div>
+            <div class="calc-grid">
+              <div class="input-group"><label for="c2OldQty">Số lượng đang kẹt (Lượng):</label><input type="number" id="c2OldQty" value="5" min="0.5" step="0.5" oninput="runCalc2()" /></div>
+              <div class="input-group"><label for="c2OldCost">Giá mua đỉnh trước đây (Tr):</label><input type="number" id="c2OldCost" value="190.9" min="130" max="210" step="0.5" oninput="runCalc2()" /></div>
+              <div class="input-group"><label for="c2AddQty">Mua trung bình thêm (Lượng):</label><input type="number" id="c2AddQty" value="3" min="0" step="0.5" oninput="runCalc2()" /></div>
+              <div class="input-group"><label for="c2AddPrice">Giá mua thêm dự kiến (Tr):</label><input type="number" id="c2AddPrice" value="126.0" min="100" max="145" step="0.5" oninput="runCalc2()" /></div>
+              <div class="input-group"><label for="c2PremExit">Chênh lệch lúc về bờ (Tr):</label><input type="number" id="c2PremExit" value="12" min="2" max="22" step="1" oninput="runCalc2()" /></div>
+            </div>
+            <div class="calc-result-box" id="c2Output"></div>
+            <div class="chart-box-sm" style="margin-top:12px;"><canvas id="chartRescue"></canvas></div>
+          </div>
+        </div>
+
+        <div class="grid-2">
+          <!-- CALCULATOR 3: 24M Multi-Asset Portfolio Simulator (4 Macro Scenarios) -->
+          <div class="card card-blue">
+            <div class="card-title">
+              <span>📊 Máy Tính 3: Mô Phỏng Danh Mục 24 Tháng (4 Kịch Bản Vĩ Mô — Vàng vs 4 Kênh VN)</span>
+              <span class="badge badge-blue">So Sánh Lãi Thực Sau CPI</span>
+            </div>
+            <div class="calc-grid">
+              <div class="input-group"><label for="c3Cap">Tổng tài sản đầu tư (Tỷ VND):</label><input type="number" id="c3Cap" value="5.0" min="0.2" max="500" step="0.5" oninput="runCalc3()" /></div>
+              <div class="input-group">
+                <label for="c3Scen">Kịch bản Vĩ mô 24 Tháng:</label>
+                <select id="c3Scen" onchange="runCalc3()">
+                  <option value="weighted">Gia quyền 4 kịch bản (45% Cơ sở / 20% Hòa bình / 20% Chiến tranh / 15% Xả Quota)</option>
+                  <option value="base">Cơ sở (45%): Fed đỉnh 4,5% rồi cắt cuối 27, XAU $5.300, Prem co về 10Tr</option>
+                  <option value="peace">Hòa bình (20%): Deal Iran + Thuế VN 20%, XAU $4.700, VN30 +52%</option>
+                  <option value="war">Chiến tranh / Đình lạm (20%): Đánh Iran, Dầu $130, XAU $6.500</option>
+                  <option value="quota">Xả Quota + Fed Cứng (15%): NHNN mở lớn NK vàng, Fed 4,75%, XAU $4.200</option>
+                </select>
+              </div>
+            </div>
+            <div class="slider-row"><span>💍 Vàng Nhẫn 9999 (PQ / MH)</span><input type="range" id="wRing" min="0" max="100" value="20" oninput="runCalc3()"><strong class="mono" id="lRing">20%</strong></div>
+            <div class="slider-row"><span>🥇 Vàng Miếng SJC</span><input type="range" id="wSjc" min="0" max="100" value="10" oninput="runCalc3()"><strong class="mono" id="lSjc">10%</strong></div>
+            <div class="slider-row"><span>🏦 Tiết kiệm Online (6,9–7,9%)</span><input type="range" id="wDep" min="0" max="100" value="25" oninput="runCalc3()"><strong class="mono" id="lDep">25%</strong></div>
+            <div class="slider-row"><span>📈 Cổ phiếu VN30 / FTSE</span><input type="range" id="wEq" min="0" max="100" value="25" oninput="runCalc3()"><strong class="mono" id="lEq">25%</strong></div>
+            <div class="slider-row"><span>🏙️ BĐS TP.HCM (0% vay)</span><input type="range" id="wRe" min="0" max="100" value="15" oninput="runCalc3()"><strong class="mono" id="lRe">15%</strong></div>
+            <div class="slider-row"><span>💵 USD Tự do (0% lãi)</span><input type="range" id="wUsd" min="0" max="100" value="5" oninput="runCalc3()"><strong class="mono" id="lUsd">5%</strong></div>
+
+            <div style="display:flex;gap:6px;flex-wrap:wrap;margin:10px 0;">
+              <button class="btn" onclick="setC3Preset(25,15,45,10,0,5)">🛡️ Bảo Toàn Vàng</button>
+              <button class="btn" onclick="setC3Preset(20,10,25,25,15,5)">⚖️ Cân Bằng Chuẩn</button>
+              <button class="btn" onclick="setC3Preset(15,0,15,40,30,0)">🔥 Tăng Trưởng 2027</button>
+              <button class="btn" onclick="setC3Preset(100,0,0,0,0,0)">💍 100% Nhẫn 9999</button>
+              <button class="btn" onclick="setC3Preset(0,100,0,0,0,0)">🥇 100% SJC</button>
+            </div>
+            <div class="calc-result-box" id="c3Output"></div>
+            <div class="chart-box-sm" style="margin-top:12px;"><canvas id="chartSimPaths"></canvas></div>
+          </div>
+
+          <!-- CALCULATOR 4 & 5 STACKED -->
+          <div style="display:flex;flex-direction:column;gap:18px;">
+            <div class="card card-green" style="margin-bottom:0;">
+              <div class="card-title">
+                <span>🪜 Máy Tính 4: Tạo Lịch DCA Vàng 3 Bậc &amp; Chốt Lời 4 Bậc Tự Động</span>
+                <span class="badge badge-green">Hạ Giá Vốn -6,6%</span>
+              </div>
+              <div class="calc-grid">
+                <div class="input-group"><label for="c4Budget">Ngân sách dành riêng cho Vàng (Tỷ VND):</label><input type="number" id="c4Budget" value="1.5" min="0.1" max="100" step="0.1" oninput="runCalc4()" /></div>
+                <div class="input-group">
+                  <label for="c4Prod">Sản phẩm mục tiêu:</label>
+                  <select id="c4Prod" onchange="runCalc4()">
+                    <option value="ring">Nhẫn 9999 Phú Quý / Mi Hồng (Ưu tiên #1)</option>
+                    <option value="sjc">Vàng miếng SJC (Chỉ gom sâu khi Prem &lt;14Tr)</option>
+                  </select>
+                </div>
+              </div>
+              <div id="c4Output"></div>
+            </div>
+
+            <div class="card card-plum" style="margin-bottom:0;">
+              <div class="card-title">
+                <span>🏠 Máy Tính 5: Kiểm Định Bán Vàng Trả Bớt Nợ Vay Mua Nhà TP.HCM (11%–15%)</span>
+                <span class="badge badge-plum">Chống Bẫy Lãi Thả Nổi</span>
+              </div>
+              <div class="calc-grid">
+                <div class="input-group"><label for="c5Loan">Dư nợ vay nhà hiện tại (Tỷ):</label><input type="number" id="c5Loan" value="2.5" min="0.5" max="50" step="0.2" oninput="runCalc5()" /></div>
+                <div class="input-group"><label for="c5Rate">Lãi vay thả nổi (%/năm):</label><input type="number" id="c5Rate" value="13.5" min="7" max="18" step="0.5" oninput="runCalc5()" /></div>
+                <div class="input-group"><label for="c5GoldSell">Dự định bán vàng trả nợ (Lượng):</label><input type="number" id="c5GoldSell" value="8" min="1" max="100" step="1" oninput="runCalc5()" /></div>
+                <div class="input-group"><label for="c5SellPx">Giá bán vàng hôm nay (Tr/lượng):</label><input type="number" id="c5SellPx" value="132.5" min="100" max="160" step="0.5" oninput="runCalc5()" /></div>
+              </div>
+              <div class="calc-result-box" id="c5Output"></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================================================================== -->
+      <!-- TAB 10: ABOUT THƯƠNG MẠI, LINK GỐC & HƯỚNG DẪN CẬP NHẬT (?info=1)  -->
+      <!-- ================================================================== -->
+      <section class="tab-panel" id="tab-about">
+        <h2 class="section-heading">⚙️ Hồ Sơ Ấn Phẩm Thương Mại, Phương Pháp Luận &amp; Hệ Thống Tái Cập Nhật Dữ Liệu</h2>
+
+        <div class="grid-2">
+          <div class="card card-gold">
+            <div class="card-title">
+              <span>👑 Hồ Sơ Xuất Bản &amp; Bản Quyền Ấn Phẩm</span>
+              <span class="badge badge-gold">Commercial Gold Edition</span>
+            </div>
+            <ul class="clean-list">
+              <li><strong>Tên ấn phẩm:</strong> AURUM EXECUTIVE INTELLIGENCE — Báo Cáo Chiến Lược Thị Trường Vàng Toàn Cầu &amp; Việt Nam 2026–2030.</li>
+              <li><strong>Mã phiên bản:</strong> <span class="mono warn">v2026.11.26-GOLD-PRO</span> (Phiên bản chuyên biệt hóa mảng Vàng với chiều sâu phân tích &gt;2x so với bản đa tài sản <code>v2026.11.24-ULTRA-10TABS</code>).</li>
+              <li><strong>Ngày giờ xuất bản &amp; khóa số liệu:</strong> <span class="mono up">Thứ Năm, 26/11/2026 — 10:28 (GMT+7, TP.HCM)</span>.</li>
+              <li><strong>Phạm vi tổng hợp tinh lọc:</strong> Chuẩn hóa tối ưu trong phạm vi <strong>≤150 nguồn chất lượng cao nhất ở thời gian gần nhất</strong> nhằm loại nhiễu thông tin và tránh quá tải khi tái cập nhật.</li>
+              <li><strong>Hệ thống nguồn cốt lõi đã kiểm chứng:</strong> Federal Reserve (Beige Book 25/11), USTR (Section 301 25/11), World Gold Council (Q3/2026, AISC &amp; CBGR Survey 2026), IMF COFER (Q2/2026), ECB, CFTC COT, CME Group, LBMA, Metals Focus, Goldman Sachs, UBS, Morgan Stanley, J.P. Morgan, Citi, Bank of America, Natixis, Trading Economics, Kitco, Ngân hàng Nhà nước VN (NĐ 232, NĐ 390, TT 56), Thanh tra Chính phủ, Cục Thống kê, SJC, DOJI, PNJ, BTMC, Phú Quý, Mi Hồng, VnEconomy, CafeF, Lao Động, Báo Lâm Đồng, Fili, ACBS, WiGroup.</li>
+              <li><strong>Cấu trúc kỹ thuật:</strong> 01 tệp HTML độc lập Responsive (Desktop / Tablet / Mobile / Print PDF), 2 giao diện (<em>Obsidian Bullion</em> &amp; <em>Swiss Ivory Editorial</em>), 10 Tab chuyên sâu, 15 biểu đồ Chart.js đơn trục, 5 bộ máy tính định lượng tương tác trực tiếp.</li>
+            </ul>
+          </div>
+
+          <div class="card card-blue">
+            <div class="card-title">
+              <span>📐 Phương Pháp Luận Định Lượng &amp; Miễn Trừ Trách Nhiệm Thương Mại</span>
+              <span class="badge badge-blue">Chuẩn Phân Tích Độc Lập</span>
+            </div>
+            <ul class="clean-list">
+              <li><strong>Công thức quy đổi chuẩn vàng quốc tế sang lượng Việt Nam:</strong> <code>1 lượng = 37,5g / 31,1034768g = 1,205653 troy ounce</code>. Giá quy đổi thô = <code>XAU × 1,205653 × Tỷ giá USD/VND</code> (giá hạ cánh chuẩn cộng thêm ~1% chi phí bảo hiểm, vận chuyển và kiểm định).</li>
+              <li><strong>Mô hình kỳ vọng 4 kịch bản có trọng số (24 tháng):</strong> Kết hợp đồng thời 4 biến số (quỹ đạo XAU/USD, biến động tỷ giá USD/VND, mức nén chênh lệch nội–ngoại theo hạn mức NĐ 232 và ma sát spread/thuế 0,1%), sau đó khử lạm phát CPI lũy kế 24 tháng (~9,0%) để ra lợi suất thực ròng.</li>
+              <li><strong>Chính sách sử dụng &amp; miễn trừ trách nhiệm:</strong> Ấn phẩm cung cấp hệ thống dữ liệu đã kiểm chứng, khung mô hình định lượng và kịch bản quản trị rủi ro nhằm hỗ trợ nhà đầu tư cá nhân và doanh nghiệp tự ra quyết định. Đây không phải cam kết lợi nhuận cố định; thị trường kim loại quý và tỷ giá chịu biến động mạnh bởi tin tức địa chính trị bất ngờ.</li>
+            </ul>
+
+            <div style="margin-top:16px;padding-top:14px;border-top:1px dashed var(--border-subtle);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;">
+              <span style="font-size:0.79rem;color:var(--text-muted);">Chế độ Quản trị &amp; Tái cập nhật (<code>?info=1</code> / <code>&amp;info=1</code>): <strong id="adminStatusBadge" class="mono warn">ĐANG ẨN</strong></span>
+              <button class="btn btn-outline-gold" id="toggleAdminBtn" onclick="toggleAdminPanel()">🔐 Mở Khóa Chế Độ Quản Trị &amp; Prompt Cập Nhật</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- PUBLISHER ADMIN & UPDATE WORKFLOW PANEL (AUTO-UNLOCKED BY ?info=1 / &info=1 OR TOGGLE BUTTON) -->
+        <div class="admin-panel admin-collapsed" id="publisherAdminPanel">
+          <div class="callout callout-plum">
+            <strong>🔓 Bảng Điều Khiển Tác Giả &amp; Hệ Thống Tái Cập Nhật (Tự động mở khi URL chứa <code>?info=1</code> hoặc <code>&amp;info=1</code>):</strong> Khu vực này ẩn mặc định khi bán/chia sẻ cho khách hàng ở đường dẫn thường, giúp bạn lưu đường dẫn hội thoại Gemini của bản gốc đa tài sản lẫn đúng phiên bản Vàng này và chạy cập nhật ngày mới nhanh gọn.
+          </div>
+
+          <div class="grid-2">
+            <div class="card" style="margin-bottom:0;">
+              <div class="card-title"><span>🔗 Quản Lý Liên Kết Tham Khảo Phiên Bản Gốc (Lưu Tự Động Trên Trình Duyệt)</span></div>
+              <div class="input-group" style="margin-bottom:10px;">
+                <label for="oldGeminiLink">1. Link tham khảo bản gốc đa tài sản (v2026.11.24 — File HTML cũ):</label>
+                <div style="display:flex;gap:8px;flex-wrap:wrap;">
+                  <input type="url" id="oldGeminiLink" placeholder="Dán link thread Gemini bản cũ v2026.11.24..." style="flex:1;min-width:200px;" />
+                  <a id="openOldGeminiBtn" href="https://gemini.google.com/" target="_blank" rel="noopener" class="btn">↗️ Mở Bản Cũ</a>
+                </div>
+              </div>
+              <div class="input-group" style="margin-bottom:12px;">
+                <label for="currGeminiLink">2. Link tham khảo đúng phiên bản Vàng chuyên sâu này (v2026.11.26-GOLD-PRO):</label>
+                <div style="display:flex;gap:8px;flex-wrap:wrap;">
+                  <input type="url" id="currGeminiLink" placeholder="Dán link thread Gemini bản Vàng v2026.11.26 này..." style="flex:1;min-width:200px;" />
+                  <a id="openCurrGeminiBtn" href="https://gemini.google.com/" target="_blank" rel="noopener" class="btn">🚀 Mở Bản Hiện Tại</a>
+                </div>
+              </div>
+              <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center;">
+                <button class="btn btn-gold" onclick="saveVersionLinks()">💾 Lưu Cả 2 Link Vào Trình Duyệt</button>
+                <span style="font-size:0.74rem;color:var(--text-muted);">Mẹo: Đánh dấu URL tệp kèm đuôi <code>?info=1</code> để mở thẳng bảng quản trị này.</span>
+              </div>
+            </div>
+
+            <div class="card" style="margin-bottom:0;">
+              <div class="card-title"><span>📋 Hướng Dẫn 5 Bước Cập Nhật Dữ Liệu Ngày Mới Chi Tiết (Chống Treo Nghiên Cứu)</span></div>
+              <ul class="clean-list">
+                <li><strong>Bước 1 — Sao chép Master Prompt:</strong> Bấm nút <em>"📋 Copy Master Prompt Mảng Vàng"</em> ở khung dưới (đã gắn sẵn giới hạn ≤150 nguồn tinh lọc gần nhất để hệ thống chạy ổn định).</li>
+                <li><strong>Bước 2 — Mở đúng phiên bản gốc:</strong> Bấm <em>"🚀 Mở Bản Hiện Tại"</em> ở cột bên trái để giữ nguyên chuẩn thiết kế, 15 biểu đồ và 5 bộ máy tính của phiên bản <code>v2026.11.26-GOLD-PRO</code>.</li>
+                <li><strong>Bước 3 — Đối soát 7 chỉ số neo trước khi xuất bản:</strong> Kiểm tra lại (1) XAU/USD &amp; COMEX; (2) Bảng giá 16 sản phẩm SJC/DOJI/PNJ/BTMC/Phú Quý/Mi Hồng; (3) Tỷ giá VCB &amp; USD tự do; (4) US 10Y TIPS &amp; DXY; (5) Dữ liệu SPDR &amp; CFTC COT mới nhất; (6) Tin FOMC/Thuế 301/Iran; (7) Lãi suất Online Big4 &amp; TMCP.</li>
+                <li><strong>Bước 4 — Đóng gói bản bán thương mại:</strong> Lưu mã HTML mới thành tệp <code>aurum-gold-YYYY-MM-DD.html</code> (UTF-8). Khi giao cho khách hàng, gửi file hoặc link <strong>không có đuôi <code>?info=1</code></strong> để bảng Prompt nội bộ tự động ẩn gọn gàng.</li>
+                <li><strong>Bước 5 — Cập nhật nhật ký phiên bản:</strong> Sửa mã phiên bản &amp; ngày giờ GMT+7 ở thanh Ticker, Header và Tab 10 để khách hàng mua gói định kỳ thấy rõ giá trị cập nhật mới nhất.</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="card" style="margin-top:16px;margin-bottom:0;">
+            <div class="card-title">
+              <span>📝 Master Prompt Cập Nhật Ngày Mới Chuyên Sâu Mảng Vàng (Giới Hạn ≤150 Nguồn Chất Lượng Nhất)</span>
+              <button class="btn btn-gold" onclick="copyGoldPrompt()">📋 Copy Master Prompt Mảng Vàng</button>
+            </div>
+            <textarea class="prompt-area" id="goldMasterPrompt" readonly>Hãy thực hiện nghiên cứu cập nhật chuyên sâu ĐỘC LẬP CHO MẢNG VÀNG theo ĐÚNG NGÀY GIỜ HÔM NAY (GMT+7, TP.HCM) và xuất lại 01 file HTML thương mại hoàn chỉnh kế thừa kiến trúc 10 Tab của ấn phẩm AURUM EXECUTIVE INTELLIGENCE (phiên bản gần nhất: v2026.11.26-GOLD-PRO).
+
+LƯU Ý QUAN TRỌNG VỀ PHẠM VI: Giới hạn phạm vi tổng hợp trong khoảng 120–150 nguồn chất lượng cao nhất ở thời gian gần nhất (ưu tiên nguồn sơ cấp: Fed, WGC, IMF COFER, ECB, CFTC, CME, LBMA, USTR, NHNN, Cục Thống kê, SJC/DOJI/PNJ/BTMC/Phú Quý/Mi Hồng, Goldman Sachs, UBS, Morgan Stanley, J.P. Morgan, Citi, Natixis, VnEconomy, CafeF, Lao Động) để đảm bảo tốc độ và độ sâu, tránh treo bản nghiên cứu.
+
+NỘI DUNG BẮT BUỘC CẬP NHẬT ĐẦY ĐỦ:
+1. GIÁ VÀNG LIVE & VI CẤU TRÚC VIỆT NAM:
+   - XAU/USD giao ngay, COMEX futures, Bạc XAG/USD, tỷ số Au/Ag & Au/Brent, mức sụt giảm từ đỉnh 29/01/2026 ($5.595).
+   - Bảng giá chi tiết 16 sản phẩm vàng–bạc nội địa (SJC, DOJI, PNJ, BTMC, BTMH, Phú Quý, Mi Hồng — cả vàng miếng, nhẫn 9999, nữ trang, vàng mua ngoài và bạc thỏi), tính chính xác Spread (Tr & %), chênh lệch nội–ngoại theo VCB & USD tự do, và bảng lỗ/hòa vốn cho người mua đỉnh 2026 (190,9Tr / 175Tr / 152,8Tr).
+2. CHÍNH SỰ MỸ, FED & CHIẾN SỰ QUANH MỸ (KHÔNG ĐƯỢC BỎ QUA):
+   - Quốc hội Mỹ khóa 120 (Đảng Dân chủ kiểm soát lưỡng viện từ 03/01/2027), chính quyền TT Trump, tiến độ ngân sách/Shutdown, Trần nợ công $41,1T (X-Date) & rủi ro thanh khoản Repo/TGA.
+   - Chủ tịch Fed Kevin Warsh, xác suất họp FOMC gần nhất, CPI/PCE/GDP/Beige Book Mỹ, lợi suất 10Y danh nghĩa & 10Y TIPS thực, DXY, cùng lộ trình lãi suất G10 (BoE, ECB & kế nhiệm Lagarde, BoJ, BoC, RBA).
+   - Chiến sự quanh Mỹ: Iran – eo biển Hormuz – Houthi – dầu Brent/WTI – OPEC+, Venezuela, Đài Loan, Nga–Ukraine, và diễn biến Thuế Section 301 của USTR đối với Việt Nam (mức đề xuất 35%/20%, mốc điều trần & phán quyết) + đình chiến Mỹ–Trung.
+3. CUNG – CẦU CẤU TRÚC, DÒNG TIỀN & PHÁP LÝ VIỆT NAM:
+   - Cập nhật WGC mới nhất (NHTW mua/bán, PBoC, Ba Lan, ETF toàn cầu & SPDR Gold Trust tấn nắm giữ, trang sức, bar & coin VN, công nghệ AI, sản lượng mỏ & sàn chi phí AISC, tái chế, SGE/Ấn Độ/Nhật Bản).
+   - CFTC COT Managed Money (net long, Z-score), kỹ thuật SMA50/SMA200/RSI/Hỗ trợ–Kháng cự, bảng dự báo 12 định chế lớn 2026–2030.
+   - Khung pháp lý vàng VN (NĐ 232, NĐ 390 ngưỡng 5Tr, TT 56, tiến độ 11 hồ sơ sản xuất vàng miếng & quota nhập khẩu gắn dự trữ ngoại hối, thuế 0,1% vàng miếng, sàn vàng) & 8 hồ sơ tin hành lang/rủi ro ẩn mới nhất (gồm khủng hoảng PNJ, thanh tra PCRT 2027).
+4. SO SÁNH CHI PHÍ CƠ HỘI, CHIẾN LƯỢC 3 CHU KỲ & 5 MÁY TÍNH MÔ PHỎNG:
+   - So sánh định lượng 4 kịch bản 12T & 24T giữa Nhẫn 9999 / SJC với Tiết kiệm Online (Big4 & TMCP mới nhất), USD tự do (điểm hòa vốn), Cổ phiếu VN (VN-Index & FTSE) và BĐS TP.HCM (sơ cấp/thứ cấp cắt lỗ, lãi vay thả nổi, thuế 0,2% đất bỏ hoang).
+   - Cập nhật lộ trình thực thi Ngắn hạn (vài ngày–1 tháng) – Trung hạn (6–9 tháng) – Dài hạn (1–2 năm+), 8 hồ sơ vị thế, 12 quy tắc IF→THEN, phân bổ theo 4 quy mô tài sản, 10 nguyên tắc sống còn.
+   - Đảm bảo 5 bộ máy tính tương tác hoạt động chính xác với số liệu ngày mới (Bẫy nén chênh & thuế 0,1%; Giải cứu đu đỉnh; Mô phỏng danh mục 4 kịch bản; Lịch DCA 3 bậc & chốt lời 4 bậc; Kiểm định bán vàng trả nợ vay nhà).
+5. TIÊU CHUẨN ĐẦU RA HTML THƯƠNG MẠI:
+   - Giữ phong cách sang trọng Obsidian Bullion / Swiss Ivory Editorial, Responsive, 15 biểu đồ Chart.js đơn trục (không dual-axis), đầy đủ ngày giờ xuất bản mới nhất, Tab 10 About thương mại + cơ chế tự động mở khóa Bảng Quản Trị & Prompt Cập Nhật khi URL có ?info=1 hoặc &info=1.</textarea>
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container" style="display:flex;flex-wrap:wrap;justify-content:space-between;gap:14px;align-items:center;">
+      <div>
+        <strong style="color:var(--text-primary);">AURUM EXECUTIVE INTELLIGENCE — Hệ Thống Phân Tích Chiến Lược Vàng Toàn Cầu &amp; Việt Nam</strong> • Xuất bản: <span class="mono">26/11/2026 — 10:28 GMT+7</span><br>
+        <span>Bản quyền ấn phẩm thương mại • Dữ liệu tổng hợp từ ~150 nguồn tinh lọc uy tín gần nhất. Nội dung mang tính nghiên cứu chiến lược và mô phỏng định lượng, không cấu thành cam kết lợi nhuận đầu tư.</span>
+      </div>
+      <div class="mono" style="font-size:0.74rem;color:var(--gold);">v2026.11.26-GOLD-PRO • 10 Tabs • 15 Charts • 5 Calculators</div>
+    </div>
+  </footer>
+
+  <div class="toast" id="toastMsg">Đã lưu thành công!</div>
+
+  <script>
+    // =========================================================================
+    // 1. ADMIN ?info=1 / &info=1 DETECTION & VERSION LINK PERSISTENCE
+    // =========================================================================
+    (function initAdminAndLinks() {
+      const href = window.location.href || '';
+      const search = window.location.search || '';
+      const hash = window.location.hash || '';
+      const params = new URLSearchParams(search);
+      const hasInfo = params.get('info') === '1' || href.includes('&info=1') || href.includes('?info=1') || hash.includes('info=1');
+
+      if (hasInfo) {
+        openAdminPanel(true);
+        const aboutBtn = document.getElementById('aboutTabBtn');
+        if (aboutBtn) {
+          aboutBtn.classList.add('tab-admin-active');
+          aboutBtn.textContent = '⚙️ 10. About & Prompt (?info=1)';
+        }
+      }
+
+      try {
+        const oldLink = localStorage.getItem('aurum_old_gemini_link_v20261124');
+        const currLink = localStorage.getItem('aurum_curr_gemini_link_v20261126');
+        if (oldLink) {
+          document.getElementById('oldGeminiLink').value = oldLink;
+          document.getElementById('openOldGeminiBtn').href = oldLink;
+        }
+        if (currLink) {
+          document.getElementById('currGeminiLink').value = currLink;
+          document.getElementById('openCurrGeminiBtn').href = currLink;
+        }
+      } catch (e) {}
+    })();
+
+    function openAdminPanel(forceOpen) {
+      const panel = document.getElementById('publisherAdminPanel');
+      const badge = document.getElementById('adminStatusBadge');
+      const btn = document.getElementById('toggleAdminBtn');
+      if (!panel) return;
+      if (forceOpen) panel.classList.remove('admin-collapsed');
+      else panel.classList.toggle('admin-collapsed');
+      const isOpen = !panel.classList.contains('admin-collapsed');
+      if (badge) {
+        badge.textContent = isOpen ? 'ĐÃ MỞ KHÓA' : 'ĐANG ẨN';
+        badge.className = 'mono ' + (isOpen ? 'up' : 'warn');
+      }
+      if (btn) btn.textContent = isOpen ? '🔒 Ẩn Chế Độ Quản Trị (Chế Độ Bán Hàng)' : '🔐 Mở Khóa Chế Độ Quản Trị & Prompt Cập Nhật';
+    }
+
+    function toggleAdminPanel() { openAdminPanel(false); }
+
+    function saveVersionLinks() {
+      const oldL = document.getElementById('oldGeminiLink').value.trim();
+      const currL = document.getElementById('currGeminiLink').value.trim();
+      try {
+        if (oldL) {
+          localStorage.setItem('aurum_old_gemini_link_v20261124', oldL);
+          document.getElementById('openOldGeminiBtn').href = oldL;
+        }
+        if (currL) {
+          localStorage.setItem('aurum_curr_gemini_link_v20261126', currL);
+          document.getElementById('openCurrGeminiBtn').href = currL;
+        }
+      } catch (e) {}
+      showToast('Đã lưu liên kết phiên bản gốc vào trình duyệt!');
+    }
+
+    function copyGoldPrompt() {
+      const el = document.getElementById('goldMasterPrompt');
+      el.select(); el.setSelectionRange(0, 99999);
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(el.value).then(() => showToast('Đã sao chép Master Prompt Mảng Vàng!'));
+      } else {
+        document.execCommand('copy');
+        showToast('Đã sao chép Master Prompt Mảng Vàng!');
+      }
+    }
+
+    function showToast(msg) {
+      const t = document.getElementById('toastMsg');
+      t.textContent = msg; t.classList.add('show');
+      setTimeout(() => t.classList.remove('show'), 2600);
+    }
+
+    // =========================================================================
+    // 2. THEME TOGGLE, TAB NAVIGATION & TABLE FILTERING
+    // =========================================================================
+    const chartReg = {};
+    const OZ_PER_TAEL = 37.5 / 31.1034768;
+
+    function toggleTheme() {
+      const html = document.documentElement;
+      const isDark = html.getAttribute('data-theme') === 'dark';
+      html.setAttribute('data-theme', isDark ? 'light' : 'dark');
+      document.getElementById('themeToggleBtn').textContent = isDark ? '🌙 Obsidian Bullion' : '☀️ Swiss Ivory';
+      rebuildAllCharts();
+    }
+
+    function switchTab(tabId) {
+      document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      const panel = document.getElementById(tabId);
+      const btn = document.querySelector('.tab-btn[data-tab="' + tabId + '"]');
+      if (panel) panel.classList.add('active');
+      if (btn) btn.classList.add('active');
+      setTimeout(() => {
+        Object.values(chartReg).forEach(ch => { if (ch && ch.resize) ch.resize(); });
+      }, 60);
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function filterGoldTable(cat, btnEl) {
+      document.querySelectorAll('#goldFilterRow .filter-btn').forEach(b => b.classList.remove('active'));
+      if (btnEl) btnEl.classList.add('active');
+      document.querySelectorAll('#vnGoldTable tbody tr').forEach(tr => {
+        const c = tr.getAttribute('data-cat');
+        tr.style.display = (cat === 'all' || c === cat) ? '' : 'none';
+      });
+    }
+
+    // =========================================================================
+    // 3. CHART.JS SUITE (15 CLEAN SINGLE-AXIS CHARTS)
+    // =========================================================================
+    function palette() {
+      const light = document.documentElement.getAttribute('data-theme') === 'light';
+      return {
+        text: light ? '#2b241c' : '#d6cbb9',
+        grid: light ? 'rgba(138,102,24,0.10)' : 'rgba(212,175,55,0.11)',
+        gold: light ? '#9a6f14' : '#d4af37',
+        goldLight: light ? '#c7992d' : '#f2d06b',
+        blue: light ? '#1d5bb8' : '#4b8fe2',
+        green: light ? '#137a47' : '#2eb872',
+        red: light ? '#be2b2b' : '#e05252',
+        amber: light ? '#b45309' : '#e69532',
+        plum: light ? '#6d28d9' : '#b47fe8',
+        gray: light ? '#948878' : '#746a5c'
+      };
+    }
+
+    function makeChart(id, cfg) {
+      const ctx = document.getElementById(id);
+      if (!ctx || typeof Chart === 'undefined') return null;
+      if (chartReg[id]) chartReg[id].destroy();
+      chartReg[id] = new Chart(ctx, cfg);
+      return chartReg[id];
+    }
+
+    function rebuildAllCharts() {
+      const p = palette();
+      const stdOpt = (yTitle, horizontal = false, extraScale = {}) => ({
+        responsive: true,
+        maintainAspectRatio: false,
+        indexAxis: horizontal ? 'y' : 'x',
+        plugins: {
+          legend: { labels: { color: p.text, font: { family: 'Be Vietnam Pro', size: 11 } } },
+          tooltip: { bodyFont: { family: 'Be Vietnam Pro' }, titleFont: { family: 'Be Vietnam Pro' } }
+        },
+        scales: {
+          x: {
+            ticks: { color: p.text, font: { size: 10.5 } },
+            grid: { color: p.grid },
+            title: { display: horizontal && !!yTitle, text: yTitle, color: p.text, font: { size: 11 } },
+            ...(horizontal ? extraScale : {})
+          },
+          y: {
+            ticks: { color: p.text, font: { size: 10.5 } },
+            grid: { color: p.grid },
+            title: { display: !horizontal && !!yTitle, text: yTitle, color: p.text, font: { size: 11 } },
+            ...(!horizontal ? extraScale : {})
+          }
+        }
+      });
+
+      // Chart 1 (Tab 1): Domestic Buy vs Sell vs World Parity
+      makeChart('chartDomesticCompare', {
+        type: 'bar',
+        data: {
+          labels: ['Mi Hồng SJC', 'SJC/DOJI/PNJ', 'BTMC SJC', 'Phú Quý SJC', 'Nhẫn SJC', 'Nhẫn DOJI/BTMC', 'Nhẫn Phú Quý', 'Nhẫn PNJ (9h11)', 'TG Quy Đổi VCB'],
+          datasets: [
+            { label: 'Mua Vào (Tr/lượng)', data: [132.5, 129.1, 128.5, 128.5, 127.9, 128.5, 128.5, 126.5, 112.15], backgroundColor: p.blue, borderRadius: 4 },
+            { label: 'Bán Ra (Tr/lượng)', data: [134.0, 134.1, 134.1, 134.0, 133.9, 133.5, 132.5, 132.0, 112.15], backgroundColor: p.gold, borderRadius: 4 }
+          ]
+        },
+        options: stdOpt('Triệu VND / lượng', true, { min: 105, max: 138 })
+      });
+
+      // Chart 2 (Tab 2): US Congress 120th
+      makeChart('chartUsCongress', {
+        type: 'bar',
+        data: {
+          labels: ['Thượng viện (100 ghế)', 'Hạ viện (431/435 chốt)'],
+          datasets: [
+            { label: 'Đảng Dân chủ (Khóa 120)', data: [56, 258], backgroundColor: p.blue, borderRadius: 5 },
+            { label: 'Đảng Cộng hòa (Khóa 120)', data: [44, 173], backgroundColor: p.red, borderRadius: 5 }
+          ]
+        },
+        options: stdOpt('Số ghế tại Quốc hội khóa 120', true)
+      });
+
+      // Chart 3 (Tab 2): Global Central Bank Rates
+      makeChart('chartGlobalRates', {
+        type: 'bar',
+        data: {
+          labels: ['RBA (Úc)', 'NHNN VN', 'Fed (Mỹ)', 'BoE (Anh)', 'PBoC (TQ)', 'ECB (Euro)', 'BoC (Can)', 'BoJ (Nhật)'],
+          datasets: [
+            { label: 'Hiện tại T11/2026 (%)', data: [4.85, 4.50, 4.00, 4.00, 3.00, 2.50, 2.50, 1.25], backgroundColor: p.blue, borderRadius: 4 },
+            { label: 'Dự báo đỉnh H1/2027 (%)', data: [4.85, 4.50, 4.50, 4.25, 3.00, 2.75, 2.75, 1.75], backgroundColor: p.red, borderRadius: 4 }
+          ]
+        },
+        options: stdOpt('Lãi suất điều hành (%)')
+      });
+
+      // Chart 4 (Tab 3): WGC Q3 2026 Demand & Supply YoY %
+      makeChart('chartWgcDemand', {
+        type: 'bar',
+        data: {
+          labels: ['NHTW Mua Ròng', 'Công Nghệ & AI', 'Khai Thác Mỏ', 'Vàng Tái Chế', 'Trang Sức Toàn Cầu', 'Miếng & Xu Toàn Cầu', 'Miếng & Xu VN', 'Trang Sức VN'],
+          datasets: [{
+            label: 'Biến động Q3/2026 (% YoY — WGC)',
+            data: [42, 3, 3, -8, -17, -19, -23, -39],
+            backgroundColor: [p.green, p.blue, p.gold, p.amber, p.red, p.red, p.red, '#991b1b'],
+            borderRadius: 4
+          }]
+        },
+        options: stdOpt('% Thay đổi so với cùng kỳ (YoY)', true)
+      });
+
+      // Chart 5 (Tab 3): Central Bank Net Buying/Selling 2026
+      makeChart('chartCbBuyers', {
+        type: 'bar',
+        data: {
+          labels: ['Trung Quốc (10T)', 'Ba Lan (9T)', 'Uzbekistan (9T)', 'Kazakhstan (9T)', 'Nga (9T)', 'Thổ Nhĩ Kỳ (9T)'],
+          datasets: [{
+            label: 'Mua / Bán Ròng NHTW 2026 (Tấn)',
+            data: [129, 123, 57, 44, -62, -82],
+            backgroundColor: [p.gold, p.green, p.blue, p.blue, p.red, p.red],
+            borderRadius: 5
+          }]
+        },
+        options: stdOpt('Tấn vàng ròng (2026)', true)
+      });
+
+      // Chart 6 (Tab 3): Global Gold Mining AISC Floor Progression
+      makeChart('chartAiscCurve', {
+        type: 'line',
+        data: {
+          labels: ['Q4/2021', 'FY 2022', 'Q2/2023', 'Q2/2024', 'Q3/2024', 'Q1/2026', 'Q2/2026 (Kỷ lục)'],
+          datasets: [{
+            label: 'Chi Phí Khai Thác Toàn Phần AISC Bình Quân Toàn Cầu (USD/oz)',
+            data: [1129, 1276, 1315, 1388, 1456, 1785, 1930],
+            borderColor: p.gold,
+            backgroundColor: 'rgba(212,175,55,0.16)',
+            fill: true,
+            borderWidth: 2.8,
+            tension: 0.25
+          }]
+        },
+        options: stdOpt('USD / oz (AISC)', false, { min: 1000, max: 2100 })
+      });
+
+      // Chart 7 (Tab 4): SJC Premium Compression Trap
+      makeChart('chartSjcTrap', {
+        type: 'bar',
+        data: {
+          labels: ['$3.340', '$3.575 (Nay)', '$4.200', '$4.650', '$5.000', '$5.600', '$6.000'],
+          datasets: [
+            { label: 'Lãi/Lỗ SJC nếu Chênh còn +4Tr (%)', data: [-18.9, -13.2, 1.8, 12.6, 21.1, 35.5, 45.1], backgroundColor: p.red, borderRadius: 4 },
+            { label: 'Lãi/Lỗ SJC nếu Chênh còn +8Tr (%)', data: [-15.9, -10.2, 4.8, 15.6, 24.0, 38.5, 48.1], backgroundColor: p.amber, borderRadius: 4 },
+            { label: 'Lãi/Lỗ SJC nếu Chênh giữ +22Tr (%)', data: [-5.5, 0.2, 15.2, 26.1, 34.5, 48.9, 58.6], backgroundColor: p.blue, borderRadius: 4 }
+          ]
+        },
+        options: stdOpt('Lãi/Lỗ ròng (%) so với giá mua 134,1Tr')
+      });
+
+      // Chart 8 (Tab 4): Round-Trip Friction % Drag
+      makeChart('chartSpreadFriction', {
+        type: 'bar',
+        data: {
+          labels: ['Mi Hồng SJC', 'Nhẫn Phú Quý', 'Nhẫn DOJI/BTMC', 'SJC Miếng Chuẩn', 'Nhẫn SJC (1-5 chỉ)', 'SJC Rách Vỉ/Móp', 'Vàng Tự Do Ngoài'],
+          datasets: [{
+            label: 'Độ hụt ma sát khứ hồi ngay ngày đầu (% Giá trị)',
+            data: [1.22, 3.02, 3.75, 3.82, 4.48, 4.57, 12.12],
+            backgroundColor: [p.green, p.green, p.blue, p.amber, p.red, p.red, '#991b1b'],
+            borderRadius: 5
+          }]
+        },
+        options: stdOpt('% Mất mát nếu mua bán ngay', true)
+      });
+
+      // Chart 9 (Tab 6): Gold Actual Path + 2027-2028 Bank Forecasts
+      makeChart('chartGoldPath', {
+        type: 'line',
+        data: {
+          labels: ['T1/26 Đỉnh', 'Q2/26 TB', 'Q3/26 TB', '25/11 Đáy', '26/11 Nay', 'Q1/27', 'Q2/27', 'Cuối 2027', 'Cuối 2028'],
+          datasets: [
+            { label: 'Thực tế XAU/USD', data: [5595, 4506, 4262, 3426, 3575, null, null, null, null], borderColor: p.text, backgroundColor: p.text, borderWidth: 3, tension: 0.22 },
+            { label: 'Goldman Sachs', data: [null, null, null, null, 3575, null, null, 4650, 5600], borderColor: p.gold, borderDash: [6, 4], borderWidth: 2.6, spanGaps: true, tension: 0.2 },
+            { label: 'UBS Wealth', data: [null, null, null, null, 3575, 4200, 4600, 5000, null], borderColor: p.blue, borderDash: [6, 4], borderWidth: 2.4, tension: 0.2 },
+            { label: 'Cảnh báo ngắn hạn Natixis', data: [null, null, null, null, 3575, 3340, null, null, null], borderColor: p.red, borderDash: [4, 4], borderWidth: 2.2, tension: 0.1 }
+          ]
+        },
+        options: stdOpt('USD / troy ounce')
+      });
+
+      // Chart 10 (Tab 6): 6 Historical Gold Crashes
+      makeChart('chartHistoryCrashes', {
+        type: 'bar',
+        data: {
+          labels: ['1974–76', '1980–99', '2008 GFC', '2011–15', '2020–22', '2026 (Tới 25/11)'],
+          datasets: [{
+            label: 'Mức sụt giảm Đỉnh → Đáy (%)',
+            data: [-47.0, -70.3, -33.9, -44.6, -21.9, -38.8],
+            backgroundColor: [p.gray, p.red, p.blue, p.amber, p.green, p.gold],
+            borderRadius: 5
+          }]
+        },
+        options: stdOpt('% Giảm từ đỉnh')
+      });
+
+      // Chart 11 (Tab 6): 2027 Bank Price Targets Comparison
+      makeChart('chartBankTargets2027', {
+        type: 'bar',
+        data: {
+          labels: ['World Bank (TB)', 'Goldman Sachs (Cuối 27)', 'ANZ', 'HSBC (TB)', 'BofA (TB)', 'UBS Wealth', 'Citi (6–12T)', 'SocGen', 'Morgan Stanley (H2)', 'Wells Fargo (Giữa)', 'Metals Focus (TB)', 'J.P. Morgan (Cuối 27)'],
+          datasets: [{
+            label: 'Mục Tiêu Giá Vàng Năm 2027 (USD/oz)',
+            data: [4250, 4650, 4800, 4825, 4813, 5000, 5000, 5000, 5050, 5300, 5330, 6300],
+            backgroundColor: [p.gray, p.amber, p.blue, p.blue, p.blue, p.gold, p.gold, p.gold, p.goldLight, p.green, p.green, p.plum],
+            borderRadius: 4
+          }]
+        },
+        options: stdOpt('USD / oz (Mốc 2027)', true, { min: 3500, max: 6600 })
+      });
+
+      // Chart 12 (Tab 7): 24M Expected Return Ranking across 8 Channels
+      makeChart('chartChannel24m', {
+        type: 'bar',
+        data: {
+          labels: ['XAU Quốc tế', 'Nhẫn 9999 PQ/MH', 'Vàng miếng SJC', 'CP VN30/FTSE', 'BĐS HCM 0% vay', 'Tiết kiệm Online', 'BĐS Vay 50%', 'USD Tự do 0%'],
+          datasets: [{
+            label: 'Kỳ vọng E[R] 24 Tháng (%) — Gia quyền 4 kịch bản',
+            data: [47.02, 32.62, 27.77, 26.50, 18.30, 14.15, 6.85, 2.95],
+            backgroundColor: [p.goldLight, p.gold, p.amber, p.blue, p.green, p.plum, p.red, p.red],
+            borderRadius: 5
+          }]
+        },
+        options: stdOpt('Tỷ suất kỳ vọng 24T (%) — CPI ~9,0%', true)
+      });
+
+      // Chart 13 (Tab 7): Real Yield vs Vietnam 10M CPI 4.57%
+      makeChart('chartRealYield', {
+        type: 'bar',
+        data: {
+          labels: ['Saigonbank 13M (7,9%)', 'HDBank ĐB 12M (7,2%)', 'VPBank Online (7,1%)', 'VCBNeo/VTB V-Plus (7%)', 'Agri/BIDV Online (6,8%)', 'Big4 Quầy & VCB (5,4%)', 'Thuê CH B.Dương (4,5%)', 'Thuê CH Lõi HCM (2,5%)', 'USD Tiền mặt (0%)'],
+          datasets: [{
+            label: 'Lợi suất thực sau CPI 4,57% (%/năm)',
+            data: [3.33, 2.63, 2.53, 2.43, 2.23, 0.83, -0.07, -2.07, -4.57],
+            backgroundColor: [p.green, p.green, p.blue, p.blue, p.gold, p.gray, p.amber, p.red, p.red],
+            borderRadius: 5
+          }]
+        },
+        options: stdOpt('Lợi suất thực (%/năm)', true)
+      });
+
+      // Dynamic Simulator Charts 14 & 15 triggered via calculators
+      runCalc1();
+      runCalc2();
+      runCalc3();
+      runCalc4();
+      runCalc5();
+    }
+
+    // =========================================================================
+    // 4. CALCULATOR 1: SJC PREMIUM COMPRESSION & 0.1% PIT SIMULATOR
+    // =========================================================================
+    function runCalc1() {
+      const qty = parseFloat(document.getElementById('c1Taels').value) || 10;
+      const cost = parseFloat(document.getElementById('c1Cost').value) || 134.1;
+      const xau = parseFloat(document.getElementById('c1TargetXau').value) || 5000;
+      const fx = parseFloat(document.getElementById('c1Fx').value) || 26500;
+      const prem = parseFloat(document.getElementById('c1Prem').value) || 8;
+      const spr = parseFloat(document.getElementById('c1Spread').value) || 3.0;
+      const type = document.getElementById('c1Type').value;
+
+      const worldRaw = (xau * OZ_PER_TAEL * fx) / 1e6;
+      const worldLanded = worldRaw * 1.01;
+      const sellListed = worldLanded + prem;
+      const buybackGross = sellListed - spr;
+      const taxRate = type === 'sjc' ? 0.001 : 0.0;
+      const buybackNet = buybackGross * (1 - taxRate);
+
+      const xauRet = ((xau / 3575) - 1) * 100;
+      const vnRet = ((buybackNet / cost) - 1) * 100;
+      const trapDrag = vnRet - xauRet;
+      const pnlTotalM = (buybackNet - cost) * qty;
+      const taxTotalM = (buybackGross * taxRate) * qty;
+
+      document.getElementById('c1Output').innerHTML = `
+        <div class="mini-stat-grid">
+          <div class="mini-stat"><div class="mini-stat-label">Vàng TG Quy Đổi (+1%)</div><div class="mini-stat-val mono">${worldLanded.toFixed(1)} Tr</div></div>
+          <div class="mini-stat"><div class="mini-stat-label">Giá Thu Mua Thực Nhận</div><div class="mini-stat-val mono warn">${buybackNet.toFixed(1)} Tr</div></div>
+          <div class="mini-stat"><div class="mini-stat-label">Lãi Vàng TG vs Vàng VN</div><div class="mini-stat-val mono ${vnRet >= 0 ? 'up' : 'down'}">${xauRet >= 0 ? '+' : ''}${xauRet.toFixed(1)}% vs ${vnRet >= 0 ? '+' : ''}${vnRet.toFixed(1)}%</div></div>
+          <div class="mini-stat"><div class="mini-stat-label">Lãi / Lỗ Ròng (${qty} lượng)</div><div class="mini-stat-val mono ${pnlTotalM >= 0 ? 'up' : 'down'}">${pnlTotalM >= 0 ? '+' : ''}${pnlTotalM.toFixed(1)} Tr</div></div>
+        </div>
+        <div style="font-size:0.79rem;color:var(--text-secondary);">
+          • <strong>Độ hụt lợi suất do Bẫy Nén Chênh Lệch + Spread:</strong> <strong class="mono ${trapDrag < 0 ? 'down' : 'up'}">${trapDrag >= 0 ? '+' : ''}${trapDrag.toFixed(1)} điểm %</strong> so với đà tăng quốc tế.<br>
+          • Thuế TNCN dự phòng (0,1% nếu áp vàng miếng): <strong class="mono">${taxTotalM.toFixed(2)} Triệu VND</strong> (${type === 'ring' ? '<span class="up">Miễn thuế cho Nhẫn 9999</span>' : 'Đã khấu trừ vào thực nhận'}).
+        </div>
+      `;
+    }
+
+    // =========================================================================
+    // 5. CALCULATOR 2: TRAPPED PEAK BUYER RESCUE & AVERAGE-DOWN (+ CHART #14)
+    // =========================================================================
+    function runCalc2() {
+      const oldQ = parseFloat(document.getElementById('c2OldQty').value) || 5;
+      const oldC = parseFloat(document.getElementById('c2OldCost').value) || 190.9;
+      const addQ = parseFloat(document.getElementById('c2AddQty').value) || 0;
+      const addP = parseFloat(document.getElementById('c2AddPrice').value) || 126.0;
+      const premExit = parseFloat(document.getElementById('c2PremExit').value) || 12;
+
+      const fx27 = 26500;
+      const spreadExit = 3.0;
+      const totalQ = oldQ + addQ;
+      const blendedCost = (oldQ * oldC + addQ * addP) / totalQ;
+      const lossNowM = (129.1 - oldC) * oldQ;
+
+      const solveXau = (targetBuyback, prem) => ((targetBuyback + spreadExit - prem) * 1e6) / (OZ_PER_TAEL * fx27 * 1.01);
+      const xauNoAvg = solveXau(oldC, premExit);
+      const xauWithAvg = solveXau(blendedCost, premExit);
+
+      document.getElementById('c2Output').innerHTML = `
+        <div class="mini-stat-grid">
+          <div class="mini-stat"><div class="mini-stat-label">Lỗ Tạm Tính Hôm Nay</div><div class="mini-stat-val mono down">${lossNowM.toFixed(1)} Tr</div></div>
+          <div class="mini-stat"><div class="mini-stat-label">Giá Vốn Mới (Sau TB)</div><div class="mini-stat-val mono warn">${blendedCost.toFixed(1)} Tr</div></div>
+          <div class="mini-stat"><div class="mini-stat-label">XAU Về Bờ (Không TB)</div><div class="mini-stat-val mono down">$${Math.round(xauNoAvg).toLocaleString('en-US')}</div></div>
+          <div class="mini-stat"><div class="mini-stat-label">XAU Về Bờ (Có TB Giá)</div><div class="mini-stat-val mono up">$${Math.round(xauWithAvg).toLocaleString('en-US')}</div></div>
+        </div>
+        <div style="font-size:0.79rem;color:var(--text-secondary);">
+          Với bổ sung <strong class="mono">${(addQ * addP).toFixed(0)} Tr</strong> mua thêm ${addQ} lượng ở giá ${addP}Tr, mốc XAU/USD cần để hòa vốn toàn bộ ${totalQ} lượng giảm từ <strong class="mono">$${Math.round(xauNoAvg)}</strong> xuống <strong class="mono up">$${Math.round(xauWithAvg)}</strong> (rút ngắn <strong class="mono up">$${Math.round(xauNoAvg - xauWithAvg)}/oz</strong> khoảng cách phục hồi, giả định FX 26.500đ &amp; chênh +${premExit}Tr).
+        </div>
+      `;
+
+      const p = palette();
+      makeChart('chartRescue', {
+        type: 'bar',
+        data: {
+          labels: ['Chênh +20Tr (Ko TB)', 'Chênh +12Tr (Ko TB)', 'Chênh +6Tr (Ko TB)', 'Chênh +12Tr (CÓ TB)', 'Chênh +6Tr (CÓ TB)'],
+          datasets: [{
+            label: 'Mốc XAU/USD cần đạt để về bờ ($/oz)',
+            data: [
+              Math.round(solveXau(oldC, 20)),
+              Math.round(solveXau(oldC, 12)),
+              Math.round(solveXau(oldC, 6)),
+              Math.round(solveXau(blendedCost, 12)),
+              Math.round(solveXau(blendedCost, 6))
+            ],
+            backgroundColor: [p.amber, p.red, p.red, p.green, p.blue],
+            borderRadius: 5
+          }]
+        },
+        options: {
+          responsive: true, maintainAspectRatio: false,
+          plugins: { legend: { display: false } },
+          scales: {
+            x: { ticks: { color: p.text, font: { size: 9.5 } }, grid: { color: p.grid } },
+            y: { ticks: { color: p.text, font: { size: 10 } }, grid: { color: p.grid }, title: { display: true, text: 'XAU/USD ($/oz)', color: p.text, font: { size: 10 } } }
+          }
+        }
+      });
+    }
+
+    // =========================================================================
+    // 6. CALCULATOR 3: 24M MULTI-ASSET PORTFOLIO SIMULATOR (+ CHART #15)
+    // =========================================================================
+    const RET24 = {
+      ring: { base: 30.5, peace: 14.0, war: 77.5, quota: 4.0 },
+      sjc:  { base: 25.5, peace: 9.0,  war: 74.0, quota: -2.0 },
+      dep:  { base: 13.8, peace: 12.4, war: 16.2, quota: 14.8 },
+      eq:   { base: 34.0, peace: 52.0, war: -14.0, quota: 24.0 },
+      re:   { base: 22.0, peace: 35.0, war: -5.0, quota: 16.0 },
+      usd:  { base: 2.5,  peace: -2.5, war: 9.0,  quota: 3.5 }
+    };
+
+    function setC3Preset(r, s, d, e, re, u) {
+      document.getElementById('wRing').value = r;
+      document.getElementById('wSjc').value = s;
+      document.getElementById('wDep').value = d;
+      document.getElementById('wEq').value = e;
+      document.getElementById('wRe').value = re;
+      document.getElementById('wUsd').value = u;
+      runCalc3();
+    }
+
+    function runCalc3() {
+      const cap = parseFloat(document.getElementById('c3Cap').value) || 5.0;
+      const scen = document.getElementById('c3Scen').value;
+      const wR = +document.getElementById('wRing').value;
+      const wS = +document.getElementById('wSjc').value;
+      const wD = +document.getElementById('wDep').value;
+      const wE = +document.getElementById('wEq').value;
+      const wRe = +document.getElementById('wRe').value;
+      const wU = +document.getElementById('wUsd').value;
+      const sumW = wR + wS + wD + wE + wRe + wU;
+
+      document.getElementById('lRing').textContent = wR + '%';
+      document.getElementById('lSjc').textContent = wS + '%';
+      document.getElementById('lDep').textContent = wD + '%';
+      document.getElementById('lEq').textContent = wE + '%';
+      document.getElementById('lRe').textContent = wRe + '%';
+      document.getElementById('lUsd').textContent = wU + '%';
+
+      const norm = sumW > 0 ? sumW : 100;
+      const portRet = (k) => (wR * RET24.ring[k] + wS * RET24.sjc[k] + wD * RET24.dep[k] + wE * RET24.eq[k] + wRe * RET24.re[k] + wU * RET24.usd[k]) / norm;
+      const rBase = portRet('base'), rPeace = portRet('peace'), rWar = portRet('war'), rQuota = portRet('quota');
+      const rW = 0.45 * rBase + 0.20 * rPeace + 0.20 * rWar + 0.15 * rQuota;
+      const chosen = scen === 'base' ? rBase : scen === 'peace' ? rPeace : scen === 'war' ? rWar : scen === 'quota' ? rQuota : rW;
+      const finalV = cap * (1 + chosen / 100);
+      const realPct = chosen - 9.0;
+      const warnSum = sumW !== 100 ? `<div class="warn" style="font-size:0.76rem;margin-bottom:6px;">⚠️ Tổng tỷ trọng là ${sumW}% (tự động chuẩn hóa về 100%).</div>` : '';
+
+      document.getElementById('c3Output').innerHTML = `
+        ${warnSum}
+        <div class="mini-stat-grid">
+          <div class="mini-stat"><div class="mini-stat-label">Giá Trị Sau 24 Tháng</div><div class="mini-stat-val mono warn">${finalV.toFixed(2)} Tỷ</div></div>
+          <div class="mini-stat"><div class="mini-stat-label">Tỷ Suất Danh Nghĩa</div><div class="mini-stat-val mono ${chosen >= 0 ? 'up' : 'down'}">${chosen >= 0 ? '+' : ''}${chosen.toFixed(2)}%</div></div>
+          <div class="mini-stat"><div class="mini-stat-label">Lãi Thực Sau CPI (~9%)</div><div class="mini-stat-val mono ${realPct >= 0 ? 'up' : 'down'}">${realPct >= 0 ? '+' : ''}${realPct.toFixed(1)}%</div></div>
+          <div class="mini-stat"><div class="mini-stat-label">Lãi Ròng Tuyệt Đối</div><div class="mini-stat-val mono ${finalV >= cap ? 'up' : 'down'}">${finalV >= cap ? '+' : ''}${(finalV - cap).toFixed(2)} Tỷ</div></div>
+        </div>
+        <div style="font-size:0.77rem;color:var(--text-secondary);">
+          Cơ sở (45%): <strong>${rBase >= 0 ? '+' : ''}${rBase.toFixed(1)}%</strong> • Hòa bình (20%): <strong>${rPeace >= 0 ? '+' : ''}${rPeace.toFixed(1)}%</strong> • Chiến tranh (20%): <strong class="${rWar >= 0 ? 'up' : 'down'}">${rWar >= 0 ? '+' : ''}${rWar.toFixed(1)}%</strong> • Xả Quota (15%): <strong class="${rQuota >= 0 ? 'up' : 'down'}">${rQuota >= 0 ? '+' : ''}${rQuota.toFixed(1)}%</strong>
+        </div>
+      `;
+
+      const p = palette();
+      const qLbl = ['26/11/26', 'Q1/27', 'Q2/27', 'Q3/27', 'Q4/27', 'Q2/28', 'T11/28'];
+      const curve = (tot, dip) => [0, dip, 0.24, 0.48, 0.68, 0.86, 1.0].map(s => +(cap * (1 + (tot / 100) * s)).toFixed(2));
+      makeChart('chartSimPaths', {
+        type: 'line',
+        data: {
+          labels: qLbl,
+          datasets: [
+            { label: 'Cơ sở (Tỷ)', data: curve(rBase, -0.06), borderColor: p.gold, borderWidth: 2.5, tension: 0.28 },
+            { label: 'Chiến tranh (Tỷ)', data: curve(rWar, 0.32), borderColor: p.red, borderDash: [5, 3], borderWidth: 2, tension: 0.28 },
+            { label: 'Hòa bình (Tỷ)', data: curve(rPeace, 0.08), borderColor: p.green, borderDash: [5, 3], borderWidth: 2, tension: 0.28 },
+            { label: 'Xả Quota (Tỷ)', data: curve(rQuota, -0.25), borderColor: p.blue, borderDash: [3, 3], borderWidth: 1.8, tension: 0.28 }
+          ]
+        },
+        options: {
+          responsive: true, maintainAspectRatio: false,
+          plugins: { legend: { labels: { color: p.text, font: { size: 10 } } } },
+          scales: {
+            x: { ticks: { color: p.text, font: { size: 10 } }, grid: { color: p.grid } },
+            y: { ticks: { color: p.text, font: { size: 10 } }, grid: { color: p.grid }, title: { display: true, text: 'Tài sản (Tỷ VND)', color: p.text, font: { size: 10 } } }
+          }
+        }
+      });
+    }
+
+    // =========================================================================
+    // 7. CALCULATOR 4: 3-TRANCHE DCA & 4-STEP TAKE-PROFIT GENERATOR
+    // =========================================================================
+    function runCalc4() {
+      const budgetB = parseFloat(document.getElementById('c4Budget').value) || 1.5;
+      const prod = document.getElementById('c4Prod').value;
+      const budgetM = budgetB * 1000;
+      const px = prod === 'ring' ? [131.0, 125.0, 122.0] : [132.5, 126.5, 123.0];
+      const w = [0.25, 0.35, 0.40];
+      const mAmt = w.map(x => budgetM * x);
+      const qty = mAmt.map((m, i) => m / px[i]);
+      const totQty = qty.reduce((a, b) => a + b, 0);
+      const avgCost = budgetM / totQty;
+      const saveVsToday = ((avgCost / 134.1) - 1) * 100;
+
+      const tpPrices = [158, 172, 190, 205];
+      const tpW = [0.25, 0.35, 0.25, 0.15];
+      const tpCash = tpPrices.reduce((acc, pr, idx) => acc + (totQty * tpW[idx] * pr), 0);
+      const totProfitM = tpCash - budgetM;
+
+      document.getElementById('c4Output').innerHTML = `
+        <div class="table-wrap" style="margin-top:6px;">
+          <table style="min-width:420px;font-size:0.76rem;">
+            <thead><tr><th>Bậc Mua DCA</th><th>Tiền Giải Ngân</th><th>Vùng Giá VN</th><th>Khối Lượng</th><th>Điều Kiện Kích Hoạt</th></tr></thead>
+            <tbody>
+              <tr><td><strong>Bậc 1 (25%)</strong></td><td class="mono">${mAmt[0].toFixed(0)} Tr</td><td class="mono">${px[0]} Tr</td><td class="mono up">${qty[0].toFixed(2)} lượng</td><td>Sau FOMC 09/12 nếu XAU giữ $3.430–$3.520</td></tr>
+              <tr><td><strong>Bậc 2 (35%)</strong></td><td class="mono">${mAmt[1].toFixed(0)} Tr</td><td class="mono">${px[1]} Tr</td><td class="mono up">${qty[1].toFixed(2)} lượng</td><td>Nếu XAU test $3.340–$3.430 (Natixis/giải chấp AI)</td></tr>
+              <tr><td><strong>Bậc 3 (40%)</strong></td><td class="mono">${mAmt[2].toFixed(0)} Tr</td><td class="mono">${px[2]} Tr</td><td class="mono up">${qty[2].toFixed(2)} lượng</td><td>Bất kỳ XAU &lt;$4.000 KHI chênh co &lt;12–14Tr</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="calc-result-box" style="margin-top:8px;">
+          <div style="font-size:0.8rem;color:var(--text-secondary);line-height:1.55;">
+            • <strong>Tổng gom:</strong> <strong class="mono up">${totQty.toFixed(2)} lượng</strong> • <strong>Giá vốn bình quân:</strong> <strong class="mono warn">${avgCost.toFixed(2)} Tr/lượng</strong> (rẻ hơn <strong class="up">${saveVsToday.toFixed(1)}%</strong> so với mua 1 cục hôm nay 134,1Tr).<br>
+            • <strong>Lộ trình Chốt lời 4 Bậc (2027–2028):</strong> Chốt 25% @ 158Tr ($4.650) → 35% @ 172Tr ($5.000) → 25% @ 190Tr ($5.600) → giữ lõi 15% (@ 205Tr). Tổng giá trị quy đổi dự kiến: <strong class="mono up">${(tpCash/1000).toFixed(2)} Tỷ VND</strong> (Lãi ròng <strong class="mono up">+${totProfitM.toFixed(0)} Tr / +${((totProfitM/budgetM)*100).toFixed(1)}%</strong>).
+          </div>
+        </div>
+      `;
+    }
+
+    // =========================================================================
+    // 8. CALCULATOR 5: SELL GOLD TO PAY DOWN HIGH-RATE MORTGAGE TEST
+    // =========================================================================
+    function runCalc5() {
+      const loanB = parseFloat(document.getElementById('c5Loan').value) || 2.5;
+      const rate = parseFloat(document.getElementById('c5Rate').value) || 13.5;
+      const gSell = parseFloat(document.getElementById('c5GoldSell').value) || 8;
+      const gPx = parseFloat(document.getElementById('c5SellPx').value) || 132.5;
+
+      const cashInM = gSell * gPx;
+      const actualPayM = Math.min(cashInM, loanB * 1000);
+      const intSaved1Y = actualPayM * (rate / 100);
+      const intSaved2Y = intSaved1Y * 2;
+      const goldNeedPx1Y = gPx * (1 + rate / 100);
+      const verdict = rate >= 12.5
+        ? '<span class="up">✅ NÊN BÁN 1 PHẦN VÀNG TRẢ BỚT NỢ:</span> Lãi vay thả nổi ' + rate + '% là chi phí chắc chắn, đòi hỏi giá thu mua vàng phải vượt <strong>' + goldNeedPx1Y.toFixed(1) + ' Tr/lượng</strong> sau 12 tháng mới hòa vốn chi phí lãi vay.'
+        : '<span class="warn">⚖️ CÂN NHẮC GIỮ VÀNG NẾU DTI AN TOÀN:</span> Lãi vay dưới 12,5% ở mức chấp nhận được; chỉ nên bán vàng nếu áp lực dòng tiền tháng vượt 40% thu nhập.';
+
+      document.getElementById('c5Output').innerHTML = `
+        <div class="mini-stat-grid">
+          <div class="mini-stat"><div class="mini-stat-label">Tiền Thu Về Trả Gốc</div><div class="mini-stat-val mono">${(actualPayM/1000).toFixed(2)} Tỷ</div></div>
+          <div class="mini-stat"><div class="mini-stat-label">Tiền Lãi Tiết Kiệm 1 Năm</div><div class="mini-stat-val mono up">+${intSaved1Y.toFixed(0)} Tr</div></div>
+          <div class="mini-stat"><div class="mini-stat-label">Tiền Lãi Tiết Kiệm 2 Năm</div><div class="mini-stat-val mono up">+${intSaved2Y.toFixed(0)} Tr</div></div>
+          <div class="mini-stat"><div class="mini-stat-label">Giá Vàng Hòa Vốn Lãi Vay 1Y</div><div class="mini-stat-val mono down">${goldNeedPx1Y.toFixed(1)} Tr</div></div>
+        </div>
+        <div style="font-size:0.8rem;color:var(--text-secondary);">${verdict}</div>
+      `;
+    }
+
+    window.addEventListener('DOMContentLoaded', rebuildAllCharts);
+  </script>
+</body>
+</html>
