@@ -1,0 +1,2525 @@
+<!DOCTYPE html>
+<html lang="vi" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FB Content Studio Pro v2.6 — Hệ Thống Tạo Bài Viral, Ảnh 4:5 & Kiếm Tiền 2026</title>
+  <meta name="description" content="Ứng dụng All-in-One nghiên cứu, tạo bài viết Facebook 3 phương án kèm hình ảnh AI Photorealistic & Canvas 4:5, mô phỏng doanh thu và quản trị dữ liệu bài/game." />
+  <style>
+    :root {
+      --bg: #f4f6fb;
+      --surface: #ffffff;
+      --surface-2: #f8fafc;
+      --border: #e2e8f0;
+      --text: #0f172a;
+      --text-muted: #475569;
+      --primary: #1a73e8;
+      --primary-hover: #1557b0;
+      --primary-soft: #e8f0fe;
+      --accent: #0ea5e9;
+      --success: #16a34a;
+      --success-soft: #dcfce7;
+      --warn: #d97706;
+      --warn-soft: #fef3c7;
+      --danger: #dc2626;
+      --danger-soft: #fee2e2;
+      --shadow-sm: 0 1px 2px rgba(15, 23, 42, 0.06);
+      --shadow-md: 0 6px 20px rgba(15, 23, 42, 0.08);
+      --radius: 14px;
+      --radius-sm: 9px;
+      --font: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    }
+
+    [data-theme="dark"] {
+      --bg: #0b1120;
+      --surface: #111827;
+      --surface-2: #1e293b;
+      --border: #2b384d;
+      --text: #f1f5f9;
+      --text-muted: #94a3b8;
+      --primary: #3b82f6;
+      --primary-hover: #2563eb;
+      --primary-soft: rgba(59, 130, 246, 0.16);
+      --accent: #38bdf8;
+      --success: #22c55e;
+      --success-soft: rgba(34, 197, 94, 0.15);
+      --warn: #f59e0b;
+      --warn-soft: rgba(245, 158, 11, 0.15);
+      --danger: #ef4444;
+      --danger-soft: rgba(239, 68, 68, 0.15);
+      --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.4);
+      --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.45);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: var(--font);
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      min-height: 100vh;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: var(--primary); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    /* Top Header */
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      box-shadow: var(--shadow-sm);
+    }
+    .topbar-inner {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 12px 18px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .brand-logo {
+      width: 38px;
+      height: 38px;
+      border-radius: 10px;
+      background: linear-gradient(135deg, #1a73e8, #0ea5e9);
+      color: #fff;
+      display: grid;
+      place-items: center;
+      font-weight: 800;
+      font-size: 16px;
+      letter-spacing: -0.5px;
+      flex-shrink: 0;
+    }
+    .brand h1 { font-size: 16px; font-weight: 800; line-height: 1.2; }
+    .brand small { font-size: 12px; color: var(--text-muted); display: block; }
+    .topbar-actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 10px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 600;
+      background: var(--primary-soft);
+      color: var(--primary);
+    }
+    .badge.success { background: var(--success-soft); color: var(--success); }
+    .badge.warn { background: var(--warn-soft); color: var(--warn); }
+    .badge.danger { background: var(--danger-soft); color: var(--danger); }
+
+    /* Navigation Tabs */
+    .nav-wrap {
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-tabs {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 8px 18px;
+      display: flex;
+      gap: 6px;
+      overflow-x: auto;
+      scrollbar-width: thin;
+    }
+    .nav-btn {
+      border: 1px solid transparent;
+      background: transparent;
+      color: var(--text-muted);
+      padding: 9px 14px;
+      border-radius: var(--radius-sm);
+      font-size: 13.5px;
+      font-weight: 600;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: all 0.16s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .nav-btn:hover { background: var(--surface-2); color: var(--text); }
+    .nav-btn.active {
+      background: var(--primary);
+      color: #fff;
+      box-shadow: 0 2px 8px rgba(26, 115, 232, 0.28);
+    }
+
+    /* Main Container */
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 20px 18px 60px;
+    }
+    .tab-panel { display: none; animation: fadeIn 0.2s ease; }
+    .tab-panel.active { display: block; }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: none; } }
+
+    /* Layout Grids */
+    .grid-2 { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; }
+    .grid-3 { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+    .grid-4 { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px; }
+    .studio-grid { display: grid; grid-template-columns: 400px minmax(0, 1fr); gap: 20px; align-items: start; }
+
+    /* Cards */
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 18px;
+      box-shadow: var(--shadow-sm);
+    }
+    .card + .card { margin-top: 16px; }
+    .card-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      margin-bottom: 14px;
+      flex-wrap: wrap;
+    }
+    .card-title { font-size: 16px; font-weight: 700; display: flex; align-items: center; gap: 8px; }
+    .section-title { font-size: 20px; font-weight: 800; margin-bottom: 6px; }
+    .section-sub { font-size: 14px; color: var(--text-muted); margin-bottom: 18px; }
+
+    /* Form Controls */
+    .field { margin-bottom: 13px; }
+    .field label {
+      display: block;
+      font-size: 12.5px;
+      font-weight: 700;
+      color: var(--text-muted);
+      margin-bottom: 5px;
+      text-transform: uppercase;
+      letter-spacing: 0.3px;
+    }
+    select, input[type="text"], input[type="password"], input[type="number"], textarea {
+      width: 100%;
+      padding: 10px 12px;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border);
+      background: var(--surface-2);
+      color: var(--text);
+      font-family: inherit;
+      font-size: 14px;
+      transition: border-color 0.15s;
+    }
+    select:focus, input:focus, textarea:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px var(--primary-soft);
+    }
+    textarea { resize: vertical; min-height: 80px; }
+
+    /* Buttons */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 7px;
+      padding: 9px 14px;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border);
+      background: var(--surface-2);
+      color: var(--text);
+      font-size: 13.5px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+    .btn:hover { border-color: var(--primary); color: var(--primary); }
+    .btn-primary {
+      background: var(--primary);
+      border-color: var(--primary);
+      color: #fff;
+    }
+    .btn-primary:hover { background: var(--primary-hover); color: #fff; }
+    .btn-success {
+      background: var(--success);
+      border-color: var(--success);
+      color: #fff;
+    }
+    .btn-success:hover { opacity: 0.92; color: #fff; }
+    .btn-lg { width: 100%; padding: 13px 18px; font-size: 15px; font-weight: 700; }
+    .btn-sm { padding: 6px 10px; font-size: 12.5px; }
+
+    /* Topic Chips */
+    .chip-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      max-height: 165px;
+      overflow-y: auto;
+      padding: 2px 0;
+    }
+    .chip {
+      font-size: 12.5px;
+      padding: 6px 10px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: var(--surface-2);
+      color: var(--text);
+      cursor: pointer;
+      transition: all 0.15s;
+      text-align: left;
+    }
+    .chip:hover { border-color: var(--primary); }
+    .chip.selected {
+      background: var(--primary-soft);
+      border-color: var(--primary);
+      color: var(--primary);
+      font-weight: 700;
+    }
+
+    /* Variant Switcher & Preview */
+    .variant-bar {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-bottom: 14px;
+    }
+    .variant-pill {
+      padding: 7px 12px;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border);
+      background: var(--surface-2);
+      color: var(--text-muted);
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+    .variant-pill.active {
+      background: var(--primary-soft);
+      border-color: var(--primary);
+      color: var(--primary);
+    }
+
+    .fb-preview {
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      background: var(--surface-2);
+      overflow: hidden;
+    }
+    .fb-head {
+      padding: 12px 14px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid var(--border);
+      background: var(--surface);
+    }
+    .fb-author { display: flex; align-items: center; gap: 10px; }
+    .fb-avatar {
+      width: 40px; height: 40px; border-radius: 50%;
+      background: linear-gradient(135deg, #1a73e8, #6366f1);
+      color: #fff; font-weight: 800; display: grid; place-items: center; font-size: 14px;
+    }
+    .fb-body {
+      padding: 14px;
+      white-space: pre-wrap;
+      font-size: 14.5px;
+      line-height: 1.65;
+      max-height: 430px;
+      overflow-y: auto;
+      background: var(--surface);
+    }
+    .hook-highlight {
+      background: var(--warn-soft);
+      padding: 2px 4px;
+      border-radius: 4px;
+      font-weight: 600;
+    }
+    .seemore-tag {
+      display: inline-block;
+      font-size: 11.5px;
+      font-weight: 700;
+      color: var(--primary);
+      background: var(--primary-soft);
+      padding: 1px 7px;
+      border-radius: 4px;
+      margin: 0 4px;
+    }
+    .metrics-strip {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      padding: 10px 14px;
+      border-top: 1px solid var(--border);
+      background: var(--surface-2);
+      font-size: 12.5px;
+    }
+
+    /* Visual Output Box */
+    .visual-box {
+      display: grid;
+      grid-template-columns: 320px minmax(0, 1fr);
+      gap: 16px;
+      align-items: start;
+      margin-top: 16px;
+    }
+    .media-frame {
+      width: 100%;
+      aspect-ratio: 4 / 5;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      background: #0f172a;
+      overflow: hidden;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .media-frame canvas, .media-frame img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .media-loader {
+      position: absolute;
+      inset: 0;
+      background: rgba(15, 23, 42, 0.78);
+      color: #fff;
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      font-size: 13px;
+      padding: 16px;
+      text-align: center;
+    }
+    .media-loader.show { display: flex; }
+
+    /* Tables */
+    .table-wrap { overflow-x: auto; border: 1px solid var(--border); border-radius: var(--radius-sm); }
+    table { width: 100%; border-collapse: collapse; font-size: 13.5px; }
+    th, td { padding: 10px 12px; text-align: left; border-bottom: 1px solid var(--border); vertical-align: top; }
+    th { background: var(--surface-2); font-weight: 700; font-size: 12.5px; text-transform: uppercase; letter-spacing: 0.3px; color: var(--text-muted); }
+    tr:last-child td { border-bottom: none; }
+
+    /* KPI Box */
+    .kpi-card {
+      background: var(--surface-2);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      padding: 14px;
+    }
+    .kpi-val { font-size: 22px; font-weight: 800; color: var(--primary); margin: 4px 0; }
+    .kpi-label { font-size: 12px; font-weight: 700; color: var(--text-muted); text-transform: uppercase; }
+    .kpi-note { font-size: 12px; color: var(--text-muted); }
+
+    /* Checklist & Sliders */
+    .check-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      padding: 9px 10px;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border);
+      margin-bottom: 8px;
+      background: var(--surface-2);
+      cursor: pointer;
+    }
+    .check-item input { margin-top: 3px; width: 16px; height: 16px; accent-color: var(--primary); }
+    .progress-bar { height: 10px; background: var(--surface-2); border-radius: 999px; overflow: hidden; border: 1px solid var(--border); }
+    .progress-fill { height: 100%; background: linear-gradient(90deg, #1a73e8, #16a34a); width: 0%; transition: width 0.25s; }
+    input[type="range"] { width: 100%; accent-color: var(--primary); cursor: pointer; }
+
+    /* Accordion / Details */
+    details {
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      padding: 10px 12px;
+      background: var(--surface-2);
+      margin-bottom: 12px;
+    }
+    summary { font-weight: 700; font-size: 13.5px; cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center; }
+    summary::after { content: "▾"; font-size: 13px; color: var(--text-muted); }
+    details[open] summary::after { content: "▴"; }
+
+    /* Toast */
+    .toast {
+      position: fixed;
+      bottom: 22px;
+      right: 22px;
+      z-index: 100;
+      background: #0f172a;
+      color: #fff;
+      padding: 11px 16px;
+      border-radius: 10px;
+      font-size: 13.5px;
+      font-weight: 600;
+      box-shadow: var(--shadow-md);
+      opacity: 0;
+      pointer-events: none;
+      transform: translateY(12px);
+      transition: all 0.2s ease;
+    }
+    .toast.show { opacity: 1; transform: translateY(0); }
+
+    /* Code snippet box */
+    pre.code-box {
+      background: #0f172a;
+      color: #e2e8f0;
+      padding: 14px;
+      border-radius: var(--radius-sm);
+      font-size: 12.5px;
+      overflow-x: auto;
+      line-height: 1.5;
+      margin-top: 8px;
+    }
+
+    /* Mini-Game Box */
+    .quiz-option {
+      display: block;
+      width: 100%;
+      text-align: left;
+      padding: 10px 12px;
+      margin-bottom: 8px;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border);
+      background: var(--surface);
+      color: var(--text);
+      font-size: 13.5px;
+      cursor: pointer;
+    }
+    .quiz-option:hover { border-color: var(--primary); background: var(--primary-soft); }
+    .quiz-option.correct { background: var(--success-soft); border-color: var(--success); color: var(--success); font-weight: 700; }
+    .quiz-option.wrong { background: var(--danger-soft); border-color: var(--danger); color: var(--danger); }
+
+    /* Responsive Breakpoints */
+    @media (max-width: 1024px) {
+      .studio-grid { grid-template-columns: 1fr; }
+      .visual-box { grid-template-columns: 1fr; }
+      .media-frame { max-width: 340px; margin: 0 auto; }
+      .grid-4 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+    @media (max-width: 720px) {
+      .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; }
+      .topbar-inner { padding: 10px 14px; }
+      .container { padding: 14px 12px 50px; }
+      .brand h1 { font-size: 14.5px; }
+    }
+  </style>
+</head>
+<body>
+  <!-- TOP HEADER -->
+  <header class="topbar">
+    <div class="topbar-inner">
+      <div class="brand">
+        <div class="brand-logo" id="brandLogoText">FB</div>
+        <div>
+          <h1 id="appBrandTitle">FB Content Studio Pro</h1>
+          <small id="appBrandSub">Nghiên cứu Viral · Tạo Bài & Ảnh 4:5 (1-Click) · Kiếm tiền 2026</small>
+        </div>
+      </div>
+      <div class="topbar-actions">
+        <span class="badge success" id="engineStatusBadge">⚡ Offline Pro (0đ)</span>
+        <span class="badge">v2.6.0-VN-2026.11</span>
+        <button class="btn btn-sm" id="btnThemeToggle" title="Chuyển chế độ Sáng/Tối">🌓 Giao diện</button>
+      </div>
+    </div>
+    <nav class="nav-wrap" aria-label="Điều hướng chính">
+      <div class="nav-tabs" id="mainNav">
+        <button class="nav-btn active" data-tab="studio">⚡ 1. Tạo Bài & Ảnh (1-Click)</button>
+        <button class="nav-btn" data-tab="research">🧠 2. Giải Mã DNA & Lý Do Hot</button>
+        <button class="nav-btn" data-tab="viral">🚀 3. Thuật Toán & Viral 2026</button>
+        <button class="nav-btn" data-tab="money">💰 4. Kiếm Tiền & Dự Toán</button>
+        <button class="nav-btn" data-tab="workflow">⚙️ 5. Triển Khai & Bán File</button>
+        <button class="nav-btn" data-tab="about">ℹ️ 6. About, Nguồn & Cập Nhật</button>
+      </div>
+    </nav>
+  </header>
+
+  <main class="container">
+    <!-- ==================== TAB 1: STUDIO 1-CLICK ==================== -->
+    <section class="tab-panel active" id="tab-studio">
+      <div class="studio-grid">
+        <!-- LEFT PANEL: CONTROLS -->
+        <div>
+          <div class="card">
+            <div class="card-header">
+              <div class="card-title">🎯 1. Chọn Trang & Chủ Đề</div>
+              <button class="btn btn-sm" id="btnRandomTopic">🎲 Random</button>
+            </div>
+
+            <div class="field">
+              <label for="pageSelect">Tên Face / Ngách Đề Xuất</label>
+              <select id="pageSelect"></select>
+            </div>
+
+            <div class="field">
+              <label>Chủ Đề Hot Gợi Ý (Bấm chọn hoặc tự nhập)</label>
+              <div class="chip-list" id="topicChips"></div>
+            </div>
+
+            <div class="field">
+              <label for="customTopic">Hoặc nhập Chủ Đề / Tin Nóng riêng hôm nay</label>
+              <input type="text" id="customTopic" placeholder="VD: Công ty bắt 1 nhân viên dùng AI gánh việc 3 người..." />
+              <div style="display:flex; gap:6px; margin-top:7px; flex-wrap:wrap;">
+                <button class="btn btn-sm" id="btnFetchHN">🌐 Nạp Tin Tech Live (Hacker News)</button>
+                <button class="btn btn-sm" id="btnFetchDevto">💻 Nạp Bài Dev.to Live</button>
+              </div>
+            </div>
+
+            <div class="field">
+              <label for="ctaProduct">Sản phẩm / Phễu muốn dẫn khéo (Comment ghim)</label>
+              <input type="text" id="ctaProduct" placeholder="VD: Ebook Tư Duy / Bộ File HTML / Link AI SaaS" />
+            </div>
+
+            <div class="field">
+              <label for="imageModeSelect">Chế Độ Hình Ảnh Đi Kèm (Tỷ lệ 4:5 Facebook)</label>
+              <select id="imageModeSelect">
+                <option value="canvas_chat">💬 Ảnh Chụp Tin Nhắn Gia Đình / Công Sở (Canvas 4:5 — 0đ, siêu tự nhiên)</option>
+                <option value="canvas_tech">📰 Thẻ Báo Chí Breaking Tech / Code Card (Canvas 4:5 — 0đ)</option>
+                <option value="canvas_quote">✨ Thẻ Trích Dẫn Tạp Chí Đậm Chất (Canvas 4:5 — 0đ)</option>
+                <option value="ai_pollinations">📸 Ảnh AI Giống Người Thật (Pollinations FLUX / Photorealistic)</option>
+                <option value="ai_gemini">🍌 Ảnh AI Gemini 3.1 Flash / Nano Banana 2.1 (Cần Gemini Key)</option>
+              </select>
+            </div>
+
+            <details id="apiSettingsBox">
+              <summary>🔑 Cài đặt Live AI (BYOK — Tùy chọn nâng cao)</summary>
+              <div style="margin-top:10px;">
+                <div class="field">
+                  <label for="aiProvider">Nhà cung cấp AI viết bài</label>
+                  <select id="aiProvider">
+                    <option value="offline">Offline Pro Engine (0đ — Tức thì, không cần Key)</option>
+                    <option value="openrouter">OpenRouter API (Hỗ trợ CORS & Model :free)</option>
+                    <option value="gemini">Google Gemini API (gemini-3-flash-preview / 3.5-flash-lite)</option>
+                  </select>
+                </div>
+                <div class="field">
+                  <label for="aiApiKey">API Key (Chỉ lưu cục bộ trên trình duyệt của bạn)</label>
+                  <input type="password" id="aiApiKey" placeholder="sk-or-v1-... hoặc AIza..." />
+                </div>
+                <div class="field">
+                  <label for="aiModelId">Model ID văn bản (Có thể sửa tay khi ra bản mới)</label>
+                  <input type="text" id="aiModelId" value="openrouter/free" />
+                </div>
+                <div class="field">
+                  <label for="polliKey">Pollinations Secret Key (Tùy chọn, lấy tại enter.pollinations.ai)</label>
+                  <input type="password" id="polliKey" placeholder="sk_... (để trống sẽ thử endpoint public)" />
+                </div>
+                <button class="btn btn-sm btn-primary" id="btnSaveApi">💾 Lưu cấu hình API</button>
+              </div>
+            </details>
+
+            <button class="btn btn-primary btn-lg" id="btnGenerateAll">⚡ TẠO BÀI MỚI + HÌNH ẢNH (1-CLICK)</button>
+            <div style="margin-top:8px; display:flex; gap:8px;">
+              <button class="btn btn-sm" style="flex:1;" id="btnGenMiniGamePost">🎮 Tạo Bài Mini-Game Kéo Comment</button>
+              <button class="btn btn-sm" id="btnClearHistory" title="Xóa lịch sử đã lưu">🗑️</button>
+            </div>
+          </div>
+
+          <!-- SAVED HISTORY -->
+          <div class="card">
+            <div class="card-header">
+              <div class="card-title">🗂️ Lịch Sử Bài Gần Đây</div>
+              <span class="badge" id="historyCount">0 bài</span>
+            </div>
+            <div id="historyList" style="font-size:13px; color:var(--text-muted); max-height:210px; overflow-y:auto;">
+              Chưa có bài nào được lưu. Bấm nút "Tạo Bài Mới" để bắt đầu.
+            </div>
+          </div>
+        </div>
+
+        <!-- RIGHT PANEL: OUTPUT WORKSPACE -->
+        <div>
+          <div class="card">
+            <div class="card-header">
+              <div class="card-title">📝 2. Bài Viết 3 Phương Án & Mô Phỏng Facebook Mobile</div>
+              <div style="display:flex; gap:6px; flex-wrap:wrap;">
+                <button class="btn btn-sm btn-success" id="btnCopyPost">📋 Copy Bài Viết</button>
+                <button class="btn btn-sm" id="btnCopyComment">💬 Copy Comment Ghim</button>
+                <button class="btn btn-sm" id="btnSaveToHistory">💾 Lưu</button>
+              </div>
+            </div>
+
+            <div class="variant-bar" id="variantBar">
+              <button class="variant-pill active" data-variant="0">Phương án A: Kể chuyện / Drama cuốn sâu</button>
+              <button class="variant-pill" data-variant="1">Phương án B: Góc nhìn phản biện 3 ý</button>
+              <button class="variant-pill" data-variant="2">Phương án C: Bản ngắn / Thơ / Dễ Share</button>
+            </div>
+
+            <div class="fb-preview">
+              <div class="fb-head">
+                <div class="fb-author">
+                  <div class="fb-avatar" id="previewAvatar">ST</div>
+                  <div>
+                    <div style="font-weight:700; font-size:14px;" id="previewPageName">Sự Thật Đời Thực</div>
+                    <div style="font-size:12px; color:var(--text-muted);">Vừa xong · 🌐 Công khai · Giờ vàng đề xuất: <strong id="previewGoldenHour">19:45 – 21:45</strong></div>
+                  </div>
+                </div>
+                <span class="badge warn" id="previewFormatBadge">Dwell Time Pro</span>
+              </div>
+              <div class="fb-body" id="postPreviewBody">Chọn một Trang Facebook ở cột trái và bấm "TẠO BÀI MỚI + HÌNH ẢNH (1-CLICK)" để xuất ngay 3 phương án bài viết hoàn chỉnh...</div>
+              <div class="metrics-strip" id="postMetricsStrip">
+                <span>📏 Độ dài: <strong>0 chữ</strong></span>
+                <span>✂️ Hook 125 ký tự: <strong>Chưa kiểm tra</strong></span>
+                <span>#️⃣ Hashtag: <strong>0/5</strong></span>
+                <span>🔗 Link thân bài: <strong style="color:var(--success)">Sạch (0 link)</strong></span>
+              </div>
+            </div>
+
+            <div style="margin-top:12px; padding:12px; border-radius:10px; background:var(--surface-2); border:1px dashed var(--primary);">
+              <div style="font-size:12px; font-weight:800; color:var(--primary); text-transform:uppercase; margin-bottom:4px;">💬 Bình luận ghim chuyển đổi (Tránh bóp Reach 2026)</div>
+              <div id="pinnedCommentBox" style="font-size:13.5px; white-space:pre-wrap;">Bình luận ghim sẽ tự động tạo tương ứng với phễu sản phẩm của ngách...</div>
+            </div>
+
+            <!-- VISUAL GENERATOR AREA -->
+            <div class="visual-box">
+              <div>
+                <div class="media-frame" id="mediaFrame">
+                  <canvas id="artCanvas" width="1080" height="1350"></canvas>
+                  <img id="aiImageEl" alt="Ảnh minh họa tạo bởi AI" style="display:none;" />
+                  <div class="media-loader" id="mediaLoader">
+                    <div style="font-size:24px;">🎨</div>
+                    <div id="mediaLoaderText">Đang khởi tạo hình ảnh chân thực 4:5...</div>
+                  </div>
+                </div>
+                <div style="display:flex; gap:8px; margin-top:10px;">
+                  <button class="btn btn-primary btn-sm" style="flex:1;" id="btnDownloadImage">⬇️ Tải Ảnh PNG (4:5)</button>
+                  <button class="btn btn-sm" id="btnRegenImage">🔄 Vẽ lại ảnh</button>
+                </div>
+              </div>
+
+              <div>
+                <div class="card-title" style="font-size:14.5px; margin-bottom:8px;">📸 Prompt Ảnh Photorealistic (Chuẩn FLUX / Nano Banana 2026)</div>
+                <p style="font-size:12.5px; color:var(--text-muted); margin-bottom:8px;">
+                  Thiết kế theo công thức <em>Subject + Action + Environment + Natural Light + iPhone/35mm Candid</em> (không dùng negative prompt, giữ chất liệu da tự nhiên tránh cảm giác nhựa AI). Bạn có thể sinh trực tiếp hoặc copy dán sang Gemini / Midjourney / ChatGPT.
+                </p>
+                <textarea id="imagePromptBox" rows="6" style="font-size:13px;"></textarea>
+                <div style="display:flex; gap:8px; margin-top:8px; flex-wrap:wrap;">
+                  <button class="btn btn-sm" id="btnCopyImgPrompt">📋 Copy Prompt Ảnh</button>
+                  <button class="btn btn-sm" id="btnSwitchToCanvas">💬 Chuyển sang Canvas 0đ</button>
+                  <button class="btn btn-sm" id="btnSwitchToAI">📸 Thử Ảnh AI Thật</button>
+                </div>
+                <div style="margin-top:12px; padding:10px 12px; border-radius:9px; background:var(--warn-soft); font-size:12.5px; color:var(--text);">
+                  <strong>⚠️ Mẹo chính sách Nhãn AI 2026:</strong> Ảnh sinh bằng AI chân thực thường mang metadata C2PA/SynthID và có thể hiển thị nhãn <em>"Made with AI"</em>. Nếu dùng bài chạy Facebook Ads trả phí, nhớ tích khai báo AI trong Ads Manager. Với bài organic cần tăng độ gần gũi đời thường, xen kẽ ảnh Canvas Mockup Tin nhắn 4:5 cho tỷ lệ giữ chân rất cao.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== TAB 2: RESEARCH & DNA ==================== -->
+    <section class="tab-panel" id="tab-research">
+      <h2 class="section-title">Giải Mã DNA Hai Trang Mẫu & Lý Do Chủ Đề Bùng Nổ 2026</h2>
+      <p class="section-sub">Phân tích sâu cơ chế tâm lý học hành vi, tệp nhân khẩu học Việt Nam (77,6–88,1 triệu người dùng/tài khoản Facebook, nhóm 25–34 tuổi dẫn đầu với 27,9 triệu người) và ma trận 8 ngách kế thừa hiệu quả nhất.</p>
+
+      <div class="grid-2" style="margin-bottom:18px;">
+        <div class="card">
+          <div class="card-header">
+            <div class="card-title">🎭 Case Study 1: Sự Thật Man</div>
+            <span class="badge">Mô hình Sách & Cộng đồng</span>
+          </div>
+          <p style="font-size:13.5px; margin-bottom:10px;">
+            <strong>Cốt lõi thành công:</strong> Không "dạy đời" từ trên cao mà đóng vai một ông chồng gần 40 tuổi hay phông bạt, tự biến mình thành nhân vật hề để bóc trần những nghịch lý trong gia đình Việt (tiệc mừng thọ 42 triệu, chuyến đi Hàn Quốc 100 triệu không ai thích, quỹ nói thật 20k bị con 8 tuổi lách luật).
+          </p>
+          <ul style="padding-left:18px; font-size:13.5px; color:var(--text-muted);">
+            <li><strong>Nhịp viết:</strong> Câu siêu ngắn, xuống dòng liên tục, thoại chát chúa với vợ, kết bài tự thú nhận đang "dắt mũi" độc giả.</li>
+            <li><strong>Phễu bán hàng:</strong> Bộ 10 cuốn <em>Hộp Sự Thật</em> (1-ĐÚNG đến 10-ĐỌNG), bán theo combo 3 cuốn giá 799.000đ (miễn phí vận chuyển, tặng Sa bàn, Map cô đọng, Thẻ từ khóa, Audio & Nhóm thực chứng).</li>
+            <li><strong>Điểm đắt giá:</strong> Đặt link bán hàng dưới phần bình luận và nhắc lặp lại thương hiệu <em>Hộp Sự Thật</em> tạo thói quen tự tìm kiếm.</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <div class="card-header">
+            <div class="card-title">💻 Case Study 2: Hỏi Dân IT Official</div>
+            <span class="badge success">Mô hình EdTech & Tin Tech</span>
+          </div>
+          <p style="font-size:13.5px; margin-bottom:10px;">
+            <strong>Cốt lõi thành công:</strong> Khai thác trực diện cơn "bão AI" 2025–2026 trong ngành phần mềm (SAP cân nhắc cắt 10.000 người vì AI, Linus Torvalds chỉnh đốn 41.197 dòng code AI, SysAdmin lương $26k gánh việc 2 kỹ sư $160k nhờ Claude Code, nhân sự công nghệ Việt chật vật đổi nghề).
+          </p>
+          <ul style="padding-left:18px; font-size:13.5px; color:var(--text-muted);">
+            <li><strong>3 định dạng trụ cột:</strong> (1) Chuyện nghề thấm thía (Senior Tester OT 2h sáng bị cắt giảm trong 10 phút); (2) Tin quốc tế có nguồn rõ ràng + mục <em>Góc nhìn cá nhân</em> sắc bén + câu hỏi mở cuối bài; (3) Thơ IT trào phúng siêu ngắn dễ share.</li>
+            <li><strong>Phễu bán hàng:</strong> Hệ sinh thái 20+ khóa học lập trình & AI Vibe Coding (hoidanit.vn, lớp Live Zoom, Udemy).</li>
+            <li><strong>Bài học chống xói mòn giá:</strong> Khóa video dễ bị các trang bán lại qua Google Drive ở mức 49k–299k; người làm mới nên bán kèm Cohort trực tiếp, Công cụ HTML có License Key hoặc AI SaaS Affiliate.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title">🧪 6 Hiệu Ứng Tâm Lý Học Hành Vi Làm Nên Bài Viết Giữ Chân Cao</div>
+        </div>
+        <div class="grid-3">
+          <div class="kpi-card">
+            <div class="kpi-label">1. A Fine Is a Price (2000)</div>
+            <div style="font-weight:700; margin:4px 0;">Tiền phạt hóa thành giá mua</div>
+            <p class="kpi-note">Gneezy & Rustichini ghi nhận phạt tiền đón con muộn tại nhà trẻ làm số ca trễ tăng gần gấp đôi vì biến chuẩn mực đạo đức thành giao dịch mua giờ (dù nghiên cứu lặp lại sau đó lưu ý kết quả phụ thuộc bối cảnh).</p>
+          </div>
+          <div class="kpi-card">
+            <div class="kpi-label">2. Abilene Paradox (1974)</div>
+            <div style="font-weight:700; margin:4px 0;">Cả nhà khổ vì "nhường nhau"</div>
+            <p class="kpi-note">Tập thể cùng làm việc không ai muốn vì ai cũng nghĩ người khác muốn (chuyến du lịch 100 triệu, đùi gà để thiu). Chạm đúng tâm lý gia đình Á Đông.</p>
+          </div>
+          <div class="kpi-card">
+            <div class="kpi-label">3. Motivated Reasoning (1990)</div>
+            <div style="font-weight:700; margin:4px 0;">Thằng luật sư trong đầu</div>
+            <p class="kpi-note">Người khác sai kết án trong 2 giây, mình sai bào chữa dài 45 phút. Cực dễ kéo vợ chồng/đồng nghiệp chia sẻ qua Messenger.</p>
+          </div>
+          <div class="kpi-card">
+            <div class="kpi-label">4. Relative Income & Positional Goods</div>
+            <div style="font-weight:700; margin:4px 0;">Nghèo đi vì lương thằng bạn</div>
+            <p class="kpi-note">Internet mở rộng so sánh từ làng xóm lên toàn cầu. Mâu thuẫn giữa Làng A (50tr/30tr) và Làng B (70tr/150tr) tạo tranh luận mạnh dưới bình luận.</p>
+          </div>
+          <div class="kpi-card">
+            <div class="kpi-label">5. Spiritual Bypassing</div>
+            <div style="font-weight:700; margin:4px 0;">Trốn trách nhiệm dưới vỏ chữa lành</div>
+            <p class="kpi-note">Châm biếm trào lưu khóa học tỉnh thức, cắm trại sống ảo, bận rộn phông bạt. Tạo cảm giác "được nói hộ lòng mình" cho số đông người thực tế.</p>
+          </div>
+          <div class="kpi-card">
+            <div class="kpi-label">6. AI Obsolescence Anxiety</div>
+            <div style="font-weight:700; margin:4px 0;">Nỗi lo bị AI thay thế & ép năng suất</div>
+            <p class="kpi-note">Code rẻ đi nhưng trách nhiệm đắt lên; công ty cắt nhân sự trả tiền GPU. Khiến giới IT và văn phòng buộc phải dừng đọc, lưu bài và tranh luận.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title">📋 Danh Mục 8 Ngách Facebook Đề Xuất (Tích Hợp Sẵn Trong Studio)</div>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Tên Face đề xuất</th>
+                <th>Tông giọng & Công thức</th>
+                <th>Đối tượng mục tiêu</th>
+                <th>Giờ vàng (GMT+7)</th>
+                <th>Dòng tiền chủ lực</th>
+              </tr>
+            </thead>
+            <tbody id="nicheResearchTable"></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== TAB 3: VIRAL & ALGORITHM 2026 ==================== -->
+    <section class="tab-panel" id="tab-viral">
+      <h2 class="section-title">Thuật Toán Facebook 2026 & Công Thức Bùng Nổ Organic Reach</h2>
+      <p class="section-sub">Cập nhật theo tài liệu Meta Newsroom 2025–2026: Đề xuất người chưa theo dõi, Your Algorithm (LLM 10/2026), chống Spam/Unoriginal (03/2026) và bảo vệ Reach khỏi bẫy liên kết.</p>
+
+      <div class="grid-4" style="margin-bottom:18px;">
+        <div class="kpi-card">
+          <div class="kpi-label">Đề xuất người lạ</div>
+          <div class="kpi-val">36,6%</div>
+          <div class="kpi-note">Tỷ trọng lượt xem Feed Mỹ từ trang chưa Follow (Q2/2026) — Trang mới vẫn nổ lớn.</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-label">Bài KHÔNG gắn link</div>
+          <div class="kpi-val">98,9%</div>
+          <div class="kpi-note">Chỉ 1,1% lượt xem Feed thuộc về bài có link ngoài; tương tác link thấp nhất (0,03%–0,05%).</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-label">Ngưỡng cắt Mobile</div>
+          <div class="kpi-val">125 ký tự</div>
+          <div class="kpi-note">Quyết định người dùng bấm "Xem thêm" hay lướt qua (scroll-past prediction).</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-label">Quét Spam / Giả mạo</div>
+          <div class="kpi-val">20M+ TK</div>
+          <div class="kpi-note">Hơn 20 triệu TK giả mạo bị gỡ (2025) và 500k TK spam bị bóp reach/tước kiếm tiền.</div>
+        </div>
+      </div>
+
+      <div class="grid-2">
+        <div class="card">
+          <div class="card-header">
+            <div class="card-title">✅ Checklist Kiểm Duyệt Viral 10 Điểm (Chấm Điểm Trước Khi Đăng)</div>
+            <span class="badge success" id="viralScoreBadge">0 / 100 điểm</span>
+          </div>
+          <div class="progress-bar" style="margin-bottom:12px;"><div class="progress-fill" id="viralScoreBar"></div></div>
+          <div id="viralChecklistContainer"></div>
+        </div>
+
+        <div>
+          <div class="card">
+            <div class="card-header">
+              <div class="card-title">🛡️ Chiến Thuật Vượt Bẫy Bóp Link & Chính Sách 2026</div>
+            </div>
+            <ul style="padding-left:18px; font-size:13.5px; display:grid; gap:9px;">
+              <li><strong>Quy tắc 1 bài = 1 chủ đề (Your Algorithm 10/2026):</strong> LLM của Meta đọc ngữ nghĩa bài để ghép với sở thích người dùng tự gõ. Đừng trộn chuyện công nghệ lẫn chuyện ăn uống trong cùng 1 bài.</li>
+              <li><strong>Tối ưu Chia sẻ Riêng tư (Private Shares):</strong> Viết những chi tiết khiến độc giả muốn bấm <em>Gửi qua Messenger</em> cho vợ/chồng, sếp hoặc nhóm chat đồng nghiệp (tín hiệu mạnh hơn hẳn nút Like năm 2026).</li>
+              <li><strong>Không chèn Link trong thân bài:</strong> Meta đang thử nghiệm giới hạn Page chưa Verified chỉ đăng 2 link/tháng trong thân bài và thử nghiệm vô hiệu hóa một phần link trong bình luận. Hãy dùng <strong>Comment Trigger → Tự động nhắn tin Messenger DM</strong> (nơi link hoàn toàn tự do) + nhắc tên miền ngắn dễ gõ.</li>
+              <li><strong>Hashtag tối giản (0–5 thẻ):</strong> Meta xác nhận caption không link, ít viết hoa toàn bộ và tối đa 5 hashtag có phân phối tốt nhất.</li>
+              <li><strong>Tạo đối thoại hai chiều thật trong 60 phút vàng:</strong> Chủ động trả lời bình luận độc giả có chiều sâu thay vì dùng dịch vụ seeding copy-paste (bộ lọc mới của Meta hạ hiển thị bình luận lặp rác).</li>
+            </ul>
+          </div>
+
+          <div class="card">
+            <div class="card-header">
+              <div class="card-title">⏰ Khung Giờ Vàng Đăng Bài Việt Nam (GMT+7)</div>
+            </div>
+            <div class="table-wrap">
+              <table>
+                <thead><tr><th>Khung giờ</th><th>Hành vi người dùng VN</th><th>Định dạng tối ưu</th></tr></thead>
+                <tbody>
+                  <tr><td><strong>07:15 – 08:30</strong></td><td>Mở máy đầu ngày, đi làm</td><td>Tin nóng Tech, Quote/Thơ ngắn</td></tr>
+                  <tr><td><strong>11:45 – 13:15</strong></td><td>Nghỉ trưa văn phòng</td><td>Truyện trào phúng, Mini-game, Review</td></tr>
+                  <tr><td><strong>16:45 – 17:45</strong></td><td>Tan tầm xả áp lực</td><td>Drama công sở, Câu hỏi tranh luận</td></tr>
+                  <tr><td><strong>19:45 – 21:45</strong></td><td>"Giờ kim cương" đọc sâu</td><td>Bài dài kể chuyện, Bài bán hàng phễu</td></tr>
+                  <tr><td><strong>22:15 – 23:30</strong></td><td>Cú đêm & Gen Y/Z suy ngẫm</td><td>Tâm sự hôn nhân, Tài chính, Sự nghiệp</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== TAB 4: MONETIZATION & SIMULATOR ==================== -->
+    <section class="tab-panel" id="tab-money">
+      <h2 class="section-title">6 Kênh Kiếm Tiền, Máy Tính Dự Toán & Thuế Nội Dung Số 2026</h2>
+      <p class="section-sub">Kéo thanh trượt để mô phỏng kịch bản dòng tiền tham khảo theo quy mô trang tại Việt Nam (tỷ giá tham chiếu 25.400 VNĐ/USD; kết quả thực tế phụ thuộc ngách và tỷ lệ chuyển đổi).</p>
+
+      <!-- INTERACTIVE CALCULATOR -->
+      <div class="card" style="margin-bottom:18px;">
+        <div class="card-header">
+          <div class="card-title">🧮 Máy Tính Dự Toán Doanh Thu & Lợi Nhuận Ròng Hàng Tháng</div>
+          <button class="btn btn-sm" id="btnResetCalc">↺ Reset mẫu 1M Views</button>
+        </div>
+        <div class="grid-2">
+          <div>
+            <div class="field">
+              <label>Lượt xem tự nhiên/tháng: <strong id="lblViews">1.000.000</strong></label>
+              <input type="range" id="rngViews" min="100000" max="5000000" step="100000" value="1000000" />
+            </div>
+            <div class="field">
+              <label>Đơn Sản phẩm số / tháng (File HTML, Ebook, Khóa): <strong id="lblDigOrders">60 đơn</strong></label>
+              <input type="range" id="rngDigOrders" min="0" max="300" step="5" value="60" />
+            </div>
+            <div class="field">
+              <label>Đơn giá Sản phẩm số (VNĐ): <strong id="lblDigPrice">399.000đ</strong></label>
+              <input type="range" id="rngDigPrice" min="99000" max="1500000" step="50000" value="399000" />
+            </div>
+            <div class="field">
+              <label>Khách hàng AI SaaS Affiliate đang trả phí ($29/tháng, HH 30%): <strong id="lblSaasUsers">35 khách</strong></label>
+              <input type="range" id="rngSaasUsers" min="0" max="200" step="5" value="35" />
+            </div>
+            <div class="field">
+              <label>Số bài Booking PR / tháng (TB 5 triệu/bài): <strong id="lblPrPosts">3 bài</strong></label>
+              <input type="range" id="rngPrPosts" min="0" max="12" step="1" value="3" />
+            </div>
+          </div>
+
+          <div style="display:grid; gap:10px; align-content:start;">
+            <div class="grid-2">
+              <div class="kpi-card">
+                <div class="kpi-label">Tổng Doanh Thu / Tháng</div>
+                <div class="kpi-val" id="calcGrossMonth">0đ</div>
+                <div class="kpi-note" id="calcGrossYear">Năm: 0đ</div>
+              </div>
+              <div class="kpi-card" style="border-color:var(--success);">
+                <div class="kpi-label">Lợi Nhuận Ròng Ước Tính</div>
+                <div class="kpi-val" style="color:var(--success);" id="calcNetMonth">0đ</div>
+                <div class="kpi-note">Đã trừ chi phí API & phí giao dịch</div>
+              </div>
+            </div>
+            <div class="table-wrap">
+              <table>
+                <thead><tr><th>Nguồn thu thành phần</th><th>Ước tính / tháng</th><th>Tỷ trọng</th></tr></thead>
+                <tbody id="calcBreakdownBody"></tbody>
+              </table>
+            </div>
+            <div id="taxNoticeBox" style="padding:10px 12px; border-radius:9px; background:var(--primary-soft); font-size:12.5px;"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- PAYMENT GATEWAYS & TAX -->
+      <div class="grid-2">
+        <div class="card">
+          <div class="card-header">
+            <div class="card-title">💳 So Sánh Cổng Thanh Toán Bán File HTML (2026)</div>
+          </div>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>Nền tảng</th><th>Phí thực tế (đơn 399k / $19)</th><th>Ưu & Nhược điểm</th></tr></thead>
+              <tbody>
+                <tr><td><strong>PayOS (VN)</strong></td><td><span class="badge success">NH tài trợ phí</span></td><td>VietQR trực tiếp của Casso, không qua trung gian giữ tiền, duyệt đơn tức thì.</td></tr>
+                <tr><td><strong>SePay (VN)</strong></td><td><span class="badge success">0đ – 0,24%</span></td><td>Gói Free 50 gd/tháng; Startup 96k–120k/tháng (~200–533đ/gd), tiền về thẳng ngân hàng.</td></tr>
+                <tr><td><strong>Polar (Global)</strong></td><td><span class="badge">7,0% – 7,6%</span></td><td>Starter 5%+$0,50; Pro $20+3,8%+$0,40; Merchant of Record xử lý thuế toàn cầu (Stripe).</td></tr>
+                <tr><td><strong>Lemon Squeezy</strong></td><td><span class="badge">7,6% – 9,1%</span></td><td>5%+$0,50 (+1,5% thẻ quốc tế), MoR xử lý VAT; đang chuyển sang Stripe Managed Payments.</td></tr>
+                <tr><td><strong>Gumroad Direct</strong></td><td><span class="badge danger">17,1% (30% Discover)</span></td><td>10%+$0,50 + ~2,9%+$0,30 xử lý thẻ. Đắt gấp đôi Polar/LS nhưng có chợ sẵn.</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-header">
+            <div class="card-title">⚖️ Tóm Tắt Nghĩa Vụ Thuế Sáng Tạo Nội Dung 2026 (VN)</div>
+          </div>
+          <ul style="padding-left:18px; font-size:13.5px; display:grid; gap:8px;">
+            <li><strong>Bỏ thuế khoán từ 01/01/2026:</strong> Theo Nghị quyết 198/2025/QH15, xóa bỏ thuế khoán và lệ phí môn bài, chuyển sang tự kê khai theo doanh thu thực tế.</li>
+            <li><strong>Cập nhật ngưỡng miễn thuế 2026:</strong> Sau Luật Thuế TNCN 109/2025 (mốc 500 triệu), Nghị định 68/2026/NĐ-CP (05/03/2026) và hướng dẫn tháng 7/2026 trên Cổng TTĐT Chính phủ xác định hộ/cá nhân kinh doanh doanh thu <strong>≤ 1 tỷ đồng/năm</strong> thuộc diện không phải nộp GTGT & TNCN.</li>
+            <li><strong>Khi vượt ngưỡng:</strong> Cách tính áp dụng theo NĐ 68/2026, NĐ 141/2026 và NĐ 253/2026 (có thể chọn tính 15% trên lợi nhuận đến 3 tỷ nếu có chứng từ chi phí, hoặc theo tỷ lệ doanh thu; trước 2026 dịch vụ nội dung số chịu 5% GTGT + 2% TNCN = 7%).</li>
+            <li><strong>Nghĩa vụ bắt buộc:</strong> Dù dưới ngưỡng nộp thuế vẫn cần đăng ký MST (Meta CMP yêu cầu MST khi rút từ $50), lưu sổ thu chi và đối chiếu trực tiếp cơ quan thuế địa phương.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== TAB 5: WORKFLOW & RESALE ==================== -->
+    <section class="tab-panel" id="tab-workflow">
+      <h2 class="section-title">Quy Trình Triển Khai 15 Phút/Ngày & Chiến Lược Đóng Gói Bán File HTML</h2>
+      <p class="section-sub">Tối ưu cho 1 người quản 2–3 Fanpage đồng thời với chi phí API từ 0đ đến dưới 123.000đ/tháng, và biến chính tệp công cụ này thành sản phẩm thương mại biên lợi nhuận ~92%.</p>
+
+      <div class="grid-4" style="margin-bottom:18px;">
+        <div class="kpi-card">
+          <div class="kpi-label">Bước 1 (Phút 0–3)</div>
+          <div style="font-weight:800; margin:4px 0;">Chọn Ngách & Tin Hot</div>
+          <p class="kpi-note">Mở Tab 1, chọn tên Face, bấm Random chủ đề hoặc nạp tin nóng Live từ Hacker News / Dev.to.</p>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-label">Bước 2 (Phút 3–7)</div>
+          <div style="font-weight:800; margin:4px 0;">Sinh 3 Phương Án (1-Click)</div>
+          <p class="kpi-note">Chạy Offline Pro hoặc Live AI, chọn bản A/B/C tốt nhất và thêm 1–2 chi tiết trải nghiệm cá nhân thật.</p>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-label">Bước 3 (Phút 7–11)</div>
+          <div style="font-weight:800; margin:4px 0;">Xuất Ảnh 4:5 & Soát Hook</div>
+          <p class="kpi-note">Tải ảnh Canvas Mockup / Ảnh AI Photorealistic 4:5, kiểm tra điểm cắt 125 ký tự và 0 link thân bài.</p>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-label">Bước 4 (Phút 11–15)</div>
+          <div style="font-weight:800; margin:4px 0;">Lên Lịch & Ghim Phễu</div>
+          <p class="kpi-note">Lên lịch đăng qua Meta Business Suite đúng giờ vàng, dán bình luận kích hoạt tin nhắn DM.</p>
+        </div>
+      </div>
+
+      <div class="grid-2">
+        <div class="card">
+          <div class="card-header">
+            <div class="card-title">📦 Đóng Gói Bán Tệp HTML Này (Productized Digital Asset)</div>
+          </div>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>Gói sản phẩm</th><th>Giá đề xuất</th><th>Thành phần bàn giao</th></tr></thead>
+              <tbody>
+                <tr>
+                  <td><strong>Gói Cá Nhân (Starter)</strong></td>
+                  <td><strong>299.000đ</strong><br><small>($15 Global)</small></td>
+                  <td>1 File HTML hoàn chỉnh 6 Tab + 8 ngách mẫu + Hướng dẫn dùng 0đ không cần API Key.</td>
+                </tr>
+                <tr>
+                  <td><strong>Gói Pro Creator</strong></td>
+                  <td><strong>599.000đ</strong><br><small>($29 Global)</small></td>
+                  <td>File HTML + Gói JSON 100 chủ đề mở rộng + 50 Mini-Game + Hướng dẫn nối OpenRouter/Gemini & SePay.</td>
+                </tr>
+                <tr>
+                  <td><strong>Gói Agency / White-Label</strong></td>
+                  <td><strong>1.490.000đ</strong><br><small>($69 Global)</small></td>
+                  <td>Toàn bộ mã nguồn mở đổi tên thương hiệu, quyền cài đặt cho khách hàng & 1 buổi coaching setup phễu DM.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-header">
+            <div class="card-title">🎨 Tùy Biến Thương Hiệu Nhanh (White-Label Trước Khi Bán)</div>
+          </div>
+          <p style="font-size:13px; color:var(--text-muted); margin-bottom:10px;">
+            Đổi tên sản phẩm, slogan và logo chữ trên thanh tiêu đề để xuất bản dưới thương hiệu riêng của bạn (tự động lưu cục bộ; hoặc sửa trực tiếp biến <code>BRAND_CFG</code> mặc định trong mã nguồn để đóng gói giao khách).
+          </p>
+          <div class="field">
+            <label for="wlTitle">Tên thương hiệu ứng dụng</label>
+            <input type="text" id="wlTitle" value="FB Content Studio Pro" />
+          </div>
+          <div class="field">
+            <label for="wlSub">Slogan hiển thị dưới tiêu đề</label>
+            <input type="text" id="wlSub" value="Nghiên cứu Viral · Tạo Bài & Ảnh 4:5 (1-Click) · Kiếm tiền 2026" />
+          </div>
+          <div class="field">
+            <label for="wlLogo">Ký tự Logo (2–3 chữ cái)</label>
+            <input type="text" id="wlLogo" value="FB" maxlength="3" />
+          </div>
+          <button class="btn btn-primary btn-sm" id="btnApplyBrand">✅ Áp dụng White-Label</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== TAB 6: ABOUT, REFERENCES & UPDATE GUIDE ==================== -->
+    <section class="tab-panel" id="tab-about">
+      <div class="grid-2" style="margin-bottom:18px;">
+        <div class="card">
+          <div class="card-header">
+            <div class="card-title">ℹ️ Thông Tin Phiên Bản Tệp HTML</div>
+            <span class="badge success">Release v2.6.0-VN-2026.11</span>
+          </div>
+          <div class="table-wrap">
+            <table>
+              <tbody>
+                <tr><td><strong>Tên sản phẩm</strong></td><td>FB Content Studio Pro — Single-File Commercial Web App</td></tr>
+                <tr><td><strong>Phiên bản (Version)</strong></td><td><code>v2.6.0-VN-2026.11</code> (Cập nhật ngày 27/11/2026)</td></tr>
+                <tr><td><strong>Phạm vi tổng hợp</strong></td><td>Tinh lọc trong ~150 nguồn chất lượng cao giai đoạn 2025–2026 (giới hạn phạm vi để tối ưu hiệu năng, không treo trình duyệt).</td></tr>
+                <tr><td><strong>Kiến trúc kỹ thuật</strong></td><td>100% HTML5 + CSS3 + Vanilla JS thuần + HTML5 Canvas 4:5 (1080×1350). Chạy mượt cả offline lẫn web host, không phụ thuộc server.</td></tr>
+                <tr><td><strong>Khả năng mở rộng</strong></td><td>Quản trị trực quan kho Bài viết (<code>PAGES_DB</code>) và kho Mini-Game (<code>GAMES_DB</code>) qua giao diện Import/Export JSON bên dưới.</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- INTERACTIVE MINI-GAME DEMO WIDGET -->
+        <div class="card">
+          <div class="card-header">
+            <div class="card-title">🎮 Trò Chơi Mini Trắc Nghiệm (Demo Mô-Đun Game Tích Hợp)</div>
+            <button class="btn btn-sm" id="btnNextQuiz">Câu tiếp theo ➔</button>
+          </div>
+          <p style="font-size:12.5px; color:var(--text-muted); margin-bottom:10px;">
+            Dùng thử trực tiếp dữ liệu từ <code>GAMES_DB</code> — bạn có thể thêm câu hỏi mới ngay bên dưới để tạo bộ Quiz bán kèm hoặc xuất thành bài Mini-Game kéo tương tác Facebook ở Tab 1.
+          </p>
+          <div id="quizBox">
+            <div style="font-weight:700; font-size:14.5px; margin-bottom:10px;" id="quizQuestion"></div>
+            <div id="quizOptions"></div>
+            <div id="quizExplain" style="display:none; margin-top:8px; padding:10px; border-radius:8px; background:var(--primary-soft); font-size:13px;"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- LIVE DATA UPDATER (NO-CODE) -->
+      <div class="card" style="margin-bottom:18px;">
+        <div class="card-header">
+          <div class="card-title">🛠️ Trung Tâm Cập Nhật Bài Viết & Mini-Game (Không Cần Biết Code)</div>
+          <div style="display:flex; gap:6px; flex-wrap:wrap;">
+            <button class="btn btn-sm btn-primary" id="btnExportJson">⬇️ Xuất Backup JSON</button>
+            <label class="btn btn-sm" style="margin:0; cursor:pointer;">
+              ⬆️ Nhập File JSON
+              <input type="file" id="importJsonInput" accept=".json" style="display:none;" />
+            </label>
+            <button class="btn btn-sm" id="btnResetDefaults">♻️ Khôi phục mặc định</button>
+          </div>
+        </div>
+
+        <div class="grid-2">
+          <!-- Add Custom Page / Topic -->
+          <div style="padding:14px; border:1px solid var(--border); border-radius:10px; background:var(--surface-2);">
+            <h3 style="font-size:14.5px; margin-bottom:10px;">➕ Thêm Chủ Đề Bài Viết Hoặc Trang Face Mới</h3>
+            <div class="field">
+              <label for="updTargetPage">Chọn Trang cần thêm chủ đề (hoặc chọn "Tạo Trang Mới")</label>
+              <select id="updTargetPage"></select>
+            </div>
+            <div id="newPageFields" style="display:none;">
+              <div class="field">
+                <label for="newPageName">Tên Trang Facebook mới</label>
+                <input type="text" id="newPageName" placeholder="VD: Bất Động Sản Thật Lòng" />
+              </div>
+              <div class="field">
+                <label for="newPageStyle">Mô tả giọng văn & Phễu sản phẩm</label>
+                <input type="text" id="newPageStyle" placeholder="VD: Trào phúng thực tế · Phễu: Checklist pháp lý nhà đất" />
+              </div>
+            </div>
+            <div class="field">
+              <label for="newTopicTitle">Chủ đề bài viết mới</label>
+              <input type="text" id="newTopicTitle" placeholder="VD: Mua nhà trả góp 20 năm và bài học dòng tiền" />
+            </div>
+            <button class="btn btn-primary btn-sm" id="btnAddTopicOrPage">✅ Lưu Vào Kho Bài (Cập nhật ngay Tab 1)</button>
+          </div>
+
+          <!-- Add Custom Mini-Game Question -->
+          <div style="padding:14px; border:1px solid var(--border); border-radius:10px; background:var(--surface-2);">
+            <h3 style="font-size:14.5px; margin-bottom:10px;">🎮 Thêm Câu Hỏi Mini-Game / Quiz Mới (GAMES_DB)</h3>
+            <div class="field">
+              <label for="newQuizQ">Câu hỏi tình huống / đố vui</label>
+              <input type="text" id="newQuizQ" placeholder="VD: Năm 2026, ngưỡng cắt 'Xem thêm' trên Facebook Mobile là bao nhiêu?" />
+            </div>
+            <div class="field">
+              <label for="newQuizOpts">3 phương án cách nhau bằng dấu chấm phẩy (;)</label>
+              <input type="text" id="newQuizOpts" placeholder="125 ký tự; 300 ký tự; 500 ký tự" />
+            </div>
+            <div class="grid-2" style="gap:8px;">
+              <div class="field">
+                <label for="newQuizAns">Đáp án đúng (0, 1 hoặc 2)</label>
+                <input type="number" id="newQuizAns" min="0" max="2" value="0" />
+              </div>
+              <div class="field">
+                <label for="newQuizExp">Giải thích ngắn</label>
+                <input type="text" id="newQuizExp" placeholder="125 ký tự quyết định dừng lướt!" />
+              </div>
+            </div>
+            <button class="btn btn-success btn-sm" id="btnAddQuiz">✅ Thêm Vào Kho Mini-Game</button>
+          </div>
+        </div>
+
+        <details style="margin-top:14px;">
+          <summary>👨‍💻 Hướng dẫn chỉnh sửa trực tiếp mã nguồn HTML khi đóng gói bán lại (3 bước)</summary>
+          <div style="margin-top:10px; font-size:13px;">
+            <p><strong>Bước 1:</strong> Mở tệp <code>.html</code> này bằng VS Code hoặc Notepad++ và tìm từ khóa <code>DEFAULT_PAGES_DB</code> (kho bài viết & ngách) hoặc <code>DEFAULT_GAMES_DB</code> (kho câu hỏi mini-game).</p>
+            <p style="margin-top:6px;"><strong>Bước 2:</strong> Thêm đối tượng JSON mới theo đúng cấu trúc chuẩn bên dưới, tăng số phiên bản tại <code>APP_VERSION</code> và lưu lại:</p>
+            <pre class="code-box">{
+  id: "ten-ngach-khong-dau",
+  name: "Tên Trang Facebook Mới",
+  avatar: "TN",
+  tone: "Mô tả giọng văn đặc trưng",
+  goldenHour: "19:45 – 21:30",
+  defaultProduct: "Tên sản phẩm / phễu dẫn ở comment",
+  topics: ["Chủ đề 1", "Chủ đề 2", "Chủ đề 3"],
+  imgScene: "Vietnamese cafe workspace, candid documentary photography"
+}</pre>
+            <p style="margin-top:8px;"><strong>Bước 3:</strong> Hoặc đơn giản hơn, dùng chức năng <strong>Xuất Backup JSON</strong> ở trên để bán các gói "Expansion Pack JSON" (gói mở rộng chủ đề/game hàng tháng) cho khách hàng cũ nhập vào tệp HTML chỉ bằng 1 click!</p>
+          </div>
+        </details>
+      </div>
+
+      <!-- REFERENCE LINKS (VERSIONED TO v2.6.0-VN-2026.11) -->
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title">🔗 Danh Mục Nguồn Tham Khảo Gốc (Đối Chiếu Đúng Ver 2.6 — Cuối 2026)</div>
+          <span class="badge">Giới hạn tổng hợp ~150 nguồn chất lượng</span>
+        </div>
+        <div class="grid-2" style="font-size:13px;">
+          <div>
+            <h4 style="margin-bottom:6px;">1. Thuật toán, Chính sách & Nhãn AI của Meta (2025–2026)</h4>
+            <ul style="padding-left:18px; display:grid; gap:5px; margin-bottom:14px;">
+              <li><a href="https://about.fb.com/news/2026/10/introducing-your-algorithm-facebook/" target="_blank" rel="noopener">Meta Newsroom (10/2026): Introducing Your Algorithm on Facebook</a></li>
+              <li><a href="https://about.fb.com/news/2026/03/rewarding-original-creators-on-facebook/" target="_blank" rel="noopener">Meta Newsroom (03/2026): Rewarding Original Creators on Facebook</a></li>
+              <li><a href="https://about.fb.com/news/2025/04/cracking-down-spammy-content-facebook/" target="_blank" rel="noopener">Meta Newsroom (04/2025): Cracking Down on Spammy Content</a></li>
+              <li><a href="https://about.fb.com/news/2026/07/meta-is-signing-the-eu-ai-act-code-of-practice-on-transparency-of-ai-generated-content/" target="_blank" rel="noopener">Meta Newsroom (07/2026): Signing EU AI Act Transparency Code</a></li>
+              <li><a href="https://posteverywhere.ai/blog/how-the-facebook-algorithm-works" target="_blank" rel="noopener">PostEverywhere (2026): Facebook Feed Views & Link Share Report (Q2/2026)</a></li>
+              <li><a href="https://danslee.co.uk/2026/07/04/research-facebook-are-throttling-links-in-comments-now-heres-what-you-can-do/" target="_blank" rel="noopener">Dan Slee Research (07/2026): Facebook Testing Links in Comments</a></li>
+              <li><a href="https://www.auditsocials.com/blog/meta-ai-generated-content-label-policy-2026" target="_blank" rel="noopener">AuditSocials (05/2026): Meta AI Content Label Policy (IPTC vs C2PA)</a></li>
+            </ul>
+
+            <h4 style="margin-bottom:6px;">2. Thị trường Việt Nam, Case Study & Tâm lý học</h4>
+            <ul style="padding-left:18px; display:grid; gap:5px;">
+              <li><a href="https://datareportal.com/reports/digital-2027-vietnam" target="_blank" rel="noopener">DataReportal (10/2026): Digital 2026/2027 Vietnam Report</a></li>
+              <li><a href="https://napoleoncat.com/stats/social-media-users-in-viet-nam/" target="_blank" rel="noopener">NapoleonCat (10/2026): Social Media Users in Viet Nam</a></li>
+              <li><a href="https://www.hopsuthat.com/" target="_blank" rel="noopener">Case Study 1: Hộp Sự Thật — Sự Thật Man (hopsuthat.com)</a></li>
+              <li><a href="https://hoidanit.vn/" target="_blank" rel="noopener">Case Study 2: Hỏi Dân IT Official — Eric (hoidanit.vn)</a></li>
+              <li><a href="https://vnexpress.net/dan-cong-nghe-viet-xoay-xo-doi-nghe-trong-bao-ai-5145736.html" target="_blank" rel="noopener">VnExpress (2026): Dân công nghệ Việt xoay xở đổi nghề trong bão AI</a></li>
+              <li><a href="https://chicagounbound.uchicago.edu/jls/vol29/iss1/1/" target="_blank" rel="noopener">Gneezy & Rustichini (2000): A Fine Is a Price (Journal of Legal Studies)</a></li>
+            </ul>
+          </div>
+
+          <div>
+            <h4 style="margin-bottom:6px;">3. Kiếm tiền CMP, Affiliate, Cổng Thanh Toán & Thuế 2026</h4>
+            <ul style="padding-left:18px; display:grid; gap:5px; margin-bottom:14px;">
+              <li><a href="https://cafef.vn/facebook-tra-tien-cho-nguoi-dung-viet-nam-188260515221538692.chn" target="_blank" rel="noopener">CafeF (05/2026): Facebook trả tiền cho người dùng Việt Nam (Text & Ảnh)</a></li>
+              <li><a href="https://znews.vn/facebook-bat-dau-tra-tien-cho-nguoi-viet-post1651504.html" target="_blank" rel="noopener">Znews (05/2026): Mức chi trả thực tế & ngưỡng rút $50 tại Việt Nam</a></li>
+              <li><a href="https://baochinhphu.vn/sang-tao-noi-dung-so-doanh-thu-bao-nhieu-phai-nop-thue-102260716165956679.htm" target="_blank" rel="noopener">Báo Chính phủ (07/2026): Quy định thuế sáng tạo nội dung số (NĐ 68/2026)</a></li>
+              <li><a href="https://help.shopee.vn/portal/10/article/208376" target="_blank" rel="noopener">Shopee Help (11/2026): Cập nhật thanh toán hoa hồng Affiliate 2026</a></li>
+              <li><a href="https://openaffiliate.dev/best/saas-recurring-affiliate-programs" target="_blank" rel="noopener">OpenAffiliate (11/2026): 223 Recurring SaaS Affiliate Programs</a></li>
+              <li><a href="https://sepay.vn/bang-gia.html" target="_blank" rel="noopener">SePay: Bảng giá cổng thanh toán VietQR tự động (2026)</a> &middot; <a href="https://payos.vn/" target="_blank" rel="noopener">PayOS (Casso)</a></li>
+              <li><a href="https://www.paritydeals.com/gumroad-vs-lemon-squeezy-fees/" target="_blank" rel="noopener">ParityDeals (2026): Gumroad vs Lemon Squeezy</a> &middot; <a href="https://veloxthemes.com/blog/polar-vs-lemonsqueezy-vs-gumroad" target="_blank" rel="noopener">Polar Fees</a></li>
+            </ul>
+
+            <h4 style="margin-bottom:6px;">4. Hạ tầng AI API, Tạo Ảnh Photorealistic & Public Feeds</h4>
+            <ul style="padding-left:18px; display:grid; gap:5px;">
+              <li><a href="https://aistudio.google.com/docs/models" target="_blank" rel="noopener">Google AI Studio (11/2026): Gemini 3 / 3.5 Flash & Nano Banana 2.1 Models</a></li>
+              <li><a href="https://openrouter.ai/openrouter/free" target="_blank" rel="noopener">OpenRouter (2026): Free Models Router & Client-side CORS API</a></li>
+              <li><a href="https://gen.pollinations.ai/docs" target="_blank" rel="noopener">Pollinations.ai (11/2026): Unified Image & Text API Documentation</a></li>
+              <li><a href="https://developers.cloudflare.com/workers-ai/platform/pricing/" target="_blank" rel="noopener">Cloudflare Workers AI (2026): 10.000 Neurons/ngày FLUX.1 Schnell</a></li>
+              <li><a href="https://queststudio.io/blog/flux-best-prompts-photoreal-tips" target="_blank" rel="noopener">QuestStudio & Fal.ai (2026): FLUX Photorealistic Prompt Engineering</a></li>
+              <li><a href="https://github.com/hackernews/api" target="_blank" rel="noopener">Hacker News Firebase API</a> &middot; <a href="https://dev.to/ketanchavan/devto-api-fetch-public-private-data-effortlessly-1nba" target="_blank" rel="noopener">Dev.to Public API</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div class="toast" id="toastEl">Đã sao chép!</div>
+
+  <script>
+    (function () {
+      "use strict";
+
+      const APP_VERSION = "v2.6.0-VN-2026.11";
+      const STORAGE_KEYS = {
+        pages: "fb_studio_pages_v26",
+        games: "fb_studio_games_v26",
+        history: "fb_studio_history_v26",
+        api: "fb_studio_api_v26",
+        brand: "fb_studio_brand_v26",
+        theme: "fb_studio_theme_v26"
+      };
+
+      /* ==================== DEFAULT DATA REPOSITORIES ==================== */
+      const DEFAULT_PAGES_DB = [
+        {
+          id: "su-that-doi-thuc",
+          name: "Sự Thật Đời Thực (Hệ Sự Thật Man)",
+          avatar: "ST",
+          tone: "Tự trào, kể chuyện gia đình/xã hội gắn bẫy tâm lý học hành vi, khẩu ngữ tự nhiên",
+          audience: "Nam/Nữ 26–45 tuổi, đã lập gia đình",
+          goldenHour: "19:45 – 21:45",
+          revenueModel: "Sách/Ebook tư duy, Bộ thẻ thảo luận, Booking PR",
+          defaultProduct: "Bộ Ebook & Thẻ Tư Duy Đời Thực (Comment chữ 'TINH' để nhận link qua Inbox)",
+          imgScene: "Vietnamese family dinner table at evening, warm home tungsten lighting, candid smartphone photo on iPhone 16, natural skin texture, realistic pores, documentary everyday life",
+          topics: [
+            "Chi 40 triệu làm lễ tri ân bố mẹ thật hoành tráng nhưng cả năm không về ăn cơm",
+            "Cả nhà nhường nhau miếng ngon đến mức thiu và chuyến du lịch trăm triệu không ai thích",
+            "Thằng luật sư trong đầu: người khác vượt đèn đỏ là vô ý thức, mình vượt là vì hoàn cảnh",
+            "Lập quỹ phạt 20 nghìn mỗi lần nói dối và cái kết con 8 tuổi hỏi mua gói tháng",
+            "Khóa học chữa lành 3 triệu: ngồi hít thở quan sát cảm xúc để mặc vợ cọ nồi cháy",
+            "Gặp thằng bạn lương 200 triệu xong tự nhiên thấy cuộc đời mình rách nát dù không mất xu nào",
+            "Bận rộn phông bạt với lịch 4 màu và ngày bị vợ cơ cấu thành Nhà tài trợ chiến lược"
+          ]
+        },
+        {
+          id: "goc-nhin-tech-ai",
+          name: "Góc Nhìn Tech & AI (Hệ Hỏi Dân IT)",
+          avatar: "IT",
+          tone: "Phân tích sắc bén tin Tech/AI quốc tế, thấu cảm nghề nghiệp, chốt bằng câu hỏi tranh luận",
+          audience: "Dev, Tester, PM, SV CNTT 20–38 tuổi",
+          goldenHour: "08:30 – 11:00 & 20:30 – 22:00",
+          revenueModel: "AI SaaS Affiliate (USD), Khóa học Cohort, Booking EdTech",
+          defaultProduct: "Lộ trình Kỹ sư AI Thực Chiến & Danh sách 10 AI Tools tiết kiệm 50% giờ code",
+          imgScene: "Vietnamese software engineer in late 20s sitting in a minimalist Ho Chi Minh City cafe with a laptop showing code editor, late evening moody window light, 35mm documentary photo, natural skin texture",
+          topics: [
+            "AI viết 40.000 dòng code trong 1 đêm: Code quá rẻ nhưng chi phí Review và trách nhiệm quá đắt",
+            "Công ty sa thải 2 kỹ sư senior, giữ 1 nhân viên trả lương thấp kèm tài khoản AI gánh việc cả 3",
+            "4 bài học đắt giá dân IT chỉ thấm sau buổi họp 10 phút với HR dù từng OT tới 2h sáng",
+            "Nghịch lý 2026: Tiền không biến mất khỏi ngành Tech, nó chỉ đổi từ bảng lương sang hóa đơn GPU",
+            "Vibe Coding bùng nổ nhưng tại sao lập trình viên Junior ngày càng hẹp cửa xin việc?",
+            "Thơ IT 2026: Mỗi năm hoa đào nở, người vibe code nay đông..."
+          ]
+        },
+        {
+          id: "vi-tien-tinh-thuc",
+          name: "Ví Tiền Tỉnh Thức (Kinh Tế Đời Thường)",
+          avatar: "VT",
+          tone: "Thẳng thắn, dí dỏm, mổ xẻ bẫy tiêu dùng và tài chính cá nhân bằng con số thật",
+          audience: "Dân văn phòng 25–42 tuổi, gia đình trẻ",
+          goldenHour: "11:45 – 13:15 & 20:00 – 21:30",
+          revenueModel: "Template Tài chính / HTML Tool, Affiliate Fintech & Sách",
+          defaultProduct: "File Excel/HTML Kiểm Soát Dòng Tiền 6 Hũ Thực Chiến (Comment 'TIEN' nhận qua DM)",
+          imgScene: "Vietnamese office worker reviewing coffee receipt and smartphone banking app at wooden desk, soft daylight from window, candid 35mm photography, authentic texture",
+          topics: [
+            "Lương tăng từ 15 lên 35 triệu nhưng cuối tháng vẫn còn đúng 200 nghìn: Cái bẫy lạm phát lối sống",
+            "Chọn lương 50 triệu ở làng 30 triệu hay lương 70 triệu ở làng 150 triệu?",
+            "Chi phí ẩn của chiếc xe trả góp: không phải tiền xăng mà là áp lực không dám nghỉ việc",
+            "Quản trị tài chính gia đình 2026: Quy tắc 3 tài khoản để vợ chồng không cãi nhau vì tiền",
+            "Mua robot 20 triệu tiết kiệm 30 phút mỗi ngày... để có thêm thời gian lướt điện thoại"
+          ]
+        },
+        {
+          id: "chuyen-cong-so",
+          name: "Chuyện Công Sở Không Ai Dám Nói",
+          avatar: "CS",
+          tone: "Châm biếm văn minh, đánh trúng nỗi đau họp hành vô nghĩa, KPI ảo và sếp phông bạt",
+          audience: "Nhân viên văn phòng, Mid-manager 24–40 tuổi",
+          goldenHour: "11:45 – 13:00 & 16:45 – 18:00",
+          revenueModel: "Khóa học kỹ năng/AI văn phòng, Booking HR Tech & SaaS",
+          defaultProduct: "Bộ 50 Prompt AI Xử Lý Báo Cáo & Email Công Sở Trong 5 Phút",
+          imgScene: "Modern Hanoi office desk at dusk with half-empty iced milk coffee, sticky notes, laptop screen glowing softly, candid documentary smartphone shot",
+          topics: [
+            "Cuộc họp 2 tiếng chỉ để thống nhất... tuần sau sẽ họp tiếp để chốt phương án",
+            "Người sếp tốt nhất là người giúp bạn đủ giỏi để không còn cần đến họ",
+            "Công ty coi nhân viên như 'gia đình' — trừ lúc tính tiền tăng ca và cắt giảm nhân sự",
+            "Dân văn phòng dùng AI làm xong việc trong 2 tiếng: nên báo sớm để được giao thêm việc hay im lặng?",
+            "Ảo tưởng chức danh Senior: 5 năm kinh nghiệm thật khác hẳn 1 năm kinh nghiệm lặp lại 5 lần"
+          ]
+        },
+        {
+          id: "bo-me-40",
+          name: "Bố Mẹ Thời 4.0 (Không Dạy Đời)",
+          avatar: "BM",
+          tone: "Gần gũi, hài hước, lồng ghép tâm lý học nuôi dạy con thực tế không lý thuyết suông",
+          audience: "Phụ huynh 28–45 tuổi có con 3–14 tuổi",
+          goldenHour: "12:00 – 13:15 & 20:30 – 22:15",
+          revenueModel: "Shopee Affiliate (Sách/Đồ chơi giáo dục), Bộ thẻ tương tác gia đình",
+          defaultProduct: "Bộ 60 Thẻ Trò Chuyện Gia Đình Không Điện Thoại (Comment 'CON' để nhận link)",
+          imgScene: "Vietnamese father sitting on apartment courtyard floor watching an ant trail with his 7-year-old daughter, late afternoon warm sunlight, candid natural 35mm photograph",
+          topics: [
+            "Định cho con tuổi thơ tự do cho đến khi đi ăn tối với hội phụ huynh khoe con học 5 môn năng khiếu",
+            "Con ngồi xem con kiến tha mẩu bánh 30 phút và bài học khiến ông bố nghiện tối ưu thời gian giật mình",
+            "Đừng hứa với con rồi khất: trẻ con học từ những gì bố mẹ làm chứ không học từ những gì bố mẹ nói",
+            "Chủ nhật định dạy con đạp xe thì bận họp, đến lúc bố rảnh con đã tự biết đi từ bao giờ",
+            "Tại sao càng thưởng tiền cho việc làm bài tập, con lại càng ghét việc học?"
+          ]
+        },
+        {
+          id: "solopreneur",
+          name: "Solopreneur Thực Chiến (Kinh Doanh 1 Người)",
+          avatar: "SP",
+          tone: "Thực dụng, số liệu rõ ràng, bóc tách mô hình sản phẩm số & kiếm tiền online bền vững",
+          audience: "Freelancer, chủ shop, người muốn làm kinh doanh tinh gọn",
+          goldenHour: "08:00 – 10:30 & 20:00 – 22:00",
+          revenueModel: "Bán File HTML Tool này, AI SaaS Affiliate, Workshop Cohort",
+          defaultProduct: "Tệp HTML FB Content Studio Pro v2.6 — Tạo bài + Ảnh 4:5 trong 1 click (Comment 'TOOL')",
+          imgScene: "Minimalist home studio desk of a Vietnamese solo creator, laptop, notebook, morning window sunlight, ceramic coffee cup, realistic editorial photography",
+          topics: [
+            "Sự thật phũ về kiếm tiền Facebook CMP tại Việt Nam 2026: Đừng chờ tiền View, hãy xây sản phẩm số",
+            "Một người quản 3 Fanpage 180 bài/tháng chỉ tốn chưa tới 100 nghìn tiền API AI: Đây là quy trình thật",
+            "Bán sản phẩm số 399k: Tại sao thu qua VietQR (0%–0,24%) tiết kiệm hàng chục triệu so với sàn quốc tế?",
+            "Hoa hồng định kỳ AI SaaS (Recurring USD): Chỉ cần 35 khách hàng trả phí để có dòng tiền lặp lại mỗi tháng",
+            "98,9% lượt xem Facebook không chứa Link: Cách chuyển đổi khách hàng bằng Comment Trigger sang DM"
+          ]
+        },
+        {
+          id: "ai-no-code",
+          name: "AI Cho Người Không Biết Code",
+          avatar: "AI",
+          tone: "Dễ hiểu, bỏ thuật ngữ hàn lâm, hướng dẫn ứng dụng AI giải quyết việc văn phòng/bán hàng",
+          audience: "Chủ SME, Marketer, Sale, Hành chính 22–45 tuổi",
+          goldenHour: "08:30 – 11:30 & 19:45 – 21:30",
+          revenueModel: "Prompt Pack, Công cụ HTML No-code, Affiliate công cụ AI",
+          defaultProduct: "Bộ 100 Prompt Tiếng Việt Tự Nhiên Không Giống Văn Mẫu AI (Comment 'AI' nhận ngay)",
+          imgScene: "Small Vietnamese shop owner smiling while checking tablet dashboard on wooden counter, soft natural daylight, candid smartphone shot, authentic textures",
+          topics: [
+            "Tại sao bạn dùng AI viết bài Facebook bị đọc ra ngay mùi 'văn mẫu' và 3 dòng lệnh sửa dứt điểm",
+            "Sai lầm khi thuê 1 con AI làm tất cả: Cách tách 3 vai trò Lập kế hoạch – Viết – Bắt lỗi chuẩn Anthropic",
+            "Cách chụp ảnh sản phẩm & ảnh minh họa bằng AI giống máy thật không bị mặt nhựa",
+            "4 công cụ AI miễn phí mạnh nhất cuối 2026 dành cho chủ shop và dân văn phòng",
+            "Chính sách gắn nhãn 'Made with AI' trên Facebook 2026: Người làm nội dung cần tránh bẫy nào?"
+          ]
+        },
+        {
+          id: "hon-nhan-thuc-te",
+          name: "Hôn Nhân Thực Tế (Không Màu Hồng)",
+          avatar: "HN",
+          tone: "Hài hước kiểu đối thoại vợ chồng đời thường, sâu sắc nhưng tuyệt đối không sến súa",
+          audience: "Vợ chồng & cặp đôi 25–45 tuổi",
+          goldenHour: "12:00 – 13:30 & 20:15 – 22:30",
+          revenueModel: "Booking đồ gia dụng/F&B, Shopee Affiliate, Ebook tâm lý gia đình",
+          defaultProduct: "Ebook 'Nghệ Thuật Cãi Nhau Văn Minh Trong Hôn Nhân' & List Đồ Gia Dụng Cứu Rỗi Hạnh Phúc",
+          imgScene: "Vietnamese married couple in their 30s laughing casually while washing dishes together in a cozy apartment kitchen, warm indoor lighting, candid film photo",
+          topics: [
+            "Vợ chỉ cần một câu xin lỗi mất 3 giây, chồng tổ chức buổi tổng kết lịch sử hôn nhân dài 45 phút",
+            "Bí quyết bình yên trong gia đình: Vợ đọc hiểu tâm lý, chồng chủ động đổ rác và rửa bát không cần nhắc",
+            "Đi cắm trại chữa lành hết 7 củ xong cả hai vợ chồng nhận ra chiếc điều hòa ở nhà mới là chân ái",
+            "Vợ hỏi váy mới có đẹp không: Bài toán kinh tế học giữa nói thật và bảo vệ hòa bình thế giới",
+            "Hạnh phúc không phải là chưa từng cãi nhau, mà là cãi xong vẫn nhớ mua món người kia thích"
+          ]
+        }
+      ];
+
+      const DEFAULT_GAMES_DB = [
+        {
+          id: "g1",
+          q: "Theo dữ liệu News Feed Mỹ Q2/2026, bài viết KHÔNG gắn liên kết ngoài chiếm bao nhiêu % tổng lượt xem trên Facebook?",
+          options: ["98,9% (Link ngoài chỉ chiếm 1,1%)", "65,0% (Link ngoài chiếm 35%)", "50,0% (Chia đều nhau)"],
+          answer: 0,
+          explain: "98,9% lượt xem thuộc về bài không gắn link. Muốn kéo traffic năm 2026 hãy dùng Comment Trigger kéo vào Messenger DM hoặc nhắc tên miền ngắn!"
+        },
+        {
+          id: "g2",
+          q: "Trong thí nghiệm 'A Fine Is a Price' (Gneezy & Rustichini, 2000), chuyện gì xảy ra khi nhà trẻ phạt tiền phụ huynh đón con muộn?",
+          options: ["Số phụ huynh đi muộn giảm ngay 70%", "Số ca đón muộn tăng gần gấp đôi và không giảm lại ngay cả khi bỏ phạt", "Không có sự thay đổi nào"],
+          answer: 1,
+          explain: "Tiền phạt biến chuẩn mực đạo đức (cảm giác áy náy) thành giao dịch thị trường ('tôi trả tiền mua thêm giờ trông con'). Đây chính là lõi của bài 'Thật bằng cách phét'!"
+        },
+        {
+          id: "g3",
+          q: "Trên màn hình điện thoại di động, văn bản Facebook bị cắt ngang bởi nút '...Xem thêm' sau khoảng bao nhiêu ký tự?",
+          options: ["Khoảng 45 ký tự", "Khoảng 125 ký tự", "Khoảng 350 ký tự"],
+          answer: 1,
+          explain: "125 ký tự đầu tiên là vùng quyết định độc giả dừng lại bấm Xem thêm (tăng Dwell Time) hay vuốt bỏ qua."
+        },
+        {
+          id: "g4",
+          q: "Khi bán một tệp HTML giá $19 ra thị trường toàn cầu, nền tảng nào giữ lại nhiều lợi nhuận hơn cho tác giả?",
+          options: ["Gumroad Direct (~17,1% phí)", "Polar / Lemon Squeezy (~7,0%–9,1% phí)", "Cả hai bằng nhau"],
+          answer: 1,
+          explain: "Polar (Starter 5%+$0,50, Pro 3,8%+$0,40) và Lemon Squeezy (5%+$0,50) rẻ hơn gần một nửa so với Gumroad Direct (10%+$0,50 + phí xử lý thẻ). Tại VN dùng SePay/PayOS phí chỉ 0%–0,24%!"
+        },
+        {
+          id: "g5",
+          q: "Hiệu ứng tâm lý nào giải thích cảnh cả gia đình suýt chi 100 triệu đi du lịch chỉ vì mỗi người tưởng người kia thích?",
+          options: ["Nghịch lý Abilene (Abilene Paradox)", "Hiệu ứng Dunning-Kruger", "Hiệu ứng mỏ neo (Anchoring)"],
+          answer: 0,
+          explain: "Nghịch lý Abilene (Jerry Harvey, 1974) mô tả việc một nhóm người cùng đi đến quyết định trái ý muốn từng cá nhân chỉ vì ngại nói thật và sợ làm phật lòng nhau."
+        }
+      ];
+
+      const VIRAL_CHECKLIST = [
+        { id: "c1", text: "125 ký tự đầu (2 dòng đầu) chứa nghịch lý, con số thật hoặc câu thoại khiến người đọc phải bấm 'Xem thêm'." },
+        { id: "c2", text: "Tuân thủ quy tắc '1 bài = 1 chủ đề rõ ràng' để LLM Your Algorithm phân loại đúng tệp người đọc." },
+        { id: "c3", text: "Tách đoạn ngắn (1–3 câu/đoạn), không dồn khối chữ dày đặc gây ngán mắt trên điện thoại." },
+        { id: "c4", text: "Tuyệt đối KHÔNG chèn liên kết ngoài (URL) trong thân bài viết." },
+        { id: "c5", text: "Số lượng hashtag tối giản (từ 0 đến tối đa 5 thẻ đúng ngách), không viết hoa toàn bộ câu vô tội vạ." },
+        { id: "c6", text: "Hình ảnh tỷ lệ dọc 4:5 (1080×1350) khớp 100% bối cảnh nội dung, không dùng ảnh câu view lạc đề." },
+        { id: "c7", text: "Không dùng khẩu lệnh câu tương tác lộ liễu ('Like nếu đồng ý', 'Tag 3 bạn thân')." },
+        { id: "c8", text: "Có yếu tố kích hoạt Private Share (gửi Messenger cho vợ/chồng/đồng nghiệp) hoặc câu hỏi mở tranh luận 2 chiều." },
+        { id: "c9", text: "Chuẩn bị sẵn Bình luận ghim theo cơ chế Comment Trigger kéo sang Messenger DM (hoặc tên miền ngắn dễ gõ)." },
+        { id: "c10", text: "Đăng lệch 15 phút trong khung giờ vàng GMT+7 và sẵn sàng trả lời bình luận thật trong 60 phút đầu." }
+      ];
+
+      /* ==================== STATE & SAFE STORAGE ==================== */
+      function loadStore(key, fallback) {
+        try {
+          const raw = localStorage.getItem(key);
+          return raw ? JSON.parse(raw) : JSON.parse(JSON.stringify(fallback));
+        } catch (e) {
+          return JSON.parse(JSON.stringify(fallback));
+        }
+      }
+      function saveStore(key, val) {
+        try { localStorage.setItem(key, JSON.stringify(val)); } catch (e) { /* ignore file:// restriction */ }
+      }
+
+      let PAGES_DB = loadStore(STORAGE_KEYS.pages, DEFAULT_PAGES_DB);
+      let GAMES_DB = loadStore(STORAGE_KEYS.games, DEFAULT_GAMES_DB);
+      let HISTORY = loadStore(STORAGE_KEYS.history, []);
+      let API_CFG = loadStore(STORAGE_KEYS.api, { provider: "offline", apiKey: "", modelId: "openrouter/free", polliKey: "" });
+      let BRAND_CFG = loadStore(STORAGE_KEYS.brand, {
+        title: "FB Content Studio Pro",
+        sub: "Nghiên cứu Viral · Tạo Bài & Ảnh 4:5 (1-Click) · Kiếm tiền 2026",
+        logo: "FB"
+      });
+
+      let currentPageId = PAGES_DB[0].id;
+      let currentTopic = PAGES_DB[0].topics[0];
+      let currentVariants = ["", "", ""];
+      let currentVariantIdx = 0;
+      let currentComment = "";
+      let currentImgPrompt = "";
+      let currentQuizIdx = 0;
+
+      /* ==================== DOM HELPERS ==================== */
+      const $ = (id) => document.getElementById(id);
+      function toast(msg) {
+        const el = $("toastEl");
+        el.textContent = msg;
+        el.classList.add("show");
+        clearTimeout(window.__toastTimer);
+        window.__toastTimer = setTimeout(() => el.classList.remove("show"), 2600);
+      }
+      function escapeHtml(str) {
+        return String(str).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
+      }
+      function copyText(text, label) {
+        if (!text) return toast("Chưa có nội dung để sao chép!");
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(text).then(() => toast("✅ Đã copy " + label)).catch(() => fallbackCopy(text, label));
+        } else {
+          fallbackCopy(text, label);
+        }
+      }
+      function fallbackCopy(text, label) {
+        const ta = document.createElement("textarea");
+        ta.value = text;
+        ta.style.position = "fixed";
+        ta.style.opacity = "0";
+        document.body.appendChild(ta);
+        ta.select();
+        try { document.execCommand("copy"); toast("✅ Đã copy " + label); } catch (e) { toast("⚠️ Trình duyệt chặn copy tự động."); }
+        document.body.removeChild(ta);
+      }
+      function fmtVND(n) {
+        return Math.round(n).toLocaleString("vi-VN") + "đ";
+      }
+
+      /* ==================== OFFLINE PRO CONTENT ENGINE ==================== */
+      function buildOfflineBundle(page, topic, product) {
+        const cleanTopic = topic.trim() || page.topics[0];
+        const prod = (product || page.defaultProduct || "").trim();
+        const isTech = page.id === "goc-nhin-tech-ai" || page.id === "ai-no-code" || page.id === "solopreneur";
+        const isFamily = page.id === "su-that-doi-thuc" || page.id === "hon-nhan-thuc-te" || page.id === "bo-me-40";
+
+        let varA = "", varB = "", varC = "";
+
+        if (isFamily) {
+          varA = `${cleanTopic}.\n\nNghe thì tưởng chuyện nhà ai trên mạng, ai dè tối qua nó rơi trúng giữa phòng khách nhà tôi.\n\nBan đầu tôi cũng tự tin lắm. Mình người trưởng thành, đọc đủ sách kỹ năng, nghiên cứu đủ video phân tích tâm lý, làm gì có chuyện sập mấy cái bẫy ngớ ngẩn ấy.\n\nCho đến khi vợ tôi chỉ hỏi đúng một câu gọn lỏn, chẳng cần lớn tiếng, cũng chẳng thèm trích dẫn học thuyết nào:\n"Thế rốt cuộc anh làm chuyện đó để nhà mình vui hơn, hay để thiên hạ nhìn vào thấy anh oai hơn?"\n\nĐậu phộng. Không khí im phăng phắc đúng 15 giây.\n\nTôi định huy động thằng luật sư trong đầu ra giải thích dài 45 phút về tầm nhìn chiến lược, về trách nhiệm, về bối cảnh xã hội. Nhưng nhìn đĩa cơm nguội trên bàn với cái mặt tỉnh bơ của con nhỏ đang ngồi xem, tự nhiên tôi thấy lý lẽ của mình nó... rỗng tuếch.\n\nHóa ra bao lâu nay mình cứ tốn tiền, tốn sức để diễn cho khán giả vô hình vỗ tay, trong khi những người sống chung một mái nhà chỉ cần thứ đơn giản nhất: sự hiện diện thật và bớt làm màu đi một chút.\n\nCái giá đắt nhất của việc lúc nào cũng cố tỏ ra mình đúng, là mình sống trọn một ngày rất hoành tráng trên Facebook, nhưng lại thấy mệt nhoài lúc tắt đèn đi ngủ.\n\nNói thật nhé, nhà các bác có ai đang dính đúng cảnh này không? Hay chỉ mình tôi bị vợ "bóc phốt" nhẹ nhàng mà thấm đến tận xương thế này?\n\n#GocNhinDoiThuc #TamLyHanhVi #GiaDinhViet`;
+
+          varB = `3 sự thật ít ai dám nói thẳng về chuyện: ${cleanTopic}.\n\nCàng lớn tôi càng thấy, phần lớn căng thẳng trong nhà không đến từ việc thiếu tiền, mà đến từ 3 cái bẫy nhận thức lặp đi lặp lại:\n\n1. Đánh đồng "hình thức hoành tráng" với "chất lượng cảm xúc"\nChúng ta sẵn sàng bỏ hàng chục triệu mua sự công nhận từ người ngoài, nhưng lại tiếc 30 phút tắt điện thoại ngồi nghe người thân nói chuyện tử tế.\n\n2. Tự suy diễn thay vì hỏi thẳng\nAi cũng nghĩ "mình làm thế là vì người kia". Rốt cuộc cả nhà cùng mệt mỏi thực hiện một kịch bản mà không ai thực sự mong muốn (trong tâm lý học gọi là Nghịch lý Abilene).\n\n3. Dùng lý lẽ thông minh để bảo vệ thói quen cũ\nCàng hiểu biết nhiều, bộ não càng giỏi bào chữa cho sự né tránh trách nhiệm của chính mình.\n\nĐôi khi điều tử tế nhất mình làm được cho gia đình không phải là gồng lên gánh cả thế giới, mà là chịu khó sống thật và nói thẳng với nhau một lần cho nhẹ đầu.\n\nTrong 3 điểm trên, bác thấy điểm nào đang "trúng tim đen" nhất? Thả số ở dưới để xem bao nhiêu người chung hội nhé.\n\n#SuThatDoiSong #TuDuyTinhThuc #ChuyenNha`;
+
+          varC = `${cleanTopic}.\n\nNgày xưa tôi cứ tưởng sống đủ đầy là phải chứng minh cho thiên hạ thấy mình không thua ai.\n\nĐến gần 40 tuổi mới giật mình:\nThiên hạ lướt qua ảnh mình đúng 2 giây rồi quên.\nChỉ có người ngồi cùng mâm cơm tối nay mới nhớ mình đã cáu gắt hay đã cười với họ.\n\nBớt diễn cho người lạ xem.\nThêm thời gian cho người nhà nhờ.\n\nĐơn giản thế thôi mà lắm lúc tôi vẫn phải tự nhắc mình mỗi tuần. Bác nào thấy quen thì gửi nhẹ qua Messenger cho "nóc nhà" đọc cùng cho vui nhé!`;
+        } else if (isTech) {
+          varA = `${cleanTopic}.\n\nNếu bạn làm trong ngành công nghệ hoặc dùng AI mỗi ngày, đây là tín hiệu không thể lướt qua.\n\nVài năm trước, cứ nghe doanh nghiệp tuyên bố đầu tư mạnh vào công nghệ mới, anh em đi làm thường phấn khởi vì sắp có thêm dự án, thêm cơ hội tăng thu nhập.\n\nNhưng bối cảnh cuối năm 2026 đang vận hành theo một công thức lạnh lùng hơn rất nhiều:\nTối ưu quy trình → Dùng AI nhân năng suất lõi → Tái phân bổ ngân sách từ nhân sự lặp lại sang hạ tầng GPU, token và AI Agent.\n\nĐiều đáng suy ngẫm nằm ở chỗ: AI đang kéo chi phí tạo ra sản phẩm sơ cấp (viết code cơ bản, nháp văn bản, dựng giao diện mẫu) xuống gần bằng 0. Nhưng có một thứ KHÔNG hề rẻ đi theo — đó là năng lực kiểm chứng, tư duy hệ thống và trách nhiệm khi sản phẩm chạy thật gặp sự cố.\n\nGóc nhìn cá nhân:\nCông ty không trả lương cho số giờ bạn ngồi cày hay số dòng lệnh bạn gõ ra. Thị trường trả tiền cho bài toán bạn giải quyết được khi AI làm sai.\n\nNgười làm nghề đắt giá nhất giai đoạn tới sẽ không phải người biết bắt AI tạo ra nhiều rác nhanh nhất, mà là người đủ nền tảng để biết lúc nào cần bắt AI dừng lại và sửa đúng gốc rễ.\n\nAnh em đang trải nghiệm trực tiếp sự thay đổi này ở công ty mình thế nào? AI đang giúp bạn nhàn hơn, hay đang ép KPI gấp ba mà lương vẫn đứng yên?\n\n#GocNhinTech #AI2026 #NgheIT #TuDuyHeThong`;
+
+          varB = `Bóc tách 3 góc khuất phía sau câu chuyện: ${cleanTopic}.\n\nĐọc lướt mạng xã hội thì thấy ai cũng hào hứng khoe năng suất x10 nhờ AI, nhưng nhìn thẳng vào thực tế vận hành doanh nghiệp sẽ thấy 3 nghịch lý rõ mồn một:\n\n1. Rào cản kỹ thuật mỏng dần, rào cản phân phối dày lên\nBất kỳ ai cũng có thể dựng một bản demo trong 20 phút, nhưng để sản phẩm chạy ổn định, có người trả tiền và không sập ở môi trường thật vẫn cần quy trình kiểm thử nghiêm ngặt.\n\n2. Cái bẫy "thuê 1 AI tự làm tự chấm điểm"\nSai lầm lớn nhất khi giao việc cho AI là để nó vừa làm bài, vừa giữ đáp án, vừa tự khen mình làm tốt. Luôn phải tách riêng khâu lập kế hoạch, thực thi và kiểm soát lỗi.\n\n3. Lợi thế thuộc về người sở hữu bài toán thực tế\nCông cụ AI đổi mới theo từng quý, nhưng hiểu sâu nghiệp vụ, dữ liệu khách hàng và biết đóng gói giá trị thành sản phẩm có thể thương mại hóa mới là tấm bảo hiểm sự nghiệp thật sự.\n\nTheo góc nhìn của bạn, trong 12 tháng tới kỹ năng nào đáng đầu tư thời gian nhất để không bị đào thải?\n\n#AICoding #SolopreneurVN #KinhTeSo`;
+
+          varC = `Ghi chú ngắn cho anh em giữa bão AI 2026:\n\nChủ đề hôm nay: ${cleanTopic}.\n\nMỗi năm công cụ mới\nLại thấy anh cốt đờ\nBày màn hình sáng trắng\nChạy prompt đến ngẩn ngơ.\n\nAI sinh nghìn dòng code\nTrong chớp mắt tưởng tài\nĐến khi lên bản thật\nNgồi debug mệt nhoài.\n\nCông cụ rẻ như giấy, nhưng bản lĩnh kiểm soát chất lượng và cái đầu tỉnh táo chưa bao giờ đắt giá như lúc này.\n\nGửi nhẹ bài này cho ông đồng nghiệp đang "vibe" quên lối về nhé anh em! #TechVN #AI2026`;
+        } else {
+          varA = `${cleanTopic}.\n\nHồi mới đi làm tôi cứ tin một công thức rất đẹp: cứ chăm chỉ, chịu khó nhận thêm việc, đừng tính toán thiệt hơn thì tự khắc sẽ được ghi nhận xứng đáng.\n\nCho đến khi chứng kiến những người làm cật lực nhất vẫn nằm gọn trong danh sách cắt giảm, còn những buổi họp dài hai tiếng vẫn kết thúc bằng việc... hẹn tuần sau họp tiếp.\n\nVấn đề không nằm ở việc bạn có chăm hay không. Vấn đề là chúng ta thường nhầm lẫn giữa "đang bận rộn" với "đang tạo ra giá trị không thể thay thế".\n\nTrong môi trường công sở và tài chính cá nhân năm 2026, có một sự thật hơi phũ nhưng càng hiểu sớm càng đỡ trả học phí đắt:\n- Doanh nghiệp có bài toán lợi nhuận của doanh nghiệp.\n- Bạn bắt buộc phải có bài toán dòng tiền và đường lui của riêng bạn.\n\nLàm tốt công việc hiện tại là đạo đức nghề nghiệp. Nhưng xây dựng kỹ năng mang theo được, giữ kỷ luật chi tiêu và tạo thêm nguồn thu độc lập là trách nhiệm với chính tương lai gia đình mình.\n\nNếu ngày mai công việc hiện tại đột ngột dừng lại trong 10 phút, bạn đã có sẵn "phương án B" cho 6 tháng tới chưa? Chia sẻ thật lòng góc nhìn của bạn bên dưới nhé.\n\n#ChuyenCongSo #TaiChinhCaNhan #TuDuyThucTe`;
+
+          varB = `3 nguyên tắc sinh tồn thực tế rút ra từ câu chuyện: ${cleanTopic}.\n\n1. Đừng để lối sống phình to nhanh hơn thu nhập\nLương tăng 30% nhưng chi phí cố định tăng 40% thì thực chất bạn đang nghèo đi về mặt tự do.\n\n2. Phân biệt rõ 5 năm kinh nghiệm vs 1 năm kinh nghiệm lặp lại 5 lần\nThị trường trả tiền cho mức độ giải quyết vấn đề khó, không trả tiền cho thâm niên ngồi đúng một vị trí cũ.\n\n3. Luôn đo lường kết quả thay vì đo lường sự mệt mỏi\nTận dụng công cụ tự động hóa và AI để giải phóng 2 tiếng/ngày cho việc nâng cấp bản thân thay vì chạy theo những cuộc họp vô nghĩa.\n\nBạn đang ưu tiên cải thiện điều số 1, 2 hay 3 trong quý này?\n\n#QuanTriBanThan #CongSo2026 #TaiChinhThongMinh`;
+
+          varC = `${cleanTopic}.\n\nMột sự thật gọn lỏn sau nhiều năm đi làm:\nCông ty cần năng lực của bạn hôm nay, không đồng nghĩa với việc họ có nghĩa vụ bảo đảm tương lai cho bạn ngày mai.\n\nLàm hết mình trong 8 tiếng.\nNhưng sau giờ làm, hãy dành ít nhất 1 tiếng xây tài sản mang tên chính mình.\n\nĐủ tỉnh táo để không ảo tưởng, đủ kỷ luật để luôn có đường lui. Gửi bài này cho người bạn thân đang cần một cú hích nhẹ hôm nay nhé!`;
+        }
+
+        const pinned = `📌 Ghi chú thêm cho anh chị em quan tâm sâu chủ đề "${cleanTopic}":\nMình có tổng hợp sẵn ${prod}.\n👉 Do Facebook năm 2026 hạn chế hiển thị bài có link ngoài, bạn chỉ cần bình luận chữ "NHAN" (hoặc nhắn tin trực tiếp cho Page) để mình gửi gọn qua Messenger nhé!`;
+
+        const imgPrompt = `Candid editorial photograph illustrating "${cleanTopic}", ${page.imgScene}, 4:5 vertical portrait framing, authentic Vietnamese everyday atmosphere, natural available lighting with soft shadows, sharp focus on subject, unbranded natural props, clean unmarked background surfaces, realistic film grain, shot on 35mm lens, true-to-life colors`;
+
+        return { variants: [varA, varB, varC], comment: pinned, imgPrompt };
+      }
+
+      /* ==================== LIVE AI CALLERS (CORS-SAFE) ==================== */
+      async function generateWithLiveAI(page, topic, product) {
+        const systemPrompt = `Bạn là chuyên gia viết nội dung Facebook Viral hàng đầu Việt Nam năm 2026.
+Ngách trang: ${page.name}. Tông giọng: ${page.tone}. Khán giả: ${page.audience}.
+Quy tắc BẮT BUỘC:
+- Tiếng Việt tự nhiên, đời thường, tuyệt đối KHÔNG giống văn mẫu AI (tránh các từ sáo rỗng: "Trong thế giới hiện đại", "Hãy cùng khám phá", "Tóm lại là").
+- 125 ký tự đầu tiên phải cực bén để người dùng bấm "Xem thêm". Tách đoạn ngắn 1-3 câu.
+- KHÔNG chèn bất kỳ URL/link nào trong nội dung bài. Tối đa 4 hashtag.
+- Trả về DUY NHẤT một đối tượng JSON hợp lệ (không bọc markdown thừa) theo schema:
+{"variants":["Phương án A: Storytelling/Phân tích sâu 500-700 chữ","Phương án B: Góc nhìn 3 điểm sắc bén + câu hỏi mở","Phương án C: Bản ngắn/Thơ/Quote siêu dễ share qua Messenger"],"comment":"Bình luận ghim dùng Comment Trigger kéo về Messenger DM dẫn tới sản phẩm: ${product || page.defaultProduct}","imgPrompt":"English photorealistic prompt (60-90 words) following Subject + Action + Environment + Natural Light + Camera feel (35mm or iPhone 16 candid), natural skin texture, realistic pores, NO negative prompt, suited for 4:5 vertical Facebook image."}`;
+
+        const userPrompt = `Viết 3 phương án bài đăng Facebook xuất sắc về chủ đề: "${topic}".`;
+
+        let rawText = "";
+        if (API_CFG.provider === "openrouter") {
+          const resp = await fetch("https://openrouter.ai/api/v1/chat/completions", {
+            method: "POST",
+            headers: {
+              "Authorization": "Bearer " + API_CFG.apiKey.trim(),
+              "Content-Type": "application/json",
+              "HTTP-Referer": window.location.href || "https://localhost",
+              "X-Title": BRAND_CFG.title
+            },
+            body: JSON.stringify({
+              model: (API_CFG.modelId || "openrouter/free").trim(),
+              messages: [
+                { role: "system", content: systemPrompt },
+                { role: "user", content: userPrompt }
+              ],
+              temperature: 0.85
+            })
+          });
+          if (!resp.ok) throw new Error("OpenRouter HTTP " + resp.status);
+          const data = await resp.json();
+          rawText = data?.choices?.[0]?.message?.content || "";
+        } else if (API_CFG.provider === "gemini") {
+          const model = (API_CFG.modelId || "gemini-3-flash-preview").trim();
+          const url = `https://generativelanguage.googleapis.com/v1beta/models/${encodeURIComponent(model)}:generateContent?key=${encodeURIComponent(API_CFG.apiKey.trim())}`;
+          const resp = await fetch(url, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              systemInstruction: { parts: [{ text: systemPrompt }] },
+              contents: [{ parts: [{ text: userPrompt }] }],
+              generationConfig: { temperature: 0.85, responseMimeType: "application/json" }
+            })
+          });
+          if (!resp.ok) throw new Error("Gemini HTTP " + resp.status);
+          const data = await resp.json();
+          rawText = data?.candidates?.[0]?.content?.parts?.[0]?.text || "";
+        }
+
+        const startIdx = rawText.indexOf("{");
+        const endIdx = rawText.lastIndexOf("}");
+        if (startIdx === -1 || endIdx === -1) throw new Error("Phản hồi AI không phải JSON hợp lệ");
+        const parsed = JSON.parse(rawText.slice(startIdx, endIdx + 1));
+        if (!Array.isArray(parsed.variants) || parsed.variants.length < 3) throw new Error("Thiếu 3 phương án bài viết");
+        return parsed;
+      }
+
+      /* ==================== CANVAS 4:5 IMAGE ENGINE (1080x1350) ==================== */
+      function wrapCanvasText(ctx, text, x, y, maxWidth, lineHeight, maxLines) {
+        const words = String(text).split(/\s+/);
+        let line = "";
+        let lines = [];
+        for (let i = 0; i < words.length; i++) {
+          const test = line ? line + " " + words[i] : words[i];
+          if (ctx.measureText(test).width > maxWidth && line) {
+            lines.push(line);
+            line = words[i];
+          } else {
+            line = test;
+          }
+        }
+        if (line) lines.push(line);
+        if (maxLines && lines.length > maxLines) {
+          lines = lines.slice(0, maxLines);
+          lines[maxLines - 1] = lines[maxLines - 1].replace(/\s+\S*$/, "") + "...";
+        }
+        lines.forEach((l, idx) => ctx.fillText(l, x, y + idx * lineHeight));
+        return y + lines.length * lineHeight;
+      }
+
+      function roundRect(ctx, x, y, w, h, r) {
+        ctx.beginPath();
+        ctx.moveTo(x + r, y);
+        ctx.arcTo(x + w, y, x + w, y + h, r);
+        ctx.arcTo(x + w, y + h, x, y + h, r);
+        ctx.arcTo(x, y + h, x, y, r);
+        ctx.arcTo(x, y, x + w, y, r);
+        ctx.closePath();
+      }
+
+      function renderCanvasArtwork(mode, page, topic, postText) {
+        const canvas = $("artCanvas");
+        const imgEl = $("aiImageEl");
+        imgEl.style.display = "none";
+        canvas.style.display = "block";
+        const ctx = canvas.getContext("2d");
+        const W = canvas.width, H = canvas.height;
+        ctx.clearRect(0, 0, W, H);
+
+        if (mode === "canvas_chat") {
+          ctx.fillStyle = "#e6eef8";
+          ctx.fillRect(0, 0, W, H);
+
+          ctx.fillStyle = "#1a73e8";
+          ctx.fillRect(0, 0, W, 165);
+          ctx.fillStyle = "rgba(255,255,255,0.85)";
+          ctx.font = "600 28px sans-serif";
+          ctx.fillText("20:42", 48, 56);
+          ctx.fillText("5G  92%", W - 185, 56);
+
+          ctx.fillStyle = "#ffffff";
+          ctx.font = "700 40px sans-serif";
+          const contactName = (page.id.includes("it") || page.id.includes("cong-so")) ? "Nhóm Anh Em Team Dự Án" : "Nóc Nhà Quyền Lực ❤️";
+          ctx.fillText("←  " + contactName, 44, 128);
+
+          ctx.fillStyle = "rgba(15,23,42,0.12)";
+          roundRect(ctx, W / 2 - 115, 200, 230, 48, 24);
+          ctx.fill();
+          ctx.fillStyle = "#334155";
+          ctx.font = "600 24px sans-serif";
+          ctx.textAlign = "center";
+          ctx.fillText("Hôm nay · 20:38", W / 2, 232);
+          ctx.textAlign = "left";
+
+          const msgs = [
+            { side: "left", text: "Này, đang ngồi nghĩ vụ: " + topic.slice(0, 72) + (topic.length > 72 ? "..." : ""), time: "20:38" },
+            { side: "right", text: "Thì mình tính hết rồi! Phải có chiến lược dài hạn chứ đâu làm bừa được 😎", time: "20:39" },
+            { side: "left", text: "Chiến lược gì mà tháng nào cũng thấy mệt rũ ra còn kết quả thì y nguyên thế?", time: "20:40" },
+            { side: "right", text: "... Thôi tối nay để mình đi rửa bát với đổ rác trước đã nhé 😅", time: "20:41" }
+          ];
+
+          let curY = 295;
+          msgs.forEach((m) => {
+            const boxW = 760;
+            ctx.font = "500 34px sans-serif";
+            const words = m.text.split(/\s+/);
+            let lines = 1, line = "";
+            words.forEach((w) => {
+              const t = line ? line + " " + w : w;
+              if (ctx.measureText(t).width > boxW - 64) { lines++; line = w; } else { line = t; }
+            });
+            lines = Math.min(lines, 5);
+            const boxH = lines * 46 + 76;
+            const bx = m.side === "left" ? 48 : W - boxW - 48;
+
+            ctx.fillStyle = m.side === "left" ? "#ffffff" : "#d9ecff";
+            roundRect(ctx, bx, curY, boxW, boxH, 26);
+            ctx.fill();
+            ctx.strokeStyle = m.side === "left" ? "#dbe4f0" : "#b6d6fe";
+            ctx.lineWidth = 2;
+            ctx.stroke();
+
+            ctx.fillStyle = "#0f172a";
+            wrapCanvasText(ctx, m.text, bx + 32, curY + 56, boxW - 64, 46, 5);
+            ctx.fillStyle = "#64748b";
+            ctx.font = "500 22px sans-serif";
+            ctx.fillText(m.time + (m.side === "right" ? " · Đã xem" : ""), bx + 32, curY + boxH - 18);
+            curY += boxH + 34;
+          });
+
+          ctx.fillStyle = "#ffffff";
+          ctx.fillRect(0, H - 118, W, 118);
+          ctx.strokeStyle = "#cbd5e1";
+          ctx.beginPath(); ctx.moveTo(0, H - 118); ctx.lineTo(W, H - 118); ctx.stroke();
+          ctx.fillStyle = "#94a3b8";
+          ctx.font = "500 30px sans-serif";
+          ctx.fillText("Nhập tin nhắn...   |   " + page.name.split("(")[0].trim(), 48, H - 48);
+        } else if (mode === "canvas_tech") {
+          const grad = ctx.createLinearGradient(0, 0, W, H);
+          grad.addColorStop(0, "#0b1120");
+          grad.addColorStop(1, "#1e293b");
+          ctx.fillStyle = grad;
+          ctx.fillRect(0, 0, W, H);
+
+          ctx.strokeStyle = "rgba(148,163,184,0.08)";
+          ctx.lineWidth = 1;
+          for (let gx = 0; gx < W; gx += 60) { ctx.beginPath(); ctx.moveTo(gx, 0); ctx.lineTo(gx, H); ctx.stroke(); }
+          for (let gy = 0; gy < H; gy += 60) { ctx.beginPath(); ctx.moveTo(0, gy); ctx.lineTo(W, gy); ctx.stroke(); }
+
+          ctx.fillStyle = "#ef4444";
+          roundRect(ctx, 72, 90, 320, 56, 28);
+          ctx.fill();
+          ctx.fillStyle = "#ffffff";
+          ctx.font = "800 26px sans-serif";
+          ctx.fillText("●  GÓC NHÌN NÓNG 2026", 100, 128);
+
+          ctx.fillStyle = "#f8fafc";
+          ctx.font = "800 62px sans-serif";
+          const nextY = wrapCanvasText(ctx, topic, 72, 240, W - 144, 78, 5);
+
+          const termY = Math.max(nextY + 50, 620);
+          ctx.fillStyle = "#020617";
+          roundRect(ctx, 72, termY, W - 144, 470, 22);
+          ctx.fill();
+          ctx.strokeStyle = "#334155";
+          ctx.lineWidth = 2;
+          ctx.stroke();
+
+          ["#ef4444", "#f59e0b", "#22c55e"].forEach((c, i) => {
+            ctx.fillStyle = c;
+            ctx.beginPath(); ctx.arc(116 + i * 32, termY + 38, 9, 0, Math.PI * 2); ctx.fill();
+          });
+          ctx.fillStyle = "#64748b";
+          ctx.font = "600 22px monospace";
+          ctx.fillText("analysis_2026.log — " + page.avatar, 230, termY + 46);
+
+          ctx.fillStyle = "#38bdf8";
+          ctx.font = "600 28px monospace";
+          ctx.fillText("$ insight --extract --sharp", 110, termY + 115);
+
+          ctx.fillStyle = "#e2e8f0";
+          ctx.font = "500 32px sans-serif";
+          const snippet = (postText.split("\n\n")[1] || postText).slice(0, 210);
+          wrapCanvasText(ctx, "» " + snippet, 110, termY + 180, W - 220, 48, 5);
+
+          ctx.fillStyle = "#38bdf8";
+          ctx.fillRect(72, H - 138, 120, 6);
+          ctx.fillStyle = "#cbd5e1";
+          ctx.font = "700 30px sans-serif";
+          ctx.fillText(page.name.split("(")[0].trim().toUpperCase(), 72, H - 80);
+          ctx.fillStyle = "#64748b";
+          ctx.font = "600 26px sans-serif";
+          ctx.textAlign = "right";
+          ctx.fillText("ĐỌC TIẾP Ở BÀI VIẾT ↓", W - 72, H - 80);
+          ctx.textAlign = "left";
+        } else {
+          ctx.fillStyle = "#faf8f5";
+          ctx.fillRect(0, 0, W, H);
+          ctx.strokeStyle = "#1a73e8";
+          ctx.lineWidth = 14;
+          ctx.strokeRect(42, 42, W - 84, H - 84);
+
+          ctx.fillStyle = "#1a73e8";
+          ctx.font = "800 180px Georgia, serif";
+          ctx.fillText("“", 95, 250);
+
+          ctx.fillStyle = "#0f172a";
+          ctx.font = "800 58px sans-serif";
+          const quoteNextY = wrapCanvasText(ctx, topic, 105, 320, W - 210, 78, 6);
+
+          ctx.fillStyle = "#475569";
+          ctx.font = "500 34px sans-serif";
+          const subLine = (postText.split("\n\n")[1] || "Một góc nhìn thẳng thắn đáng suy ngẫm hôm nay.").slice(0, 145);
+          wrapCanvasText(ctx, subLine, 105, Math.max(quoteNextY + 55, 760), W - 210, 50, 4);
+
+          ctx.fillStyle = "#1a73e8";
+          ctx.fillRect(105, H - 205, 110, 8);
+          ctx.fillStyle = "#0f172a";
+          ctx.font = "800 34px sans-serif";
+          ctx.fillText(page.name.split("(")[0].trim(), 105, H - 140);
+          ctx.fillStyle = "#64748b";
+          ctx.font = "600 25px sans-serif";
+          ctx.fillText("Lưu lại hoặc chia sẻ cho người đang cần đọc hôm nay", 105, H - 95);
+        }
+      }
+
+      /* ==================== AI PHOTOREALISTIC IMAGE CALLER ==================== */
+      async function generateImage(mode, page, topic, postText, imgPrompt) {
+        const loader = $("mediaLoader");
+        const loaderText = $("mediaLoaderText");
+        const imgEl = $("aiImageEl");
+        const canvas = $("artCanvas");
+
+        if (mode.startsWith("canvas_")) {
+          loader.classList.remove("show");
+          renderCanvasArtwork(mode, page, topic, postText);
+          return;
+        }
+
+        loader.classList.add("show");
+        if (mode === "ai_gemini") {
+          if (!API_CFG.apiKey) {
+            loader.classList.remove("show");
+            renderCanvasArtwork("canvas_chat", page, topic, postText);
+            return toast("⚠️ Chưa có Gemini API Key — Đã tự chuyển sang ảnh Canvas 4:5 (0đ).");
+          }
+          loaderText.textContent = "Đang gọi Google Gemini 3.1 Flash Image (4:5)...";
+          try {
+            const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-image:generateContent?key=${encodeURIComponent(API_CFG.apiKey.trim())}`;
+            const resp = await fetch(url, {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({
+                contents: [{ parts: [{ text: imgPrompt }] }],
+                generationConfig: { responseModalities: ["TEXT", "IMAGE"], imageConfig: { aspectRatio: "4:5" } }
+              })
+            });
+            if (!resp.ok) throw new Error("Gemini Image HTTP " + resp.status);
+            const data = await resp.json();
+            const parts = data?.candidates?.[0]?.content?.parts || [];
+            const imgPart = parts.find((p) => p.inlineData && p.inlineData.data);
+            if (!imgPart) throw new Error("Không tìm thấy dữ liệu ảnh trả về");
+            imgEl.src = `data:${imgPart.inlineData.mimeType || "image/png"};base64,${imgPart.inlineData.data}`;
+            imgEl.style.display = "block";
+            canvas.style.display = "none";
+            loader.classList.remove("show");
+            toast("📸 Đã tạo xong ảnh AI Gemini 4:5!");
+          } catch (err) {
+            loader.classList.remove("show");
+            renderCanvasArtwork("canvas_quote", page, topic, postText);
+            toast("⚠️ Lỗi gọi Gemini Image (" + err.message + ") — Đã dùng ảnh Canvas dự phòng.");
+          }
+          return;
+        }
+
+        loaderText.textContent = "Đang render ảnh AI giống người thật (Pollinations FLUX)...";
+        const seed = Math.floor(Math.random() * 999999);
+        const encoded = encodeURIComponent(imgPrompt.slice(0, 480));
+        const polliUrl = API_CFG.polliKey && API_CFG.polliKey.trim()
+          ? `https://gen.pollinations.ai/image/${encoded}?model=flux&width=864&height=1080&seed=${seed}&key=${encodeURIComponent(API_CFG.polliKey.trim())}`
+          : `https://image.pollinations.ai/prompt/${encoded}?model=flux&width=768&height=960&seed=${seed}&nologo=true`;
+
+        imgEl.onload = () => {
+          imgEl.style.display = "block";
+          canvas.style.display = "none";
+          loader.classList.remove("show");
+          toast("📸 Đã tạo ảnh AI Photorealistic thành công!");
+        };
+        imgEl.onerror = () => {
+          loader.classList.remove("show");
+          renderCanvasArtwork("canvas_chat", page, topic, postText);
+          toast("⚠️ Máy chủ ảnh AI đang bận/cần Key sk_ — Đã chuyển sang ảnh Canvas 4:5 sắc nét!");
+        };
+        imgEl.crossOrigin = "anonymous";
+        imgEl.src = polliUrl;
+      }
+
+      /* ==================== RENDER STUDIO UI ==================== */
+      function getPageById(id) {
+        return PAGES_DB.find((p) => p.id === id) || PAGES_DB[0];
+      }
+
+      function populatePageSelectors() {
+        const sel = $("pageSelect");
+        const upd = $("updTargetPage");
+        sel.innerHTML = "";
+        upd.innerHTML = "";
+        PAGES_DB.forEach((p) => {
+          const opt = document.createElement("option");
+          opt.value = p.id;
+          opt.textContent = p.name;
+          sel.appendChild(opt);
+
+          const opt2 = document.createElement("option");
+          opt2.value = p.id;
+          opt2.textContent = "Thêm chủ đề vào: " + p.name;
+          upd.appendChild(opt2);
+        });
+        const newOpt = document.createElement("option");
+        newOpt.value = "__NEW__";
+        newOpt.textContent = "➕ TẠO TRANG FACEBOOK MỚI HOÀN TOÀN";
+        upd.appendChild(newOpt);
+        sel.value = currentPageId;
+      }
+
+      function renderTopicChips() {
+        const page = getPageById(currentPageId);
+        const box = $("topicChips");
+        box.innerHTML = "";
+        page.topics.forEach((t, idx) => {
+          const btn = document.createElement("button");
+          btn.type = "button";
+          btn.className = "chip" + (t === currentTopic ? " selected" : "");
+          btn.textContent = (idx + 1) + ". " + t;
+          btn.onclick = () => {
+            currentTopic = t;
+            $("customTopic").value = "";
+            renderTopicChips();
+          };
+          box.appendChild(btn);
+        });
+        $("ctaProduct").value = page.defaultProduct || "";
+      }
+
+      function renderPostPreview() {
+        const page = getPageById(currentPageId);
+        const text = currentVariants[currentVariantIdx] || "";
+        $("previewAvatar").textContent = page.avatar || "FB";
+        $("previewPageName").textContent = page.name;
+        $("previewGoldenHour").textContent = page.goldenHour || "19:45 – 21:30";
+        const labels = ["Storytelling / Dwell Time", "Phản biện 3 ý / Comment", "Ngắn gọn / Private Share"];
+        $("previewFormatBadge").textContent = labels[currentVariantIdx] || "Viral Post";
+
+        const cutoff = 125;
+        if (text.length > cutoff) {
+          const head = escapeHtml(text.slice(0, cutoff));
+          const tail = escapeHtml(text.slice(cutoff));
+          $("postPreviewBody").innerHTML = `<span class="hook-highlight" title="125 ký tự hiển thị trước nút Xem thêm trên Mobile">${head}</span><span class="seemore-tag">...Xem thêm (125 ký tự)</span>${tail}`;
+        } else {
+          $("postPreviewBody").textContent = text;
+        }
+
+        const wordCount = text.trim() ? text.trim().split(/\s+/).length : 0;
+        const hashtags = (text.match(/#[\p{L}\p{N}_]+/gu) || []).length;
+        const hasUrl = /https?:\/\/|www\./i.test(text);
+        const hookOk = text.trim().length >= 60;
+
+        $("postMetricsStrip").innerHTML = `
+          <span>📏 Độ dài: <strong>${wordCount} chữ</strong></span>
+          <span>✂️ Hook 125 ký tự: <strong style="color:${hookOk ? "var(--success)" : "var(--warn)"}">${hookOk ? "Đạt chuẩn" : "Hơi ngắn"}</strong></span>
+          <span>#️⃣ Hashtag: <strong style="color:${hashtags <= 5 ? "var(--success)" : "var(--danger)"}">${hashtags}/5</strong></span>
+          <span>🔗 Link thân bài: <strong style="color:${hasUrl ? "var(--danger)" : "var(--success)"}">${hasUrl ? "Có Link (Dễ bóp!)" : "Sạch (0 link)"}</strong></span>
+        `;
+        $("pinnedCommentBox").textContent = currentComment;
+        $("imagePromptBox").value = currentImgPrompt;
+      }
+
+      async function runGenerateAll() {
+        const page = getPageById(currentPageId);
+        const topic = $("customTopic").value.trim() || currentTopic || page.topics[0];
+        const product = $("ctaProduct").value.trim() || page.defaultProduct;
+        const btn = $("btnGenerateAll");
+        btn.disabled = true;
+        btn.textContent = "⏳ Đang khởi tạo 3 phương án bài viết + hình ảnh...";
+
+        try {
+          let bundle;
+          if (API_CFG.provider !== "offline" && API_CFG.apiKey && API_CFG.apiKey.trim()) {
+            try {
+              bundle = await generateWithLiveAI(page, topic, product);
+              toast("✨ Đã sinh 3 phương án mới bằng Live AI!");
+            } catch (aiErr) {
+              bundle = buildOfflineBundle(page, topic, product);
+              toast("⚠️ Live AI lỗi (" + aiErr.message + ") — Đã xuất nhanh bằng Offline Pro!");
+            }
+          } else {
+            bundle = buildOfflineBundle(page, topic, product);
+            toast("⚡ Đã xuất xong 3 phương án bài viết + ảnh 4:5!");
+          }
+
+          currentVariants = bundle.variants;
+          currentComment = bundle.comment;
+          currentImgPrompt = bundle.imgPrompt;
+          currentVariantIdx = 0;
+          document.querySelectorAll(".variant-pill").forEach((b, i) => b.classList.toggle("active", i === 0));
+          renderPostPreview();
+
+          const imgMode = $("imageModeSelect").value;
+          await generateImage(imgMode, page, topic, currentVariants[0], currentImgPrompt);
+        } finally {
+          btn.disabled = false;
+          btn.textContent = "⚡ TẠO BÀI MỚI + HÌNH ẢNH (1-CLICK)";
+        }
+      }
+
+      /* ==================== LIVE PUBLIC TECH FEEDS ==================== */
+      async function fetchHackerNews() {
+        const btn = $("btnFetchHN");
+        btn.disabled = true; btn.textContent = "⏳ Đang tải HN...";
+        try {
+          const ids = await (await fetch("https://hacker-news.firebaseio.com/v0/topstories.json")).json();
+          const pickId = ids[Math.floor(Math.random() * 20)];
+          const item = await (await fetch(`https://hacker-news.firebaseio.com/v0/item/${pickId}.json`)).json();
+          if (item && item.title) {
+            $("customTopic").value = `Tin nóng quốc tế (${item.score || 100}+ điểm HN): ${item.title}`;
+            toast("🌐 Đã nạp tin nóng từ Hacker News!");
+          }
+        } catch (e) {
+          toast("⚠️ Không tải được Hacker News (kiểm tra mạng).");
+        } finally {
+          btn.disabled = false; btn.textContent = "🌐 Nạp Tin Tech Live (Hacker News)";
+        }
+      }
+
+      async function fetchDevTo() {
+        const btn = $("btnFetchDevto");
+        btn.disabled = true; btn.textContent = "⏳ Đang tải Dev.to...";
+        try {
+          const list = await (await fetch("https://dev.to/api/articles?top=7&per_page=15")).json();
+          const art = list[Math.floor(Math.random() * list.length)];
+          if (art && art.title) {
+            $("customTopic").value = `Tranh luận Dev.to (${art.public_reactions_count || 50} reactions): ${art.title}`;
+            toast("💻 Đã nạp bài xu hướng từ Dev.to!");
+          }
+        } catch (e) {
+          toast("⚠️ Không tải được Dev.to (kiểm tra mạng hoặc CORS).");
+        } finally {
+          btn.disabled = false; btn.textContent = "💻 Nạp Bài Dev.to Live";
+        }
+      }
+
+      /* ==================== MINI-GAME POST GENERATOR & QUIZ WIDGET ==================== */
+      function generateMiniGamePost() {
+        if (!GAMES_DB.length) return toast("⚠️ Kho Mini-Game đang trống!");
+        const quiz = GAMES_DB[Math.floor(Math.random() * GAMES_DB.length)];
+        const page = getPageById(currentPageId);
+        const postA = `🎮 MINI-GAME CUỐI TUẦN (Rất nhiều người làm nghề chọn nhầm!)\n\n${quiz.q}\n\nA. ${quiz.options[0]}\nB. ${quiz.options[1]}\nC. ${quiz.options[2]}\n\nThả đáp án A, B hoặc C kèm 1 câu giải thích bên dưới — mình sẽ bật mí đáp án chuẩn cùng phân tích số liệu ở bình luận sau 2 tiếng nhé!\n\n#MiniGame #TracNghiem #${page.avatar}2026`;
+        const postB = `Đố vui nhanh kiểm tra độ tỉnh táo hôm nay:\n\n"${quiz.q}"\n\n👉 Chọn 1 trong 3: ${quiz.options.map((o, i) => `${["A", "B", "C"][i]}. ${o}`).join(" | ")}\n\nBác nào chọn đúng nhớ chụp lại làm bằng chứng, lát mình thả giải thích bất ngờ bên dưới!`;
+        const postC = `Một câu hỏi nhanh dành cho hội bạn thân trong nhóm chat:\n\n${quiz.q}\n\nA) ${quiz.options[0]}\nB) ${quiz.options[1]}\nC) ${quiz.options[2]}\n\nGửi thử cho đồng nghiệp xem ai trả lời đúng trong 5 giây!`;
+
+        currentVariants = [postA, postB, postC];
+        currentComment = `💡 ĐÁP ÁN CHUẨN (Chỉ xem sau khi đã bình luận!): Đáp án đúng là ${["A", "B", "C"][quiz.answer]}.\nGiải thích: ${quiz.explain}\n👉 Comment chữ "GAME" để nhận trọn bộ câu hỏi & tài liệu qua Messenger nhé!`;
+        currentImgPrompt = `Clean modern quiz card on minimalist wooden coffee table with smartphone, warm natural daylight, candid 35mm documentary photo, 4:5 vertical`;
+        currentVariantIdx = 0;
+        document.querySelectorAll(".variant-pill").forEach((b, i) => b.classList.toggle("active", i === 0));
+        renderPostPreview();
+        renderCanvasArtwork("canvas_quote", page, quiz.q, "A. " + quiz.options[0] + " · B. " + quiz.options[1]);
+        toast("🎮 Đã xuất 3 phương án bài Mini-Game kéo bình luận!");
+      }
+
+      function renderQuizWidget() {
+        if (!GAMES_DB.length) return;
+        const quiz = GAMES_DB[currentQuizIdx % GAMES_DB.length];
+        $("quizQuestion").textContent = `Câu ${(currentQuizIdx % GAMES_DB.length) + 1}/${GAMES_DB.length}: ${quiz.q}`;
+        const optBox = $("quizOptions");
+        optBox.innerHTML = "";
+        const expBox = $("quizExplain");
+        expBox.style.display = "none";
+
+        quiz.options.forEach((opt, idx) => {
+          const b = document.createElement("button");
+          b.type = "button";
+          b.className = "quiz-option";
+          b.textContent = `${["A", "B", "C"][idx]}. ${opt}`;
+          b.onclick = () => {
+            optBox.querySelectorAll(".quiz-option").forEach((el, j) => {
+              el.disabled = true;
+              if (j === quiz.answer) el.classList.add("correct");
+              else if (j === idx) el.classList.add("wrong");
+            });
+            expBox.textContent = (idx === quiz.answer ? "✅ Chính xác! " : "❌ Chưa đúng! ") + quiz.explain;
+            expBox.style.display = "block";
+          };
+          optBox.appendChild(b);
+        });
+      }
+
+      /* ==================== HISTORY, RESEARCH TABLE, CHECKLIST, CALCULATOR ==================== */
+      function renderHistory() {
+        $("historyCount").textContent = HISTORY.length + " bài";
+        const box = $("historyList");
+        if (!HISTORY.length) {
+          box.textContent = "Chưa có bài nào được lưu. Bấm 'Lưu' sau khi tạo bài để lưu trữ tại đây.";
+          return;
+        }
+        box.innerHTML = HISTORY.map((h, i) => `
+          <div style="padding:8px; border-bottom:1px solid var(--border); display:flex; justify-content:space-between; align-items:center; gap:8px;">
+            <div style="min-width:0;">
+              <div style="font-weight:700; color:var(--text); white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">${escapeHtml(h.topic)}</div>
+              <small>${escapeHtml(h.pageName)} · ${escapeHtml(h.time)}</small>
+            </div>
+            <button class="btn btn-sm" data-load-hist="${i}">Mở</button>
+          </div>
+        `).join("");
+        box.querySelectorAll("[data-load-hist]").forEach((b) => {
+          b.onclick = () => {
+            const item = HISTORY[Number(b.dataset.loadHist)];
+            if (!item) return;
+            currentPageId = item.pageId;
+            $("pageSelect").value = currentPageId;
+            currentTopic = item.topic;
+            currentVariants = item.variants;
+            currentComment = item.comment;
+            currentImgPrompt = item.imgPrompt;
+            currentVariantIdx = 0;
+            renderTopicChips();
+            renderPostPreview();
+            renderCanvasArtwork("canvas_quote", getPageById(currentPageId), item.topic, item.variants[0]);
+            toast("📂 Đã khôi phục bài viết từ lịch sử!");
+          };
+        });
+      }
+
+      function renderResearchTable() {
+        $("nicheResearchTable").innerHTML = PAGES_DB.map((p) => `
+          <tr>
+            <td><strong>${escapeHtml(p.name)}</strong></td>
+            <td>${escapeHtml(p.tone)}</td>
+            <td>${escapeHtml(p.audience || "Người trưởng thành 24–45 tuổi")}</td>
+            <td><span class="badge">${escapeHtml(p.goldenHour || "19:45–21:30")}</span></td>
+            <td>${escapeHtml(p.revenueModel || p.defaultProduct)}</td>
+          </tr>
+        `).join("");
+      }
+
+      function renderViralChecklist() {
+        const box = $("viralChecklistContainer");
+        box.innerHTML = VIRAL_CHECKLIST.map((item) => `
+          <label class="check-item">
+            <input type="checkbox" class="viral-chk" />
+            <span style="font-size:13px;">${escapeHtml(item.text)}</span>
+          </label>
+        `).join("");
+        const updateScore = () => {
+          const all = box.querySelectorAll(".viral-chk");
+          const checked = Array.from(all).filter((c) => c.checked).length;
+          const score = Math.round((checked / all.length) * 100);
+          $("viralScoreBadge").textContent = `${score} / 100 điểm`;
+          $("viralScoreBar").style.width = score + "%";
+        };
+        box.querySelectorAll(".viral-chk").forEach((c) => c.addEventListener("change", updateScore));
+      }
+
+      function updateRevenueCalc() {
+        const views = Number($("rngViews").value);
+        const digOrders = Number($("rngDigOrders").value);
+        const digPrice = Number($("rngDigPrice").value);
+        const saasUsers = Number($("rngSaasUsers").value);
+        const prPosts = Number($("rngPrPosts").value);
+        const USD = 25400;
+
+        $("lblViews").textContent = views.toLocaleString("vi-VN");
+        $("lblDigOrders").textContent = digOrders + " đơn";
+        $("lblDigPrice").textContent = fmtVND(digPrice);
+        $("lblSaasUsers").textContent = saasUsers + " khách";
+        $("lblPrPosts").textContent = prPosts + " bài";
+
+        const revCmp = (views / 1000) * 0.08 * USD;
+        const revShopee = views * 0.015 * 0.03 * 250000 * 0.035 * 0.9902;
+        const revSaas = saasUsers * 29 * 0.30 * USD;
+        const revPr = prPosts * 5000000;
+        const revDig = digOrders * digPrice;
+
+        const gross = revCmp + revShopee + revSaas + revPr + revDig;
+        const apiAndGateway = 100000 + (digOrders * 533);
+        const net = Math.max(0, gross * 0.92 - apiAndGateway);
+        const grossYear = gross * 12;
+
+        $("calcGrossMonth").textContent = fmtVND(gross);
+        $("calcGrossYear").textContent = "Ước tính năm: " + fmtVND(grossYear);
+        $("calcNetMonth").textContent = fmtVND(net);
+
+        const rows = [
+          { name: "Sản phẩm số tự sở hữu (File HTML / Ebook / Khóa)", val: revDig },
+          { name: "Booking PR / Tài trợ B2B", val: revPr },
+          { name: "AI SaaS Recurring Affiliate (USD)", val: revSaas },
+          { name: "Shopee / TikTok Affiliate", val: revShopee },
+          { name: "Meta Content Monetization (VN)", val: revCmp }
+        ];
+        $("calcBreakdownBody").innerHTML = rows.map((r) => {
+          const pct = gross > 0 ? ((r.val / gross) * 100).toFixed(1) : "0.0";
+          return `<tr><td>${r.name}</td><td><strong>${fmtVND(r.val)}</strong></td><td>${pct}%</td></tr>`;
+        }).join("");
+
+        const over1B = grossYear > 1000000000;
+        $("taxNoticeBox").innerHTML = over1B
+          ? `⚖️ <strong>Lưu ý Thuế 2026:</strong> Doanh thu năm kịch bản đạt <strong>${fmtVND(grossYear)}</strong> (vượt mốc 1 tỷ đồng theo NĐ 68/2026/NĐ-CP). Nên đăng ký Hộ kinh doanh kê khai và liên hệ cơ quan thuế địa phương để áp dụng đúng phương pháp (tính trên lợi nhuận hoặc tỷ lệ doanh thu).`
+          : `⚖️ <strong>Lưu ý Thuế 2026:</strong> Doanh thu năm kịch bản đạt <strong>${fmtVND(grossYear)}</strong> (≤ 1 tỷ đồng/năm). Theo hướng dẫn NĐ 68/2026/NĐ-CP (07/2026), thuộc diện không phải nộp thuế GTGT/TNCN nhưng vẫn cần đăng ký MST và kê khai doanh thu định kỳ.`;
+      }
+
+      /* ==================== DOWNLOAD IMAGE & BRANDING ==================== */
+      function downloadActiveImage() {
+        const imgEl = $("aiImageEl");
+        const canvas = $("artCanvas");
+        const filename = `fb-post-4x5-${Date.now()}.png`;
+        if (canvas.style.display !== "none") {
+          const a = document.createElement("a");
+          a.href = canvas.toDataURL("image/png");
+          a.download = filename;
+          a.click();
+          return toast("⬇️ Đã tải ảnh Canvas 4:5 (1080×1350px)!");
+        }
+        try {
+          const tmp = document.createElement("canvas");
+          tmp.width = imgEl.naturalWidth || 864;
+          tmp.height = imgEl.naturalHeight || 1080;
+          tmp.getContext("2d").drawImage(imgEl, 0, 0, tmp.width, tmp.height);
+          const a = document.createElement("a");
+          a.href = tmp.toDataURL("image/png");
+          a.download = filename;
+          a.click();
+          toast("⬇️ Đã tải ảnh AI PNG!");
+        } catch (e) {
+          window.open(imgEl.src, "_blank");
+          toast("🖼️ Đã mở ảnh AI ở tab mới — Nhấn chuột phải chọn Lưu hình ảnh!");
+        }
+      }
+
+      function applyBrandUI() {
+        $("appBrandTitle").textContent = BRAND_CFG.title;
+        $("appBrandSub").textContent = BRAND_CFG.sub;
+        $("brandLogoText").textContent = BRAND_CFG.logo;
+        document.title = BRAND_CFG.title + " — " + APP_VERSION;
+        $("wlTitle").value = BRAND_CFG.title;
+        $("wlSub").value = BRAND_CFG.sub;
+        $("wlLogo").value = BRAND_CFG.logo;
+      }
+
+      function syncApiStatusBadge() {
+        const badge = $("engineStatusBadge");
+        if (API_CFG.provider === "offline" || !API_CFG.apiKey) {
+          badge.className = "badge success";
+          badge.textContent = "⚡ Offline Pro (0đ)";
+        } else {
+          badge.className = "badge";
+          badge.textContent = "🤖 Live AI: " + (API_CFG.provider === "openrouter" ? "OpenRouter" : "Gemini");
+        }
+      }
+
+      /* ==================== EVENT BINDINGS ==================== */
+      document.querySelectorAll(".nav-btn").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          document.querySelectorAll(".nav-btn").forEach((b) => b.classList.remove("active"));
+          document.querySelectorAll(".tab-panel").forEach((p) => p.classList.remove("active"));
+          btn.classList.add("active");
+          $("tab-" + btn.dataset.tab).classList.add("active");
+        });
+      });
+
+      const savedTheme = loadStore(STORAGE_KEYS.theme, "light");
+      document.documentElement.setAttribute("data-theme", savedTheme);
+      $("btnThemeToggle").onclick = () => {
+        const next = document.documentElement.getAttribute("data-theme") === "dark" ? "light" : "dark";
+        document.documentElement.setAttribute("data-theme", next);
+        saveStore(STORAGE_KEYS.theme, next);
+      };
+
+      $("pageSelect").onchange = (e) => {
+        currentPageId = e.target.value;
+        const page = getPageById(currentPageId);
+        currentTopic = page.topics[0] || "";
+        $("customTopic").value = "";
+        renderTopicChips();
+      };
+
+      $("btnRandomTopic").onclick = () => {
+        const page = getPageById(currentPageId);
+        currentTopic = page.topics[Math.floor(Math.random() * page.topics.length)];
+        $("customTopic").value = "";
+        renderTopicChips();
+        toast("🎲 Đã chọn ngẫu nhiên 1 chủ đề hot!");
+      };
+
+      $("variantBar").querySelectorAll(".variant-pill").forEach((btn) => {
+        btn.onclick = () => {
+          document.querySelectorAll(".variant-pill").forEach((b) => b.classList.remove("active"));
+          btn.classList.add("active");
+          currentVariantIdx = Number(btn.dataset.variant);
+          renderPostPreview();
+        };
+      });
+
+      $("btnGenerateAll").onclick = runGenerateAll;
+      $("btnGenMiniGamePost").onclick = generateMiniGamePost;
+      $("btnFetchHN").onclick = fetchHackerNews;
+      $("btnFetchDevto").onclick = fetchDevTo;
+
+      $("btnCopyPost").onclick = () => copyText(currentVariants[currentVariantIdx], "bài viết Facebook");
+      $("btnCopyComment").onclick = () => copyText(currentComment, "bình luận ghim");
+      $("btnCopyImgPrompt").onclick = () => copyText($("imagePromptBox").value, "Prompt Ảnh Pro");
+      $("btnDownloadImage").onclick = downloadActiveImage;
+
+      $("btnRegenImage").onclick = () => {
+        const page = getPageById(currentPageId);
+        const topic = $("customTopic").value.trim() || currentTopic || page.topics[0];
+        generateImage($("imageModeSelect").value, page, topic, currentVariants[currentVariantIdx], $("imagePromptBox").value);
+      };
+      $("btnSwitchToCanvas").onclick = () => {
+        $("imageModeSelect").value = "canvas_chat";
+        $("btnRegenImage").click();
+      };
+      $("btnSwitchToAI").onclick = () => {
+        $("imageModeSelect").value = "ai_pollinations";
+        $("btnRegenImage").click();
+      };
+
+      $("btnSaveToHistory").onclick = () => {
+        if (!currentVariants[0]) return toast("Hãy tạo bài trước khi lưu!");
+        const page = getPageById(currentPageId);
+        HISTORY.unshift({
+          pageId: page.id,
+          pageName: page.name,
+          topic: $("customTopic").value.trim() || currentTopic,
+          variants: currentVariants.slice(),
+          comment: currentComment,
+          imgPrompt: $("imagePromptBox").value,
+          time: new Date().toLocaleString("vi-VN")
+        });
+        if (HISTORY.length > 25) HISTORY.pop();
+        saveStore(STORAGE_KEYS.history, HISTORY);
+        renderHistory();
+        toast("💾 Đã lưu bài viết vào Lịch sử!");
+      };
+      $("btnClearHistory").onclick = () => {
+        HISTORY = [];
+        saveStore(STORAGE_KEYS.history, HISTORY);
+        renderHistory();
+        toast("🗑️ Đã dọn sạch lịch sử lưu!");
+      };
+
+      $("aiProvider").value = API_CFG.provider;
+      $("aiApiKey").value = API_CFG.apiKey;
+      $("aiModelId").value = API_CFG.modelId;
+      $("polliKey").value = API_CFG.polliKey || "";
+      $("aiProvider").onchange = (e) => {
+        if (e.target.value === "openrouter") $("aiModelId").value = "openrouter/free";
+        else if (e.target.value === "gemini") $("aiModelId").value = "gemini-3-flash-preview";
+      };
+      $("btnSaveApi").onclick = () => {
+        API_CFG = {
+          provider: $("aiProvider").value,
+          apiKey: $("aiApiKey").value.trim(),
+          modelId: $("aiModelId").value.trim(),
+          polliKey: $("polliKey").value.trim()
+        };
+        saveStore(STORAGE_KEYS.api, API_CFG);
+        syncApiStatusBadge();
+        toast("🔑 Đã lưu cấu hình API trên trình duyệt!");
+      };
+
+      ["rngViews", "rngDigOrders", "rngDigPrice", "rngSaasUsers", "rngPrPosts"].forEach((id) => {
+        $(id).addEventListener("input", updateRevenueCalc);
+      });
+      $("btnResetCalc").onclick = () => {
+        $("rngViews").value = 1000000;
+        $("rngDigOrders").value = 60;
+        $("rngDigPrice").value = 399000;
+        $("rngSaasUsers").value = 35;
+        $("rngPrPosts").value = 3;
+        updateRevenueCalc();
+      };
+
+      $("btnApplyBrand").onclick = () => {
+        BRAND_CFG = {
+          title: $("wlTitle").value.trim() || "FB Content Studio Pro",
+          sub: $("wlSub").value.trim() || "Tạo Bài Viral & Ảnh 4:5 (1-Click)",
+          logo: ($("wlLogo").value.trim() || "FB").toUpperCase()
+        };
+        saveStore(STORAGE_KEYS.brand, BRAND_CFG);
+        applyBrandUI();
+        toast("🎨 Đã áp dụng thương hiệu White-Label!");
+      };
+
+      $("updTargetPage").onchange = (e) => {
+        $("newPageFields").style.display = e.target.value === "__NEW__" ? "block" : "none";
+      };
+
+      $("btnAddTopicOrPage").onclick = () => {
+        const target = $("updTargetPage").value;
+        const topic = $("newTopicTitle").value.trim();
+        if (!topic) return toast("⚠️ Vui lòng nhập tiêu đề chủ đề mới!");
+
+        if (target === "__NEW__") {
+          const name = $("newPageName").value.trim();
+          const style = $("newPageStyle").value.trim() || "Gần gũi, thực chiến, giàu góc nhìn";
+          if (!name) return toast("⚠️ Vui lòng nhập Tên Trang Facebook mới!");
+          const id = "custom-" + Date.now();
+          PAGES_DB.push({
+            id,
+            name,
+            avatar: name.slice(0, 2).toUpperCase(),
+            tone: style,
+            audience: "Khán giả mục tiêu tùy chỉnh",
+            goldenHour: "19:45 – 21:30",
+            revenueModel: style,
+            defaultProduct: "Tài liệu & giải pháp chuyên sâu của " + name,
+            imgScene: "Vietnamese modern everyday lifestyle scene, candid 35mm documentary photo, natural daylight",
+            topics: [topic]
+          });
+          currentPageId = id;
+          currentTopic = topic;
+        } else {
+          const p = getPageById(target);
+          p.topics.unshift(topic);
+          currentPageId = p.id;
+          currentTopic = topic;
+        }
+
+        saveStore(STORAGE_KEYS.pages, PAGES_DB);
+        populatePageSelectors();
+        renderTopicChips();
+        renderResearchTable();
+        $("newTopicTitle").value = "";
+        $("newPageName").value = "";
+        toast("✅ Đã cập nhật kho bài viết — Sẵn sàng tạo bài ngay ở Tab 1!");
+      };
+
+      $("btnAddQuiz").onclick = () => {
+        const q = $("newQuizQ").value.trim();
+        const opts = $("newQuizOpts").value.split(";").map((s) => s.trim()).filter(Boolean);
+        const ans = Math.min(2, Math.max(0, Number($("newQuizAns").value) || 0));
+        const exp = $("newQuizExp").value.trim() || "Đáp án chuẩn đã được xác nhận trong dữ liệu 2026.";
+        if (!q || opts.length < 3) return toast("⚠️ Cần nhập câu hỏi và đủ 3 phương án cách nhau bởi dấu chấm phẩy (;)!");
+
+        GAMES_DB.unshift({ id: "g-" + Date.now(), q, options: opts.slice(0, 3), answer: ans, explain: exp });
+        saveStore(STORAGE_KEYS.games, GAMES_DB);
+        currentQuizIdx = 0;
+        renderQuizWidget();
+        $("newQuizQ").value = "";
+        $("newQuizOpts").value = "";
+        $("newQuizExp").value = "";
+        toast("🎮 Đã thêm câu hỏi mới vào kho GAMES_DB!");
+      };
+
+      $("btnNextQuiz").onclick = () => {
+        if (!GAMES_DB.length) return;
+        currentQuizIdx = (currentQuizIdx + 1) % GAMES_DB.length;
+        renderQuizWidget();
+      };
+
+      $("btnExportJson").onclick = () => {
+        const payload = { version: APP_VERSION, exportedAt: new Date().toISOString(), brand: BRAND_CFG, pages: PAGES_DB, games: GAMES_DB };
+        const blob = new Blob([JSON.stringify(payload, null, 2)], { type: "application/json" });
+        const a = document.createElement("a");
+        a.href = URL.createObjectURL(blob);
+        a.download = `fb-studio-backup-${APP_VERSION}.json`;
+        a.click();
+        toast("⬇️ Đã xuất tệp Backup JSON (Bài + Mini-Game)!");
+      };
+
+      $("importJsonInput").onchange = (e) => {
+        const file = e.target.files[0];
+        if (!file) return;
+        const reader = new FileReader();
+        reader.onload = () => {
+          try {
+            const data = JSON.parse(reader.result);
+            if (Array.isArray(data.pages) && data.pages.length) { PAGES_DB = data.pages; saveStore(STORAGE_KEYS.pages, PAGES_DB); }
+            if (Array.isArray(data.games) && data.games.length) { GAMES_DB = data.games; saveStore(STORAGE_KEYS.games, GAMES_DB); }
+            if (data.brand) { BRAND_CFG = data.brand; saveStore(STORAGE_KEYS.brand, BRAND_CFG); applyBrandUI(); }
+            currentPageId = PAGES_DB[0].id;
+            currentTopic = PAGES_DB[0].topics[0];
+            populatePageSelectors();
+            renderTopicChips();
+            renderResearchTable();
+            renderQuizWidget();
+            toast("✅ Đã nhập thành công gói dữ liệu JSON mới!");
+          } catch (err) {
+            toast("⚠️ Tệp JSON không đúng định dạng!");
+          }
+        };
+        reader.readAsText(file);
+      };
+
+      $("btnResetDefaults").onclick = () => {
+        PAGES_DB = JSON.parse(JSON.stringify(DEFAULT_PAGES_DB));
+        GAMES_DB = JSON.parse(JSON.stringify(DEFAULT_GAMES_DB));
+        saveStore(STORAGE_KEYS.pages, PAGES_DB);
+        saveStore(STORAGE_KEYS.games, GAMES_DB);
+        currentPageId = PAGES_DB[0].id;
+        currentTopic = PAGES_DB[0].topics[0];
+        populatePageSelectors();
+        renderTopicChips();
+        renderResearchTable();
+        renderQuizWidget();
+        toast("♻️ Đã khôi phục kho bài & game mặc định v2.6!");
+      };
+
+      /* ==================== BOOTSTRAP ==================== */
+      applyBrandUI();
+      syncApiStatusBadge();
+      populatePageSelectors();
+      renderTopicChips();
+      renderResearchTable();
+      renderViralChecklist();
+      renderHistory();
+      renderQuizWidget();
+      updateRevenueCalc();
+      const initBundle = buildOfflineBundle(PAGES_DB[0], PAGES_DB[0].topics[0], PAGES_DB[0].defaultProduct);
+      currentVariants = initBundle.variants;
+      currentComment = initBundle.comment;
+      currentImgPrompt = initBundle.imgPrompt;
+      renderPostPreview();
+      renderCanvasArtwork("canvas_chat", PAGES_DB[0], PAGES_DB[0].topics[0], initBundle.variants[0]);
+    })();
+  </script>
+</body>
+</html>
+<!-- https://gemini.google.com/app/dee57de61b0df5f8 -->
