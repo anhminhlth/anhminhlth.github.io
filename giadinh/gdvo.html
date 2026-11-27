@@ -3,12 +3,12 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Hồ Sơ Gia Đình Bên Vợ (Xuân Trường / Nam Định - Ninh Bình) &amp; Kế Hoạch 2026–2027 (Bản Cây Nhánh &amp; Sơ Đồ Trực Quan)</title>
+  <title>Hồ Sơ Gia Đình Bên Vợ (Xuân Trường / Nam Định - Ninh Bình)</title>
   <style>
     :root {
       --bg: #f4f1ea;
       --surface: #ffffff;
-      --surface-alt: #fbf9f5;
+      --surface-alt: #faf8f3;
       --surface-warm: #fffaf0;
       --ink: #1a202c;
       --muted: #525d6b;
@@ -28,8 +28,8 @@
       --purple-soft: #ede9fe;
       --shadow-sm: 0 2px 8px rgba(26, 32, 44, 0.05);
       --shadow-md: 0 8px 24px rgba(26, 32, 44, 0.09);
-      --radius: 14px;
-      --radius-sm: 9px;
+      --radius: 13px;
+      --radius-sm: 8px;
       --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
     }
 
@@ -39,72 +39,66 @@
       margin: 0;
       padding: 0;
       font-family: var(--font-sans);
-      background-color: var(--bg);
+      background: var(--bg);
       color: var(--ink);
-      line-height: 1.65;
+      line-height: 1.55;
       -webkit-font-smoothing: antialiased;
     }
 
+    .container { max-width: 1180px; margin: 0 auto; }
+
     /* Hero */
     .hero {
-      background: linear-gradient(135deg, #112d22 0%, #1b4d39 55%, #372318 100%);
+      background: linear-gradient(135deg, #112d22 0%, #1b4d39 58%, #372318 100%);
       color: #fff;
-      padding: 24px 18px 20px;
-      border-bottom: 4px solid #c98c24;
-      box-shadow: var(--shadow-md);
+      padding: 18px 16px 16px;
+      border-bottom: 3px solid #c98c24;
     }
 
-    .container { max-width: 1220px; margin: 0 auto; }
-
     .hero-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
+      display: inline-block;
       background: rgba(255, 255, 255, 0.14);
       border: 1px solid rgba(255, 255, 255, 0.25);
-      padding: 4px 12px;
+      padding: 3px 10px;
       border-radius: 999px;
-      font-size: 12px;
-      font-weight: 600;
-      letter-spacing: 0.25px;
+      font-size: 11px;
+      font-weight: 650;
     }
 
     .hero h1 {
-      margin: 8px 0 6px;
-      font-size: clamp(1.38rem, 3.2vw, 2.05rem);
-      line-height: 1.24;
+      margin: 6px 0 4px;
+      font-size: clamp(1.25rem, 3vw, 1.85rem);
+      line-height: 1.25;
       font-weight: 750;
-      letter-spacing: -0.3px;
     }
 
     .hero-sub {
       margin: 0;
-      color: rgba(255, 255, 255, 0.9);
-      font-size: 0.94rem;
-      max-width: 900px;
+      color: rgba(255, 255, 255, 0.88);
+      font-size: 0.88rem;
     }
 
     .context-strip {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
-      gap: 10px;
-      margin-top: 16px;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 8px;
+      margin-top: 12px;
     }
 
     .context-item {
       background: rgba(255, 255, 255, 0.1);
-      border: 1px solid rgba(255, 255, 255, 0.17);
+      border: 1px solid rgba(255, 255, 255, 0.18);
       border-radius: var(--radius-sm);
-      padding: 10px 12px;
-      font-size: 0.84rem;
+      padding: 8px 11px;
+      font-size: 0.82rem;
     }
 
     .context-item strong {
       display: block;
       color: #f8d078;
-      font-size: 0.74rem;
+      font-size: 0.72rem;
       text-transform: uppercase;
-      letter-spacing: 0.45px;
+      letter-spacing: 0.4px;
       margin-bottom: 2px;
     }
 
@@ -113,17 +107,17 @@
       position: sticky;
       top: 0;
       z-index: 100;
-      background: rgba(244, 241, 234, 0.96);
+      background: rgba(244, 241, 234, 0.97);
       backdrop-filter: blur(8px);
       border-bottom: 1px solid var(--border);
-      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.04);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
     }
 
     .tab-nav {
       display: flex;
       gap: 6px;
       overflow-x: auto;
-      padding: 10px 16px;
+      padding: 9px 14px;
       scrollbar-width: thin;
       -webkit-overflow-scrolling: touch;
     }
@@ -132,126 +126,88 @@
       flex: 0 0 auto;
       display: inline-flex;
       align-items: center;
-      gap: 7px;
-      padding: 9px 14px;
+      gap: 6px;
+      padding: 8px 13px;
       border: 1px solid var(--border);
       background: var(--surface);
       color: var(--ink);
       border-radius: 999px;
       font-family: inherit;
-      font-size: 0.86rem;
-      font-weight: 600;
+      font-size: 0.83rem;
+      font-weight: 650;
       cursor: pointer;
-      transition: all 0.16s ease;
+      transition: all 0.15s ease;
       white-space: nowrap;
     }
 
-    .tab-btn:hover {
-      border-color: var(--primary);
-      background: var(--primary-soft);
-    }
-
+    .tab-btn:hover { border-color: var(--primary); background: var(--primary-soft); }
     .tab-btn.active {
       background: var(--primary);
       color: #fff;
       border-color: var(--primary);
-      box-shadow: 0 3px 10px rgba(22, 66, 50, 0.25);
+      box-shadow: 0 2px 8px rgba(22, 66, 50, 0.25);
     }
-
-    .tab-count {
-      font-size: 0.72rem;
-      padding: 1px 6px;
-      border-radius: 999px;
-      background: rgba(0, 0, 0, 0.08);
-    }
-
-    .tab-btn.active .tab-count {
-      background: rgba(255, 255, 255, 0.22);
-      color: #fff;
-    }
+    .tab-btn.tab-quick { border-color: #c98c24; }
+    .tab-btn.tab-quick.active { background: #855a0e; border-color: #855a0e; }
 
     /* Main Panels */
-    .main-wrap { padding: 18px 16px 60px; }
-    .tab-panel { display: none; animation: fadeIn 0.2s ease; }
+    .main-wrap { padding: 14px 14px 48px; }
+    .tab-panel { display: none; animation: fadeIn 0.18s ease; }
     .tab-panel.active { display: block; }
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(4px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    .section-header { margin-bottom: 16px; }
-    .section-header h2 {
-      margin: 0 0 6px;
-      font-size: 1.35rem;
-      color: var(--primary);
-    }
-    .section-header p {
-      margin: 0;
-      color: var(--muted);
-      font-size: 0.93rem;
-    }
+    .section-header { margin-bottom: 12px; }
+    .section-header h2 { margin: 0 0 4px; font-size: 1.24rem; color: var(--primary); }
+    .section-header p { margin: 0; color: var(--muted); font-size: 0.88rem; }
 
     /* Cards & Grids */
     .card {
       background: var(--surface);
       border: 1px solid var(--border);
       border-radius: var(--radius);
-      padding: 18px;
-      margin-bottom: 16px;
+      padding: 15px;
+      margin-bottom: 14px;
       box-shadow: var(--shadow-sm);
     }
 
-    .card-warm {
-      background: var(--surface-warm);
-      border-color: #e6d3a5;
-    }
+    .card-warm { background: var(--surface-warm); border-color: #e6d3a5; }
+    .card-compact { padding: 12px 14px; margin-bottom: 10px; }
 
     .card-title {
-      margin: 0 0 12px;
-      font-size: 1.06rem;
+      margin: 0 0 10px;
+      font-size: 1rem;
       font-weight: 700;
       color: var(--ink);
       display: flex;
       align-items: center;
       justify-content: space-between;
       flex-wrap: wrap;
-      gap: 8px;
+      gap: 6px;
     }
 
-    .grid-2 {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(310px, 1fr));
-      gap: 16px;
-    }
+    .grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 14px; }
+    .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 12px; }
 
     /* Callouts */
     .callout {
       border-radius: var(--radius-sm);
-      padding: 14px 16px;
-      margin-bottom: 16px;
+      padding: 12px 14px;
+      margin-bottom: 14px;
       border-left: 4px solid;
-      font-size: 0.92rem;
+      font-size: 0.88rem;
     }
-
     .callout-danger { background: var(--danger-soft); border-color: var(--danger); color: #450a0a; }
     .callout-warn { background: var(--gold-soft); border-color: var(--gold); color: #452c04; }
     .callout-info { background: var(--info-soft); border-color: var(--info); color: #172554; }
     .callout-success { background: var(--primary-soft); border-color: var(--primary); color: #0e291e; }
-    .callout-purple { background: var(--purple-soft); border-color: var(--purple); color: #2e1065; }
-
-    .callout strong.title {
-      display: block;
-      margin-bottom: 5px;
-      font-size: 0.97rem;
-    }
+    .callout strong.title { display: block; margin-bottom: 4px; font-size: 0.92rem; }
 
     /* Pills */
     .pill {
       display: inline-block;
-      padding: 2px 9px;
+      padding: 2px 8px;
       border-radius: 999px;
-      font-size: 0.75rem;
+      font-size: 0.72rem;
       font-weight: 650;
     }
     .pill-green { background: var(--primary-soft); color: var(--primary); }
@@ -268,537 +224,316 @@
       border: 1px solid var(--border);
       border-radius: var(--radius-sm);
       background: var(--surface);
-      margin-top: 8px;
+      margin-top: 6px;
     }
-
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      min-width: 620px;
-      font-size: 0.88rem;
-    }
-
-    th, td {
-      padding: 11px 13px;
-      text-align: left;
-      border-bottom: 1px solid var(--border);
-      vertical-align: top;
-    }
-
-    th {
-      background: #f1ede4;
-      font-weight: 700;
-      color: var(--ink);
-      font-size: 0.82rem;
-      text-transform: uppercase;
-      letter-spacing: 0.3px;
-    }
-
+    table { width: 100%; border-collapse: collapse; min-width: 580px; font-size: 0.85rem; }
+    th, td { padding: 9px 11px; text-align: left; border-bottom: 1px solid var(--border); vertical-align: top; }
+    th { background: #f1ede4; font-weight: 700; color: var(--ink); font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.25px; }
     tr:last-child td { border-bottom: none; }
     tr:hover td { background: #faf8f2; }
 
-    ul.clean-list {
-      margin: 6px 0 0;
-      padding-left: 18px;
-    }
-    ul.clean-list li { margin-bottom: 7px; }
+    ul.clean-list { margin: 4px 0 0; padding-left: 17px; font-size: 0.88rem; }
+    ul.clean-list li { margin-bottom: 5px; }
 
-    /* Interactive Controls */
-    .filter-bar {
+    /* Quick Mobile Summary Grid (Tab 0) */
+    .quick-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 10px;
+    }
+    .quick-box {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-top: 3px solid var(--primary);
+      border-radius: var(--radius-sm);
+      padding: 11px 13px;
+      font-size: 0.84rem;
+    }
+    .quick-box.accent { border-top-color: var(--accent); }
+    .quick-box.gold { border-top-color: var(--gold); }
+    .quick-box.danger { border-top-color: var(--danger); background: #fffafa; }
+    .quick-box h3 {
+      margin: 0 0 6px;
+      font-size: 0.92rem;
+      color: var(--ink);
       display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      margin-bottom: 14px;
+      justify-content: space-between;
       align-items: center;
     }
+    .quick-box ul { margin: 0; padding-left: 16px; }
+    .quick-box li { margin-bottom: 4px; }
 
+    /* Interactive Controls */
+    .filter-bar { display: flex; flex-wrap: wrap; gap: 7px; margin-bottom: 12px; align-items: center; }
     .filter-btn {
-      padding: 6px 12px;
+      padding: 5px 11px;
       border-radius: 999px;
       border: 1px solid var(--border);
       background: var(--surface);
       color: var(--ink);
-      font-size: 0.82rem;
+      font-size: 0.8rem;
       font-weight: 600;
       cursor: pointer;
-      transition: all 0.15s ease;
     }
-
-    .filter-btn.active {
-      background: var(--accent);
-      color: #fff;
-      border-color: var(--accent);
-    }
-
+    .filter-btn.active { background: var(--accent); color: #fff; border-color: var(--accent); }
     .action-btn {
-      padding: 6px 12px;
+      padding: 5px 11px;
       border-radius: var(--radius-sm);
       border: 1px solid var(--primary);
       background: var(--primary-soft);
       color: var(--primary);
-      font-size: 0.8rem;
+      font-size: 0.78rem;
       font-weight: 700;
       cursor: pointer;
     }
-
-    .action-btn:hover { background: var(--primary); color: #fff; }
-
     .search-input {
-      flex: 1 1 220px;
-      padding: 8px 12px;
+      flex: 1 1 200px;
+      padding: 7px 11px;
       border-radius: var(--radius-sm);
       border: 1px solid var(--border);
       background: var(--surface);
       font-family: inherit;
-      font-size: 0.88rem;
-      color: var(--ink);
-    }
-
-    .search-input:focus {
-      outline: none;
-      border-color: var(--primary);
-      box-shadow: 0 0 0 3px rgba(22, 66, 50, 0.12);
+      font-size: 0.85rem;
     }
 
     /* Genealogy Columns */
-    .tree-columns {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(295px, 1fr));
-      gap: 16px;
-      align-items: start;
-    }
-
-    .tree-col {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      overflow: hidden;
-      box-shadow: var(--shadow-sm);
-    }
-
-    .tree-col-header {
-      padding: 13px 16px;
-      color: #fff;
-      font-weight: 700;
-      font-size: 0.96rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 8px;
-    }
-
+    .tree-columns { display: grid; grid-template-columns: repeat(auto-fit, minmax(285px, 1fr)); gap: 14px; align-items: start; }
+    .tree-col { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow-sm); }
+    .tree-col-header { padding: 11px 14px; color: #fff; font-weight: 700; font-size: 0.92rem; display: flex; justify-content: space-between; align-items: center; }
     .col-ngoai .tree-col-header { background: linear-gradient(90deg, #143d2e, #24634c); }
     .col-noi .tree-col-header { background: linear-gradient(90deg, #76280d, #9a3f1d); }
     .col-hatnhan .tree-col-header { background: linear-gradient(90deg, #1e3a8a, #2563eb); }
     .col-hoxa .tree-col-header { background: linear-gradient(90deg, #68460b, #8c6217); }
-
-    .tree-col-body {
-      padding: 12px;
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-    }
+    .tree-col-body { padding: 10px; display: flex; flex-direction: column; gap: 8px; }
 
     .person-node {
       border: 1px solid var(--border);
       border-left: 4px solid var(--primary);
       border-radius: var(--radius-sm);
       background: var(--surface-alt);
-      transition: all 0.16s ease;
     }
-
-    .person-node.focus-person {
-      background: #fffdf7;
-      border-color: #d7ab4c;
-      border-left: 4px solid #b45309;
-      box-shadow: 0 2px 8px rgba(180, 83, 9, 0.07);
-    }
-
+    .person-node.focus-person { background: #fffdf7; border-color: #d7ab4c; border-left-color: #b45309; }
     .person-node.alert-person { border-left-color: var(--danger); }
-
-    .person-summary {
-      padding: 10px 12px;
-      cursor: pointer;
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
-      gap: 8px;
-      user-select: none;
-    }
-
-    .person-name { font-weight: 700; font-size: 0.93rem; color: var(--ink); }
-    .person-role { font-size: 0.8rem; color: var(--muted); margin-top: 2px; }
-
-    .person-toggle {
-      font-size: 0.76rem;
-      font-weight: 700;
-      color: var(--primary);
-      background: var(--primary-soft);
-      padding: 2px 8px;
-      border-radius: 999px;
-      white-space: nowrap;
-    }
-
-    .person-detail {
-      display: none;
-      padding: 0 12px 12px;
-      border-top: 1px dashed var(--border);
-      font-size: 0.86rem;
-      color: #262f3a;
-    }
-
-    .person-node.open .person-detail { display: block; padding-top: 10px; }
+    .person-summary { padding: 9px 11px; cursor: pointer; display: flex; justify-content: space-between; align-items: flex-start; gap: 8px; user-select: none; }
+    .person-name { font-weight: 700; font-size: 0.9rem; color: var(--ink); }
+    .person-role { font-size: 0.78rem; color: var(--muted); margin-top: 2px; }
+    .person-toggle { font-size: 0.73rem; font-weight: 700; color: var(--primary); background: var(--primary-soft); padding: 2px 7px; border-radius: 999px; white-space: nowrap; }
+    .person-detail { display: none; padding: 0 11px 10px; border-top: 1px dashed var(--border); font-size: 0.84rem; color: #262f3a; }
+    .person-node.open .person-detail { display: block; padding-top: 8px; }
     .person-node.open .person-toggle { background: var(--accent-soft); color: var(--accent); }
     .person-node.hidden-by-filter { display: none !important; }
 
-    /* Visual Branch Tree (Cây nhánh gia phả dễ hiểu) */
-    .branch-tree {
-      display: flex;
-      flex-direction: column;
-      gap: 14px;
-    }
-
-    .branch-root {
-      background: linear-gradient(135deg, #1b4332, #265c45);
-      color: #fff;
-      border-radius: var(--radius);
-      padding: 14px 16px;
-      font-weight: 700;
-      box-shadow: var(--shadow-sm);
-    }
-
-    .branch-root small {
-      display: block;
-      font-weight: 400;
-      color: #e2f1ea;
-      margin-top: 2px;
-      font-size: 0.84rem;
-    }
-
-    .branch-level-1 {
-      margin-left: 14px;
-      padding-left: 16px;
-      border-left: 3px solid #b5ada0;
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-    }
-
-    @media (max-width: 600px) {
-      .branch-level-1 {
-        margin-left: 6px;
-        padding-left: 11px;
-      }
-    }
-
-    .branch-box {
-      position: relative;
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-sm);
-      padding: 12px 14px;
-      box-shadow: var(--shadow-sm);
-    }
-
-    .branch-box::before {
-      content: "";
-      position: absolute;
-      left: -16px;
-      top: 20px;
-      width: 14px;
-      height: 2px;
-      background: #b5ada0;
-    }
-
-    @media (max-width: 600px) {
-      .branch-box::before {
-        left: -11px;
-        width: 9px;
-      }
-    }
-
-    .branch-box-title {
-      font-weight: 750;
-      font-size: 0.96rem;
-      color: var(--ink);
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      justify-content: space-between;
-      gap: 6px;
-      margin-bottom: 6px;
-    }
-
-    .branch-children {
-      margin-top: 8px;
-      padding-left: 14px;
-      border-left: 2px dashed #cfc8ba;
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-      font-size: 0.87rem;
-    }
-
-    .branch-leaf {
-      background: var(--surface-alt);
-      border: 1px solid #ebe6dc;
-      border-radius: 7px;
-      padding: 7px 10px;
-    }
-
-    .branch-leaf.highlight {
-      background: #fffdf7;
-      border-color: #dfba66;
-    }
-
-    .branch-leaf.danger {
-      background: #fef2f2;
-      border-color: #fecaca;
-    }
+    /* Visual Branch Tree */
+    .branch-tree { display: flex; flex-direction: column; gap: 12px; }
+    .branch-root { background: linear-gradient(135deg, #1b4332, #265c45); color: #fff; border-radius: var(--radius-sm); padding: 12px 14px; font-weight: 700; font-size: 0.93rem; }
+    .branch-root small { display: block; font-weight: 400; color: #e2f1ea; margin-top: 2px; font-size: 0.8rem; }
+    .branch-level-1 { margin-left: 12px; padding-left: 14px; border-left: 3px solid #b5ada0; display: flex; flex-direction: column; gap: 10px; }
+    .branch-box { position: relative; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 10px 12px; }
+    .branch-box::before { content: ""; position: absolute; left: -14px; top: 18px; width: 12px; height: 2px; background: #b5ada0; }
+    .branch-box-title { font-weight: 750; font-size: 0.92rem; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 6px; margin-bottom: 5px; }
+    .branch-children { margin-top: 6px; padding-left: 12px; border-left: 2px dashed #cfc8ba; display: flex; flex-direction: column; gap: 5px; font-size: 0.84rem; }
+    .branch-leaf { background: var(--surface-alt); border: 1px solid #ebe6dc; border-radius: 6px; padding: 6px 9px; }
+    .branch-leaf.highlight { background: #fffdf7; border-color: #dfba66; }
+    .branch-leaf.danger { background: #fef2f2; border-color: #fecaca; }
 
     /* Timeline & Checklists */
-    .date-card {
-      border: 1px solid var(--border);
-      border-left: 5px solid var(--primary);
-      border-radius: var(--radius);
-      background: var(--surface);
-      padding: 16px;
-      margin-bottom: 14px;
-      box-shadow: var(--shadow-sm);
-    }
-
-    .date-badge {
-      display: inline-block;
-      font-weight: 750;
-      font-size: 0.86rem;
-      color: #fff;
-      background: var(--primary);
-      padding: 3px 11px;
-      border-radius: 999px;
-      margin-bottom: 8px;
-    }
-
+    .date-card { border: 1px solid var(--border); border-left: 4px solid var(--primary); border-radius: var(--radius-sm); background: var(--surface); padding: 13px; margin-bottom: 12px; }
+    .date-badge { display: inline-block; font-weight: 750; font-size: 0.82rem; color: #fff; background: var(--primary); padding: 2px 10px; border-radius: 999px; margin-bottom: 7px; }
     .date-badge.accent { background: var(--accent); }
     .date-badge.blue { background: var(--info); }
     .date-badge.gold { background: var(--gold); }
     .date-badge.purple { background: var(--purple); }
 
-    .check-item {
-      display: flex;
-      align-items: flex-start;
-      gap: 10px;
-      padding: 11px 13px;
-      border: 1px solid var(--border);
-      border-radius: var(--radius-sm);
-      background: var(--surface-alt);
-      margin-bottom: 8px;
-      cursor: pointer;
-    }
+    .check-item { display: flex; align-items: flex-start; gap: 9px; padding: 9px 11px; border: 1px solid var(--border); border-radius: var(--radius-sm); background: var(--surface-alt); margin-bottom: 7px; cursor: pointer; }
+    .check-item input[type="checkbox"] { margin-top: 3px; width: 16px; height: 16px; accent-color: var(--primary); flex: 0 0 auto; }
+    .check-item.done .check-text { text-decoration: line-through; color: var(--muted); }
+    .check-text strong { display: block; font-size: 0.87rem; }
+    .check-text span { font-size: 0.81rem; color: var(--muted); }
 
-    .check-item input[type="checkbox"] {
-      margin-top: 3px;
-      width: 17px;
-      height: 17px;
-      accent-color: var(--primary);
-      cursor: pointer;
-      flex: 0 0 auto;
-    }
+    .script-box { background: #f8fafc; border: 1px solid #cbd5e1; border-left: 4px solid var(--info); border-radius: var(--radius-sm); padding: 10px 12px; font-size: 0.85rem; margin-top: 8px; }
+    .script-box .label { font-size: 0.72rem; font-weight: 750; text-transform: uppercase; color: var(--info); margin-bottom: 3px; display: block; }
 
-    .check-item.done .check-text {
-      text-decoration: line-through;
-      color: var(--muted);
-    }
+    .svg-box { width: 100%; overflow-x: auto; background: var(--surface-alt); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 8px; }
+    .progress-bar-wrap { background: #e5e7eb; border-radius: 999px; height: 9px; overflow: hidden; margin: 6px 0 12px; }
+    .progress-bar-fill { height: 100%; background: var(--primary); width: 0%; transition: width 0.2s ease; }
 
-    .check-text strong { display: block; font-size: 0.91rem; }
-    .check-text span { font-size: 0.84rem; color: var(--muted); }
-
-    /* Script / Dialogue Box */
-    .script-box {
-      background: #f8fafc;
-      border: 1px solid #cbd5e1;
-      border-left: 4px solid var(--info);
-      border-radius: var(--radius-sm);
-      padding: 12px 14px;
-      font-size: 0.88rem;
-      margin-top: 8px;
-    }
-
-    .script-box .label {
-      font-size: 0.75rem;
-      font-weight: 750;
-      text-transform: uppercase;
-      color: var(--info);
-      letter-spacing: 0.35px;
-      margin-bottom: 4px;
-      display: block;
-    }
-
-    /* SVG Container */
-    .svg-box {
-      width: 100%;
-      overflow-x: auto;
-      background: var(--surface-alt);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-sm);
-      padding: 10px;
-    }
-
-    .progress-bar-wrap {
-      background: #e5e7eb;
-      border-radius: 999px;
-      height: 10px;
-      overflow: hidden;
-      margin: 8px 0 14px;
-    }
-
-    .progress-bar-fill {
-      height: 100%;
-      background: var(--primary);
-      width: 0%;
-      transition: width 0.25s ease;
-    }
-
-    .footer-note {
-      text-align: center;
-      color: var(--muted);
-      font-size: 0.81rem;
-      padding: 20px 14px 30px;
-      border-top: 1px solid var(--border);
-      background: #ece8de;
-    }
+    .footer-note { text-align: center; color: var(--muted); font-size: 0.78rem; padding: 16px 12px 24px; border-top: 1px solid var(--border); background: #ece8de; }
 
     @media (max-width: 600px) {
-      .hero { padding: 18px 14px 16px; }
-      .card, .date-card, .branch-box { padding: 13px; }
-      th, td { padding: 9px 10px; font-size: 0.84rem; }
+      .hero { padding: 14px 12px; }
+      .card, .date-card, .branch-box { padding: 11px; }
+      th, td { padding: 8px 9px; font-size: 0.81rem; }
+      .branch-level-1 { margin-left: 5px; padding-left: 10px; }
+      .branch-box::before { left: -10px; width: 8px; }
     }
   </style>
 </head>
 <body>
   <header class="hero">
     <div class="container">
-      <span class="hero-badge">HỒ SƠ TOÀN DIỆN MINH – HIỀN • CẬP NHẬT 26/11/2026 (7 NGUỒN TƯ LIỆU 13/02–26/11/2026)</span>
-      <h1>Hồ Sơ GĐ Bên Vợ &amp; Kế Hoạch Sắp Xếp Hiện Trạng 2026–2027</h1>
-      <p class="hero-sub">Quê: Xuân Trường, Nam Định (nay thuộc Ninh Bình) &amp; BV Hải Hậu • Chuyến 28–30/11/2026 • Cây gia phả, văn hóa vùng miền</p>
+      <span class="hero-badge">HỒ SƠ NỘI BỘ MINH – HIỀN • CẬP NHẬT MỚI NHẤT</span>
+      <h1>Hồ Sơ Gia Đình Bên Vợ &amp; Kế Hoạch 2026–2027</h1>
+      <p class="hero-sub">Quê gốc: Xuân Trường, Nam Định (nay thuộc tỉnh Ninh Bình) • Điều trị: Bệnh viện Hải Hậu • Chuyến về quê: 28–30/11/2026</p>
 
       <div class="context-strip">
         <div class="context-item">
           <strong>Gia Đình Nòng Cốt</strong>
-          Minh (rể, bố Bắc, mẹ Nam, ở miền Nam) &amp; Hiền (SN 1983, con út NĐ), kết hôn 2009 TP.HCM; con trai Tom (2011).
+          Minh (rể, bố gốc Bắc, mẹ gốc Nam, sống tại miền Nam) &amp; Hiền (SN 1983, con út Xuân Trường), cưới 2009 ở TP.HCM; con trai Tom (2011).
         </div>
         <div class="context-item">
           <strong>Hai Việc Lớn Cuối 11/2026</strong>
-          (1) Mẹ Mai nằm BV Hải Hậu (zona/áp xe nền tiểu đường, lẫn nặng); (2) Lễ chuyển mộ anh Dũng (2013) 28–29/11/2026.
+          (1) Mẹ Mai nằm BV Hải Hậu (zona/áp xe nền tiểu đường, lẫn nặng); (2) Lễ chuyển mộ anh cả Dũng (1971–2013) sáng CN 29/11/2026.
         </div>
         <div class="context-item">
-          <strong>Biến Động Tang Chế &amp; Tết 2027</strong>
-          Bố Minh mất 2026 → khả năng Tết 2027 không về quê vợ Tết; chuyển sang gửi quà/thuốc &amp; chuyển khoản, lì xì.
+          <strong>Tết 2027 (Tang Bố Minh)</strong>
+          Bố Minh mất năm 2026 → khả năng cao Tết 2027 ở lại miền Nam; gửi quà/thuốc trước Tết và chuyển khoản lì xì qua chị Liên.
         </div>
-        <!--<div class="context-item">
-          <strong>Độ Phủ Dữ Liệu</strong>
-          Đối chiếu 7 nguồn từ 13/02/2026 đến 26/11/2026 (<em>Gd vo.mp3</em>, ghi chú Tết 2026, <em>Gia đình vo 2.m4a</em>, <em>Gd vo 3.m4a</em>, <em>Gd vo 4.m4a</em>, điều chỉnh lưu ý).
-        </div>-->
       </div>
     </div>
   </header>
 
-  <nav class="tab-nav-wrap" aria-label="Điều hướng các tab">
+  <nav class="tab-nav-wrap" aria-label="Điều hướng hồ sơ">
     <div class="container tab-nav" role="tablist">
-      <button class="tab-btn active" role="tab" aria-selected="true" data-tab="tab-tongquan">1. Tổng Quan &amp; Hiệu Đính <span class="tab-count">7 Nguồn</span></button>
+      <button class="tab-btn tab-quick active" role="tab" aria-selected="true" data-tab="tab-tomtat">0. Tóm Tắt Nhanh Mobile</button>
+      <button class="tab-btn" role="tab" aria-selected="false" data-tab="tab-tongquan">1. Tổng Quan &amp; Hiệu Đính</button>
       <button class="tab-btn" role="tab" aria-selected="false" data-tab="tab-suckhoe">2. Sức Khỏe, Giúp Việc &amp; Chi Phí</button>
-      <button class="tab-btn" role="tab" aria-selected="false" data-tab="tab-chuyenmo">3. Chuyến Về 28–30/11 &amp; Chuyển Mộ</button>
-      <button class="tab-btn" role="tab" aria-selected="false" data-tab="tab-giapha">4. Gia Phả Tương Tác <span class="tab-count">4 Cột</span></button>
-      <button class="tab-btn" role="tab" aria-selected="false" data-tab="tab-caynhanh">5. Cây Nhánh &amp; Sơ Đồ Hình Ảnh <span class="tab-count">Mới</span></button>
-      <button class="tab-btn" role="tab" aria-selected="false" data-tab="tab-lixi">6. Lì Xì Tết &amp; Phương Án 2027</button>
-      <button class="tab-btn" role="tab" aria-selected="false" data-tab="tab-vanhoa">7. Tâm Lý &amp; Văn Hóa Vùng Miền <span class="tab-count">Chuyên Sâu</span></button>
-      <button class="tab-btn" role="tab" aria-selected="false" data-tab="tab-lotrinh">8. Lộ Trình Ngày Tháng &amp; Vai Trò Minh</button>
+      <button class="tab-btn" role="tab" aria-selected="false" data-tab="tab-chuyenmo">3. Chuyến 28–30/11 &amp; Chuyển Mộ</button>
+      <button class="tab-btn" role="tab" aria-selected="false" data-tab="tab-giapha">4. Gia Phả Cột &amp; Hàng Xóm</button>
+      <button class="tab-btn" role="tab" aria-selected="false" data-tab="tab-caynhanh">5. Cây Nhánh &amp; Sơ Đồ</button>
+      <button class="tab-btn" role="tab" aria-selected="false" data-tab="tab-duongdi">6. Đường Đi &amp; Lì Xì</button>
+      <button class="tab-btn" role="tab" aria-selected="false" data-tab="tab-vanhoa">7. Văn Hóa &amp; Lộ Trình Minh</button>
     </div>
   </nav>
 
   <main class="main-wrap container">
-    <!-- TAB 1: TỔNG QUAN & HIỆU ĐÍNH -->
-    <section id="tab-tongquan" class="tab-panel active" role="tabpanel">
+    <!-- TAB 0: TÓM TẮT TỔNG THỂ XEM TRÊN 1-2 MÀN HÌNH MOBILE DỌC -->
+    <section id="tab-tomtat" class="tab-panel active" role="tabpanel">
       <div class="section-header">
-        <h2>1. Tổng Quan Hạt Nhân, Dòng Thời Gian Tư Liệu &amp; Hiệu Đính Chuẩn Xác</h2>
-        <p>Tổng hợp và đối chiếu đầy đủ từ 7 nguồn dữ liệu theo trình tự thời gian (từ cũ nhất ngày 13/02/2026 đến mới nhất ngày 26/11/2026). Phần tính toán tiền mặt và nguồn tiền nội bộ giữa Minh – Hiền được lược bỏ theo yêu cầu.</p>
+        <h2>Tóm Tắt Nhanh Trên Mobile: Gia Phả Chuẩn • Hàng Xóm • Đường Đi • Tư Duy Ứng Xử</h2>
+        <p>Gom gọn toàn bộ thông tin cốt lõi để lướt nhanh trong 1–2 màn hình dọc trước khi chào hỏi, đi thăm nhà hoặc ngồi bàn tiệc.</p>
+      </div>
+
+      <div class="quick-grid">
+        <div class="quick-box">
+          <h3>1. Gia Phả Chuẩn — Họ Ngoại &amp; Ruột <span class="pill pill-green">Ưu tiên</span></h3>
+          <ul>
+            <li><strong>Bố Đức (1948) &amp; Mẹ Mai (1950):</strong> Mẹ đang nằm BV Hải Hậu; bố ngủ 19h, dậy 5h.</li>
+            <li><strong>Anh Dũng (1971–2013):</strong> Diệp 96 + Tiến (bé Dừa T7/2025) lo chuyển mộ; Duyên (2007, SV năm 2 Ngoại Thương, học vượt ~3,5 năm).</li>
+            <li><strong>Chị Liên &amp; Anh Thanh (1973):</strong> Duy 97 (Dev FPT HO – iViec) + bé Thư/Bún (28/9/2025); Khánh 2008 (SV năm 1). Nhà anh Thanh nhớ: <em>Thiện, Thân, Thành, bác Tư</em>.</li>
+            <li><strong>Bác Thành (mất):</strong> Anh Thực, chị Loan, <strong>anh Trường</strong> (út, trông nhà thờ chính — ghé đầu tiên).</li>
+            <li><strong>Bác Thận (≠ Thạnh):</strong> <strong>Anh Trọng</strong> + 1 chị gái.</li>
+            <li><strong>Bác Vĩnh:</strong> <strong>Anh Thắng + chị Đào</strong> (giới thiệu cô giúp việc mới), chị Hà (HN), chị Hải (NĐ).</li>
+          </ul>
+        </div>
+
+        <div class="quick-box accent">
+          <h3>2. Gia Phả Chuẩn — Họ Nội &amp; Từ Đường <span class="pill pill-accent">Nhớ tên</span></h3>
+          <ul>
+            <li><strong>Bác Mùi (chị cả):</strong> Anh Dương + <strong>Thảo</strong> (2 con: Tuyến XKLĐ Đài Loan, Tuyên IT); anh Du + <strong>Huyền</strong>; anh Ký (6 con); chị An.</li>
+            <li><strong>Chú Tín:</strong> Chị Tuyết + <strong>Bằng</strong>, anh Nam (mất), <strong>anh Trung</strong>.</li>
+            <li><strong>Chú Hạ:</strong> Chị Xuân (Sơn), chị Thu + <strong>Tuấn</strong> (mập tròn, vui), Duyệt (Bộ đội/Hải Phòng + Trang → bé Bưởi 2022).</li>
+            <li><strong>Cô Lan:</strong> <strong>Hùng</strong> (con Hiệp lớp 11, Nhân lớp 9) &amp; <strong>Ca</strong> (3 con, bé út sinh 11/2025).</li>
+            <li><strong>Chú Vịnh (mất) &amp; Thím Mận:</strong> Hằng + <strong>Hùng (CẢNH BÁO ép rượu)</strong>; Chi.</li>
+            <li><strong>Nhánh cụ Thiên / cụ Lý / Từ đường:</strong> Chú Minh (anh Đạo), anh Sỹ, chú Tuấn – thím Sáu (mất 2025; con Toàn, Toản, Duật), anh Toàn; nhà Kiên – Trang – Chính; nhà Trà; chú Điển (em cô Vui, nhà gần Bằng/Mùi/Du, con Thương – vợ Thảo). <strong>Từ đường Ngành:</strong> ông Hạnh (trưởng tộc thay ông Liêm); <strong>Từ đường Chi:</strong> nhánh cụ Phùng.</li>
+          </ul>
+        </div>
+
+        <div class="quick-box gold">
+          <h3>3. Hàng Xóm Quanh Nhà &amp; Đường Đi Lại Gần <span class="pill pill-gold">Chỉ đường</span></h3>
+          <ul>
+            <li><strong>Hàng xóm gần nhà:</strong> <strong>Bác Tráng</strong> (nhánh bác Sửu — cụ trên cụ Lý, cụ Thiên), <strong>Bác Mơ</strong>, <strong>Bác 5 + Tuệ</strong>, <strong>Bác Oanh + Vĩnh</strong> (đi Hàn Quốc 13 năm), <strong>Ông Bảng</strong> hàng xóm.</li>
+            <li><strong>Nhà Chú Hạ:</strong> Ngõ kế nhà anh Dương, đi vào rẽ trái hết đường.</li>
+            <li><strong>Nhà Bác Vĩnh:</strong> Ra đường 4, rẽ phải, qua cầu thứ 2, đi qua 4 nhà rồi rẽ trái.</li>
+            <li><strong>Nhà Bác Thận, Anh Trọng:</strong> Vẫn đường trên, thấy cổng chào bên phải đi hết đường rồi nhìn bên trái.</li>
+            <li><strong>Nhà Bác Mùi &amp; Họ Nội:</strong> Nhà bác Mùi ở trong ngõ, gần nhà chị Tuyết – anh Bằng và gần nhà chú Tín; nhà em Trung ở ngay mặt đường.</li>
+          </ul>
+        </div>
+
+        <div class="quick-box danger">
+          <h3>4. Tư Duy Nên Ứng Xử &amp; Bảo Mật <span class="pill pill-red">Cốt lõi</span></h3>
+          <ul>
+            <li><strong>Vai trò của Minh:</strong> Không cần cố làm "người quán xuyến" hay đua rượu; giữ tâm thế <strong>điềm đạm, lễ phép, tôn trọng người ở gần</strong> (chị Liên – anh Thanh) và hỗ trợ tinh thần cho Hiền.</li>
+            <li><strong>Giao tiếp &amp; bàn nhậu:</strong> Chào đúng tên nhóm trọng tâm (<em>Du, Dương, Bằng, Trung, Hùng/Ca, Tuấn</em>); gặp <strong>Hùng (chồng Hằng)</strong> thì cười nhã nhặn, xin nhấp môi/uống nước vì sức khỏe &amp; đường bay xa.</li>
+            <li><strong>Tiền bạc &amp; ranh giới kín:</strong> Tách bạch 3 khoản cho cô giúp việc (lương 6tr: Hiền 4tr/Liên 2tr; trực đêm; quà biếu) và bàn với chị Liên trước. <strong>Tuyệt đối không nhắc nợ 240tr (chị Liên) &amp; 45tr (chị Thúy) trước mặt bố Đức.</strong></li>
+            <li><strong>Lì xì ưu tiên:</strong> Nhớ các suất trọng điểm (bác Vĩnh, bác Mùi, thím Mận, Từ đường, chú Tuấn, bác Tráng, chú Tín, cô Lan, bác Tư bên anh Thanh, anh Trường, Thực, Quản, Xuân và hàng xóm thân).</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB 1: TỔNG QUAN & HIỆU ĐÍNH -->
+    <section id="tab-tongquan" class="tab-panel" role="tabpanel">
+      <div class="section-header">
+        <h2>1. Tổng Quan Hạt Nhân &amp; Các Điểm Chuẩn Hóa Mới Nhất</h2>
+        <p>Toàn bộ thông tin đã được đối chiếu, hợp nhất phần cập nhật mới và lược bỏ phần tính toán tiền mặt/nguồn tiền nội bộ giữa Minh – Hiền.</p>
       </div>
 
       <div class="grid-2">
         <div class="card">
-          <h3 class="card-title">Bối Cảnh Hạt Nhân Minh – Hiền <span class="pill pill-green">TP.HCM</span></h3>
+          <h3 class="card-title">Gia Đình Nòng Cốt Minh – Hiền <span class="pill pill-green">TP.HCM</span></h3>
           <ul class="clean-list">
-            <li><strong>Minh:</strong> Người miền Nam (bố mẹ lấy nhau và định cư trong miền Nam), học chung với Hiền.</li>
-            <li><strong>Hiền (SN 1983):</strong> Con út, quê gốc huyện Xuân Trường, tỉnh Nam Định — <strong>nay thuộc tỉnh Ninh Bình</strong>.</li>
-            <li><strong>Gia đình riêng:</strong> Kết hôn năm 2009, sinh sống và làm việc tại TP.HCM; có một con trai là <strong>Tom</strong> (sinh năm 2011).</li>
+            <li><strong>Minh:</strong> Sinh sống tại TP.HCM (bố mẹ lấy nhau và định cư trong miền Nam), học chung với Hiền.</li>
+            <li><strong>Hiền (SN 1983):</strong> Con út, quê quán <strong>Xuân Trường, Nam Định (nay thuộc tỉnh Ninh Bình)</strong>.</li>
+            <li><strong>Tổ ấm riêng:</strong> Kết hôn năm 2009 tại TP.HCM; con trai là <strong>Tom</strong> (sinh năm 2011).</li>
           </ul>
         </div>
 
         <div class="card card-warm">
-          <h3 class="card-title">Trọng Tâm Hiện Trạng Cuối Tháng 11/2026 <span class="pill pill-red">Gấp &amp; Quan Trọng</span></h3>
+          <h3 class="card-title">Trọng Tâm Hiện Trạng Cuối 11/2026 &amp; Tết 2027 <span class="pill pill-red">Quan trọng</span></h3>
           <ul class="clean-list">
-            <li><strong>Việc lớn (1):</strong> Chăm sóc mẹ vợ (bà Mai) nằm viện dài ngày tại <strong>Bệnh viện Hải Hậu</strong> do zona thần kinh / mụn áp xe trên nền tiểu đường và suy giảm trí nhớ nặng.</li>
-            <li><strong>Việc lớn (2):</strong> Tổ chức lễ chuyển mộ cho anh cả (<strong>anh Dũng</strong>, mất 2013) vào cuối tuần <strong>28–29/11/2026</strong>.</li>
-            <li><strong>Biến động Tết 2027:</strong> Do bố của Minh vừa mất trong năm 2026, khả năng cao Tết 2027 vợ chồng Minh – Hiền sẽ không về quê vợ ăn Tết mà chuyển sang gửi quà/thuốc và chuyển khoản lì xì từ xa qua chị Liên.</li>
+            <li><strong>Chăm mẹ vợ (Bà Mai, 1950):</strong> Nằm viện dài ngày tại <strong>Bệnh viện Hải Hậu</strong> do zona thần kinh, mụn áp xe sau lưng trên nền tiểu đường và suy giảm trí nhớ nặng.</li>
+            <li><strong>Lễ chuyển mộ Anh Dũng (1971/72–2013):</strong> Tổ chức cuối tuần <strong>28–29/11/2026</strong>, cháu Diệp đứng ra lo chính.</li>
+            <li><strong>Tết 2027:</strong> Do bố của Minh vừa mất trong năm 2026, khả năng cao vợ chồng Minh – Hiền không về quê vợ ăn Tết mà gửi quà/thuốc và chuyển khoản lì xì qua chị Liên.</li>
           </ul>
         </div>
       </div>
 
       <div class="card">
-        <h3 class="card-title">Bảng Hiệu Đính Toàn Diện Từ 7 Nguồn (13/02/2026 – 26/11/2026) <span class="pill pill-accent">Đầy Đủ Đính Chính</span></h3>
+        <h3 class="card-title">Bảng Chuẩn Hóa Dữ Liệu &amp; Cập Nhật Bổ Sung Mới <span class="pill pill-accent">Đầy đủ</span></h3>
         <div class="table-wrap">
           <table>
             <thead>
               <tr>
-                <th style="width: 22%;">Hạng mục / Nhân vật</th>
-                <th style="width: 34%;">Thông tin cũ / Dễ nhầm lẫn</th>
-                <th style="width: 44%;">Thông tin chuẩn hóa mới nhất (26/11/2026)</th>
+                <th style="width: 24%;">Hạng mục / Nhân vật</th>
+                <th style="width: 32%;">Điểm cần tránh nhầm</th>
+                <th style="width: 44%;">Thông tin chuẩn hóa mới nhất</th>
               </tr>
             </thead>
             <tbody>
               <tr>
-                <td><strong>Địa giới hành chính quê vợ &amp; viện</strong></td>
-                <td>Huyện Xuân Trường, tỉnh Nam Định; từng đi BV Xuân Trường.</td>
-                <td>Quê quán: <strong>Xuân Trường, Nam Định (nay thuộc tỉnh Ninh Bình)</strong>. Đợt này nằm điều trị dài ngày tại <strong>Bệnh viện Hải Hậu</strong> (qua cổng chào Hải Hậu đi xuống sâu hơn, đường xa và đông đúc; đánh giá ổn hơn BV Xuân Trường).</td>
+                <td><strong>Địa giới quê vợ &amp; Bệnh viện</strong></td>
+                <td>Ghi cũ Nam Định; từng đi BV Xuân Trường.</td>
+                <td>Quê <strong>Xuân Trường, Nam Định (nay thuộc tỉnh Ninh Bình)</strong>. Đợt này nằm điều trị dài ngày tại <strong>Bệnh viện Hải Hậu</strong> (qua cổng chào Hải Hậu đi xuống sâu hơn, đường xa và đông đúc; đánh giá ổn hơn BV Xuân Trường).</td>
               </tr>
               <tr>
                 <td><strong>Bác họ ngoại (mẹ anh Trọng)</strong></td>
-                <td>Ghi âm <em>Gd vo.mp3</em> gọi nhầm là "Bác Thạnh".</td>
-                <td><strong>Bác Thận</strong> (anh thứ bên ngoại, gọi theo tên bác trai; đính chính xác nhận bởi <em>Thông tin điều chỉnh lưu ý</em>).</td>
+                <td>Từng gọi nhầm là "Bác Thạnh".</td>
+                <td><strong>Bác Thận</strong> (anh thứ bên ngoại, gọi theo tên bác trai).</td>
               </tr>
               <tr>
                 <td><strong>Anh cả: Anh Dũng</strong></td>
-                <td>Bản chuẩn 2/2026 từng ghi năm sinh 1972.</td>
-                <td>Sinh năm <strong>1971/1972</strong> (cập nhật 11/2026 nhấn mạnh sinh năm <strong>1971</strong>, lớn hơn Hiền 1983 đúng 1 con giáp; mất năm <strong>2013</strong> do tai nạn).</td>
+                <td>Từng ghi năm sinh 1972.</td>
+                <td>Sinh năm <strong>1971/1972</strong> (lớn hơn Hiền 1983 một con giáp; mất năm <strong>2013</strong> do tai nạn).</td>
               </tr>
               <tr>
-                <td><strong>Con gái út anh Dũng: Duyên (2007)</strong></td>
-                <td>Tháng 2/2026 là sinh viên năm nhất (Ngoại Thương / ĐH Quốc gia).</td>
-                <td>Đang là SV đại học tại Hà Nội (hệ/trường tiếng Anh – Ngoại Thương/Quốc tế ĐHQG; nguồn 11/2026 nhắc hình như năm 3, <strong>đang học vượt tín chỉ để ra trường sớm ~3,5 năm</strong> thay vì 4–4,5 năm); ở trọ cùng vợ chồng Diệp để phụ trông cháu.</td>
+                <td><strong>Cháu Diệp (1996) &amp; Duyên (2007)</strong></td>
+                <td>Từng nhầm năm sinh bé Dừa.</td>
+                <td><strong>Diệp</strong> + chồng <strong>Tiến</strong> (miền Trung) có con trai <strong>Bé Dừa sinh T7/2025</strong> (~1 tuổi 4 tháng); Diệp nghỉ làm chăm con, ở trọ cùng Duyên tại HN và về ở với ông Đức hơn 1 tháng lo chuyển mộ bố. <strong>Duyên (2007)</strong> là <strong>SV năm 2 ĐH Ngoại Thương</strong> (hệ tiếng Anh), đang học vượt tín chỉ để ra trường sớm trong ~<strong>3,5 năm</strong>.</td>
               </tr>
               <tr>
-                <td><strong>Cháu Diệp (1996) &amp; Bé Dừa</strong></td>
-                <td>Thông tin chuẩn từng ghi nhầm sinh tháng 7/2026.</td>
-                <td><strong>Bé Dừa sinh tháng 7/2025</strong> (đến 11/2026 khoảng 1 tuổi 3–4 tháng). Diệp (lấy chồng Tiến, quê miền Trung) nghỉ làm từ lúc sinh con để tự chăm bé, ở trọ cùng Duyên tại Hà Nội; đợt này về ở chung với ông Đức <strong>hơn 1 tháng</strong> để phụ việc nhà và lo lễ chuyển mộ bố.</td>
-              </tr>
-              <tr>
-                <td><strong>Cháu Khánh (2008, con chị Liên)</strong></td>
-                <td>Tháng 2/2026 đang học lớp 12 tại Nam Định.</td>
-                <td>Đã xong lớp 12, hiện là <strong>SV đại học năm nhất</strong> (cập nhật tháng 11/2026).</td>
-              </tr>
-              <tr>
-                <td><strong>Cháu Duy (1997) &amp; Bé Thư (Bún)</strong></td>
-                <td>Từng thiếu chi tiết nơi làm việc và tên con.</td>
-                <td>Làm <strong>Dev Fullstack tại FPT HO</strong> (Phạm Văn Bạch, Hà Nội), bộ phận FHO (FIV Hà Nội), dự án <strong>FPT iViec</strong>; sếp trực tiếp <strong>Nguyễn Duy Vinh (VinhND2)</strong>, sếp trên <strong>Lê Bích Ngọc (NgocLB3)</strong>. Cưới năm 2025, con gái tên thật <strong>Thư</strong> (tên ở nhà <strong>Bún</strong>) sinh <strong>28/09/2025</strong>.</td>
+                <td><strong>Cháu Duy (1997) &amp; Khánh (2008)</strong></td>
+                <td>Thiếu nơi làm việc của Duy, năm học của Khánh.</td>
+                <td><strong>Duy (1997):</strong> Dev Fullstack tại <strong>FPT HO</strong> (Phạm Văn Bạch, HN), bộ phận FHO (FIV Hà Nội), dự án <strong>FPT iViec</strong> (sếp trực tiếp <strong>Nguyễn Duy Vinh / VinhND2</strong>; sếp trên <strong>Lê Bích Ngọc / NgocLB3</strong>); cưới 2025, con gái tên thật <strong>Thư</strong> (tên ở nhà <strong>Bún</strong>, sinh <strong>28/09/2025</strong>). <strong>Khánh (2008):</strong> Đã xong lớp 12, hiện là <strong>SV đại học năm nhất</strong>.</td>
               </tr>
               <tr>
                 <td><strong>Lương cô giúp việc mới</strong></td>
-                <td><em>Gd vo 4.m4a</em> có lúc nói nhầm "vợ 4tr, chị Liên 4tr".</td>
-                <td><strong>Tổng lương 6 triệu/tháng</strong> (làm từ mùng 4 âm lịch): Hiền đề xuất trả <strong>4 triệu</strong>, chị Liên trả <strong>2 triệu</strong> (khớp với <em>Gd vo 3.m4a</em>).</td>
+                <td>Có lúc nói nhầm "vợ 4tr, chị Liên 4tr".</td>
+                <td><strong>Tổng lương 6 triệu/tháng</strong> (làm từ mùng 4 âm lịch): Minh – Hiền góp <strong>4 triệu</strong>, chị Liên góp <strong>2 triệu</strong>.</td>
               </tr>
               <tr>
-                <td><strong>Tổng nợ nhà chị Liên – anh Thanh</strong></td>
-                <td><em>Gd vo 4.m4a</em> đọc lướt thành "24 triệu".</td>
-                <td><strong>Tổng cộng 240 triệu đồng</strong>: <strong>100 triệu</strong> (xây nhà) + <strong>50 triệu</strong> (mua ô tô) + <strong>90 triệu</strong> (Hiền hỗ trợ riêng sự cố cá nhân của chị Liên). <strong>Tuyệt đối giữ kín với bố Đức.</strong></td>
+                <td><strong>Khoản vay cũ nhà chị Liên</strong></td>
+                <td>Có lúc đọc lướt thành "24 triệu".</td>
+                <td><strong>Tổng cộng 240 triệu đồng</strong> (100tr xây nhà + 50tr mua ô tô + 90tr hỗ trợ riêng sự cố của chị Liên). <strong>Giữ kín tuyệt đối với bố Đức.</strong></td>
               </tr>
             </tbody>
           </table>
@@ -809,33 +544,33 @@
     <!-- TAB 2: SỨC KHỎE, GIÚP VIỆC & CHI PHÍ -->
     <section id="tab-suckhoe" class="tab-panel" role="tabpanel">
       <div class="section-header">
-        <h2>2. Sức Khỏe Bố Mẹ Vợ, Thuốc Men, Giúp Việc &amp; Phân Chia Chi Phí (11/2026)</h2>
-        <p>Chi tiết đầy đủ tình trạng sức khỏe ông Đức – bà Mai, danh mục thuốc/dinh dưỡng gửi từ miền Nam, nhân sự chăm sóc, cơ chế chia chi phí 3 khoản và các khoản vay mượn tế nhị.</p>
+        <h2>2. Sức Khỏe Bố Mẹ Vợ, Thuốc Men, Giúp Việc &amp; Chi Phí</h2>
+        <p>Tình trạng ông Đức – bà Mai, danh mục thuốc gửi định kỳ từ TP.HCM, nhân sự chăm sóc và cơ chế chi trả 3 khoản minh bạch.</p>
       </div>
 
       <div class="grid-2">
         <div class="card">
           <h3 class="card-title">Bố Vợ: Ông Đức (SN 1948) <span class="pill pill-gold">Có lương hưu</span></h3>
           <ul class="clean-list">
-            <li><strong>Nề nếp sinh hoạt:</strong> Có lương hưu; thói quen trước đây ngủ sớm (<strong>19h</strong>) và dậy sớm (<strong>5h</strong>).</li>
-            <li><strong>Tâm trạng hiện tại:</strong> Tính tình vốn khá thoải mái, vui vẻ, nhưng gần đây chịu nhiều áp lực khi bà lâm bệnh nặng nên ít thoải mái hơn, thỉnh thoảng xảy ra tranh cãi nhỏ với chị Liên ở gần nhà.</li>
-            <li><strong>Tính cách sinh hoạt:</strong> Rất kỹ tính và tiết kiệm — tự cất chổi chỗ khác, giữ lại dép rách không cho vứt, giữ/cất ngáng xe, từng tự thay bỉm khi không vừa ý bà giúp việc cũ.</li>
+            <li><strong>Sinh hoạt:</strong> Có lương hưu; nề nếp ngủ sớm (<strong>19h</strong>) và dậy sớm (<strong>5h</strong>).</li>
+            <li><strong>Tâm trạng:</strong> Vốn thoải mái, vui vẻ nhưng gần đây áp lực vì bà bệnh nặng nên ít thoải mái hơn, thỉnh thoảng tranh cãi nhỏ với chị Liên ở gần nhà.</li>
+            <li><strong>Tính kỹ &amp; tiết kiệm:</strong> Tự cất chổi chỗ khác, giữ lại dép rách không cho vứt, cất ngáng xe, từng tự thay bỉm khi không vừa ý bà giúp việc cũ.</li>
           </ul>
         </div>
 
         <div class="card">
           <h3 class="card-title">Mẹ Vợ: Bà Mai (SN 1950) <span class="pill pill-red">BV Hải Hậu</span></h3>
           <ul class="clean-list">
-            <li><strong>Trí nhớ &amp; giao tiếp:</strong> Có lương hưu; bị tiểu đường và tình trạng lẫn, mất trí nhớ nặng hơn nhiều so với Tết 2026. Qua camera quan sát, bà gần như chỉ ngồi im, ít giao tiếp; ban ngày lúc tỉnh lúc ngủ gật, nói ít và nhỏ (khi ông Đức xuống thăm hỏi bà nhắm mắt im lặng; khi chị Liên hoặc con gái xuống thì trò chuyện đôi chút).</li>
-            <li><strong>Bệnh án &amp; điều trị (11/2026):</strong> Bị <strong>zona thần kinh</strong>, sưng một <strong>mụn áp xe to ở sau lưng</strong> (do nằm lâu), đã được chích lấy mủ. Vì có bệnh nền <strong>tiểu đường</strong> nên vết thương hở cực kỳ khó lành, phải điều trị dài ngày tại <strong>Bệnh viện Hải Hậu</strong> (đi qua cổng chào Hải Hậu xuống sâu hơn, đường xa và đông đúc).</li>
-            <li><strong>Can thiệp hàng ngày &amp; lịch khám:</strong> Tiêm kháng sinh, thay băng (bà có cảm giác đau khi tiêm/thay băng) và nhờ y tá tiêm thuốc tiểu đường 2 lần/ngày trước bữa ăn. <strong>Thứ Hai 30/11/2026</strong> có lịch khám tiểu đường định kỳ (di chuyển sang khoa khác trong viện để khám và lấy thuốc).</li>
-            <li><strong>Phòng bệnh:</strong> Phòng 4 giường (<strong>200.000đ/người/ngày</strong>; vài ngày gần đây chỉ có 2–3 bệnh nhân nên rộng rãi, thoáng, sạch sẽ; người nhà có giường nằm và nhờ người cùng phòng trông hộ lúc đi mua đồ). Phòng riêng 350.000đ và 400.000đ đều hết. Nhược điểm: dùng chung nhà vệ sinh (lo ngại ô nhiễm) và ban đêm người khác dậy gây ồn. Ban ngày ngồi xe ăn cơm trưa rồi nằm ngủ; đưa lên xuống khó khăn nên cô giúp việc canh giờ tiêm cho tiện.</li>
+            <li><strong>Trí nhớ &amp; giao tiếp:</strong> Có lương hưu; bị tiểu đường và lẫn/mất trí nhớ nặng hơn nhiều so với Tết 2026. Qua camera, bà gần như ngồi im, ban ngày lúc tỉnh lúc ngủ gật, nói ít và nhỏ (ông Đức thăm thì nhắm mắt im lặng; chị Liên hoặc con gái xuống thì trò chuyện đôi chút).</li>
+            <li><strong>Bệnh án (11/2026):</strong> Bị <strong>zona thần kinh</strong>, sưng một <strong>mụn áp xe to ở sau lưng</strong> (do nằm lâu), đã chích lấy mủ. Vì nền tiểu đường nên vết thương hở rất khó lành, điều trị dài ngày tại <strong>Bệnh viện Hải Hậu</strong>.</li>
+            <li><strong>Điều trị &amp; lịch khám:</strong> Tiêm kháng sinh, thay băng hàng ngày (bà đau khi tiêm/thay băng) và nhờ y tá tiêm tiểu đường 2 lần/ngày trước bữa ăn. <strong>Thứ Hai 30/11/2026</strong> khám tiểu đường định kỳ (sang khoa khác trong viện khám và lấy thuốc).</li>
+            <li><strong>Phòng bệnh:</strong> Phòng 4 giường (<strong>200.000đ/người/ngày</strong>; hiện chỉ có 2–3 bệnh nhân nên thoáng, sạch, người nhà có giường nằm và nhờ giường bên trông hộ lúc đi mua đồ; phòng riêng 350k–400k đã hết). Nhược điểm: dùng chung nhà vệ sinh và ban đêm hơi ồn.</li>
           </ul>
         </div>
       </div>
 
       <div class="card">
-        <h3 class="card-title">1.2. Thuốc Men &amp; Dinh Dưỡng Định Kỳ Minh – Hiền Gửi Về <span class="pill pill-blue">Vài Triệu / Vài Tháng</span></h3>
+        <h3 class="card-title">Thuốc Men &amp; Dinh Dưỡng Định Kỳ Minh – Hiền Gửi Về <span class="pill pill-blue">Vài triệu / vài tháng</span></h3>
         <div class="table-wrap">
           <table>
             <thead>
@@ -843,39 +578,39 @@
                 <th>Tên thuốc / Sản phẩm</th>
                 <th>Công dụng &amp; Đối tượng</th>
                 <th>Chu kỳ &amp; Chi phí tham khảo</th>
-                <th>Trạng thái hiện tại (11/2026)</th>
+                <th>Trạng thái hiện tại</th>
               </tr>
             </thead>
             <tbody>
               <tr>
-                <td><strong>Jex</strong> (ghi chú ngắn: Thuốc Z)</td>
+                <td><strong>Jex</strong></td>
                 <td>Hỗ trợ xương khớp (Bố Đức)</td>
-                <td>Uống ~4,5 tháng: khoảng 1,3 triệu đồng</td>
+                <td>~4,5 tháng: khoảng 1,3 triệu đồng</td>
                 <td><span class="pill pill-green">Đang duy trì đều đặn</span></td>
               </tr>
               <tr>
-                <td><strong>Plavix</strong> (ghi chú ngắn: Thuốc Lavit)</td>
+                <td><strong>Plavix</strong></td>
                 <td>Chống đột quỵ (Bố Đức)</td>
-                <td>Uống 3 tháng: hơn 1 triệu đồng</td>
+                <td>3 tháng: hơn 1 triệu đồng</td>
                 <td><span class="pill pill-green">Đang duy trì đều đặn</span></td>
               </tr>
               <tr>
                 <td><strong>Codiovan</strong></td>
                 <td>Hỗ trợ điều trị bệnh/huyết áp (Bố Đức)</td>
-                <td>Uống 3 tháng: gần 900.000 đồng</td>
+                <td>3 tháng: gần 900.000 đồng</td>
                 <td><span class="pill pill-green">Đang duy trì đều đặn</span></td>
               </tr>
               <tr>
-                <td><strong>OP.Can</strong> (ghi chú ngắn: Obecan)</td>
+                <td><strong>OP.Can</strong></td>
                 <td>Tăng cường sức khỏe não bộ (Bố Đức &amp; Mẹ Mai trước đây)</td>
-                <td>Uống ~4 tháng: khoảng 1 triệu đồng</td>
-                <td><span class="pill pill-gold">Bố dùng; mẹ tạm ngưng do đang nằm viện</span></td>
+                <td>~4 tháng: khoảng 1 triệu đồng</td>
+                <td><span class="pill pill-gold">Bố dùng; mẹ tạm ngưng do nằm viện</span></td>
               </tr>
               <tr>
                 <td><strong>Ngũ cốc (bánh Quasure)</strong></td>
-                <td>Dinh dưỡng cho người tiểu đường (vị dâu, cốm... – Mẹ Mai)</td>
-                <td>Trước đây ăn 2 tháng: khoảng 500.000 đồng</td>
-                <td><span class="pill pill-red">Đã ngưng ăn do bà yếu và đang nằm viện</span></td>
+                <td>Dinh dưỡng tiểu đường (vị dâu, cốm... – Mẹ Mai)</td>
+                <td>Trước đây 2 tháng: ~500.000 đồng</td>
+                <td><span class="pill pill-red">Đã ngưng ăn do bà yếu, nằm viện</span></td>
               </tr>
             </tbody>
           </table>
@@ -883,52 +618,32 @@
       </div>
 
       <div class="card">
-        <h3 class="card-title">2.1. Nhân Sự Giúp Việc &amp; Sắp Xếp Chăm Sóc Bệnh Viện</h3>
-        <div class="grid-2">
-          <div>
-            <ul class="clean-list">
-              <li><strong>Bà giúp việc cũ (đã nghỉ):</strong> Lương 4 triệu/tháng (trả mùng 10 âm lịch), làm hết <strong>mùng 3 âm lịch</strong> thì nghỉ và đã được ông Đức thanh toán sòng phẳng (mời cả bà từng phụ lúc bà cũ gãy tay đến cùng chốt). Hay than vãn, kể lể công lao, nâng tầm quan trọng và chê ông khó tính.</li>
-              <li><strong>Phương án từng hỏi (Thím Mận — vợ chú Vịnh):</strong> Từ chối làm giúp việc cho ông Đức vì ngại va chạm tính khí ông, chỉ nhận hỗ trợ đưa đi khám ban ngày nếu cần.</li>
-              <li><strong>Cô giúp việc mới (làm từ mùng 4 âm lịch):</strong> Lương <strong>6 triệu/tháng</strong>. Do <strong>chị Đào</strong> (vợ anh Thắng, nhà bác Vĩnh) giới thiệu và thuyết phục; nhà gần cửa hàng nhà anh Thắng, tuổi hơn chị Liên vài tuổi (chị Liên gọi bằng cô), có con trai 30 tuổi chưa lấy vợ. Trước đó định đi Hải Phòng làm lương 12 triệu nhưng nể lời chị Đào nên ở lại giúp nhà gần.</li>
-            </ul>
-          </div>
-          <div>
-            <ul class="clean-list">
-              <li><strong>Đánh giá hiệu quả &amp; phản hồi:</strong> Ông Đức rất khen cô mới chăm bà chu đáo, ban đêm bà ngủ ngoan nên cô cũng đỡ mệt; ban ngày ngoài cho bà ăn, lau rửa, thay bỉm, cô còn làm thêm việc nhà, dọn dẹp, cấy rau vườn tược (chị Đào dặn làm thêm việc nhà thì các em sẽ không để cô thiệt). Cô chỉ phàn nàn nhẹ với anh Thanh/chị Liên về tính kỹ của ông Đức (cất chổi chỗ khác, không cho vứt dép rách, vụ cái ngáng xe lăn không dùng đến cô vứt đi vì sợ mang về ông lại cất).</li>
-              <li><strong>Lịch trực viện:</strong> Đường xuống BV Hải Hậu xa qua cổng chào và đông đúc (anh Thanh phải chở cô xuống, cô ngại tự đi xe máy) → cô ở lại viện trông bà cả ngày lẫn đêm đến khi ra viện. Chiều thứ Bảy (28/11) cô xin về chuẩn bị giỗ nhà cô vào Chủ Nhật; <strong>chị Liên xuống trực thay</strong>. Ông Đức tuyệt đối không xuống ngủ viện để giữ sức khỏe.</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-
-      <div class="card">
-        <h3 class="card-title">Cơ Chế Phân Chia Chi Phí Chăm Sóc (Tách Bạch 3 Khoản) &amp; Các Khoản Vay Mượn Tế Nhị</h3>
+        <h3 class="card-title">Nhân Sự Giúp Việc &amp; Cơ Chế Chia Chi Phí (Tách Bạch 3 Khoản)</h3>
         <ul class="clean-list">
-          <li><strong>Khoản 1 — Lương tháng cô giúp việc (6 triệu/tháng):</strong> Hiền đề xuất trả <strong>4 triệu</strong>, chị Liên trả <strong>2 triệu</strong> (thanh toán sau khi đủ tháng tính từ mùng 4 âm; lưu ý chênh lệch số ngày âm – dương).</li>
-          <li><strong>Khoản 2 — Tiền công trực đêm tại bệnh viện:</strong> Ước tính ít nhất 10 đêm × 200.000đ = <strong>2 triệu</strong>. Hiền dự định tự trả để đỡ cho chị Liên vì chị đã ngủ viện trông mẹ trước đó (cần thống nhất mức giá với chị Liên).</li>
-          <li><strong>Khoản 3 — Tiền ăn uống, mua đồ lặt vặt trong viện:</strong> Chị Liên đã ứng trước <strong>2 triệu</strong> (2 đợt × 1 triệu), thừa thiếu hai chị em chia nhau (nếu ít thì Hiền trả luôn).</li>
-          <li><strong>Quà biếu thêm dịp về quê:</strong> Dự kiến biếu thêm cô <strong>1 hộp bánh pía + 500.000đ đến 1.000.000đ</strong> (phải tách bạch rõ cả 3 khoản và thống nhất với chị Liên để tránh tạo tiền lệ khó xử hoặc làm người ở gần khó xử).</li>
+          <li><strong>Bà giúp việc cũ (đã nghỉ):</strong> Lương 4 triệu/tháng (trả mùng 10 âm), làm hết <strong>mùng 3 âm lịch</strong> thì nghỉ và đã được ông Đức thanh toán sòng phẳng (mời cả bà từng phụ lúc bà cũ gãy tay đến cùng chốt). Hay than vãn, kể lể công lao và chê ông khó tính. (Trước đó từng hỏi thím Mận nhưng thím từ chối vì ngại va chạm ông Đức).</li>
+          <li><strong>Cô giúp việc mới (từ mùng 4 âm lịch):</strong> Lương <strong>6 triệu/tháng</strong>. Do <strong>chị Đào</strong> (vợ anh Thắng, nhà bác Vĩnh) giới thiệu; nhà gần cửa hàng anh Thắng, lớn hơn chị Liên vài tuổi, có con trai 30 tuổi chưa vợ; từng định đi Hải Phòng lương 12 triệu nhưng nể chị Đào nên ở lại giúp. Ông Đức khen cô chăm bà chu đáo, ban đêm bà ngủ ngoan, ban ngày cô còn dọn dẹp, cấy rau vườn tược; cô chỉ phàn nàn nhẹ vụ ông cất chổi, giữ dép rách và vứt cái ngáng xe lăn không dùng để ông khỏi cất lại.</li>
+          <li><strong>Lịch trực viện:</strong> Đường xuống BV Hải Hậu xa và đông xe nên cô ở lại viện cả ngày lẫn đêm đến khi ra viện. Riêng <strong>chiều thứ Bảy 28/11</strong> cô xin về chuẩn bị giỗ nhà cô vào Chủ Nhật; <strong>chị Liên xuống trực thay</strong>. Ông Đức tuyệt đối không xuống ngủ viện.</li>
+          <li><strong>Tách bạch 3 khoản chi phí:</strong> (1) <strong>Lương tháng 6 triệu:</strong> Minh – Hiền góp 4 triệu, chị Liên góp 2 triệu; (2) <strong>Tiền trực đêm tại viện:</strong> ước tính ít nhất 10 đêm × 200.000đ = 2 triệu (Hiền dự định tự trả để đỡ cho chị Liên, cần thống nhất mức giá với chị Liên); (3) <strong>Tiền ăn uống, đồ lặt vặt trong viện:</strong> chị Liên đã ứng trước 2 triệu (2 đợt × 1 triệu), thừa thiếu hai chị em chia nhau. Dịp về quê dự kiến biếu thêm cô <strong>1 hộp bánh pía + 500.000đ đến 1.000.000đ</strong> (phải thống nhất với chị Liên để tránh tạo tiền lệ khó xử).</li>
         </ul>
 
-        <div class="callout callout-danger" style="margin-top: 14px; margin-bottom: 0;">
-          <strong class="title">CẢNH BÁO TẾ NHỊ: CÁC KHOẢN VAY MƯỢN CŨ — TUYỆT ĐỐI GIỮ KÍN VỚI BỐ ĐỨC</strong>
-          <ul class="clean-list" style="margin-top: 4px;">
-            <li><strong>Nhà chị Liên – anh Thanh:</strong> Tổng cộng <strong>240 triệu đồng</strong>, gồm <strong>100 triệu</strong> (xây nhà) + <strong>50 triệu</strong> (mua ô tô) + <strong>90 triệu</strong> (Hiền chuyển hỗ trợ riêng sự cố của chị Liên).</li>
-            <li><strong>Nhà chị Thúy (vợ cũ anh Dũng):</strong> Thời anh Dũng còn sống từng mượn Minh – Hiền <strong>45 triệu đồng</strong> (đã lâu, gia đình thống nhất coi như bỏ qua).</li>
-            <li><strong>Nguyên tắc bất di bất dịch:</strong> Không nhắc các khoản tiền này trước mặt bố Đức để bảo toàn thể diện và tình cảm gia đình.</li>
+        <div class="callout callout-danger" style="margin-top: 12px; margin-bottom: 0;">
+          <strong class="title">BẢO MẬT TUYỆT ĐỐI VỚI BỐ ĐỨC: CÁC KHOẢN VAY MƯỢN CŨ</strong>
+          <ul class="clean-list">
+            <li><strong>Nhà chị Liên – anh Thanh:</strong> Tổng cộng <strong>240 triệu đồng</strong> (100tr xây nhà + 50tr mua ô tô + 90tr Hiền hỗ trợ riêng sự cố của chị Liên).</li>
+            <li><strong>Nhà chị Thúy (vợ cũ anh Dũng):</strong> Thời anh Dũng còn sống từng mượn <strong>45 triệu đồng</strong> (đã lâu, coi như bỏ qua).</li>
           </ul>
         </div>
       </div>
     </section>
 
-    <!-- TAB 3: CHUYẾN VỀ 28-30/11 & CHUYỂN MỘ -->
+    <!-- TAB 3: CHUYẾN 28-30/11 & CHUYỂN MỘ -->
     <section id="tab-chuyenmo" class="tab-panel" role="tabpanel">
       <div class="section-header">
-        <h2>3. Kế Hoạch Chuyến Về Quê 28–30/11/2026 &amp; Lễ Chuyển Mộ Anh Dũng</h2>
-        <p>Anh Dũng mất năm 2013; việc chuyển mộ từng bị hoãn nhiều lần do năm không hợp và kiêng tang (bà nội mất năm 2020, sau đó đến chú Vịnh mất). Năm nay cháu Diệp đứng ra lo chính với sự hỗ trợ của các cô chú.</p>
+        <h2>3. Chuyến Về Quê 28–30/11/2026 &amp; Lễ Chuyển Mộ Anh Dũng</h2>
+        <p>Anh Dũng mất năm 2013; việc chuyển mộ từng hoãn nhiều lần do không hợp năm và kiêng tang (bà nội mất 2020, sau đó chú Vịnh mất). Năm nay cháu Diệp đứng ra lo chính.</p>
       </div>
 
-      <div class="table-wrap" style="margin-bottom: 16px;">
+      <div class="table-wrap" style="margin-bottom: 14px;">
         <table>
           <thead>
             <tr>
@@ -940,160 +655,152 @@
           <tbody>
             <tr>
               <td><strong>Thứ Bảy 28/11/2026</strong></td>
-              <td>• Sáng: Minh – Hiền bay ra Hà Nội (8h tới Nội Bài), trưa về đến nhà. Ở nhà làm lễ cúng buổi sáng.<br>• Trưa: Làm mâm cơm mời người thân đến phụ.<br>• Chiều: Cả nhà ra thăm mộ anh Dũng.<br>• Tối: Làm mấy mâm cơm tiếp gia đình/khách.</td>
+              <td>• Sáng: Minh – Hiền bay ra Hà Nội (8h tới Nội Bài), trưa về đến nhà; ở nhà làm lễ cúng buổi sáng.<br>• Trưa: Làm mâm cơm mời người thân đến phụ.<br>• Chiều: Cả nhà ra thăm mộ anh Dũng.<br>• Tối: Làm mấy mâm cơm tiếp gia đình/khách.</td>
               <td>• Chiều thứ Bảy, chị Liên xuống bệnh viện trực thay để cô giúp việc về chuẩn bị giỗ nhà cô vào Chủ Nhật.</td>
             </tr>
             <tr>
               <td><strong>Chủ Nhật 29/11/2026</strong></td>
-              <td>• 5h00 sáng: Thực hiện nghi lễ ngoài mộ (đã thuê thầy và thợ). Kiểm tra nếu sạch sẽ thì bốc đưa về lăng mộ tổ tiên; nếu chưa sạch thì chuyển phương án đi thiêu rồi mới đưa về lăng.<br>• Trưa: Làm tiệc mời đông đủ họ hàng, hàng xóm (tối Chủ Nhật không làm tiệc).</td>
-              <td>• Cháu Diệp đứng ra lo chính (tham khảo chi phí làm mộ nhà chị gái anh Thanh trước đây hết ~50–70 triệu).<br>• Chiều Chủ Nhật anh Thanh đón chị Liên về và quay lại đi làm.<br>• Nhận hàng Shopee (10 hộp bánh pía + cà phê Highlands gửi nhà anh Thanh).</td>
+              <td>• <strong>5h00 sáng:</strong> Nghi lễ ngoài mộ (đã thuê thầy và thợ). Kiểm tra nếu sạch sẽ thì bốc đưa về lăng mộ tổ tiên; nếu chưa sạch thì chuyển phương án đi thiêu rồi mới đưa về lăng.<br>• Trưa: Làm tiệc mời đông đủ họ hàng, hàng xóm (tối Chủ Nhật không làm tiệc).</td>
+              <td>• Cháu Diệp lo chính (tham khảo làm mộ nhà chị gái anh Thanh trước đây hết ~50–70 triệu).<br>• Chiều Chủ Nhật anh Thanh đón chị Liên về và quay lại đi làm.<br>• Nhận hàng Shopee (10 hộp bánh pía + cà phê Highlands gửi nhà anh Thanh).</td>
             </tr>
             <tr>
               <td><strong>Thứ Hai 30/11/2026</strong></td>
               <td>• Khám định kỳ tiểu đường cho bà Mai tại Bệnh viện Hải Hậu.<br>• Trưa: Minh – Hiền bay từ Nội Bài về lại TP.HCM.</td>
-              <td>• Chốt thống nhất với chị Liên về mức thù lao trực đêm cho cô giúp việc và phương án chăm bà dài hạn.</td>
+              <td>• Chốt thống nhất với chị Liên về thù lao trực đêm cho cô giúp việc và phương án chăm bà dài hạn.</td>
             </tr>
           </tbody>
         </table>
       </div>
 
       <div class="card">
-        <h3 class="card-title">Đóng Góp Tài Chính &amp; Quà Cáp Chuyến Đi 28–30/11/2026</h3>
-        <div class="grid-2">
-          <ul class="clean-list">
-            <li><strong>Gửi cháu Diệp:</strong> <strong>5 triệu đồng</strong> phụ lo lễ chuyển mộ (anh Thanh – chị Liên cũng góp vài triệu).</li>
-            <li><strong>Cho cháu Duyên:</strong> <strong>1 triệu đồng</strong>.</li>
-            <li><strong>Cho cháu Khánh:</strong> <strong>1 triệu đồng</strong>.</li>
-            <li><strong>Biếu bác Vĩnh / cô giúp việc:</strong> <strong>1 triệu đồng</strong>.</li>
-          </ul>
-          <div class="callout callout-warn" style="margin: 0;">
-            <strong class="title">Quà hiện vật gửi về quê</strong>
-            Đặt qua Shopee <strong>10 hộp bánh pía</strong> và <strong>cà phê Highlands</strong> gửi nhà anh Thanh (giao ngày Chủ Nhật 29/11/2026); ngoài ra chuẩn bị phần quà biếu thêm cho cô giúp việc (1 hộp bánh pía + 500.000đ–1.000.000đ sau khi thống nhất với chị Liên).
-          </div>
-        </div>
+        <h3 class="card-title">Đóng Góp &amp; Quà Biếu Chuyến Đi 28–30/11/2026</h3>
+        <ul class="clean-list">
+          <li><strong>Tiền mặt đóng góp:</strong> Gửi cháu Diệp <strong>5 triệu đồng</strong> phụ lo lễ chuyển mộ (anh Thanh – chị Liên cũng góp vài triệu); cho cháu Duyên <strong>1 triệu đồng</strong>; cho cháu Khánh <strong>1 triệu đồng</strong>; biếu bác Vĩnh / cô giúp việc <strong>1 triệu đồng</strong>.</li>
+          <li><strong>Quà hiện vật:</strong> Đặt Shopee <strong>10 hộp bánh pía + cà phê Highlands</strong> gửi nhà anh Thanh (giao Chủ Nhật 29/11); chuẩn bị phần biếu thêm cô giúp việc (1 hộp bánh pía + 500k–1tr sau khi thống nhất với chị Liên).</li>
+        </ul>
       </div>
     </section>
 
-    <!-- TAB 4: GIA PHẢ TƯƠNG TÁC (4 CỘT) -->
+    <!-- TAB 4: GIA PHẢ CỘT & HÀNG XÓM -->
     <section id="tab-giapha" class="tab-panel" role="tabpanel">
       <div class="section-header">
-        <h2>4. Gia Phả Họ Hàng Bên Vợ Tại Nam Định (Nay Thuộc Tỉnh Ninh Bình) — Dạng Cột Tương Tác</h2>
-        <p>Đã đính chính toàn bộ lỗi ghi âm cũ ("bác Thạnh" → "bác Thận", phân biệt hai người tên Hùng, bổ sung dâu/rể và mức độ ưu tiên tiếp xúc). Nếu bạn muốn xem kiểu cây phân nhánh trực quan từ gốc xuống nhánh con, hãy chuyển sang <strong>Tab 5: Cây Nhánh &amp; Sơ Đồ Hình Ảnh</strong>.</p>
+        <h2>4. Gia Phả Đầy Đủ (Họ Ngoại • Họ Nội • Hạt Nhân • Nhánh Cụ Thiên/Lý • Hàng Xóm)</h2>
+        <p>Đã tích hợp toàn bộ phần cập nhật bổ sung mới. Nhấn vào từng thẻ để xem chi tiết, lọc nhóm trọng tâm/cảnh báo hoặc tìm nhanh theo tên.</p>
       </div>
 
       <div class="filter-bar">
         <button class="filter-btn active" data-filter="all">Tất cả</button>
-        <button class="filter-btn" data-filter="focus">Trọng tâm / Dễ gặp / Cần nhớ tên</button>
-        <button class="filter-btn" data-filter="alert">Cảnh báo / Lưu ý đặc biệt</button>
+        <button class="filter-btn" data-filter="focus">Trọng tâm / Dễ gặp / Cần nhớ</button>
+        <button class="filter-btn" data-filter="alert">Cảnh báo / Lưu ý</button>
         <button class="action-btn" id="expandAllBtn" type="button">Mở / Thu gọn tất cả</button>
-        <input type="search" id="treeSearch" class="search-input" placeholder="Tìm nhanh: Thảo, Huyền, Tuấn, Đào, Trường, Hùng, FPT, Bún..." />
+        <input type="search" id="treeSearch" class="search-input" placeholder="Tìm nhanh: Thảo, Huyền, Tuấn, Đào, Tráng, Mơ, Oanh, Điển, Hạnh..." />
       </div>
 
       <div class="tree-columns">
-        <!-- 3.1 HỌ NGOẠI -->
+        <!-- CỘT 1: HỌ NGOẠI -->
         <div class="tree-col col-ngoai">
           <div class="tree-col-header">
-            <span>3.1. Họ Ngoại (Mẹ Mai)</span>
-            <span>Con út</span>
+            <span>4.1. Họ Ngoại (Mẹ Mai)</span>
+            <span>Mẹ Mai là út</span>
           </div>
           <div class="tree-col-body">
-            <div class="person-node focus-person" data-tags="focus" data-search="Bác Thành mất anh Thực chị Loan anh Trường nhà thờ cúng chính">
+            <div class="person-node focus-person" data-tags="focus" data-search="Bác Thành bác gái anh Thực chị Loan Trường út chăm nhà thờ chính">
               <div class="person-summary">
                 <div>
-                  <div class="person-name">Bác Thành (Anh cả — đã mất)</div>
-                  <div class="person-role">QUAN TRỌNG: Anh Trường ở nhà thờ chính • Thực, Loan</div>
+                  <div class="person-name">Bác Thành (Anh cả — đã mất, còn bác gái)</div>
+                  <div class="person-role">QUAN TRỌNG: Anh Trường (út chăm, nhà thờ chính) • Thực, Loan</div>
                 </div>
                 <span class="person-toggle">Chi tiết</span>
               </div>
               <div class="person-detail">
-                Gọi theo tên bác trai (đã mất). Con cái gồm: <strong>Anh Thực</strong>, <strong>Chị Loan</strong>, và <strong>Anh Trường</strong> (con út, sống tại nhà thờ bác Thành). <strong>QUAN TRỌNG:</strong> Nhà anh Trường là nơi thờ cúng chính bên ngoại; giỗ Tết luôn ghé đầu tiên. Anh Trường ở chăm ông bà từ trước.
+                Con gồm: <strong>Anh Thực</strong>, <strong>Chị Loan</strong>, và <strong>Anh Trường</strong> (con út ở chăm và trông nhà thờ cúng chính bên ngoại; giỗ Tết luôn ghé đầu tiên).
               </div>
             </div>
 
-            <div class="person-node focus-person" data-tags="focus" data-search="Bác Thận Thạnh anh Trọng mộ truyền thống chị gái">
+            <div class="person-node focus-person" data-tags="focus" data-search="Bác Thận Thạnh anh Trọng 1 chị khác">
               <div class="person-summary">
                 <div>
                   <div class="person-name">Bác Thận (Anh thứ — ≠ Bác Thạnh)</div>
-                  <div class="person-role">Đính chính không phải "Bác Thạnh" • Con trai: Anh Trọng</div>
+                  <div class="person-role">Anh Trọng (lo việc họ &amp; mộ truyền thống) • 1 chị gái</div>
                 </div>
                 <span class="person-toggle">Chi tiết</span>
               </div>
               <div class="person-detail">
-                Gồm: <strong>Anh Trọng</strong> (đã làm mộ truyền thống cho bác) và một chị gái (chục năm ít gặp). Anh Trọng là con trai chính lo việc họ hàng bên bác Thận.
+                Con gồm: <strong>Anh Trọng</strong> (đã làm mộ truyền thống cho bác, lo việc họ hàng bên bác Thận) và <strong>1 chị khác</strong> (chục năm ít gặp).
               </div>
             </div>
 
-            <div class="person-node focus-person" data-tags="focus" data-search="Bác Vĩnh chị Hà Hà Nội anh Thắng chị Đào giúp việc mới chị Hải Chống Hoa Nam Định">
+            <div class="person-node focus-person" data-tags="focus" data-search="Bác Vĩnh anh Thắng Đào giúp việc chị Hà HN chị Hải NĐ Chống Hoa">
               <div class="person-summary">
                 <div>
                   <div class="person-name">Bác Vĩnh (Anh thứ)</div>
-                  <div class="person-role">QUAN TRỌNG: Thắng + Chị Đào • Chị Hà • Chị Hải</div>
+                  <div class="person-role">QUAN TRỌNG: Thắng + Chị Đào (giới thiệu giúp việc) • Hà • Hải</div>
                 </div>
                 <span class="person-toggle">Chi tiết</span>
               </div>
               <div class="person-detail">
-                Gồm: <strong>Chị Hà</strong> (làm ở HN, con lớn đã đi làm), <strong>Anh Thắng</strong> (vợ là <strong>chị Đào</strong>), <strong>Chị Hải</strong> (lấy chồng gần TP. Nam Định, khu Chống Hoa). <strong>QUAN TRỌNG:</strong> Anh Thắng năm nào cũng về và chắc chắn gặp; <strong>chị Đào</strong> là người giới thiệu cô giúp việc mới. Ba anh chị thường đi chúc Tết cùng nhóm.
+                Con gồm: <strong>Anh Thắng</strong> (vợ là <strong>chị Đào</strong> — người giới thiệu cô giúp việc mới; Thắng năm nào cũng về và chắc chắn gặp), <strong>Chị Hà</strong> (làm ở HN, con lớn đã đi làm), <strong>Chị Hải</strong> (lấy chồng gần TP. Nam Định, khu Chống Hoa). Ba anh chị thường đi chúc Tết cùng nhóm.
               </div>
             </div>
           </div>
         </div>
 
-        <!-- 3.2 HỌ NỘI -->
+        <!-- CỘT 2: HỌ NỘI -->
         <div class="tree-col col-noi">
           <div class="tree-col-header">
-            <span>3.2. Họ Nội (Bố Đức)</span>
-            <span>Con thứ 2</span>
+            <span>4.2. Họ Nội (Bố Đức)</span>
+            <span>Bố Đức thứ 2</span>
           </div>
           <div class="tree-col-body">
-            <div class="person-node focus-person" data-tags="focus" data-search="Bác Mùi chị cả anh Dương vợ Thảo Đài Loan IT anh Du vợ Huyền anh Ký chị An miền núi">
+            <div class="person-node focus-person" data-tags="focus" data-search="Bác Mùi chị cả anh Dương Thảo Tuyến XKLĐ Đài Loan Tuyên IT Du Huyền Ký 6 con chị An">
               <div class="person-summary">
                 <div>
                   <div class="person-name">Bác Mùi (Chị cả)</div>
-                  <div class="person-role">QUAN TRỌNG: Nhớ tên Thảo (vợ Dương) &amp; Huyền (vợ Du)</div>
+                  <div class="person-role">Dương + Thảo (Tuyến, Tuyên) • Du + Huyền • Ký (6 con) • An</div>
                 </div>
                 <span class="person-toggle">Chi tiết</span>
               </div>
               <div class="person-detail">
-                Gồm: <strong>Anh Dương + vợ Thảo</strong> (2 con trai: anh đi XKLĐ Đài Loan về, em làm IT thu nhập tốt), <strong>Anh Du + vợ Huyền</strong>, <strong>Anh Ký</strong> (lâu không gặp do từng cãi nhau), <strong>Chị An</strong> (lấy chồng miền núi phía Bắc, hay về Tết muộn). <strong>QUAN TRỌNG:</strong> Phải nhớ tên vợ anh Dương (<strong>Thảo</strong>) và vợ anh Du (<strong>Huyền</strong>) vì tiếp xúc rất nhiều; không cần nhớ tên vợ anh Ký.
+                Con gồm: <strong>Anh Dương + vợ Thảo</strong> (2 con trai: <strong>Tuyến</strong> XKLĐ Đài Loan về, <strong>Tuyên</strong> làm IT thu nhập tốt — phải nhớ tên vợ Thảo); <strong>Anh Du + vợ Huyền</strong> (tiếp xúc nhiều — phải nhớ tên vợ Huyền); <strong>Anh Ký (6 con)</strong> (lâu không gặp do từng cãi nhau); <strong>Chị An</strong> (lấy chồng miền núi phía Bắc, hay về Tết muộn).
               </div>
             </div>
 
-            <div class="person-node focus-person" data-tags="focus" data-search="Chú Tín em bố chị Tuyết chồng Bằng anh Nam anh Trung">
+            <div class="person-node focus-person" data-tags="focus" data-search="Chú Tín em bố chị Tuyết Bằng Nam mất Trung">
               <div class="person-summary">
                 <div>
                   <div class="person-name">Chú Tín (Em bố)</div>
-                  <div class="person-role">Chị Tuyết + Bằng • Anh Nam • Anh Trung (hay gặp/nhậu)</div>
+                  <div class="person-role">Chị Tuyết + Bằng • Nam (đã mất) • Anh Trung</div>
                 </div>
                 <span class="person-toggle">Chi tiết</span>
               </div>
               <div class="person-detail">
-                Gồm: <strong>Chị Tuyết + chồng Bằng</strong>; <strong>Anh Nam</strong>; <strong>Anh Trung</strong> (vợ không cần nhớ tên). Anh Bằng và anh Trung hay có mặt trong các cuộc gặp mặt/nhậu.
+                Con gồm: <strong>Chị Tuyết + chồng Bằng</strong> (hay gặp/nhậu); <strong>Nam (đã mất)</strong>; <strong>Anh Trung</strong> (nhà mặt đường, hay có mặt trong các cuộc gặp mặt/nhậu).
               </div>
             </div>
 
-            <div class="person-node focus-person" data-tags="focus" data-search="Chú Hạ em bố chị Xuân Hải Phòng chị Thu chồng Tuấn chung cư Duyệt">
+            <div class="person-node focus-person" data-tags="focus" data-search="Chú Hạ em bố chị Xuân Sơn Hải Phòng chị Thu Tuấn mập tròn vui Duyệt Bộ đội Trang Bưởi 2022">
               <div class="person-summary">
                 <div>
                   <div class="person-name">Chú Hạ (Em bố)</div>
-                  <div class="person-role">Chị Xuân • Chị Thu + Tuấn (sửa chung cư) • Duyệt</div>
+                  <div class="person-role">Xuân (Sơn) • Thu + Tuấn (mập tròn vui) • Duyệt + Trang (Bưởi 2022)</div>
                 </div>
                 <span class="person-toggle">Chi tiết</span>
               </div>
               <div class="person-detail">
-                Gồm: <strong>Chị Xuân</strong> (chồng quân đội quê Hải Phòng, Tết hay về nội nên ít gặp); <strong>Chị Thu + chồng Tuấn</strong>; <strong>Duyệt</strong> (em út). <strong>Anh Tuấn</strong> (chồng Thu) mặt tròn, mập, vui tính, vô tư, hay làm/sửa nhà chung cư.
+                Con gồm: <strong>Chị Xuân (chồng Sơn)</strong> (quân đội quê Hải Phòng, ít về Tết); <strong>Chị Thu + chồng Tuấn</strong> (Tuấn mặt tròn, mập, vui tính, vô tư, hay làm/sửa nhà chung cư, rất dễ gặp); <strong>Duyệt</strong> (Bộ đội/Hải Phòng + vợ <strong>Trang</strong> → con là <strong>bé Bưởi sinh 2022</strong>).
               </div>
             </div>
 
-            <div class="person-node focus-person" data-tags="focus" data-search="Cô Lan em gái bố Hùng Ca giống nhau">
+            <div class="person-node focus-person" data-tags="focus" data-search="Cô Lan em gái bố Hùng Hiệp lớp 11 Nhân lớp 9 Ca 3 con 11/2025">
               <div class="person-summary">
                 <div>
                   <div class="person-name">Cô Lan (Em gái bố)</div>
-                  <div class="person-role">2 con trai: Hùng &amp; Ca (tránh nhầm Hùng rể chú Vịnh)</div>
+                  <div class="person-role">Hùng (con Hiệp lớp 11, Nhân lớp 9) • Ca (3 con, bé sinh 11/2025)</div>
                 </div>
                 <span class="person-toggle">Chi tiết</span>
               </div>
               <div class="person-detail">
-                Hai con trai: <strong>Hùng</strong> và <strong>Ca</strong>. Nhìn rất giống nhau, hay chơi cùng (tránh nhầm với Hùng rể chú Vịnh).
+                Con gồm: <strong>Hùng</strong> (năm 2026 có 2 con là <strong>Hiệp lớp 11</strong> và <strong>Nhân lớp 9</strong>) và <strong>Ca</strong> (có <strong>3 con</strong>, vừa thêm 1 bé sinh tháng <strong>11/2025</strong>). Hai anh em Hùng và Ca nhìn rất giống nhau (tránh nhầm với Hùng rể chú Vịnh).
               </div>
             </div>
 
@@ -1101,108 +808,141 @@
               <div class="person-summary">
                 <div>
                   <div class="person-name">Chú Vịnh (Em út — đã mất) &amp; Thím Mận</div>
-                  <div class="person-role">CẢNH BÁO: Hùng (chồng Hằng) ép rượu rất ghê • Chi</div>
+                  <div class="person-role">CẢNH BÁO: Hằng + Hùng (hay ép rượu) • Chi • Thím Mận</div>
                 </div>
                 <span class="person-toggle">Chi tiết</span>
               </div>
               <div class="person-detail">
-                <strong>Thím Mận</strong> đang ở một mình tại nhà bà nội/nhà thờ tổ; từng từ chối giúp việc cho ông Đức vì ngại va chạm. Có 2 con gái: <strong>Hằng + chồng Hùng</strong> và <strong>Chi</strong> (nhà chồng mới xây nhà ở quê chồng, từng muốn đón thím Mận lên ở nhưng thím ngại xa không đi). <strong>CẢNH BÁO:</strong> Hùng (chồng Hằng) hay ép uống rượu rất ghê; Hiền không thích Minh uống với người này.
+                <strong>Thím Mận</strong> ở một mình tại nhà bà nội/nhà thờ tổ (từng từ chối giúp việc cho ông Đức vì ngại va chạm). Con gái gồm: <strong>Hằng + chồng Hùng</strong> (<strong>CẢNH BÁO: hay ép rượu rất ghê, Hiền không thích Minh uống với người này</strong>) và <strong>Chi</strong> (nhà chồng mới xây nhà ở quê chồng).
               </div>
             </div>
           </div>
         </div>
 
-        <!-- 1.3 HẠT NHÂN -->
+        <!-- CỘT 3: HẠT NHÂN & NHÁNH CỤ THIÊN / CỤ LÝ -->
         <div class="tree-col col-hatnhan">
           <div class="tree-col-header">
-            <span>1.3. Anh Chị Em Ruột Hiền</span>
-            <span>Gia đình nòng cốt</span>
+            <span>4.3. Hạt Nhân &amp; Nhánh Cụ Thiên/Lý</span>
+            <span>Họ gần</span>
           </div>
           <div class="tree-col-body">
-            <div class="person-node focus-person" data-tags="focus alert" data-search="Anh Dũng 1971 1972 mất 2013 chị Thúy Diệp Tiến bé Dừa 7/2025 Duyên 2007 Hà Nội 45 triệu">
+            <div class="person-node focus-person" data-tags="focus alert" data-search="Anh Dũng chị Thúy Diệp 96 Tiến bé Dừa T7/2025 Duyên SV năm 2 Ngoại Thương 3,5 năm">
               <div class="person-summary">
                 <div>
-                  <div class="person-name">Anh Dũng (1971/72 – mất 2013)</div>
-                  <div class="person-role">Diệp + Tiến (bé Dừa T7/2025) • Duyên (2007) • Chị Thúy</div>
+                  <div class="person-name">Anh Dũng (mất 2013) &amp; Chị Thúy</div>
+                  <div class="person-role">Diệp 96 + Tiến (bé Dừa T7/2025) • Duyên (năm 2 Ngoại Thương)</div>
                 </div>
                 <span class="person-toggle">Chi tiết</span>
               </div>
               <div class="person-detail">
-                Mất 2013 do tai nạn. <strong>Chị Thúy</strong> đã tái hôn; bán nhà cũ ở quê, đang có trục trặc với chồng mới nên về nhà ngoại hoặc thuê nhà khác ở. <strong>Diệp</strong> (1996) + chồng <strong>Tiến</strong> (quê miền Trung) → con trai <strong>Dừa</strong> (sinh T7/2025, hiện ~1 tuổi 4 tháng); Diệp nghỉ làm từ lúc sinh con để tự chăm bé, ở trọ cùng Duyên tại Hà Nội; đợt này Diệp và bé Dừa về ở chung với ông Đức hơn 1 tháng để phụ việc nhà và lo lễ chuyển mộ bố. <strong>Duyên</strong> (2007) SV đại học tại Hà Nội (đang học vượt tín chỉ ~3,5 năm). Tiền cũ: anh Dũng từng mượn 45 triệu (coi như bỏ qua).
+                Chị Thúy đã tái hôn, bán nhà cũ và đang có trục trặc nên ở nhà ngoại hoặc thuê nhà khác. <strong>Diệp (96) + Tiến</strong> (miền Trung) có <strong>bé Dừa (T7/2025)</strong>, về ở với ông Đức hơn 1 tháng lo chuyển mộ bố. <strong>Duyên (2007)</strong> là SV năm 2 ĐH Ngoại Thương, dự định học vượt ~3,5 năm, ở trọ cùng vợ chồng Diệp.
               </div>
             </div>
 
-            <div class="person-node focus-person" data-tags="focus" data-search="Chị Liên Anh Thanh 1973 Duy 1997 FPT HO iViec VinhND2 NgocLB3 bé Thư Bún 28/09/2025 Khánh 2008 240 triệu">
+            <div class="person-node focus-person" data-tags="focus" data-search="Chị Liên anh Thanh Duy 97 FPT HO iViec VinhND2 NgocLB3 Thư Bún 28/09/2025 Khánh 2008 Thiện Thân Thành bác Tư">
               <div class="person-summary">
                 <div>
                   <div class="person-name">Chị Liên &amp; Anh Thanh (1973)</div>
-                  <div class="person-role">Duy (1997, FPT HO) + Bún/Thư (28/09/2025) • Khánh (2008)</div>
+                  <div class="person-role">Duy 97 (FPT HO) + Bún/Thư (28/9/25) • Khánh 2008 • Bên anh Thanh</div>
                 </div>
                 <span class="person-toggle">Chi tiết</span>
               </div>
               <div class="person-detail">
-                <strong>Anh Thanh (1973):</strong> Con rể thảo, hay đưa đón ông bà đi khám, đón cô giúp việc; nhà ở gần ông bà nhất, gánh vác công sức chăm sóc hàng ngày (lương hai vợ chồng không cao). <strong>Duy (1997):</strong> Dev Fullstack tại FPT HO (Phạm Văn Bạch, HN), bộ phận FHO (FIV Hà Nội), dự án FPT iViec (sếp trực tiếp Nguyễn Duy Vinh / VinhND2; sếp trên Lê Bích Ngọc / NgocLB3); cưới 2025, con gái tên thật <strong>Thư</strong> (tên ở nhà <strong>Bún</strong>, sinh <strong>28/09/2025</strong>). <strong>Khánh (2008):</strong> Đã xong lớp 12, hiện là SV đại học năm nhất. <em>(Lưu ý giữ kín nợ 240 triệu với ông Đức).</em>
+                Anh Thanh hay đưa đón ông bà khám bệnh và chở cô giúp việc. <strong>Duy (97)</strong> làm Dev Fullstack tại FPT HO (Phạm Văn Bạch, HN), FHO (FIV Hà Nội), dự án FPT iViec (sếp Nguyễn Duy Vinh VinhND2; sếp trên Lê Bích Ngọc NgocLB3); cưới 2025, con gái <strong>Thư (Bún, 28/09/2025)</strong>. <strong>Khánh (2008)</strong> SV năm nhất. Bên nhà anh Thanh nhớ: <strong>Thiện, Thân, Thành, bác Tư</strong>.
               </div>
             </div>
 
-            <div class="person-node focus-person" data-tags="focus" data-search="Minh Hiền 1983 TP.HCM kết hôn 2009 Tom 2011">
+            <div class="person-node focus-person" data-tags="focus" data-search="cụ Thiên cụ Lý chú Minh anh Đạo anh Sỹ chú Tuấn thím Sáu mất 2025 Toàn Toản Duật lớp 6 lớp lá anh Toàn">
               <div class="person-summary">
                 <div>
-                  <div class="person-name">Minh &amp; Hiền (1983 — Con út)</div>
-                  <div class="person-role">Kết hôn 2009 tại TP.HCM • Con trai Tom (2011)</div>
+                  <div class="person-name">Nhánh Cụ Thiên &amp; Cụ Lý (Phía Bố)</div>
+                  <div class="person-role">Chú Minh (Đạo), Sỹ, Chú Tuấn – Thím Sáu (Toàn, Toản, Duật), Toàn</div>
                 </div>
                 <span class="person-toggle">Chi tiết</span>
               </div>
               <div class="person-detail">
-                Sinh sống và làm việc tại TP.HCM cùng con trai <strong>Tom</strong> (2011). Ở xa nên chủ yếu đóng góp tài chính, thuốc men và về thăm các dịp lễ/việc lớn. Do bố Minh mới mất năm 2026, khả năng Tết 2027 sẽ không về quê vợ.
+                Phía bố thuộc nhánh <strong>cụ Thiên</strong> (anh của <strong>cụ Lý</strong>) gồm các con cháu: <strong>chú Minh</strong> (con là <strong>anh Đạo</strong>), <strong>anh Sỹ</strong>, <strong>chú Tuấn</strong> (và <strong>thím Sáu</strong> — phía cụ Lý, <strong>mất năm 2025</strong>; có các con là <strong>Toàn, Toản, Duật</strong> — nhà anh Duật có con gái lớp 6, con trai lớp lá), và <strong>anh Toàn</strong>.
+              </div>
+            </div>
+
+            <div class="person-node focus-person" data-tags="focus" data-search="Chú Điển em cô Vui có gà Bằng bác Mùi anh Du Thương vợ Thảo">
+              <div class="person-summary">
+                <div>
+                  <div class="person-name">Chú Điển (Em cô Vui, nhà có gà)</div>
+                  <div class="person-role">Gần nhà Bằng, bác Mùi, anh Du • Con là Thương (vợ Thảo)</div>
+                </div>
+                <span class="person-toggle">Chi tiết</span>
+              </div>
+              <div class="person-detail">
+                Em cô Vui, nhà có gà; nhà gần anh Bằng, bác Mùi, anh Du (ở cùng bác Mùi). Có con trai là <strong>Thương</strong>, vợ tên <strong>Thảo</strong>.
               </div>
             </div>
           </div>
         </div>
 
-        <!-- 3.3 HỌ XA & ANH THANH -->
+        <!-- CỘT 4: TỪ ĐƯỜNG, HÀNG XÓM & BẠN BÈ -->
         <div class="tree-col col-hoxa">
           <div class="tree-col-header">
-            <span>3.3. Họ Anh Thanh &amp; Họ Xa</span>
-            <span>Mạng lưới</span>
+            <span>4.4. Từ Đường, Hàng Xóm &amp; Họ Xa</span>
+            <span>Xung quanh</span>
           </div>
           <div class="tree-col-body">
-            <div class="person-node focus-person" data-tags="focus" data-search="Bên họ anh Thanh anh Thiện Thân Thành em trai giàu">
+            <div class="person-node focus-person" data-tags="focus" data-search="Từ đường Ngành ông Hạnh trưởng tộc ông Liêm Từ đường Chi cụ Phùng ông Văn">
               <div class="person-summary">
                 <div>
-                  <div class="person-name">Bên họ Anh Thanh</div>
-                  <div class="person-role">Nhớ tên: Anh Thiện, Thân, Thành</div>
+                  <div class="person-name">Từ Đường Ngành &amp; Từ Đường Chi</div>
+                  <div class="person-role">Từ đường Ngành: Ông Hạnh (thay ông Liêm) • Chi: nhánh cụ Phùng</div>
                 </div>
                 <span class="person-toggle">Chi tiết</span>
               </div>
               <div class="person-detail">
-                Chỉ cần nhớ tên <strong>anh Thiện, Thân, Thành</strong>; có người em trai giàu nhưng không cần quan tâm quá kỹ.
+                <strong>Từ đường Ngành:</strong> <strong>Ông Hạnh</strong> (đang làm trưởng tộc thay <strong>ông Liêm</strong>).<br>
+                <strong>Từ đường Chi:</strong> Nhánh tranh chấp gia đình <strong>cụ Phùng</strong> (các ông Liêm, ông Văn, ông Hạnh không vấn đề về chủ Từ).
               </div>
             </div>
 
-            <div class="person-node" data-tags="" data-search="Họ xa nhà Kiên Trang bà ngoại Kim Chính nhà ông Lý nhà Trà con chị Tấn">
+            <div class="person-node focus-person" data-tags="focus" data-search="Bác Tráng bác Sửu Bác Mơ bác 5 Tuệ bác Oanh Vĩnh HQ 13 năm Ông Bảng hàng xóm">
               <div class="person-summary">
                 <div>
-                  <div class="person-name">Họ xa: Kiên Trang, Ông Lý, Trà</div>
-                  <div class="person-role">Chị em/anh em ruột họ xa • Chính • Con chị Tấn</div>
+                  <div class="person-name">Hàng Xóm Gần Nhà Bố Mẹ Vợ</div>
+                  <div class="person-role">Bác Tráng • Bác Mơ • Bác 5 + Tuệ • Bác Oanh + Vĩnh • Ông Bảng</div>
                 </div>
                 <span class="person-toggle">Chi tiết</span>
               </div>
               <div class="person-detail">
-                <strong>Nhà Kiên Trang</strong> (bà ngoại Kim và bà ngoại vợ là chị em ruột; cụ nội hai bên là anh em ruột; có <strong>Chính</strong>); <strong>nhà ông Lý</strong> (em ông nội); <strong>nhà Trà</strong> (con chị Tấn).
+                Gồm các nhà sát vách/gần nhà:<br>
+                • <strong>Bác Tráng:</strong> Phía bác Sửu (cụ trên cụ Lý, cụ Thiên).<br>
+                • <strong>Bác Mơ</strong>.<br>
+                • <strong>Bác 5 + Tuệ</strong>.<br>
+                • <strong>Bác Oanh + Vĩnh</strong> (đi Hàn Quốc 13 năm).<br>
+                • <strong>Ông Bảng</strong> hàng xóm.
               </div>
             </div>
 
-            <div class="person-node focus-person" data-tags="focus alert" data-search="Nhóm đàn ông hay ngồi nhậu gặp Anh Du anh Dương anh Bằng anh Trung Hùng Ca Tuấn chồng Thu">
+            <div class="person-node" data-tags="" data-search="Nhà Kiên Trang Chính nhà ông Lý nhà Trà con chị Tấn">
               <div class="person-summary">
                 <div>
-                  <div class="person-name">Nhóm đàn ông hay ngồi nhậu / gặp</div>
-                  <div class="person-role">Du, Dương, Bằng, Trung, Hùng/Ca, Tuấn</div>
+                  <div class="person-name">Họ Xa: Kiên – Trang – Chính &amp; Nhà Trà</div>
+                  <div class="person-role">Thuộc nhà ông Lý (em ông nội) • Nhà Trà (con chị Tấn)</div>
                 </div>
                 <span class="person-toggle">Chi tiết</span>
               </div>
               <div class="person-detail">
-                Gồm: <strong>Anh Du, anh Dương, anh Bằng, anh Trung, Hùng/Ca, Tuấn (chồng Thu)</strong>. Cần khéo léo giữ chừng mực, tránh bị ép rượu quá đà.
+                <strong>Nhà Kiên, Trang, Chính</strong> (bà ngoại Kiên và bà ngoại vợ là chị em ruột; cụ nội hai bên là anh em ruột — thuộc nhà ông Lý, em ông nội); <strong>nhà Trà</strong> (con chị Tấn).
+              </div>
+            </div>
+
+            <div class="person-node focus-person" data-tags="focus alert" data-search="Nhóm nên ngồi chung Du Dương Bằng Trung Hùng Ca Tuấn Bạn Hiền cũ Thức Phương Dũng Yên Ngọc Ngát Hà Hồi Linh Đối Doanh Hòa Lành Vĩnh">
+              <div class="person-summary">
+                <div>
+                  <div class="person-name">Nhóm Ngồi Chung Bàn &amp; Bạn Cũ Của Hiền</div>
+                  <div class="person-role">Ngồi chung: Du, Dương, Bằng, Trung, Hùng/Ca, Tuấn</div>
+                </div>
+                <span class="person-toggle">Chi tiết</span>
+              </div>
+              <div class="person-detail">
+                <strong>Nhóm đàn ông nên ngồi chung:</strong> A Du, a Dương, a Bằng, Trung, Hùng/Ca, Tuấn (chồng Thu).<br>
+                <strong>Bạn Hiền cũ (MN, cấp 1, 2):</strong> Thức, Phương, Dũng Yên, Ngọc Ngát, Hà Hồi, Linh Đối, Doanh cấp 2, Hòa cấp 2, Lành, Vĩnh.
               </div>
             </div>
           </div>
@@ -1214,168 +954,126 @@
     <section id="tab-caynhanh" class="tab-panel" role="tabpanel">
       <div class="section-header">
         <h2>5. Cây Nhánh Gia Phả Phân Tầng &amp; Sơ Đồ Hình Ảnh Dễ Hiểu</h2>
-        <p>Thiết kế riêng theo dạng <strong>cây phân nhánh từ trên xuống</strong> (nhánh cha mẹ → anh chị em → con cháu → dâu/rể) kết hợp <strong>sơ đồ hình ảnh SVG</strong> để bạn nhìn một lần là nắm ngay quan hệ huyết thống và người trọng tâm.</p>
+        <p>Sơ đồ trực quan từ trên xuống giúp nắm nhanh quan hệ huyết thống, nhánh họ hàng, từ đường và hàng xóm.</p>
       </div>
 
       <div class="card">
-        <h3 class="card-title">Sơ Đồ Hình Ảnh Tổng Quan: Ai Là Người Trọng Tâm Của Minh? <span class="pill pill-green">Nhìn Nhanh</span></h3>
+        <h3 class="card-title">Sơ Đồ Hình Ảnh Tổng Quan <span class="pill pill-green">Nhìn Nhanh</span></h3>
         <div class="svg-box">
-          <svg viewBox="0 0 980 280" width="100%" height="auto" role="img" aria-label="Sơ đồ hình ảnh quan hệ gia đình bên vợ và nhóm trọng tâm của Minh">
-            <!-- Tầng 1: Ông bà ngoại -->
-            <rect x="330" y="10" width="320" height="52" rx="10" fill="#164232"/>
-            <text x="490" y="32" text-anchor="middle" font-size="13" font-weight="bold" fill="#fff">GIA ĐÌNH HẠT NHÂN BÊN VỢ</text>
-            <text x="490" y="50" text-anchor="middle" font-size="11" fill="#d1fae5">Ông Đức (1948) &amp; Bà Mai (1950) — Xuân Trường / Hải Hậu (Ninh Bình)</text>
+          <svg viewBox="0 0 980 295" width="100%" height="auto" role="img" aria-label="Sơ đồ hình ảnh gia phả bên vợ">
+            <!-- Gốc -->
+            <rect x="315" y="8" width="350" height="50" rx="10" fill="#164232"/>
+            <text x="490" y="29" text-anchor="middle" font-size="13" font-weight="bold" fill="#fff">GIA ĐÌNH HẠT NHÂN BÊN VỢ</text>
+            <text x="490" y="47" text-anchor="middle" font-size="10.5" fill="#d1fae5">Ông Đức (1948) &amp; Bà Mai (1950) — Xuân Trường / Hải Hậu (Ninh Bình)</text>
 
-            <!-- Đường nối xuống 3 nhánh con -->
-            <line x1="490" y1="62" x2="490" y2="86" stroke="#6b7280" stroke-width="2"/>
-            <line x1="165" y1="86" x2="815" y2="86" stroke="#6b7280" stroke-width="2"/>
-            <line x1="165" y1="86" x2="165" y2="104" stroke="#6b7280" stroke-width="2"/>
-            <line x1="490" y1="86" x2="490" y2="104" stroke="#6b7280" stroke-width="2"/>
-            <line x1="815" y1="86" x2="815" y2="104" stroke="#6b7280" stroke-width="2"/>
+            <!-- Đường nối -->
+            <line x1="490" y1="58" x2="490" y2="80" stroke="#6b7280" stroke-width="2"/>
+            <line x1="165" y1="80" x2="815" y2="80" stroke="#6b7280" stroke-width="2"/>
+            <line x1="165" y1="80" x2="165" y2="96" stroke="#6b7280" stroke-width="2"/>
+            <line x1="490" y1="80" x2="490" y2="96" stroke="#6b7280" stroke-width="2"/>
+            <line x1="815" y1="80" x2="815" y2="96" stroke="#6b7280" stroke-width="2"/>
 
-            <!-- Nhánh 1: Anh Dũng -->
-            <rect x="20" y="104" width="290" height="72" rx="9" fill="#fffdf7" stroke="#b45309" stroke-width="1.8"/>
-            <text x="165" y="124" text-anchor="middle" font-size="12" font-weight="bold" fill="#92400e">1. Anh Dũng (1971/72 – mất 2013)</text>
-            <text x="165" y="141" text-anchor="middle" font-size="10.5" fill="#1f2937">• Diệp (1996) + Tiến → Bé Dừa (T7/2025)</text>
-            <text x="165" y="156" text-anchor="middle" font-size="10.5" fill="#1f2937">• Duyên (2007) — SV HN học vượt ~3,5 năm</text>
-            <text x="165" y="170" text-anchor="middle" font-size="9.5" fill="#991b1b">Lễ chuyển mộ: 5h00 CN 29/11/2026 (Diệp lo chính)</text>
+            <!-- 3 Nhánh con -->
+            <rect x="18" y="96" width="294" height="72" rx="9" fill="#fffdf7" stroke="#b45309" stroke-width="1.8"/>
+            <text x="165" y="116" text-anchor="middle" font-size="12" font-weight="bold" fill="#92400e">1. Anh Dũng (1971/72 – mất 2013)</text>
+            <text x="165" y="133" text-anchor="middle" font-size="10.5" fill="#1f2937">• Diệp (96) + Tiến → Bé Dừa (T7/2025)</text>
+            <text x="165" y="148" text-anchor="middle" font-size="10.5" fill="#1f2937">• Duyên (2007) — SV năm 2 Ngoại Thương</text>
+            <text x="165" y="162" text-anchor="middle" font-size="9.5" fill="#991b1b">Lễ chuyển mộ: 5h00 CN 29/11/2026 (Diệp lo chính)</text>
 
-            <!-- Nhánh 2: Chị Liên - Anh Thanh -->
-            <rect x="335" y="104" width="310" height="72" rx="9" fill="#e6f0ec" stroke="#164232" stroke-width="1.8"/>
-            <text x="490" y="124" text-anchor="middle" font-size="12" font-weight="bold" fill="#164232">2. Chị Liên &amp; Anh Thanh (1973)</text>
-            <text x="490" y="141" text-anchor="middle" font-size="10.5" fill="#1f2937">• Duy (1997, FPT iViec) + Bún/Thư (28/9/25)</text>
-            <text x="490" y="156" text-anchor="middle" font-size="10.5" fill="#1f2937">• Khánh (2008) — SV năm 1</text>
-            <text x="490" y="170" text-anchor="middle" font-size="9.5" fill="#164232">Ở gần lo việc chăm ông bà • Giữ kín nợ 240tr với ông</text>
+            <rect x="332" y="96" width="316" height="72" rx="9" fill="#e6f0ec" stroke="#164232" stroke-width="1.8"/>
+            <text x="490" y="116" text-anchor="middle" font-size="12" font-weight="bold" fill="#164232">2. Chị Liên &amp; Anh Thanh (1973)</text>
+            <text x="490" y="133" text-anchor="middle" font-size="10.5" fill="#1f2937">• Duy (97, Dev FPT iViec) + Bún/Thư (28/9/25)</text>
+            <text x="490" y="148" text-anchor="middle" font-size="10.5" fill="#1f2937">• Khánh (2008) — SV năm 1</text>
+            <text x="490" y="162" text-anchor="middle" font-size="9.5" fill="#164232">Bên anh Thanh: Thiện, Thân, Thành, bác Tư</text>
 
-            <!-- Nhánh 3: Minh - Hiền -->
-            <rect x="670" y="104" width="290" height="72" rx="9" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.8"/>
-            <text x="815" y="124" text-anchor="middle" font-size="12" font-weight="bold" fill="#1e3a8a">3. Minh &amp; Hiền (1983 — Con út)</text>
-            <text x="815" y="141" text-anchor="middle" font-size="10.5" fill="#1f2937">• Kết hôn 2009 tại TP.HCM • Con Tom (2011)</text>
-            <text x="815" y="156" text-anchor="middle" font-size="10.5" fill="#1f2937">• Hỗ trợ tài chính, thuốc men &amp; chuyến đi</text>
-            <text x="815" y="170" text-anchor="middle" font-size="9.5" fill="#991b1b">Tết 2027: Khả năng không về do tang bố Minh</text>
+            <rect x="668" y="96" width="294" height="72" rx="9" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.8"/>
+            <text x="815" y="116" text-anchor="middle" font-size="12" font-weight="bold" fill="#1e3a8a">3. Minh &amp; Hiền (1983 — Con út)</text>
+            <text x="815" y="133" text-anchor="middle" font-size="10.5" fill="#1f2937">• Cưới 2009 tại TP.HCM • Con Tom (2011)</text>
+            <text x="815" y="148" text-anchor="middle" font-size="10.5" fill="#1f2937">• Hỗ trợ tài chính, thuốc men &amp; chuyến đi</text>
+            <text x="815" y="162" text-anchor="middle" font-size="9.5" fill="#991b1b">Tết 2027: Khả năng không về do tang bố Minh</text>
 
-            <!-- Khung chân trang: Nhóm tên bắt buộc nhớ -->
-            <rect x="20" y="196" width="940" height="70" rx="10" fill="#fdf4dc" stroke="#855a0e" stroke-width="1.5"/>
-            <text x="490" y="217" text-anchor="middle" font-size="12" font-weight="bold" fill="#855a0e">DANH SÁCH TÊN TRỌNG TÂM CẦN NHỚ NHANH KHI VỀ QUÊ / CHÀO HỎI</text>
-            <text x="490" y="236" text-anchor="middle" font-size="10.8" fill="#1f2937">• Họ ngoại: Bác Thành (mất) → Anh Trường (nhà thờ chính) | Bác Thận (≠ Thạnh) → Anh Trọng | Bác Vĩnh → Thắng + Chị Đào (giới thiệu giúp việc)</text>
-            <text x="490" y="254" text-anchor="middle" font-size="10.8" fill="#1f2937">• Họ nội: Bác Mùi → Dương + Thảo, Du + Huyền | Chú Tín → Tuyết + Bằng, Nam, Trung | Chú Hạ → Thu + Tuấn (sửa chung cư) | Cô Lan → Hùng &amp; Ca | Chú Vịnh (mất) → Thím Mận, Hằng + Hùng (CẢNH BÁO ép rượu)</text>
+            <!-- Tầng mở rộng -->
+            <rect x="18" y="184" width="944" height="98" rx="10" fill="#fdf4dc" stroke="#855a0e" stroke-width="1.5"/>
+            <text x="490" y="204" text-anchor="middle" font-size="11.5" font-weight="bold" fill="#855a0e">MẠNG LƯỚI HỌ HÀNG, TỪ ĐƯỜNG &amp; HÀNG XÓM</text>
+            <text x="490" y="222" text-anchor="middle" font-size="10.3" fill="#1f2937">• Họ Ngoại: B.Thành → Thực, Loan, Trường (út chăm) | B.Thận → Trọng | B.Vĩnh → Thắng (Đào - gt giúp việc), Hà (HN), Hải (NĐ)</text>
+            <text x="490" y="239" text-anchor="middle" font-size="10.3" fill="#1f2937">• Họ Nội: B.Mùi → Dương (Thảo: Tuyến, Tuyên), Du (Huyền), Ký (6 con), An | C.Tín → Tuyết (Bằng), Nam (mất), Trung | C.Hạ → Xuân (Sơn), Thu (Tuấn), Duyệt (Trang→Bưởi 22)</text>
+            <text x="490" y="256" text-anchor="middle" font-size="10.3" fill="#1f2937">• Cô Lan → Hùng (Hiệp 11, Nhân 9), Ca (3 con, út 11/25) | C.Vịnh (Thím Mận) → Hằng (Hùng ép rượu), Chi | C.Điển (em cô Vui, con Thương–Thảo)</text>
+            <text x="490" y="273" text-anchor="middle" font-size="10.3" fill="#991b1b">• Nhánh cụ Thiên/Lý: C.Minh (Đạo), A.Sỹ, C.Tuấn–Thím Sáu (Toàn, Toản, Duật), A.Toàn | Từ đường: Ông Hạnh (Ngành) | Hàng xóm: Tráng, Mơ, 5+Tuệ, Oanh+Vĩnh, Ông Bảng</text>
           </svg>
         </div>
       </div>
 
       <div class="grid-2">
-        <!-- CÂY NHÁNH 1: HỌ NGOẠI & HẠT NHÂN -->
+        <!-- CÂY NHÁNH A -->
         <div class="card">
-          <h3 class="card-title">Cây Nhánh A: Gia Đình Hạt Nhân &amp; Họ Ngoại (Mẹ Mai) <span class="pill pill-green">Phân Tầng</span></h3>
+          <h3 class="card-title">Cây Nhánh A: Hạt Nhân, Họ Ngoại &amp; Hàng Xóm <span class="pill pill-green">Phân tầng</span></h3>
           <div class="branch-tree">
             <div class="branch-root">
-              GỐC HẠT NHÂN: ÔNG ĐỨC (1948) &amp; BÀ MAI (1950)
-              <small>Quê Xuân Trường, Nam Định (nay thuộc Ninh Bình) • Bà Mai nằm viện Hải Hậu • Ông Đức 19h ngủ / 5h dậy</small>
+              GỐC GIA ĐÌNH: ÔNG ĐỨC (1948) &amp; BÀ MAI (1950)
+              <small>Xuân Trường, Nam Định (nay thuộc Ninh Bình) • Bà Mai nằm BV Hải Hậu</small>
             </div>
-
             <div class="branch-level-1">
               <div class="branch-box">
-                <div class="branch-box-title">
-                  <span>Nhánh con 1: Anh Dũng (1971/72 – mất 2013 do tai nạn)</span>
-                  <span class="pill pill-accent">Chuyển mộ 29/11</span>
-                </div>
+                <div class="branch-box-title"><span>1. Nhánh Con Ruột Của Ông Bà</span></div>
                 <div class="branch-children">
-                  <div class="branch-leaf"><strong>Vợ cũ — Chị Thúy:</strong> Đã tái hôn, bán nhà cũ, đang trục trặc với chồng mới (ở nhà ngoại hoặc thuê nhà). Từng mượn 45 triệu (coi như bỏ qua).</div>
-                  <div class="branch-leaf highlight"><strong>Con lớn — Diệp (1996) + Chồng Tiến (miền Trung):</strong> Con trai <strong>Bé Dừa (sinh T7/2025, ~1 tuổi 4 tháng)</strong>. Diệp nghỉ chăm con, ở trọ cùng Duyên tại HN; về quê ở cùng ông Đức hơn 1 tháng lo chuyển mộ bố.</div>
-                  <div class="branch-leaf highlight"><strong>Con út — Duyên (2007):</strong> SV đại học tại Hà Nội, đang học vượt tín chỉ (~3,5 năm ra trường), ở trọ cùng vợ chồng Diệp phụ trông cháu.</div>
+                  <div class="branch-leaf highlight"><strong>Anh Dũng (1971/72–2013) &amp; Chị Thúy:</strong> Diệp 96 + Tiến → Bé Dừa (T7/2025); Duyên (SV năm 2 Ngoại Thương, học vượt ~3,5 năm).</div>
+                  <div class="branch-leaf highlight"><strong>Chị Liên &amp; Anh Thanh (1973):</strong> Duy 97 (Dev FPT HO – iViec) + Bún/Thư (28/9/2025); Khánh 2008 (SV năm 1). Nhà anh Thanh nhớ: Thiện, Thân, Thành, bác Tư.</div>
+                  <div class="branch-leaf"><strong>Hiền (1983) &amp; Minh (TP.HCM):</strong> Cưới 2009, con Tom (2011).</div>
                 </div>
               </div>
 
               <div class="branch-box">
-                <div class="branch-box-title">
-                  <span>Nhánh con 2: Chị Liên &amp; Anh Thanh (1973)</span>
-                  <span class="pill pill-green">Ở gần lo việc</span>
-                </div>
+                <div class="branch-box-title"><span>2. Họ Ngoại (Anh trai Mẹ Mai)</span></div>
                 <div class="branch-children">
-                  <div class="branch-leaf highlight"><strong>Anh Thanh (1973):</strong> Rể thảo, đưa đón khám bệnh &amp; chở cô giúp việc; họ bên anh Thanh nhớ <strong>Thiện, Thân, Thành</strong>.</div>
-                  <div class="branch-leaf highlight"><strong>Con lớn — Duy (1997):</strong> Dev Fullstack FPT HO (FHO/FIV HN, dự án FPT iViec; sếp VinhND2 &amp; NgocLB3), cưới 2025, con gái <strong>Thư (Bún) sinh 28/09/2025</strong>.</div>
-                  <div class="branch-leaf"><strong>Con út — Khánh (2008):</strong> Đã xong lớp 12, SV đại học năm nhất. <em>(Giữ kín nợ 240tr với ông Đức).</em></div>
+                  <div class="branch-leaf highlight"><strong>Bác Thành (mất, còn bác gái):</strong> Anh Thực, Chị Loan, <strong>Anh Trường</strong> (út chăm, nhà thờ chính — ghé đầu tiên).</div>
+                  <div class="branch-leaf"><strong>Bác Thận (≠ Thạnh):</strong> Anh Trọng + 1 chị khác.</div>
+                  <div class="branch-leaf highlight"><strong>Bác Vĩnh:</strong> Anh Thắng (vợ <strong>Đào</strong> — giới thiệu cô giúp việc), Chị Hà (HN), Chị Hải (NĐ).</div>
                 </div>
               </div>
 
               <div class="branch-box">
-                <div class="branch-box-title">
-                  <span>Nhánh con 3: Hiền (1983 — Con út) &amp; Minh (TP.HCM)</span>
-                  <span class="pill pill-blue">Kết hôn 2009</span>
-                </div>
+                <div class="branch-box-title"><span>3. Hàng Xóm Quanh Nhà</span></div>
                 <div class="branch-children">
-                  <div class="branch-leaf"><strong>Con trai — Tom (2011):</strong> Sống cùng Minh – Hiền tại TP.HCM. Tết 2027 khả năng cao không về quê do tang bố Minh.</div>
-                </div>
-              </div>
-
-              <div class="branch-box">
-                <div class="branch-box-title">
-                  <span>Họ Ngoại (Anh chị em ruột Mẹ Mai — Mẹ Mai là út)</span>
-                  <span class="pill pill-gold">3 anh trai</span>
-                </div>
-                <div class="branch-children">
-                  <div class="branch-leaf highlight"><strong>Bác Thành (anh cả — đã mất):</strong> Các con <strong>Anh Thực, Chị Loan, Anh Trường</strong> (con út ở nhà thờ cúng chính — giỗ Tết ghé đầu tiên).</div>
-                  <div class="branch-leaf"><strong>Bác Thận (anh thứ — ≠ Thạnh):</strong> Con trai <strong>Anh Trọng</strong> (làm mộ truyền thống cho bác) + 1 chị gái (chục năm ít gặp).</div>
-                  <div class="branch-leaf highlight"><strong>Bác Vĩnh (anh thứ):</strong> <strong>Chị Hà</strong> (làm ở HN), <strong>Anh Thắng + Chị Đào</strong> (Đào giới thiệu cô giúp việc mới; Thắng năm nào cũng về), <strong>Chị Hải</strong> (gần TP. Nam Định, khu Chống Hoa).</div>
+                  <div class="branch-leaf highlight"><strong>Bác Tráng</strong> (phía bác Sửu — cụ trên cụ Lý, cụ Thiên), <strong>Bác Mơ</strong>, <strong>Bác 5 + Tuệ</strong>, <strong>Bác Oanh + Vĩnh</strong> (đi Hàn Quốc 13 năm), <strong>Ông Bảng</strong> hàng xóm.</div>
                 </div>
               </div>
             </div>
           </div>
         </div>
 
-        <!-- CÂY NHÁNH 2: HỌ NỘI & MẠNG LƯỚI MỞ RỘNG -->
+        <!-- CÂY NHÁNH B -->
         <div class="card">
-          <h3 class="card-title">Cây Nhánh B: Họ Nội (Bố Đức) &amp; Mạng Lưới Mở Rộng <span class="pill pill-accent">Phân Tầng</span></h3>
+          <h3 class="card-title">Cây Nhánh B: Họ Nội, Nhánh Cụ Thiên/Lý &amp; Từ Đường <span class="pill pill-accent">Phân tầng</span></h3>
           <div class="branch-tree">
             <div class="branch-root" style="background: linear-gradient(135deg, #7c2d12, #9a3f1d);">
-              GỐC HỌ NỘI: ANH CHỊ EM RUỘT BỐ ĐỨC (6 NGƯỜI — BỐ ĐỨC THỨ 2)
-              <small>Chú ý tên vợ/chồng người hay gặp &amp; cảnh giác ép rượu trên bàn tiệc</small>
+              GỐC HỌ NỘI: ANH CHỊ EM BỐ ĐỨC &amp; HỌ TỘC
+              <small>Bố Đức thứ 2 trong 6 anh chị em • Nhánh cụ Thiên &amp; cụ Lý</small>
             </div>
-
             <div class="branch-level-1">
               <div class="branch-box">
-                <div class="branch-box-title">
-                  <span>Bác Mùi (Chị cả)</span>
-                  <span class="pill pill-gold">Nhớ Thảo &amp; Huyền</span>
-                </div>
+                <div class="branch-box-title"><span>1. Anh Chị Em Ruột Bố Đức</span></div>
                 <div class="branch-children">
-                  <div class="branch-leaf highlight"><strong>Anh Dương + Vợ Thảo:</strong> 2 con trai (1 đi XKLĐ Đài Loan về, 1 làm IT thu nhập tốt). Cần nhớ tên <strong>Thảo</strong>.</div>
-                  <div class="branch-leaf highlight"><strong>Anh Du + Vợ Huyền:</strong> Tiếp xúc nhiều, cần nhớ tên <strong>Huyền</strong>.</div>
-                  <div class="branch-leaf"><strong>Anh Ký:</strong> Lâu không gặp do từng cãi nhau (không cần nhớ tên vợ).</div>
-                  <div class="branch-leaf"><strong>Chị An:</strong> Lấy chồng miền núi phía Bắc, hay về Tết muộn.</div>
+                  <div class="branch-leaf highlight"><strong>Bác Mùi (chị cả):</strong> Anh Dương + <strong>Thảo</strong> (2 con: Tuyến XKLĐ Đài Loan, Tuyên IT); anh Du + <strong>Huyền</strong>; anh Ký (6 con); chị An.</div>
+                  <div class="branch-leaf"><strong>Chú Tín:</strong> Chị Tuyết + Bằng; Nam (mất); Trung.</div>
+                  <div class="branch-leaf highlight"><strong>Chú Hạ:</strong> Chị Xuân (Sơn); Chị Thu + <strong>Tuấn</strong> (mập tròn vui); Duyệt (Bộ đội/Hải Phòng + Trang → Bưởi 2022).</div>
+                  <div class="branch-leaf"><strong>Cô Lan:</strong> Hùng (con Hiệp lớp 11, Nhân lớp 9) &amp; Ca (3 con, vừa 1 bé sinh 11/2025).</div>
+                  <div class="branch-leaf danger"><strong>Chú Vịnh (mất) &amp; Thím Mận:</strong> Hằng + <strong>Hùng (hay ép rượu)</strong>; Chi.</div>
                 </div>
               </div>
 
               <div class="branch-box">
-                <div class="branch-box-title">
-                  <span>Chú Tín &amp; Chú Hạ (Em trai Bố Đức)</span>
-                  <span class="pill pill-accent">Dễ gặp</span>
-                </div>
+                <div class="branch-box-title"><span>2. Nhánh Cụ Thiên, Cụ Lý &amp; Chú Điển</span></div>
                 <div class="branch-children">
-                  <div class="branch-leaf"><strong>Chú Tín:</strong> <strong>Chị Tuyết + Bằng</strong>; <strong>Anh Nam</strong>; <strong>Anh Trung</strong> (vợ không cần nhớ tên; Bằng &amp; Trung hay gặp/nhậu).</div>
-                  <div class="branch-leaf highlight"><strong>Chú Hạ:</strong> <strong>Chị Xuân</strong> (chồng quân đội quê Hải Phòng, ít gặp); <strong>Chị Thu + Tuấn</strong> (Tuấn mập, vui tính, hay sửa nhà chung cư, rất dễ gặp); <strong>Duyệt</strong> (em út).</div>
+                  <div class="branch-leaf highlight"><strong>Nhánh cụ Thiên (anh cụ Lý):</strong> Chú Minh (con anh Đạo), anh Sỹ, chú Tuấn – thím Sáu (mất 2025; con Toàn, Toản, Duật: con gái lớp 6, con trai lớp lá), anh Toàn.</div>
+                  <div class="branch-leaf"><strong>Nhà Kiên – Trang – Chính &amp; Nhà Trà:</strong> Thuộc nhà ông Lý (em ông nội); nhà Trà (con chị Tấn).</div>
+                  <div class="branch-leaf"><strong>Chú Điển (em cô Vui, nhà có gà):</strong> Gần nhà Bằng, bác Mùi, anh Du; con là Thương, vợ là Thảo.</div>
                 </div>
               </div>
 
               <div class="branch-box">
-                <div class="branch-box-title">
-                  <span>Cô Lan &amp; Chú Vịnh (Em gái &amp; Em út Bố Đức)</span>
-                  <span class="pill pill-red">Có cảnh báo</span>
-                </div>
+                <div class="branch-box-title"><span>3. Từ Đường Họ Tộc</span></div>
                 <div class="branch-children">
-                  <div class="branch-leaf"><strong>Cô Lan:</strong> 2 con trai <strong>Hùng &amp; Ca</strong> (rất giống nhau; tránh nhầm với Hùng rể chú Vịnh).</div>
-                  <div class="branch-leaf danger"><strong>Chú Vịnh (mất) &amp; Thím Mận:</strong> Thím Mận ở một mình trông nhà bà nội/nhà thờ tổ (từ chối giúp việc vì ngại va chạm). Con gái <strong>Chi</strong> (mới xây nhà ở quê chồng); con gái <strong>Hằng + Chồng Hùng</strong> (<strong>CẢNH BÁO: Hùng ép rượu rất ghê</strong>).</div>
-                </div>
-              </div>
-
-              <div class="branch-box">
-                <div class="branch-box-title">
-                  <span>Họ Xa &amp; Nhóm Hay Ngồi Nhậu</span>
-                  <span class="pill pill-purple">Tham chiếu</span>
-                </div>
-                <div class="branch-children">
-                  <div class="branch-leaf"><strong>Họ xa:</strong> Nhà Kiên Trang (bà ngoại Kim &amp; Hiền chị em ruột; cụ nội 2 bên anh em ruột; có Chính), nhà ông Lý (em ông nội), nhà Trà (con chị Tấn).</div>
-                  <div class="branch-leaf highlight"><strong>Nhóm hay ngồi nhậu/gặp:</strong> Anh Du, anh Dương, anh Bằng, anh Trung, Hùng/Ca, Tuấn (chồng Thu).</div>
+                  <div class="branch-leaf highlight"><strong>Từ đường Ngành:</strong> Ông Hạnh (đang làm trưởng tộc thay ông Liêm).<br><strong>Từ đường Chi:</strong> Nhánh gia đình cụ Phùng (ông Liêm, ông Văn, ông Hạnh không vấn đề về chủ Từ).</div>
                 </div>
               </div>
             </div>
@@ -1384,187 +1082,135 @@
       </div>
     </section>
 
-    <!-- TAB 6: LÌ XÌ TẾT -->
-    <section id="tab-lixi" class="tab-panel" role="tabpanel">
+    <!-- TAB 6: ĐƯỜNG ĐI & LÌ XÌ -->
+    <section id="tab-duongdi" class="tab-panel" role="tabpanel">
       <div class="section-header">
-        <h2>6. Kế Hoạch Lì Xì Hàng Năm (Tham Chiếu Chuẩn Từ Tết 2026) &amp; Điều Chỉnh Tết 2027</h2>
-        <p>Khung chuẩn từ dịp Tết 2026 (khi Minh – Hiền – Tom về quê 5 ngày từ 27 Tết đến mùng 2 Tết) và phương án chuyển khoản/nhờ chị Liên trao thay cho Tết 2027.</p>
+        <h2>6. Đường Xá Đi Lại Ở Quê &amp; Kế Hoạch Lì Xì Hàng Năm</h2>
+        <p>Chỉ dẫn đường đi thực tế tới nhà các bác/chú gần nhà và khung lì xì ưu tiên hàng năm (cùng điều chỉnh cho Tết 2027).</p>
       </div>
 
       <div class="card">
-        <h3 class="card-title">Bảng Định Mức Lì Xì Chuẩn Tham Chiếu (Mốc Tết 2026)</h3>
+        <h3 class="card-title">Chỉ Dẫn Đường Xá Đi Lại Ở Quê (Xuân Trường / Hải Hậu) <span class="pill pill-gold">Dễ tìm</span></h3>
+        <div class="grid-2">
+          <ul class="clean-list">
+            <li><strong>Nhà Chú Hạ:</strong> Ngõ kế nhà anh Dương, đi vào rẽ trái hết đường.</li>
+            <li><strong>Nhà Bác Vĩnh:</strong> Ra đường 4, rẽ phải, qua cầu thứ 2, đi qua 4 nhà rồi rẽ trái.</li>
+            <li><strong>Nhà Bác Thận, Anh Trọng:</strong> Vẫn đường trên, gặp cổng chào bên phải đi hết đường rồi nhìn bên trái.</li>
+          </ul>
+          <ul class="clean-list">
+            <li><strong>Nhà Bác Mùi &amp; Các Nhà Họ Nội:</strong> Nhà bác Mùi ở trong ngõ, gần nhà chị Tuyết – anh Bằng và gần nhà chú Tín; nhà em Trung ở ngay mặt đường.</li>
+            <li><strong>Bệnh viện Hải Hậu:</strong> Qua cổng chào Hải Hậu đi xuống sâu hơn, đường xa và đông đúc.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3 class="card-title">Kế Hoạch Lì Xì Chuẩn &amp; Danh Sách Ưu Tiên</h3>
         <div class="table-wrap">
           <table>
             <thead>
               <tr>
-                <th style="width: 24%;">Nhóm Đối tượng</th>
-                <th style="width: 34%;">Thời điểm &amp; Cách thức</th>
-                <th style="width: 42%;">Định mức Tham chiếu Chuẩn (Mốc 2026)</th>
+                <th style="width: 25%;">Nhóm Đối tượng</th>
+                <th style="width: 33%;">Cách thức &amp; Thời điểm</th>
+                <th style="width: 42%;">Định mức &amp; Danh sách ưu tiên</th>
               </tr>
             </thead>
             <tbody>
               <tr>
-                <td><strong>Bố mẹ vợ (Ông Đức, Bà Mai) &amp; Gia đình Chị Liên – Anh Thanh</strong></td>
-                <td>Mùng 1 Tết hoặc lúc sum họp đầu năm.</td>
-                <td>Mệnh giá <strong>500.000đ</strong> (chuẩn bị tờ đẹp riêng cho bố mẹ và anh chị).</td>
+                <td><strong>Bố mẹ vợ &amp; Gia đình Chị Liên – Anh Thanh</strong></td>
+                <td>Mùng 1 Tết hoặc sum họp đầu năm.</td>
+                <td><strong>500.000đ/suất</strong> (tờ tiền mới/đẹp).</td>
               </tr>
               <tr>
                 <td><strong>Các cháu ruột</strong> (Diệp + bé Dừa, Duyên, Duy + bé Bún, Khánh)</td>
-                <td>Gặp trực tiếp hoặc gửi bố mẹ/ông bà cầm hộ nếu vắng mặt (như nhà Diệp).</td>
-                <td>Mệnh giá <strong>500.000đ/cháu</strong> (lì xì riêng cả cháu lớn và con của cháu, ví dụ Diệp 1 phần + con Diệp 1 phần).</td>
+                <td>Gặp trực tiếp hoặc gửi ông bà cầm hộ.</td>
+                <td><strong>500.000đ/cháu</strong> (tính riêng cả cháu lớn và con của cháu).</td>
               </tr>
               <tr>
-                <td><strong>Người lớn 5 nhà cô chú bác</strong> (Bác Mùi, Chú Tín, Cô Lan, Bác Thận, Bác Vĩnh)</td>
-                <td>Chiều 29 Tết đi cùng chị Liên sang biếu bánh kẹo và chúc Tết từng nhà.</td>
-                <td>Trước Tết biếu <strong>200.000đ/người</strong> kèm bánh kẹo + <strong>100.000đ</strong> lì xì đầu năm (có thể dùng tiền cũ/thường cho người lớn tuổi).</td>
+                <td><strong>Người lớn &amp; Danh sách lì xì ưu tiên</strong></td>
+                <td>Chiều 29 Tết đi cùng chị Liên biếu quà &amp; mừng tuổi.</td>
+                <td>Trước Tết biếu <strong>200.000đ/người</strong> + bánh kẹo; trong Tết mừng tuổi <strong>100.000đ</strong>.<br><strong>Ưu tiên nhớ:</strong> 3 bao bác Vĩnh, bác Mùi, thím Mận, Từ đường, chú Tuấn, bác Tráng, chú Tín, cô Lan, bác Tư (bên anh Thanh), anh Trường, Thực, Quản, Xuân và hàng xóm (bác Mơ, bác 5 + Tuệ, bác Oanh + Vĩnh, ông Bảng).</td>
               </tr>
               <tr>
-                <td><strong>Trẻ nhỏ họ hàng (~21 cháu:</strong> con Dương, Bằng, Thu, Diệp, Duy, Hùng, Ca, Chi, Thắng...)</td>
-                <td>Linh hoạt khi gặp mặt chúc Tết tại các nhà.</td>
-                <td>Chuẩn bị sẵn kết hợp <strong>50% tờ 100.000đ</strong> và <strong>50% tờ 50.000đ</strong> (~10–11 tờ mỗi loại) để linh hoạt theo mức độ thân thiết; tiền dư mang về.</td>
+                <td><strong>Trẻ nhỏ họ hàng (~21 cháu)</strong></td>
+                <td>Linh hoạt khi đi chúc Tết các nhà.</td>
+                <td>Chuẩn bị <strong>50% tờ 100.000đ</strong> và <strong>50% tờ 50.000đ</strong> (~10–11 tờ mỗi loại), dư mang về.</td>
               </tr>
             </tbody>
           </table>
         </div>
-      </div>
 
-      <div class="callout callout-warn">
-        <strong class="title">Phương Án Riêng Cho Tết 2027 (Bố Minh Mất Năm 2026)</strong>
-        Do bố của Minh mới mất năm 2026 nên khả năng cao Tết 2027 gia đình sẽ không về quê vợ mà chuyển khoản/nhờ chị Liên trao thay. Cần báo sớm, khéo léo với ông Đức và chị Liên, đồng thời chủ động gửi quà/thuốc men và chuyển khoản mừng tuổi 5 nhà người lớn + các cháu ruột từ xa để giữ trọn tình nghĩa.
+        <div class="callout callout-warn" style="margin-top: 12px; margin-bottom: 0;">
+          <strong class="title">Điều chỉnh riêng Tết 2027 (Bố Minh mất năm 2026)</strong>
+          Khả năng cao Tết 2027 gia đình ở lại miền Nam; cần thông báo sớm, khéo léo với ông Đức và chị Liên, gửi quà/thuốc trước Tết và chuyển khoản nhờ chị Liên đại diện mừng tuổi các nhà ưu tiên cùng các cháu ruột.
+        </div>
       </div>
     </section>
 
-    <!-- TAB 7: TÂM LÝ & VĂN HÓA VÙNG MIỀN -->
+    <!-- TAB 7: VĂN HÓA & LỘ TRÌNH MINH -->
     <section id="tab-vanhoa" class="tab-panel" role="tabpanel">
       <div class="section-header">
-        <h2>7. Ghi Nhận Tâm Lý Minh – Hiền &amp; Nghiên Cứu Chuyên Sâu Văn Hóa Vùng Miền</h2>
-        <p>Kết hợp phân tích tâm lý hai vợ chồng với nghiên cứu bổ sung về văn hóa vùng miền Bắc Bộ (Nam Định / Ninh Bình – Hải Hậu) và mối tương quan rể miền Nam.</p>
+        <h2>7. Tâm Lý, Văn Hóa Vùng Miền &amp; Việc Cần Làm Theo Ngày Tháng</h2>
+        <p>Chuẩn hóa vai trò con rể miền Nam tại quê Bắc và checklist hành động từ 26/11/2026 đến Tết 2027.</p>
       </div>
 
       <div class="grid-2">
         <div class="card">
-          <h3 class="card-title">5.1a. Tâm Lý Của Minh (Con Rể Miền Nam) <span class="pill pill-blue">Chân Thực</span></h3>
+          <h3 class="card-title">Phân Tích Tâm Lý &amp; Văn Hóa Vùng Miền</h3>
           <ul class="clean-list">
-            <li><strong>Trí nhớ &amp; áp lực ôn tên:</strong> Minh có trí nhớ kém về tên gọi và vai vế họ hàng, dễ bị áp lực và tự ái nhẹ khi hỏi kỹ để ghi nhớ mà bị vợ gắt hoặc cho là "không cần quan tâm".</li>
-            <li><strong>Tâm thế "làm khách" khi về quê Bắc:</strong> Tự nhận tay chân hậu đậu, không rành việc bếp núc, cúng giỗ ngoài quê và giao tiếp chưa tự nhiên với anh em họ hàng.</li>
-            <li><strong>Ngại ép rượu &amp; tinh tế trong tiền bạc:</strong> Rất ngại văn hóa ép rượu, đồng thời luôn giữ sự cẩn trọng, tế nhị trong tiền bạc (muốn tách bạch rõ các khoản trả cô giúp việc, phải hỏi ý kiến chị Liên trước để không tạo tiền lệ xấu hoặc làm người ở gần khó xử).</li>
+            <li><strong>Tâm lý Minh – Hiền:</strong> Minh trí nhớ tên họ hàng hạn chế, ngại cảnh "rể khách" và áp lực bàn nhậu, nhưng rất chu đáo và tinh tế khi nhắc vợ bàn bạc kỹ với chị Liên chuyện tiền nong. Hiền thực tế, muốn chồng tập trung nhớ người trọng tâm ("focus"), nặng lòng bù đắp tài chính từ xa cho bố mẹ và muốn giữ thể diện cho chị Liên.</li>
+            <li><strong>Mâm cỗ 6 &amp; ép rượu quê Bắc:</strong> Tiệc cải táng/giỗ chạp mời đông họ hàng, hàng xóm; áp lực mời rượu lớn (đặc biệt lưu ý <strong>Hùng – chồng Hằng</strong>). Minh giữ thái độ vui vẻ, lễ phép, dùng lý do sức khỏe/đường bay xa/đang có tang bố để từ chối khéo và có Hiền đỡ lời.</li>
+            <li><strong>Nghi lễ cải táng &amp; kiêng tang:</strong> Bốc mộ sau 5–10 năm phải xem tuổi, kiêng khi họ có tang mới (nên hoãn từ 2020–2026); nếu hài cốt chưa sạch thì hỏa táng rồi đưa vào lăng. Khi dự lễ cần đúng giờ, trang nghiêm, để cháu Diệp và các bác/chú điều phối.</li>
+            <li><strong>Cán cân "gần góp công – xa góp của" &amp; giúp việc quê:</strong> Người ở gần (chị Liên – anh Thanh) chịu áp lực va chạm tính kỹ của bố Đức mỗi ngày; mọi hỗ trợ tài chính từ xa phải qua bàn bạc thống nhất giữa hai chị em. Người giúp việc quê coi trọng chữ tình/chữ nể (cô mới nể chị Đào nên nhận 6tr thay vì 12tr ở Hải Phòng), cần trả sòng phẳng từng khoản và ứng xử ân cần.</li>
           </ul>
         </div>
 
         <div class="card">
-          <h3 class="card-title">5.1b. Tâm Lý Của Hiền (Con Gái Út Xa Quê) <span class="pill pill-accent">Thấu Cảm</span></h3>
+          <h3 class="card-title">Chuẩn Hóa Vai Trò Của Minh &amp; Lời Khuyên Chuẩn</h3>
           <ul class="clean-list">
-            <li><strong>Lọc thông tin ("Focus"):</strong> Thực tế và có xu hướng "lọc thông tin" cho chồng (chỉ ép nhớ những người hay gặp hoặc quan trọng, bỏ qua nhánh ít tiếp xúc), nên dễ mất kiên nhẫn khi chồng hỏi lan man.</li>
-            <li><strong>Bù đắp tài chính từ xa:</strong> Vì ở xa không trực tiếp chăm sóc được bố mẹ đang yếu, Hiền mang tâm lý bù đắp bằng tài chính (chủ động gánh phần lớn tiền thuốc, 4/6 triệu tiền giúp việc, trả luôn tiền trực đêm và góp tiền chuyển mộ) để san sẻ với chị Liên – anh Thanh.</li>
-            <li><strong>Quyết đoán nhưng cần nhắc khéo:</strong> Quyết đoán trong việc chăm mẹ nhưng đôi khi cần chồng nhắc khéo để bàn bạc thống nhất với chị gái.</li>
+            <li><strong>Định vị vai trò:</strong> Làm "điểm tựa bình tĩnh, lễ phép và tinh tế" — không cần cố quán xuyến lễ nghi hay đua rượu; tập trung chào đúng tên nhóm trọng tâm và giữ hòa khí cho gia đình.</li>
+            <li><strong>Bảo mật tuyệt đối:</strong> Không bao giờ nhắc khoản nợ 240 triệu (nhà chị Liên) và 45 triệu (nhà chị Thúy) trước mặt bố Đức.</li>
           </ul>
+          <div class="script-box">
+            <span class="label">Mẫu câu từ chối rượu khéo léo trên bàn tiệc</span>
+            "Dạ anh/chú thông cảm, em ít uống và mấy bữa nay bay xa, ngủ nghỉ ít nên em xin phép nhấp một chút/dùng nước để giữ sức khỏe. Em rất trân trọng tình cảm của anh/chú ạ!"
+          </div>
         </div>
       </div>
 
       <div class="card">
-        <h3 class="card-title">5.2. Các Vấn Đề Văn Hóa Chung &amp; Nghiên Cứu Bổ Sung Vùng Miền <span class="pill pill-purple">Nghiên Cứu Mở Rộng</span></h3>
-        <div class="table-wrap">
-          <table>
-            <thead>
-              <tr>
-                <th style="width: 22%;">Chủ đề văn hóa</th>
-                <th style="width: 39%;">Thực tế tại quê &amp; gia đình</th>
-                <th style="width: 39%;">Nghiên cứu bổ sung &amp; ứng xử chuẩn cho Minh</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td><strong>Văn hóa Mâm cỗ &amp; Ép rượu</strong></td>
-                <td>Tiệc hiếu hỉ, cải táng ở quê thường dọn theo mâm 6, mời đông hàng xóm và họ hàng. Áp lực mời rượu, ép rượu rất lớn (đặc biệt lưu ý <strong>Hùng – chồng Hằng</strong>, con rể chú Vịnh).</td>
-                <td><strong>Nghiên cứu vùng miền:</strong> Ở nhiều làng quê đồng bằng Bắc Bộ (Nam Định/Ninh Bình), chén rượu đầu mâm mang ý nghĩa "khai khẩu – gắn kết – trọng khách", nhưng ép quá mức dễ gây khó chịu cho người tửu lượng thấp hoặc người ở xa mới về. <strong>Ứng xử:</strong> Cười hiền, nâng chén chào chung hoặc nhấp môi/đổi nước lọc–trà với lý do sức khỏe, đường bay xa hoặc gia đình đang có tang bố; nhờ Hiền đứng ra đỡ lời khi cần.</td>
-              </tr>
-              <tr>
-                <td><strong>Phong tục Cải táng (Chuyển mộ) &amp; Kiêng tang</strong></td>
-                <td>Quê vẫn giữ lệ chôn ngoài đồng 5–10 năm rồi mới xem ngày, thuê thầy bốc về lăng mộ tổ tiên; nếu chưa sạch thì hỏa táng rồi đưa về lăng (như trường hợp bà nội). Tuyệt đối kiêng khi trong họ có tang mới (lý do mộ anh Dũng hoãn từ 2020–2026).</td>
-                <td><strong>Nghiên cứu vùng miền:</strong> Cải táng (bốc mộ/sang cát) là nghi lễ tâm linh trang trọng bậc nhất của gia đình Bắc Bộ, đòi hỏi sự tĩnh tại, kiêng kỵ lời nói xui xẻo, tránh cãi vã, và tuân thủ giờ đẹp/chỉ dẫn của thầy cúng &amp; thợ. Khi hài cốt chưa tiêu hết, chuyển sang hỏa táng rồi đưa vào lăng là giải pháp vừa hợp phong thủy vừa sạch sẽ, văn minh. <strong>Ứng xử:</strong> Dậy đúng giờ, ăn mặc gọn gàng kín đáo, giữ thái độ chừng mực, nhường phần điều phối cho người lo chính (cháu Diệp) và các bác/chú.</td>
-              </tr>
-              <tr>
-                <td><strong>Cân bằng giữa "Người bỏ công" và "Người bỏ của"</strong></td>
-                <td>Chị Liên – anh Thanh gánh công sức trực tiếp, Minh – Hiền gánh tài chính. Va chạm hàng ngày khiến ông Đức và chị Liên dễ tranh cãi; cần giữ kín các khoản nợ 240 triệu (nhà chị Liên) và 45 triệu (nhà chị Thúy).</td>
-                <td><strong>Nghiên cứu vùng miền:</strong> Trong gia đình truyền thống miền Bắc, "công chăm sóc trực tiếp" thường nhạy cảm hơn tiền bạc vì người ở gần chịu áp lực tâm lý và thị phi hàng xóm mỗi ngày. Nếu người ở xa chi tiền mà thiếu bước trao đổi trước dễ bị hiểu là "dùng tiền áp đặt". <strong>Ứng xử:</strong> Luôn tôn trọng vai trò của chị Liên – anh Thanh; mọi khoản chi gửi về đều qua kênh bàn bạc thống nhất giữa hai chị em; tuyệt đối không đem chuyện tiền nong ra so đo công – của.</td>
-              </tr>
-              <tr>
-                <td><strong>Ứng xử với Người giúp việc ở quê</strong></td>
-                <td>Thuê qua người thân giới thiệu (chị Đào) nên mang nặng tình cảm làng xóm. Vừa trả công sòng phẳng, rạch ròi từng khoản, vừa dung hòa tính kỹ tính/tiết kiệm của ông Đức (cất chổi, giữ dép rách).</td>
-                <td><strong>Nghiên cứu vùng miền:</strong> Người làm ở quê coi trọng "chữ tình – chữ nể" (như cô mới từ chối lương 12 triệu ở Hải Phòng để nhận 6 triệu gần nhà vì nể chị Đào). <strong>Ứng xử:</strong> Tách bạch rõ 3 khoản (lương 6tr: Hiền 4tr/Liên 2tr; tiền trực đêm; quà biếu) nhưng trao bằng thái độ ân cần, trân trọng; với tính kỹ của ông Đức, giải thích nhẹ nhàng để giữ hòa khí thay vì đối đầu.</td>
-              </tr>
-              <tr>
-                <td><strong>Xưng hô, lễ nghi &amp; khoảng cách Nam – Bắc</strong></td>
-                <td>Hệ thống xưng hô bên nội/ngoại nhiều tầng bậc; Minh tự thấy hậu đậu, ít nhớ tên họ xa, dễ có cảm giác "làm khách" khi về quê.</td>
-                <td><strong>Nghiên cứu vùng miền:</strong> Người miền Bắc đánh giá cao sự lễ phép, biết chào hỏi đúng vai vế và giữ nề nếp hơn là sự hoạt ngôn quá mức. Rể miền Nam không cần giả giọng hay cố làm quen hết tất cả mọi người; chỉ cần chào đúng tên những người trọng tâm (Thảo, Huyền, Tuấn, Đào, Trường, Thắng...) và lịch sự với người lớn tuổi.</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-    </section>
-
-    <!-- TAB 8: LỘ TRÌNH NGÀY THÁNG & VAI TRÒ MINH -->
-    <section id="tab-lotrinh" class="tab-panel" role="tabpanel">
-      <div class="section-header">
-        <h2>8. Việc Cần Làm Theo Từng Ngày Tháng, Chuẩn Hóa Vai Trò Của Minh &amp; Điểm Quan Trọng</h2>
-        <p>Sắp xếp hành động theo mốc thời gian cụ thể từ 26/11/2026 đến Tết 2027, kèm kịch bản ứng xử thực tế và checklist theo dõi tiến độ.</p>
-      </div>
-
-      <div class="card">
-        <h3 class="card-title">Tiến Độ Hoàn Thành Đầu Việc <span id="progressText" class="pill pill-green">0 / 8 mục</span></h3>
+        <h3 class="card-title">Checklist Việc Cần Làm Theo Ngày Tháng <span id="progressText" class="pill pill-green">0 / 6 mục</span></h3>
         <div class="progress-bar-wrap"><div id="progressFill" class="progress-bar-fill"></div></div>
 
         <div class="date-card">
-          <span class="date-badge gold">26–27/11/2026 — Chuẩn Bị Trước Chuyến Đi</span>
+          <span class="date-badge gold">26–27/11/2026 — Trước Chuyến Đi</span>
           <div class="check-item">
             <input type="checkbox" class="task-cb" />
             <div class="check-text">
-              <strong>Rà soát danh sách trọng tâm &amp; nguyên tắc bảo mật thông tin</strong>
-              <span>Ôn nhanh tên trọng tâm (Thảo, Huyền, Tuấn, Đào, Trường, Thắng, Diệp, Duyên, Duy/Bún, Khánh); nhắc bản thân tuyệt đối không đề cập khoản nợ 240 triệu của chị Liên và 45 triệu của chị Thúy trước mặt bố Đức.</span>
-            </div>
-          </div>
-          <div class="check-item">
-            <input type="checkbox" class="task-cb" />
-            <div class="check-text">
-              <strong>Chuẩn bị ngân sách &amp; theo dõi đơn Shopee</strong>
-              <span>Chuẩn bị 8 triệu đóng góp chuyến đi (5 triệu cho cháu Diệp, 1 triệu cho Duyên, 1 triệu cho Khánh, 1 triệu biếu bác Vĩnh/cô giúp việc) và theo dõi đơn Shopee (10 hộp bánh pía + cà phê Highlands gửi nhà anh Thanh).</span>
+              <strong>Chuẩn bị 8 triệu đóng góp &amp; kiểm tra đơn Shopee</strong>
+              <span>5tr gửi Diệp lo chuyển mộ, 1tr Duyên, 1tr Khánh, 1tr biếu bác Vĩnh/cô giúp việc; theo dõi 10 hộp bánh pía + cà phê Highlands gửi nhà anh Thanh.</span>
             </div>
           </div>
         </div>
 
-        <div class="date-card" style="border-left-color: var(--primary);">
-          <span class="date-badge">Thứ Bảy 28/11/2026 — Bay Ra Hà Nội, Lễ Cúng &amp; Thăm Mộ</span>
+        <div class="date-card">
+          <span class="date-badge">Thứ Bảy 28/11/2026 — Ra Quê, Lễ Cúng &amp; Thăm Mộ</span>
           <div class="check-item">
             <input type="checkbox" class="task-cb" />
             <div class="check-text">
-              <strong>8h00 đáp Nội Bài → Trưa về nhà → Chiều thăm mộ anh Dũng</strong>
-              <span>Giữ nhịp sức khỏe, chào hỏi lễ phép người thân đến phụ cúng trưa và thăm mộ anh Dũng buổi chiều; lưu ý chiều thứ Bảy chị Liên xuống BV Hải Hậu trực thay vì cô giúp việc về lo giỗ nhà cô vào Chủ Nhật.</span>
-            </div>
-          </div>
-          <div class="check-item">
-            <input type="checkbox" class="task-cb" />
-            <div class="check-text">
-              <strong>Kiểm soát mâm cơm tối thứ Bảy &amp; giữ hòa khí</strong>
-              <span>Ngồi mâm gia đình nhẹ nhàng, tránh uống quá đà; hỗ trợ Hiền hỏi thăm sức khỏe bố Đức (nhớ ông ngủ sớm 19h, dậy sớm 5h, không để ông xuống ngủ viện).</span>
+              <strong>8h00 tới Nội Bài → Trưa về nhà cúng → Chiều thăm mộ anh Dũng</strong>
+              <span>Chiều thứ Bảy chị Liên xuống BV Hải Hậu trực thay để cô giúp việc về lo giỗ nhà cô vào Chủ Nhật; giữ ông Đức nghỉ ngơi ở nhà (19h ngủ, 5h dậy).</span>
             </div>
           </div>
         </div>
 
         <div class="date-card" style="border-left-color: var(--accent);">
-          <span class="date-badge accent">Chủ Nhật 29/11/2026 — Lễ Chuyển Mộ Anh Dũng (5h00 Sáng) &amp; Tiệc Trưa</span>
+          <span class="date-badge accent">Chủ Nhật 29/11/2026 — Lễ Chuyển Mộ (5h00 Sáng) &amp; Tiệc Trưa</span>
           <div class="check-item">
             <input type="checkbox" class="task-cb" />
             <div class="check-text">
-              <strong>5h00 sáng dự nghi lễ cải táng / chuyển mộ cùng gia đình</strong>
-              <span>Có mặt đúng giờ, giữ thái độ trang nghiêm, tôn trọng thầy/thợ và cháu Diệp (người lo chính); đón nhận thông tin thực tế (bốc chuyển thẳng vào lăng hoặc hỏa táng rồi đưa vào lăng nếu chưa sạch).</span>
-            </div>
-          </div>
-          <div class="check-item">
-            <input type="checkbox" class="task-cb" />
-            <div class="check-text">
-              <strong>Tiệc trưa mời họ hàng, hàng xóm — Khéo léo từ chối ép rượu</strong>
-              <span>Chào hỏi đúng tên người trọng tâm; cảnh giác các màn ép rượu (đặc biệt Hùng – chồng Hằng). Chiều Chủ Nhật anh Thanh đón chị Liên về và quay lại đi làm; kiểm tra giao hàng Shopee.</span>
+              <strong>5h00 sáng dự lễ ngoài mộ &amp; tiệc trưa mời họ hàng, hàng xóm</strong>
+              <span>Chào hỏi đúng tên người trọng tâm &amp; hàng xóm (Tráng, Mơ, 5+Tuệ, Oanh+Vĩnh, Ông Bảng); khéo léo tránh ép rượu từ Hùng (chồng Hằng). Chiều anh Thanh đón chị Liên về và quay lại đi làm; nhận hàng Shopee.</span>
             </div>
           </div>
         </div>
@@ -1574,65 +1220,39 @@
           <div class="check-item">
             <input type="checkbox" class="task-cb" />
             <div class="check-text">
-              <strong>Phối hợp khám tiểu đường định kỳ tại BV Hải Hậu &amp; chốt 3 khoản với chị Liên</strong>
-              <span>Hỗ trợ nắm lịch khám tiểu đường của bà Mai (di chuyển khoa trong viện); Hiền ngồi riêng với chị Liên chốt rạch ròi 3 khoản cho cô giúp việc (lương 6tr: Hiền 4tr/Liên 2tr; công trực đêm; quà biếu 1 bánh pía + 500k–1tr). Trưa bay từ Nội Bài về lại TP.HCM.</span>
+              <strong>Theo dõi lịch khám tiểu đường tại BV Hải Hậu &amp; chốt 3 khoản với chị Liên</strong>
+              <span>Hiền bàn riêng với chị Liên chốt rõ 3 khoản cho cô giúp việc (lương 6tr: Hiền 4tr/Liên 2tr; tiền trực đêm; quà biếu 1 bánh pía + 500k–1tr). Trưa bay Nội Bài về TP.HCM.</span>
             </div>
           </div>
         </div>
 
         <div class="date-card" style="border-left-color: var(--purple);">
-          <span class="date-badge purple">Tháng 12/2026 – Tết 2027 — Duy Trì Chăm Sóc &amp; Phương Án Tết Xa Quê</span>
+          <span class="date-badge purple">Tháng 12/2026 – Tết 2027 — Duy Trì Thuốc &amp; Lì Xì Từ Xa</span>
           <div class="check-item">
             <input type="checkbox" class="task-cb" />
             <div class="check-text">
-              <strong>Duy trì thuốc men định kỳ &amp; theo dõi vết thương bà Mai</strong>
-              <span>Tiếp tục gửi thuốc cho bố Đức (Jex/Z ~4,5 tháng/1,3tr; Plavix/Lavit ~3 tháng/>1tr; Codiovan ~3 tháng/~900k; OP.Can/Obecan ~4 tháng/~1tr) và theo dõi tình trạng vết mổ áp xe/zona trên nền tiểu đường của bà Mai.</span>
+              <strong>Gửi thuốc định kỳ (Jex, Plavix, Codiovan, OP.Can) &amp; theo dõi vết thương bà Mai</strong>
+              <span>Giữ chân cô giúp việc lâu dài bằng sự ghi nhận ân cần và thanh toán sòng phẳng.</span>
             </div>
           </div>
           <div class="check-item">
             <input type="checkbox" class="task-cb" />
             <div class="check-text">
-              <strong>Triển khai phương án Tết 2027 không về quê (do tang bố Minh)</strong>
-              <span>Trao đổi sớm, nhẹ nhàng với ông Đức và chị Liên; gửi quà/thuốc trước Tết và chuyển khoản lì xì qua chị Liên theo khung tham chiếu (5 nhà người lớn, ~21 cháu họ, gia đình &amp; cháu ruột).</span>
+              <strong>Triển khai Tết 2027 ở lại miền Nam (tang bố Minh)</strong>
+              <span>Báo sớm với ông Đức và chị Liên; gửi quà/thuốc trước Tết và chuyển khoản lì xì qua chị Liên theo danh sách ưu tiên.</span>
             </div>
           </div>
-        </div>
-      </div>
-
-      <div class="grid-2">
-        <div class="card">
-          <h3 class="card-title">Chuẩn Hóa Vai Trò Của Minh (Rể Miền Nam)</h3>
-          <ul class="clean-list">
-            <li><strong>Vai trò "điểm tựa bình tĩnh &amp; tinh tế":</strong> Minh không cần đóng vai người quán xuyến lễ nghi hay người "chạy sô" bàn nhậu; giá trị lớn nhất của Minh là sự lễ phép, biết giữ chừng mực, không làm vợ lo thêm và luôn nhắc Hiền giữ sự tế nhị với chị Liên.</li>
-            <li><strong>Chiến lược "nhớ có chọn lọc":</strong> Tập trung nhớ đúng người hay gặp/trọng tâm (nhà bác Thành/Trường, bác Vĩnh/Thắng–Đào, bác Mùi/Thảo–Huyền, chú Hạ/Tuấn, anh Thanh, cháu Diệp, Duyên, Duy/Bún, Khánh), không tự dằn vặt nếu quên họ xa.</li>
-            <li><strong>Đồng hành giao tiếp với Hiền:</strong> Khi ôn lại tên người thân, trao đổi nhẹ nhàng, tránh tự ái hoặc hỏi lan man; khi Hiền xót xa về sức khỏe mẹ Mai hay lo chuyện chi phí, lắng nghe và giữ sự cân bằng cho gia đình.</li>
-          </ul>
-
-          <div class="script-box">
-            <span class="label">Câu nói tham khảo khi bị ép rượu trên bàn tiệc</span>
-            "Dạ anh/chú thông cảm, em ít uống và mấy bữa nay đi lại, ngủ nghỉ ít nên em xin phép nhấp một chút/dùng nước để giữ sức khỏe. Em trân trọng tình cảm của anh/chú ạ!"
-          </div>
-        </div>
-
-        <div class="card card-warm">
-          <h3 class="card-title">Các Điểm Quan Trọng Tối Thượng Cần Nhớ <span class="pill pill-red">Bắt Buộc</span></h3>
-          <ul class="clean-list">
-            <li><strong>1. Địa danh &amp; hiệu đính chuẩn:</strong> Quê Xuân Trường, Nam Định <strong>nay thuộc tỉnh Ninh Bình</strong>; bà Mai nằm <strong>Bệnh viện Hải Hậu</strong> (lịch khám tiểu đường <strong>Thứ Hai 30/11/2026</strong>); <strong>Bác Thận</strong> (không gọi Thạnh); anh Dũng sinh <strong>1971/1972</strong> (cập nhật 11/2026 nhấn mạnh 1971, mất 2013); bé Dừa sinh <strong>T7/2025</strong>; bé Thư (Bún) sinh <strong>28/09/2025</strong>; Duy làm Dev Fullstack FPT HO dự án <strong>FPT iViec</strong>.</li>
-            <li><strong>2. Tiền bạc &amp; ranh giới bảo mật:</strong> Lương cô giúp việc mới là <strong>6 triệu/tháng</strong> (từ mùng 4 âm; Hiền 4tr, chị Liên 2tr), tách bạch rõ 3 khoản (lương tháng, trực đêm, quà biếu) và bàn bạc với chị Liên trước khi đưa. <strong>Tuyệt đối giữ kín với bố Đức</strong> về khoản nợ nhà chị Liên <strong>240 triệu</strong> (không phải 24 triệu) và khoản 45 triệu nhà chị Thúy.</li>
-            <li><strong>3. Cột mốc 28–30/11/2026 &amp; Tết 2027:</strong> Chuyển mộ anh Dũng 5h00 sáng Chủ Nhật 29/11; cảnh giác Hùng (chồng Hằng) ép rượu; chuẩn bị phương án gửi quà &amp; chuyển khoản lì xì từ xa cho Tết 2027 do bố Minh mới mất năm 2026.</li>
-          </ul>
         </div>
       </div>
     </section>
   </main>
 
   <footer class="footer-note">
-    Hồ Sơ Gia Đình Bên Vợ (Xuân Trường / Hải Hậu – Ninh Bình) &amp; Kế Hoạch Sắp Xếp Hiện Trạng 2026–2027 • Tích hợp đầy đủ dữ liệu cập nhật ngày 26/11/2026
+    Hồ Sơ Gia Đình Bên Vợ (Xuân Trường / Hải Hậu – Ninh Bình) &amp; Kế Hoạch 2026–2027
   </footer>
 
   <script>
     (function () {
-      // Tab switching
       const tabButtons = document.querySelectorAll('.tab-btn');
       const tabPanels = document.querySelectorAll('.tab-panel');
 
@@ -1643,32 +1263,27 @@
             b.classList.remove('active');
             b.setAttribute('aria-selected', 'false');
           });
-          tabPanels.forEach((panel) => panel.classList.remove('active'));
+          tabPanels.forEach((p) => p.classList.remove('active'));
           btn.classList.add('active');
           btn.setAttribute('aria-selected', 'true');
-          const targetPanel = document.getElementById(targetId);
-          if (targetPanel) {
-            targetPanel.classList.add('active');
+          const target = document.getElementById(targetId);
+          if (target) {
+            target.classList.add('active');
             window.scrollTo({ top: 0, behavior: 'smooth' });
           }
         });
       });
 
-      // Expand/collapse individual person nodes
-      const personSummaries = document.querySelectorAll('.person-summary');
-      personSummaries.forEach((summary) => {
+      document.querySelectorAll('.person-summary').forEach((summary) => {
         summary.addEventListener('click', () => {
           const node = summary.closest('.person-node');
           if (!node) return;
           node.classList.toggle('open');
-          const toggleLabel = node.querySelector('.person-toggle');
-          if (toggleLabel) {
-            toggleLabel.textContent = node.classList.contains('open') ? 'Thu gọn' : 'Chi tiết';
-          }
+          const lbl = node.querySelector('.person-toggle');
+          if (lbl) lbl.textContent = node.classList.contains('open') ? 'Thu gọn' : 'Chi tiết';
         });
       });
 
-      // Expand / collapse all person nodes
       const expandAllBtn = document.getElementById('expandAllBtn');
       const personNodes = document.querySelectorAll('.person-node');
       let allExpanded = false;
@@ -1677,15 +1292,12 @@
           allExpanded = !allExpanded;
           personNodes.forEach((node) => {
             node.classList.toggle('open', allExpanded);
-            const toggleLabel = node.querySelector('.person-toggle');
-            if (toggleLabel) {
-              toggleLabel.textContent = allExpanded ? 'Thu gọn' : 'Chi tiết';
-            }
+            const lbl = node.querySelector('.person-toggle');
+            if (lbl) lbl.textContent = allExpanded ? 'Thu gọn' : 'Chi tiết';
           });
         });
       }
 
-      // Genealogy filtering & search
       const filterButtons = document.querySelectorAll('.filter-btn');
       const searchInput = document.getElementById('treeSearch');
       let activeFilter = 'all';
@@ -1710,11 +1322,8 @@
         });
       });
 
-      if (searchInput) {
-        searchInput.addEventListener('input', applyTreeFilters);
-      }
+      if (searchInput) searchInput.addEventListener('input', applyTreeFilters);
 
-      // Interactive checklist & progress bar
       const checkItems = document.querySelectorAll('.check-item');
       const checkboxes = document.querySelectorAll('.task-cb');
       const progressText = document.getElementById('progressText');
