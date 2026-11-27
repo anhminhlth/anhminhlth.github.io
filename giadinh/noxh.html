@@ -1,0 +1,1763 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cẩm Nang Chiến Lược Nhà Ở Xã Hội TP.HCM 2026–2027 | Phiên Bản Chuyên Gia v2026.11.27</title>
+<style>
+  :root {
+    --bg: #F6F8FB;
+    --surface: #FFFFFF;
+    --surface-alt: #F1F5F9;
+    --text: #0F172A;
+    --text-muted: #475569;
+    --border: #E2E8F0;
+    --primary: #1A73E8;
+    --primary-dark: #1557B0;
+    --primary-soft: #E8F0FE;
+    --cyan: #0891B2;
+    --cyan-soft: #ECFEFF;
+    --green: #15803D;
+    --green-soft: #DCFCE7;
+    --amber: #D97706;
+    --amber-soft: #FEF3C7;
+    --red: #DC2626;
+    --red-soft: #FEE2E2;
+    --radius: 12px;
+    --shadow: 0 4px 20px rgba(15, 23, 42, 0.06);
+    --shadow-sm: 0 1px 4px rgba(15, 23, 42, 0.05);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+  .topbar {
+    background: linear-gradient(135deg, #0F172A 0%, #1E3A8A 60%, #1A73E8 100%);
+    color: #FFFFFF;
+    padding: 20px 20px 0;
+    position: relative;
+    overflow: hidden;
+  }
+  .topbar-inner { max-width: 1220px; margin: 0 auto; }
+  .brand-row {
+    display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center;
+    gap: 12px; margin-bottom: 18px;
+  }
+  .brand-badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: rgba(255,255,255,0.14); border: 1px solid rgba(255,255,255,0.22);
+    padding: 6px 12px; border-radius: 999px; font-size: 12.5px; font-weight: 600;
+  }
+  .brand-actions { display: flex; gap: 8px; flex-wrap: wrap; }
+  .btn-ghost {
+    background: rgba(255,255,255,0.14); color: #FFF; border: 1px solid rgba(255,255,255,0.28);
+    padding: 7px 14px; border-radius: 8px; font-size: 13px; font-weight: 600; cursor: pointer;
+    transition: all 0.2s;
+  }
+  .btn-ghost:hover { background: rgba(255,255,255,0.26); }
+  .hero-title { font-size: clamp(22px, 3vw, 32px); font-weight: 800; line-height: 1.25; margin-bottom: 10px; }
+  .hero-sub { color: rgba(255,255,255,0.88); font-size: 15px; max-width: 880px; margin-bottom: 18px; }
+  .alert-banner {
+    background: rgba(220, 38, 38, 0.18); border: 1px solid rgba(252, 165, 165, 0.5);
+    border-radius: 10px; padding: 12px 16px; margin-bottom: 18px;
+    display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between;
+    gap: 10px; font-size: 13.5px;
+  }
+  .alert-banner strong { color: #FECACA; }
+  .countdown-pill {
+    background: #DC2626; color: #FFF; font-weight: 700; padding: 5px 12px;
+    border-radius: 999px; font-size: 12.5px; white-space: nowrap;
+  }
+  .nav-wrap {
+    background: var(--surface); border-bottom: 1px solid var(--border);
+    position: sticky; top: 0; z-index: 90; box-shadow: var(--shadow-sm);
+  }
+  .nav-tabs {
+    max-width: 1220px; margin: 0 auto; display: flex; overflow-x: auto;
+    scrollbar-width: thin; padding: 0 12px; gap: 4px;
+  }
+  .tab-btn {
+    appearance: none; background: transparent; border: none; border-bottom: 3px solid transparent;
+    padding: 14px 16px; font-size: 14px; font-weight: 600; color: var(--text-muted);
+    cursor: pointer; white-space: nowrap; transition: all 0.2s;
+    display: inline-flex; align-items: center; gap: 6px;
+  }
+  .tab-btn:hover { color: var(--primary); background: var(--primary-soft); }
+  .tab-btn.active { color: var(--primary); border-bottom-color: var(--primary); background: rgba(26, 115, 232, 0.05); }
+  .container { max-width: 1220px; margin: 24px auto 60px; padding: 0 16px; }
+  .tab-panel { display: none; }
+  .tab-panel.active { display: block; animation: fadeIn 0.22s ease; }
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: translateY(0); } }
+
+  .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-bottom: 20px; }
+  .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-bottom: 20px; }
+  .grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; margin-bottom: 20px; }
+  .card {
+    background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius);
+    padding: 20px; box-shadow: var(--shadow-sm); margin-bottom: 20px;
+  }
+  .card-title {
+    font-size: 17px; font-weight: 700; margin-bottom: 12px;
+    display: flex; align-items: center; justify-content: space-between; gap: 8px; flex-wrap: wrap;
+  }
+  .kpi-card {
+    background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius);
+    padding: 18px; border-top: 4px solid var(--primary); box-shadow: var(--shadow-sm);
+  }
+  .kpi-card.red { border-top-color: var(--red); }
+  .kpi-card.green { border-top-color: var(--green); }
+  .kpi-card.amber { border-top-color: var(--amber); }
+  .kpi-label { font-size: 12.5px; color: var(--text-muted); font-weight: 600; text-transform: uppercase; letter-spacing: 0.3px; }
+  .kpi-val { font-size: 26px; font-weight: 800; margin: 6px 0 4px; color: var(--text); }
+  .kpi-note { font-size: 12.5px; color: var(--text-muted); }
+
+  .badge { display: inline-block; padding: 3px 9px; border-radius: 999px; font-size: 12px; font-weight: 700; }
+  .b-blue { background: var(--primary-soft); color: var(--primary-dark); }
+  .b-green { background: var(--green-soft); color: var(--green); }
+  .b-amber { background: var(--amber-soft); color: var(--amber); }
+  .b-red { background: var(--red-soft); color: var(--red); }
+  .b-cyan { background: var(--cyan-soft); color: var(--cyan); }
+  .b-gray { background: #E2E8F0; color: #334155; }
+
+  .callout {
+    border-left: 4px solid var(--primary); background: var(--primary-soft);
+    padding: 14px 16px; border-radius: 0 10px 10px 0; margin: 14px 0; font-size: 14px;
+  }
+  .callout.red { border-left-color: var(--red); background: var(--red-soft); }
+  .callout.green { border-left-color: var(--green); background: var(--green-soft); }
+  .callout.amber { border-left-color: var(--amber); background: var(--amber-soft); }
+
+  .form-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 14px; margin-bottom: 16px; }
+  .field label { display: block; font-size: 12.5px; font-weight: 700; color: var(--text-muted); margin-bottom: 5px; }
+  .field input[type="number"], .field input[type="text"], .field select {
+    width: 100%; padding: 9px 12px; border: 1px solid #CBD5E1; border-radius: 8px;
+    font-size: 14px; font-weight: 600; color: var(--text); background: #FFF;
+  }
+  .field input:focus, .field select:focus { outline: 2px solid var(--primary); border-color: var(--primary); }
+  input[type="range"] { width: 100%; accent-color: var(--primary); cursor: pointer; }
+  .btn-primary {
+    background: var(--primary); color: #FFF; border: none; padding: 10px 18px;
+    border-radius: 8px; font-size: 14px; font-weight: 700; cursor: pointer; transition: background 0.2s;
+  }
+  .btn-primary:hover { background: var(--primary-dark); }
+  .btn-outline {
+    background: #FFF; color: var(--primary); border: 1px solid var(--primary);
+    padding: 8px 14px; border-radius: 8px; font-size: 13px; font-weight: 600; cursor: pointer;
+  }
+  .btn-outline:hover { background: var(--primary-soft); }
+
+  /* Mini-Game Styles */
+  .game-box { background: var(--surface-alt); border: 1px solid var(--border); border-radius: 12px; padding: 18px; }
+  .game-opt {
+    display: block; width: 100%; text-align: left; background: #FFF; border: 1.5px solid #CBD5E1;
+    border-radius: 9px; padding: 11px 14px; margin-bottom: 9px; font-size: 13.5px; font-weight: 600;
+    color: var(--text); cursor: pointer; transition: all 0.15s;
+  }
+  .game-opt:hover:not(:disabled) { border-color: var(--primary); background: var(--primary-soft); }
+  .game-opt.correct { border-color: var(--green); background: var(--green-soft); color: #14532D; }
+  .game-opt.wrong { border-color: var(--red); background: var(--red-soft); color: #7F1D1D; }
+
+  .table-wrap { overflow-x: auto; border: 1px solid var(--border); border-radius: 10px; }
+  table { width: 100%; border-collapse: collapse; font-size: 13.5px; background: #FFF; }
+  th, td { padding: 11px 13px; text-align: left; border-bottom: 1px solid var(--border); vertical-align: top; }
+  th { background: var(--surface-alt); font-weight: 700; color: #1E293B; font-size: 12.5px; text-transform: uppercase; letter-spacing: 0.2px; }
+  tr:last-child td { border-bottom: none; }
+  tr:hover td { background: #F8FAFC; }
+
+  .svg-box { width: 100%; overflow-x: auto; }
+  .svg-box svg { max-width: 100%; height: auto; display: block; margin: 0 auto; }
+
+  .check-item {
+    display: flex; align-items: flex-start; gap: 12px; padding: 12px 14px;
+    border: 1px solid var(--border); border-radius: 10px; margin-bottom: 10px;
+    background: #FFF; cursor: pointer; transition: all 0.15s;
+  }
+  .check-item:hover { border-color: var(--primary); }
+  .check-item.done { background: #F0FDF4; border-color: #86EFAC; }
+  .check-item.done .check-title { text-decoration: line-through; color: var(--green); }
+  .check-item input[type="checkbox"] { width: 18px; height: 18px; margin-top: 3px; accent-color: var(--green); cursor: pointer; }
+  .progress-bar-bg { height: 10px; background: #E2E8F0; border-radius: 999px; overflow: hidden; margin: 8px 0 14px; }
+  .progress-bar-fill { height: 100%; background: linear-gradient(90deg, var(--primary), #10B981); transition: width 0.3s ease; }
+
+  .pill-group { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 14px; }
+  .pill {
+    padding: 6px 13px; border-radius: 999px; border: 1px solid #CBD5E1; background: #FFF;
+    font-size: 13px; font-weight: 600; color: var(--text-muted); cursor: pointer; transition: all 0.15s;
+  }
+  .pill.active { background: var(--primary); color: #FFF; border-color: var(--primary); }
+
+  .step-list { position: relative; padding-left: 26px; }
+  .step-list::before { content: ""; position: absolute; left: 9px; top: 8px; bottom: 8px; width: 2px; background: #CBD5E1; }
+  .step-item { position: relative; margin-bottom: 18px; }
+  .step-dot {
+    position: absolute; left: -26px; top: 3px; width: 20px; height: 20px; border-radius: 50%;
+    background: var(--primary); color: #FFF; font-size: 11px; font-weight: 800;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .step-dot.red { background: var(--red); }
+  .step-dot.green { background: var(--green); }
+  .step-dot.amber { background: var(--amber); }
+
+  pre.code-guide {
+    background: #0F172A; color: #E2E8F0; padding: 16px; border-radius: 10px;
+    overflow-x: auto; font-size: 12.5px; line-height: 1.55; margin: 12px 0;
+  }
+  .ref-list { list-style: none; }
+  .ref-list li { padding: 8px 0; border-bottom: 1px dashed var(--border); font-size: 13.5px; }
+  .ref-list a { color: var(--primary); text-decoration: none; font-weight: 600; word-break: break-word; }
+  .ref-list a:hover { text-decoration: underline; }
+
+  .footer {
+    text-align: center; padding: 24px 16px; color: var(--text-muted); font-size: 13px;
+    border-top: 1px solid var(--border); background: var(--surface);
+  }
+
+  @media (max-width: 960px) {
+    .grid-4, .grid-3 { grid-template-columns: repeat(2, 1fr); }
+    .grid-2 { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 600px) {
+    .grid-4, .grid-3 { grid-template-columns: 1fr; }
+    .topbar { padding: 16px 14px 0; }
+    .card { padding: 15px; }
+    .kpi-val { font-size: 22px; }
+    .tab-btn { padding: 12px 12px; font-size: 13px; }
+  }
+  @media print {
+    .nav-wrap, .brand-actions, .pill-group, button { display: none !important; }
+    .tab-panel { display: block !important; page-break-after: always; }
+    body { background: #FFF; }
+    .card { box-shadow: none; break-inside: avoid; }
+  }
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="topbar-inner">
+    <div class="brand-row">
+      <div class="brand-badge" id="brandBadge">
+        <span>🏛️</span> <span id="brandTitleText">CẨM NANG NHÀ Ở XÃ HỘI TP.HCM PRO • v2026.11.27</span>
+      </div>
+      <div class="brand-actions">
+        <button class="btn-ghost" onclick="window.print()">🖨️ In / Xuất PDF</button>
+        <button class="btn-ghost" onclick="switchTab('about')">ℹ️ Về File & Cập Nhật</button>
+      </div>
+    </div>
+    <h1 class="hero-title">Chiến Lược Pháp Lý & Tài Chính Mua Nhà Quanh Quận 11 – Đầm Sen (2026–2027)</h1>
+    <p class="hero-sub">Hệ thống chẩn đoán thu nhập chuẩn biểu thuế 5 bậc 2026, tra cứu quy phạm Luật Nhà ở sửa đổi 21/11/2026, mini-game tình huống thực chiến, bộ mô phỏng trả nợ tăng tốc và bản đồ 22 dự án thực tế tại TP.HCM hợp nhất.</p>
+    <div class="alert-banner">
+      <div><strong>⚡ CẢNH BÁO MỐC CHUYỂN TIẾP 01/07/2027:</strong> Luật Nhà ở (sửa đổi) thông qua ngày 21/11/2026 giới hạn quyền bán lại NOXH sau 5 năm từ 01/07/2027 (chỉ bán cho đúng đối tượng NOXH). Giao dịch mua lại NOXH thứ cấp đủ 5 năm có sổ hồng chỉ giúp thoát chế độ NOXH nếu hoàn tất hợp pháp <strong>trước 01/07/2027</strong>.</div>
+      <span class="countdown-pill" id="heroCountdown">Đang tính đếm ngược...</span>
+    </div>
+  </div>
+</header>
+
+<nav class="nav-wrap" aria-label="Điều hướng chính">
+  <div class="nav-tabs" id="navTabs">
+    <button class="tab-btn active" data-tab="overview" onclick="switchTab('overview')">📊 1. Chẩn Đoán Hồ Sơ</button>
+    <button class="tab-btn" data-tab="legal" onclick="switchTab('legal')">⚖️ 2. Pháp Lý & Game</button>
+    <button class="tab-btn" data-tab="strategy" onclick="switchTab('strategy')">🎯 3. 5 Phương Án & Tài Chính</button>
+    <button class="tab-btn" data-tab="process" onclick="switchTab('process')">📋 4. Quy Trình & Nơi Làm Q.11</button>
+    <button class="tab-btn" data-tab="projects" onclick="switchTab('projects')">🗺️ 5. Dự Án Quanh Đầm Sen</button>
+    <button class="tab-btn" data-tab="outlook" onclick="switchTab('outlook')">📈 6. Đà Tương Lai 2026–2030</button>
+    <button class="tab-btn" data-tab="about" onclick="switchTab('about')">ℹ️ 7. About & Cập Nhật</button>
+  </div>
+</nav>
+
+<main class="container">
+
+  <!-- ==================== TAB 1: OVERVIEW & INCOME ENGINE ==================== -->
+  <section id="tab-overview" class="tab-panel active">
+    <div class="grid-4" id="overviewKpis"></div>
+
+    <div class="card">
+      <div class="card-title">
+        <span>🧮 Máy Tính Chẩn Đoán Thu Nhập & Trần NOXH TP.HCM (Chuẩn Thuế 5 Bậc 2026)</span>
+        <button class="btn-outline" onclick="resetProfileInputs()">↺ Khôi phục hồ sơ mẫu (FTI + ISB)</button>
+      </div>
+      <p style="font-size:13.5px; color:var(--text-muted); margin-bottom:14px;">
+        Điều chỉnh các thông số bên dưới để chẩn đoán hồ sơ của gia đình bạn hoặc khách hàng. Hệ thống tự động áp dụng Luật Thuế TNCN số 109/2025/QH15 (giảm trừ bản thân 15,5 tr, NPT 6,2 tr, 5 bậc: 5–10–20–30–35%) và đối chiếu Nghị định 136/2026/NĐ-CP + Quyết định 14/2026/QĐ-UBND TP.HCM.
+      </p>
+      <div class="form-grid">
+        <div class="field">
+          <label>Lương chồng hàng tháng (triệu Gross)</label>
+          <input type="number" id="inHMonthly" value="40" min="0" step="1" oninput="updateIncomeEngine()">
+        </div>
+        <div class="field">
+          <label>Thưởng năm chồng (tr Gross — 520 để tròn 1 tỷ)</label>
+          <input type="number" id="inHBonus" value="520" min="0" step="10" oninput="updateIncomeEngine()">
+        </div>
+        <div class="field">
+          <label>Lương đóng BHXH chồng (triệu/tháng)</label>
+          <input type="number" id="inHBhxh" value="15" min="0" max="46.8" step="0.5" oninput="updateIncomeEngine()">
+        </div>
+        <div class="field">
+          <label>Lương vợ hàng tháng (triệu Net)</label>
+          <input type="number" id="inWMonthly" value="25" min="0" step="1" oninput="updateIncomeEngine()">
+        </div>
+        <div class="field">
+          <label>Số tháng thưởng/năm của vợ (giả định Net)</label>
+          <input type="number" id="inWBonusMo" value="2" min="0" max="12" step="0.5" oninput="updateIncomeEngine()">
+        </div>
+        <div class="field">
+          <label>Số người phụ thuộc hợp lệ (cả hộ)</label>
+          <select id="inDeps" onchange="updateIncomeEngine()">
+            <option value="0" selected>0 người phụ thuộc (Trần TP.HCM 50 tr)</option>
+            <option value="1">1 người phụ thuộc (Trần TP.HCM 50 tr)</option>
+            <option value="2">2 người phụ thuộc (Trần TP.HCM 50 tr)</option>
+            <option value="3">≥ 3 người phụ thuộc (Hệ số 1,35 -> 54 tr)</option>
+          </select>
+        </div>
+      </div>
+
+      <div id="incomeVerdictBox"></div>
+      <div class="svg-box" id="incomeChartBox" style="margin-top:16px;"></div>
+    </div>
+
+    <div class="grid-2">
+      <div class="card">
+        <div class="card-title"><span>⚠️ Giải Mã 2 Hiểu Lầm Chí Mạng Về Hồ Sơ Của Bạn</span></div>
+        <div class="callout red">
+          <strong>1. Mức đóng BHXH 15 triệu/tháng KHÔNG dùng để xét mua NOXH:</strong><br>
+          Điều 30 NĐ 100/2024 (sửa bởi NĐ 136/2026) và trả lời của Bộ Xây dựng ngày 13/10/2026 nêu rõ căn cứ duy nhất là <strong>thu nhập bình quân thực nhận 12 tháng liền kề</strong> (gồm lương + phụ cấp + thưởng thực nhận sau thuế & BHXH). Dù Thông tư 08/2026 bỏ nộp photo bảng lương 12 tháng, hệ thống hậu kiểm đối chiếu trực tiếp dữ liệu Thuế TNCN của FTI (FPT) và ISB Việt Nam.
+        </div>
+        <div class="callout amber">
+          <strong>2. Hiểu đúng về hệ số 1,25 của TP.HCM (KHÔNG phải 62,5 triệu):</strong><br>
+          Quyết định 14/2026/QĐ-UBND ban hành ngày 28/03/2026 (trước NĐ 136/2026 đúng 10 ngày) nhân hệ số 1,25 lên nền cũ 40 triệu để ra mức trần cứng <strong>50 triệu/tháng</strong> (vợ chồng) và hệ số 1,35 ra <strong>54 triệu/tháng</strong> (hộ ≥3 NPT). Tính đến 11/2026, TP.HCM chưa ban hành mức trần 62,5 triệu.
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-title"><span>🏠 Bẫy Pháp Lý Thừa Kế (Bố Vừa Mất — Đang Ở Nhà Bố Mẹ)</span></div>
+        <p style="font-size:14px; margin-bottom:10px;">
+          Hiện hai vợ chồng bạn chưa đứng tên sổ hồng nào tại TP.HCM nên <strong>ĐẠT</strong> tiêu chí "chưa có nhà ở" theo Điều 32 NĐ 54/2026/NĐ-CP. Tuy nhiên, vì bố vừa mất (quyền thừa kế đã phát sinh theo Điều 612 BLDS 2015):
+        </p>
+        <div class="callout red">
+          <strong>Cảnh báo khi khai nhận di sản:</strong> Nếu bạn đứng tên đồng sở hữu (dù chỉ 1 phần nhỏ) trên Giấy chứng nhận có thông tin nhà ở tại TP.HCM, Bộ Xây dựng hướng dẫn bạn sẽ <strong>mất tư cách "chưa có nhà ở"</strong> và không được tự quy đổi diện tích theo tỷ lệ thừa kế để xét dưới 15 m²/người.
+        </div>
+        <div class="callout green">
+          <strong>Giải pháp hợp pháp bảo toàn hồ sơ sạch:</strong><br>
+          • Cách A: Tạm chưa thực hiện sang tên thừa kế nhà ở.<br>
+          • Cách B: Lập <strong>Văn bản từ chối nhận di sản thừa kế</strong> (khoản 3 Điều 620 BLDS 2015 — không còn giới hạn 6 tháng, lập trước khi phân chia di sản; nên công chứng theo Điều 60 Luật Công chứng 2024) nhường phần nhà ở sang Mẹ đứng tên (miễn không trốn tránh nghĩa vụ tài sản theo Điều 615 BLDS).
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== TAB 2: LEGAL HUB, QUIZ & MINI-GAME ==================== -->
+  <section id="tab-legal" class="tab-panel">
+    <div class="grid-2">
+      <div class="card">
+        <div class="card-title">
+          <span>🤖 Bộ Kiểm Tra Tự Động Điều Kiện & Bậc Ưu Tiên</span>
+          <span class="badge b-blue">Chuẩn NĐ 54 & 136/2026</span>
+        </div>
+        <div class="form-grid" style="grid-template-columns:1fr 1fr; gap:10px;">
+          <div class="field">
+            <label>1. Hôn nhân & Chủ hộ VNeID</label>
+            <select id="qMarital" onchange="runLegalQuiz()">
+              <option value="married_male">Đã kết hôn — Chồng đứng đơn / chủ hộ</option>
+              <option value="married_female_head">Đã kết hôn — Vợ là CHỦ HỘ VNeID & đứng đơn</option>
+              <option value="single">Độc thân (không nuôi con nhỏ)</option>
+              <option value="single_parent">Độc thân đang nuôi con dưới 18 tuổi</option>
+            </select>
+          </div>
+          <div class="field">
+            <label>2. Việc làm & Thất nghiệp</label>
+            <select id="qJob" onchange="runLegalQuiz()">
+              <option value="employed">Đang có HĐLĐ doanh nghiệp (Khoản 6)</option>
+              <option value="unemployed_short">Mới thất nghiệp dưới 6 tháng</option>
+              <option value="unemployed_long">Thất nghiệp / Tự do ≥ 12 tháng (Khoản 5)</option>
+            </select>
+          </div>
+          <div class="field">
+            <label>3. Số con đẻ của hộ</label>
+            <select id="qKids" onchange="runLegalQuiz()">
+              <option value="0">Chưa có con / 1 con</option>
+              <option value="2_old">≥ 2 con đẻ (sinh trước 01/07/2026)</option>
+              <option value="2_new">≥ 2 con đẻ (có con sinh từ 01/07/2026)</option>
+            </select>
+          </div>
+          <div class="field">
+            <label>4. Tình trạng nhà ở TP.HCM</label>
+            <select id="qHouse" onchange="runLegalQuiz()">
+              <option value="none">Chưa đứng tên nhà ở nào trên GCN</option>
+              <option value="small">Có nhà nhưng diện tích &lt; 15 m²/người</option>
+              <option value="far">Có nhà cách chỗ làm ≥ 14,5 km (P) / ≥ 20 km (X)</option>
+              <option value="owned_near">Đã đứng tên nhà ở ≥ 15 m²/người & gần chỗ làm</option>
+            </select>
+          </div>
+          <div class="field">
+            <label>5. Thu nhập thực nhận 12 tháng</label>
+            <select id="qIncome" onchange="runLegalQuiz()">
+              <option value="over">Vượt trần (&gt;50tr VC / &gt;25tr độc thân)</option>
+              <option value="under_54">50–54 triệu (hộ ≥ 3 NPT TP.HCM)</option>
+              <option value="under">Đạt chuẩn (≤50tr VC / ≤25tr độc thân)</option>
+            </select>
+          </div>
+          <div class="field">
+            <label>6. Nhóm ưu tiên đặc biệt</label>
+            <select id="qSpecial" onchange="runLegalQuiz()">
+              <option value="none">Không thuộc nhóm đặc biệt</option>
+              <option value="merit">Người có công / Thân nhân liệt sĩ</option>
+              <option value="disabled">Người khuyết tật</option>
+              <option value="resettlement">Bị thu hồi đất chưa bồi thường nhà / TĐC</option>
+            </select>
+          </div>
+        </div>
+        <div id="quizOutput"></div>
+      </div>
+
+      <!-- INTERACTIVE LEGAL MINI-GAME -->
+      <div class="card">
+        <div class="card-title">
+          <span>🎮 Mini-Game: Thử Tài Tránh 5 Bẫy Pháp Lý NOXH 2026</span>
+          <span class="badge b-green" id="gameScoreBadge">Điểm: 0/5</span>
+        </div>
+        <div class="game-box" id="miniGameBox"></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">
+        <span>⚖️ Hệ Thống Quy Phạm Pháp Luật Chuẩn (Cập Nhật 27/11/2026)</span>
+        <div class="pill-group" style="margin:0;">
+          <button class="pill active" onclick="filterLaws('all', this)">Tất cả</button>
+          <button class="pill" onclick="filterLaws('income', this)">Thu nhập & Thuế</button>
+          <button class="pill" onclick="filterLaws('priority', this)">Đối tượng & Ưu tiên</button>
+          <button class="pill" onclick="filterLaws('resale', this)">Chuyển nhượng & Xử phạt</button>
+          <button class="pill" onclick="filterLaws('tphcm', this)">Đặc thù TP.HCM</button>
+        </div>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th style="width:22%;">Văn bản & Số hiệu</th>
+              <th style="width:15%;">Hiệu lực</th>
+              <th style="width:45%;">Quy phạm cốt lõi</th>
+              <th style="width:18%;">Tác động trực tiếp</th>
+            </tr>
+          </thead>
+          <tbody id="lawTableBody"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title"><span>🚨 So Sánh Trước Và Sau Mốc 01/07/2027 (Luật Nhà Ở Sửa Đổi 21/11/2026)</span></div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Tiêu chí pháp lý</th>
+              <th>Hiện hành đến 30/06/2027 (Luật 2023 + NĐ 54 & 136/2026)</th>
+              <th>Từ 01/07/2027 (Luật Nhà ở sửa đổi 21/11/2026)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Bán lại NOXH sau 5 năm (đã có sổ hồng)</strong></td>
+              <td>Được bán tự do theo cơ chế thị trường cho <strong>bất kỳ ai</strong>; miễn tiền sử dụng đất (chung cư), đóng thuế TNCN 2%.</td>
+              <td><span class="badge b-red">SIẾT CHẶT</span> <strong>Chỉ được bán lại cho đối tượng đủ điều kiện mua NOXH</strong> (giá tự thỏa thuận, miễn tiền SDĐ). Ràng buộc đối tượng xuyên suốt vòng đời căn nhà.</td>
+            </tr>
+            <tr>
+              <td><strong>Điều khoản chuyển tiếp căn mua trước 01/07/2027</strong></td>
+              <td>Các giao dịch chuyển nhượng hợp pháp hoàn tất (đủ 5 năm + sổ hồng + công chứng) <strong>trước 01/07/2027</strong> được thoát chế độ NOXH thành tài sản dân sự tự do.</td>
+              <td>Căn hộ chưa thực sự bán lại hợp pháp trước 01/07/2027 (kể cả đã có sổ &gt;5 năm hoặc chỉ làm vi bằng/ủy quyền) đều chịu luật mới: chỉ bán cho đúng đối tượng NOXH.</td>
+            </tr>
+            <tr>
+              <td><strong>Nhóm ưu tiên không bốc thăm chung</strong></td>
+              <td>1. Người có công → 2. Thân nhân liệt sĩ → 3. Người khuyết tật → 4. Tái định cư → 5. Có ≥2 con đẻ → 6. Nữ giới (đơn thân hoặc <strong>chủ hộ trên VNeID</strong>).</td>
+              <td>Hộ bị thu hồi đất chưa bồi thường nhà ở không phải bốc thăm. Ưu tiên: Người có công, thân nhân liệt sĩ, người khuyết tật, <strong>≥2 con đẻ có con sinh từ 01/07/2026</strong>, <strong>người độc thân nuôi con nhỏ</strong> (bỏ tiêu chí nữ chủ hộ chung).</td>
+            </tr>
+            <tr>
+              <td><strong>Xử phạt vi phạm & Hậu kiểm</strong></td>
+              <td>NĐ 339/2026 (từ 26/08/2026): Phạt <strong>80–120 triệu</strong> cá nhân bán lại sai quy định hoặc bên thuê/thuê mua sử dụng sai mục đích ở; phạt <strong>120–160 triệu</strong> tổ chức bán sai đối tượng; buộc thu hồi căn hộ.</td>
+              <td>Duy trì chế tài mạnh, cưỡng chế thu hồi bởi UBND cấp tỉnh, liên thông dữ liệu thuế – VNeID – công chứng điện tử.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== TAB 3: 5 STRATEGIES & FINANCIAL SIMULATORS ==================== -->
+  <section id="tab-strategy" class="tab-panel">
+    <div class="card">
+      <div class="card-title"><span>🎯 Ma Trận 5 Phương Án Thực Thi Cho Vợ Chồng Thu Nhập ~100,55 Tr Net/Tháng</span></div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Phương án</th>
+              <th>Mức ưu tiên</th>
+              <th>Vốn & Dòng tiền</th>
+              <th>Ưu điểm cốt lõi</th>
+              <th>Rủi ro / Điều kiện cần lưu ý</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>PA1: Mua NOXH thứ cấp đủ 5 năm + Sổ hồng TRƯỚC 01/07/2027</strong></td>
+              <td><span class="badge b-green">ƯU TIÊN #1</span></td>
+              <td>1,95–2,15 tỷ (VD: Imperial Place Bình Tân); trả 60tr/th sạch nợ sau <strong>2,0 năm</strong>.</td>
+              <td>Hợp pháp, không xét thu nhập, thoát chế độ NOXH nhờ điều khoản chuyển tiếp trước 01/07/2027.</td>
+              <td>Phải kiểm tra chứng từ thanh toán đủ 100% tròn 5 năm + sổ hồng sẵn; hoàn tất công chứng sang tên trước 30/06/2027.</td>
+            </tr>
+            <tr>
+              <td><strong>PA2: Mua chung cư thương mại sổ hồng sẵn quanh Đầm Sen</strong></td>
+              <td><span class="badge b-blue">ƯU TIÊN #2</span></td>
+              <td>2,65–4,50 tỷ (EHome 3, Summer Square, Carillon 7, Privia); sạch nợ sau <strong>3,4–4,9 năm</strong>.</td>
+              <td>Vị trí rất gần Q.11 (1,5–7,5 km), tự do cho thuê/bán, giá thứ cấp đang chiết khấu 4–7% (DKRA).</td>
+              <td>Lãi suất thả nổi TM hiện 11–13%/năm → cần dùng chiến lược trả gốc tăng tốc để cắt lãi.</td>
+            </tr>
+            <tr>
+              <td><strong>PA3: Mua NOXH sơ cấp khi chồng nghỉ việc / thu nhập giảm tự nhiên ≥12 tháng</strong></td>
+              <td><span class="badge b-amber">DỰ PHÒNG</span></td>
+              <td>1,2–1,6 tỷ (vay NHCSXH 5,4% chỉ ~7,3 tr/tháng, 25 năm).</td>
+              <td>Giá gốc rẻ nhất (15–25 tr/m²), lãi suất ưu đãi dài hạn 5,4% hoặc 6,5% (&lt;35 tuổi).</td>
+              <td>Xác suất trúng rất thấp ở nội đô (1–5%); khóa đối tượng bán lại sau 5 năm từ 01/07/2027; không nghỉ việc chỉ để chạy hồ sơ.</td>
+            </tr>
+            <tr>
+              <td><strong>PA4: Thuê NOXH (miễn xét thu nhập) hoặc Thuê 49 năm Lê Thành</strong></td>
+              <td><span class="badge b-cyan">CẦU NỐI</span></td>
+              <td>Thuê NOXH 6–9 tr/th; Lê Thành 49 năm ~0,87–1,68 tỷ.</td>
+              <td>Khoản 2 Điều 78 Luật Nhà ở 2023 miễn ĐK thu nhập khi thuê NOXH cho NLĐ doanh nghiệp; nhẹ dòng tiền.</td>
+              <td>Không có sổ hồng sở hữu lâu dài; Luật mới từ 01/07/2027 điều chỉnh lại chính sách nhà cho thuê.</td>
+            </tr>
+            <tr>
+              <td><strong>PA5: "Mẹo bẩn" (nhờ mẹ đứng tên, vi bằng, suất ngoại giao, khống lương, ly hôn giả)</strong></td>
+              <td><span class="badge b-red">CẤM TUYỆT ĐỐI</span></td>
+              <td>Rủi ro mất trắng tiền chênh + phạt cá nhân 80–120 triệu.</td>
+              <td>Không bền vững trong môi trường hậu kiểm liên thông thuế – VNeID.</td>
+              <td>Hợp đồng vô hiệu, cưỡng chế thu hồi nhà, cấm mua toàn quốc, nguy cơ khởi tố hình sự.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="grid-2">
+      <div class="card">
+        <div class="card-title"><span>📉 Giả Lập 1: Chi Phí Cơ Hội Khi Nghỉ Việc 12 Tháng Săn NOXH</span></div>
+        <p style="font-size:13.5px; color:var(--text-muted); margin-bottom:12px;">
+          Kiểm chứng bài toán kinh tế khi đánh đổi thu nhập ròng 12 tháng của chồng lấy xác suất trúng bốc thăm suất sơ cấp.
+        </p>
+        <div class="field" style="margin-bottom:12px;">
+          <label>Xác suất trúng bốc thăm dự kiến: <strong id="lblProb" style="color:var(--primary); font-size:15px;">5%</strong> (324 Lý Thường Kiệt nhóm thường ~1–2%)</label>
+          <input type="range" id="slProb" min="1" max="70" value="5" oninput="updateEvSim()">
+        </div>
+        <div class="field" style="margin-bottom:12px;">
+          <label>Thu nhập ròng 12 tháng của chồng bị mất (triệu VNĐ): <strong id="lblLost">857 tr</strong></label>
+          <input type="range" id="slLost" min="200" max="1200" step="10" value="857" oninput="updateEvSim()">
+        </div>
+        <div id="evResultBox"></div>
+        <div class="svg-box" id="evChartBox" style="margin-top:10px;"></div>
+      </div>
+
+      <div class="card">
+        <div class="card-title"><span>🏦 Giả Lập 2: Vay Mua Nhà & Trả Nợ Tăng Tốc (Cắt &gt;80% Tiền Lãi)</span></div>
+        <div class="form-grid" style="grid-template-columns:1fr 1fr; gap:10px;">
+          <div class="field">
+            <label>Chọn phương án mẫu nhanh</label>
+            <select id="selPreset" onchange="applyMortgagePreset()">
+              <option value="imperial">PA1: Imperial Place (2,15 tỷ - NOXH &gt;5n)</option>
+              <option value="summer" selected>PA2: Summer Square Q.6 (3,15 tỷ - TM)</option>
+              <option value="carillon">PA2: Carillon 7 Tân Phú (3,80 tỷ - TM)</option>
+              <option value="privia">PA2: The Privia Bình Tân (4,20 tỷ - TM)</option>
+              <option value="nhcsxh">PA3: NOXH Sơ cấp 1,5 tỷ (NHCSXH 5,4%)</option>
+              <option value="u35">PA3: NOXH Sơ cấp 1,5 tỷ (NHTM &lt;35t 6,5%)</option>
+            </select>
+          </div>
+          <div class="field">
+            <label>Giá trị căn hộ (triệu VNĐ)</label>
+            <input type="number" id="mPrice" value="3150" step="50" oninput="updateMortgageSim()">
+          </div>
+          <div class="field">
+            <label>Tỷ lệ trả trước (%)</label>
+            <input type="number" id="mDownPct" value="35" min="20" max="80" step="5" oninput="updateMortgageSim()">
+          </div>
+          <div class="field">
+            <label>Kỳ hạn hợp đồng vay (năm)</label>
+            <input type="number" id="mYears" value="20" min="5" max="25" step="1" oninput="updateMortgageSim()">
+          </div>
+          <div class="field">
+            <label>Lãi ưu đãi năm đầu (%/năm)</label>
+            <input type="number" id="mRate1" value="9.0" step="0.1" oninput="updateMortgageSim()">
+          </div>
+          <div class="field">
+            <label>Lãi thả nổi sau ưu đãi (%/năm)</label>
+            <input type="number" id="mRate2" value="11.5" step="0.1" oninput="updateMortgageSim()">
+          </div>
+        </div>
+        <div class="field" style="margin:8px 0 12px;">
+          <label>Mức trả tăng tốc hàng tháng từ dòng tiền dư + thưởng: <strong id="lblAccel" style="color:var(--green); font-size:15px;">60 triệu/tháng</strong></label>
+          <input type="range" id="mAccel" min="15" max="90" step="5" value="60" oninput="updateMortgageSim()">
+        </div>
+        <div id="mortgageOutput"></div>
+        <div class="svg-box" id="mortgageChartBox" style="margin-top:10px;"></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title"><span>💳 So Sánh 4 Kênh Tín Dụng Mua Nhà Tại TP.HCM (Cập Nhật Tháng 11/2026)</span></div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Kênh vay vốn</th>
+              <th>Lãi suất ưu đãi</th>
+              <th>Sau ưu đãi</th>
+              <th>Hạn mức & Kỳ hạn</th>
+              <th>Khả năng tiếp cận của FTI + ISB</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>NHCSXH (VBSP)</strong><br><small>Điều 48 NĐ 100/2024 sửa bởi NĐ 261/2025</small></td>
+              <td><span class="badge b-green">5,4%/năm</span></td>
+              <td>Ổn định theo quyết định Thủ tướng</td>
+              <td>Tối đa 80% HĐMB, tối đa 25 năm</td>
+              <td>Chỉ dành cho người đủ chuẩn mua NOXH sơ cấp (thu nhập ≤50tr/tháng).</td>
+            </tr>
+            <tr>
+              <td><strong>9 NHTM Gói Dưới 35 Tuổi</strong><br><small>CV 5340/NHNN-CSTT (01/07–31/12/2026)</small></td>
+              <td><span class="badge b-cyan">6,5%/năm</span> (5 năm đầu)</td>
+              <td>7,5%/năm (10 năm tiếp); sau năm 15 thả nổi</td>
+              <td>Tối đa 80%, 25 năm (Agribank, BIDV, VCB, VietinBank, TPB, VPB, MB, TCB, HDB)</td>
+              <td>Chỉ áp dụng cho người dưới 35 tuổi mua NOXH sơ cấp (chờ NHNN cập nhật kỳ 2027).</td>
+            </tr>
+            <tr>
+              <td><strong>Quỹ Phát Triển Nhà Ở TP.HCM (HOF)</strong></td>
+              <td><span class="badge b-gray">3,2%/năm</span></td>
+              <td>Điều chỉnh theo UBND TP.HCM</td>
+              <td>Tối đa 70%, trần 900 triệu, 20 năm</td>
+              <td><span class="badge b-red">KHÔNG ÁP DỤNG</span> Chỉ dành cho CBCCVC lương ngân sách TP, LLVT, Công đoàn TP, Cục Thuế TP.</td>
+            </tr>
+            <tr>
+              <td><strong>Vay Thương Mại Mua Nhà Có Sổ Hồng</strong><br><small>Khảo sát Thương Gia / Hà Nội Mới T11/2026</small></td>
+              <td><strong>8,3% – 9,5%/năm</strong> (12–24 tháng: VCB 9%, BIDV 9–10%, ACB 8,3–8,8%, VietinBank 5,8–7,3%)</td>
+              <td><strong>11,0% – 13,0%/năm</strong> (một số NH tới 15%)</td>
+              <td>70–80% giá trị thẩm định, 20–30 năm</td>
+              <td><span class="badge b-green">PHÙ HỢP NHẤT</span> Hồ sơ FTI + ISB duyệt nhanh; thương lượng giảm phí tất toán trước hạn năm 1–3.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== TAB 4: STEP-BY-STEP PROCESS & DIRECTORY ==================== -->
+  <section id="tab-process" class="tab-panel">
+    <div class="grid-2">
+      <div class="card">
+        <div class="card-title">
+          <span>✅ Checklist Bộ Hồ Sơ NOXH Chuẩn 2026 (Tự Lưu Tiến Độ)</span>
+          <button class="btn-outline" onclick="resetChecklist()">↺ Làm mới</button>
+        </div>
+        <div style="display:flex; justify-content:space-between; font-size:13px; font-weight:700;">
+          <span>Tiến độ hoàn thiện hồ sơ</span>
+          <span id="checkProgressTxt" style="color:var(--primary);">0/7 mục (0%)</span>
+        </div>
+        <div class="progress-bar-bg"><div class="progress-bar-fill" id="checkProgressBar" style="width:0%"></div></div>
+        <div id="checklistContainer"></div>
+      </div>
+
+      <div class="card">
+        <div class="card-title"><span>🪜 Trình Tự 6 Bước Đăng Ký Chuẩn (NĐ 54/2026 & CV 7549/SXD)</span></div>
+        <div class="step-list">
+          <div class="step-item">
+            <div class="step-dot">1</div>
+            <strong>Theo dõi công bố chính thức (≥30 ngày trước khi nhận hồ sơ)</strong>
+            <p style="font-size:13.5px; color:var(--text-muted);">Kiểm tra thông báo giá bán, số căn, địa chỉ nhận đơn tại <strong>soxaydung.hochiminhcity.gov.vn</strong>. Chuẩn bị trước giấy xác nhận (giá trị sử dụng 12 tháng).</p>
+          </div>
+          <div class="step-item">
+            <div class="step-dot">2</div>
+            <strong>Nộp hồ sơ trực tiếp / trực tuyến / bưu chính (tối thiểu 30 ngày)</strong>
+            <p style="font-size:13.5px; color:var(--text-muted);">Nộp thẳng cho Chủ đầu tư hoặc qua công ty tổng hợp. <strong>Chỉ nộp duy nhất 1 dự án tại 1 thời điểm</strong>; tuyệt đối không đóng tiền giữ chỗ cho môi giới.</p>
+          </div>
+          <div class="step-item">
+            <div class="step-dot">3</div>
+            <strong>Đối soát trùng lặp tại Sở Xây dựng TP.HCM (10 + 10 ngày)</strong>
+            <p style="font-size:13.5px; color:var(--text-muted);">CĐT gửi danh sách sang Sở trong 10 ngày sau khi đóng cổng; Sở kiểm tra dữ liệu hưởng chính sách nhà ở và trả lời bằng văn bản trong 10 ngày.</p>
+          </div>
+          <div class="step-item">
+            <div class="step-dot">4</div>
+            <strong>Công khai danh sách đạt/không đạt (30 ngày)</strong>
+            <p style="font-size:13.5px; color:var(--text-muted);">CĐT công khai danh sách hồ sơ đủ điều kiện trong 30 ngày từ ngày kết thúc nhận đơn và trả lại hồ sơ không đạt kèm lý do trong 15 ngày.</p>
+          </div>
+          <div class="step-item">
+            <div class="step-dot amber">5</div>
+            <strong>Phân bổ 6 nhóm ưu tiên & Bốc thăm công khai có giám sát</strong>
+            <p style="font-size:13.5px; color:var(--text-muted);">Nhóm ưu tiên được phân bổ tỷ lệ trước không bốc thăm chung. Bốc thăm công khai có Sở Xây dựng, UBND phường và Công an phường giám sát.</p>
+          </div>
+          <div class="step-item">
+            <div class="step-dot green">6</div>
+            <strong>Ký HĐMB trực tiếp (thu tối đa 95% trước sổ) & Giải ngân vay vốn</strong>
+            <p style="font-size:13.5px; color:var(--text-muted);">Ký HĐMB sau khi có giá chính thức; làm hồ sơ vay 3 bên (Người mua – CĐT – Ngân hàng). Tuân thủ nghĩa vụ ở thực và quy định chuyển nhượng.</p>
+          </div>
+        </div>
+        <div class="callout" style="margin-top:8px;">
+          <strong>Mẹo nộp Mẫu 02 trực tuyến:</strong> Truy cập <strong>dichvucong.gov.vn</strong> (đăng nhập VNeID) → tìm thủ tục <em>"Cung cấp thông tin, dữ liệu đất đai"</em> → tải lên Mẫu 02 (TT 08/2026) + Phiếu yêu cầu + CCCD/Giấy kết hôn → thời hạn giải quyết tối đa <strong>7 ngày</strong> (kiểm tra biểu phí cung cấp thông tin niêm yết tại TP.HCM nếu áp dụng).
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">
+        <span>🏢 Danh Bạ Cơ Quan Hành Chính Quận 11 & Khu Tây (Cập Nhật Sau Sáp Nhập 01/07/2025)</span>
+        <input type="text" id="dirSearch" placeholder="🔍 Tìm tên phường, công an, VPĐKĐĐ, ngân hàng..." style="padding:7px 12px; border:1px solid #CBD5E1; border-radius:8px; font-size:13px; width:280px; max-width:100%;" oninput="renderDirectory()">
+      </div>
+      <p style="font-size:13px; color:var(--text-muted); margin-bottom:12px;">
+        Từ 01/07/2025 (NQ 1685/NQ-UBTVQH15), Quận 11 sắp xếp còn <strong>4 phường mới: Bình Thới, Hòa Bình, Phú Thọ, Minh Phụng</strong>. Từ 10/2026 (QĐ 7069/QĐ-UBND), 4 thủ tục đăng ký biến động đất đai (sang tên mua bán PA1/PA2, thừa kế, tặng cho) được nộp <strong>phi địa giới hành chính</strong> tại bất kỳ chi nhánh VPĐKĐĐ nào thuộc TP.HCM.
+      </p>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Phân nhóm</th>
+              <th>Tên cơ quan (Địa danh mới 2025–2026)</th>
+              <th>Địa chỉ trụ sở thực tế</th>
+              <th>Thủ tục tiếp nhận</th>
+            </tr>
+          </thead>
+          <tbody id="dirTableBody"></tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== TAB 5: PROJECTS & DAM SEN RADIAL MAP ==================== -->
+  <section id="tab-projects" class="tab-panel">
+    <div class="card">
+      <div class="card-title">
+        <span>🗺️ Sơ Đồ Tương Tác Phân Bố Dự Án Quanh Tâm Điểm Quận 11 – Đầm Sen</span>
+        <span class="badge b-blue">Nhấp vào từng điểm trên bản đồ để xem chi tiết</span>
+      </div>
+      <div class="grid-2" style="align-items:center;">
+        <div class="svg-box" id="radialMapBox"></div>
+        <div id="mapDetailCard" style="background:var(--surface-alt); border:1px solid var(--border); border-radius:12px; padding:18px; min-height:260px;">
+          <div class="badge b-blue" style="margin-bottom:8px;">Hướng dẫn tương tác</div>
+          <h3 style="margin-bottom:8px;">Chọn một chấm dự án trên bản đồ bên trái</h3>
+          <p style="font-size:14px; color:var(--text-muted);">
+            • <strong style="color:#15803D;">Chấm Xanh lá:</strong> Dự án có sổ hồng sẵn khuyến nghị cho PA1 (NOXH &gt;5 năm trước 01/07/2027) hoặc PA2 (Thương mại gần Đầm Sen).<br>
+            • <strong style="color:#1A73E8;">Chấm Xanh dương:</strong> NOXH sơ cấp, sắp mở hoặc nguồn cung tương lai 2026–2030.<br>
+            • <strong style="color:#DC2626;">Tam giác Đỏ:</strong> Cảnh báo chưa có sổ hồng, bán vi bằng hoặc dự án ngưng thi công.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">
+        <span>🏘️ Kho Dữ Liệu 22 Dự Án Thực Tế Quanh Đầm Sen & TP.HCM (Cập Nhật 11/2026)</span>
+        <span id="projectCountBadge" class="badge b-gray">22 dự án</span>
+      </div>
+      <div style="display:flex; flex-wrap:wrap; gap:10px; justify-content:space-between; align-items:center; margin-bottom:14px;">
+        <div class="pill-group" style="margin:0;">
+          <button class="pill active" onclick="setProjectFilter('all', this)">Tất cả</button>
+          <button class="pill" onclick="setProjectFilter('pa1', this)">🌟 PA1: NOXH Thứ cấp</button>
+          <button class="pill" onclick="setProjectFilter('pa2', this)">🏢 PA2: Thương mại Sổ hồng</button>
+          <button class="pill" onclick="setProjectFilter('primary', this)">🏗️ NOXH Sơ cấp & Tương lai</button>
+          <button class="pill" onclick="setProjectFilter('warning', this)">🚫 Cảnh báo đỏ</button>
+        </div>
+        <input type="text" id="projSearch" placeholder="🔍 Tìm tên dự án, đường, quận..." style="padding:7px 12px; border:1px solid #CBD5E1; border-radius:8px; font-size:13px; width:250px; max-width:100%;" oninput="renderProjects()">
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Dự án & Chủ đầu tư</th>
+              <th>Vị trí & Cách Đầm Sen (ước tính)</th>
+              <th>Loại & Pháp lý (T11/2026)</th>
+              <th>Giá công bố / Rao thứ cấp</th>
+              <th>Đánh giá & Khuyến nghị</th>
+            </tr>
+          </thead>
+          <tbody id="projectTableBody"></tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== TAB 6: MARKET OUTLOOK 2026-2030 ==================== -->
+  <section id="tab-outlook" class="tab-panel">
+    <div class="grid-4">
+      <div class="kpi-card">
+        <div class="kpi-label">Chỉ tiêu Chính phủ 2026–2030</div>
+        <div class="kpi-val">181.257 căn</div>
+        <div class="kpi-note">NQ 303/NQ-CP: 129.257 bán/thuê mua + 52.000 cho thuê</div>
+      </div>
+      <div class="kpi-card green">
+        <div class="kpi-label">Mục tiêu phấn đấu TP.HCM</div>
+        <div class="kpi-val">265.000 căn</div>
+        <div class="kpi-note">Vượt 65.600 căn so với chỉ tiêu tổng 199.400 căn đến 2030</div>
+      </div>
+      <div class="kpi-card amber">
+        <div class="kpi-label">Thực tế 9 tháng 2026</div>
+        <div class="kpi-val">2.283 căn</div>
+        <div class="kpi-note">3 dự án xong; 25–26 dự án đang thi công (~23.500 căn)</div>
+      </div>
+      <div class="kpi-card red">
+        <div class="kpi-label">Đại dự án mới khởi công 19/11/2026</div>
+        <div class="kpi-val">45.000 căn</div>
+        <div class="kpi-note">NOXH Bà Điểm (191,6 ha, Delta/Vingroup), Tuổi Trẻ ước ≤20tr/m²</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title"><span>📊 Biểu Đồ Chỉ Tiêu Nguồn Cung NOXH TP.HCM Sau Hợp Nhất Giai Đoạn 2026–2030</span></div>
+      <div class="svg-box" id="outlookChartBox"></div>
+      <p style="font-size:13.5px; color:var(--text-muted); margin-top:12px;">
+        Sau sáp nhập Bình Dương và Bà Rịa – Vũng Tàu, TP.HCM quy hoạch tổng cộng <strong>1.740 ha</strong> quỹ đất phát triển NOXH đến năm 2040 (chỉ tiêu Chính phủ phân bổ 100.000 căn khu TP.HCM cũ, 86.900 căn Bình Dương cũ và 12.500 căn Bà Rịa – Vũng Tàu cũ). Năm 2027 là năm đột phá với chỉ tiêu 57.657 căn/năm.
+      </p>
+    </div>
+
+    <div class="card">
+      <div class="card-title"><span>🗓️ Kế Hoạch Hành Động 7 Tháng Đếm Ngược Cho Vợ Chồng Bạn (12/2026 – 06/2027)</span></div>
+      <div class="step-list">
+        <div class="step-item">
+          <div class="step-dot">T1</div>
+          <strong>Tháng 12/2026: Chốt phương án pháp lý di sản bố & Khóa hạn mức ngân hàng</strong>
+          <p style="font-size:13.5px; color:var(--text-muted);">Thống nhất trong gia đình tạm chưa sang tên hoặc lập văn bản từ chối nhận di sản để giữ sạch hồ sơ nhà ở. Mang bảng lương FTI + ISB làm việc trước với 2–3 ngân hàng (VietinBank, ACB, Vietcombank, BIDV) lấy hạn mức dự kiến và đàm phán phí trả nợ trước hạn thấp nhất.</p>
+        </div>
+        <div class="step-item">
+          <div class="step-dot">T2</div>
+          <strong>Tháng 01–02/2027: Nhận thưởng năm & Khảo sát thực địa 2 giỏ hàng song song</strong>
+          <p style="font-size:13.5px; color:var(--text-muted);">Gộp nguồn thưởng cuối năm vào vốn tự có (mục tiêu sẵn 35–45% giá trị căn hộ). Đi xem song song: giỏ PA1 (Imperial Place Bình Tân — chỉ xem căn có sổ hồng sẵn & chứng từ thanh toán đủ 5 năm) và giỏ PA2 (Summer Square Q.6, EHome 3, Carillon 7, The Privia).</p>
+        </div>
+        <div class="step-item">
+          <div class="step-dot amber">T3</div>
+          <strong>Tháng 03–05/2027: Chốt cọc & Công chứng sang tên (Hoàn tất trước mốc đỏ)</strong>
+          <p style="font-size:13.5px; color:var(--text-muted);">Nếu chọn PA1 (NOXH thứ cấp), hoàn tất ký HĐMB công chứng, nộp lệ phí trước bạ 0,5% và hồ sơ đăng ký biến động tại bất kỳ Chi nhánh VPĐKĐĐ TP.HCM nào (theo QĐ 7069/QĐ-UBND) chậm nhất cuối tháng 05/2027 để bảo đảm xong pháp lý trước <strong>01/07/2027</strong>.</p>
+        </div>
+        <div class="step-item">
+          <div class="step-dot green">T4</div>
+          <strong>Giai đoạn 2027–2030: Kích hoạt chiến lược trả gốc tăng tốc 60 triệu/tháng</strong>
+          <p style="font-size:13.5px; color:var(--text-muted);">Dồn dòng tiền dư hàng tháng và thưởng năm từ FTI để tất toán sớm sau 2,0–3,4 năm, cắt giảm hơn 80% tổng lãi vay ngân hàng và tạo bệ phóng nâng cấp tài sản tiếp theo.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== TAB 7: ABOUT, ARCHIVE LINKS & UPDATE GUIDE ==================== -->
+  <section id="tab-about" class="tab-panel">
+    <div class="grid-2">
+      <div class="card">
+        <div class="card-title"><span>📦 Hồ Sơ Sản Phẩm & Bản Quyền Thương Mại (Product Passport)</span></div>
+        <div class="table-wrap">
+          <table>
+            <tbody>
+              <tr><td style="width:38%;"><strong>Tên sản phẩm</strong></td><td id="aboutName">Cẩm Nang & Bộ Công Cụ Chiến Lược NOXH TP.HCM Pro</td></tr>
+              <tr><td><strong>Mã phiên bản (Version)</strong></td><td><span class="badge b-blue" id="aboutVer">v2026.11.27 — TP.HCM Post-Merger Edition</span></td></tr>
+              <tr><td><strong>Ngày chốt dữ liệu pháp lý</strong></td><td><strong>27/11/2026</strong> (cập nhật Luật Nhà ở sửa đổi 21/11/2026, NĐ 339/2026, NĐ 136/2026, QĐ 14/2026, khởi công 45.000 căn Bà Điểm 19/11/2026)</td></tr>
+              <tr><td><strong>Kiến trúc kỹ thuật</strong></td><td>Single-File HTML5 / CSS3 / Vanilla JS (Zero External Dependencies — chạy mượt 100% offline, không lo hỏng link CDN, responsive đa màn hình, hỗ trợ xuất PDF)</td></tr>
+              <tr><td><strong>Phạm vi tổng hợp nguồn</strong></td><td>Chọn lọc từ ~40 nguồn sơ cấp & báo chí chính thống chất lượng cao nhất giai đoạn 2025–11/2026 (giới hạn chặt trong khung &lt;150 nguồn theo yêu cầu).</td></tr>
+              <tr><td><strong>Khả năng White-Label / Bán lại</strong></td><td>Cho phép đổi thương hiệu, thêm liên hệ tư vấn, cập nhật bài viết, câu hỏi Mini-Game và bộ giả lập chỉ trong 1 khối biến tập trung <code>APP_CONFIG</code>.</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-title"><span>⏱️ Bộ Kiểm Tra Độ Tươi Dữ Liệu Tự Động (Expiry Watchdog)</span></div>
+        <p style="font-size:13.5px; color:var(--text-muted); margin-bottom:10px;">
+          Hệ thống tự động đối chiếu ngày hiện tại trên máy người mở file với các mốc hết hạn pháp lý của phiên bản <strong>v2026.11.27</strong> để nhắc lịch cập nhật phiên bản mới:
+        </p>
+        <div id="watchdogContainer"></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title"><span>🛠️ Hướng Dẫn Cập Nhật Thông Tin Bài / Game / Simulator Chi Tiết (Cho Người Bán & Biên Tập)</span></div>
+      <p style="font-size:14px; margin-bottom:10px;">
+        Toàn bộ nội dung động của file HTML này (thương hiệu, khung thuế 2026, mức trần thu nhập, lãi suất vay, bảng quy phạm pháp luật, <strong>bộ câu hỏi Mini-Game <code>quizGame</code></strong>, danh bạ Quận 11, 22 dự án bản đồ và kho link tham khảo) được đặt tập trung trong duy nhất 01 đối tượng JavaScript <strong><code>APP_CONFIG</code></strong> ở đầu thẻ <code>&lt;script&gt;</code>. Mở file bằng VS Code hoặc Notepad++, nhấn <code>Ctrl+F</code> tìm <code>const APP_CONFIG = {</code> và chỉnh sửa theo 5 quy tắc sau:
+      </p>
+      <div class="grid-2" style="margin-top:12px;">
+        <div>
+          <h4 style="margin-bottom:6px;">1. Đổi thương hiệu trước khi bán (White-Labeling)</h4>
+          <p style="font-size:13.5px; color:var(--text-muted); margin-bottom:10px;">Sửa các trường <code>brandTitle</code>, <code>version</code>, <code>cutoffDate</code> và <code>authorFooter</code> trong <code>APP_CONFIG.meta</code>. Tiêu đề đầu trang, chân trang và Tab About sẽ tự động đồng bộ.</p>
+          <h4 style="margin-bottom:6px;">2. Cập nhật trần thu nhập, thuế & lãi suất mới</h4>
+          <p style="font-size:13.5px; color:var(--text-muted); margin-bottom:10px;">Khi UBND TP.HCM điều chỉnh QĐ 14/2026 hoặc NHNN ra công văn thay thế CV 5340 sau 31/12/2026, sửa trực tiếp <code>caps.married</code> (50), <code>caps.married3Deps</code> (54), <code>tax2026</code> và các mức lãi trong <code>mortgagePresets</code>.</p>
+          <h4 style="margin-bottom:6px;">3. Thêm / sửa dự án mới lên Bảng & Bản đồ SVG</h4>
+          <p style="font-size:13.5px; color:var(--text-muted);">Mỗi dự án là 1 object trong mảng <code>APP_CONFIG.projects</code>. Copy 1 dòng mẫu, sửa <code>name, dev, loc, dist, cat, legal, price, note, mapX, mapY</code> (tâm Đầm Sen là tọa độ <code>250, 240</code>) để dự án tự động hiện trên cả Bảng lọc lẫn Bản đồ SVG.</p>
+        </div>
+        <div>
+          <h4 style="margin-bottom:6px;">4. Cập nhật / Mở rộng Mini-Game Pháp Lý & Bộ Quiz</h4>
+          <p style="font-size:13.5px; color:var(--text-muted); margin-bottom:10px;">• Để thêm hoặc sửa câu hỏi trong <strong>Mini-Game ở Tab 2</strong>, chỉ cần thêm 1 object mới vào mảng <code>APP_CONFIG.quizGame</code> gồm <code>q</code> (câu hỏi), <code>opts</code> (mảng đáp án), <code>ans</code> (chỉ số đáp án đúng bắt đầu từ 0) và <code>explain</code> (giải thích trích luật). Thanh điểm tự động tính theo tổng số câu!<br>• Đến ngày <strong>01/07/2027</strong>, chỉ cần đổi cờ <code>APP_CONFIG.flags.postJuly2027Mode = true</code> để bộ Quiz tự động tắt ưu tiên nữ chủ hộ chung và bật điều kiện con sinh từ 01/07/2026.</p>
+          <h4 style="margin-bottom:6px;">5. Quy trình bảo trì định kỳ mỗi quý (Quarterly Audit)</h4>
+          <p style="font-size:13.5px; color:var(--text-muted);">B1: Kiểm tra thông báo NOXH mới trên <code>soxaydung.hochiminhcity.gov.vn</code> → B2: Cập nhật lãi suất NHNN/Big4 → B3: Cập nhật tiến độ & giá rao 22 dự án → B4: Tăng mã <code>version</code> (VD: <code>v2027.01.15</code>) và lưu bản gốc cũ làm bản lưu trữ.</p>
+        </div>
+      </div>
+      <pre class="code-guide">// VÍ DỤ CẬP NHẬT NHANH BÀI VIẾT & MINI-GAME TRONG &lt;script&gt; (TÌM "const APP_CONFIG"):
+const APP_CONFIG = {
+  meta: {
+    brandTitle: "CẨM NANG NHÀ Ở XÃ HỘI TP.HCM PRO • v2026.11.27", // &lt;-- Đổi tên thương hiệu/hotline của bạn
+    version: "v2026.11.27 — TP.HCM Post-Merger Edition",
+    cutoffDate: "2026-11-27"
+  },
+  flags: {
+    postJuly2027Mode: false // &lt;-- Đổi thành true vào 01/07/2027 khi Luật Nhà ở sửa đổi có hiệu lực!
+  },
+  caps: { married: 50.0, married3Deps: 54.0, single: 25.0, singleParentTphcm: 37.5 },
+  quizGame: [
+    // Copy block này để thêm câu hỏi mới cho Mini-Game Tab 2:
+    {
+      q: "Câu hỏi tình huống mới của bạn...",
+      opts: ["Lựa chọn A", "Lựa chọn B", "Lựa chọn C"],
+      ans: 1, // 0 = A, 1 = B, 2 = C
+      explain: "Giải thích kèm trích dẫn điều khoản luật mới nhất..."
+    }
+  ]
+};</pre>
+    </div>
+
+    <div class="card">
+      <div class="card-title">
+        <span>🔗 Kho Link Tham Khảo Chính Thống Chuẩn Phiên Bản v2026.11.27 (Archival Reference Pack)</span>
+        <span class="badge b-green">Đã kiểm chứng mốc 27/11/2026</span>
+      </div>
+      <p style="font-size:13.5px; color:var(--text-muted); margin-bottom:12px;">
+        Danh mục liên kết gốc giúp bạn và khách hàng tra cứu lại đúng nguyên văn văn bản pháp luật, cổng nộp hồ sơ chính thống và tin thị trường tại đúng phiên bản phát hành này:
+      </p>
+      <div class="grid-2" id="refArchiveGrid"></div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="footer" id="appFooter">
+  Cẩm Nang Chiến Lược Nhà Ở Xã Hội TP.HCM 2026–2027 (v2026.11.27) • Dữ liệu pháp lý & thị trường chốt ngày 27/11/2026 • Chỉ mang tính tham khảo tư vấn, luôn đối chiếu văn bản niêm yết mới nhất tại Sở Xây dựng TP.HCM trước khi giao dịch.
+</footer>
+
+<script>
+// ============================================================================
+// APP_CONFIG: TRUNG TÂM DỮ LIỆU DUY NHẤT ĐỂ CẬP NHẬT BÀI / GAME / BÁN LẠI
+// ============================================================================
+const APP_CONFIG = {
+  meta: {
+    brandTitle: "CẨM NANG NHÀ Ở XÃ HỘI TP.HCM PRO • v2026.11.27",
+    version: "v2026.11.27 — TP.HCM Post-Merger Edition",
+    cutoffDate: "2026-11-27",
+    authorFooter: "Cẩm Nang Chiến Lược Nhà Ở Xã Hội TP.HCM 2026–2027 (v2026.11.27) • Dữ liệu pháp lý & thị trường chốt ngày 27/11/2026 • Kiểm tra thông báo mới nhất tại soxaydung.hochiminhcity.gov.vn trước khi ký hợp đồng."
+  },
+  flags: {
+    postJuly2027Mode: false
+  },
+  caps: {
+    married: 50.0,
+    married3Deps: 54.0,
+    single: 25.0,
+    singleParentTphcm: 37.5
+  },
+  tax2026: {
+    selfAnnual: 186.0,     // 15,5 tr/tháng (NQ 110/2025 & Luật Thuế TNCN 109/2025)
+    depAnnual: 74.4,       // 6,2 tr/tháng
+    insRate: 0.105,        // 8% BHXH + 1,5% BHYT + 1% BHTN
+    brackets: [
+      { limit: 120.0, rate: 0.05 },
+      { limit: 360.0, rate: 0.10 },
+      { limit: 720.0, rate: 0.20 },
+      { limit: 1200.0, rate: 0.30 },
+      { limit: Infinity, rate: 0.35 }
+    ]
+  },
+  quizGame: [
+    {
+      q: "Tình huống 1: Lương thực nhận + thưởng tại FTI ~71 triệu/tháng nhưng công ty đóng BHXH mức 15 triệu/tháng. Thông tư 08/2026 bỏ yêu cầu nộp photo bảng lương 12 tháng, vậy bạn có được khai thu nhập 15 triệu để mua NOXH không?",
+      opts: [
+        "Được, vì bỏ nộp bảng lương nên cơ quan chức năng chỉ kiểm tra sổ BHXH.",
+        "Không được! Pháp luật xét thu nhập thực nhận 12 tháng liền kề (gồm thưởng) và có cơ chế hậu kiểm đối soát dữ liệu Thuế TNCN."
+      ],
+      ans: 1,
+      explain: "Chuẩn xác! Bộ Xây dựng (13/10/2026) khẳng định căn cứ là thu nhập bình quân thực nhận 12 tháng liền kề theo xác nhận doanh nghiệp (gồm lương, phụ cấp, thưởng). Kê khai sai bị hậu kiểm thuế phát hiện, thu hồi nhà và tiềm ẩn rủi ro khởi tố hình sự."
+    },
+    {
+      q: "Tình huống 2: Bố vừa mất. Nếu bạn làm khai nhận di sản để đồng sở hữu 1/4 căn nhà 80 m² của bố mẹ tại TP.HCM, bạn có được tự chia phần mình là 20 m² cho 2 vợ chồng (= 10 m²/người < 15 m²) để nộp mua NOXH không?",
+      opts: [
+        "Không được tự quy đổi! Đã có tên gắn thông tin nhà ở trên GCN tại TP.HCM thì không còn là 'chưa có nhà ở' và phải xin xác nhận chính thức của cơ quan có thẩm quyền.",
+        "Được, miễn tỷ lệ thừa kế chia ra nhỏ hơn 15 m²/người là hợp lệ."
+      ],
+      ans: 0,
+      explain: "Chính xác! Bộ Xây dựng hướng dẫn không có công thức tự quy đổi diện tích theo tỷ lệ thừa kế/sở hữu chung. Muốn giữ sạch hồ sơ 'chưa có nhà ở', nên tạm chưa sang tên hoặc lập văn bản từ chối nhận di sản thừa kế (Điều 620 BLDS 2015) trước khi phân chia."
+    },
+    {
+      q: "Tình huống 3: Môi giới rao căn NOXH giá rẻ hơn thị trường 800 triệu bằng hình thức 'công chứng ủy quyền + di chúc + đặt cọc chờ 2028 ra sổ sang tên'. Rủi ro chí mạng nhất sau ngày 01/07/2027 là gì?",
+      opts: [
+        "Vẫn sang tên bình thường vào năm 2028 vì đã ký đặt cọc từ năm 2026.",
+        "Không được hưởng điều khoản chuyển tiếp (chỉ công nhận giao dịch mua bán hợp pháp xong trước 01/07/2027), bị phạt 80–120 triệu (NĐ 339/2026) và kẹt cứng không thể sang tên nếu vượt chuẩn thu nhập."
+      ],
+      ans: 1,
+      explain: "Hoàn toàn chính xác! Luật Nhà ở (sửa đổi) thông qua 21/11/2026 nêu rõ từ 01/07/2027 NOXH sau 5 năm chỉ được bán cho đúng đối tượng NOXH; vi bằng/ủy quyền/đặt cọc không được tính là giao dịch hợp pháp trước 01/07/2027."
+    },
+    {
+      q: "Tình huống 4: Vợ chồng bạn thu nhập 100,55 triệu/tháng muốn mua hợp pháp căn NOXH Imperial Place đã có sổ hồng và chủ cũ đã thanh toán đủ tiền cho CĐT hơn 5 năm. Điều kiện sống còn để căn hộ thoát chế độ NOXH là gì?",
+      opts: [
+        "Hoàn tất công chứng hợp đồng mua bán và đăng ký sang tên hợp pháp TRƯỚC ngày 01/07/2027.",
+        "Chỉ cần mua bất kỳ lúc nào miễn căn hộ đã bàn giao trên 5 năm."
+      ],
+      ans: 0,
+      explain: "Đúng tuyệt đối! Khoảng thời gian từ nay đến 30/06/2027 là cửa sổ chuyển tiếp cuối cùng để giao dịch mua lại NOXH đủ 5 năm có sổ hồng đưa căn hộ ra khỏi chế độ NOXH sang tài sản dân sự tự do."
+    },
+    {
+      q: "Tình huống 5: Nếu người chồng chủ động nghỉ việc (thất nghiệp), hồ sơ đăng ký mua NOXH sơ cấp có được xếp vào nhóm ưu tiên không phải bốc thăm không?",
+      opts: [
+        "Có, người thất nghiệp được xếp vào nhóm ưu tiên đặc biệt.",
+        "Không! Thất nghiệp chỉ đổi từ khoản 6 sang khoản 5 Điều 76 (xin Công an phường xác nhận Mẫu 05), vẫn bốc thăm chung như nhóm thường và vẫn xét tổng thu nhập 12 tháng liền kề."
+      ],
+      ans: 1,
+      explain: "Chuẩn xác! 6 bậc ưu tiên trước 01/07/2027 chỉ gồm: người có công, thân nhân liệt sĩ, người khuyết tật, tái định cư, người có ≥2 con đẻ, và nữ giới (đơn thân hoặc chủ hộ VNeID). Thất nghiệp không hề có bậc ưu tiên nào."
+    }
+  ],
+  deadlines: [
+    { date: "2026-12-14", label: "Đóng cổng nhận hồ sơ NOXH Long Trường (Điền Phúc Thành — 24,49 tr/m²)", impact: "Cập nhật dự án đang mở bán mới tại Tab 5." },
+    { date: "2026-12-31", label: "Hết kỳ áp dụng lãi suất 6,5%/năm dưới 35 tuổi theo CV 5340/NHNN-CSTT", impact: "Kiểm tra công văn lãi suất kỳ mới nửa đầu 2027 của NHNN." },
+    { date: "2027-01-31", label: "Đóng cổng nhận hồ sơ 72 căn NOXH An Phú (Biwase — 14,89 tr/m²)", impact: "Cập nhật trạng thái đợt mở bán tại Tab 5." },
+    { date: "2027-02-28", label: "Hết hiệu lực cơ chế đặc thù Nghị quyết 66.15/2026/NQ-CP", impact: "Rà soát quy định miễn bốc thăm/điều kiện hộ bị thu hồi đất." },
+    { date: "2027-07-01", label: "MỐC ĐỎ: Luật Nhà ở (sửa đổi) 21/11/2026 chính thức có hiệu lực", impact: "Bật postJuly2027Mode = true; đóng cửa mua tự do NOXH thứ cấp >5 năm!" }
+  ],
+  laws: [
+    { doc: "Luật Nhà ở 27/2023/QH15", date: "01/08/2024 – 30/06/2027", cat: "priority", core: "12 nhóm đối tượng (Điều 76); bỏ hộ khẩu; miễn ĐK nhà ở & thu nhập khi THUÊ NOXH (K2 Điều 78); cho phép bán tự do sau 5 năm (điểm e K1 Điều 89).", impact: "Nền tảng cho PA1 (mua lại trước 01/07/2027) và PA4 (thuê NOXH)." },
+    { doc: "Nghị quyết 201/2025/QH15 & NĐ 192/2025", date: "01/06/2025", cat: "tphcm", core: "Thí điểm cơ chế đặc thù: Quỹ nhà ở quốc gia, giao CĐT không qua đấu thầu, mở điều kiện cho người đã có nhà nhưng cách xa nơi làm việc.", impact: "Cơ sở để TP.HCM ban hành QĐ 17/2025." },
+    { doc: "Quyết định 17/2025/QĐ-UBND TP.HCM", date: "01/10/2025 – 31/05/2030", cat: "tphcm", core: "Người có nhà tại phường cách chỗ làm ≥14,5 km (xã ≥20 km, sai số ≤0,5 km) và dự án NOXH gần hơn vẫn đạt ĐK nhà ở, đo bằng xe máy trên bando.tphcm.gov.vn.", impact: "Hữu ích nếu sau này đứng tên nhà xa nơi làm việc." },
+    { doc: "Nghị định 261/2025/NĐ-CP", date: "Từ 10/10/2025", cat: "income", core: "Sửa Điều 48 NĐ 100/2024: Hạ lãi suất vay NHCSXH xuống mức 5,4%/năm, vay tối đa 80%, kỳ hạn tối đa 25 năm.", impact: "Mức lãi rẻ nhất cho đối tượng đủ điều kiện sơ cấp." },
+    { doc: "Nghị định 54/2026/NĐ-CP", date: "Từ 09/02/2026", cat: "priority", core: "Chưa có nhà gồm cả GCN không có thông tin nhà ở; Công an cấp xã xác nhận Mẫu 05 (7 ngày) + hậu kiểm; ưu tiên nữ giới chỉ áp dụng nữ đơn thân hoặc CHỦ HỘ VNeID.", impact: "Cơ sở mẹo hợp pháp tách hộ để vợ làm chủ hộ (trước 01/07/2027)." },
+    { doc: "Thông tư 08/2026/TT-BXD", date: "Từ 15/02/2026", cat: "tphcm", core: "Thay thế Mẫu 01, 02, 05; BÃI BỎ yêu cầu nộp photo bảng lương 12 tháng ở Mẫu 01a và Mẫu 04; giấy xác nhận có giá trị 12 tháng.", impact: "Đơn giản giấy tờ đầu vào nhưng siết chặt hậu kiểm Thuế." },
+    { doc: "Quyết định 14/2026/QĐ-UBND TP.HCM", date: "Từ 01/04/2026", cat: "tphcm", core: "Hệ số 1,25 (trần 25 / 37,5 / 50 triệu) và hệ số 1,35 cho hộ ≥3 người phụ thuộc (trần 27 / 40,5 / 54 triệu), ưu tiên căn lớn/≥2PN.", impact: "Trần thực tế TP.HCM vẫn là 50tr/54tr (chưa có mức 62,5tr)." },
+    { doc: "Nghị định 136/2026/NĐ-CP", date: "Từ 07/04/2026", cat: "income", core: "Nâng trần thu nhập toàn quốc lên 25tr (độc thân), 35tr (đơn thân nuôi con), 50tr (vợ chồng) thực nhận 12 tháng liền kề; cập nhật Mẫu 01.", impact: "Hồ sơ FTI+ISB (100,55 tr/tháng) vượt trần 2,01 lần." },
+    { doc: "Luật Dân số 113/2025/QH15 (Đ29 K3)", date: "Từ 01/07/2026", cat: "priority", core: "Bổ sung đối tượng thứ 13: Người có từ 02 con đẻ trở lên; xếp bậc ưu tiên số 5 không phải bốc thăm chung (vẫn cần đạt chuẩn thu nhập & nhà ở).", impact: "Mở rộng nhóm ưu tiên cho gia đình sinh đủ 2 con." },
+    { doc: "Luật Thuế TNCN 109/2025 & NQ 110/2025", date: "Kỳ thuế 2026", cat: "income", core: "Giảm trừ bản thân 15,5 tr/tháng, NPT 6,2 tr/tháng; rút gọn biểu thuế từ 7 bậc xuống 5 bậc (5–10–20–30–35%).", impact: "Thuế chồng giảm ~60 tr/năm → Net tăng thêm +5 tr/tháng." },
+    { doc: "CV 5340 & 5341/NHNN-CSTT", date: "01/07 – 31/12/2026", cat: "income", core: "9 NHTM cho người dưới 35 tuổi vay mua NOXH lãi 6,5%/năm (5 năm đầu) và 7,5%/năm (10 năm tiếp theo).", impact: "Chỉ dành cho mua NOXH sơ cấp dưới 35 tuổi." },
+    { doc: "Nghị định 339/2026/NĐ-CP (thay NĐ 16/2022)", date: "Từ 26/08/2026", cat: "resale", core: "Khoản 2 Điều 64: Phạt 80–120 triệu với cá nhân bán lại NOXH sai quy định hoặc bên thuê/thuê mua sử dụng sai mục đích ở; phạt 120–160 triệu tổ chức bán sai đối tượng; buộc thu hồi căn hộ.", impact: "Xử lý mạnh tay các giao dịch vi bằng/bán lách trước 5 năm." },
+    { doc: "Luật Nhà ở (sửa đổi) 2026 (13 chương, 129 điều)", date: "Thông qua 21/11/2026; Hiệu lực 01/07/2027", cat: "resale", core: "Siết bán lại sau 5 năm: CHỈ bán cho người đủ ĐK mua NOXH (giá thỏa thuận, miễn tiền SDĐ). Chuyển tiếp: chỉ căn đã bán hợp pháp trước 01/07/2027 mới thoát chế độ NOXH.", impact: "Tạo ra Cửa sổ vàng 7 tháng cuối cho PA1." }
+  ],
+  checklist: [
+    { id: "c1", title: "Mẫu số 01 — Đơn đăng ký mua / thuê mua / thuê NOXH (Phụ lục NĐ 136/2026/NĐ-CP)", desc: "Tự kê khai, ký cam kết trung thực. Không dùng mẫu cũ trước tháng 4/2026; chỉ nộp 1 dự án cùng lúc." },
+    { id: "c2", title: "Mẫu số 01a (TT 32/2025 sửa bởi TT 08/2026) — Xác nhận đối tượng & thu nhập có HĐLĐ", desc: "Xin phòng Nhân sự công ty xác nhận thu nhập thực nhận bình quân 12 tháng liền kề (từ 15/02/2026 không cần nộp photo bảng lương 12 tháng)." },
+    { id: "c3", title: "Mẫu số 05 (TT 08/2026) — Xác nhận thu nhập không có HĐLĐ (chỉ dùng nếu thất nghiệp/tự do)", desc: "Nộp tại Công an phường nơi thường trú/tạm trú/ở hiện tại. Thời hạn giải quyết 7 ngày, lệ phí 0 đồng; có hậu kiểm cơ quan Thuế." },
+    { id: "c4", title: "Mẫu số 02 (TT 08/2026) — Xác nhận chưa có nhà ở (cả 2 vợ chồng đều kê khai)", desc: "Nộp tại Văn phòng / Chi nhánh VPĐKĐĐ TP.HCM nơi có dự án hoặc online trên dichvucong.gov.vn (giải quyết trong 7 ngày)." },
+    { id: "c5", title: "Mẫu số 03 (TT 05/2024) hoặc Giấy đo khoảng cách QĐ 17/2025 (chỉ dùng nếu đã đứng tên nhà)", desc: "UBND phường xác nhận <15 m²/người (7 ngày) HOẶC tự đo xe máy trên bando.tphcm.gov.vn chứng minh ≥14,5 km (phường) / ≥20 km (xã)." },
+    { id: "c6", title: "Hồ sơ nhân thân & chứng minh nhóm ưu tiên (CCCD, Giấy kết hôn, VNeID, Khai sinh con)", desc: "Bản sao CCCD 2 vợ chồng, bản sao chứng thực Giấy đăng ký kết hôn, trích xuất cư trú VNeID (nếu vợ làm chủ hộ), giấy khai sinh 2 con (nếu có)." },
+    { id: "c7", title: "Kiểm tra pháp lý thừa kế nhà bố mẹ & hồ sơ chứng minh khả năng trả nợ ngân hàng", desc: "Bảo đảm chưa đứng tên đồng sở hữu nhà bố mẹ trên sổ hồng; chuẩn bị sao kê lương 3–6 tháng và sẵn 20–35% vốn tự có." }
+  ],
+  directory: [
+    { group: "UBND Quận 11 (mới)", name: "UBND Phường Bình Thới (P.3, P.10, 1 phần P.8 cũ)", addr: "268–270 Bình Thới, P. Bình Thới, TP.HCM", role: "Chứng thực, xác nhận Mẫu 03 (<15 m²/người), tình trạng hôn nhân" },
+    { group: "UBND Quận 11 (mới)", name: "UBND Phường Hòa Bình (P.5, P.14 cũ — khu Đầm Sen)", addr: "347 Lạc Long Quân, P. Hòa Bình, TP.HCM", role: "Chứng thực, xác nhận Mẫu 03, tình trạng hôn nhân" },
+    { group: "UBND Quận 11 (mới)", name: "UBND Phường Phú Thọ (P.11, P.15, 1 phần P.8 cũ)", addr: "233–235 Lê Đại Hành, P. Phú Thọ, TP.HCM", role: "Chứng thực, xác nhận Mẫu 03, tình trạng hôn nhân" },
+    { group: "UBND Quận 11 (mới)", name: "UBND Phường Minh Phụng (P.1, P.7, P.16 cũ)", addr: "183A Lý Nam Đế, P. Minh Phụng, TP.HCM", role: "Chứng thực, xác nhận Mẫu 03, tình trạng hôn nhân" },
+    { group: "Công an Quận 11 (mới)", name: "Công an P. Bình Thới (SĐT: 028.3963.3652)", addr: "117 Lạc Long Quân, P. Bình Thới, TP.HCM", role: "Xác nhận Mẫu 05 (7 ngày, 0 đồng); tách hộ/chủ hộ VNeID" },
+    { group: "Công an Quận 11 (mới)", name: "Công an P. Hòa Bình (SĐT: 028.3865.2199)", addr: "148 Ông Ích Khiêm, P. Hòa Bình, TP.HCM", role: "Xác nhận Mẫu 05 (7 ngày, 0 đồng); tách hộ/chủ hộ VNeID" },
+    { group: "Công an Quận 11 (mới)", name: "Công an P. Phú Thọ (SĐT: 028.3865.4772)", addr: "299/2/9 Lý Thường Kiệt, P. Phú Thọ, TP.HCM", role: "Xác nhận Mẫu 05 (7 ngày, 0 đồng); tách hộ/chủ hộ VNeID" },
+    { group: "Công an Quận 11 (mới)", name: "Công an P. Minh Phụng", addr: "152 Lê Đại Hành, P. Minh Phụng, TP.HCM", role: "Xác nhận Mẫu 05 (7 ngày, 0 đồng); tách hộ/chủ hộ VNeID" },
+    { group: "VPĐKĐĐ TP.HCM", name: "Chi nhánh VPĐKĐĐ số 11 (phụ trách 4 phường Q.11)", addr: "535 Bình Thới, P. Bình Thới, TP.HCM", role: "Mẫu 02 chưa có nhà ở; sang tên sổ hồng phi địa giới (QĐ 7069)" },
+    { group: "VPĐKĐĐ TP.HCM", name: "Chi nhánh VPĐKĐĐ số 10 (Vườn Lài, Diên Hồng, Hòa Hưng)", addr: "1A Thành Thái, P. Diên Hồng, TP.HCM", role: "Mẫu 02 dự án khu Q.10 cũ (như 324 Lý Thường Kiệt)" },
+    { group: "VPĐKĐĐ TP.HCM", name: "Chi nhánh VPĐKĐĐ số 6 (Bình Tiên, Bình Tây, Bình Phú, Phú Lâm)", addr: "81–83 Phạm Văn Chí, P. Bình Tiên, TP.HCM", role: "Mẫu 02 & sang tên sổ hồng khu vực Quận 6 cũ" },
+    { group: "VPĐKĐĐ TP.HCM", name: "Chi nhánh VPĐKĐĐ số 17 (5 phường khu Tân Phú cũ)", addr: "70A Thoại Ngọc Hầu, P. Tân Phú, TP.HCM", role: "Mẫu 02 & sang tên sổ hồng khu vực Tân Phú cũ" },
+    { group: "VPĐKĐĐ TP.HCM", name: "Chi nhánh VPĐKĐĐ số 9 (5 phường khu Bình Tân cũ)", addr: "521 Kinh Dương Vương, P. An Lạc, TP.HCM", role: "Mẫu 02 (Hoàng Nam Lê Cơ, Lê Thành TT2) & sang tên Imperial Place" },
+    { group: "VPĐKĐĐ TP.HCM", name: "Chi nhánh VPĐKĐĐ số 8 (Chánh Hưng, Bình Đông, Phú Định)", addr: "4 Dương Quang Đông, P. Chánh Hưng, TP.HCM", role: "Mẫu 02 dự án 314 Âu Dương Lân & khu Quận 8 cũ" },
+    { group: "VPĐKĐĐ TP.HCM", name: "Chi nhánh VPĐKĐĐ số 18 (7 xã khu Bình Chánh cũ)", addr: "79 Tân Túc, Xã Tân Nhựt, TP.HCM", role: "Mẫu 02 & sang tên sổ hồng khu Bình Chánh cũ" },
+    { group: "Quản lý & Ngân hàng", name: "Sở Xây dựng TP.HCM", addr: "CS1: 63 Lý Tự Trọng, P. Sài Gòn | CS2: 60 Trương Định, P. Xuân Hòa", role: "Cổng công bố dự án NOXH chính thức: soxaydung.hochiminhcity.gov.vn" },
+    { group: "Quản lý & Ngân hàng", name: "NHCSXH (VBSP) TP.HCM & PGD lân cận", addr: "271 Nguyễn Tri Phương (CN TP.HCM) | 16 Thoại Ngọc Hầu (Tân Phú) | 330A Kinh Dương Vương (Bình Tân)", role: "Cho vay NOXH 5,4%/năm (Tổng đài: 1900 5555 15)" }
+  ],
+  projects: [
+    { id:"p1", name:"Imperial Place (Natural Poem)", dev:"N.H.O / Lee&Co", loc:"629–633 Kinh Dương Vương, P. An Lạc (Bình Tân cũ)", dist:6.0, cat:"pa1", legal:"Sổ hồng riêng nhiều căn (bàn giao 2019–2020)", price:"NOXH 2PN 56m²: 1,95–2,15 tỷ; TM: 2,5–2,75 tỷ (Batdongsan T11/26)", note:"ỨNG VIÊN #1 CHO PA1: Check kỹ chứng từ thanh toán đủ ≥5 năm & sổ hồng để công chứng sang tên trước 01/07/2027.", mapX:178, mapY:322 },
+    { id:"p2", name:"NOXH Thới Bình", dev:"CP Địa ốc 11", loc:"49/52 Âu Cơ, P. Hòa Bình (Q.11 cũ)", dist:1.5, cat:"pa1", legal:"Đã có sổ hồng (bàn giao cuối 2018 — đủ 5 năm)", price:"56–60m² 2PN: 3,70–3,90 tỷ (~65–69,6 tr/m², Batdongsan)", note:"Sát Đầm Sen & vòng xoay Lê Đại Hành nhưng đơn giá rao đã cao hơn nhiều chung cư thương mại kế bên.", mapX:258, mapY:212 },
+    { id:"p3", name:"EHomeS Nam Sài Gòn (Mizuki Park)", dev:"Nam Long / Nguyên Sơn", loc:"Nguyễn Văn Linh, Xã Bình Hưng (Bình Chánh cũ)", dist:9.0, cat:"pa1", legal:"TP.HCM gỡ vướng cấp sổ 1.415 căn G1–G5, E1 (01/2026)", price:"40m²: 1,34–1,40 tỷ; 60m² 2PN2WC: ~1,90 tỷ (Batdongsan)", note:"Môi trường sống đẹp trong KĐT Mizuki; chỉ giao dịch căn đã cầm sổ hồng và tròn 5 năm thanh toán.", mapX:285, mapY:388 },
+    { id:"p4", name:"Summer Square", dev:"Gotec Việt Nam", loc:"243 Tân Hòa Đông, P. Phú Lâm (Q.6 cũ)", dist:2.5, cat:"pa2", legal:"Sổ hồng riêng sẵn (Thương mại)", price:"60–64m² 2PN2WC: 3,00–3,25 tỷ (47–53 tr/m², Batdongsan)", note:"BEST VALUE PA2: Cách Đầm Sen 5–7 phút, có hồ bơi, 2WC, trả tăng tốc 60tr/th sạch nợ sau 3,4 năm.", mapX:225, mapY:286 },
+    { id:"p5", name:"EHome 3 (Tây Sài Gòn)", dev:"Nam Long Group", loc:"Hồ Học Lãm, P. An Lạc (Bình Tân cũ)", dist:7.5, cat:"pa2", legal:"Sổ hồng riêng sẵn (Thương mại)", price:"64–68m² 2PN2WC: 2,65–2,85 tỷ (40–45 tr/m², Batdongsan)", note:"Thương mại sổ sẵn giá mềm nhất khu Tây, đại khu 6,39 ha nhiều cây xanh, tiện ra Võ Văn Kiệt.", mapX:155, mapY:348 },
+    { id:"p6", name:"Carillon 7", dev:"TTC Land", loc:"33 Lương Minh Nguyệt, P. Phú Thạnh (Tân Phú cũ)", dist:1.8, cat:"pa2", legal:"Sổ hồng riêng sẵn (Thương mại, BG 2021)", price:"65–72m² 2PN: 3,50–4,10 tỷ (53–58 tr/m², Batdongsan)", note:"Rất gần Đầm Sen, chung cư còn mới, giá đi ngang 1 năm qua nên dễ thương lượng.", mapX:212, mapY:246 },
+    { id:"p7", name:"Carillon 5", dev:"TTC Land", loc:"262/3 Lũy Bán Bích, P. Tân Phú", dist:1.5, cat:"pa2", legal:"Sổ hồng riêng sẵn (Thương mại, BG 2019)", price:"70–72m² 2PN2WC: 3,70–4,25 tỷ (54–59 tr/m², Batdongsan)", note:"Sát trục Lũy Bán Bích – Đầm Sen, mật độ thấp 221 căn, giữ giá tốt.", mapX:218, mapY:220 },
+    { id:"p8", name:"The Privia", dev:"Khang Điền", loc:"321 An Dương Vương, P. An Lạc (Bình Tân cũ)", dist:5.5, cat:"pa2", legal:"Đã có sổ hồng (Mới bàn giao 10/2024)", price:"51m² 1PN+: 3,3–3,45 tỷ; 63–69m² 2PN: 4,0–4,5 tỷ (HouseNow)", note:"Chuẩn mới nhất khu Tây, CĐT uy tín cao về sổ hồng, thanh khoản mạnh.", mapX:195, mapY:305 },
+    { id:"p9", name:"Lữ Gia Plaza", dev:"Cơ khí Điện Lữ Gia", loc:"70 Lữ Gia, P. Phú Thọ (Q.11 cũ)", dist:2.0, cat:"pa2", legal:"Sổ hồng riêng sẵn (Thương mại)", price:"75–80m² 2PN: 4,45–4,70 tỷ (59–63 tr/m², Batdongsan)", note:"Ngay lõi Q.11 đối diện Co.opmart, diện tích rộng nhưng tòa nhà đã vận hành lâu năm.", mapX:288, mapY:228 },
+    { id:"p10", name:"Him Lam Chợ Lớn", dev:"Him Lam Land", loc:"491 Hậu Giang, P. Bình Phú (Q.6 cũ)", dist:3.5, cat:"pa2", legal:"Sổ hồng riêng sẵn (Thương mại)", price:"83–97m² 2PN2WC: 4,50–5,10 tỷ (50–56 tr/m², Batdongsan)", note:"Khuôn viên 4,08 ha đẹp, căn rộng phù hợp ở lâu dài không cần đổi nhà.", mapX:238, mapY:312 },
+    { id:"p11", name:"The Flemington", dev:"Bảo Gia", loc:"Lê Đại Hành, P. Phú Thọ (Q.11 cũ)", dist:2.0, cat:"pa2", legal:"Sổ hồng riêng sẵn (Cao cấp)", price:"86–96m² 2–3PN: 6,50–7,60 tỷ (73–86 tr/m², Batdongsan)", note:"Phân khúc cao cấp Q.11, cân nhắc cho chu kỳ nâng cấp nhà thứ hai.", mapX:296, mapY:246 },
+    { id:"p12", name:"NOXH 324 Lý Thường Kiệt (Phú Thọ DMC)", dev:"CP Đức Mạnh", loc:"324 Lý Thường Kiệt, P. Diên Hồng (Q.10 cũ)", dist:2.5, cat:"primary", legal:"Đã duyệt giá QĐ 06-26 (04/06/2026); Đợt 1 đóng 31/03/2026", price:"23,25 triệu/m² (755 căn bán, 270 căn thuê — SXD)", note:"12.000–15.000 hồ sơ quan tâm; hoàn thiện >95%. CẢNH BÁO: 25/11/2026 bắt 37 bị can lừa bán suất kín.", mapX:310, mapY:238 },
+    { id:"p13", name:"Khu đất NOXH 314 Âu Dương Lân", dev:"Quỹ đất công TP.HCM", loc:"314 Âu Dương Lân, P. Chánh Hưng (Q.8 cũ)", dist:5.5, cat:"primary", legal:"1 trong 8 khu đất sạch SXD chọn CĐT 2026 (288 căn)", price:"Chưa công bố giá (dự kiến nguồn cung 2027–2028)", note:"Vị trí rất gần trung tâm Q.5/Q.8/Q.11; theo dõi thông báo Sở Xây dựng.", mapX:326, mapY:326 },
+    { id:"p14", name:"NOXH Hoàng Nam Lê Cơ", dev:"TNHH XD-TM Hoàng Nam", loc:"Mặt tiền Lê Cơ & Kinh Dương Vương, P. An Lạc", dist:6.0, cat:"primary", legal:"Ghi nhận chủ trương đầu tư 2934/QĐ-UBND (12/06/2025)", price:"Chưa công bố giá chính thức từ Sở Xây dựng", note:"Quy mô theo các nguồn môi giới ~1.000–2.000 căn; thiết kế chữ U có hồ bơi; chờ thông báo mở hồ sơ SXD.", mapX:162, mapY:310 },
+    { id:"p15", name:"NOXH Lê Thành Tân Tạo 2", dev:"TNHH TM-XD Lê Thành", loc:"Đường Sông Suối (Hồ Văn Long nối dài), P. Bình Tân", dist:9.5, cat:"primary", legal:"Vừa khởi công 29/08/2026 (450 căn, thi công đến 2028)", price:"Chưa công bố giá chính thức", note:"Cần xác minh rõ hình thức bán sở hữu lâu dài hay thuê 49 năm khi CĐT mở hồ sơ chính thức.", mapX:110, mapY:292 },
+    { id:"p16", name:"NOXH Lê Thành Tân Kiên", dev:"TNHH TM-XD Lê Thành", loc:"Nguyễn Cửu Phú, Tân Nhựt/Tân Kiên (Bình Chánh cũ)", dist:11.0, cat:"primary", legal:"NOXH CHO THUÊ DÀI HẠN 49 NĂM (~1.445 căn)", price:"Trang dự án/môi giới tham khảo 20–28 tr/m² (1,12–1,68 tỷ)", note:"Không cấp sổ hồng lâu dài; phù hợp PA4 nếu chỉ muốn thuê dài hạn nhẹ vốn.", mapX:98, mapY:368 },
+    { id:"p17", name:"Đại Đô Thị NOXH Xã Bà Điểm", dev:"CP Delta (Vingroup)", loc:"110 Đặng Công Bỉnh, Xã Bà Điểm (Hóc Môn cũ)", dist:13.0, cat:"primary", legal:"VỪA KHỞI CÔNG 19/11/2026 (45.000 căn / 191,6 ha)", price:"Báo Tuổi Trẻ ước ≤ 20 tr/m² (chưa phải giá duyệt chính thức)", note:"ĐẠI DỰ ÁN 2027–2030: 40.000 bán + 5.000 thuê, 13 trường học, 1 BV đa khoa, >45 ha hồ điều hòa.", mapX:112, mapY:112 },
+    { id:"p18", name:"NOXH Long Trường & HUD Thủ Đức & An Phú", dev:"Điền Phúc Thành / HUD / Biwase", loc:"P. Long Trường / P. Hiệp Bình / P. An Phú (TP.HCM mở rộng)", dist:20.0, cat:"primary", legal:"ĐANG / SẮP NHẬN HỒ SƠ THỰC TẾ Q4/2026 – Q1/2027", price:"An Phú: 14,89 tr/m² (20/12–31/01) | Long Trường: 24,49 tr/m² (đến 14/12) | HUD: 30,7 tr/m²", note:"Xa Q.11 nhưng là 3 mốc giá công bố chuẩn thực tế nhất của Sở Xây dựng TP.HCM cuối 2026.", mapX:425, mapY:145 },
+    { id:"p19", name:"Richstar Residence", dev:"Novaland", loc:"278 Hòa Bình, P. Phú Thạnh (Tân Phú cũ)", dist:1.2, cat:"warning", legal:"CHƯA CÓ SỔ HỒNG (đang xử lý định giá đất bổ sung ~446 tỷ)", price:"65m² 2PN2WC: 3,30–3,50 tỷ (51–58 tr/m², Batdongsan)", note:"Vị trí đẹp sát Đầm Sen nhưng treo sổ kéo dài, hạn chế vay ngân hàng. Cân nhắc kỹ rủi ro.", mapX:222, mapY:235 },
+    { id:"p20", name:"NOXH The Western Capital (Chợ Bình Phú)", dev:"Hoàng Phúc Land", loc:"116 Lý Chiêu Hoàng, P. Bình Phú (Q.6 cũ)", dist:4.5, cat:"warning", legal:"CHƯA CÓ SỔ HỒNG; căn NOXH rao bán đều là VI BẰNG", price:"NOXH vi bằng: 1,7–2,0 tỷ | TM HĐMB: 2,4–3,1 tỷ (Mogivi T04/26)", note:"CẢNH BÁO ĐỎ: Tuyệt đối không mua phần NOXH vi bằng vì không thể sang tên & vi phạm NĐ 339/2026.", mapX:204, mapY:325 },
+    { id:"p21", name:"Green River & HQC 35 Hồ Học Lãm & Vĩnh Lộc D'Gold", dev:"276 Ngọc Long / Hoàng Quân / Sông Đà An Nhân", loc:"Q.8 / An Lạc Bình Tân / Vĩnh Lộc Bình Chánh", dist:7.5, cat:"warning", legal:"Phần NOXH nhiều căn chưa sổ / chờ 2028 mới sang tên", price:"Vĩnh Lộc: 0,88–1,78 tỷ | 35 HHL: 1,6–1,9 tỷ | Green River NOXH: 2,3–2,7 tỷ", note:"CẢNH BÁO: Giao dịch ủy quyền/di chúc chờ 2028 sẽ kẹt cứng sau mốc 01/07/2027!", mapX:302, mapY:355 },
+    { id:"p22", name:"Diamond Lotus Lake View & Tân Bình Apartment", dev:"Phúc Khang / BĐS Tân Bình", loc:"96 Lũy Bán Bích (cách Đầm Sen 200m) & 32 Hoàng Bật Đạt", dist:0.5, cat:"warning", legal:"NGƯNG THI CÔNG TỪ 2017 / TRỄ BÀN GIAO GẦN 10 NĂM", price:"Tránh các tin rao ảo giá rẻ", note:"TUYỆT ĐỐI TRÁNH: Thanh tra kết luận vướng pháp lý đất đai & sai phạm xây dựng nghiêm trọng.", mapX:242, mapY:232 }
+  ],
+  mortgagePresets: {
+    imperial: { price: 2150, down: 40, years: 15, r1: 9.0, r2: 11.5, accel: 60 },
+    summer:   { price: 3150, down: 35, years: 20, r1: 9.0, r2: 11.5, accel: 60 },
+    carillon: { price: 3800, down: 35, years: 20, r1: 9.0, r2: 11.5, accel: 60 },
+    privia:   { price: 4200, down: 35, years: 20, r1: 9.0, r2: 11.5, accel: 60 },
+    nhcsxh:   { price: 1500, down: 20, years: 25, r1: 5.4, r2: 5.4,  accel: 15 },
+    u35:      { price: 1500, down: 20, years: 25, r1: 6.5, r2: 7.5,  accel: 15 }
+  },
+  references: [
+    { group: "1. Văn Bản Pháp Luật & Cổng Chính Phủ", items: [
+      { title: "Báo Chính phủ: Chính thức nâng mức trần thu nhập NOXH lên 25tr/50tr từ 07/04/2026 (NĐ 136/2026)", url: "https://baochinhphu.vn/chinh-thuc-nang-muc-tran-thu-nhap-duoc-mua-nha-o-xa-hoi-len-25-trieu-dong-thang-tu-7-4-2026-102260408114223058.htm" },
+      { title: "Báo Chính phủ: Thông qua Luật Nhà ở (sửa đổi) 21/11/2026 — NOXH sau 5 năm chỉ bán cho đúng đối tượng", url: "https://baochinhphu.vn/thong-qua-luat-nha-o-sua-doi-nha-o-xa-hoi-chi-duoc-ban-lai-sau-5-nam-cho-dung-doi-tuong-102261121101523227.htm" },
+      { title: "Báo Chính phủ: Bộ Xây dựng trả lời thu nhập mua NOXH tính theo lương thực nhận 12 tháng (13/10/2026)", url: "https://baochinhphu.vn/thu-nhap-mua-nha-o-xa-hoi-tinh-theo-luong-truoc-thue-hay-thuc-nhan-102261013093748562.htm" },
+      { title: "Thư viện Pháp luật: Toàn văn Quyết định 14/2026/QĐ-UBND TP.HCM (Hệ số 1,25 và 1,35)", url: "https://thuvienphapluat.vn/chinh-sach-phap-luat-moi/vn/ho-tro-phap-luat/chinh-sach-moi/108685/%EF%BB%BFtoan-van-quyet-dinh-14-2026-qd-ubnd-dieu-chinh-muc-thu-nhap-mua-noxh-tai-tphcm" },
+      { title: "Luật Việt Nam: Tóm tắt Thông tư 08/2026/TT-BXD (thay Mẫu 01, 02, 05 & bỏ photo bảng lương)", url: "https://luatvietnam.vn/dat-dai/thong-tu-08-2026-tt-bxd-sua-doi-bo-sung-quy-dinh-linh-vuc-nha-o-bo-xay-dung-426532-d1.html" },
+      { title: "Luật Việt Nam: Thứ tự 6 nhóm ưu tiên mua NOXH 2026 (NĐ 54/2026 & Luật Dân số 2025)", url: "https://luatvietnam.vn/dat-dai-nha-o/thu-tu-uu-tien-mua-nha-o-xa-hoi-567-105244-article.html" },
+      { title: "Công đoàn VN / Lao Động: Xử phạt 80–120 triệu cá nhân bán lại NOXH sai quy định (NĐ 339/2026)", url: "https://congdoanvietnam.vn/tu-van-phap-luat/ban-lai-nha-o-xa-hoi-khong-dung-quy-dinh-bi-phat-den-120-trieu-dong-44114.tld" },
+      { title: "CafeF: Mốc chuyển tiếp 01/07/2027 đối với NOXH đã mua trước khi Luật sửa đổi có hiệu lực", url: "https://cafef.vn/khong-phai-cho-du-5-nam-moi-duoc-ban-lai-nha-o-xa-hoi-cho-nguoi-du-dieu-kien-188261127080540833.chn" }
+    ]},
+    { group: "2. Cổng Dịch Vụ Công, Thuế 2026, Ngân Hàng & Dự Án TP.HCM", items: [
+      { title: "Sở Xây dựng TP.HCM: Cổng công bố chính thức dự án NOXH & CV 7549/SXD-QLN&TTBĐS", url: "https://soxaydung.hochiminhcity.gov.vn/Tin-tuc/Chi-tiet-bai-viet/tin/6fa3408d-58f7-4f74-b380-5d6a4014c081" },
+      { title: "Cổng Dịch vụ công Quốc gia: Thủ tục xác nhận điều kiện NOXH (mã 1.014632 — 7 ngày, 0 đồng)", url: "https://vpcp.dichvucong.gov.vn/p/home/dvc-chi-tiet-thu-tuc-dung-chung.html?ma_thu_tuc=1.014632" },
+      { title: "Bản đồ số TP.HCM: Đo khoảng cách xe máy theo Quyết định 17/2025/QĐ-UBND", url: "https://bando.tphcm.gov.vn/" },
+      { title: "Thư viện Pháp luật: Biểu thuế TNCN lũy tiến 5 bậc & giảm trừ 15,5tr / 6,2tr từ 2026", url: "https://thuvienphapluat.vn/chinh-sach-phap-luat-moi/vn/ho-tro-phap-luat/chinh-sach-moi/100277/bieu-thue-tncn-luy-tien-2026-bieu-thue-5-bac" },
+      { title: "Luật Việt Nam: Lãi suất 6,5% (5 năm) / 7,5% (10 năm) cho người <35t (CV 5340/NHNN-CSTT)", url: "https://luatvietnam.vn/dat-dai-nha-o/tu-01-7-2026-nguoi-duoi-35-tuoi-duoc-vay-mua-nha-o-xa-hoi-voi-lai-suat-bao-nhieu-567-109997-article.html" },
+      { title: "Báo Tuổi Trẻ: Công khai giá 23,25 tr/m² dự án 324 Lý Thường Kiệt & cảnh báo lừa đảo 37 bị can", url: "https://tuoitre.vn/cong-khai-gia-ban-du-an-nha-o-xa-hoi-324-ly-thuong-kiet-100260628111711462.htm" },
+      { title: "Báo Bảo vệ Pháp luật: Khởi công đại dự án NOXH 45.000 căn xã Bà Điểm (19/11/2026)", url: "https://baovephapluat.vn/kinh-te/do-thi-xay-dung/khoi-cong-du-an-nha-o-xa-hoi-45-000-can-o-tp-ho-chi-minh-210471.html" },
+      { title: "VnEconomy: Chỉ tiêu 181.257 căn NOXH TP.HCM giai đoạn 2026–2030", url: "https://vneconomy.vn/tp-ho-chi-minh-dat-muc-tieu-hoan-thanh-181257-can-nha-o-xa-hoi-den-2030.htm" }
+    ]}
+  ]
+};
+
+// ============================================================================
+// CORE UTILITIES & NAVIGATION
+// ============================================================================
+function fmt(n, dec = 2) {
+  return Number(n).toLocaleString('vi-VN', { minimumFractionDigits: dec, maximumFractionDigits: dec });
+}
+function switchTab(tabId) {
+  document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  const panel = document.getElementById('tab-' + tabId);
+  const btn = document.querySelector('.tab-btn[data-tab="' + tabId + '"]');
+  if (panel) panel.classList.add('active');
+  if (btn) btn.classList.add('active');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+// ============================================================================
+// TAB 1: INCOME & 2026 5-BRACKET PIT ENGINE
+// ============================================================================
+function calcPit2026(annualTaxable) {
+  const ti = Math.max(0, annualTaxable);
+  let tax = 0, prev = 0;
+  for (const b of APP_CONFIG.tax2026.brackets) {
+    if (ti > prev) {
+      tax += (Math.min(ti, b.limit) - prev) * b.rate;
+      prev = b.limit;
+    } else break;
+  }
+  return tax;
+}
+
+function resetProfileInputs() {
+  document.getElementById('inHMonthly').value = 40;
+  document.getElementById('inHBonus').value = 520;
+  document.getElementById('inHBhxh').value = 15;
+  document.getElementById('inWMonthly').value = 25;
+  document.getElementById('inWBonusMo').value = 2;
+  document.getElementById('inDeps').value = 0;
+  updateIncomeEngine();
+}
+
+function updateIncomeEngine() {
+  const hMo = parseFloat(document.getElementById('inHMonthly').value) || 0;
+  const hBonus = parseFloat(document.getElementById('inHBonus').value) || 0;
+  const hBhxh = parseFloat(document.getElementById('inHBhxh').value) || 0;
+  const wMo = parseFloat(document.getElementById('inWMonthly').value) || 0;
+  const wBonusMo = parseFloat(document.getElementById('inWBonusMo').value) || 0;
+  const deps = parseInt(document.getElementById('inDeps').value) || 0;
+
+  const hGrossYr = hMo * 12 + hBonus;
+  const hInsYr = hBhxh * APP_CONFIG.tax2026.insRate * 12;
+  const hTaxable = hGrossYr - hInsYr - (APP_CONFIG.tax2026.selfAnnual + deps * APP_CONFIG.tax2026.depAnnual);
+  const hPitYr = calcPit2026(hTaxable);
+  const hNetYr = Math.max(0, hGrossYr - hInsYr - hPitYr);
+  const hNetMo = hNetYr / 12;
+
+  const wNetYr = wMo * (12 + wBonusMo);
+  const wNetMo = wNetYr / 12;
+
+  const totalNetMo = hNetMo + wNetMo;
+  const ceiling = deps >= 3 ? APP_CONFIG.caps.married3Deps : APP_CONFIG.caps.married;
+  const diff = totalNetMo - ceiling;
+  const ratio = ceiling > 0 ? totalNetMo / ceiling : 0;
+
+  const hNbGross = hMo * 12;
+  const hNbPit = calcPit2026(hNbGross - hInsYr - (APP_CONFIG.tax2026.selfAnnual + deps * APP_CONFIG.tax2026.depAnnual));
+  const hNbNetMo = Math.max(0, hNbGross - hInsYr - hNbPit) / 12;
+  const totalNbMo = hNbNetMo + wNetMo;
+
+  document.getElementById('overviewKpis').innerHTML = `
+    <div class="kpi-card">
+      <div class="kpi-label">Tổng Net Hộ Gia Đình (2026)</div>
+      <div class="kpi-val">${fmt(totalNetMo, 2)} tr/th</div>
+      <div class="kpi-note">Chồng ${fmt(hNetMo, 2)} tr + Vợ ${fmt(wNetMo, 2)} tr (${fmt(totalNetMo*12, 0)} tr/năm)</div>
+    </div>
+    <div class="kpi-card ${diff > 0 ? 'red' : 'green'}">
+      <div class="kpi-label">So với Trần TP.HCM (${ceiling} tr)</div>
+      <div class="kpi-val" style="color:${diff > 0 ? 'var(--red)' : 'var(--green)'};">${diff > 0 ? '+' : ''}${fmt(diff, 2)} tr</div>
+      <div class="kpi-note">${diff > 0 ? 'Vượt ngưỡng ' + fmt(ratio, 2) + ' lần — KHÔNG ĐẠT' : 'Dưới trần — ĐẠT ĐIỀU KIỆN'}</div>
+    </div>
+    <div class="kpi-card amber">
+      <div class="kpi-label">Thuế TNCN Chồng (5 bậc 2026)</div>
+      <div class="kpi-val">${fmt(hPitYr, 1)} tr/năm</div>
+      <div class="kpi-note">BHXH (nền ${hBhxh}tr): ${fmt(hInsYr, 1)} tr/năm</div>
+    </div>
+    <div class="kpi-card green">
+      <div class="kpi-label">Sức Tích Lũy Ròng (chi 35tr/th)</div>
+      <div class="kpi-val">${fmt(Math.max(0, totalNetMo - 35), 1)} tr/th</div>
+      <div class="kpi-note">≈ ${fmt(Math.max(0, (totalNetMo - 35)*12), 0)} triệu/năm trả gốc mua nhà</div>
+    </div>
+  `;
+
+  const vbox = document.getElementById('incomeVerdictBox');
+  if (diff > 0) {
+    vbox.innerHTML = `<div class="callout red">
+      <strong>❌ KẾT LUẬN CHẨN ĐOÁN: KHÔNG ĐỦ ĐIỀU KIỆN MUA NOXH SƠ CẤP.</strong> Tổng thu nhập bình quân thực nhận của hai vợ chồng đạt <strong>${fmt(totalNetMo, 2)} triệu/tháng</strong>, vượt trần <strong>${ceiling} triệu/tháng</strong> của TP.HCM tới <strong>${fmt(diff, 2)} triệu/tháng</strong> (${fmt(ratio, 2)} lần). Kể cả khi chồng không có thưởng năm, tổng thu nhập vẫn là <strong>${fmt(totalNbMo, 2)} triệu/tháng</strong>. Khuyến nghị chuyển ngay sang <strong>Phương án 1</strong> (mua NOXH thứ cấp đủ 5 năm + sổ hồng trước 01/07/2027) hoặc <strong>Phương án 2</strong> (chung cư thương mại sổ hồng gần Đầm Sen).
+    </div>`;
+  } else {
+    vbox.innerHTML = `<div class="callout green">
+      <strong>✅ KẾT LUẬN CHẨN ĐOÁN: ĐẠT ĐIỀU KIỆN THU NHẬP NOXH TP.HCM!</strong> Tổng thu nhập thực nhận <strong>${fmt(totalNetMo, 2)} triệu/tháng</strong> nằm trong giới hạn <strong>${ceiling} triệu/tháng</strong> (còn dư biên độ ${fmt(Math.abs(diff), 2)} triệu/tháng). Chuyển sang Tab 2 kiểm tra bậc ưu tiên và Tab 4 để chuẩn bị bộ hồ sơ chuẩn TT 08/2026.
+    </div>`;
+  }
+
+  const scenarios = [
+    { label: "Hồ sơ hiện tại (đủ thưởng)", h: hNetMo, w: wNetMo },
+    { label: "Không có thưởng chồng", h: hNbNetMo, w: wNetMo },
+    { label: "Chồng nghỉ việc trọn 12 tháng", h: 0, w: wNetMo }
+  ];
+  const maxVal = Math.max(115, totalNetMo * 1.15);
+  const W = 760, H = 205, leftM = 205, rightM = 115, chartW = W - leftM - rightM;
+  const xScale = v => leftM + (v / maxVal) * chartW;
+  const c50 = xScale(50), c54 = xScale(54);
+
+  let bars = '';
+  scenarios.forEach((s, idx) => {
+    const y = 38 + idx * 50;
+    const tot = s.h + s.w;
+    const hW = (s.h / maxVal) * chartW;
+    const wW = (s.w / maxVal) * chartW;
+    const ok = tot <= ceiling;
+    bars += `
+      <text x="${leftM - 10}" y="${y + 18}" text-anchor="end" font-size="12.5" font-weight="600" fill="#1E293B">${s.label}</text>
+      <rect x="${leftM}" y="${y}" width="${Math.max(0, hW)}" height="26" rx="4" fill="#1A73E8"/>
+      <rect x="${leftM + hW}" y="${y}" width="${Math.max(0, wW)}" height="26" rx="4" fill="#0891B2"/>
+      ${hW > 42 ? `<text x="${leftM + hW/2}" y="${y+17}" text-anchor="middle" font-size="11" font-weight="700" fill="#FFF">${fmt(s.h,1)}</text>` : ''}
+      ${wW > 36 ? `<text x="${leftM + hW + wW/2}" y="${y+17}" text-anchor="middle" font-size="11" font-weight="700" fill="#FFF">${fmt(s.w,1)}</text>` : ''}
+      <text x="${leftM + hW + wW + 8}" y="${y + 18}" font-size="12.5" font-weight="800" fill="${ok ? '#15803D' : '#DC2626'}">${fmt(tot, 2)} tr ${ok ? '✓' : '✕'}</text>
+    `;
+  });
+
+  document.getElementById('incomeChartBox').innerHTML = `
+    <svg viewBox="0 0 ${W} ${H}" xmlns="http://www.w3.org/2000/svg">
+      <rect width="${W}" height="${H}" fill="#FFFFFF"/>
+      <g font-size="11.5" fill="#475569">
+        <rect x="${leftM}" y="6" width="12" height="12" rx="2" fill="#1A73E8"/><text x="${leftM+16}" y="16">Net Chồng</text>
+        <rect x="${leftM+95}" y="6" width="12" height="12" rx="2" fill="#0891B2"/><text x="${leftM+111}" y="16">Net Vợ</text>
+        <line x1="${leftM+185}" y1="12" x2="${leftM+205}" y2="12" stroke="#DC2626" stroke-width="2" stroke-dasharray="4,3"/><text x="${leftM+210}" y="16" fill="#DC2626" font-weight="700">Trần chuẩn 50tr</text>
+        <line x1="${leftM+320}" y1="12" x2="${leftM+340}" y2="12" stroke="#D97706" stroke-width="2" stroke-dasharray="4,3"/><text x="${leftM+345}" y="16" fill="#D97706" font-weight="700">Trần ≥3 NPT: 54tr</text>
+      </g>
+      ${[0, 25, 50, 75, 100].filter(v => v <= maxVal).map(v => `
+        <line x1="${xScale(v)}" y1="30" x2="${xScale(v)}" y2="${H-22}" stroke="#E2E8F0" stroke-width="1"/>
+        <text x="${xScale(v)}" y="${H-6}" text-anchor="middle" font-size="11" fill="#64748B">${v} tr</text>
+      `).join('')}
+      ${bars}
+      <line x1="${c50}" y1="28" x2="${c50}" y2="${H-22}" stroke="#DC2626" stroke-width="2.2" stroke-dasharray="5,3"/>
+      <line x1="${c54}" y1="28" x2="${c54}" y2="${H-22}" stroke="#D97706" stroke-width="1.8" stroke-dasharray="3,3"/>
+    </svg>
+  `;
+}
+
+// ============================================================================
+// TAB 2: LEGAL QUIZ, MINI-GAME ENGINE & LAW FILTER
+// ============================================================================
+function runLegalQuiz() {
+  const marital = document.getElementById('qMarital').value;
+  const job = document.getElementById('qJob').value;
+  const kids = document.getElementById('qKids').value;
+  const house = document.getElementById('qHouse').value;
+  const income = document.getElementById('qIncome').value;
+  const special = document.getElementById('qSpecial').value;
+  const post2027 = APP_CONFIG.flags.postJuly2027Mode;
+
+  const issues = [];
+  if (house === 'owned_near') issues.push("Không đạt điều kiện nhà ở (đã đứng tên nhà ở ≥15 m²/người & cách nơi làm việc <14,5 km).");
+  if (income === 'over' && special !== 'resettlement') issues.push("Vượt trần thu nhập TP.HCM (50tr vợ chồng / 25tr độc thân / 54tr hộ ≥3 NPT).");
+  if (job === 'unemployed_short') issues.push("Mới thất nghiệp <6 tháng: thu nhập xét theo 12 tháng liền kề nên tổng 12 tháng thường vẫn vượt trần khi đối soát dữ liệu Thuế.");
+
+  let tier = "Nhóm thường (Bốc thăm chung nếu hồ sơ vượt số căn)";
+  let badgeClass = "b-gray";
+  if (special === 'merit') { tier = "Bậc 1–2: Người có công / Thân nhân liệt sĩ (Ưu tiên cao nhất — không bốc thăm chung)"; badgeClass = "b-green"; }
+  else if (special === 'disabled') { tier = "Bậc 3: Người khuyết tật (Ưu tiên phân bổ trước)"; badgeClass = "b-green"; }
+  else if (special === 'resettlement') { tier = "Bậc 4: Tái định cư / Bị thu hồi đất (Không phải bốc thăm; miễn ĐK thu nhập/nhà ở theo NQ 66.15 đến 28/02/2027)"; badgeClass = "b-green"; }
+  else if (kids === '2_new' || (!post2027 && kids === '2_old')) { tier = "Bậc 5: Có từ 02 con đẻ trở lên (Ưu tiên phân bổ không bốc thăm chung)"; badgeClass = "b-blue"; }
+  else if (marital === 'single_parent') { tier = "Nhóm ưu tiên (Nữ đơn thân / Người độc thân nuôi con nhỏ — duy trì cả sau 01/07/2027)"; badgeClass = "b-blue"; }
+  else if (!post2027 && marital === 'married_female_head') { tier = "Bậc 6 (đến 30/06/2027): Nữ giới là Chủ hộ trên VNeID — Lưu ý tiêu chí nữ chủ hộ chung bị bỏ từ 01/07/2027!"; badgeClass = "b-amber"; }
+
+  const formGuide = job === 'employed'
+    ? "Mẫu 01 (NĐ 136) + Mẫu 01a (TT 08/2026 — công ty xác nhận, không cần photo bảng lương) + Mẫu 02/03"
+    : "Mẫu 01 (NĐ 136) + Mẫu 05 (TT 08/2026 — Công an phường xác nhận 7 ngày, 0 đồng, hậu kiểm Thuế) + Mẫu 02/03";
+
+  const out = document.getElementById('quizOutput');
+  if (issues.length > 0) {
+    out.innerHTML = `<div class="callout red" style="margin-bottom:0;">
+      <strong>❌ HỒ SƠ CHƯA ĐẠT ĐIỀU KIỆN SƠ CẤP:</strong><br>
+      ${issues.map(i => '• ' + i).join('<br>')}<br><br>
+      <strong>Xếp hạng ưu tiên giả định:</strong> <span class="badge ${badgeClass}">${tier}</span><br>
+      <strong>Gợi ý xử lý:</strong> Ưu tiên ngay <strong>PA1 (NOXH thứ cấp đủ 5 năm trước 01/07/2027)</strong> hoặc <strong>PA2 (Thương mại sổ hồng)</strong>. Thất nghiệp KHÔNG tạo ra bậc ưu tiên nào.
+    </div>`;
+  } else {
+    out.innerHTML = `<div class="callout green" style="margin-bottom:0;">
+      <strong>✅ HỒ SƠ ĐỦ ĐIỀU KIỆN NỘP MUA NOXH SƠ CẤP!</strong><br>
+      • <strong>Bậc ưu tiên:</strong> <span class="badge ${badgeClass}">${tier}</span><br>
+      • <strong>Bộ biểu mẫu cần dùng:</strong> ${formGuide}<br>
+      • <strong>Lưu ý hậu kiểm:</strong> Thông tin cư trú VNeID, sổ hồng VPĐKĐĐ và quyết toán thuế TNCN 12 tháng liền kề sẽ được đối soát chéo.
+    </div>`;
+  }
+}
+
+// Mini-Game Logic (data-driven from APP_CONFIG.quizGame)
+let gameIdx = 0, gameScore = 0, gameAnswered = false;
+function renderMiniGame() {
+  const list = APP_CONFIG.quizGame;
+  document.getElementById('gameScoreBadge').textContent = `Điểm: ${gameScore}/${list.length}`;
+  const box = document.getElementById('miniGameBox');
+  if (gameIdx >= list.length) {
+    const rank = gameScore === list.length ? "🏆 CHUYÊN GIA PHÁP LÝ NOXH!" : (gameScore >= 3 ? "👍 NẮM VỮNG CỐT LÕI" : "⚠️ CẦN ĐỌC KỸ LẠI TAB 2");
+    box.innerHTML = `
+      <div style="text-align:center; padding:14px 8px;">
+        <div class="badge b-blue" style="margin-bottom:8px;">HOÀN THÀNH MINI-GAME</div>
+        <h3 style="margin-bottom:8px;">${rank} (${gameScore}/${list.length} câu đúng)</h3>
+        <p style="font-size:13.5px; color:var(--text-muted); margin-bottom:14px;">Bạn đã đi qua toàn bộ các bẫy pháp lý phổ biến nhất giai đoạn 2026–2027 (BHXH vs Thực nhận, Thừa kế, Vi bằng 2028, Mốc 01/07/2027 và Thất nghiệp).</p>
+        <button class="btn-primary" onclick="restartMiniGame()">🔄 Chơi lại từ đầu</button>
+      </div>
+    `;
+    return;
+  }
+  const cur = list[gameIdx];
+  gameAnswered = false;
+  box.innerHTML = `
+    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+      <span class="badge b-blue">Câu ${gameIdx + 1} / ${list.length}</span>
+      <small style="color:var(--text-muted);">Cập nhật câu hỏi tại <code>APP_CONFIG.quizGame</code></small>
+    </div>
+    <p style="font-size:14px; font-weight:700; margin-bottom:12px;">${cur.q}</p>
+    <div id="gameOpts">
+      ${cur.opts.map((opt, idx) => `<button class="game-opt" onclick="answerGame(${idx}, this)">${String.fromCharCode(65+idx)}. ${opt}</button>`).join('')}
+    </div>
+    <div id="gameFeedback"></div>
+  `;
+}
+
+function answerGame(choiceIdx, btn) {
+  if (gameAnswered) return;
+  gameAnswered = true;
+  const cur = APP_CONFIG.quizGame[gameIdx];
+  const buttons = document.querySelectorAll('#gameOpts .game-opt');
+  buttons.forEach((b, i) => {
+    b.disabled = true;
+    if (i === cur.ans) b.classList.add('correct');
+    else if (i === choiceIdx && choiceIdx !== cur.ans) b.classList.add('wrong');
+  });
+  const isRight = choiceIdx === cur.ans;
+  if (isRight) gameScore++;
+  document.getElementById('gameScoreBadge').textContent = `Điểm: ${gameScore}/${APP_CONFIG.quizGame.length}`;
+  document.getElementById('gameFeedback').innerHTML = `
+    <div class="callout ${isRight ? 'green' : 'red'}" style="margin-top:10px; margin-bottom:10px;">
+      <strong>${isRight ? '✅ Chính xác!' : '❌ Chưa đúng!'}</strong> ${cur.explain}
+    </div>
+    <button class="btn-primary" onclick="nextGameQ()">${gameIdx + 1 < APP_CONFIG.quizGame.length ? 'Câu tiếp theo →' : 'Xem kết quả 🏆'}</button>
+  `;
+}
+function nextGameQ() { gameIdx++; renderMiniGame(); }
+function restartMiniGame() { gameIdx = 0; gameScore = 0; renderMiniGame(); }
+
+function filterLaws(cat, btn) {
+  if (btn) {
+    btn.parentElement.querySelectorAll('.pill').forEach(p => p.classList.remove('active'));
+    btn.classList.add('active');
+  }
+  const rows = APP_CONFIG.laws.filter(l => cat === 'all' || l.cat === cat);
+  document.getElementById('lawTableBody').innerHTML = rows.map(l => `
+    <tr>
+      <td><strong>${l.doc}</strong></td>
+      <td><span class="badge ${l.date.includes('2027') ? 'b-red' : 'b-blue'}">${l.date}</span></td>
+      <td>${l.core}</td>
+      <td style="color:var(--text-muted); font-size:13px;">${l.impact}</td>
+    </tr>
+  `).join('');
+}
+
+// ============================================================================
+// TAB 3: SIMULATOR 1 (OPPORTUNITY COST) & SIMULATOR 2 (MORTGAGE ACCELERATION)
+// ============================================================================
+function updateEvSim() {
+  const p = (parseFloat(document.getElementById('slProb').value) || 5) / 100;
+  const lost = parseFloat(document.getElementById('slLost').value) || 857;
+  document.getElementById('lblProb').textContent = Math.round(p * 100) + '%';
+  document.getElementById('lblLost').textContent = fmt(lost, 0) + ' triệu';
+
+  const discSec = 710;
+  const discCom = 1710;
+  const evSec = p * discSec - lost;
+  const evCom = p * discCom - lost;
+  const breakevenCom = Math.min(100, (lost / discCom) * 100);
+
+  document.getElementById('evResultBox').innerHTML = `
+    <div class="callout ${evCom < 0 ? 'red' : 'green'}">
+      • <strong>Giá trị kỳ vọng (EV) so với NOXH thứ cấp (2,15 tỷ):</strong> <strong style="color:${evSec<0?'var(--red)':'var(--green)'};">${evSec>=0?'+':''}${fmt(evSec,0)} triệu</strong><br>
+      • <strong>Giá trị kỳ vọng (EV) so với Thương mại (3,15 tỷ):</strong> <strong style="color:${evCom<0?'var(--red)':'var(--green)'};">${evCom>=0?'+':''}${fmt(evCom,0)} triệu</strong><br>
+      <small>📌 Để hòa vốn thu nhập mất trắng, xác suất trúng bốc thăm tối thiểu phải đạt <strong>${fmt(breakevenCom, 1)}%</strong> (so với thực tế 1–2% tại 324 Lý Thường Kiệt).</small>
+    </div>
+  `;
+
+  const W = 500, H = 140, midX = 250, scale = 190 / 1200;
+  const drawBar = (y, label, val, col) => {
+    const bw = Math.min(195, Math.abs(val) * scale);
+    const x = val >= 0 ? midX : midX - bw;
+    return `
+      <text x="10" y="${y+16}" font-size="11.5" font-weight="600" fill="#1E293B">${label}</text>
+      <rect x="${x}" y="${y}" width="${bw}" height="22" rx="3" fill="${col}"/>
+      <text x="${val>=0 ? x+bw+5 : x-5}" y="${y+15}" text-anchor="${val>=0?'start':'end'}" font-size="11.5" font-weight="700" fill="${col}">${val>=0?'+':''}${fmt(val,0)}tr</text>
+    `;
+  };
+  document.getElementById('evChartBox').innerHTML = `
+    <svg viewBox="0 0 ${W} ${H}" xmlns="http://www.w3.org/2000/svg">
+      <line x1="${midX}" y1="10" x2="${midX}" y2="128" stroke="#94A3B8" stroke-width="1.5"/>
+      ${drawBar(18, "Mất thu nhập 12th", -lost, "#DC2626")}
+      ${drawBar(54, "EV vs Thứ cấp", evSec, evSec < 0 ? "#D97706" : "#15803D")}
+      ${drawBar(90, "EV vs Thương mại", evCom, evCom < 0 ? "#DC2626" : "#15803D")}
+    </svg>
+  `;
+}
+
+function applyMortgagePreset() {
+  const key = document.getElementById('selPreset').value;
+  const p = APP_CONFIG.mortgagePresets[key];
+  if (!p) return;
+  document.getElementById('mPrice').value = p.price;
+  document.getElementById('mDownPct').value = p.down;
+  document.getElementById('mYears').value = p.years;
+  document.getElementById('mRate1').value = p.r1;
+  document.getElementById('mRate2').value = p.r2;
+  document.getElementById('mAccel').value = p.accel;
+  updateMortgageSim();
+}
+
+function updateMortgageSim() {
+  const price = parseFloat(document.getElementById('mPrice').value) || 3150;
+  const downPct = parseFloat(document.getElementById('mDownPct').value) || 35;
+  const years = parseInt(document.getElementById('mYears').value) || 20;
+  const r1 = (parseFloat(document.getElementById('mRate1').value) || 9.0) / 100;
+  const r2 = (parseFloat(document.getElementById('mRate2').value) || 11.5) / 100;
+  const accel = parseFloat(document.getElementById('mAccel').value) || 60;
+  document.getElementById('lblAccel').textContent = fmt(accel, 0) + ' triệu/tháng';
+
+  const downAmt = price * downPct / 100;
+  const loan = Math.max(0, price - downAmt);
+
+  let bal = loan, stdInt = 0, y1Pmt = 0, y2Pmt = 0;
+  const nTotal = years * 12;
+  for (let m = 1; m <= nTotal; m++) {
+    const r = (m <= 12 ? r1 : r2) / 12;
+    const rem = nTotal - m + 1;
+    const pmt = r > 0 ? bal * (r * Math.pow(1 + r, rem)) / (Math.pow(1 + r, rem) - 1) : bal / rem;
+    const interest = bal * r;
+    bal -= (pmt - interest);
+    stdInt += interest;
+    if (m === 1) y1Pmt = pmt;
+    if (m === 13) y2Pmt = pmt;
+  }
+  if (y2Pmt === 0) y2Pmt = y1Pmt;
+
+  let aBal = loan, aInt = 0, aMo = 0;
+  const effPay = Math.max(accel, y2Pmt);
+  while (aBal > 0.01 && aMo < nTotal) {
+    aMo++;
+    const r = (aMo <= 12 ? r1 : r2) / 12;
+    const interest = aBal * r;
+    const pay = Math.min(effPay, aBal + interest);
+    aBal -= (pay - interest);
+    aInt += interest;
+  }
+  const savedInt = Math.max(0, stdInt - aInt);
+  const estPrepayFee = (r1 >= 0.08 && aMo < 48) ? loan * 0.015 : 0;
+
+  document.getElementById('mortgageOutput').innerHTML = `
+    <div class="callout green">
+      <strong>Vốn tự có:</strong> ${fmt(downAmt,0)} tr | <strong>Vay ngân hàng:</strong> ${fmt(loan,0)} tr<br>
+      • <strong>Trả chuẩn (${years} năm):</strong> Năm 1 = <strong>${fmt(y1Pmt,1)} tr/th</strong> → Năm 2+ = <strong>${fmt(y2Pmt,1)} tr/th</strong> | Tổng lãi: <strong style="color:var(--red);">${fmt(stdInt,0)} tr</strong><br>
+      • <strong>Trả tăng tốc (${fmt(effPay,0)} tr/th):</strong> Sạch nợ sau <strong style="color:var(--green); font-size:15px;">${aMo} tháng (${fmt(aMo/12,1)} năm)</strong> | Tổng lãi thực: <strong>${fmt(aInt,0)} tr</strong> ${estPrepayFee>0 ? '(+ phí tất toán sớm ước ~'+fmt(estPrepayFee,0)+' tr)' : ''}<br>
+      • <strong>Tổng lãi tiết kiệm được:</strong> <strong style="color:var(--primary);">${fmt(savedInt,0)} triệu đồng!</strong>
+    </div>
+  `;
+
+  const maxI = Math.max(100, stdInt * 1.15);
+  const W = 500, H = 92, left = 135, cw = 265;
+  const wStd = (stdInt / maxI) * cw, wAcc = (aInt / maxI) * cw;
+  document.getElementById('mortgageChartBox').innerHTML = `
+    <svg viewBox="0 0 ${W} ${H}" xmlns="http://www.w3.org/2000/svg">
+      <text x="${left-8}" y="29" text-anchor="end" font-size="11.5" font-weight="600" fill="#475569">Lãi vay chuẩn (${years}n)</text>
+      <rect x="${left}" y="14" width="${wStd}" height="22" rx="4" fill="#CBD5E1"/>
+      <text x="${left+wStd+6}" y="29" font-size="12" font-weight="700" fill="#475569">${fmt(stdInt,0)} tr</text>
+      <text x="${left-8}" y="66" text-anchor="end" font-size="11.5" font-weight="700" fill="#15803D">Lãi trả tăng tốc</text>
+      <rect x="${left}" y="51" width="${Math.max(6, wAcc)}" height="22" rx="4" fill="#15803D"/>
+      <text x="${left+Math.max(6, wAcc)+6}" y="66" font-size="12" font-weight="800" fill="#15803D">${fmt(aInt,0)} tr (${aMo} tháng)</text>
+    </svg>
+  `;
+}
+
+// ============================================================================
+// TAB 4: INTERACTIVE CHECKLIST (localStorage) & DIRECTORY
+// ============================================================================
+const STORAGE_KEY = 'noxh_tphcm_2026_checklist_v1';
+function getCheckState() {
+  try { return JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}'); } catch (e) { return {}; }
+}
+function toggleCheck(id) {
+  const st = getCheckState();
+  st[id] = !st[id];
+  try { localStorage.setItem(STORAGE_KEY, JSON.stringify(st)); } catch (e) {}
+  renderChecklist();
+}
+function resetChecklist() {
+  try { localStorage.removeItem(STORAGE_KEY); } catch (e) {}
+  renderChecklist();
+}
+function renderChecklist() {
+  const st = getCheckState();
+  let doneCount = 0;
+  document.getElementById('checklistContainer').innerHTML = APP_CONFIG.checklist.map(item => {
+    const done = !!st[item.id];
+    if (done) doneCount++;
+    return `
+      <label class="check-item ${done ? 'done' : ''}">
+        <input type="checkbox" ${done ? 'checked' : ''} onchange="toggleCheck('${item.id}')">
+        <div>
+          <div class="check-title" style="font-weight:700; font-size:13.5px;">${item.title}</div>
+          <div style="font-size:12.5px; color:var(--text-muted); margin-top:2px;">${item.desc}</div>
+        </div>
+      </label>
+    `;
+  }).join('');
+  const pct = Math.round((doneCount / APP_CONFIG.checklist.length) * 100);
+  document.getElementById('checkProgressTxt').textContent = `${doneCount}/${APP_CONFIG.checklist.length} mục (${pct}%)`;
+  document.getElementById('checkProgressBar').style.width = pct + '%';
+}
+
+function renderDirectory() {
+  const q = (document.getElementById('dirSearch').value || '').toLowerCase().trim();
+  const list = APP_CONFIG.directory.filter(d =>
+    !q || (d.group + ' ' + d.name + ' ' + d.addr + ' ' + d.role).toLowerCase().includes(q)
+  );
+  document.getElementById('dirTableBody').innerHTML = list.map(d => `
+    <tr>
+      <td><span class="badge b-gray">${d.group}</span></td>
+      <td><strong>${d.name}</strong></td>
+      <td>${d.addr}</td>
+      <td style="font-size:13px; color:var(--text-muted);">${d.role}</td>
+    </tr>
+  `).join('') || `<tr><td colspan="4" style="text-align:center; color:var(--text-muted);">Không tìm thấy cơ quan phù hợp.</td></tr>`;
+}
+
+// ============================================================================
+// TAB 5: INTERACTIVE SVG RADIAL MAP & PROJECT DIRECTORY
+// ============================================================================
+let activeProjCat = 'all';
+function setProjectFilter(cat, btn) {
+  activeProjCat = cat;
+  btn.parentElement.querySelectorAll('.pill').forEach(p => p.classList.remove('active'));
+  btn.classList.add('active');
+  renderProjects();
+}
+
+function catBadge(cat) {
+  if (cat === 'pa1') return '<span class="badge b-green">PA1: NOXH Thứ cấp</span>';
+  if (cat === 'pa2') return '<span class="badge b-blue">PA2: Thương mại Sổ hồng</span>';
+  if (cat === 'primary') return '<span class="badge b-cyan">NOXH Sơ cấp / Tương lai</span>';
+  return '<span class="badge b-red">Cảnh báo pháp lý</span>';
+}
+
+function selectMapProject(id) {
+  const p = APP_CONFIG.projects.find(x => x.id === id);
+  if (!p) return;
+  document.getElementById('mapDetailCard').innerHTML = `
+    <div style="margin-bottom:8px;">${catBadge(p.cat)} <span class="badge b-gray">Cách Đầm Sen ~${p.dist} km (ước tính)</span></div>
+    <h3 style="margin-bottom:6px; font-size:18px;">${p.name}</h3>
+    <p style="font-size:13.5px; margin-bottom:6px;"><strong>Chủ đầu tư:</strong> ${p.dev}</p>
+    <p style="font-size:13.5px; margin-bottom:6px;"><strong>Vị trí:</strong> ${p.loc}</p>
+    <p style="font-size:13.5px; margin-bottom:6px;"><strong>Pháp lý (T11/2026):</strong> ${p.legal}</p>
+    <p style="font-size:13.5px; margin-bottom:10px;"><strong>Mặt bằng giá:</strong> <span style="color:var(--primary); font-weight:700;">${p.price}</span></p>
+    <div class="callout ${p.cat==='warning'?'red':(p.cat==='pa1'||p.cat==='pa2'?'green':'')}" style="margin:0;">${p.note}</div>
+  `;
+}
+
+function renderRadialMap() {
+  const cx = 250, cy = 240;
+  let pins = '';
+  APP_CONFIG.projects.forEach(p => {
+    const col = p.cat === 'warning' ? '#DC2626' : (p.cat === 'primary' ? '#1A73E8' : '#15803D');
+    const shortName = p.name.split('(')[0].split('&')[0].trim().slice(0, 18);
+    if (p.cat === 'warning') {
+      pins += `
+        <g style="cursor:pointer;" onclick="selectMapProject('${p.id}')">
+          <polygon points="${p.mapX},${p.mapY-7} ${p.mapX-7},${p.mapY+6} ${p.mapX+7},${p.mapY+6}" fill="${col}" stroke="#FFF" stroke-width="1.5"/>
+          <title>${p.name} (~${p.dist} km)</title>
+        </g>`;
+    } else {
+      const r = p.id === 'p17' || p.id === 'p1' || p.id === 'p4' ? 8 : 6;
+      pins += `
+        <g style="cursor:pointer;" onclick="selectMapProject('${p.id}')">
+          <circle cx="${p.mapX}" cy="${p.mapY}" r="${r}" fill="${col}" stroke="#FFF" stroke-width="1.8"/>
+          <text x="${p.mapX + 9}" y="${p.mapY + 4}" font-size="9.5" font-weight="700" fill="#1E293B">${shortName}</text>
+          <title>${p.name} (~${p.dist} km)</title>
+        </g>`;
+    }
+  });
+
+  document.getElementById('radialMapBox').innerHTML = `
+    <svg viewBox="0 0 500 450" xmlns="http://www.w3.org/2000/svg" style="background:#F8FAFC; border:1px solid #E2E8F0; border-radius:12px;">
+      <line x1="20" y1="360" x2="480" y2="275" stroke="#CBD5E1" stroke-width="3" stroke-dasharray="6,4"/>
+      <text x="35" y="348" font-size="10" fill="#64748B" font-weight="600">ĐL Võ Văn Kiệt / Kinh Dương Vương</text>
+      <line x1="70" y1="60" x2="360" y2="390" stroke="#E2E8F0" stroke-width="2"/>
+      <text x="72" y="52" font-size="10" fill="#64748B" font-weight="600">Trục QL22 — Tây Bắc</text>
+      <circle cx="${cx}" cy="${cy}" r="65" fill="rgba(26,115,232,0.03)" stroke="#94A3B8" stroke-dasharray="4,4"/>
+      <circle cx="${cx}" cy="${cy}" r="130" fill="none" stroke="#94A3B8" stroke-dasharray="4,4"/>
+      <circle cx="${cx}" cy="${cy}" r="195" fill="none" stroke="#CBD5E1" stroke-dasharray="4,4"/>
+      <text x="${cx}" y="${cy-68}" text-anchor="middle" font-size="10" fill="#64748B" font-weight="700">Vòng 5 km</text>
+      <text x="${cx}" y="${cy-133}" text-anchor="middle" font-size="10" fill="#64748B" font-weight="700">Vòng 10 km</text>
+      <text x="${cx}" y="${cy-198}" text-anchor="middle" font-size="10" fill="#64748B" font-weight="700">Vòng 15+ km</text>
+      <circle cx="${cx}" cy="${cy}" r="12" fill="#10B981" fill-opacity="0.25" stroke="#059669" stroke-width="2"/>
+      <circle cx="${cx}" cy="${cy}" r="4" fill="#059669"/>
+      <text x="${cx}" y="${cy+22}" text-anchor="middle" font-size="10.5" font-weight="800" fill="#065F46">TÂM Q.11 – ĐẦM SEN</text>
+      ${pins}
+    </svg>
+  `;
+}
+
+function renderProjects() {
+  const q = (document.getElementById('projSearch').value || '').toLowerCase().trim();
+  const list = APP_CONFIG.projects.filter(p =>
+    (activeProjCat === 'all' || p.cat === activeProjCat) &&
+    (!q || (p.name + ' ' + p.dev + ' ' + p.loc + ' ' + p.note).toLowerCase().includes(q))
+  );
+  document.getElementById('projectCountBadge').textContent = list.length + ' dự án';
+  document.getElementById('projectTableBody').innerHTML = list.map(p => `
+    <tr style="cursor:pointer;" onclick="selectMapProject('${p.id}')">
+      <td><strong>${p.name}</strong><br><small style="color:var(--text-muted);">${p.dev}</small></td>
+      <td>${p.loc}<br><span class="badge b-gray">~${p.dist} km</span></td>
+      <td>${catBadge(p.cat)}<br><small>${p.legal}</small></td>
+      <td><strong style="color:var(--primary);">${p.price}</strong></td>
+      <td style="font-size:13px;">${p.note}</td>
+    </tr>
+  `).join('') || `<tr><td colspan="5" style="text-align:center; color:var(--text-muted);">Không có dự án khớp bộ lọc.</td></tr>`;
+}
+
+// ============================================================================
+// TAB 6: MARKET OUTLOOK CHART
+// ============================================================================
+function renderOutlookChart() {
+  const data = [
+    { yr: "2021–2025\n(Thực hiện)", val: 17902, col: "#94A3B8" },
+    { yr: "2026\n(Chỉ tiêu)", val: 9000, col: "#0891B2" },
+    { yr: "2027\n(Bùng nổ)", val: 57657, col: "#1A73E8" },
+    { yr: "2028\n(Chỉ tiêu)", val: 38200, col: "#3B82F6" },
+    { yr: "2029\n(Chỉ tiêu)", val: 38200, col: "#3B82F6" },
+    { yr: "2030\n(Chỉ tiêu)", val: 38200, col: "#3B82F6" }
+  ];
+  const W = 740, H = 220, padL = 60, padB = 42, padT = 26, chartH = H - padB - padT, maxV = 65000;
+  const barW = 68, gap = 38;
+  let bars = '';
+  data.forEach((d, i) => {
+    const x = padL + 20 + i * (barW + gap);
+    const bh = (d.val / maxV) * chartH;
+    const y = padT + chartH - bh;
+    const lines = d.yr.split('\n');
+    bars += `
+      <rect x="${x}" y="${y}" width="${barW}" height="${bh}" rx="6" fill="${d.col}"/>
+      <text x="${x + barW/2}" y="${y - 7}" text-anchor="middle" font-size="12" font-weight="800" fill="#0F172A">${d.val.toLocaleString('vi-VN')}</text>
+      <text x="${x + barW/2}" y="${H - 22}" text-anchor="middle" font-size="11.5" font-weight="700" fill="#1E293B">${lines[0]}</text>
+      <text x="${x + barW/2}" y="${H - 7}" text-anchor="middle" font-size="10.5" fill="#64748B">${lines[1]}</text>
+    `;
+  });
+  document.getElementById('outlookChartBox').innerHTML = `
+    <svg viewBox="0 0 ${W} ${H}" xmlns="http://www.w3.org/2000/svg">
+      ${[0, 20000, 40000, 60000].map(v => {
+        const y = padT + chartH - (v / maxV) * chartH;
+        return `<line x1="${padL}" y1="${y}" x2="${W-15}" y2="${y}" stroke="#E2E8F0"/><text x="${padL-8}" y="${y+4}" text-anchor="end" font-size="10.5" fill="#64748B">${v/1000}k</text>`;
+      }).join('')}
+      ${bars}
+    </svg>
+  `;
+}
+
+// ============================================================================
+// TAB 7: ABOUT, COUNTDOWN, AUTO EXPIRY WATCHDOG & ARCHIVE LINKS
+// ============================================================================
+function renderAboutAndWatchdog() {
+  document.getElementById('brandTitleText').textContent = APP_CONFIG.meta.brandTitle;
+  document.getElementById('aboutVer').textContent = APP_CONFIG.meta.version;
+  document.getElementById('appFooter').textContent = APP_CONFIG.meta.authorFooter;
+
+  const now = new Date();
+  const target = new Date('2027-07-01T00:00:00+07:00');
+  const diffDays = Math.ceil((target - now) / (1000 * 60 * 60 * 24));
+  const cdEl = document.getElementById('heroCountdown');
+  if (diffDays > 0) {
+    cdEl.textContent = `⏳ Còn ${diffDays} ngày đến 01/07/2027`;
+  } else {
+    cdEl.textContent = `🔴 Luật mới 01/07/2027 đã có hiệu lực!`;
+  }
+
+  document.getElementById('watchdogContainer').innerHTML = APP_CONFIG.deadlines.map(d => {
+    const dt = new Date(d.date + 'T23:59:59+07:00');
+    const rem = Math.ceil((dt - now) / (1000 * 60 * 60 * 24));
+    let cls = 'b-green', txt = `Còn ${rem} ngày`;
+    if (rem < 0) { cls = 'b-red'; txt = `Đã quá mốc ${Math.abs(rem)} ngày — CẦN CẬP NHẬT`; }
+    else if (rem <= 30) { cls = 'b-amber'; txt = `Sắp đến hạn (${rem} ngày)`; }
+    return `
+      <div style="border:1px solid var(--border); border-radius:8px; padding:10px 12px; margin-bottom:8px; background:#FFF;">
+        <div style="display:flex; justify-content:space-between; gap:8px; flex-wrap:wrap; margin-bottom:4px;">
+          <strong>${d.date.split('-').reverse().join('/')}</strong>
+          <span class="badge ${cls}">${txt}</span>
+        </div>
+        <div style="font-size:13px; font-weight:600;">${d.label}</div>
+        <div style="font-size:12px; color:var(--text-muted);">Hành động bảo trì: ${d.impact}</div>
+      </div>
+    `;
+  }).join('');
+
+  document.getElementById('refArchiveGrid').innerHTML = APP_CONFIG.references.map(g => `
+    <div>
+      <h4 style="margin-bottom:8px; color:var(--primary-dark);">${g.group}</h4>
+      <ul class="ref-list">
+        ${g.items.map(it => `<li><a href="${it.url}" target="_blank" rel="noopener noreferrer">↗ ${it.title}</a></li>`).join('')}
+      </ul>
+    </div>
+  `).join('');
+}
+
+// ============================================================================
+// INIT ALL MODULES ON LOAD
+// ============================================================================
+window.addEventListener('DOMContentLoaded', () => {
+  updateIncomeEngine();
+  runLegalQuiz();
+  renderMiniGame();
+  filterLaws('all');
+  updateEvSim();
+  updateMortgageSim();
+  renderChecklist();
+  renderDirectory();
+  renderRadialMap();
+  renderProjects();
+  selectMapProject('p1');
+  renderOutlookChart();
+  renderAboutAndWatchdog();
+});
+</script>
+</body>
+</html>
