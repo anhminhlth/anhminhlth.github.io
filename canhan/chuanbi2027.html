@@ -1,0 +1,1530 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>KD3 Personal &amp; B2B Turnaround Master v3.0 (2026–2027): Phá Băng Cá Nhân, Anh Sơn – Anh Thế Anh, KPI 3 Rổ, Nâng Trình Chân 1 &amp; Lộ Trình 14 Tháng</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet" />
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: { sans: ['"Be Vietnam Pro"', 'system-ui', 'sans-serif'], mono: ['"JetBrains Mono"', 'monospace'] },
+          colors: {
+            ink: { 950: '#0b1120', 900: '#111827', 800: '#1e293b', 700: '#334155', 500: '#64748b' },
+            canvas: { 50: '#f8f7f4', 100: '#f1efe9', 200: '#e5e2d9' },
+            cobalt: { 50: '#eff6ff', 100: '#dbeafe', 500: '#2563eb', 600: '#1d4ed8', 700: '#1e40af', 900: '#1e3a8a' },
+            jade: { 50: '#ecfdf5', 100: '#d1fae5', 600: '#059669', 700: '#047857', 900: '#064e3b' },
+            ochre: { 50: '#fffbeb', 100: '#fef3c7', 500: '#d97706', 600: '#b45309', 900: '#78350f' }
+          }
+        }
+      }
+    };
+  </script>
+  <style>
+    :root { scroll-behavior: smooth; }
+    body { background-color: #f8f7f4; color: #111827; }
+    .nav-pill { transition: all 0.16s ease; white-space: nowrap; border-bottom: 3px solid transparent; }
+    .nav-pill:hover:not(.active) { background: rgba(255,255,255,0.09); color: #93c5fd; }
+    .nav-pill.active { background: #f8f7f4; color: #1e40af; font-weight: 800; border-top: 3px solid #f59e0b; border-top-left-radius: 0.55rem; border-top-right-radius: 0.55rem; }
+    .nav-pill.me-tab.active { color: #047857; border-top-color: #10b981; }
+    .card { background: #fff; border: 1px solid #e5e2d9; border-radius: 0.95rem; box-shadow: 0 1px 3px rgba(15,23,42,0.04), 0 4px 12px rgba(15,23,42,0.02); }
+    .chart-wrap { position: relative; width: 100%; height: 275px; }
+    .opt-card { transition: all 0.18s ease; cursor: pointer; }
+    .opt-card.selected-H1 { border: 2px solid #059669; box-shadow: 0 8px 22px rgba(5,150,105,0.13); background: #f0fdf4; }
+    .opt-card.selected-H2 { border: 2px solid #1d4ed8; box-shadow: 0 8px 22px rgba(29,78,216,0.14); background: #eff6ff; }
+    .opt-card.selected-H3 { border: 2px solid #d97706; box-shadow: 0 8px 22px rgba(217,119,6,0.14); background: #fffbeb; }
+    .badge-mono { font-family: 'JetBrains Mono', monospace; }
+    ::-webkit-scrollbar { width: 7px; height: 7px; }
+    ::-webkit-scrollbar-track { background: #f1efe9; }
+    ::-webkit-scrollbar-thumb { background: #94a3b8; border-radius: 999px; }
+    @media print {
+      header nav, .no-print { display: none !important; }
+      body { background: #fff !important; }
+      .tab-section { display: block !important; page-break-after: always; }
+      .card { box-shadow: none !important; border: 1px solid #cbd5e1 !important; }
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col font-sans antialiased">
+
+  <!-- TOP EXECUTIVE & PERSONAL HEADER -->
+  <header class="bg-ink-950 text-white sticky top-0 z-50 shadow-xl border-b border-slate-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 py-3 flex flex-col xl:flex-row xl:items-center xl:justify-between gap-2.5">
+      <div class="flex items-start sm:items-center gap-3">
+        <div class="w-11 h-11 rounded-xl bg-gradient-to-br from-emerald-400 via-teal-500 to-cobalt-600 text-ink-950 font-black text-sm flex flex-col items-center justify-center shrink-0 shadow-lg leading-tight">
+          <span>KD3</span><span class="text-[9px] font-extrabold">v3.0</span>
+        </div>
+        <div>
+          <div class="flex flex-wrap items-center gap-2 text-[10px] font-bold uppercase tracking-wider">
+            <span class="text-emerald-400">SỔ TAY CÁ NHÂN &amp; ĐIỀU HÀNH PKD3 (FTI)</span><span class="text-slate-600">|</span>
+            <span class="text-amber-300">Phá Băng Ù Lì • Anh Sơn – Anh Thế Anh • KPI 3 Rổ • Nâng Trình Chân 1 B2B</span>
+            <span class="px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">26/11/2026</span>
+          </div>
+          <h1 class="text-sm sm:text-base md:text-lg font-extrabold text-white tracking-tight mt-0.5">
+            Hệ Thống Thoát Ngõ Cụt Từng Bước (2026–2027): Cá Nhân Khỏe Mạnh, Chốt Hướng BGĐ &amp; Chuyển Hóa B2C → B2B
+          </h1>
+        </div>
+      </div>
+      <div class="flex flex-wrap items-center gap-2 text-[11px]">
+        <span class="px-2.5 py-1 rounded-lg bg-rose-500/15 text-rose-300 border border-rose-500/30 font-semibold badge-mono">35 ngày → 31/12/2026</span>
+        <span class="px-2.5 py-1 rounded-lg bg-amber-500/15 text-amber-300 border border-amber-500/30 font-semibold badge-mono">Tết Đinh Mùi: 06/02/2027</span>
+        <span id="globalOptionBadge" class="px-2.5 py-1 rounded-lg bg-cobalt-600 text-white font-bold shadow">Đang xem: Hướng 2 (Stage-Gate)</span>
+        <button onclick="window.print()" class="no-print px-2.5 py-1 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 font-semibold">In / PDF</button>
+      </div>
+    </div>
+
+    <!-- 10-TAB NAVIGATION BAR (PERSONAL-FIRST ARCHITECTURE) -->
+    <nav class="bg-slate-900/95 border-t border-slate-800 px-3 sm:px-6 overflow-x-auto pt-1.5">
+      <div class="max-w-7xl mx-auto flex space-x-1 min-w-max">
+        <button onclick="openTab('tab1')" id="nav-tab1" class="nav-pill me-tab active px-3 py-2.5 text-xs text-slate-300">1. Phá Băng Cá Nhân &amp; Giảm Áp Lực</button>
+        <button onclick="openTab('tab2')" id="nav-tab2" class="nav-pill me-tab px-3 py-2.5 text-xs text-slate-300">2. Anh Sơn, Anh Thế Anh &amp; 10 Q&amp;A</button>
+        <button onclick="openTab('tab3')" id="nav-tab3" class="nav-pill me-tab px-3 py-2.5 text-xs text-slate-300">3. Đặt KPI 3 Rổ &amp; Mô Phỏng Sàn</button>
+        <button onclick="openTab('tab4')" id="nav-tab4" class="nav-pill me-tab px-3 py-2.5 text-xs text-slate-300">4. Nâng Trình Chân 1 (B2C → B2B)</button>
+        <button onclick="openTab('tab5')" id="nav-tab5" class="nav-pill px-3 py-2.5 text-xs text-slate-300">5. 3 Hướng BGĐ &amp; Sửa 7 Lỗi Cũ</button>
+        <button onclick="openTab('tab6')" id="nav-tab6" class="nav-pill px-3 py-2.5 text-xs text-slate-300">6. Chân 1: 50 Máy, Luật &amp; Bundle</button>
+        <button onclick="openTab('tab7')" id="nav-tab7" class="nav-pill px-3 py-2.5 text-xs text-slate-300">7. Chân 2: 7 SP, Phễu &amp; KHG</button>
+        <button onclick="openTab('tab8')" id="nav-tab8" class="nav-pill px-3 py-2.5 text-xs text-slate-300">8. Lộ Trình 14 Tháng &amp; Đội Ngũ</button>
+        <button onclick="openTab('tab9')" id="nav-tab9" class="nav-pill px-3 py-2.5 text-xs text-slate-300">9. 12 Slides &amp; BMC Hợp Nhất</button>
+        <button onclick="openTab('tab10')" id="nav-tab10" class="nav-pill px-3 py-2.5 text-xs text-amber-300 font-semibold">10. About, Ver Cũ &amp; Cập Nhật</button>
+      </div>
+    </nav>
+  </header>
+
+  <main class="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 py-6 space-y-6">
+
+    <!-- =========================================================================
+         TAB 1: PHÁ BĂNG CÁ NHÂN, LỊCH 14 NGÀY & PHỤC HỒI BURNOUT (BẢN THÂN BẠN)
+         ========================================================================= -->
+    <section id="tab1" class="tab-section space-y-6">
+      <div class="card p-5 sm:p-6 border-l-4 border-l-jade-600 space-y-4">
+        <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-3 border-b border-canvas-200 pb-3">
+          <div>
+            <span class="text-[11px] font-extrabold uppercase tracking-wider text-jade-700">Bắt Đầu Từ Chính Bạn (Sirois &amp; Pychyl • Wohl • Behavioral Activation • WHO ICD-11)</span>
+            <h2 class="text-lg sm:text-xl font-black text-ink-900 mt-0.5">Giải Phẫu Cơn "Ngại – Ù Lì – Chỉ Bám Dừng B2C" &amp; Phác Đồ Mở Khóa Nhẹ Nhàng Trong 14 Ngày</h2>
+          </div>
+          <span class="px-3 py-1.5 rounded-lg bg-jade-50 text-jade-900 border border-jade-600/30 text-xs font-bold shrink-0">Hành động cực nhỏ đi trước → Động lực quay lại sau</span>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs">
+          <div class="p-4 rounded-xl bg-rose-50/70 border border-rose-200 space-y-1.5">
+            <strong class="text-rose-900 text-sm block">1. Vì Sao Bạn Đang "Ù Lì" &amp; Ngại Mặt BGĐ?</strong>
+            <p class="text-ink-700 leading-relaxed">Trì hoãn không phải do lười, mà là <strong>cơ chế sửa chữa tâm trạng ngắn hạn</strong> (Sirois &amp; Pychyl). Não bạn đang gắn "Chân 1 / Anh Thế Anh / KPI" với 4 nỗi sợ (trễ hẹn, sợ bị bẻ, mơ hồ KPI, ngại gốc B2C) nên tự động đẩy bạn né tránh. Càng né, cảm giác xấu hổ càng phình to thành vòng xoáy đóng băng.</p>
+          </div>
+          <div class="p-4 rounded-xl bg-ochre-50 border border-ochre-500/30 space-y-1.5">
+            <strong class="text-ochre-900 text-sm block">2. Bẫy "Trú Ẩn Vào Việc Dừng B2C" (TRAP)</strong>
+            <p class="text-ink-700 leading-relaxed">Dừng B2C có mốc cứng 31/12, quen tay, ít bị chất vấn ý tưởng. Khi áp lực Chân 1/Chân 2 trỗi dậy (<em>Trigger</em>), bạn quay sang làm sự vụ B2C (<em>Avoidance</em>) cho đỡ áy náy — nhưng điều đó khiến các mục anh Thế Anh giao càng bê trễ thêm (<em>Problem</em>). Hôm nay ta chuyển từ <strong>TRAP → TRAC</strong> (Hành động cực nhỏ 5–15 phút).</p>
+          </div>
+          <div class="p-4 rounded-xl bg-jade-50 border border-jade-600/30 space-y-1.5">
+            <strong class="text-jade-900 text-sm block">3. Tự Tha Thứ Để Dứt Vòng Xoáy (Wohl)</strong>
+            <p class="text-ink-700 leading-relaxed">Nghiên cứu thực nghiệm chứng minh người <strong>tự tha thứ cho quãng thời gian đã trễ</strong> sẽ phá băng nhanh hơn hẳn người tự dằn vặt. Chốt 1 câu sòng phẳng: <em>"2 tháng qua mình bị kẹt giữa phần cứng rủi ro và kỳ vọng chéo nên chậm. Hôm nay mình không cần làm hoàn hảo — chỉ cần mở lại 1 tin nhắn."</em></p>
+          </div>
+        </div>
+
+        <!-- ONE SINGLE ACTION FOR TOMORROW BANNER -->
+        <div class="p-4 rounded-xl bg-ink-950 text-white flex flex-col md:flex-row md:items-center justify-between gap-3 border-l-4 border-emerald-400">
+          <div class="space-y-1">
+            <span class="text-[10px] font-black uppercase tracking-wider text-emerald-400">QUY TẮC 5 PHÚT • CHỈ 1 VIỆC DUY NHẤT CHO SÁNG MAI (THỨ SÁU, 27/11/2026)</span>
+            <p class="text-xs sm:text-sm text-slate-100 leading-relaxed">
+              Tối nay <strong>đóng sạch laptop và đi ngủ trước 23h00</strong>. Sáng mai đúng <strong>8h45–9h00</strong>, sang <strong>Tab 2</strong>, sao chép 4 câu trong <strong>Mẫu 1 gửi Anh Sơn</strong> để hẹn 15 phút trao đổi bản nháp. <strong>Gửi xong coi như bạn đã thắng trọn trận lớn nhất tuần này!</strong>
+            </p>
+          </div>
+          <button onclick="openTab('tab2')" class="no-print px-4 py-2.5 rounded-lg bg-emerald-500 hover:bg-emerald-400 text-ink-950 font-black text-xs shrink-0 shadow">Mở Mẫu Tin Nhắn Anh Sơn →</button>
+        </div>
+      </div>
+
+      <!-- 14-DAY PERSONAL ACTION CHECKLIST (PERSISTENT) -->
+      <div class="card p-5 space-y-4">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-canvas-200 pb-3">
+          <div>
+            <h3 class="text-sm sm:text-base font-black text-ink-900">Lịch Phá Băng 14 Ngày Dành Riêng Cho Cá Nhân Bạn (26/11 – 15/12/2026)</h3>
+            <p class="text-xs text-ink-500">Mỗi ngày chỉ 1 bước cực nhỏ để vỏ não không bị quá tải. Tích chọn xong đến đâu tự động lưu trình duyệt đến đó.</p>
+          </div>
+          <div class="flex items-center gap-2.5 text-xs">
+            <div class="w-28 h-2.5 bg-slate-200 rounded-full overflow-hidden"><div id="p14ProgressBar" class="h-full bg-jade-600 transition-all" style="width:0%"></div></div>
+            <span id="p14ProgressText" class="badge-mono font-bold text-jade-700">0%</span>
+            <button onclick="resetP14()" class="no-print text-[10px] underline text-slate-500 hover:text-rose-600">Reset</button>
+          </div>
+        </div>
+        <div id="p14Grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3.5"></div>
+      </div>
+
+      <!-- LIFE & WORK DE-STRESS ARCHITECTURE + BURNOUT SELF-CHECK -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-5">
+        <div class="lg:col-span-7 card p-5 space-y-4">
+          <div class="border-b border-canvas-200 pb-2.5">
+            <span class="text-[10px] font-extrabold uppercase text-cobalt-700">Phác Đồ Giảm Áp Lực Công Việc &amp; Cuộc Sống (Sonnentag • Gollwitzer • WHO)</span>
+            <h3 class="text-sm sm:text-base font-black text-ink-900">Khiên 42 Giờ/Tuần, Nghi Thức Đóng Ngày 18h30 &amp; Bảo Vệ Đời Sống Cá Nhân</h3>
+          </div>
+
+          <div class="bg-canvas-50 rounded-xl p-4 border border-canvas-200">
+            <svg viewBox="0 0 640 135" class="w-full h-auto" role="img" aria-label="Phân bổ 42 giờ tuần và nghi thức đóng ngày">
+              <rect x="8" y="10" width="286" height="36" rx="6" fill="#1d4ed8"/><text x="151" y="32" text-anchor="middle" fill="#fff" font-size="11" font-weight="800">CHÂN 2 &amp; KHÁCH HÀNG (20–24h)</text>
+              <rect x="298" y="10" width="96" height="36" rx="6" fill="#d97706"/><text x="346" y="32" text-anchor="middle" fill="#fff" font-size="10.5" font-weight="800">CHÂN 1 (4–8h)</text>
+              <rect x="398" y="10" width="88" height="36" rx="6" fill="#059669"/><text x="442" y="32" text-anchor="middle" fill="#fff" font-size="10.5" font-weight="800">ĐỘI NGŨ (6h)</text>
+              <rect x="490" y="10" width="66" height="36" rx="6" fill="#475569"/><text x="523" y="32" text-anchor="middle" fill="#fff" font-size="10" font-weight="700">BGĐ (4h)</text>
+              <rect x="560" y="10" width="72" height="36" rx="6" fill="#0f766e"/><text x="596" y="32" text-anchor="middle" fill="#fff" font-size="10" font-weight="700">BUFFER 4h</text>
+              <text x="10" y="68" font-size="10.5" font-weight="800" fill="#0f172a">3 Nghi Thức Hằng Ngày Cắt Đứt Lo Âu ("Nghỉ Ngơi Thật" Thay Vì "Nghỉ Ngơi Giả"):</text>
+              <text x="10" y="87" font-size="10" fill="#334155">1. Sáng 9h00 (If-Then 15 phút): Làm đúng 1 việc ngại nhất trước khi mở mail/sự vụ B2C.</text>
+              <text x="10" y="104" font-size="10" fill="#334155">2. Giữa ngày (White Space 10 phút): Rời màn hình, không lướt điện thoại để hạ kích hoạt giao cảm.</text>
+              <text x="10" y="121" font-size="10" font-weight="700" fill="#047857">3. Tối 18h30 (3-Record Shutdown): Ghi việc đã xong → 1 bước sáng mai → Tắt chat việc đến 8h30 sáng!</text>
+            </svg>
+          </div>
+
+          <div class="overflow-x-auto">
+            <table class="w-full text-left text-[11px] border-collapse border border-canvas-200">
+              <thead class="bg-slate-100 text-ink-800 uppercase font-bold">
+                <tr><th class="p-2 border-b">Ngày</th><th class="p-2 border-b">Sáng (8h30–12h00 • Deep Work &amp; Việc Ngại Nhất)</th><th class="p-2 border-b">Chiều (13h30–18h00 • Khách Hàng &amp; Đội Ngũ)</th><th class="p-2 border-b">Đời sống tối</th></tr>
+              </thead>
+              <tbody class="divide-y divide-canvas-200 text-ink-700">
+                <tr><td class="p-2 font-bold text-ink-900">Thứ 2</td><td class="p-2">Họp Pipeline Review 45p (5 chỉ số) + Đẩy báo giá MS365/HiGIO</td><td class="p-2">Đi gặp KH / Shadowing cùng Anh Tuấn &amp; 2 Sale mới</td><td class="p-2 text-jade-700 font-semibold">Đóng ngày 18h30</td></tr>
+                <tr><td class="p-2 font-bold text-ink-900">Thứ 3</td><td class="p-2">2h Khối Deep Work (Đóng gói Chân 1 Nấc 1–2, không họp chen)</td><td class="p-2">Phối hợp kỹ thuật SIS (TạiCV/Bill) &amp; tiến độ FDrive (≤2h)</td><td class="p-2 text-jade-700 font-semibold">Vận động 30–45p</td></tr>
+                <tr><td class="p-2 font-bold text-ink-900">Thứ 4</td><td class="p-2">Co-sale cùng PKD2 / TT Phi mặt đất (Starlink) hoặc tự học B2B 1h</td><td class="p-2">Họp 1-1 kèm cặp Vân, Huy, Thủy, Châu &amp; 2 Sale (30p/người)</td><td class="p-2 text-jade-700 font-semibold">Gia đình / Sở thích</td></tr>
+                <tr><td class="p-2 font-bold text-ink-900">Thứ 5</td><td class="p-2">2h Buffer xử lý hồ sơ PO / báo giá lớn &amp; 1h tự học B2B</td><td class="p-2">Gặp KH trọng điểm + Rà soát SLA ticket &amp; nợ bồi hoàn B2C</td><td class="p-2 text-jade-700 font-semibold">Vận động 30–45p</td></tr>
+                <tr><td class="p-2 font-bold text-ink-900">Thứ 6</td><td class="p-2">Rà số liệu tuần + Chuẩn bị Báo cáo 5 dòng cho anh Sơn</td><td class="p-2">Gửi anh Sơn lúc 15h00 + Chia sẻ chéo 30p → Khóa sổ lúc 17h30</td><td class="p-2 text-jade-700 font-semibold">Cuối tuần 0 việc</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
+            <div class="p-3.5 rounded-xl bg-cobalt-50/70 border border-cobalt-200 space-y-1">
+              <strong class="text-cobalt-900 block">Trao Cho Mình Quyền Lựa Chọn (Mốc 30/06/2027)</strong>
+              <p class="text-ink-700 leading-relaxed">Tự hẹn đánh giá công bằng sau 2 quý chạy gọn mới: nếu nhịp việc nhẹ và sức khỏe phục hồi → đi tiếp vững vàng. Nếu áp lực cấu trúc vẫn bào mòn sức khỏe → chủ động bàn với BGĐ vị trí phù hợp hơn. Biết mình luôn có quyền chọn sẽ giải tỏa ngay cảm giác bị nhốt.</p>
+            </div>
+            <div class="p-3.5 rounded-xl bg-rose-50 border border-rose-200 space-y-1">
+              <strong class="text-rose-900 block">Ngưỡng Cảnh Báo Đỏ Sức Khỏe (Cần Gặp Bác Sĩ)</strong>
+              <p class="text-rose-900/90 leading-relaxed">Nếu mất ngủ kéo dài, kiệt sức rã rời dù đã nghỉ cuối tuần, đau đầu/đau tức ngực, lo âu hoảng loạn hoặc chán nản trống rỗng lan sang cả đời sống ngoài công việc <strong>từ 2 tuần trở lên</strong> — hãy chủ động khám bác sĩ đa khoa hoặc chuyên gia tâm lý lâm sàng ngay.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="lg:col-span-5 card p-5 space-y-3.5">
+          <div class="border-b border-canvas-200 pb-2">
+            <h3 class="text-sm font-extrabold text-ink-900">Tự Rà Soát Lệch Tải Bản Thân (Maslach 6 Lĩnh Vực)</h3>
+            <p class="text-[11px] text-ink-500">Kéo thanh trượt phản ánh cảm giác thật lúc này (1 = Rất ổn → 5 = Rất căng thẳng) để nhận gợi ý giảm tải ưu tiên nhất tuần này.</p>
+          </div>
+          <div id="burnoutSliders" class="space-y-2.5 text-xs"></div>
+          <div id="burnoutResultBox" class="p-3.5 rounded-xl bg-amber-50 border border-amber-300 text-xs leading-relaxed"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================================
+         TAB 2: SỔ TAY LÀM VIỆC ANH SƠN, GỠ BÊ TRỄ ANH THẾ ANH & 10 Q&A
+         ========================================================================= -->
+    <section id="tab2" class="tab-section hidden space-y-6">
+      <!-- ANH SƠN MANAGING UP PLAYBOOK -->
+      <div class="card p-5 sm:p-6 border-l-4 border-l-cobalt-600 space-y-4">
+        <div class="flex flex-col md:flex-row md:items-center justify-between gap-2 border-b border-canvas-200 pb-3">
+          <div>
+            <span class="text-[11px] font-extrabold uppercase tracking-wider text-cobalt-700">Quản Trị Ngược Với Sếp Làm Gần (Gabarro &amp; Kotter HBR • Managing Up)</span>
+            <h2 class="text-base sm:text-lg font-black text-ink-900">Sổ Tay Làm Việc Với Anh Sơn: 6 Lưu Ý Sống Còn Để Biến Sếp Gần Thành Đồng Minh Bảo Vệ Bạn</h2>
+          </div>
+          <span class="text-xs font-bold px-3 py-1 rounded-lg bg-cobalt-50 text-cobalt-800 border border-cobalt-200">Đưa bản nháp 60% • Không để sếp bị bất ngờ</span>
+        </div>
+        <div id="anhSonRulesGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3.5 text-xs"></div>
+      </div>
+
+      <!-- ANH THẾ ANH 11/09 TRUST RECOVERY & 4-ITEM DELIVERY TABLE -->
+      <div class="card overflow-hidden">
+        <div class="p-4 bg-ink-950 text-white flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+          <div>
+            <span class="text-[10px] font-extrabold uppercase text-amber-400">Phục Hồi Tín Nhiệm Sau Khi Trễ Tiến Độ (5 Bước Chuẩn HBR)</span>
+            <h3 class="text-sm sm:text-base font-black text-white">Gỡ Thế "Bê Trễ" Với Anh Chu Thế Anh: Trả Bài Sắc Nét Đúng 4 Chỉ Đạo Ngày 11/09/2026</h3>
+          </div>
+          <span class="text-xs font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30 px-2.5 py-1 rounded">Nhận trễ thẳng • Không biện minh • Hành động ngay</span>
+        </div>
+        <div class="p-4 bg-ochre-50/70 border-b border-canvas-200 text-xs text-ochre-900 leading-relaxed">
+          <strong>Trích nguyên văn chỉ đạo anh Chu Thế Anh (11/09/2026):</strong> "Giai đoạn đầu nên ưu tiên chiếm thị phần và tạo tập khách hàng sử dụng thực tế hơn là tối ưu doanh thu. Hạ tầng hiện hữu đang còn free lớn vì vậy có thể chấp nhận mức giá cạnh tranh hoặc đưa vào các chương trình bundle để nhanh chóng đưa sản phẩm ra thị trường. Thậm chí chấp nhận 1 số option free trong thời gian đầu sử dụng nhưng sẽ không áp dụng đại trà mà có tính toán hiệu quả tránh tâm lý của KH cho rằng 'của cho là của ôi'. Thực tế chúng ta cũng chịu các trách nhiệm về Data của KH khi họ sử dụng dịch vụ nên tính toán hợp lý... Mục tiêu trước mắt là xây dựng tệp khách hàng, hình thành các use case thực tế để tiếp tục hoàn thiện sản phẩm."
+        </div>
+        <div class="overflow-x-auto">
+          <table class="w-full text-left text-xs border-collapse">
+            <thead class="bg-slate-100 text-ink-800 uppercase font-bold border-b border-canvas-200">
+              <tr>
+                <th class="p-3 w-[23%]">4 Yêu Cầu Anh Thế Anh Giao (11/09)</th>
+                <th class="p-3 w-[25%]">Vì Sao Trước Đây Bạn Bị Khựng / Trễ?</th>
+                <th class="p-3 w-[34%]">Câu Trả Bài Gọn &amp; Thực Tế Nhất (Làm Ngay Q1/2027)</th>
+                <th class="p-3 w-[18%]">Bằng Chứng Đo Lường</th>
+              </tr>
+            </thead>
+            <tbody id="theAnhTableBody" class="divide-y divide-canvas-200"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- 4 COPY-READY MESSAGE / EMAIL TEMPLATES -->
+      <div class="space-y-3">
+        <div>
+          <h3 class="text-sm sm:text-base font-black text-ink-900">Bộ 4 Mẫu Tin Nhắn &amp; Email Gỡ Rối Sao Chép 1 Chạm (Đúng Giọng Thẳng Thắn, Không Tự Ti)</h3>
+          <p class="text-xs text-ink-500">Bấm "Sao chép", chỉnh 2–3 từ theo cách xưng hô thực tế của bạn rồi bấm gửi ngay để phá băng.</p>
+        </div>
+        <div id="templatesGrid" class="grid grid-cols-1 lg:grid-cols-2 gap-4"></div>
+      </div>
+
+      <!-- 10 HARDEST Q&A DEFENSE SCRIPTS -->
+      <div class="card p-5 space-y-3">
+        <div class="flex items-center justify-between border-b border-canvas-200 pb-2.5">
+          <h3 class="text-sm font-extrabold text-ink-900">10 Kịch Bản Trả Lời Câu Hỏi Chất Vấn Khó Nhất Từ BGĐ &amp; BGĐ CC</h3>
+          <span class="text-xs font-semibold text-ink-500">Bấm từng câu để mở kịch bản</span>
+        </div>
+        <div id="qaAccordionContainer" class="space-y-2.5"></div>
+      </div>
+    </section>
+
+    <!-- =========================================================================
+         TAB 3: KHUNG KPI CHUYỂN ĐỔI 3 RỔ & BỘ MÔ PHỎNG ĐIỂM KPI 2027
+         ========================================================================= -->
+    <section id="tab3" class="tab-section hidden space-y-6">
+      <div class="card p-5 sm:p-6 border-l-4 border-l-ochre-500 space-y-4">
+        <div class="flex flex-col md:flex-row md:items-center justify-between gap-2 border-b border-canvas-200 pb-3">
+          <div>
+            <span class="text-[11px] font-extrabold uppercase tracking-wider text-ochre-600">Quản Trị Hiệu Suất Kỳ Chuyển Đổi (Leading → Lagging &amp; Ramp-Up B2B)</span>
+            <h2 class="text-base sm:text-lg font-black text-ink-900">Đặt Khung KPI 3 Rổ (Q1–Q4/2027): Ghi Nhận Công Sức Dừng B2C, Bảo Vệ Sàn &amp; Không Tự Tạo Bẫy</h2>
+          </div>
+          <span class="text-xs font-bold px-3 py-1 rounded-lg bg-jade-50 text-jade-900 border border-jade-600/30">Mốc Re-baseline 31/03/2027 • Sàn bảo vệ 80%</span>
+        </div>
+        <p class="text-xs sm:text-sm text-ink-700 leading-relaxed">
+          Sai lầm khiến bạn ngại trình KPI là nghĩ rằng Q1/2027 phải áp 100% doanh số B2B mới lên cả đội. Chuẩn quản trị chuyển đổi B2B là dùng <strong>Khung KPI 3 Rổ chuyển dịch tỷ trọng theo quý</strong>: đưa ngay việc dừng B2C an toàn, cứu 66 KH FDrive và giảm 4,35 tỷ nợ bồi hoàn vào <strong>Rổ 1 (40% trọng số Q1)</strong> để bảo vệ sàn điểm và thu nhập, đồng thời chấm phần B2B Q1 theo tỷ lệ lớn <strong>Leading Indicators</strong> (số cơ hội sạch, tuyển dụng, tiếp cận 1.649 VIP) và giảm dần sang Lagging từ Q2–Q4.
+        </p>
+
+        <div class="overflow-x-auto">
+          <table class="w-full text-left text-xs border-collapse border border-canvas-200">
+            <thead class="bg-slate-100 text-ink-800 uppercase font-bold">
+              <tr>
+                <th class="p-3 w-[22%]">Rổ KPI Năm 2027</th>
+                <th class="p-3 text-center w-[9%]">Q1/27</th>
+                <th class="p-3 text-center w-[9%]">Q2/27</th>
+                <th class="p-3 text-center w-[9%]">Q3/27</th>
+                <th class="p-3 text-center w-[9%]">Q4/27</th>
+                <th class="p-3 w-[42%]">Chỉ Số Cụ Thể (Leading + Lagging) &amp; Lý Do Vừa Sức</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-canvas-200">
+              <tr class="bg-jade-50/40">
+                <td class="p-3 font-extrabold text-jade-900">Rổ 1: Dừng B2C an toàn, Cứu FDrive &amp; Giảm nợ bồi hoàn</td>
+                <td class="p-3 text-center font-black text-jade-700 text-sm">40%</td>
+                <td class="p-3 text-center font-bold">20%</td>
+                <td class="p-3 text-center font-bold">15%</td>
+                <td class="p-3 text-center font-bold">10%</td>
+                <td class="p-3 text-ink-700 leading-relaxed">Tắt 100% ví B2C đúng 31/12/2026; 0% khủng hoảng MXH &amp; 0% mất data 6 máy DC7; hoàn tất backup 1-1 cứu <strong>66 KH FDrive</strong> trong T1; kéo nợ B2C giảm ≥1 tỷ (Q1) và <strong>4,35 tỷ (cả năm)</strong>. <em>→ Đưa đúng việc bạn đang làm giỏi thành điểm tựa giữ sàn KPI!</em></td>
+              </tr>
+              <tr class="bg-ochre-50/40">
+                <td class="p-3 font-extrabold text-ochre-900">Rổ 2: Chân 1 — FshareStorage, Bundle &amp; Use Case</td>
+                <td class="p-3 text-center font-black text-ochre-700 text-sm">20%<span class="block text-[9px] font-semibold">(80% Lead)</span></td>
+                <td class="p-3 text-center font-bold">20%</td>
+                <td class="p-3 text-center font-bold">20%</td>
+                <td class="p-3 text-center font-bold">20%</td>
+                <td class="p-3 text-ink-700 leading-relaxed"><strong>Q1:</strong> Tiếp cận ≥80% tệp 1.649 VIP; SLA &lt;24h Lead / &lt;4h CSKH; chốt 30–40 KH thật (40–60 TB); hoàn tất báo cáo kiểm định Gate 1 (31/03). <strong>Cả năm:</strong> 350–550Tr (hoặc hòa vốn OPEX 80–133 TB) &amp; 2–3 Use Case B2B sống.</td>
+              </tr>
+              <tr class="bg-cobalt-50/40">
+                <td class="p-3 font-extrabold text-cobalt-900">Rổ 3: Chân 2 — Kinh Doanh B2B FTI (MS365, HiGIO, Co-sale)</td>
+                <td class="p-3 text-center font-black text-cobalt-700 text-sm">40%<span class="block text-[9px] font-semibold">(60% Lead)</span></td>
+                <td class="p-3 text-center font-bold">60%</td>
+                <td class="p-3 text-center font-bold">65%</td>
+                <td class="p-3 text-center font-bold">70%</td>
+                <td class="p-3 text-ink-700 leading-relaxed"><strong>Q1:</strong> Tuyển &amp; hội nhập 02 Sale B2B; mở ≥30 cơ hội sạch (Pipeline ≥4,5 tỷ); chốt ~1,20 tỷ (tổng phòng ~1,27 tỷ có trừ tuần nghỉ Tết Đinh Mùi 04–10/02). <strong>Cả năm:</strong> Chia rõ 3 đầu người (Anh Tuấn 3,5T • Bạn/Giải pháp 3,0T • 2 Sale mới + Vân 3,5T).</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- INTERACTIVE KPI SIMULATOR & RAMP-UP CURVE -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-5">
+        <div class="lg:col-span-6 card p-5 space-y-4">
+          <div class="flex items-center justify-between border-b border-canvas-200 pb-2">
+            <h3 class="text-sm font-extrabold text-ink-900">Bộ Mô Phỏng Điểm KPI (Thử Kịch Bản Khó Nhất Vẫn Đạt Sàn!)</h3>
+            <span class="text-[10px] font-bold px-2 py-0.5 rounded bg-cobalt-100 text-cobalt-900">Tương tác trực tiếp</span>
+          </div>
+          <div class="grid grid-cols-2 gap-3 text-xs">
+            <div>
+              <label class="font-bold text-ink-700 block mb-1">Chọn Quý đánh giá:</label>
+              <select id="kpiQuarterSel" onchange="calcKpiSim()" class="w-full rounded-lg border border-slate-300 px-3 py-2 font-bold bg-white">
+                <option value="Q1" selected>Q1/2027 (Tỷ trọng 40 / 20 / 40)</option>
+                <option value="Q2">Q2/2027 (Tỷ trọng 20 / 20 / 60)</option>
+                <option value="Q3">Q3/2027 (Tỷ trọng 15 / 20 / 65)</option>
+                <option value="Q4">Q4/2027 (Tỷ trọng 10 / 20 / 70)</option>
+              </select>
+            </div>
+            <div class="p-2.5 rounded-xl bg-ink-950 text-white text-center flex flex-col justify-center">
+              <span class="text-[10px] uppercase text-sky-300 font-bold">Tổng Điểm KPI Dự Kiến</span>
+              <span id="kpiTotalScore" class="text-2xl font-black text-emerald-400">87,0%</span>
+              <span id="kpiStatusLabel" class="text-[10px] text-emerald-300 font-semibold">An toàn vượt sàn 80%!</span>
+            </div>
+          </div>
+          <div class="space-y-3 text-xs">
+            <div class="p-3 rounded-lg bg-jade-50/60 border border-jade-600/20">
+              <div class="flex justify-between font-bold text-jade-900"><span>Rổ 1 (Dừng B2C &amp; Cứu FDrive):</span><span id="kpiB1Txt" class="badge-mono">100%</span></div>
+              <input id="kpiB1" type="range" min="50" max="120" step="5" value="100" oninput="calcKpiSim()" class="w-full accent-jade-600 mt-1" />
+            </div>
+            <div class="p-3 rounded-lg bg-ochre-50/70 border border-ochre-500/25">
+              <div class="flex justify-between font-bold text-ochre-900"><span>Rổ 2 (Chân 1 Use Case &amp; Bundle):</span><span id="kpiB2Txt" class="badge-mono">85%</span></div>
+              <input id="kpiB2" type="range" min="40" max="120" step="5" value="85" oninput="calcKpiSim()" class="w-full accent-ochre-600 mt-1" />
+            </div>
+            <div class="p-3 rounded-lg bg-cobalt-50/70 border border-cobalt-200">
+              <div class="flex justify-between font-bold text-cobalt-900"><span>Rổ 3 (Chân 2 MS365 / HiGIO / Co-sale):</span><span id="kpiB3Txt" class="badge-mono">75%</span></div>
+              <input id="kpiB3" type="range" min="40" max="120" step="5" value="75" oninput="calcKpiSim()" class="w-full accent-cobalt-600 mt-1" />
+            </div>
+          </div>
+          <p class="text-[11px] text-ink-600 leading-relaxed bg-canvas-50 p-2.5 rounded-lg border border-canvas-200">
+            <strong>2 Van an toàn nên xin kèm khi trình anh Sơn &amp; BGĐ:</strong> (1) Mốc <strong>Re-baseline ngày 31/03/2027</strong> để hiệu chỉnh tỷ lệ chốt thực tế sau quý bản lề đầu; (2) Biên độ <strong>Sàn 80% – Đạt 100% – Vượt 120%</strong> để bảo vệ tinh thần &amp; thu nhập năm đầu chuyển đổi.
+          </p>
+        </div>
+
+        <div class="lg:col-span-6 card p-5 flex flex-col justify-between space-y-3">
+          <div>
+            <h3 class="text-sm font-extrabold text-ink-900 border-b border-canvas-200 pb-2">Đường Cong Ramp-Up 12 Tháng Cho 02 Sale B2B Tuyển Mới (1,5 Tỷ/Sale/Năm)</h3>
+            <p class="text-[11px] text-ink-500 mt-1">Không chia đều 125Tr/tháng từ T1 gây sốc nghỉ việc! Tính đủ 3 tháng hội nhập &amp; Tết T2 (= 9,4 tháng toàn tải → 159,6Tr/tháng từ T5; Q1 chỉ 103,7Tr/Sale)</p>
+          </div>
+          <div class="chart-wrap"><canvas id="chartRepRamp"></canvas></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================================
+         TAB 4: NÂNG TRÌNH CHÂN 1 & CẦU NỐI B2C → B2B THỰC CHIẾN NHẤT
+         ========================================================================= -->
+    <section id="tab4" class="tab-section hidden space-y-6">
+      <div class="card p-5 sm:p-6 border-l-4 border-l-jade-600 space-y-4">
+        <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-2 border-b border-canvas-200 pb-3">
+          <div>
+            <span class="text-[11px] font-extrabold uppercase tracking-wider text-jade-700">Chuyển Hóa Thế Mạnh B2C Thành Vũ Khí KD B2B — Không Nhảy Cóc Quá Sức</span>
+            <h2 class="text-base sm:text-lg font-black text-ink-900">Thang Nâng Trình Chân 1 (3 Nấc: 4,8Tr → 68,4Tr → 390Tr/HĐ) &amp; Cầu Nối Tư Duy B2C → B2B</h2>
+          </div>
+          <span class="px-3 py-1 rounded-lg bg-jade-50 text-jade-900 border border-jade-600/30 text-xs font-bold">ACV tăng 14,2x ở Nấc 2 &amp; 81,1x ở Nấc 3</span>
+        </div>
+
+        <!-- 3-LEVEL INTERACTIVE MATURITY LADDER -->
+        <div id="ladderGrid" class="grid grid-cols-1 lg:grid-cols-3 gap-4"></div>
+
+        <!-- 6 B2C TO B2B MINDSET SHIFTS -->
+        <div class="overflow-x-auto">
+          <table class="w-full text-left text-xs border-collapse border border-canvas-200">
+            <thead class="bg-slate-100 text-ink-800 uppercase font-bold">
+              <tr>
+                <th class="p-3 w-[18%]">Chiều Chuyển Đổi</th>
+                <th class="p-3 w-[26%]">Thói Quen B2C Cũ (Đang Quen Tay)</th>
+                <th class="p-3 w-[28%]">Chuẩn KD B2B Thực Chiến</th>
+                <th class="p-3 w-[28%] bg-jade-50/70 text-jade-900">Cách Bạn &amp; Đội Chuyển Nhẹ Nhất</th>
+              </tr>
+            </thead>
+            <tbody id="b2cB2bShiftBody" class="divide-y divide-canvas-200"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- MEDDPICC 5 GOLDEN QUESTIONS + 12-WEEK PERSONAL UP-SKILL PLAN -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-5">
+        <div class="lg:col-span-7 card p-5 space-y-3">
+          <div class="border-b border-canvas-200 pb-2">
+            <span class="text-[10px] font-extrabold uppercase text-cobalt-700">Sổ Tay Bỏ Túi Khi Gặp Khách B2B (MEDDPICC Rút Gọn — Tăng 15–30% Win Rate)</span>
+            <h3 class="text-sm font-black text-ink-900">5 Câu Hỏi Vàng Cho Người Gốc B2C (Thay Vì Chỉ Đọc Tính Năng &amp; Giảm Giá)</h3>
+          </div>
+          <div id="meddpiccList" class="space-y-2.5 text-xs"></div>
+        </div>
+        <div class="lg:col-span-5 space-y-5">
+          <div class="card p-5 space-y-3">
+            <h3 class="text-sm font-extrabold text-ink-900 border-b border-canvas-200 pb-2">4 Mảnh Ghép Sản Phẩm B2B Cần Làm Trước Cho Chân 1 (Không Cần Code Lại Lõi)</h3>
+            <div class="space-y-2 text-xs text-ink-700">
+              <div class="p-2.5 rounded-lg bg-canvas-50 border border-canvas-200"><strong>1. Security 1-Pager (Gửi khách &lt;24h):</strong> Mô tả DC5/DC7 Tier III, Private 100%, Backup 1-1, Luật 91/2025 &amp; NĐ 333/2026 (rút ngắn 20–30% thời gian duyệt ATTT).</div>
+              <div class="p-2.5 rounded-lg bg-canvas-50 border border-canvas-200"><strong>2. Phân quyền tài khoản DN &amp; Nhật ký Audit:</strong> Quản trị viên công ty tự quản lý dung lượng nhóm nhân viên, không chia sẻ link public DMCA.</div>
+              <div class="p-2.5 rounded-lg bg-canvas-50 border border-canvas-200"><strong>3. Bảng so sánh TCO 3 năm (1 trang):</strong> So thẳng FTI vs AWS Singapore (bẫy Egress 3,76Tr/TB) vs Tự mua tủ NAS để gửi CFO/Economic Buyer.</div>
+              <div class="p-2.5 rounded-lg bg-canvas-50 border border-canvas-200"><strong>4. Bộ Hợp đồng PO &amp; Phụ lục SLA phân tầng:</strong> Ghi rõ kho thứ cấp/phụ trợ cho Tầng 2 để khóa chặt trách nhiệm Data Liability.</div>
+            </div>
+          </div>
+          <div class="card p-5 space-y-2.5">
+            <h3 class="text-sm font-extrabold text-ink-900 border-b border-canvas-200 pb-2">Lộ Trình Tự Nâng Trình B2B 12 Tuần (Chỉ 2h/Tuần — Không Quá Tải)</h3>
+            <div class="space-y-2 text-xs text-ink-700">
+              <div class="p-2.5 rounded-lg bg-jade-50/70 border border-jade-600/20"><strong>Tuần 1–4 (Tháng 12):</strong> Cùng Châu, Vân &amp; SIS đóng gói xong 4 tài liệu bán B2B ở trên + kịch bản gọi 1.649 VIP biến user B2C thành cầu nối công ty.</div>
+              <div class="p-2.5 rounded-lg bg-cobalt-50/70 border border-cobalt-200"><strong>Tuần 5–8 (Tháng 01/27):</strong> Đi <strong>Shadowing</strong> 1–2 buổi gặp KH B2B/tuần cùng anh Tuấn &amp; PKD2; ghi đúng 3 bài học xử lý từ chối sau mỗi buổi.</div>
+              <div class="p-2.5 rounded-lg bg-ochre-50 border border-ochre-500/25"><strong>Tuần 9–12 (Tháng 02–03/27):</strong> Tự dẫn 3–5 cuộc tư vấn Nấc 2 (Lưu Camera, Chứng từ 10 năm, Backup HiGIO) dùng đúng 5 câu MEDDPICC trước mốc Gate 1.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================================
+         TAB 5: 3 HƯỚNG QUYẾT SÁCH BGĐ, STAGE-GATE & KIỂM TOÁN 7 LỖI CŨ
+         ========================================================================= -->
+    <section id="tab5" class="tab-section hidden space-y-6">
+      <div class="space-y-3">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+          <div>
+            <span class="text-[11px] font-extrabold uppercase text-cobalt-700">Khung Quyết Sách 3 Phương Án (Barbara Minto Pyramid + Robert Cooper Stage-Gate)</span>
+            <h2 class="text-base sm:text-lg font-black text-ink-900">Chọn 1 Trong 3 Hướng Để Đồng Bộ Lộ Trình 14 Tháng (Tab 8) — Cả 3 Đều Giữ 10T→30T→50T &amp; Tiết Kiệm 6,45 Tỷ</h2>
+          </div>
+          <span class="text-xs font-semibold text-cobalt-700 bg-cobalt-50 px-3 py-1 rounded-full border border-cobalt-200">Bấm chọn trực tiếp trên thẻ</span>
+        </div>
+        <div id="optionCardsGrid" class="grid grid-cols-1 lg:grid-cols-3 gap-4"></div>
+      </div>
+
+      <div class="card overflow-hidden">
+        <div class="p-4 bg-canvas-100 border-b border-canvas-200 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+          <h3 class="text-sm font-extrabold text-ink-900">Ma Trận So Sánh 3 Hướng Quyết Sách Trình BGĐ &amp; BGĐ CC (10 Tiêu Chí Trọng Yếu)</h3>
+          <span class="text-xs font-bold text-cobalt-700">Minh bạch đánh đổi CAPEX – OPEX – Rủi ro</span>
+        </div>
+        <div class="overflow-x-auto">
+          <table class="w-full text-left text-xs border-collapse">
+            <thead class="bg-slate-100 text-ink-800 uppercase font-bold border-b border-canvas-200">
+              <tr>
+                <th class="p-3 w-[19%]">Tiêu Chí Quyết Sách</th>
+                <th class="p-3 w-[27%] text-jade-900">Hướng 1: Tối Giản &amp; Khóa Rủi Ro</th>
+                <th class="p-3 w-[27%] text-cobalt-900 bg-cobalt-50/70">Hướng 2: Stage-Gate (Khuyến Nghị)</th>
+                <th class="p-3 w-[27%] text-ochre-900">Hướng 3: Chân 2 Dẫn Dắt &amp; Bundle</th>
+              </tr>
+            </thead>
+            <tbody id="optionMatrixBody" class="divide-y divide-canvas-200"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-5">
+        <div class="lg:col-span-7 card p-5 space-y-3">
+          <div class="flex items-center justify-between border-b border-canvas-200 pb-2.5">
+            <h3 class="text-sm font-extrabold text-ink-900">Kiểm Toán 7 Lỗ Hổng Chí Tử Của 4 Bản Cũ Đã Sửa Dứt Điểm Ở v3.0</h3>
+            <span class="text-[10px] font-bold px-2 py-0.5 rounded bg-rose-100 text-rose-800">Audit 26/11/2026</span>
+          </div>
+          <div id="auditFixesList" class="space-y-2.5 text-xs"></div>
+        </div>
+        <div class="lg:col-span-5 space-y-5">
+          <div class="card p-5">
+            <h3 class="text-sm font-extrabold text-ink-900 border-b border-canvas-200 pb-2 mb-3">So Sánh CAPEX Gate 0 &amp; OPEX 2027 (Triệu VNĐ)</h3>
+            <div class="chart-wrap"><canvas id="chart3OptionsFinance"></canvas></div>
+          </div>
+          <div class="card p-5">
+            <h3 class="text-sm font-extrabold text-ink-900 border-b border-canvas-200 pb-2 mb-3">Sơ Đồ 4 Cổng Quyết Định Go/Kill (Stage-Gate)</h3>
+            <svg viewBox="0 0 560 220" class="w-full h-auto" role="img" aria-label="Sơ đồ Stage-Gate">
+              <defs>
+                <marker id="arrBlue" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M 0 1 L 10 5 L 0 9 z" fill="#1d4ed8"/></marker>
+                <marker id="arrRed" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M 0 1 L 10 5 L 0 9 z" fill="#dc2626"/></marker>
+              </defs>
+              <rect x="6" y="14" width="124" height="86" rx="10" fill="#eff6ff" stroke="#1d4ed8" stroke-width="2"/>
+              <text x="68" y="34" text-anchor="middle" font-size="11" font-weight="800" fill="#1e3a8a">GATE 0 • 15/12/26</text>
+              <text x="68" y="52" text-anchor="middle" font-size="10" fill="#334155">BGĐ chọn H1/H2/H3</text>
+              <text x="68" y="67" text-anchor="middle" font-size="10" fill="#334155">Cấp 30–60Tr đợt 1</text>
+              <text x="68" y="84" text-anchor="middle" font-size="9.5" font-weight="700" fill="#059669">Đóng ví B2C 31/12</text>
+              <line x1="130" y1="57" x2="156" y2="57" stroke="#1d4ed8" stroke-width="2" marker-end="url(#arrBlue)"/>
+              <rect x="160" y="14" width="136" height="86" rx="10" fill="#fffbeb" stroke="#d97706" stroke-width="2"/>
+              <text x="228" y="34" text-anchor="middle" font-size="11" font-weight="800" fill="#78350f">GATE 1 • 31/03/27</text>
+              <text x="228" y="52" text-anchor="middle" font-size="10" fill="#334155">≥80–100TB thực thu</text>
+              <text x="228" y="67" text-anchor="middle" font-size="10" fill="#334155">SIS ký DC7 + ≥2 PoC</text>
+              <text x="228" y="84" text-anchor="middle" font-size="9.5" font-weight="700" fill="#b45309">Mở 90Tr hay Auto-H1</text>
+              <line x1="296" y1="57" x2="322" y2="57" stroke="#1d4ed8" stroke-width="2" marker-end="url(#arrBlue)"/>
+              <rect x="326" y="14" width="106" height="86" rx="10" fill="#ecfdf5" stroke="#059669" stroke-width="2"/>
+              <text x="379" y="34" text-anchor="middle" font-size="11" font-weight="800" fill="#064e3b">GATE 2 • 30/06</text>
+              <text x="379" y="52" text-anchor="middle" font-size="10" fill="#334155">Lũy kế ≥3,74 Tỷ</text>
+              <text x="379" y="67" text-anchor="middle" font-size="10" fill="#334155">Chốt Châu &amp; Thủy</text>
+              <text x="379" y="84" text-anchor="middle" font-size="9.5" font-weight="700" fill="#047857">Rà sức khỏe 6T</text>
+              <line x1="432" y1="57" x2="452" y2="57" stroke="#1d4ed8" stroke-width="2" marker-end="url(#arrBlue)"/>
+              <rect x="456" y="14" width="98" height="86" rx="10" fill="#0b1120" stroke="#334155" stroke-width="2"/>
+              <text x="505" y="34" text-anchor="middle" font-size="11" font-weight="800" fill="#fbbf24">GATE 3 • 30/09</text>
+              <text x="505" y="52" text-anchor="middle" font-size="10" fill="#e2e8f0">Chốt 6,7–7,0T</text>
+              <text x="505" y="67" text-anchor="middle" font-size="10" fill="#e2e8f0">Khóa tái ký</text>
+              <text x="505" y="84" text-anchor="middle" font-size="9.5" font-weight="700" fill="#34d399">≥7,4T sang 2028</text>
+              <path d="M 228 100 L 228 144 L 250 144" fill="none" stroke="#dc2626" stroke-width="2" stroke-dasharray="4,3" marker-end="url(#arrRed)"/>
+              <rect x="256" y="122" width="298" height="84" rx="10" fill="#fef2f2" stroke="#dc2626" stroke-width="1.5"/>
+              <text x="270" y="143" font-size="10.5" font-weight="800" fill="#991b1b">QUY TẮC AUTO-PIVOT / KILL TẠI GATE 1:</text>
+              <text x="270" y="161" font-size="10" fill="#334155">Nếu Q1/2027 không đạt đủ 3 số khách quan → Tự động</text>
+              <text x="270" y="177" font-size="10" fill="#334155">chuyển Hướng 1: Tắt 24 máy cũ, giữ 90Tr, dồn quân C2.</text>
+              <text x="270" y="194" font-size="9.5" font-weight="700" fill="#b91c1c">Không tranh cãi • Không đổ lỗi cá nhân • Bảo toàn vốn FTI</text>
+            </svg>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================================
+         TAB 6: CHÂN 1 (50 MÁY CHỦ, PHÁP LÝ 11/2026, MÔ PHỎNG HÒA VỐN, VIP & BUNDLE)
+         ========================================================================= -->
+    <section id="tab6" class="tab-section hidden space-y-6">
+      <div class="card p-5 sm:p-6 space-y-4">
+        <div class="flex flex-col md:flex-row md:items-center justify-between border-b border-canvas-200 pb-3 gap-2">
+          <div>
+            <span class="text-[11px] font-extrabold uppercase tracking-wider text-ochre-600">Kiến Trúc Phần Cứng &amp; Kiểm Soát Trách Nhiệm Dữ Liệu (AFR 2TB = 6,58%/Năm)</span>
+            <h2 class="text-base sm:text-lg font-black text-ink-900">Sổ Cái Tròn 50 Máy Chủ &amp; Phân Tầng Kháng Lỗi Thực Chiến (Bỏ MinIO CE • Cấm Ceph 1GbE)</h2>
+          </div>
+          <span class="text-xs font-bold px-3 py-1 rounded-lg bg-rose-50 text-rose-800 border border-rose-200">Tách biệt tuyệt đối SLA theo thế hệ phần cứng</span>
+        </div>
+        <div class="overflow-x-auto bg-canvas-50 rounded-xl p-4 border border-canvas-200">
+          <svg viewBox="0 0 920 305" class="w-full min-w-[720px] h-auto" role="img" aria-label="Sơ đồ phân tầng 50 máy chủ">
+            <rect x="0" y="0" width="920" height="34" rx="6" fill="#0b1120"/>
+            <text x="16" y="22" fill="#fbbf24" font-size="11.5" font-weight="800">QUY HOẠCH TRÒN ĐÚNG 50 MÁY CHỦ SUPERMICRO (DC5 EPZ1 + DC7 EPZ1) — KHÓA CHẶT RỦI RO DATA LIABILITY</text>
+            <rect x="0" y="46" width="215" height="245" rx="10" fill="#f8fafc" stroke="#94a3b8" stroke-width="1.8"/>
+            <rect x="0" y="46" width="215" height="32" rx="10" fill="#475569"/>
+            <text x="107" y="67" text-anchor="middle" fill="#fff" font-size="11" font-weight="800">TẦNG 0: B2C SOFT CLOSE (6 MÁY)</text>
+            <text x="14" y="100" font-size="10.5" font-weight="700" fill="#0f172a">• Vị trí: DC7 EPZ1 (~700 TB)</text>
+            <text x="14" y="118" font-size="10" fill="#334155">• 24×6TB HDD + 12×480GB SSD</text>
+            <text x="14" y="136" font-size="10" fill="#334155">• Chỉ giữ tải về Private cho VIP cũ</text>
+            <text x="14" y="154" font-size="10" fill="#334155">• Thu hồi hoàn toàn ngày 31/12/2028</text>
+            <rect x="12" y="176" width="191" height="46" rx="6" fill="#ecfdf5" stroke="#059669"/>
+            <text x="107" y="196" text-anchor="middle" font-size="10" font-weight="800" fill="#065f46">TIẾT KIỆM 6,45 TỶ VNĐ</text>
+            <text x="107" y="212" text-anchor="middle" font-size="9.5" fill="#047857">Giảm nợ 7,15T → 2,8T → 0,7T</text>
+            <text x="14" y="248" font-size="9.5" fill="#64748b">+ 1 máy loại biên (Server 034 / đối</text>
+            <text x="14" y="264" font-size="9.5" fill="#64748b">soát chéo STT 33 Cache với TạiCV)</text>
+
+            <rect x="233" y="46" width="225" height="245" rx="10" fill="#fffbeb" stroke="#d97706" stroke-width="1.8"/>
+            <rect x="233" y="46" width="225" height="32" rx="10" fill="#d97706"/>
+            <text x="345" y="67" text-anchor="middle" fill="#fff" font-size="11" font-weight="800">TẦNG 2: SME &amp; FDRIVE (38 MÁY)</text>
+            <text x="247" y="100" font-size="10.5" font-weight="700" fill="#78350f">• 34 máy chạy + 4 máy kho Spare</text>
+            <text x="247" y="118" font-size="10" fill="#334155">• 1GbE, 16–32GB RAM, 912 ổ 2TB</text>
+            <text x="247" y="136" font-size="10" fill="#334155">• AFR thực tế: 6,58%/năm (5 ổ/th)</text>
+            <text x="247" y="154" font-size="10" font-weight="700" fill="#047857">• Dùng: RAID-6 + Sync 1-1 chéo Rack</text>
+            <text x="247" y="170" font-size="10" fill="#334155">  (~697 TB khả dụng an toàn kép)</text>
+            <rect x="245" y="184" width="201" height="46" rx="6" fill="#fef2f2" stroke="#dc2626"/>
+            <text x="345" y="203" text-anchor="middle" font-size="10" font-weight="800" fill="#991b1b">RÀO CHẮN AN TOÀN BẮT BUỘC</text>
+            <text x="345" y="219" text-anchor="middle" font-size="9.5" fill="#b91c1c">Cấm chạy Ceph • Cấm bán SLA Bank</text>
+            <text x="247" y="250" font-size="9.5" fill="#78350f">• Bán: FshareStorage (200–300k/TB),</text>
+            <text x="247" y="266" font-size="9.5" fill="#78350f">  cứu 66 KH FDrive &amp; Bundle Chân 2</text>
+
+            <rect x="476" y="46" width="218" height="245" rx="10" fill="#eff6ff" stroke="#1d4ed8" stroke-width="2"/>
+            <rect x="476" y="46" width="218" height="32" rx="10" fill="#1d4ed8"/>
+            <text x="585" y="67" text-anchor="middle" fill="#fff" font-size="11" font-weight="800">TẦNG 1: VAULTBAAS (5 MÁY)</text>
+            <text x="490" y="100" font-size="10.5" font-weight="700" fill="#1e3a8a">• 4 máy STT 36–45 + STT 35 (DC7)</text>
+            <text x="490" y="118" font-size="10" fill="#334155">• Dual 10GbE, 32GB RAM, ổ 2021</text>
+            <text x="490" y="136" font-size="10" fill="#334155">• 480TB (6TB) + 19,2TB SSD + 560TB</text>
+            <text x="490" y="154" font-size="10" font-weight="700" fill="#1d4ed8">• Veeam VIA v13 (XFS Immutability)</text>
+            <text x="490" y="170" font-size="10" fill="#334155">• Bắt buộc cách ly mạng iLO/IPMI</text>
+            <rect x="488" y="184" width="194" height="46" rx="6" fill="#dbeafe" stroke="#2563eb"/>
+            <text x="585" y="203" text-anchor="middle" font-size="10" font-weight="800" fill="#1e40af">CHUẨN ĐIỀU 22 TT 09/2020</text>
+            <text x="585" y="219" text-anchor="middle" font-size="9.5" fill="#1e3a8a">450–850k/TB • 0đ Egress • 10GbE</text>
+            <text x="490" y="250" font-size="9.5" fill="#1e3a8a">• Bán: Fintech, Chứng khoán, DN lớn</text>
+            <text x="490" y="266" font-size="9.5" fill="#1e3a8a">  &amp; Backup bất biến cho HiGIO Cloud</text>
+
+            <rect x="712" y="46" width="208" height="245" rx="10" fill="#ecfdf5" stroke="#059669" stroke-width="1.8"/>
+            <rect x="712" y="46" width="208" height="32" rx="10" fill="#059669"/>
+            <text x="816" y="67" text-anchor="middle" fill="#fff" font-size="11" font-weight="800">TẦNG 3: BANK 15Y+ (ĐỐI ỨNG)</text>
+            <text x="726" y="100" font-size="10.5" font-weight="700" fill="#064e3b">• 0 Máy tồn kho • Back-to-Back</text>
+            <text x="726" y="118" font-size="10" fill="#334155">• Object First Ootbi (ZTDR Veeam)</text>
+            <text x="726" y="136" font-size="10" fill="#334155">• Cloudian HyperStore / Artesca</text>
+            <text x="726" y="154" font-size="10" fill="#334155">• Dell EMC / Hitachi / LTO-9/10</text>
+            <rect x="724" y="184" width="184" height="46" rx="6" fill="#d1fae5" stroke="#059669"/>
+            <text x="816" y="203" text-anchor="middle" font-size="10" font-weight="800" fill="#065f46">CAPEX RỦI RO = 0 VNĐ</text>
+            <text x="816" y="219" text-anchor="middle" font-size="9.5" fill="#047857">Chỉ ký PO hãng khi đã thắng thầu</text>
+            <text x="726" y="250" font-size="9.5" fill="#065f46">• Bán: Thầu Ngân hàng TMCP &amp;</text>
+            <text x="726" y="266" font-size="9.5" fill="#065f46">  Khối Công 10–30 năm (TT 37/2026)</text>
+          </svg>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-5">
+        <div class="lg:col-span-6 card p-5 space-y-4">
+          <div class="flex items-center justify-between border-b border-canvas-200 pb-2">
+            <h3 class="text-sm font-extrabold text-ink-900">Bộ Mô Phỏng Điểm Hòa Vốn &amp; Tắt Điện Cuốn Chiếu</h3>
+            <span class="text-[10px] font-bold px-2 py-0.5 rounded bg-jade-100 text-jade-900">Tương tác trực tiếp</span>
+          </div>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
+            <div>
+              <label class="font-bold text-ink-700 block mb-1">1. Chế độ bật nguồn Rack (OPEX/tháng):</label>
+              <select id="simOpexSelect" onchange="runBreakevenSim()" class="w-full rounded-lg border border-slate-300 px-3 py-2 font-semibold bg-white">
+                <option value="18">Hướng 1: Tối giản 2,5 Rack (18 Tr/th)</option>
+                <option value="24">Hướng 3: Bể Bundle + FDrive (24 Tr/th)</option>
+                <option value="30" selected>Hướng 2: Bật cuốn chiếu (30 Tr/th)</option>
+                <option value="40">Bản cũ: Bật Full 5 Rack (40 Tr/th)</option>
+              </select>
+            </div>
+            <div>
+              <label class="font-bold text-ink-700 block mb-1">2. Đơn giá ròng sau CK: <span id="simPriceLabel" class="text-cobalt-700 font-black">225k đ/TB</span></label>
+              <input id="simPriceRange" type="range" min="180" max="650" step="15" value="225" oninput="runBreakevenSim()" class="w-full accent-cobalt-600 mt-2" />
+              <div class="flex justify-between text-[10px] text-ink-500 mt-0.5"><span>180k</span><span>300k</span><span>450k</span><span>650k</span></div>
+            </div>
+          </div>
+          <div class="grid grid-cols-3 gap-3 text-center">
+            <div class="p-3 rounded-xl bg-cobalt-50 border border-cobalt-200"><span class="text-[10px] font-bold uppercase text-cobalt-700 block">Hòa Vốn OPEX</span><span id="simBeTb" class="text-xl font-black text-cobalt-900 block mt-0.5">133 TB</span><span id="simBePct" class="text-[10px] text-ink-500">~75 KH VIP</span></div>
+            <div class="p-3 rounded-xl bg-amber-50 border border-amber-200"><span class="text-[10px] font-bold uppercase text-amber-800 block">OPEX Năm 2027</span><span id="simOpexYr" class="text-xl font-black text-amber-900 block mt-0.5">360 Tr</span><span id="simOpexSave" class="text-[10px] text-amber-700">Giảm 120Tr vs cũ</span></div>
+            <div class="p-3 rounded-xl bg-jade-50 border border-jade-600/30"><span class="text-[10px] font-bold uppercase text-jade-800 block">Lợi Ích Ròng 2027</span><span id="simNetEcon" class="text-xl font-black text-jade-900 block mt-0.5">+4,48 Tỷ</span><span class="text-[10px] text-jade-700">Gồm 4,35T tránh nợ</span></div>
+          </div>
+          <div class="p-3 rounded-lg bg-slate-900 text-slate-100 text-[11px] leading-relaxed">
+            <strong class="text-amber-400">Khung Bundle "3 Không – 3 Có":</strong> Không tặng khách lẻ • Không hứa SLA Bank trên Tầng 2 • Không miễn phí quá 12 tháng. <strong>Có:</strong> chỉ kèm HĐ chính FTI ≥100Tr/năm, định giá rõ trên phụ lục (2,4–3,6Tr/năm) và tự động thu 200k–300k/TB từ năm 2.
+          </div>
+        </div>
+        <div class="lg:col-span-6 card p-5 flex flex-col justify-between">
+          <div>
+            <h3 class="text-sm font-extrabold text-ink-900 border-b border-canvas-200 pb-2">Đối Chuẩn Giá Thực Tế 1 TB (Cập Nhật 11/2026 — Nghìn VNĐ)</h3>
+            <p class="text-[11px] text-ink-500 mt-1">AWS Singapore rút 1TB tốn 3.760k ($147,46) • GreenNode 543k • Wasabi 204k • Backblaze B2 177k</p>
+          </div>
+          <div class="chart-wrap my-auto"><canvas id="chartPricing2026"></canvas></div>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-5">
+        <div class="lg:col-span-6 card p-5 space-y-3">
+          <h3 class="text-sm font-extrabold text-ink-900 border-b border-canvas-200 pb-2">Khai Thác Tệp 1.649 VIP B2C Cũ (&gt;10 GB) — 200k vs 300k/TB (1,78 TB/KH)</h3>
+          <div class="overflow-x-auto">
+            <table class="w-full text-xs text-left border-collapse border border-canvas-200">
+              <thead class="bg-slate-100 text-ink-800 uppercase font-bold">
+                <tr><th class="p-2.5 border-b">Chuyển Đổi</th><th class="p-2.5 border-b text-center">Số KH</th><th class="p-2.5 border-b text-right">TB</th><th class="p-2.5 border-b text-right text-cobalt-800">200k/TB</th><th class="p-2.5 border-b text-right text-ochre-800">300k/TB</th></tr>
+              </thead>
+              <tbody class="divide-y divide-canvas-200">
+                <tr><td class="p-2.5 font-semibold">Tối thiểu (5%)</td><td class="p-2.5 text-center font-bold">82 KH</td><td class="p-2.5 text-right">146,0</td><td class="p-2.5 text-right font-bold text-cobalt-700">354,7 Tr</td><td class="p-2.5 text-right font-bold text-ochre-700">531,4 Tr</td></tr>
+                <tr class="bg-cobalt-50/70 font-bold"><td class="p-2.5 text-cobalt-900">Cam kết (10%) ★</td><td class="p-2.5 text-center text-cobalt-900">165 KH</td><td class="p-2.5 text-right text-cobalt-900">293,7</td><td class="p-2.5 text-right text-cobalt-700">713,8 Tr</td><td class="p-2.5 text-right text-ochre-700">1.069,2 Tr</td></tr>
+                <tr><td class="p-2.5 font-semibold">Tích cực (15%)</td><td class="p-2.5 text-center font-bold">247 KH</td><td class="p-2.5 text-right">439,7</td><td class="p-2.5 text-right font-bold text-cobalt-700">1.068,5 Tr</td><td class="p-2.5 text-right font-bold text-ochre-700">1.600,6 Tr</td></tr>
+                <tr><td class="p-2.5 font-semibold">Đột phá (20%)</td><td class="p-2.5 text-center font-bold">330 KH</td><td class="p-2.5 text-right">587,4</td><td class="p-2.5 text-right font-bold text-cobalt-700">1.427,6 Tr</td><td class="p-2.5 text-right font-bold text-ochre-700">2.138,4 Tr</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="lg:col-span-6 card p-5 space-y-3">
+          <h3 class="text-sm font-extrabold text-ink-900 border-b border-canvas-200 pb-2">Ma Trận Bundle 4 Dịch Vụ FTI (Giải Cứu 66 KH FDrive &amp; Kéo Deal Chân 2)</h3>
+          <div id="bundleMatrixList" class="space-y-2 text-xs"></div>
+        </div>
+      </div>
+
+      <div class="card overflow-hidden">
+        <div class="p-4 bg-ink-950 text-white flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+          <div><h3 class="text-sm font-extrabold text-amber-400">6 Nhóm Văn Bản Pháp Lý Lưu Trữ Dữ Liệu Việt Nam (Chuẩn Xác 26/11/2026)</h3><p class="text-[11px] text-slate-300">Luật 91/2025 (01/01/2026), Luật ANM 116 &amp; NĐ 333/2026, TT 09 Điều 26, TT 37/2026 &amp; NQ 66.18</p></div>
+        </div>
+        <div class="overflow-x-auto">
+          <table class="w-full text-left text-xs border-collapse">
+            <thead class="bg-canvas-100 text-ink-800 uppercase font-bold border-b border-canvas-200"><tr><th class="p-3 w-[20%]">Văn Bản Hiện Hành</th><th class="p-3 w-[15%]">Hiệu Lực</th><th class="p-3 w-[35%]">Quy Định Cốt Lõi</th><th class="p-3 w-[30%]">Đòn Bẩy Chốt Sale KD3</th></tr></thead>
+            <tbody id="legalTableBody" class="divide-y divide-canvas-200"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="card p-5 space-y-3">
+        <h3 class="text-sm font-extrabold text-ink-900 border-b border-canvas-200 pb-2">5 Kịch Bản Ứng Phó Sự Cố Thực Chiến Chân 1</h3>
+        <div id="riskPlaybookGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 text-xs"></div>
+      </div>
+    </section>
+
+    <!-- =========================================================================
+         TAB 7: CHÂN 2 (7 SẢN PHẨM, PHỄU 29 HĐ, BIÊN GỘP & 6 NHÓM KHG)
+         ========================================================================= -->
+    <section id="tab7" class="tab-section hidden space-y-6">
+      <div class="card p-5 sm:p-6 space-y-4">
+        <div class="flex flex-col md:flex-row md:items-center justify-between border-b border-canvas-200 pb-3 gap-2">
+          <div>
+            <span class="text-[11px] font-extrabold uppercase tracking-wider text-cobalt-700">Động Cơ Doanh Số Chủ Lực (94,5% – 97,5% Tổng Doanh Thu 2027)</span>
+            <h2 class="text-base sm:text-lg font-black text-ink-900">Chiến Lược Chân 2 Hậu Tăng Giá MS365 (07/2026), Cắt Margin CSP (10/2026) &amp; Phễu 29 Hợp Đồng</h2>
+          </div>
+          <span class="px-3 py-1 rounded-lg bg-cobalt-50 text-cobalt-800 border border-cobalt-200 text-xs font-bold">5,2 Leads/Sale/Tháng • Biên gộp ước tính ~24,6%</span>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs">
+          <div class="p-4 rounded-xl bg-cobalt-50/70 border border-cobalt-200 space-y-1.5"><span class="px-2 py-0.5 rounded bg-cobalt-600 text-white font-bold text-[10px]">MS365 (07 &amp; 10/2026)</span><h4 class="font-extrabold text-cobalt-900 text-sm">Tăng giá 5–33% &amp; Cắt 5% Margin Legacy</h4><p class="text-ink-700 leading-relaxed">Deal 300 user Business Standard lên ~1,005 Tỷ ACV; Microsoft bỏ bán lẻ OneDrive Plan 1/2 &amp; thưởng tới 19,5% cho <strong>Business Premium &amp; Copilot</strong>. Thắng thầu bằng Combo Premium + Di trú Mail + Tặng FshareStorage.</p></div>
+          <div class="p-4 rounded-xl bg-jade-50/80 border border-jade-600/25 space-y-1.5"><span class="px-2 py-0.5 rounded bg-jade-600 text-white font-bold text-[10px]">Starlink VN (08–11/2026)</span><h4 class="font-extrabold text-jade-900 text-sm">633 Thuê Bao &amp; Cước DR Bank Rất Dễ Chốt</h4><p class="text-ink-700 leading-relaxed">Case 10 điểm Cát Hải – Bạch Long Vĩ. <strong>Local Priority 50GB chỉ 1,48–1,59Tr/tháng</strong> làm đường DR Link cho Ngân hàng; Global Priority (Hàng hải) 7,24–62,24Tr/th; bộ Performance Gen 3 ~49–76Tr.</p></div>
+          <div class="p-4 rounded-xl bg-ochre-50 border border-ochre-500/30 space-y-1.5"><span class="px-2 py-0.5 rounded bg-ochre-600 text-white font-bold text-[10px]">FPT Camera &amp; HiGIO</span><h4 class="font-extrabold text-ochre-900 text-sm">QCVN 11:2026/BCA &amp; Luật ANM 116</h4><p class="text-ink-700 leading-relaxed">Camera AI Dome 5I/Bullet 5I đạt chuẩn QCVN 11:2026/BCA (Cloud IQ+ từ 33k/cam/th, 3.700+ DN). HiGIO Cloud + Backup DC7 đáp ứng lưu nội địa 24 tháng theo NĐ 333/2026.</p></div>
+        </div>
+      </div>
+
+      <div class="card overflow-hidden">
+        <div class="p-4 bg-canvas-100 border-b border-canvas-200 flex flex-col sm:flex-row sm:items-center justify-between gap-2.5">
+          <h3 class="text-sm font-extrabold text-ink-900">Ma Trận 7 Dòng Sản Phẩm KD3</h3>
+          <div class="flex flex-wrap gap-1.5 no-print">
+            <button onclick="filterProd('ALL')" id="pf-ALL" class="px-2.5 py-1 rounded-md text-xs font-bold bg-cobalt-600 text-white">Tất cả (7)</button>
+            <button onclick="filterProd('CORE')" id="pf-CORE" class="px-2.5 py-1 rounded-md text-xs font-semibold bg-white border border-slate-300 text-ink-700">Chủ đạo Số 1 (MS365 &amp; HiGIO)</button>
+            <button onclick="filterProd('COSALE')" id="pf-COSALE" class="px-2.5 py-1 rounded-md text-xs font-semibold bg-white border border-slate-300 text-ink-700">Co-sale FTI</button>
+            <button onclick="filterProd('STORAGE')" id="pf-STORAGE" class="px-2.5 py-1 rounded-md text-xs font-semibold bg-white border border-slate-300 text-ink-700">Chân 1 Storage</button>
+          </div>
+        </div>
+        <div class="overflow-x-auto">
+          <table class="w-full text-left text-xs border-collapse">
+            <thead class="bg-slate-100 text-ink-800 uppercase font-bold border-b border-canvas-200"><tr><th class="p-3 w-[19%]">Dòng Sản Phẩm</th><th class="p-3 w-[13%] text-center">Ưu Tiên</th><th class="p-3 w-[24%]">Thực Trạng 11/2026</th><th class="p-3 w-[24%]">Lợi Thế Thắng Thầu (USP)</th><th class="p-3 w-[20%]">Quy Mô &amp; Chu Kỳ</th></tr></thead>
+            <tbody id="prodMatrixBody" class="divide-y divide-canvas-200"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="card overflow-hidden">
+        <div class="p-4 bg-canvas-100 border-b border-canvas-200 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+          <div><h3 class="text-sm font-extrabold text-ink-900">Toán Học Phễu 29 Hợp Đồng Chân 2 (9,50 Tỷ Cơ Sở) &amp; Biên Gộp Ước Tính</h3><p class="text-[11px] text-ink-500">Biên gộp ước tính theo mặt bằng thị trường 2026 (đối chiếu kế toán FTI khi trình chính thức)</p></div>
+          <span class="text-xs font-bold text-jade-800">Phủ phễu 3,8x (~36,4 Tỷ)</span>
+        </div>
+        <div class="overflow-x-auto">
+          <table class="w-full text-left text-xs border-collapse">
+            <thead class="bg-slate-100 text-ink-800 uppercase font-bold border-b border-canvas-200"><tr><th class="p-3">Phân Khúc Chân 2</th><th class="p-3 text-center">HĐ</th><th class="p-3 text-right">ACV TB</th><th class="p-3 text-right">Doanh Thu</th><th class="p-3 text-center">Win Rate</th><th class="p-3 text-center">Opps / Leads</th><th class="p-3 text-right">Biên &amp; Lãi Gộp Ước</th></tr></thead>
+            <tbody id="funnelTableBody" class="divide-y divide-canvas-200"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-5">
+        <div class="card p-5"><h3 class="text-sm font-extrabold text-ink-900 border-b border-canvas-200 pb-2 mb-3">Doanh Thu vs Lãi Gộp Ước Tính Chân 2 (2027 – Tỷ VNĐ)</h3><div class="chart-wrap"><canvas id="chartLeg2Mix"></canvas></div></div>
+        <div class="card p-5"><h3 class="text-sm font-extrabold text-ink-900 border-b border-canvas-200 pb-2 mb-3">Động Cơ Tái Ký Cộng Dồn Chân 2 (2027 → 2029 – Tỷ VNĐ)</h3><div class="chart-wrap"><canvas id="chartRenewalEngine"></canvas></div></div>
+      </div>
+
+      <div class="card p-5 space-y-3"><h3 class="text-sm font-extrabold text-ink-900 border-b border-canvas-200 pb-2">6 Nhóm Khách Hàng Mục Tiêu &amp; Cơ Chế Co-Sale PKD2 / BGĐ</h3><div id="targetAccountsGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3.5 text-xs"></div></div>
+    </section>
+
+    <!-- =========================================================================
+         TAB 8: LỘ TRÌNH 14 THÁNG (T11/26 – T12/27) & CHUYỂN ĐỔI ĐỘI NGŨ BRIDGES
+         ========================================================================= -->
+    <section id="tab8" class="tab-section hidden space-y-6">
+      <div class="card p-5 space-y-4">
+        <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-3 border-b border-canvas-200 pb-3">
+          <div>
+            <span class="text-[11px] font-extrabold uppercase tracking-wider text-jade-700">Sổ Tay Thực Thi Từng Tháng (Tự Động Đổi Theo H1 / H2 / H3)</span>
+            <h2 class="text-base sm:text-lg font-black text-ink-900">Lộ Trình 14 Tháng (26/11/2026 – 31/12/2027) — Đã Tính Tết Đinh Mùi 06/02/2027 &amp; 4 Cổng Gate</h2>
+          </div>
+          <div class="flex flex-wrap gap-1.5 no-print">
+            <button onclick="selectOption('H1')" id="t8-btn-H1" class="px-3 py-1.5 rounded-lg text-xs font-bold border transition">Hướng 1 (Tối giản)</button>
+            <button onclick="selectOption('H2')" id="t8-btn-H2" class="px-3 py-1.5 rounded-lg text-xs font-bold border transition">Hướng 2 (Stage-Gate)</button>
+            <button onclick="selectOption('H3')" id="t8-btn-H3" class="px-3 py-1.5 rounded-lg text-xs font-bold border transition">Hướng 3 (Bundle)</button>
+          </div>
+        </div>
+        <div class="flex flex-col md:flex-row md:items-center justify-between gap-3 bg-canvas-50 p-3.5 rounded-xl border border-canvas-200">
+          <div class="flex flex-wrap items-center gap-1.5 text-xs no-print">
+            <span class="font-bold text-ink-700 mr-1">Lọc vai trò:</span>
+            <button onclick="setRoleFilter('ALL')" id="rf-ALL" class="px-2.5 py-1 rounded-md font-bold bg-ink-900 text-white">Tất cả</button>
+            <button onclick="setRoleFilter('LEAD')" id="rf-LEAD" class="px-2.5 py-1 rounded-md font-semibold bg-white border border-slate-300 text-ink-700">Cá nhân Bạn</button>
+            <button onclick="setRoleFilter('TEAM_C2')" id="rf-TEAM_C2" class="px-2.5 py-1 rounded-md font-semibold bg-white border border-slate-300 text-ink-700">Anh Tuấn &amp; 2 Sale</button>
+            <button onclick="setRoleFilter('TEAM_C1')" id="rf-TEAM_C1" class="px-2.5 py-1 rounded-md font-semibold bg-white border border-slate-300 text-ink-700">Vân, Huy, Châu, Thủy</button>
+          </div>
+          <div class="flex items-center gap-3 text-xs">
+            <span class="font-bold text-ink-700">Tiến độ (tự lưu):</span>
+            <div class="w-32 h-2.5 bg-slate-200 rounded-full overflow-hidden"><div id="checklistProgressBar" class="h-full bg-jade-600 transition-all" style="width:0%"></div></div>
+            <span id="checklistProgressText" class="badge-mono font-bold text-jade-700">0%</span>
+            <button onclick="resetChecklist()" class="no-print text-[10px] underline text-slate-500 hover:text-rose-600">Reset</button>
+          </div>
+        </div>
+        <div class="bg-white rounded-xl border border-canvas-200 p-4">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between mb-2 gap-1"><h3 id="monthlyCurveTitle" class="text-xs sm:text-sm font-extrabold text-ink-900">Biểu Đồ Mục Tiêu 12 Tháng 2027</h3><span class="text-[11px] font-mono text-ink-500">Triệu VNĐ/tháng</span></div>
+          <div class="chart-wrap" style="height:225px;"><canvas id="chartMonthlyCurve"></canvas></div>
+        </div>
+      </div>
+
+      <div id="monthlyCardsContainer" class="grid grid-cols-1 md:grid-cols-2 gap-4"></div>
+
+      <!-- TEAM TRANSITION TABLE -->
+      <div class="card overflow-hidden">
+        <div class="p-4 bg-ink-950 text-white flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+          <div><h3 class="text-sm font-extrabold text-emerald-400">Chuyển Đổi Đội Ngũ Nhân Văn (William Bridges 3 Pha &amp; An Toàn Tâm Lý Amy Edmondson)</h3><p class="text-[11px] text-slate-300">Ghi nhận xứng đáng KPI 2025 → Che chắn Q1/2027 → Vai trò mới đủ 4 chữ P (Purpose, Picture, Plan, Part)</p></div>
+          <span class="text-xs font-bold bg-sky-500/20 text-sky-300 border border-sky-500/30 px-2.5 py-1 rounded">Mô hình 2 + 2 + 2 Tinh Gọn</span>
+        </div>
+        <div class="overflow-x-auto">
+          <table class="w-full text-left text-xs border-collapse">
+            <thead class="bg-canvas-100 text-ink-800 uppercase font-bold border-b border-canvas-200"><tr><th class="p-3 w-[16%]">Nhân Sự &amp; KPI 2025</th><th class="p-3 w-[22%]">Thành Tích Ghi Nhận</th><th class="p-3 w-[26%]">Vai Trò Mới 2027</th><th class="p-3 w-[36%]">Kịch Bản Họp 1-1 &amp; Giữ Tâm Lý</th></tr></thead>
+            <tbody id="teamTransitionBody" class="divide-y divide-canvas-200"></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================================
+         TAB 9: 12 SLIDES TRÌNH BÀY BGĐ & BMC HỢP NHẤT
+         ========================================================================= -->
+    <section id="tab9" class="tab-section hidden space-y-6">
+      <div class="space-y-3" id="deckWrapper">
+        <div class="bg-ink-950 text-white p-3.5 rounded-xl shadow flex flex-col sm:flex-row sm:items-center justify-between gap-2.5 no-print">
+          <div class="flex items-center gap-2.5"><span id="slideNumBadge" class="px-2.5 py-1 rounded-md bg-amber-500 text-ink-950 text-xs font-black">Slide 1 / 12</span><span id="slideTopTitle" class="text-xs sm:text-sm font-bold text-slate-200 truncate">Bản Trình Bày 20 Phút Trình BGĐ</span></div>
+          <div class="flex flex-wrap items-center gap-1.5">
+            <button onclick="prevSlide()" class="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-xs font-bold border border-slate-700">← Trước</button>
+            <select id="slideJumpSelect" onchange="goSlide(parseInt(this.value))" class="bg-slate-800 text-white text-xs font-semibold px-2.5 py-1.5 rounded-lg border border-slate-700"></select>
+            <button onclick="nextSlide()" class="px-3 py-1.5 rounded-lg bg-cobalt-600 hover:bg-cobalt-500 text-xs font-bold">Tiếp →</button>
+            <button onclick="toggleDeckFullscreen()" class="px-2.5 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-xs font-semibold border border-slate-700">⛶ Toàn màn hình</button>
+          </div>
+        </div>
+        <div id="slideStage" class="card p-6 sm:p-9 min-h-[455px] flex flex-col justify-between border-2 border-slate-200"></div>
+        <div id="slideDots" class="flex items-center justify-center gap-1.5 no-print"></div>
+      </div>
+
+      <div class="card p-5 sm:p-6 space-y-4">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between border-b border-canvas-200 pb-2.5 gap-2"><h3 class="text-sm sm:text-base font-black text-ink-900">Business Model Canvas Hợp Nhất Phòng KD3 (Bản v3.0 — Đồng Bộ Chân 1 &amp; Chân 2)</h3><span class="text-xs font-bold px-2.5 py-1 rounded bg-canvas-100 text-ink-700">9 Trụ Cột Thực Chiến</span></div>
+        <div id="bmcGrid" class="grid grid-cols-1 md:grid-cols-3 gap-3.5 text-xs"></div>
+      </div>
+    </section>
+
+    <!-- =========================================================================
+         TAB 10: ABOUT, LIÊN KẾT VER CŨ, NGUỒN & CẨM NANG CẬP NHẬT
+         ========================================================================= -->
+    <section id="tab10" class="tab-section hidden space-y-6">
+      <div class="card p-5 sm:p-6 border-l-4 border-l-amber-500 space-y-4">
+        <div class="flex flex-col md:flex-row md:items-center justify-between border-b border-canvas-200 pb-3 gap-2">
+          <div><span class="text-[11px] font-extrabold uppercase tracking-wider text-ochre-600">Thông Tin Phiên Bản &amp; Quản Trị Tài Liệu (Version Control)</span><h2 class="text-base sm:text-lg font-black text-ink-900">About: KD3 Personal &amp; B2B Turnaround Master — Phiên Bản v3.0 (26/11/2026)</h2></div>
+          <span class="badge-mono text-xs font-bold px-3 py-1 rounded-lg bg-ink-950 text-amber-400">Build: v3.0-20261126-PersonalB2B</span>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-3 text-xs">
+          <div class="p-3 rounded-lg bg-canvas-50 border border-canvas-200"><strong class="block text-ink-500 uppercase text-[10px]">Đối tượng trung tâm</strong><span class="font-bold text-ink-900 mt-0.5 block">Cá nhân Người chủ trì &amp; Đội ngũ PKD3 (FTI)</span></div>
+          <div class="p-3 rounded-lg bg-canvas-50 border border-canvas-200"><strong class="block text-ink-500 uppercase text-[10px]">Nâng cấp trọng tâm v3.0</strong><span class="font-bold text-ink-900 mt-0.5 block">Phá băng 14 ngày • Anh Sơn &amp; Thế Anh • KPI 3 Rổ • Nâng trình B2C→B2B</span></div>
+          <div class="p-3 rounded-lg bg-canvas-50 border border-canvas-200"><strong class="block text-ink-500 uppercase text-[10px]">Cấu trúc &amp; Công cụ</strong><span class="font-bold text-ink-900 mt-0.5 block">10 Tabs • 5 Công cụ mô phỏng • 4 Mẫu tin nhắn • 12 Slides • In PDF</span></div>
+          <div class="p-3 rounded-lg bg-canvas-50 border border-canvas-200"><strong class="block text-ink-500 uppercase text-[10px]">Mốc dữ liệu &amp; Pháp lý</strong><span class="font-bold text-ink-900 mt-0.5 block">Kiểm chứng 26/11/2026 (Tết 06/02/2027)</span></div>
+        </div>
+      </div>
+
+      <div class="card overflow-hidden">
+        <div class="p-4 bg-canvas-100 border-b border-canvas-200"><h3 class="text-sm font-extrabold text-ink-900">1. Phả Hệ &amp; Liên Kết Tham Khảo Các Phiên Bản Gốc (Đặt Cùng Thư Mục Để Mở Đối Chiếu Trực Tiếp)</h3></div>
+        <div class="overflow-x-auto">
+          <table class="w-full text-left text-xs border-collapse">
+            <thead class="bg-slate-100 text-ink-800 uppercase font-bold border-b border-canvas-200"><tr><th class="p-3 w-[25%]">Tên Tệp &amp; Liên Kết Cục Bộ</th><th class="p-3 w-[18%]">Phiên Bản / Vai Trò</th><th class="p-3 w-[27%]">Nội Dung Kế Thừa Vào v3.0</th><th class="p-3 w-[30%]">Điểm Đã Sửa &amp; Nâng Cấp Ở v3.0</th></tr></thead>
+            <tbody class="divide-y divide-canvas-200">
+              <tr><td class="p-3 font-bold text-cobalt-700"><a href="./0%20Phân%20tích%20Chiến%20Lược%20Chân%201.docx" class="underline">0 Phân tích Chiến Lược Chân 1.docx</a></td><td class="p-3">Bản Word BFSI &amp; 50 máy chủ</td><td class="p-3">2 tử huyệt Pure Storage, cấu hình 50 máy, 3 dòng Solution Storage</td><td class="p-3 text-jade-800 font-medium">Sửa Luật 91/2025 (01/01/2026), Điều 26 TT09, NĐ 333 &amp; TT 37/2026, AWS SG, bỏ MinIO CE &amp; Ceph 1GbE</td></tr>
+              <tr><td class="p-3 font-bold text-cobalt-700"><a href="./chan1.html" class="underline">chan1.html</a></td><td class="p-3">HTML 6 Tab bảo vệ FshareStorage</td><td class="p-3">Trích dẫn anh Thế Anh (11/09/2026), 1.649 VIP, cứu 66 KH FDrive, Bundle</td><td class="p-3 text-jade-800 font-medium">Sửa hòa vốn 90TB &amp; hoàn 150Tr Q1; thêm Bảng trả bài 4 mục 11/09 &amp; Thang Nâng Trình 3 Nấc B2C→B2B</td></tr>
+              <tr><td class="p-3 font-bold text-cobalt-700"><a href="./kd3_strategy_2027_2029_KH%20KD%20-%2025.html" class="underline">kd3_strategy_2027_2029_KH KD - 25.html</a></td><td class="p-3">Bản A 25% tinh gọn (3 Tabs)</td><td class="p-3">Hạ cam kết cứng Chân 1, ưu tiên MS365 &amp; HiGIO, nhân sự 2+2+2</td><td class="p-3 text-jade-800 font-medium">Chuyển hóa thành <strong>Hướng 1 (Tối giản)</strong> kèm Stage-Gate &amp; Khung KPI 3 Rổ bảo vệ sàn 87%</td></tr>
+              <tr><td class="p-3 font-bold text-cobalt-700"><a href="./kd3_strategy_2027_2029_KH%20KD.html" class="underline">kd3_strategy_2027_2029_KH KD.html</a></td><td class="p-3">HTML 9 Tabs (KPI 2025, 14 Slides)</td><td class="p-3">Hồ sơ KPI 2025 (Thủy 90%, Huy 84,5%, Châu 82,25%, Vân 73,6%), KHG mục tiêu</td><td class="p-3 text-jade-800 font-medium">Khớp tròn 50 máy; thêm 4 Tab cá nhân: Phá băng 14 ngày, Anh Sơn–Anh Thế Anh, Mô phỏng KPI &amp; MEDDPICC</td></tr>
+              <tr class="bg-amber-50/60"><td class="p-3 font-bold text-ochre-900"><a href="./KD3_Turnaround_Master_v2_2026_2027.html" class="underline">KD3_Turnaround_Master_v2_2026_2027.html</a></td><td class="p-3">Bản hợp nhất v2.0 (8 Tabs)</td><td class="p-3">Khung 3 Hướng H1/H2/H3, 4 Cổng Stage-Gate, kiểm toán kỹ thuật &amp; pháp lý 2026</td><td class="p-3 text-jade-800 font-bold">Mở rộng thành v3.0 (10 Tabs): đặt bản thân bạn ở trung tâm, thêm Sổ tay Anh Sơn, Mô phỏng KPI 3 Rổ &amp; Nâng trình B2C→B2B</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="card p-5 sm:p-6 space-y-4">
+        <div class="border-b border-canvas-200 pb-2.5"><h3 class="text-sm sm:text-base font-extrabold text-ink-900">2. Cẩm Nang Tự Cập Nhật Thông Tin Mới (Không Cần Biết Lập Trình — Mất Đúng 3 Phút)</h3><p class="text-xs text-ink-500 mt-0.5">Toàn bộ dữ liệu của cả 10 Tab nằm gọn trong một khối <code class="bg-slate-100 px-1.5 py-0.5 rounded font-mono text-cobalt-700">APP_DATA</code> ngay đầu thẻ <code class="bg-slate-100 px-1.5 py-0.5 rounded font-mono">&lt;script&gt;</code>.</p></div>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
+          <div class="p-4 rounded-xl bg-cobalt-50/60 border border-cobalt-200 space-y-2">
+            <strong class="text-cobalt-900 block text-sm">6 Bước Sửa An Toàn Không Bao Giờ Lỗi Code</strong>
+            <ol class="list-decimal pl-4 space-y-1.5 text-ink-700 leading-relaxed">
+              <li><strong>Nhân bản sao lưu trước khi sửa:</strong> Đổi tên bản mới thành <code class="font-mono bg-white px-1 rounded">KD3_v3.1_20270115.html</code>.</li>
+              <li><strong>Mở bằng Notepad / VS Code:</strong> Chuột phải → <em>Open with → Visual Studio Code</em> (hoặc <em>Notepad++ / Notepad</em>).</li>
+              <li><strong>Tìm vùng dữ liệu trung tâm:</strong> Nhấn <code class="font-mono bg-white px-1 rounded">Ctrl + F</code> (macOS: <code class="font-mono bg-white px-1 rounded">Cmd + F</code>), gõ <code class="font-mono bg-amber-100 px-1 rounded font-bold">VÙNG CẬP NHẬT DỮ LIỆU</code>.</li>
+              <li><strong>Khóa Hướng đã được BGĐ duyệt:</strong> Đổi <code class="font-mono bg-white px-1 rounded">defaultOption: 'H2'</code> thành <code class="font-mono bg-white px-1 rounded">'H1'</code>, <code class="font-mono bg-white px-1 rounded">'H2'</code> hoặc <code class="font-mono bg-white px-1 rounded">'H3'</code>.</li>
+              <li><strong>Sửa số hoặc câu chữ:</strong> Chỉ sửa bên trong dấu nháy <code class="font-mono">'...'</code>, giữ nguyên dấu phẩy <code class="font-mono">,</code> và dấu ngoặc <code class="font-mono">{ } [ ]</code>.</li>
+              <li><strong>Lưu &amp; tải lại:</strong> Bấm <code class="font-mono bg-white px-1 rounded">Ctrl + S</code>, quay về trình duyệt bấm <code class="font-mono bg-white px-1 rounded">F5</code>. Nếu trang trắng do thiếu dấu nháy, nhấn <code class="font-mono bg-white px-1 rounded">F12 → Console</code> để xem số dòng báo lỗi.</li>
+            </ol>
+          </div>
+          <div class="p-4 rounded-xl bg-jade-50/60 border border-jade-600/25 space-y-2">
+            <strong class="text-jade-900 block text-sm">Nhịp Cập Nhật Giữ Tài Liệu Sống Suốt Năm 2027</strong>
+            <ul class="list-disc pl-4 space-y-1.5 text-ink-700 leading-relaxed">
+              <li><strong>15/12/2026 (Gate 0):</strong> Cập nhật <code class="font-mono bg-white px-1 rounded">defaultOption</code> theo Hướng đã duyệt &amp; lưu biên bản vào Mẫu 4 (Tab 2).</li>
+              <li><strong>Hằng tuần (Thứ Sáu):</strong> Dùng Mẫu 2 (Tab 2) gửi anh Sơn 5 dòng &amp; tick tiến độ checklist tại Tab 1 / Tab 8 (tự lưu trong trình duyệt).</li>
+              <li><strong>31/03, 30/06, 30/09/2027 (Gate 1–3):</strong> Cập nhật doanh thu thực đạt vào <code class="font-mono bg-white px-1 rounded">monthlyC2 / monthlyC1</code> và theo dõi dự thảo sửa TT 09/2020/TT-NHNN (Công văn 627/CNTT3).</li>
+              <li><strong>In nộp họp BGĐ:</strong> Bấm nút <em>"In / PDF"</em> góc phải Header → <em>Save as PDF</em>, khổ <em>A4 Landscape</em>, bật <em>Background graphics</em>.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="card p-5 space-y-3"><div class="border-b border-canvas-200 pb-2"><h3 class="text-sm font-extrabold text-ink-900">3. Thư Viện Nguồn Sơ Cấp Đã Kiểm Chứng (Cập Nhật 11/2026)</h3></div><div id="sourcesLibraryGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 text-xs"></div></div>
+    </section>
+  </main>
+
+  <footer class="bg-ink-950 text-slate-400 text-[11px] border-t border-slate-800 py-4 mt-8">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 flex flex-col sm:flex-row justify-between items-center gap-2">
+      <div>KD3 Personal &amp; B2B Turnaround Master v3.0 (26/11/2026) • Phòng Kinh Doanh 3 (ODS) – FPT Telecom International</div>
+      <div class="text-slate-300">Lưu ý sức khỏe: Hướng dẫn giảm căng thẳng tại Tab 1 mang tính tham khảo quản trị; nếu triệu chứng kiệt sức/mất ngủ kéo dài ≥2 tuần, vui lòng tham vấn bác sĩ hoặc chuyên gia.</div>
+    </div>
+  </footer>
+
+  <!-- ===================================================================== -->
+  <!-- === VÙNG CẬP NHẬT DỮ LIỆU (NON-CODER SAFE CONFIG BLOCK: APP_DATA) === -->
+  <!-- ===================================================================== -->
+  <script>
+    const APP_DATA = {
+      defaultOption: 'H2', // Đổi thành 'H1', 'H2' hoặc 'H3' sau khi BGĐ bấm nút
+
+      p14Days: [
+        { id: 'd1', day: 'Tối T5, 26/11', tag: 'HẠ NHIỆT THẦN KINH', title: 'Đóng sạch file kế hoạch & ngủ trước 23h00', detail: 'Ghi đúng 1 câu ra giấy: "Sáng mai 9h00 mình chỉ gửi 4 dòng hẹn 15 phút với anh Sơn." Không cầm điện thoại trên giường, không tự trách quãng thời gian đã trễ.' },
+        { id: 'd2', day: 'T6, 27/11', tag: 'PHÁ BĂNG SẾP GẦN', title: '9h00 gửi Mẫu 1 cho Anh Sơn + 14h00 chốt 50 máy với TạiCV', detail: 'Chỉ cần bấm gửi 4 dòng tin nhắn hẹn 15p (Tab 2) là thắng trọn trận của ngày! Chiều ngồi 30p với TạiCV khớp serial 50 máy (làm rõ STT 33 & 34).' },
+        { id: 'd3', day: 'T7–CN, 28–29/11', tag: 'NẠP PIN VỎ NÃO', title: 'Ngắt kết nối công việc 100% cuối tuần', detail: 'Tuyệt đối không mở laptop hay sửa slide. Đi bộ/tập thể dục 30–45p, ăn ngon, dành thời gian trọn vẹn cho gia đình/bản thân.' },
+        { id: 'd4', day: 'T2, 30/11', tag: 'KÉO ĐỒNG MINH', title: 'Gặp Anh Sơn 15p (nháp 60%) + Chia tải với Anh Tuấn 30p', detail: 'Mời anh Sơn góp ý sửa 2–3 điểm trên bản nháp 1 trang & KPI 3 rổ để biến thành phương án chung. Chốt với anh Tuấn ranh giới: anh Tuấn giữ phễu MS365/HiGIO & tuyển 2 Sale.' },
+        { id: 'd5', day: 'T3–T4, 01–02/12', tag: 'TINH CHỈNH NHANH', title: 'Cập nhật đúng ý anh Sơn & đóng gói 1-Pager gửi kiểm tra nhanh', detail: 'Không vẽ thêm slide mới! Chỉ sửa đúng 2–3 điểm anh Sơn góp ý, gửi lại anh Sơn duyệt trong 1 phút để khóa đồng thuận trước khi gửi anh Thế Anh.' },
+        { id: 'd6', day: 'T5, 03/12', tag: 'GỠ TẢNG ĐÁ BÊ TRỄ', title: '9h00 gửi Mẫu 3 trả bài 4 mục 11/09 cho Anh Chu Thế Anh', detail: 'Nhận trễ thẳng trong 2 câu, trả bài sắc nét 4 ý ngày 11/09, xin 15p chốt Q1/2027 & cam kết báo cáo 2 tuần/lần. Bấm Gửi xong là nhẹ nửa lồng ngực!' },
+        { id: 'd7', day: 'T6, 04/12', tag: 'NHỊP BÁO CÁO CHỦ ĐỘNG', title: '15h00 gửi Báo cáo 5 dòng tuần đầu cho Anh Sơn (Mẫu 2)', detail: 'Thiết lập thói quen báo cáo chủ động trước khi sếp hỏi. Khóa sổ lúc 17h30, nghỉ trọn cuối tuần.' },
+        { id: 'd8', day: 'T2–T5, 07–10/12', tag: 'HỌP CHỐT GATE 0', title: 'Trình 20 phút trước BGĐ/BGĐ CC bằng 12 Slides (Tab 9)', detail: '5p nhận lỗi cũ đã sửa + 10p chiếu Ma trận 3 Hướng & KPI 3 Rổ + 5p hỏi đóng chọn 1 Hướng & duyệt Gate 0 (30–60Tr).' },
+        { id: 'd9', day: 'T6–T3, 11–15/12', tag: 'KHÓA PHẠM VI & GIAO VIỆC', title: 'Gửi Email Khóa Phạm Vi 10 dòng (Mẫu 4) & Họp 1-1 đội ngũ', detail: 'Xác nhận rõ việc làm & việc KHÔNG làm Q1/2027. Họp 1-1 minh bạch với Vân, Huy, Châu, Thủy (Bridges Ending) để thoát cảnh tự gánh sự vụ.' }
+      ],
+
+      anhSonRules: [
+        { n: '01', t: 'Đưa bản nháp 60% mời anh Sơn làm "Đồng tác giả"', d: 'Đừng chờ hoàn hảo 100% mới đưa rồi bị trễ cả tháng. Khi anh Sơn góp ý chỉnh 2 con số trên bản nháp 1 trang, đề xuất đó thành phương án của cả hai anh em trước anh Thế Anh & BGĐ CC.' },
+        { n: '02', t: 'Nguyên tắc "Không bao giờ để sếp bị bất ngờ"', d: 'Sếp làm gần chịu áp lực rất lớn nếu biết tin xấu muộn. Chủ động báo sớm: đóng B2C đang đúng 31/12, nhưng máy 2012–2015 hỏng 5 ổ/tháng nên cần bàn cách thu gọn để không vỡ dữ liệu.' },
+        { n: '03', t: 'Đi trước 1 bước bằng Báo cáo 5 dòng chiều Thứ Sáu', d: 'Mỗi chiều Thứ Sáu 15h00 gửi cố định 5 dòng (Xong gì • Tuần tới làm gì • Phễu • Vướng gì • Cần anh hỗ trợ 1 việc). Làm đều 3 tuần, nỗi ngại gặp sếp sẽ tự tan biến.' },
+        { n: '04', t: 'Đàm phán thứ tự ưu tiên bằng số ngày thay vì than mệt', d: 'Thay vì im lặng nhận hết rồi bỏ trễ, nói rõ sự đánh đổi: "Còn 35 ngày tới 31/12, ưu tiên 1 là khóa ví B2C + cứu 66 FDrive + tuyển 2 Sale; PoC VaultBaaS lùi sang sau Gate 0, anh thấy ổn không?"' },
+        { n: '05', t: 'Không mang câu hỏi trơn — luôn kẹp 2–3 lựa chọn gọn', d: 'Thay vì hỏi "Em chưa biết đặt KPI thế nào?", hãy đưa sẵn khung 3 Rổ (40–20–40) và 3 Hướng (H1/H2/H3) để anh Sơn chỉ cần chọn và nắn lại theo ý BGĐ.' },
+        { n: '06', t: 'Khớp đúng gu giao tiếp của anh Sơn', d: 'Nếu anh thích nói nhanh tại bàn/cà phê, xin 15p gặp trực tiếp trước rồi mới nhắn tóm tắt; nếu anh thích đọc trước, gửi bản 1 trang trước buổi gặp 4–24 tiếng.' }
+      ],
+
+      theAnhRows: [
+        { req: '1. Ưu tiên chiếm thị phần & tạo tập KH sử dụng thực tế hơn tối ưu doanh thu đầu kỳ', why: 'Sợ giá 200–300k/TB doanh thu nhỏ không đẹp mắt BGĐ CC nên cứ chần chừ sửa sang bán gói Ngân hàng đắt tiền.', ans: 'Mở bán ngay 01/01/2027 trên 2 tệp có sẵn 0đ marketing: chuyển đổi <strong>1.649 VIP cũ (&gt;10GB)</strong> ở mức 200–300k/TB + giữ HĐ Whitelist (TC Thuế đến 24/08/2028, Việt Ba, Vinama) & bật Form B2B.', proof: '30–40 KH dùng thật (40–60 TB) ngay cuối Q1/2027' },
+        { req: '2. Đưa vào Bundle hoặc option free có tính toán, tránh "của cho là của ôi"', why: 'Thiếu điều khoản rào chắn nên sợ tặng tràn lan làm mất giá trị sản phẩm.', ans: 'Áp quy tắc <strong>3 Không – 3 Có</strong>: Không tặng khách lẻ, không hứa SLA Bank ở Tầng 2, không free &gt;12 tháng; chỉ kèm HĐ FTI ≥100Tr/năm, ghi rõ giá trị quà 2,4–3,6Tr trên phụ lục & tự thu phí năm 2.', proof: 'Quy chế phụ lục PO chuẩn áp dụng toàn FTI từ T1/2027' },
+        { req: '3. Tính toán hợp lý trách nhiệm dữ liệu (Data Liability)', why: 'Dàn 38 máy 1GbE đời 2012–2015 hỏng 5 ổ/tháng (AFR 6,58%), ám ảnh mất 40TB Server 034 nên sợ không dám chốt.', ans: 'Tắt điện bớt 12–24 máy cũ giảm OPEX; nhóm 1GbE còn lại chạy RAID-6 + Sync 1-1 chéo rack <strong>cứu khẩn 66 KH FDrive</strong> & SME (kèm phụ lục kho phụ trợ); <strong>cấm bán SLA Ngân hàng trên máy cũ</strong>.', proof: '100% 66 KH FDrive có backup vật lý trong T1/2027; 0 mất data' },
+        { req: '4. Hình thành Use Case thực tế để tiếp tục hoàn thiện sản phẩm', why: 'Vẽ lộ trình Ver 2/3 & VaultBaaS quá đồ sộ từ ngày 1 nên bị ngợp không biết khởi động từ đâu.', ans: 'Xin chạy kiểm chứng gọn Q1/2027 (vốn 30–60Tr mua Hot-Spare) theo Thang Nấc 1–2 để ra 2–3 Use Case sống (FDrive, AEC gửi file BIM, Camera dài hạn). Đúng <strong>31/03/2027 (Gate 1)</strong> báo cáo số thật.', proof: 'Báo cáo Use Case & Gate 1 ngày 31/03/2027 + Báo cáo 2 tuần/lần' }
+      ],
+
+      templates: [
+        { id: 'tpl1', border: 'border-cobalt-600/35', btnBg: 'bg-cobalt-600 hover:bg-cobalt-700', title: 'Mẫu 1: Tin Nhắn Zalo/Chat Mở Lời Với Anh Sơn (Gửi 9h00 T6, 27/11)', sub: 'Kéo anh Sơn thành đồng minh góp ý bản nháp 60% trước khi lên anh Thế Anh', body: `Anh Sơn ơi, chiều nay (hoặc sáng thứ Hai) anh có rảnh khoảng 15 phút không, em xin trao đổi nhanh với anh một chút ạ.\n\nThú thật với anh là thời gian qua em dồn sức xử lý đóng B2C cho an toàn mốc 31/12 nên phần đề xuất Fshare Storage theo ý anh Thế Anh và khung KPI 2027 đang bị khựng lại; em cũng hơi bí cách cân đối giữa rủi ro dàn máy 2012–2015 (hỏng 5 ổ/tháng) với kỳ vọng doanh số B2B nên ngại chưa dám đẩy lên lại.\n\nEm đã tự rà soát hết lỗi các bản cũ và rút gọn thành đúng 1 trang nháp (3 hướng lựa chọn rõ đánh đổi + khung KPI 3 rổ rất thực tế). Em muốn xin ý kiến anh Sơn góp ý chỉnh trước cho sát ý BGĐ rồi mới báo cáo anh Thế Anh và chốt việc cho anh em trong phòng ạ.` },
+        { id: 'tpl2', border: 'border-jade-600/35', btnBg: 'bg-jade-600 hover:bg-jade-700', title: 'Mẫu 2: Báo Cáo 5 Dòng Cố Định Chiều Thứ Sáu Gửi Anh Sơn', sub: 'Gửi đều lúc 15h00 T6 trước khi sếp hỏi — xóa hoàn toàn cảm giác ngại mặt', body: `Em gửi anh Sơn cập nhật nhanh tuần [số tuần]:\n1. Đã xong: [VD: Chốt xong sổ 50 máy với TạiCV; hoàn tất thông báo khóa ví 31/12; lọc xong 1.649 VIP >10GB].\n2. Trọng tâm tuần tới: [VD: Gửi bản 1 trang anh Thế Anh; phỏng vấn 2 Sale B2B cùng anh Tuấn].\n3. Tiến độ Phễu Chân 2 & Chân 1: [VD: 12 cơ hội MS365/HiGIO đang bám; 18 KH VIP phản hồi tích cực].\n4. Rủi ro / Điểm vướng: [VD: Cần SIS chốt ngày cấu hình cụm backup 1-1 cho 66 KH FDrive].\n5. Đề xuất cần anh Sơn hỗ trợ đúng 1 việc: [VD: Nhờ anh đẩy giúp lịch gặp anh Thế Anh 15 phút đầu tuần tới].` },
+        { id: 'tpl3', border: 'border-ochre-500/40', btnBg: 'bg-ochre-600 hover:bg-ochre-700', title: 'Mẫu 3: Email / Tin Nhắn Phá Băng Gửi Anh Chu Thế Anh (Sau Khi Gặp Anh Sơn)', sub: 'Nhận trễ thẳng 2 câu + Trả bài sắc nét 4 mục 11/09 + Cam kết báo cáo 2 tuần/lần', body: `Kính gửi anh Thế Anh,\n\nTrước hết em xin thẳng thắn nhận trách nhiệm với anh vì các hạng mục triển khai FshareStorage theo chỉ đạo ngày 11/09 của anh thời gian qua bị chậm tiến độ. Lý do là em dồn sức khóa sổ B2C an toàn mốc 31/12 (tránh khủng hoảng và bảo vệ khoản tiết kiệm 6,45 tỷ nợ bồi hoàn), đồng thời khi kiểm toán kỹ 50 máy chủ cũ em phát hiện rủi ro kỹ thuật lớn (tỷ lệ hỏng ổ 2TB đạt 6,58%/năm; MinIO bản cộng đồng đã ngừng duy trì năm 2026) nên bị khựng lại chưa dám báo cáo khi chưa chốt được phương án khóa rủi ro.\n\nEm đã trao đổi sơ bộ với anh Sơn và rút gọn lại phương án 1 trang trả thẳng 4 điểm anh chỉ đạo:\n1. Khai thác ngay tệp KH sẵn có từ 01/01/2027: Tắt ví B2C ngày 31/12, bật Form B2B, chuyển đổi nhóm 1.649 VIP (>10GB) mức 200–300k/TB & giữ HĐ Whitelist (TC Thuế, Việt Ba, Vinama).\n2. Bundle tránh 'của cho là của ôi' theo khung 3 Không–3 Có: chỉ kèm HĐ FTI ≥100Tr/năm, ghi rõ giá trị ưu đãi trên phụ lục & tự thu phí năm 2.\n3. Khóa chặt Data Liability: Tắt bớt máy DC5 cũ hạ 25–55% OPEX; ghép sync 1-1 cứu ngay 66 KH FDrive (đang 0% backup); tuyệt đối không bán SLA Ngân hàng trên máy 1GbE cũ.\n4. Chạy kiểm chứng gọn Q1/2027 để ra Use Case thật, đúng 31/03/2027 (Gate 1) báo cáo số thực để BGĐ quyết định mở rộng hay giữ gọn; song song Chân 2 tập trung MS365 & HiGIO hướng mốc 10 tỷ.\n\nKính xin anh 15 phút trong tuần tới để bấm nút kịp trước 31/12. Từ tuần này em cam kết gửi anh cập nhật ngắn 2 tuần/lần đúng hạn. Cảm ơn anh ạ!` },
+        { id: 'tpl4', border: 'border-slate-700/40', btnBg: 'bg-ink-900 hover:bg-ink-800', title: 'Mẫu 4: Email Khóa Phạm Vi 10 Dòng Sau Họp BGĐ (Disagree & Commit)', sub: 'Gửi trong 24h sau họp — tấm khiên bảo vệ bạn & khung KPI suốt năm 2027', body: `Kính gửi Ban Giám đốc & các anh/chị liên quan (SIS, PKD2, HR),\n\nPKD3 xin tổng hợp các quyết nghị đã được BGĐ thống nhất tại cuộc họp ngày [.../12/2026] để triển khai ngay:\n1. Hướng được phê duyệt: [Hướng 1 / Hướng 2 Stage-Gate / Hướng 3] kèm vốn Gate 0 là [30 / 60 / 50] Triệu VNĐ (tắt bớt máy DC5 hạ OPEX còn [18 / 30 / 24] Tr/tháng).\n2. Khung KPI 3 Rổ Q1/2027: 40% Dừng B2C & cứu 66 FDrive • 20% Chân 1 Use Case/Bundle • 40% Chân 2 (có mốc Re-baseline 31/03/2027).\n3. Cam kết 2027: Tổng doanh số [10,0 / 10,5] Tỷ; tắt ví B2C đúng 31/12/2026; kéo nợ bồi hoàn B2C xuống ~2,8 Tỷ cuối 2027 (tiết kiệm 4,35 Tỷ năm 1).\n4. Cổng Gate 1 (31/03/2027): Đánh giá 3 chỉ số cứng (≥80–100TB + SIS ký DC7 + ≥2 PoC); chưa đạt tự động chuyển Hướng 1.\n5. Phạm vi KHÔNG làm trong Q1 (khóa rủi ro): Không chạy Ceph/MinIO CE trên máy 1GbE; không nhận SLA Ngân hàng trên máy 2012–2015; không tặng free ngoài khung 3 Không–3 Có.\n6. Nhân sự: Tuyển 02 Sale B2B; giữ Vân & Huy làm Storage; chuyển Châu sang SIS & chốt vị trí Thủy Q1–Q2/2027.\n\nNếu không có ý kiến điều chỉnh trong 24h, PKD3 xin phép triển khai theo biên bản này. Trân trọng!` }
+      ],
+
+      qaScripts: [
+        { q: '1. Chân 1 năm 2027 thu 500Tr mà tốn 480Tr OPEX + 150Tr R&D + lương, lỗ rõ thế giữ làm gì?', a: '<strong>Trả lời chuẩn:</strong> Tính P&L lưu trữ đứng riêng năm 2027 đúng là âm ~130Tr trước lương. Nhưng giá trị kinh tế thật của Chân 1 là <strong>giảm 4,35 tỷ nợ bồi hoàn B2C ngay năm 2027</strong> (lũy kế 6,45 tỷ) và cứu <strong>66 KH Enterprise FDrive</strong> đang 0% backup. Nếu BGĐ ưu tiên cắt lỗ vận hành tối đa, chọn ngay <strong>Hướng 1</strong>: tắt 24 máy DC5 cũ hạ OPEX còn 18Tr/tháng, CAPEX chỉ 30Tr — hòa vốn ngay ở 80 TB.' },
+        { q: '2. Dàn máy 2012–2015 hỏng 5 ổ/tháng, từng mất 40 TB Server 034, sao dám bán cho Ngân hàng?', a: '<strong>Trả lời chuẩn:</strong> AFR thực tế cụm 2 TB là 6,58%/năm (gấp 3,8–5,3x chuẩn Backblaze 2026). Vì vậy bản v3.0 đặt <strong>rào chắn cấm tuyệt đối</strong>: không chạy Ceph trên RAM 16 GB/1GbE và không bao giờ bán máy cũ cho Ngân hàng. Khối BFSI chỉ chạy trên cụm 5 máy 10GbE DC7 (ổ 2021) cài <strong>Veeam VIA v13 cách ly iLO</strong> hoặc thiết bị hãng đối ứng (Ootbi/Cloudian) khi đã ký HĐ.' },
+        { q: '3. Tại sao bản trước bảo dùng MinIO, giờ lại bỏ?', a: '<strong>Trả lời chuẩn:</strong> Kiểm toán kỹ thuật 2026 cho thấy MinIO đã archived chỉ đọc kho Community trên GitHub tháng 02–04/2026 kèm 7 cảnh báo bảo mật không vá bản miễn phí và gỡ Docker Hub tháng 09/2026. Chuyển sang Veeam VIA v13 (được Veeam tự vá JeOS) giúp FTI tránh rủi ro kiểm toán ATTT.' },
+        { q: '4. Đội gốc B2C có làm nổi KD B2B không, hay lại lúng túng không ra số?', a: '<strong>Trả lời chuẩn:</strong> Không nhảy cóc! Em chia Chân 1 thành <strong>Thang 3 Nấc</strong>: Q1 chỉ làm <strong>Nấc 1 B2C-Friendly</strong> (chuyển đổi 1.649 VIP cũ vốn quen giao diện, cứu 66 FDrive, Bundle theo PKD2 — Vân/Huy làm được ngay). Q2–Q3 lên <strong>Nấc 2</strong> (4 gói chuẩn hóa 68,4Tr/HĐ). Chân 2 đã có anh Tuấn (từng vào lead 1 tỷ MS365) kèm 2 Sale B2B tuyển mới.' },
+        { q: '5. Tặng Bundle miễn phí theo ý anh Thế Anh sợ "của cho là của ôi" và dính trách nhiệm dữ liệu?', a: '<strong>Trả lời chuẩn:</strong> Khóa bằng khung <strong>3 Không – 3 Có</strong>: không tặng khách lẻ, không hứa SLA Bank trên Tầng 2, không free quá 12 tháng; chỉ đính kèm HĐ chính FTI ≥100Tr/năm, ghi rõ giá trị quà 2,4–3,6Tr trên phụ lục, chạy sync 1-1 chéo rack và tự động thu 200–300k/TB từ năm 2.' },
+        { q: '6. Tại sao Q1 lại đặt 40% trọng số KPI cho việc dừng B2C?', a: '<strong>Trả lời chuẩn:</strong> Dừng B2C an toàn mốc 31/12 & cứu 66 KH FDrive bảo vệ trực tiếp <strong>6,45 tỷ VNĐ</strong> cho FTI. Hơn nữa Q1 dính 7 ngày Tết Đinh Mùi (04–10/02) và 2 Sale mới đang trong 3 tháng ramp-up. Rổ 1 (40%) giảm dần về 20%→15%→10% các quý sau khi Chân 2 tăng tốc lên 70%.' },
+        { q: '7. GreenNode bán S3 có Object Lock chỉ 543k/TB, FTI VaultBaaS 450–850k/TB thắng bằng gì?', a: '<strong>Trả lời chuẩn:</strong> FTI thắng GreenNode bằng tổng TCO & cách ly mạng: <strong>0đ phí Egress</strong>, kéo thẳng <strong>Leased Line / MPLS riêng của FTI</strong> về FPT DC7 không qua Internet công cộng, và đóng gói đồng bộ cùng HiGIO Cloud + MS365.' },
+        { q: '8. Microsoft vừa cắt 5% margin CSP tháng 10/2026, bán MS365 có bị biên gộp mỏng không?', a: '<strong>Trả lời chuẩn:</strong> Từ 01/10/2026 Microsoft chỉ cắt 5% margin gói cũ (O365 E1/E3, Apps) nhưng thưởng tới 19,5% cho <strong>Business Premium &amp; Copilot</strong> và bỏ OneDrive lẻ. KD3 bán Premium/Copilot + Dịch vụ di trú + HiGIO (~35% biên) + Viễn thông (~42%) giữ biên gộp hợp nhất ước ~24,6%.' },
+        { q: '9. Nếu duyệt Hướng 2 (Stage-Gate), làm sao chắc không sa lầy nếu VaultBaaS chậm?', a: '<strong>Trả lời chuẩn:</strong> Gate 0 chỉ cấp 60Tr. Đúng 31/03/2027 (Gate 1), nếu không đạt đủ 3 số cứng (≥80–100 TB + SIS ký DC7 + ≥2 PoC), hệ thống <strong>tự động chuyển về Hướng 1</strong>, không giải ngân 90Tr đợt 2 và tắt bớt máy dư. BGĐ giữ 100% quyền kiểm soát.' },
+        { q: '10. Còn 35 ngày tới 31/12 và Tết đến sớm (06/02), liệu có vỡ kế hoạch Q1?', a: '<strong>Trả lời chuẩn:</strong> Tháng 12 chỉ làm 3 việc sống còn (chốt Gate 0, tắt ví B2C 31/12, bật Form B2B); mục tiêu Q1 đã trừ hao tuần Tết tháng 2 còn 1,27–1,35 Tỷ (T1: 320Tr, T2: 300Tr, T3: 650Tr) và tăng tốc từ Q2–Q4.' }
+      ],
+
+      ladderLevels: [
+        { lv: 'NẤC 1 • QUÝ I/2027 (CHẠY NGAY)', badge: 'B2C-Friendly B2B • Dễ nhất (95%)', color: 'jade', acv: '4,8 Tr / HĐ (1,0x)', spec: '1,78 TB × 225k net/TB/th', title: 'Chuyển Hóa Cái Quen Tay Sang PO Doanh Nghiệp', points: ['Khai thác nhu cầu hữu cơ từ 1.649 VIP B2C cũ (>10GB) — hỏi họ làm công ty nào để nâng lên tài khoản DN xuất VAT.', 'Cứu khẩn 66 KH Enterprise FDrive (tạo ngay Case Study B2B đầu tiên) & giữ HĐ Whitelist (TC Thuế, Việt Ba, Vinama).', 'Gắn gói Bundle 3 Không–3 Có đi nhờ hợp đồng của Anh Tuấn & PKD2 — Vân và Huy làm mượt ngay ngày đầu.'] },
+        { lv: 'NẤC 2 • QUÝ II – III/2027', badge: 'Mid-Market Solution • Tăng 14,2x ACV', color: 'cobalt', acv: '68,4 Tr / HĐ (14,2x)', spec: '15,0 TB × 380k net/TB/th', title: 'Đóng Gói 4 Giải Pháp Ngành Dọc Dễ Trình Bày', points: ['1. Kho chứng từ kế toán 10 năm chuẩn Điều 13 NĐ 174 cho DN Sản xuất/Thương mại mua MS365.', '2. Kho lưu video FPT Camera AI 90–365 ngày (chuẩn QCVN 11:2026/BCA) rẻ hơn 40% Cloud thường.', '3. Kho Backup 1-1 nội địa cho KH thuê HiGIO Cloud & kho gửi file BIM/CAD/4K tốc độ LAN cho AEC/Media/PACS.'] },
+        { lv: 'NẤC 3 • QUÝ IV/2027 – 2029', badge: 'Enterprise Orchestrator • Tăng 81,1x', color: 'ochre', acv: '390,0 Tr / HĐ (81,1x)', spec: '50,0 TB × 650k net/TB/th', title: 'Nhạc Trưởng Giải Pháp BFSI (Chỉ Mở Khi Qua Gate 1)', points: ['Cụm 5 máy 10GbE DC7 (Veeam VIA v13 cách ly iLO do SIS vận hành) đáp ứng Điều 22 TT 09/2020.', 'Liên minh Tầng 3 Back-to-Back (Object First Ootbi / Cloudian HyperStore) cho thầu Ngân hàng 10–30 năm (TT 37/2026).', 'Bạn KHÔNG tự làm kỹ sư Linux một mình — bạn giữ vai trò Nhạc trưởng ghép bài toán TCO + tuân thủ cùng SIS & FPT Cloud.'] }
+      ],
+
+      b2cB2bShifts: [
+        ['1. Người dùng vs Người trả tiền', '1 người duy nhất vừa dùng vừa tự quẹt ví MoMo trong 2 phút.', 'Người dùng (IT) ≠ Người duyệt ATTT ≠ Người ký tiền (CFO/GĐ).', 'Hỏi sớm ngay buổi 1: "Ngoài anh/chị dùng trực tiếp, ai duyệt ngân sách & quy trình hợp đồng bên mình?"'],
+        ['2. Động cơ mua hàng', 'Cảm xúc, tiện lợi tức thì, giá rẻ, tải phim/file nhanh.', '<strong>Lý trí:</strong> Giảm rủi ro phạt luật, tránh mất dữ liệu, tối ưu TCO 3 năm.', 'Nói bằng ngôn ngữ rủi ro & tiền: "Chuẩn Luật 91/2025 & NĐ 333, thoát bẫy phí rút 3,76Tr/TB của AWS SG."'],
+        ['3. Sản phẩm & Vận hành', 'Giao diện cá nhân, link public đại trà, mua bằng Fcode.', 'Private 100%, phân quyền quản trị DN, Audit Log, hóa đơn VAT & PO.', 'Hoàn tất 4 mảnh ghép cơ bản (Tab 4): Security 1-Pager, Tài khoản DN, TCO 1 trang, Phụ lục PO phân tầng.'],
+        ['4. Cách tạo khách hàng', 'Chạy ads đại trà, seeding MXH đợi triệu user tự vào web.', 'Tiếp cận theo tín hiệu sự kiện (trigger) & biến user cũ thành người giới thiệu.', 'Gọi 1.649 VIP cũ biến user B2C thành cầu nối B2B + đi Shadowing cùng anh Tuấn & PKD2.'],
+        ['5. Bằng chứng tạo niềm tin', 'Lượt tải, review sao, khuyến mãi nạp ví.', '<strong>Case study thật, biên bản PoC, tài liệu ATTT & cam kết SLA văn bản.</strong>', 'Cứu xong 66 KH FDrive trong T1/2027 → đóng gói ngay thành Case Study B2B sống đầu tiên.'],
+        ['6. Vai trò của chính bạn', 'Tự làm sâu từng tính năng nhỏ & trực tiếp chữa cháy sự vụ.', '<strong>Nhạc trưởng Giải pháp (Orchestrator):</strong> Hỏi đúng bài toán, kéo đúng chuyên gia.', 'Chấm dứt tâm lý phải tự biết hết kỹ thuật sâu mới dám chào B2B — kéo SIS & FPT Cloud đi cùng!']
+      ],
+
+      meddpiccQs: [
+        { k: '1. PAIN & METRICS (Nỗi đau & Con số thiệt hại)', q: '"Hiện bên anh/chị đang mất bao nhiêu thời gian/chi phí mỗi tháng cho việc gửi file nặng hoặc sao lưu? Nếu gặp sự cố hay thanh tra đòi dữ liệu trong 24h mà không khôi phục được thì ảnh hưởng cụ thể ra sao?"', tip: 'Chuyển cuộc nói chuyện từ "so giá rẻ" sang "bài toán tránh thiệt hại gấp 10 lần chi phí thuê".' },
+        { k: '2. DECISION CRITERIA (Tiêu chí chấm điểm)', q: '"Khi so sánh tự mua NAS, thuê Cloud nước ngoài và thuê hạ tầng nội địa FTI, 3 tiêu chí nào bên mình chấm điểm cao nhất (lưu tại Việt Nam, 0đ phí rút Egress, tốc độ hay giá)?"', tip: 'Gài lợi thế đặt máy tại VN & 0đ phí tải ra vào bảng chấm điểm trước khi đối thủ kịp vào.' },
+        { k: '3. ECONOMIC BUYER (Người ký ngân sách)', q: '"Ngoài bộ phận kỹ thuật đánh giá, ai là người phê duyệt ngân sách cuối cùng cho hạng mục này? Anh/chị có thể giúp em gửi bảng so sánh TCO 3 năm lên sếp xem trước 15 phút không?"', tip: 'Tránh nhầm IT phụ trách demo (Coach) với Giám đốc/CFO ký tiền (Economic Buyer).' },
+        { k: '4. PAPER PROCESS (Quy trình giấy tờ & ATTT)', q: '"Giả sử kỹ thuật đồng ý tuần sau, thì quy trình duyệt an ninh thông tin, pháp chế và ký PO bên mình thường mất mấy tuần?"', tip: 'Gửi sẵn Security 1-Pager ngay từ đầu giúp rút ngắn 20%–30% thời gian kẹt cuối quý.' },
+        { k: '5. COMPETITION & STATUS QUO (Đối thủ & Không làm gì)', q: '"Nếu năm nay bên mình giữ nguyên cách lưu trữ/mail hiện tại thì có rủi ro gì vào kỳ kiểm toán, thanh tra hoặc mùa cao điểm tới không?"', tip: 'Trong B2B, đối thủ nguy hiểm nhất không phải AWS hay GreenNode mà là thái độ "để năm sau tính".' }
+      ],
+
+      options: {
+        H1: {
+          code: 'H1', badge: 'An toàn tối đa • Duyệt nhanh nhất', shortName: 'Hướng 1 (Tối giản C1)',
+          title: 'Hướng 1: Tối Giản Chân 1 & Khóa Rủi Ro',
+          tagline: 'Tắt điện 24 máy DC5 yếu nhất, cắt 55% OPEX, dồn >95% quân đánh Chân 2.',
+          capex2027: 30, opex2027: 216, opexMonthly: 18,
+          rev2027: { c1: 0.35, c2: 9.65, total: 10.0 }, rev2028: { c1: 0.80, c2: 29.20, total: 30.0 }, rev2029: { c1: 1.20, c2: 48.80, total: 50.0 },
+          econNet2027: '+4,45 Tỷ', breakeven: '80 TB (@225k) / 100 TB (@180k)', dataRisk: 2.0, burnoutLoad: 4.0, bgdProb: '85% – 90%',
+          bullets: ['CAPEX chỉ 30Tr (spare cơ bản cho 6 máy B2C & cứu 66 KH FDrive).', 'Tắt nguồn 24 máy DC5 cũ nhất → hạ OPEX từ 40Tr về 18Tr/tháng.', 'Không nhận SLA Ngân hàng trên máy cũ; giữ trọn tiết kiệm 6,45 Tỷ B2C.', 'Áp lực vận hành & burnout cá nhân thấp nhất (4,0/10).'],
+          monthlyC2: [310, 290, 640, 720, 800, 890, 900, 960, 990, 1040, 1050, 1060],
+          monthlyC1: [20, 20, 25, 30, 30, 30, 30, 30, 30, 35, 35, 35]
+        },
+        H2: {
+          code: 'H2', badge: 'KHUYẾN NGHỊ CÂN BẰNG • Stage-Gate', shortName: 'Hướng 2 (Stage-Gate)',
+          title: 'Hướng 2: Hai Chân Có Cổng Kiểm Soát Stage-Gate',
+          tagline: 'Khớp cả anh Chu Thế Anh lẫn BGĐ CC nhờ giải ngân 2 đợt & Auto-Pivot Q1.',
+          capex2027: 60, opex2027: 360, opexMonthly: 30,
+          rev2027: { c1: 0.55, c2: 9.45, total: 10.0 }, rev2028: { c1: 3.50, c2: 26.50, total: 30.0 }, rev2029: { c1: 8.00, c2: 42.00, total: 50.0 },
+          econNet2027: '+4,48 Tỷ', breakeven: '133 TB (@225k) / 67 TB (@450k gộp)', dataRisk: 4.5, burnoutLoad: 5.5, bgdProb: '80% – 85%',
+          bullets: ['Gate 0 chi 60Tr (spare DC7 + HBA); tắt cuốn chiếu máy chưa dùng (OPEX 30Tr/th).', 'Khoản 90Tr chỉ mở ở Gate 1 (31/03) nếu đủ ≥80–100TB + SIS ký + ≥2 PoC.', 'Trượt Gate 1 → Tự động về Hướng 1 (bảo toàn 90Tr, 0 tranh cãi).', 'Giữ trọn dư địa tăng trưởng 8 Tỷ/năm từ VaultBaaS giai đoạn 2028–2029.'],
+          monthlyC2: [300, 280, 620, 700, 780, 870, 880, 950, 980, 1020, 1030, 1040],
+          monthlyC1: [20, 20, 30, 35, 40, 45, 50, 55, 60, 60, 65, 70]
+        },
+        H3: {
+          code: 'H3', badge: 'Tối ưu thắng thầu Chân 2 • Vũ khí Bundle', shortName: 'Hướng 3 (Bundle)',
+          title: 'Hướng 3: Chân 2 Dẫn Dắt, Chân 1 Làm Vũ Khí Bundle',
+          tagline: 'Không gánh KPI doanh thu đứng riêng C1 năm 2027; dùng 42 máy kéo deal lớn.',
+          capex2027: 50, opex2027: 288, opexMonthly: 24,
+          rev2027: { c1: 0.25, c2: 10.25, total: 10.5 }, rev2028: { c1: 1.50, c2: 30.50, total: 32.0 }, rev2029: { c1: 3.00, c2: 50.00, total: 53.0 },
+          econNet2027: '+4,26 Tỷ (+Win C2)', breakeven: 'Chi phí xúc tiến B2B (288Tr kéo >10,25T)', dataRisk: 2.5, burnoutLoad: 4.5, bgdProb: '75% – 85%',
+          bullets: ['Khớp trực tiếp chỉ đạo anh Thế Anh: ưu tiên Bundle tạo use case thực tế.', 'Chi 50Tr duy trì bể ~20 máy tốt nhất + cứu 66 KH FDrive (OPEX 24Tr/th).', 'Áp khung 3 Không–3 Có: chỉ tặng HĐ FTI ≥100Tr/năm, năm 2 thu 200–300k/TB.', 'Xóa sạch nỗi lo KPI đứng riêng Chân 1, đẩy Chân 2 lên 10,25 Tỷ.'],
+          monthlyC2: [320, 300, 680, 780, 860, 960, 960, 1020, 1050, 1100, 1100, 1120],
+          monthlyC1: [15, 15, 20, 20, 20, 20, 20, 20, 25, 25, 25, 25]
+        }
+      },
+
+      optionMatrixRows: [
+        ['Triết lý điều hành', 'Tắt 24 máy DC5 cũ, khóa chặt rủi ro, dồn >95% lực lượng sang Chân 2', 'Giải ngân 2 đợt theo Stage-Gate; tự động về H1 nếu trượt mốc 31/03/2027', 'Coi hạ tầng thu hồi là vũ khí Bundle kéo thắng thầu MS365/HiGIO/Line'],
+        ['Quy hoạch 50 máy chủ', '6 B2C + 10 (1GbE) + 4 (10GbE ngủ đông) + Tắt điện 24 máy DC5 cũ', '6 B2C + Bật cuốn chiếu (22→34 máy 1GbE) + 5 máy 10GbE DC7 chạy Veeam', '6 B2C + 16 máy 1GbE làm bể Bundle + 4 máy 10GbE backup FDrive/HiGIO'],
+        ['CAPEX / R&D 2027', '<strong>30 Triệu VNĐ</strong> (Spare cơ bản)', '<strong>Gate 0: 60Tr</strong> (+90Tr chỉ mở khi qua Gate 1)', '<strong>50 Triệu VNĐ</strong> (Vật tư bể Bundle &amp; FDrive)'],
+        ['OPEX 2027 (Ước tính)', '<strong>216 Tr/năm</strong> (18Tr/tháng — giảm 55%)', '<strong>360 Tr/năm</strong> (30Tr/tháng — tắt cuốn chiếu)', '<strong>288 Tr/năm</strong> (24Tr/tháng — hạch toán xúc tiến)'],
+        ['Doanh thu 2027–28–29', '10,0 → 30,0 → 50,0 Tỷ (C1: 0,35→1,2T)', '10,0 → 30,0 → 50,0 Tỷ (C1: 0,55→8,0T)', '10,5 → 32,0 → 53,0 Tỷ (C2: 10,25→50T)'],
+        ['Hòa vốn OPEX C1', '<strong>80 TB</strong> (@225k) / 100 TB (@180k)', '<strong>133 TB</strong> (@225k) / 67 TB (@450k gộp)', 'Hạch toán theo ROI kéo deal Chân 2'],
+        ['Giá trị kinh tế C1 2027', '<strong class="text-jade-700">+4.454 Tr</strong> (gồm 4,35T tránh nợ B2C)', '<strong class="text-jade-700">+4.480 Tr</strong> (+4.390Tr nếu mở 90Tr G1)', '<strong class="text-jade-700">+4.262 Tr</strong> (+lãi gộp tăng từ C2)'],
+        ['Rủi ro dữ liệu / Burnout', '<strong>2,0 / 10</strong> • <strong>4,0 / 10</strong> (Nhẹ nhất)', '<strong>4,5 / 10</strong> • <strong>5,5 / 10</strong> (Gate gánh hộ)', '<strong>2,5 / 10</strong> • <strong>4,5 / 10</strong> (Bỏ KPI C1 riêng)'],
+        ['Đánh giá khả năng duyệt', '85% – 90% (Cắt OPEX mạnh, rủi ro thấp)', '80% – 85% (Cân bằng nhất mọi lãnh đạo)', '75% – 85% (Cần chốt cơ chế hạch toán nội bộ)']
+      ],
+
+      auditFixes: [
+        { num: '01', title: 'Sửa mâu thuẫn hòa vốn 90 TB & hoàn 150Tr Q1', desc: 'Minh bạch hòa vốn thật 80–133 TB nhờ tắt điện cuốn chiếu máy DC5 & tính đúng Giá trị kinh tế ròng +4,48 Tỷ (gồm 4,35T tránh bồi hoàn B2C).' },
+        { num: '02', title: 'Khớp tròn sổ cái 50 máy chủ vật lý', desc: 'Xóa lệch đếm 34+16 vs 32+18: chốt cứng 6 B2C + 5 (10GbE DC7) + 34 (1GbE chạy) + 4 (kho Spare) + 1 (loại biên Server 034 / đối soát STT 33) = 50 máy.' },
+        { num: '03', title: 'Loại bỏ MinIO Community Edition (Archived 2026)', desc: 'MinIO archived GitHub 02–04/2026 với 7 lỗ hổng không vá bản miễn phí & gỡ Docker Hub 09/2026. Chuyển sang Veeam VIA v13 cách ly iLO & Tầng 3 Ootbi/Cloudian.' },
+        { num: '04', title: 'Cấm chạy Ceph trên 16 GB RAM / 1GbE', desc: 'Ceph khuyến nghị 96 GiB RAM/24 ổ (DC5 chỉ có 16 GB = 16,7%) và rebuild 41 TB qua 1GbE mất 134h. Đổi sang RAID-6 + sync 1-1 chéo rack, cấm bán máy cũ cho Ngân hàng.' },
+        { num: '05', title: 'Hiệu đính 5 điểm pháp lý & giá Cloud 11/2026', desc: 'Luật 91/2025 & NĐ 356 hiệu lực 01/01/2026; Luật ANM 116 & NĐ 333/2026 thay NĐ 53; TT 09 Điều 26; TT 37/2026 lưu 10 năm ví điện tử; AWS Singapore rút 1TB tốn 3,76Tr & GreenNode 543k/TB.' },
+        { num: '06', title: 'Bổ sung Biên lợi nhuận Chân 2 hậu cắt margin CSP', desc: 'Microsoft tăng giá M365 (07/2026) & cắt 5% margin legacy (10/2026). Chuyển sang Business Premium/Copilot + Migration + HiGIO giữ biên gộp ước ~24,6%.' },
+        { num: '07', title: 'Cập nhật mốc 26/11/2026, Tết 06/02/2027 & Phá băng cá nhân', desc: 'Đặt lịch 14 ngày từng bước cho bản thân bạn, Sổ tay Anh Sơn–Anh Thế Anh, Khung KPI 3 Rổ & Thang Nâng Trình Chân 1 từ B2C→B2B.' }
+      ],
+
+      bundleMatrix: [
+        { s: '1. Leased Line / Internet B2B (PKD1, PKD2, KD3)', v: 'Gửi file nặng CAD/BIM/4K tốc độ LAN nội địa, đáp ứng Luật 116/2025.', m: 'HĐ chính ≥100Tr/năm tặng 100GB–1TB tối đa 12 tháng; ghi rõ giá trị 2,4–3,6Tr; năm 2 thu 200–300k/TB.' },
+        { s: '2. FPT Cloud (HiGIO) & Cứu khẩn 66 KH Enterprise FDrive', v: 'Cụm Physical Backup 1-1 tách biệt vật lý hoàn toàn với Cloud chính, rẻ hơn 35–50% S3 nóng.', m: 'Xóa ngay rủi ro Critical (0% backup vật lý) cho 66 KH FDrive trong T1/2027 & bán kèm HiGIO mới.' },
+        { s: '3. Microsoft 365 (Mũi nhọn số 1 Chân 2)', v: 'Lấp đúng khoảng trống lưu file lớn sau khi Microsoft ngừng bán lẻ OneDrive Plan 1 & 2 năm 2026.', m: 'Đính kèm DN Sản xuất, Dược, Xây dựng mua 100–1.000 license Business Premium/Copilot.' },
+        { s: '4. FPT Camera AI (QCVN 11:2026/BCA) & Starlink B2B', v: 'Lưu trữ video giám sát dài hạn 90–365 ngày rẻ hơn ~40% so với Cloud Camera đơn lẻ.', m: 'Chuỗi bán lẻ, nhà xưởng KCN, phòng giao dịch Ngân hàng (Điều 17–18 TT 09/2020).' }
+      ],
+
+      legalMatrix: [
+        { doc: 'Thông tư 09/2020/TT-NHNN (kèm TT 50/2024, TT 77/2025 & CV 627/CNTT3 19/03/2026)', status: 'Đang hiệu lực (Điều 25 bãi bỏ)', req: 'Điều 17–18: Cách ly HTTT Cấp độ 3+, kiểm soát 24/7, cửa chống cháy ≥2 khóa. Điều 22: Sao lưu tự động trong 24h, lưu ra phương tiện ngoài tách biệt vật lý ngày làm việc kế tiếp. Điều 26 (sửa lỗi Điều 21): Lưu nhật ký Cấp độ 3+ trực tuyến ≥3 tháng, sao lưu ≥1 năm.', sales: 'Đòn bẩy cho FTI VaultBaaS (Tầng 1 DC7 / Tầng 3 đối ứng) nối Leased Line riêng tách khỏi Internet.' },
+        { doc: 'Thông tư 04/2025/TT-NHNN & Thông tư 37/2026/TT-NHNN (19/07/2026)', status: 'TT 04 từ 01/07/2025; TT 37 từ 19/07/2026', req: '13 nhóm hồ sơ ngân hàng (5–20–30 năm đến Vĩnh viễn). Theo TT 37/2026: hồ sơ mở/đóng & giao dịch TK thanh toán, ví điện tử lưu 10 năm; thiết kế CNTT AML lưu 10 năm; nhận biết KH/giao dịch đáng ngờ lưu 5 năm.', sales: 'Thúc đẩy kho lưu trữ lạnh FTI DeepArchive 15Y+ cho Ngân hàng tầm trung & ví điện tử.' },
+        { doc: 'Luật BVDLCN 91/2025/QH15 & Nghị định 356/2025/NĐ-CP', status: 'Hiệu lực 01/01/2026 (thay NĐ 13/2023)', req: 'Lịch sử không gian mạng là dữ liệu nhạy cảm; lưu bằng chứng đồng ý, chỉ định DPO, siết chuyển dữ liệu xuyên biên giới (Mẫu 01a/01b), phản hồi 2 ngày làm việc & xóa 20–30 ngày.', sales: 'Loại thẳng Cloud không đặt Data Center tại Việt Nam (Wasabi, Backblaze, AWS Singapore).' },
+        { doc: 'Luật An ninh mạng 116/2025/QH15 & NĐ 333, 331, 330/2026/NĐ-CP', status: 'Luật 01/07/2026; 3 NĐ 19/08/2026', req: 'DN trong nước lưu tại VN tối thiểu 24 tháng thông tin cá nhân & dữ liệu người dùng tạo ra (bỏ bắt buộc lưu quan hệ bạn bè/nhóm); log truy xuất ≥12 tháng; NĐ 330 phạt & tước phép 1–24 tháng.', sales: 'Đẩy mạnh nhu cầu di trú sang HiGIO Cloud + Backup nội địa tại FPT DC.' },
+        { doc: 'Luật Lưu trữ 33/2024/QH15 & Nghị quyết 66.18', status: 'Luật 01/07/2025; NQ 66.18 cắt thủ tục', req: 'Tài liệu lưu trữ số có đầy đủ giá trị pháp lý; NQ 66.18 bỏ thủ tục cấp giấy chứng nhận đủ điều kiện kinh doanh lưu trữ & điều kiện hạ tầng Điều 36–37 NĐ 113/2025.', sales: 'Mở cửa dự thầu số hóa & kho lưu trữ điện tử khối Công cho FTI.' },
+        { doc: 'Luật Kế toán 88/2015 (sửa Luật 56/2024) & NĐ 174/2016/NĐ-CP', status: 'Đang hiệu lực', req: 'Điều 12: 5 năm; Điều 13: 10 năm (chứng từ ghi sổ, BCTC, thanh tra thuế); Điều 14: Vĩnh viễn (dự án nhóm A); Điều 10 cho phép lưu trữ điện tử.', sales: 'Đóng gói Nấc 2: Combo MS365 + Kho chứng từ kế toán 10 năm cho DN Sản xuất/Thương mại.' }
+      ],
+
+      riskPlaybook: [
+        { t: '1. Hỏng nhiều ổ 2 TB / cháy Mainboard ở Tầng 2', d: 'Nhờ RAID-6 + sync 1-1 chéo rack + kho linh kiện 0đ từ 4 máy rút (~70 ổ 2TB & main/RAM), bản sao thứ hai vẫn toàn vẹn và kỹ thuật DC5/DC7 thay nóng trong ngày.' },
+        { t: '2. VIP B2C cũ (Vĩnh viễn/Dài hạn) bức xúc khi đóng Public', d: 'Huy & Thủy tiếp nhận kín (0 để lan MXH), áp chính sách chuyển sang "Két sắt Private Storage" giữ dữ liệu trên 6 máy DC7 hết 31/12/2028 kèm ưu đãi Directlink.' },
+        { t: '3. Thanh tra Ngân hàng kiểm tra vật lý & lỗ hổng iLO', d: 'Cụm Tầng 1 đặt tại khu cách ly DC7 (Điều 17–18 TT 09/2020), cô lập vật lý mạng iLO/IPMI; thầu đòi máy mới 100% kích hoạt ngay Tầng 3 Back-to-Back (Ootbi/Cloudian).' },
+        { t: '4. GreenNode (543k/TB) cạnh tranh đơn giá WORM', d: 'Thắng bằng tổng TCO: 0đ Egress + kéo thẳng Leased Line/MPLS riêng của FTI vào DC7 không qua Internet + đồng bộ HiGIO Cloud & hỗ trợ 24/7.' },
+        { t: '5. Trượt tiến độ chốt PoC VaultBaaS cuối Q1/2027', d: 'Kích hoạt tự động Auto-Pivot Gate 1 ngày 31/03/2027: giữ lại 90Tr, chuyển sang Hướng 1 (tắt 24 máy hạ OPEX 18Tr/th) và dồn lực sang Chân 2.' }
+      ],
+
+      productsMatrix: [
+        { g: 'CORE', n: '1. Microsoft 365 (Business Premium / E3 & Copilot)', p: 'Ưu Tiên #1 • 95%', s: 'Mảng KH hỏi nhiều nhất tại ODS; anh Tuấn từng vào lead ~1 Tỷ. 07/2026 tăng giá 5–33% & bỏ OneDrive lẻ; 10/2026 cắt 5% margin cũ nhưng thưởng 19,5% cho Premium/Copilot.', u: 'Bán Business Premium/Copilot + Dịch vụ di trú Mail (Zimbra/MDaemon) + Tặng FshareStorage bù khoảng trống OneDrive.', d: '250Tr – 1,5 Tỷ/HĐ • Chốt 2–6 tuần • Tái ký ≥92%.' },
+        { g: 'CORE', n: '2. HiGIO Cloud (FPT Cloud IaaS / VM / Private Cloud)', p: 'Ưu Tiên #1 • 90%', s: 'Đi cặp tự nhiên với MS365; đội nhà & các sếp thuyết trình mượt. Luật ANM 116 & NĐ 333/2026 đẩy DN đưa server cũ lên Cloud nội địa.', u: 'Tier III VN + nhánh Backup DC7 giúp giảm 35%–45% TCO so với S3 nóng; biên gộp ước ~35%.', d: '150Tr – 1,0+ Tỷ/năm • Chốt 3–6 tuần • MRR đều.' },
+        { g: 'COSALE', n: '3. Kênh truyền Leased Line / MPLS / MetroWAN', p: 'Ưu Tiên #2 • 85%', s: 'Dịch vụ cốt lõi FTI, khảo sát 2h; tuyển 2 Sale B2B có sẵn kinh nghiệm bán kênh truyền & Co-sale PKD2.', u: 'Bán kèm MS365/HiGIO; dùng quà tặng 1TB FshareStorage giúp PKD2 giữ khách tái ký.', d: '100 – 350Tr/tuyến/năm • Chốt 3–6 tuần.' },
+        { g: 'COSALE', n: '4. Internet Vệ tinh Starlink B2B (LEO 550 km)', p: 'Ưu Tiên #2 • 85%', s: '633 thuê bao VN (07/11/2026), 10 điểm Cát Hải. Local Priority 50GB chỉ 1,48–1,59Tr/th; Global Priority 7,24–62,24Tr/th.', u: 'Đại dương xanh; chào ngay Local Priority 50GB làm kênh DR Link cho Ngân hàng & gói Hàng hải/Thủy điện.', d: '200 – 600Tr/đội tàu hoặc điểm • Chốt 4–8 tuần.' },
+        { g: 'COSALE', n: '5. FPT Camera AI (QCVN 11:2026/BCA) & Voice Center', p: 'Ưu Tiên #2 • 90%', s: 'AI Dome 5I/Bullet 5I đạt chuẩn QCVN 11:2026/BCA, Cloud IQ+ từ 33k/cam/th (3.700+ DN). Voice 1900/PBX/ZNS mở trong 48h.', u: 'Mũi khoan chốt nhanh mở mã SCM; ghép Camera AI + lưu trữ 90–365 ngày KD3 rẻ hơn 40%.', d: '40 – 250Tr/HĐ • Chốt 1–3 tuần • Biên ~42%.' },
+        { g: 'STORAGE', n: '6. FshareStorage B2B (Nấc 1 & Nấc 2: 200k–380k/TB)', p: 'Ưu Tiên #3 • 100%', s: 'Tầng 2 (34 máy 1GbE sync 1-1 chéo rack). Vân làm Sale & Huy làm CSKH SLA <4h. 1.649 VIP cũ, 66 KH FDrive & Whitelist.', u: 'CAPEX = 0đ, 100% Private (0% DMCA), LAN-speed nội địa (>3PB/th), vũ khí Bundle 3 Không–3 Có.', d: 'Nấc 1: 4,8Tr/HĐ • Nấc 2: 68,4Tr/HĐ.' },
+        { g: 'STORAGE', n: '7. Solution Storage: FTI VaultBaaS & DeepArchive 15Y+', p: 'Ưu Tiên #3 • Gate 1', s: 'Nấc 3: 5 máy 10GbE DC7 (Veeam VIA v13 cách ly iLO) & Tầng 3 đối ứng Ootbi/Cloudian. Chỉ mở 90Tr nếu vượt Gate 1 (31/03).', u: 'Rẻ hơn 35–63% FPT Cloud S3 nóng, 0đ Egress (AWS SG phạt 3,76Tr/TB), kênh riêng tuân thủ TT 09 & TT 37/2026.', d: 'Nấc 3: ~390Tr/HĐ • Chốt 6–12 tuần.' }
+      ],
+
+      funnelRows: [
+        { name: '1. MS365 Mid-Enterprise (200–500 user, hậu 07/2026)', deals: 5, acv: '800 Tr', rev: '4.000 Tr', wr: '25%', pipe: '20 Opps / 50 Leads', gp: '~14% • 560 Tr' },
+        { name: '2. MS365 SME + Copilot / Migration + Storage Bundle', deals: 6, acv: '250 Tr', rev: '1.500 Tr', wr: '30%', pipe: '20 Opps / 44 Leads', gp: '~28% • 420 Tr' },
+        { name: '3. HiGIO Cloud IaaS / Di trú ERP + Backup DC7', deals: 5, acv: '400 Tr', rev: '2.000 Tr', wr: '22%', pipe: '23 Opps / 66 Leads', gp: '~35% • 700 Tr' },
+        { name: '4. Starlink B2B (Hàng hải, Thủy điện, DR Bank)', deals: 3, acv: '300 Tr', rev: '900 Tr', wr: '25%', pipe: '12 Opps / 30 Leads', gp: '~22% • 198 Tr' },
+        { name: '5. Leased Line / FPT Camera AI (QCVN 11) / Voice', deals: 10, acv: '110 Tr', rev: '1.100 Tr', wr: '35%', pipe: '29 Opps / 58 Leads', gp: '~42% • 462 Tr' }
+      ],
+
+      targetAccounts: [
+        { seg: '1. Sản xuất, Dược & Thương mại (200–1.500 NS)', names: 'Nhựa Bình Minh, Tiền Phong, Gỗ An Cường, Tôn Đông Á, TCM, May Sông Hồng, DHG, Traphaco, Imexpharm, Cholimex', offer: 'MS365 Business Premium/Copilot + Di trú Mail + HiGIO Cloud + Kho chứng từ 10 năm.', channel: 'Anh Tuấn + 2 Sale mới + Co-sale PKD2' },
+        { seg: '2. Xây dựng AEC, BĐS & Media Studio', names: 'Hòa Bình, Ricons, Newtecons, Central, Đất Xanh, Nam Long, Điền Quân + Pháp nhân từ 1.649 VIP cũ (Việt Ba, Vinama)', offer: 'MS365 Teams/SharePoint + HiGIO Cloud + FshareStorage (200–300k/TB truyền BIM/4K tốc độ LAN).', channel: 'Vân chuyển đổi VIP + Tuấn nâng cấp MS365' },
+        { seg: '3. Ngân hàng tầm trung, Chứng khoán & Fintech', names: 'VietABank, BVBank, Saigonbank, PGBank, KienlongBank, OCB, SHS, MBS, VIX, BIC, PJICO', offer: 'Starlink Local Priority DR Link (~1,5Tr/th) + FTI VaultBaaS DC7 / Tầng 3 đối ứng.', channel: 'Minh (Orchestrator) + Co-sale PKD2 & FPT Cloud' },
+        { seg: '4. Vận tải biển, Cảng biển & Thủy điện vùng sâu', names: 'Vosco, Vinaship, Hải An (HAH), Cảng Đình Vũ, Tàu Hạ Long, Thủy điện Bắc Hà, VSH, PC1, GEC', offer: 'Starlink B2B (case 10 trạm Cát Hải) + MS365 + Camera AI.', channel: 'BGĐ đẩy Top-down + TT Phi mặt đất (Ông Biên)' },
+        { seg: '5. Chuỗi bán lẻ, Phòng khám & KCN FDI', names: 'BiboMart, KidsPlaza, Guardian, Phúc Long, Nha khoa Kim, Nhà máy KCN VSIP, Quế Võ, Long Hậu, Hiệp Phước', offer: 'FPT Camera AI chuẩn QCVN 11 + Lưu trữ 90–365 ngày giá rẻ + Voice 1900/ZNS + Line.', channel: '02 Sale mới chốt nhanh mở mã SCM 2–3 tuần' },
+        { seg: '6. Khách hàng Nội bộ & Whitelist Hiện Hữu', names: '66 KH Enterprise FDrive (đang 0% backup), Tổng cục Thuế (HĐ đến 24/08/2028), Việt Ba, Vinama', offer: 'Backup vật lý 1-1 cho FDrive (xóa rủi ro Critical T1/2027) & Gia hạn HĐ B2B chuẩn PO.', channel: 'Vân + Đội Tech SIS' }
+      ],
+
+      monthlyPlan: [
+        { id: 'm2611', month: 'Cuối Tháng 11/2026 (26–30/11)', tag: 'PHÁ BĂNG & CHỐT SỔ', gate: 'Tin nhắn anh Sơn + Sổ 50 máy', revIdx: -1, common: 'Phá vỡ im lặng với anh Sơn (27/11), chốt serial tròn 50 máy với TạiCV, chia tải với anh Tuấn và nghỉ trọn cuối tuần.', byOpt: { H1: 'Chốt list 24 máy DC5 tắt nguồn hạ OPEX 18Tr/th.', H2: 'Xác nhận 5 máy 10GbE DC7 cài Veeam VIA v13 & 3 tiêu chí Gate 1.', H3: 'Chốt quy chế Bundle 3 Không–3 Có.' }, tasks: [{ id: 't1', role: 'LEAD', text: 'Bạn: Gửi Mẫu 1 hẹn anh Sơn 15p (27/11); chốt 50 máy với TạiCV; ngắt việc 100% cuối tuần.' }, { id: 't2', role: 'TEAM_C1', text: 'Vân & Thủy: Rà soát khóa 131 Uploader & làm sạch danh sách 1.649 VIP >10GB.' }, { id: 't3', role: 'TEAM_C2', text: 'Anh Tuấn: Khóa danh sách 30 cơ hội nóng MS365 & HiGIO Q1/2027.' }] },
+        { id: 'm2612', month: 'Tháng 12/2026 (35 ngày → 31/12)', tag: 'GATE 0 & ĐÓNG VÍ B2C', gate: 'GATE 0 (15/12) • Đóng ví 31/12', revIdx: -1, common: 'Gửi Mẫu 3 anh Thế Anh (03/12) → Họp chốt Hướng & KPI 3 Rổ (07–10/12). Đúng 31/12 tắt 100% ví B2C, bật Form B2B. Phỏng vấn tuyển 2 Sale mới.', byOpt: { H1: 'Nhận 30Tr Gate 0; tắt điện 24 máy DC5.', H2: 'Nhận 60Tr Gate 0 mua spare DC7 + dựng Lab Veeam VIA v13.', H3: 'Nhận 50Tr lập bể Bundle + ký phối hợp PKD2.' }, tasks: [{ id: 't4', role: 'LEAD', text: 'Bạn: Dẫn họp 20p BGĐ; gửi Mẫu 4 khóa phạm vi 10 dòng; họp 1-1 với 4 bạn (Bridges Ending).' }, { id: 't5', role: 'TEAM_C1', text: 'Châu xong UI Két sắt DN & Form; Thủy đóng ví B2C; Vân gọi 1.649 VIP; Huy dừng 100% seeding.' }, { id: 't6', role: 'TEAM_C2', text: 'Anh Tuấn & HR: Chốt tuyển 02 Sale B2B nhận việc đầu T1/2027.' }] },
+        { id: 'm2701', month: 'Tháng 01/2027 (Tết DL 01–03/01)', tag: 'NẤC 1 & CỨU 66 FDRIVE', gate: '100% Backup 66 KH FDrive', revIdx: 0, common: 'Chạy 100% PO/SCM (DT B2C = 0đ). Hoàn tất backup 1-1 cứu 66 KH FDrive. Onboard 2 Sale mới (tháng 1 ramp-up 0% quota).', byOpt: { H1: 'OPEX hạ còn 18Tr/th; Vân chốt 30–40 VIP.', H2: 'Hoàn thiện Lab Veeam VIA v13 cách ly iLO trên DC7.', H3: 'Gắn Bundle 100GB–1TB vào 100% báo giá MS365/Line.' }, tasks: [{ id: 't7', role: 'LEAD', text: 'Bạn: Đi Shadowing 1–2 buổi gặp KH B2B/tuần cùng anh Tuấn; giữ cứng trần 42h/tuần.' }, { id: 't8', role: 'TEAM_C2', text: 'Anh Tuấn chốt 1–2 deal mở hàng; 2 Sale mới quét 40 DN dùng Zimbra/MDaemon.' }, { id: 't9', role: 'TEAM_C1', text: 'Huy trực ticket SLA <4h; Thủy quy đổi VIP dài hạn kéo giảm dư nợ bồi hoàn.' }] },
+        { id: 'm2702', month: 'Tháng 02/2027 (Tết 04–10/02)', tag: 'NGHỈ TẾT & KHAI XUÂN', gate: 'Nạp năng lượng • Chuẩn bị T3', revIdx: 1, common: 'Mùng 1 Tết Đinh Mùi Thứ Bảy 06/02/2027 (không có 30 Tết), đi làm Thứ Năm 11/02. Nghỉ Tết ngắt kết nối 100%; khai xuân đẩy lịch demo Nấc 2 & MS365.', byOpt: { H1: 'Vận hành gọn Nấc 1; Vân giữ HĐ Whitelist.', H2: 'Mời 5 KH Fintech/CK chạy PoC 30 ngày từ 11/02.', H3: 'Chào PKD2 gia hạn Leased Line tặng 1TB.' }, tasks: [{ id: 't10', role: 'LEAD', text: 'Bạn: Nghỉ Tết trọn vẹn 0 email; từ 11/02 dẫn 2 cuộc demo Nấc 2 dùng 5 câu MEDDPICC.' }, { id: 't11', role: 'TEAM_C2', text: 'Anh Tuấn & 2 Sale (ramp 20%): Đẩy báo giá MS365 Premium + Copilot.' }, { id: 't12', role: 'TEAM_C1', text: 'Vân đạt ~55–65 KH VIP; Huy trực luân phiên hỗ trợ khẩn cấp.' }] },
+        { id: 'm2703', month: 'Tháng 03/2027 (Chốt Quý I)', tag: 'GATE 1 & RE-BASELINE KPI', gate: 'GATE 1 (31/03) • Q1 ~1,27–1,35T', revIdx: 2, common: 'Cao điểm chốt đơn Q1 (~650Tr riêng T3). Họp Gate 1 & Re-baseline KPI ngày 31/03/2027 (Rổ 1 giữ sàn KPI Q1 ≥87%).', byOpt: { H1: 'Vượt mốc hòa vốn 80 TB (OPEX 18Tr).', H2: 'Chấm Gate 1: ≥80–100TB + SIS ký DC7 + ≥2 PoC → Mở 90Tr. Thiếu → Auto-Pivot H1!', H3: 'Đo tỷ lệ thắng thầu nhóm có Bundle vs không Bundle.' }, tasks: [{ id: 't13', role: 'LEAD', text: 'Bạn: Chủ trì báo cáo Gate 1 (15p bằng số thật); chuẩn bị chuyển Châu sang SIS.' }, { id: 't14', role: 'TEAM_C2', text: 'Anh Tuấn chốt 1 deal MS365 lớn (500–800Tr); 2 Sale (ramp 45%) chốt 3–4 deal Camera/Voice.' }, { id: 't15', role: 'TEAM_C1', text: 'Châu bàn giao UI/UX; Vân đạt lũy kế ~75–85 KH B2B FshareStorage.' }] },
+        { id: 'm2704', month: 'Tháng 04/2027 (Khởi động Q2)', tag: 'LÊN NẤC 2 & STARLINK', gate: 'Chuyển Châu sang SIS êm đẹp', revIdx: 3, common: 'Nâng Chân 1 lên Nấc 2 (68,4Tr/HĐ: Chứng từ 10 năm, Backup HiGIO, Camera dài hạn); chạy chiến dịch Starlink DR Bank.', byOpt: { H1: 'Dành >90% lực lượng Chân 2; Chân 1 chạy bảo trì nhẹ.', H2: 'Nếu vượt Gate 1: thương mại hóa VaultBaaS (450–850k/TB).', H3: 'Mở rộng Bundle sang chuỗi Camera AI & HiGIO toàn FTI.' }, tasks: [{ id: 't16', role: 'LEAD', text: 'Bạn: Viết thư giới thiệu thành tích +21,62% DT đưa Châu sang SIS; hỗ trợ Pre-sales deal lớn.' }, { id: 't17', role: 'TEAM_C2', text: 'Anh Tuấn & 2 Sale (ramp 75%): Demo 6–8 DN MS365 Premium + HiGIO + Starlink DR.' }, { id: 't18', role: 'TEAM_C1', text: 'Thủy chốt đợt 2 quy đổi VIP; Vân chốt đều 15–20 KH/tháng.' }] },
+        { id: 'm2705', month: 'Tháng 05/2027', tag: 'CAMERA QCVN 11 & CASE STUDY', gate: 'Lũy kế 5T ≥ 2,8–3,0 Tỷ', revIdx: 4, common: 'Chiến dịch FPT Camera AI (QCVN 11:2026/BCA) + Lưu trữ 90–365 ngày; nhận tệp SME tồn đọng PKD2; 2 Sale đạt 100% ramp.', byOpt: { H1: 'Duy trì C1 ~30Tr/th, đẩy biên gộp Migration & HiGIO.', H2: 'Ký 1–2 HĐ VaultBaaS đầu tiên tạo Case Study TT 09/2020.', H3: 'Đạt ≥50 DN dùng thật gói Bundle FshareStorage.' }, tasks: [{ id: 't19', role: 'LEAD', text: 'Bạn: Đóng gói 2 Case Study sống gửi anh Thế Anh & BGĐ củng cố tín nhiệm.' }, { id: 't20', role: 'TEAM_C2', text: '2 Sale đạt 100% tốc độ (159,6Tr/th/Sale); chốt 4–5 deal Camera/Voice/Line.' }, { id: 't21', role: 'TEAM_C1', text: 'Thủy chốt hướng vị trí từ Q2 (Sales Admin PO toàn phòng hay chuyển BO Kế toán).' }] },
+        { id: 'm2706', month: 'Tháng 06/2027 (Sơ kết 6 Tháng)', tag: 'GATE 2 & MỐC SỨC KHỎE 6T', gate: 'GATE 2 (30/06) • Lũy kế ≥3,74T', revIdx: 5, common: 'Đóng sổ 6 tháng (~3,74–3,90 Tỷ); ổn định vị trí Thủy; thực hiện mốc tự đánh giá sức khỏe & cân bằng cá nhân 6 tháng.', byOpt: { H1: 'Giữ 0đ CAPEX phát sinh C1; rà vượt mốc 10T từ C2.', H2: 'Lập khung giá Tầng 3 đối ứng (Ootbi/Cloudian) nếu có thầu Bank.', H3: 'Báo cáo ROI 6 tháng chi phí Bundle lên BGĐ.' }, tasks: [{ id: 't22', role: 'LEAD', text: 'Bạn: Họp Gate 2; nghỉ 1 tuần giảm nhịp nạp pin; tự đánh giá mốc 30/06.' }, { id: 't23', role: 'TEAM_C2', text: 'Anh Tuấn & 2 Sale: Lọc phễu đảm bảo độ phủ Q3–Q4 ≥3,5x (≥22 Tỷ cơ hội sạch).' }, { id: 't24', role: 'TEAM_C1', text: 'Thủy ổn định vị trí chính thức; Vân đạt ~120–130 KH FshareStorage.' }] },
+        { id: 'm2707', month: 'Tháng 07/2027 (Khởi động Q3)', tag: 'SĂN DEAL HẾT HẠN M365 CŨ', gate: 'Vượt mốc ~930Tr/tháng', revIdx: 6, common: 'Tròn 1 năm Microsoft tăng giá (07/2026): săn các DN vừa hết hợp đồng giá cũ để tư vấn tối ưu Premium/Copilot + HiGIO Cloud.', byOpt: { H1: 'Dồn 100% lực lượng chốt MS365 300–500 user & HiGIO ERP.', H2: 'Chào Nấc 3 DeepArchive 15Y+ cho PACS Bệnh viện & Ví điện tử (TT 37/2026).', H3: 'Nhắc chăm sóc trước 60 ngày cho lô Bundle Q1 sắp chuyển trả phí.' }, tasks: [{ id: 't25', role: 'LEAD', text: 'Bạn: Làm Nhạc trưởng giải pháp cho top 5 deal >400Tr.' }, { id: 't26', role: 'TEAM_C2', text: 'Anh Tuấn xin BGĐ (Sếp Sơn, Sếp Chiến) đẩy Top-down 3 tập đoàn Sản xuất/Hàng hải.' }, { id: 't27', role: 'TEAM_C1', text: 'Huy kiểm thử phục hồi 6 tháng cụm backup FDrive & FshareStorage.' }] },
+        { id: 'm2708', month: 'Tháng 08/2027', tag: 'TĂNG TỐC QUÝ III', gate: 'Lũy kế 8T ≥ 5,6–6,0 Tỷ', revIdx: 7, common: 'Giữ nhịp ~1,0 Tỷ/tháng ổn định; kiểm soát biên lợi nhuận gộp hợp nhất ≥24%.', byOpt: { H1: 'Chuẩn bị kế hoạch tuyển thêm Sale B2B đầu 2028 (mốc 30T).', H2: 'Đạt ≥3 HĐ VaultBaaS ổn định, hoàn vốn toàn bộ R&D/Spare.', H3: 'Đạt ≥80 KH Bundle sẵn sàng chuyển hóa thu phí 2028.' }, tasks: [{ id: 't28', role: 'LEAD', text: 'Bạn: Kiểm toán tiến độ giảm nợ B2C (dưới 3,8 Tỷ) & duy trì 1-1 đều đặn.' }, { id: 't29', role: 'TEAM_C2', text: 'Chốt tối thiểu 4–5 hợp đồng mới (MS365, HiGIO, Starlink, Camera).' }, { id: 't30', role: 'TEAM_C1', text: 'Vân đạt ~145 KH FshareStorage & bán chéo MS365 SME.' }] },
+        { id: 'm2709', month: 'Tháng 09/2027 (Chốt Quý III)', tag: 'GATE 3 & KHÓA NỀN 2028', gate: 'GATE 3 (30/09) • Khóa ≥7,43T tái ký', revIdx: 8, common: 'Chốt Q3 (~2,98–3,10 Tỷ). Thực hiện Gate 3 chốt kế hoạch 30 Tỷ năm 2028 sớm 3 tháng — không bao giờ lặp lại cảnh nước rút burnout.', byOpt: { H1: 'Trình kế hoạch mở rộng đội Sales 2028 (4 → 7 người).', H2: 'Dự thầu gói lưu trữ lạnh 15Y+ bằng thiết bị Tầng 3 đối ứng.', H3: 'Ban hành thông báo thu phí năm 2 (200–300k/TB) cho tập KH Bundle.' }, tasks: [{ id: 't31', role: 'LEAD', text: 'Bạn: Lập kế hoạch 2028 từ số thực 9T; khóa danh sách tái ký ≥7,43T sang 2028.' }, { id: 't32', role: 'TEAM_C2', text: 'Anh Tuấn & 2 Sale: Rà sớm toàn bộ deal Q4 để gỡ vướng từ tháng 10.' }, { id: 't33', role: 'TEAM_C1', text: 'Huy báo cáo CSAT 9 tháng (mục tiêu ≥95% đúng SLA <4h).' }] },
+        { id: 'm2710', month: 'Tháng 10/2027', tag: 'CAO ĐIỂM GIẢI NGÂN Q4', gate: 'Vượt mốc ~1,08 Tỷ/tháng', revIdx: 9, common: 'Mùa cao điểm giải ngân CNTT cuối năm; đẩy giao thiết bị Starlink, triển khai Camera AI & cấp license MS365.', byOpt: { H1: 'Giữ nhịp C2 >1,04 Tỷ/tháng; rà thanh lý vỏ máy DC5 đã tắt điện.', H2: 'Chốt nhóm HĐ VaultBaaS Q4 (lũy kế C1 >400Tr) mở đà 3,5T năm 2028.', H3: 'Chốt chuyển đổi trả phí lô Bundle ký từ đầu năm.' }, tasks: [{ id: 't34', role: 'LEAD', text: 'Bạn: Giữ nghiêm kỷ luật không thức đêm chạy số; gỡ vướng top 10 deal Q4.' }, { id: 't35', role: 'TEAM_C2', text: 'Chốt ký & nghiệm thu sớm tránh nghẽn hóa đơn tuần cuối năm.' }, { id: 't36', role: 'TEAM_C1', text: 'Vân vượt mốc 160 KH B2B (đạt 10% tệp 1.649 VIP cũ).' }] },
+        { id: 'm2711', month: 'Tháng 11/2027 (Lễ mới 24/11)', tag: 'NƯỚC RÚT CÓ KIỂM SOÁT', gate: 'Lũy kế 11T ≥ 8,8–9,3 Tỷ', revIdx: 10, common: 'Hoàn tất ~90% chỉ tiêu năm trước tháng 12 (lưu ý ngày nghỉ lễ mới: Thứ Tư 24/11/2027 – Ngày Văn hóa Việt Nam).', byOpt: { H1: 'Lũy kế vượt 8,9 Tỷ; chuẩn bị khung đào tạo lớp Sale 2028.', H2: 'Lũy kế đạt ~480Tr C1 + ~8,4T C2; nghiệm thu cụm VaultBaaS.', H3: 'Lũy kế Chân 2 vượt 9,1 Tỷ nhờ lực đẩy Bundle.' }, tasks: [{ id: 't37', role: 'LEAD', text: 'Bạn: Rà thưởng hiệu suất & công nhận đóng góp từng người; chốt tuyển 2028 với HR.' }, { id: 't38', role: 'TEAM_C2', text: 'Hoàn tất nghiệm thu VAT xong trước 15/12.' }, { id: 't39', role: 'TEAM_C1', text: 'Thủy/Admin chốt đối soát công nợ & số liệu giảm nợ B2C.' }] },
+        { id: 'm2712', month: 'Tháng 12/2027 (Về Đích 10 Tỷ)', tag: 'HOÀN THÀNH NĂM BẢN LỀ 1', gate: '10,0–10,5 Tỷ • Giảm 4,35T Nợ B2C', revIdx: 11, common: 'Cán đích 10,0–10,5 Tỷ; kéo nợ bồi hoàn B2C từ 7,15T xuống ~2,80T (tiết kiệm 4,35T năm 1); tổng kết & nghỉ phép.', byOpt: { H1: '10,0T (0,35 + 9,65), chi phí thấp nhất & 0 sự cố.', H2: '10,0T (0,55 + 9,45), nền vững cho 3,5T C1 & 26,5T C2 năm 2028.', H3: '10,5T (0,25 + 10,25), chuyển hóa thành công phễu Bundle.' }, tasks: [{ id: 't40', role: 'LEAD', text: 'Bạn: Tổ chức buổi ăn mừng "Khởi đầu Mới" (Bridges New Beginning); nghỉ phép nạp pin.' }, { id: 't41', role: 'TEAM_C2', text: 'Khóa hợp đồng tái ký Q1/2028 & nhận thưởng thành tích.' }, { id: 't42', role: 'TEAM_C1', text: 'Vân & Huy hoàn tất năm đầu FshareStorage với 0% khủng hoảng MXH.' }] }
+      ],
+
+      burnoutAreas: [
+        { id: 'b1', name: '1. Khối lượng công việc (Workload)', desc: 'Làm >50h/tuần, vừa đóng B2C vừa sửa đề xuất & lo B2B', val: 4 },
+        { id: 'b2', name: '2. Quyền kiểm soát (Control)', desc: 'Đề xuất bị treo, cảm thấy không chủ động chốt được hướng', val: 5 },
+        { id: 'b3', name: '3. Ghi nhận & Phần thưởng (Reward)', desc: 'Nỗ lực nhiều tháng chưa đổi thành quyết định duyệt rõ ràng', val: 4 },
+        { id: 'b4', name: '4. Cộng đồng & Hỗ trợ (Community)', desc: 'Cảm giác phải tự gánh một mình giữa Tech, Sales và BGĐ', val: 4 },
+        { id: 'b5', name: '5. Công bằng & Minh bạch (Fairness)', desc: 'Thước đo KPI chưa ghi nhận phần dừng B2C & giảm nợ 6,45T', val: 5 },
+        { id: 'b6', name: '6. Giá trị & Tự tin năng lực (Values)', desc: 'Ngại gốc B2C khi sang B2B & lo rủi ro mất dữ liệu KH', val: 4 }
+      ],
+
+      teamTransition: [
+        { name: 'Vân (VanNT)', kpi: 'KPI 2025: 73,6%', ach: 'Quản lý 131 Uploader (6,356 Tỷ DT), xử lý khủng hoảng Server 034/Kodi/Maclife; <strong>gia hạn 100% HĐ B2B KD3</strong>.', role: '<strong>Giữ làm Sale B2B FshareStorage (Nấc 1):</strong> Khai thác 1.649 VIP &gt;10GB, Form Web, HĐ Whitelist (TC Thuế, Việt Ba, Vinama) &amp; bán kèm MS365 SME.', script: '<strong>Bridges Ending + Safety:</strong> Ghi nhận công sức 2025; khẳng định Vân làm đúng thế mạnh CRM B2B, không bị đẩy đi săn thầu Ngân hàng; đồng hành chốt 5 đơn đầu T1/2027.' },
+        { name: 'Huy (HuyDM16)', kpi: 'KPI 2025: 84,5%', ach: 'Đạt 84,5% KPI (7 tháng); quản trị đa kênh Fanpage, TikTok, Threads (2.238 clicks), Telegram.', role: '<strong>Giữ làm CSKH FshareStorage (SLA &lt;4h) &amp; Kiểm soát Soft Close:</strong> Dừng 100% seeding phim từ 31/12/2026; trực ticket L1 B2B &amp; dập sớm khủng hoảng MXH.', script: '<strong>Trấn an vị trí:</strong> Nói rõ dừng seeding là yêu cầu pháp lý bản quyền, không phải lỗi năng lực; đào tạo quy trình ticket B2B tuần 1 T1/2027.' },
+        { name: 'Châu (ChauPTM3)', kpi: 'KPI 2025: 82,25%', ach: 'Hoàn thành 90–95% order tech SIS, UI/UX, GA; tối ưu tải chậm T8/2025 giúp <strong>tăng 21,62% doanh thu</strong>.', role: '<strong>Điều chuyển phát triển sang Đội Kỹ thuật SIS (Product/UI-UX) Q1–Q2/2027</strong> sau khi xong giao diện Két sắt DN &amp; Form Lead.', script: '<strong>Đóng khung nâng cấp nghề:</strong> Phòng chuyển thuần Sales sẽ phí tài năng Product của Châu; viết thư giới thiệu thành tích +21,62% DT gửi lãnh đạo SIS.' },
+        { name: 'Thủy (ThuyNTT204)', kpi: 'KPI 2025: 90,0% (Cao nhất)', ach: 'Đối soát 100% cổng thanh toán; 30–35 mã SCM &amp; 350–400 case CSKH/tháng; quản lý đại lý 1,4 Tỷ; xóa 3.456 file vi phạm.', role: '<strong>Chốt 1 trong 2 vị trí từ Q2/2027:</strong> Giữ làm <strong>Sales Admin B2B toàn phòng</strong> (lên đơn SCM/PO cho 10–50T) HOẶC sang <strong>BO Kế toán FTI</strong>.', script: '<strong>Tôn vinh kỷ luật &amp; giữ thu nhập:</strong> Giao trọn trách nhiệm chốt sổ ví B2C &amp; quy đổi giảm nợ 6,45T trong Q1/2027; cam kết bảo vệ ổn định.' },
+        { name: 'Anh Tuấn, Minh &amp; 2 Sale B2B Mới', kpi: 'Chủ lực Chân 2 (~9,5 Tỷ)', ach: 'Anh Tuấn trực tiếp vào nhiều lead lớn MS365 (hàng trăm license, HĐ ~1 Tỷ) &amp; HiGIO Cloud năm 2026.', role: '<strong>Nhóm chủ lực B2B:</strong> Anh Tuấn Thương mại (3,5T→8T→12T); Minh Solution Orchestrator (3T→6,5T→10T); 02 Sale mới + Vân (3,5T năm 2027).', script: '<strong>Bỏ họp lặt vặt:</strong> Khóa lịch họp Pipeline Review đúng 45p sáng Thứ Hai theo 5 chỉ số chuẩn (phủ phễu 3,5x, chuyển đổi, tuổi deal, cơ hội mới, vướng mắc).' }
+      ],
+
+      slides: [
+        { n: 1, tag: 'Executive Decision Memo', title: 'Tái Cấu Trúc KD3 (2027–2029): 3 Hướng Quyết Sách, KPI 3 Rổ & Nâng Trình Chân 1', takeaway: 'Còn 35 ngày tới mốc đóng ví B2C 31/12/2026. Cả 3 Hướng giữ 10T → 30T → 50T & tiết kiệm 6,45 Tỷ nợ bồi hoàn B2C.', leftTitle: 'Trọng Tâm Trình Ban Điều Hành', left: ['Đã tự kiểm toán sửa dứt điểm 7 lỗ hổng toán học, kỹ thuật (MinIO/Ceph) & pháp lý 11/2026 ở các bản cũ.', 'Trình 3 Hướng minh bạch CAPEX, OPEX & Rủi ro kèm 4 Cổng Stage-Gate (Auto-Pivot ngày 31/03/2027).', 'Đề xuất Khung KPI 3 Rổ chuyển dịch theo quý (ghi nhận phần dừng B2C & cứu FDrive) cùng Thang Nâng Trình 3 Nấc B2C→B2B.'], metrics: [{ k: 'Mục tiêu B2B 3 Năm', v: '10 → 30 → 50 Tỷ', s: 'Chân 2 gánh 94,5%–97,5% năm 2027' }, { k: 'Tiết kiệm Nợ B2C', v: '6,45 Tỷ VNĐ', s: '4,35 Tỷ ngay 2027 (7,15T → 0,7T)' }, { k: 'Sổ cái Tài sản', v: 'Tròn 50 Máy chủ', s: 'Khớp DC5 & DC7, 0 sai lệch' }, { k: 'Mốc khóa ví B2C', v: '31/12/2026', s: 'Đếm ngược 35 ngày từ 26/11/2026' }] },
+        { n: 2, tag: 'Tự Kiểm Toán Minh Bạch', title: 'Thẳng Thắn Sửa 4 Lỗ Hổng Kỹ Thuật & Toán Học Cũ Để Khóa Rủi Ro', takeaway: 'Trung thực tuyệt đối về toán học & phần cứng là nền tảng để triển khai bền vững năm 2027.', leftTitle: '4 Điểm Đã Sửa Dứt Điểm Ở Bản v3.0', left: ['<strong>Sửa toán hòa vốn:</strong> Tắt điện cuốn chiếu 12–24 máy DC5 dư hạ OPEX từ 40Tr về 18–30Tr/th (hòa vốn thật 80–133 TB) & tính đúng Giá trị kinh tế ròng +4,48 Tỷ.', '<strong>Bỏ MinIO CE:</strong> Đã archived GitHub 02–04/2026 kèm 7 lỗ hổng không vá → dùng Veeam VIA v13 (JeOS cách ly iLO).', '<strong>Cấm Ceph trên 16 GB/1GbE:</strong> AFR ổ 2 TB là 6,58%/năm; rebuild 41 TB mất 134h → chuyển RAID-6 + sync 1-1 chéo rack, cấm bán máy cũ cho Ngân hàng.', '<strong>Cập nhật pháp lý 11/2026:</strong> Luật 91/2025 (01/01/2026), Luật ANM 116 & NĐ 333/2026, TT 09 Điều 26, TT 37/2026.'], metrics: [{ k: 'AFR dàn 912 ổ 2TB', v: '6,58% / năm', s: 'Gấp 3,8–5,3x Backblaze 2026' }, { k: 'RAM thiếu nếu Ceph', v: '16 GB vs 96 GiB', s: 'Chỉ đạt 16,7% mức sàn' }, { k: 'Rebuild 41TB / 1GbE', v: '134 Giờ (5,6 ngày)', s: 'Làm treo cụm nếu chạy SDS' }, { k: 'Giá trị kinh tế C1 Y1', v: '+4,26 đến +4,48 Tỷ', s: 'Gồm 4,35 Tỷ tránh nợ B2C' }] },
+        { n: 3, tag: 'Quyết Sách Cốt Lõi', title: 'So Sánh 3 Hướng Lựa Chọn Chiến Lược Cho BGĐ Bấm Nút', takeaway: 'BGĐ trực tiếp chọn khẩu vị đầu tư & rủi ro dữ liệu phù hợp nhất với FTI năm 2027.', leftTitle: '3 Phương Án Loại Trừ Lẫn Nhau', left: ['<strong>HƯỚNG 1 (Tối giản & Khóa rủi ro):</strong> Tắt 24 máy DC5 cũ, OPEX còn 18Tr/th, CAPEX 30Tr. Cứu 66 KH FDrive + VIP (hòa vốn 80TB). Dồn >95% quân Chân 2. Rủi ro thấp nhất (2/10).', '<strong>HƯỚNG 2 (Stage-Gate — Khuyến nghị):</strong> Gate 0 chi 60Tr (OPEX 30Tr/th), Lab Veeam VIA v13 trên 5 máy 10GbE DC7. Khoản 90Tr chỉ mở ở Gate 1 (31/03) nếu đủ ≥80–100TB + SIS ký + ≥2 PoC. Trượt → Auto-H1.', '<strong>HƯỚNG 3 (Chân 2 dẫn dắt, Chân 1 làm Bundle):</strong> Không gánh KPI doanh thu đứng riêng C1; chi 50Tr (OPEX 24Tr/th) làm quà tặng HĐ ≥100Tr kéo Chân 2 lên 10,25 Tỷ.'], metrics: [{ k: 'H1: CAPEX / OPEX 2027', v: '30Tr / 216Tr', s: 'Rủi ro 2/10 • Duyệt nhanh nhất' }, { k: 'H2: CAPEX G0 / OPEX', v: '60Tr (+90Tr) / 360Tr', s: 'Giữ cửa 8 Tỷ VaultBaaS 2029' }, { k: 'H3: CAPEX / OPEX 2027', v: '50Tr / 288Tr', s: 'Tổng DT 2027 đạt 10,5 Tỷ' }, { k: 'Cả 3 Hướng — Giảm nợ', v: '6,45 Tỷ VNĐ', s: 'Bảo vệ 6 máy DC7 hết 2028' }] },
+        { n: 4, tag: 'Nâng Trình Chân 1 (B2C → B2B)', title: 'Thang Nâng Trình Chân 1 (3 Nấc: 4,8Tr → 68,4Tr → 390Tr/HĐ)', takeaway: 'Không nhảy cóc từ B2C lên thầu Ngân hàng ngay ngày 1 — đi chắc từng nấc tăng ACV 81 lần.', leftTitle: 'Lộ Trình Nâng Trình Phù Hợp Lực Lượng Gốc B2C', left: ['<strong>Nấc 1 (Q1/2027 — B2C-Friendly • 4,8Tr/HĐ):</strong> Chuyển đổi 1.649 VIP cũ (vốn quen giao diện), cứu 66 KH FDrive, giữ HĐ Whitelist & Bundle 3 Không–3 Có. Vân & Huy làm mượt ngay!', '<strong>Nấc 2 (Q2–Q3/2027 — Mid-Market • 68,4Tr/HĐ, 14,2x):</strong> Đóng gói 4 bài toán chuẩn (Chứng từ 10 năm NĐ 174, Camera QCVN 11 90–365 ngày, Backup HiGIO, File BIM/4K/PACS).', '<strong>Nấc 3 (Q4/2027–2029 — BFSI Orchestrator • 390Tr/HĐ, 81,1x):</strong> Chỉ mở khi qua Gate 1 — DC7 Veeam VIA v13 & Tầng 3 đối ứng Ootbi/Cloudian đi cùng SIS & FPT Cloud.'], metrics: [{ k: 'Nấc 1 (Q1/2027)', v: '4,8 Tr / HĐ (1x)', s: 'Cứu 66 FDrive + 1.649 VIP' }, { k: 'Nấc 2 (Q2–Q3/2027)', v: '68,4 Tr / HĐ (14,2x)', s: '4 gói ngành dọc chuẩn hóa' }, { k: 'Nấc 3 (Q4/27–2029)', v: '390 Tr / HĐ (81,1x)', s: 'VaultBaaS & Tầng 3 đối ứng' }, { k: 'Khung chốt B2B', v: 'MEDDPICC 5 Câu', s: 'Tăng 15–30% tỷ lệ thắng' }] },
+        { n: 5, tag: 'Chân 1 • Kiến Trúc & Pháp Lý 11/2026', title: 'Phân Tầng 50 Máy Chủ, Luật Mới 2026 & Bẫy AWS Singapore (3,76 Tr/TB)', takeaway: 'Tách biệt SLA tuyệt đối theo phần cứng và khai thác cú hích luật lưu trữ nội địa 2026.', leftTitle: 'Hạ Tầng Chuẩn Hóa & Vùng Giá Chiến Đấu', left: ['<strong>Quy hoạch 50 máy:</strong> 6 B2C + 5 (10GbE DC7 Veeam VIA v13 cách ly iLO) + 34 (1GbE RAID-6 + Sync 1-1) + 4 Spare + 1 Loại biên.', '<strong>Pháp lý 11/2026:</strong> Luật 91/2025 & NĐ 356 (01/01/2026), Luật ANM 116 & NĐ 333/2026 (lưu nội địa 24T), TT 09 (Điều 22 & 26), TT 37/2026 (10 năm ví điện tử).', '<strong>Đối chuẩn giá:</strong> AWS SG rút 1TB tốn 3,76Tr (1PB ~2,80 Tỷ); FPT Cloud nóng 1–1,75Tr/TB; FTI VaultBaaS (450–850k/TB) thắng GreenNode (543k) nhờ 0đ Egress & Leased Line riêng.'], metrics: [{ k: 'AWS SG (Rút 1TB)', v: '3.760.000 đ/TB', s: 'Phạt khẩn cấp 1 PB ~2,80 Tỷ' }, { k: 'GreenNode Archive', v: '543.000 đ/TB', s: 'Đối thủ nội địa có WORM' }, { k: 'FTI VaultBaaS', v: '450k–850k/TB', s: '0đ Egress • Kênh riêng FTI' }, { k: 'FshareStorage B2B', v: '200k–300k/TB', s: '100% Private • LAN-speed' }] },
+        { n: 6, tag: 'Chân 2 • Mũi Nhọn 9,5 Tỷ', title: 'Động Cơ Chân 2: Khai Thác MS365 (07/2026), HiGIO, Starlink & Camera AI', takeaway: 'Không đua bán license thuần biên mỏng — đóng gói dịch vụ & Cloud giữ biên gộp ~24,6%.', leftTitle: 'Chiến Thuật 29 Hợp Đồng Năm 2027', left: ['<strong>MS365 Premium & Copilot (5,5 Tỷ):</strong> Hậu tăng giá 07/2026 (300 user = ~1 Tỷ) & cắt 5% margin cũ (10/2026), đánh Premium/Copilot + Migration + Tặng Storage bù gói OneDrive lẻ bị cắt.', '<strong>HiGIO Cloud IaaS (2,0 Tỷ):</strong> Di trú ERP/Server cũ lên Cloud Tier III nội địa tuân thủ Luật 116 + nhánh Backup DC7 tiết kiệm 35–45% TCO.', '<strong>Starlink B2B (0,9 Tỷ) & Camera AI/Line/Voice (1,1 Tỷ):</strong> Local Priority 50GB (~1,5Tr/th) làm DR Bank, Hàng hải (case Cát Hải) & Camera QCVN 11:2026/BCA.'], metrics: [{ k: 'Số HĐ cần chốt 2027', v: '29 Hợp đồng', s: 'ACV bình quân 328 Triệu/HĐ' }, { k: 'Cơ hội / Lead cần tạo', v: '104 Opps / 248 MQL', s: 'Chỉ 5,2 Leads / Sale / Tháng' }, { k: 'Lãi gộp ước tính C2', v: '~2,34 Tỷ VNĐ', s: 'Biên gộp hỗn hợp ~24,6%' }, { k: 'Tái ký 2028 → 2029', v: '7,43T → 21,75T', s: 'Tỷ lệ giữ khách bảo thủ 92%' }] },
+        { n: 7, tag: 'Chân 2 • KHG & Co-Sale PKD2', title: '6 Nhóm Khách Hàng Mục Tiêu & Cơ Chế Phối Hợp Win-Win PKD2', takeaway: 'Khoanh vùng DN dùng Mail/Server cũ kết hợp Top-down BGĐ và Co-sale không xung đột.', leftTitle: '3 Luồng Tạo Lead Chủ Lực', left: ['<strong>Giữ trực tiếp Lead MS365/HiGIO tại KD3:</strong> Săn DN Sản xuất, Dược, Xây dựng 200–1.500 NS dùng Zimbra/MDaemon (Bình Minh, An Cường, Traphaco, Hòa Bình, Ricons...).', '<strong>Kênh Top-down BGĐ (Sếp Sơn, Sếp Chiến):</strong> Xin phân bổ 5–8 đầu mối dự án lớn/năm (Starlink Hàng hải/Thủy điện, Cloud/Storage SI).', '<strong>Win-Win cùng PKD2:</strong> Dùng quà tặng 1TB FshareStorage giúp PKD2 giữ khách Leased Line tái ký; bán chéo Starlink/Camera/VaultBaaS & nhận tệp SME tồn đọng >60 ngày.'], metrics: [{ k: 'Sản xuất & Dược', v: 'Bình Minh, DHG', s: 'An Cường, TCM, Traphaco, Cholimex' }, { k: 'Xây dựng & Media', v: 'Hòa Bình, Ricons', s: 'Newtecons, Đất Xanh + 1.649 VIP' }, { k: 'Ngân hàng & CK', v: 'VietABank, OCB', s: 'BVBank, KienlongBank, SHS, MBS' }, { k: 'Hàng hải & Chuỗi', v: 'Vosco, PC1, VSIP', s: 'Hải An, Cát Hải, BiboMart, Guardian' }] },
+        { n: 8, tag: 'Khung KPI Chuyển Đổi 3 Rổ', title: 'Đặt KPI 3 Rổ Chuyển Dịch Theo Quý & Đường Cong Ramp-Up 2 Sale Mới', takeaway: 'Ghi nhận công sức dừng B2C & cứu FDrive vào Rổ 1 (40% Q1) giúp bảo vệ sàn ≥87% trong quý Tết.', leftTitle: 'Cấu Trúc KPI Minh Bạch & Thực Tế', left: ['<strong>Rổ 1 — Dừng B2C, Cứu 66 FDrive & Giảm nợ (Q1: 40% → Q4: 10%):</strong> Bảo vệ trực tiếp 4,35 Tỷ năm 1 (6,45 Tỷ lũy kế), làm điểm tựa giữ sàn KPI Q1.', '<strong>Rổ 2 — Chân 1 Use Case & Bundle (20% mọi quý):</strong> Q1 chấm 80% Leading (tiếp cận VIP, SLA, 30–40 KH thật, Gate 1 31/03).', '<strong>Rổ 3 — Chân 2 B2B (Q1: 40% → Q4: 70%):</strong> 2 Sale mới áp chuẩn Ramp-up 3 tháng + Tết (T1: 0 • T2: 31,9Tr • T3: 71,8Tr → T5+: 159,6Tr/th); kèm mốc Re-baseline 31/03.'], metrics: [{ k: 'Kiểm thử Sàn Q1', v: 'Đạt 87,0% KPI', s: 'Ngay cả khi B2B mới đạt 75%' }, { k: 'Mốc Re-baseline', v: '31/03/2027', s: 'Hiệu chỉnh theo dữ liệu thật Q1' }, { k: 'Chỉ tiêu Q1 / Sale mới', v: '103,7 Tr / Sale', s: 'Tránh sốc nghỉ việc quý đầu' }, { k: 'Tách rõ theo đầu người', v: '3,5T • 3,0T • 3,5T', s: 'Anh Tuấn • Minh • 2 Sale + Vân' }] },
+        { n: 9, tag: 'Tổ Chức Nhân Sự 2 + 2 + 2', title: 'Sắp Xếp Đúng Người Đúng Sở Trường (Dựa Trên KPI 2025) & Chuyển Giao Êm', takeaway: 'Vân & Huy giữ Chân 1; Châu sang SIS & Thủy Admin/BO vào Q1–Q2/2027; tuyển 2 Sale B2B.', leftTitle: 'Phân Vai Thực Chất Từng Thành Viên', left: ['<strong>Nhóm Chủ lực Chân 2:</strong> Anh Tuấn (Thương mại: 3,5T→8T→12T) + Minh (Solution Orchestrator: 3T→6,5T→10T) + Tuyển mới <strong>02 Sale B2B</strong>.', '<strong>Giữ 02 bạn làm tiếp FshareStorage:</strong> Vân (KPI 73,6%, gia hạn 100% B2B) làm Sale Nấc 1; Huy (KPI 84,5%) làm CSKH SLA <4h & kiểm soát Soft Close.', '<strong>Cơ cấu đúng nghề 02 bạn (Q1–Q2/27):</strong> Châu (KPI 82,25%, +21,62% DT) sang <strong>SIS Product/UI-UX</strong>; Thủy (KPI 90,0%) làm <strong>Sales Admin B2B</strong> hoặc sang <strong>BO Kế toán</strong>.'], metrics: [{ k: 'Tuyển mới Q4/26–Q1/27', v: '02 Sale B2B', s: 'Kinh nghiệm MS365, Cloud, Telco' }, { k: 'Vận hành Chân 1', v: 'Vân + Huy', s: '1.649 VIP, 66 FDrive & SLA <4h' }, { k: 'Điều chuyển SIS', v: 'Châu → Product', s: 'Hoàn tất UI Két sắt trong Q1/27' }, { k: 'Hậu cần PO / Đối soát', v: 'Thủy (Admin/BO)', s: 'Khóa ví B2C & giảm nợ 6,45T' }] },
+        { n: 10, tag: 'Lộ Trình 14 Tháng (T11/26–T12/27)', title: 'Bản Đồ Cột Mốc Tính Đủ Tết Đinh Mùi (06/02/2027) & 4 Cổng Gate', takeaway: 'Phối hợp nhịp nhàng đóng B2C, cứu FDrive, kiểm định Gate 1 và bứt phá Q2–Q4.', leftTitle: '4 Chặng Thực Thi Rõ Ràng', left: ['<strong>Tháng 12/2026 (Gate 0):</strong> Chốt 1 Hướng & KPI 3 Rổ (07–10/12); tắt ví B2C & bật Form B2B đúng <strong>31/12/2026</strong>; tuyển xong 2 Sale.', '<strong>Quý I/2027 (Gate 1 – 31/03):</strong> Cứu 66 KH FDrive (T1); nghỉ Tết 04–10/02; chốt Q1 ~1,27–1,35T; chấm Gate 1 mở 90Tr hay Auto-H1.', '<strong>Quý II/2027 (Gate 2 – 30/06):</strong> Lũy kế ≥3,74T; lên Nấc 2 Chân 1; hoàn tất chuyển Châu sang SIS & chốt vị trí Thủy.', '<strong>Quý III–IV/2027 (Gate 3 – 30/09 & Về đích):</strong> Khóa tái ký ≥7,43T cho 2028; cán đích 10,0–10,5T & kéo nợ B2C còn ~2,8T.'], metrics: [{ k: 'Q1/2027 (Có Tết ÂL)', v: '1,27 – 1,35 Tỷ', s: 'T1: 320Tr • T2: 300Tr • T3: 650Tr' }, { k: 'Q2/2027 (Tăng tốc)', v: '2,47 – 2,66 Tỷ', s: 'Lũy kế 6T ~38% kế hoạch năm' }, { k: 'Q3/2027 (Bứt phá)', v: '2,98 – 3,10 Tỷ', s: 'Chốt sớm kế hoạch 30T năm 2028' }, { k: 'Q4/2027 (Về đích)', v: '3,28 – 3,39 Tỷ', s: 'Tổng năm 10,0–10,5 Tỷ VNĐ' }] },
+        { n: 11, tag: 'Nhịp Điều Hành & Cam Kết SLA', title: 'Kỷ Luật Vận Hành Bền Vững, Báo Cáo Chủ Động & 4 Cam Kết SLA Vàng', takeaway: 'Xây dựng guồng làm việc minh bạch, ổn định sức khỏe đội ngũ suốt kỳ chuyển đổi.', leftTitle: 'Kỷ Luật Tuần & Cam Kết Chất Lượng', left: ['<strong>Nhịp điều hành chuẩn:</strong> Họp Pipeline Review 45 phút sáng Thứ Hai (5 chỉ số chuẩn); Báo cáo 5 dòng chiều Thứ Sáu cho anh Sơn; Cập nhật 2 tuần/lần cho anh Thế Anh.', '<strong>4 Cam kết SLA Vàng:</strong> Liên hệ Lead Web &lt;24h; phản hồi ticket CSKH &lt;4h; demo/báo giá MS365 &amp; HiGIO 24–48h; 0% vi phạm DMCA &amp; 0% khủng hoảng MXH.'], metrics: [{ k: 'SLA Lead Web B2B', v: '< 24 Giờ', s: '100% ghi nhận qua CRM/SCM' }, { k: 'SLA CSKH Storage', v: '< 4 Giờ', s: 'Huy trực L1 & Đội Tech FTI' }, { k: 'Độ phủ Pipeline', v: '3,5x – 4,0x', s: 'Rà soát mỗi sáng Thứ Hai' }, { k: 'Nhịp báo cáo BGĐ', v: 'Tuần / 2 Tuần', s: 'Chủ động 100%, không bất ngờ' }] },
+        { n: 12, tag: 'Kiến Nghị Phê Duyệt Gate 0', title: 'Kính Trình Ban Giám Đốc Bấm Nút 4 Quyết Sách Trước Ngày 15/12/2026', takeaway: 'Một quyết định dứt khoát hôm nay giúp toàn đội KD3 xuất quân vững vàng từ ngày 01/01/2027.', leftTitle: '4 Quyết Sách Cụ Thể Kính Trình', left: ['<strong>1. Chọn 01 trong 03 Hướng (H1 / H2 / H3)</strong> kèm vốn Gate 0 tương ứng (30Tr / 60Tr / 50Tr) & quy tắc Auto-Pivot Gate 1 ngày 31/03/2027.', '<strong>2. Duyệt Khung KPI 3 Rổ (Q1: 40/20/40)</strong>, lộ trình 10T → 30T → 50T, mốc Re-baseline 31/03 và quyền KD3 trực tiếp giữ lead & ghi nhận doanh số MS365, HiGIO, Co-sale FTI.', '<strong>3. Duyệt Quy hoạch 50 Máy chủ &amp; Quy chế Bundle 3 Không – 3 Có:</strong> Tắt điện cuốn chiếu máy DC5 dư & triển khai ngay backup 1-1 cứu 66 KH FDrive.', '<strong>4. Duyệt Nhân sự 2 + 2 + 2:</strong> Tuyển ngay 02 Sale B2B; giữ Vân & Huy làm Storage; chuyển Châu sang SIS & chốt vị trí Admin/BO cho Thủy vào Q1–Q2/2027.'], metrics: [{ k: 'Hạn chốt Gate 0', v: '15/12/2026', s: 'Kịp tắt ví B2C đúng 31/12/2026' }, { k: 'Doanh số cam kết 2027', v: '10,0 – 10,5 Tỷ', s: 'Không cần cân chỉ tiêu cuối năm' }, { k: 'Tiết kiệm Bồi hoàn', v: '6,45 Tỷ VNĐ', s: '4,35 Tỷ ngay trong năm 2027' }, { k: 'Kiểm soát rủi ro', v: '4 Cổng Stage-Gate', s: 'Minh bạch mỗi quý 1 lần' }] }
+      ],
+
+      bmcBlocks: [
+        { t: '1. Đối Tác Chính', c: 'Anh Sơn & BGĐ/BGĐ CC FTI (bảo trợ bản lề, đẩy dự án Top-down), PKD2 (Co-sale MS365/Line), FPT Cloud (HiGIO), Microsoft VN (CSP), TT Phi mặt đất (Starlink), FPT Camera, Tech SIS (TạiCV/Bill) & Hãng Tầng 3 (Object First/Cloudian).' },
+        { t: '2. Hoạt Động Trọng Tâm', c: 'Chốt 29 HĐ Chân 2 (MS365 Premium/Copilot + Migration + HiGIO + Starlink DR + Camera QCVN 11); vận hành Soft Close B2C; cứu 66 KH FDrive; nâng trình Chân 1 qua 3 Nấc & chấm 4 cổng Stage-Gate.' },
+        { t: '3. Giải Pháp Giá Trị Kép', c: '<strong>Chân 2:</strong> Chuyển đổi số văn phòng & Cloud chuẩn luật 2026 (MS365 + HiGIO + Starlink + Camera AI).<br><strong>Chân 1:</strong> FshareStorage Private 100% tốc độ LAN & VaultBaaS Veeam VIA v13 (0đ Egress, thắng AWS SG 3,76Tr/TB).' },
+        { t: '4. Quan Hệ KH & SLA', c: 'Quản trị vòng đời HĐ PO (tái ký ≥92%/năm); SLA Lead Web <24h, CSKH Storage <4h; phân định minh bạch SLA theo phân tầng phần cứng (tuyệt đối không hứa quá năng lực).' },
+        { t: '5. Phân Khúc Khách Hàng', c: 'DN Sản xuất/Dược/Thương mại 200–1.500 NS dùng mail cũ; DN Xây dựng AEC/Media; Ngân hàng tầm trung/Chứng khoán/Fintech (TT 09 & TT 37/2026); Hàng hải/Thủy điện; Chuỗi bán lẻ/KCN FDI; 1.649 VIP cũ & 66 KH FDrive.' },
+        { t: '6. Tài Nguyên Cốt Lõi', c: 'Sổ cái tròn 50 máy hết khấu hao (CAPEX = 0đ); luồng lead MS365/HiGIO sẵn có; bộ máy tinh gọn 2+2+2 (Tuấn, Minh, 2 Sale mới + Vân, Huy) và trần làm việc bền vững 42h/tuần.' },
+        { t: '7. Kênh Tiếp Cận', c: 'Direct B2B Sales (248 MQLs/năm = 5,2 Leads/Sale/Tháng); Top-down BGĐ; Co-sale & đổi quà Bundle cùng PKD2; Form Web fshare.vn & Telesale 1.649 VIP cũ.' },
+        { t: '8. Cấu Trúc Chi Phí', c: 'CAPEX Gate 0 chỉ 30–60Tr; tắt điện cuốn chiếu 12–24 máy DC5 giảm OPEX còn 18–30Tr/th; hòa vốn OPEX 80–133 TB; tối ưu quỹ lương nhờ luân chuyển Châu (SIS) & Thủy (Admin/BO).' },
+        { t: '9. Doanh Thu & Giá Trị Kinh Tế', c: '10T (2027) → 30T (2028) → 50T (2029) với biên gộp hợp nhất Chân 2 ước ~24,6% (~2,34 Tỷ lãi gộp Y1) + Giá trị tài chính cốt lõi: <strong>tiết kiệm 4,35 Tỷ (2027) và 6,45 Tỷ (cuối 2028) nợ bồi hoàn B2C</strong>.' }
+      ],
+
+      sources: [
+        { cat: '1. Tâm Lý Phá Băng, Burnout & Quản Trị Ngược', items: [
+          { t: 'Sirois & Pychyl (2013) — Procrastination & Short-Term Mood Repair', u: 'https://eprints.whiterose.ac.uk/id/eprint/91793/1/Compass%20Paper%20revision%20FINAL.pdf' },
+          { t: 'Wohl, Pychyl & Bennett (2010) — Self-Forgiveness Reduces Procrastination', u: 'https://www.researchgate.net/publication/222302476_I_forgive_myself_now_I_can_study_How_self-forgiveness_for_procrastinating_can_reduce_future_procrastination' },
+          { t: 'WHO Guidelines on Mental Health at Work (Burnout ICD-11)', u: 'https://iris.who.int/server/api/core/bitstreams/6152a556-6893-4c4e-9ed8-094478bb25eb/content' },
+          { t: 'Maslach & Leiter — The Burnout Challenge (6 Areas of Worklife)', u: 'https://www.hup.harvard.edu/file/feeds/PDF/9780674251014_sample.pdf' },
+          { t: 'Sonnentag & Schiffner (2019) — Leader Psychological Detachment', u: 'https://www.cambridge.org/core/services/aop-cambridge-core/content/view/9B25CF790E4B79AF917E3E56F1897B0F/S1138741619000027a.pdf/psychological_detachment_from_work_during_nonwork_time_and_employee_wellbeing_the_role_of_leaders_detachment.pdf' },
+          { t: 'Gabarro & Kotter (HBR) — Managing Your Boss', u: 'https://www.sinoblawg.com/wp-content/uploads/2012/05/Gabarro-and-Kotter-2005-Managing-your-boss-Harvard-Business-Report.pdf' }
+        ]},
+        { cat: '2. Nâng Trình B2C → B2B, MEDDPICC & KPI Ramp-Up', items: [
+          { t: 'MEDDPICC Enterprise IT Sales Qualification Guide (2026)', u: 'https://www.weflow.ai/blog/meddpicc' },
+          { t: 'Complete 2026 Guide to MEDDIC & MEDDPICC for Revenue Leaders', u: 'https://www.revspire.io/resources/blogs/the-complete-2026-guide-to-meddic-and-meddpicc-for-revenue-leaders' },
+          { t: 'Sales Pipeline Health & 3x–4x Coverage Benchmarks', u: 'https://www.weflow.ai/blog/sales-pipeline-health' },
+          { t: 'B2B Sales Ramp-Up & Leading vs Lagging Indicators', u: 'https://martechdo.com/define-ramp-up/' },
+          { t: 'B2C vs B2B Product & Sales Transition Mindset', u: 'https://www.exeideas.com/2026/11/b2b-vs-b2c-product-manager-differences.html' },
+          { t: 'Robert Cooper Stage-Gate Go/Kill Governance', u: 'https://flexi-project.com/the-stage-gate-process-in-manufacturing-phases-gates-and-go-kill-decisions/' }
+        ]},
+        { cat: '3. Pháp Lý Lưu Trữ & ATTT Việt Nam (2025–2026)', items: [
+          { t: 'Luật BVDLCN 91/2025/QH15 (Hiệu lực 01/01/2026)', u: 'https://vanban.chinhphu.vn/?pageid=27160&docid=214590' },
+          { t: 'Nghị định 356/2025/NĐ-CP hướng dẫn Luật BVDLCN', u: 'https://thuvienphapluat.vn/van-ban/Quyen-dan-su/Nghi-dinh-356-2025-ND-CP-huong-dan-Luat-Bao-ve-du-lieu-ca-nhan-687428.aspx' },
+          { t: 'Luật ANM 116/2025/QH15 & NĐ 333/2026/NĐ-CP', u: 'https://luatvietnam.vn/linh-vuc-khac/nghi-dinh-333-2026-nd-cp-quy-dinh-viec-luu-tru-du-lieu-tai-viet-nam-ra-sao-883-114886-article.html' },
+          { t: 'Nghị định 330/2026/NĐ-CP xử phạt ATTT & BVDLCN', u: 'https://thuvienphapluat.vn/van-ban/Cong-nghe-thong-tin/Nghi-dinh-330-2026-ND-CP-xu-phat-vi-pham-hanh-chinh-linh-vuc-an-ninh-mang-711716.aspx' },
+          { t: 'Thông tư 09/2020/TT-NHNN (Điều 18, 22, 26) & Rà soát 2026', u: 'https://pcidsscert.com/dich-vu-ra-soat-tuan-thu-thong-tu-09-2020-tt-nhnn-dam-bao-an-toan-cntt-cho-ngan-hang/' },
+          { t: 'Thông tư 04/2025 & TT 37/2026/TT-NHNN (19/07/2026)', u: 'https://luatvietnam.vn/tai-chinh/thong-tu-37-2026-tt-nhnn-sua-doi-thong-tu-04-2025-ve-luu-tru-ho-so-nganh-ngan-hang-441279-d1.html' }
+        ]},
+        { cat: '4. Giá Cloud, Phần Cứng, Veeam v13 & Hậu MinIO', items: [
+          { t: 'FPT Cloud Object Storage — Bảng giá chính thức (OS 01–03)', u: 'https://fptcloud.com/object-storage/' },
+          { t: 'GreenNode vStorage (Instant Archive 530đ/GB, WORM)', u: 'https://greennode.ai/product/object-storage' },
+          { t: 'AWS S3 Singapore (ap-southeast-1) 2026 Pricing & Retrieval', u: 'https://thaidata.co.th/cloud/object-storage-price-2026-s3-gcs-azure-blob/' },
+          { t: 'Backblaze Drive Stats Q1 & Q2 2026 (AFR 1,24% / 1,73%)', u: 'https://www.backblaze.com/cloud-storage/resources/hard-drive-test-data' },
+          { t: 'MinIO Community Edition Archived (02–09/2026)', u: 'https://salihkilic.net/blog/2026/replacing-minio/' },
+          { t: 'Veeam Hardened Repository v13 (VIA ISO) & Object First Ootbi', u: 'https://community.veeam.com/blogs-and-podcasts-57/why-a-veeam-hardened-repo-and-object-first-appliance-is-a-great-combination-12348' }
+        ]},
+        { cat: '5. Thị Trường Chân 2: MS365, Starlink, Camera & Lịch 2027', items: [
+          { t: 'Microsoft 365 tăng giá 01/07/2026 & Ngừng OneDrive lẻ', u: 'https://www.pacisoft.vn/tin-san-pham/microsoft-chinh-thuc-tang-gia-tu-1-7-2026/' },
+          { t: 'Microsoft cắt 5% Margin CSP Legacy & Thưởng AI (10/2026)', u: 'https://changepilot.cloud/blog/microsofts-csp-core-incentive-overhaul' },
+          { t: 'Starlink Việt Nam 2026: Cước Local/Global Priority & 633 TB', u: 'https://vetinhnet.com/cac-goi-cuoc-starlink-tai-viet-nam-gia-toc-do-va-doi-tuong-phu-hop/' },
+          { t: 'FPT Camera AI Enterprise (QCVN 11:2026/BCA)', u: 'https://fpt-camera.com.vn/' },
+          { t: 'Lịch Tết Đinh Mùi 2027 (Mùng 1 = 06/02/2027) & Lễ 24/11', u: 'https://cafef.vn/tet-nguyen-dan-2027-la-ngay-nao-duong-lich-18826112609523625.chn' },
+          { t: 'William Bridges Transition Model (Ending → New Beginning)', u: 'https://mutomorro.com/tools/bridges-transition-model' }
+        ]}
+      ]
+    };
+    /* === KẾT THÚC VÙNG CẬP NHẬT DỮ LIỆU === */
+
+    let currentOption = APP_DATA.defaultOption;
+    let currentRoleFilter = 'ALL';
+    let currentSlideIdx = 0;
+    let charts = {};
+    const P14_KEY = 'kd3_v3_p14_state';
+    const M14_KEY = 'kd3_v3_m14_state';
+    let p14State = JSON.parse(localStorage.getItem(P14_KEY) || '{}');
+    let m14State = JSON.parse(localStorage.getItem(M14_KEY) || '{}');
+
+    document.addEventListener('DOMContentLoaded', () => {
+      renderP14();
+      renderBurnoutTool();
+      renderAnhSonRules();
+      renderTheAnhTable();
+      renderTemplates();
+      renderQA();
+      calcKpiSim();
+      renderLadder();
+      renderB2cB2bShifts();
+      renderMeddpicc();
+      renderOptionCards();
+      renderOptionMatrix();
+      renderAuditFixes();
+      renderBundleMatrix();
+      renderLegalTable();
+      renderRiskPlaybook();
+      filterProd('ALL');
+      renderFunnelTable();
+      renderTargetAccounts();
+      renderTeamTable();
+      renderBMC();
+      renderSources();
+      initSlides();
+      initAllCharts();
+      selectOption(currentOption);
+      runBreakevenSim();
+      document.addEventListener('keydown', (e) => {
+        if (!document.getElementById('tab9').classList.contains('hidden')) {
+          if (e.key === 'ArrowRight') nextSlide();
+          if (e.key === 'ArrowLeft') prevSlide();
+        }
+      });
+    });
+
+    function openTab(tabId) {
+      document.querySelectorAll('.tab-section').forEach(el => el.classList.add('hidden'));
+      document.querySelectorAll('.nav-pill').forEach(el => el.classList.remove('active'));
+      document.getElementById(tabId).classList.remove('hidden');
+      document.getElementById('nav-' + tabId).classList.add('active');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      setTimeout(() => { Object.values(charts).forEach(c => { if (c) c.resize(); }); }, 80);
+    }
+
+    function renderP14() {
+      const done = APP_DATA.p14Days.filter(d => p14State[d.id]).length;
+      const pct = Math.round((done / APP_DATA.p14Days.length) * 100);
+      document.getElementById('p14ProgressBar').style.width = pct + '%';
+      document.getElementById('p14ProgressText').innerText = pct + '% (' + done + '/' + APP_DATA.p14Days.length + ')';
+      document.getElementById('p14Grid').innerHTML = APP_DATA.p14Days.map(d => `
+        <label class="p-4 rounded-xl border cursor-pointer transition flex flex-col justify-between gap-2 ${p14State[d.id] ? 'bg-jade-50/70 border-jade-600/40' : 'bg-canvas-50 border-canvas-200 hover:border-cobalt-400'}">
+          <div class="space-y-1.5">
+            <div class="flex items-center justify-between gap-2">
+              <span class="badge-mono text-[10px] font-black px-2 py-0.5 rounded bg-ink-900 text-amber-400">${d.day}</span>
+              <span class="text-[10px] font-extrabold text-jade-700">${d.tag}</span>
+            </div>
+            <div class="flex items-start gap-2 pt-0.5">
+              <input type="checkbox" onchange="toggleP14('${d.id}')" ${p14State[d.id] ? 'checked' : ''} class="mt-1 accent-jade-600 shrink-0" />
+              <div>
+                <strong class="text-xs font-extrabold block ${p14State[d.id] ? 'line-through text-slate-400' : 'text-ink-900'}">${d.title}</strong>
+                <p class="text-[11px] text-ink-700 mt-1 leading-relaxed">${d.detail}</p>
+              </div>
+            </div>
+          </div>
+        </label>`).join('');
+    }
+    function toggleP14(id) { p14State[id] = !p14State[id]; localStorage.setItem(P14_KEY, JSON.stringify(p14State)); renderP14(); }
+    function resetP14() { p14State = {}; localStorage.removeItem(P14_KEY); renderP14(); }
+
+    function renderBurnoutTool() {
+      document.getElementById('burnoutSliders').innerHTML = APP_DATA.burnoutAreas.map(a => `<div class="p-2.5 rounded-lg bg-canvas-50 border border-canvas-200"><div class="flex justify-between font-bold text-ink-900"><span>${a.name}</span><span id="bval-${a.id}" class="badge-mono text-rose-700">${a.val}/5</span></div><p class="text-[10.5px] text-ink-500 mb-1">${a.desc}</p><input type="range" min="1" max="5" value="${a.val}" oninput="updateBurnout('${a.id}',this.value)" class="w-full accent-rose-600" /></div>`).join('');
+      calcBurnout();
+    }
+    function updateBurnout(id, val) {
+      const it = APP_DATA.burnoutAreas.find(x => x.id === id);
+      if (it) it.val = parseInt(val);
+      document.getElementById('bval-' + id).innerText = val + '/5';
+      calcBurnout();
+    }
+    function calcBurnout() {
+      const sum = APP_DATA.burnoutAreas.reduce((a, x) => a + x.val, 0);
+      const top = [...APP_DATA.burnoutAreas].sort((a, b) => b.val - a.val)[0];
+      const box = document.getElementById('burnoutResultBox');
+      if (sum >= 22) {
+        box.className = 'p-3.5 rounded-xl bg-rose-50 border border-rose-300 text-xs leading-relaxed text-rose-950';
+        box.innerHTML = `<strong>Quá Tải Cấu Trúc Cao (${sum}/30):</strong> Dừng sửa slide dài ngay tối nay. Ưu tiên đúng 3 việc tuần này: (1) Sáng mai 9h00 gửi Mẫu 1 cho anh Sơn kéo đồng minh; (2) Xin duyệt KPI 3 Rổ (Rổ 1 = 40% ghi nhận việc dừng B2C); (3) Khóa trần 42h/tuần &amp; cân nhắc gặp bác sĩ nếu mất ngủ ≥2 tuần.`;
+      } else if (sum >= 15) {
+        box.className = 'p-3.5 rounded-xl bg-amber-50 border border-amber-300 text-xs leading-relaxed text-amber-950';
+        box.innerHTML = `<strong>Lệch Tải Trung Bình – Cao (${sum}/30):</strong> Điểm căng lớn nhất là <em>${top.name}</em>. Áp dụng ngay Nghi thức đóng ngày 18h30 &amp; báo cáo 5 dòng thứ Sáu.`;
+      } else {
+        box.className = 'p-3.5 rounded-xl bg-jade-50 border border-jade-600/30 text-xs leading-relaxed text-jade-950';
+        box.innerHTML = `<strong>Trạng Thái Kiểm Soát Tốt (${sum}/30):</strong> Duy trì trần 42h/tuần, ngắt kết nối cuối tuần và bảo vệ cổng Stage-Gate hàng quý.`;
+      }
+    }
+
+    function renderAnhSonRules() {
+      document.getElementById('anhSonRulesGrid').innerHTML = APP_DATA.anhSonRules.map(r => `<div class="p-3.5 rounded-xl bg-canvas-50 border border-canvas-200 space-y-1.5"><div class="flex items-center gap-2"><span class="badge-mono text-[10px] font-black px-2 py-0.5 rounded bg-cobalt-600 text-white">${r.n}</span><strong class="text-ink-900 font-extrabold">${r.t}</strong></div><p class="text-ink-700 leading-relaxed">${r.d}</p></div>`).join('');
+    }
+    function renderTheAnhTable() {
+      document.getElementById('theAnhTableBody').innerHTML = APP_DATA.theAnhRows.map(r => `<tr class="hover:bg-canvas-50"><td class="p-3 align-top font-bold text-ink-900">${r.req}</td><td class="p-3 align-top text-rose-900/90">${r.why}</td><td class="p-3 align-top text-ink-800 leading-relaxed">${r.ans}</td><td class="p-3 align-top font-bold text-jade-800">${r.proof}</td></tr>`).join('');
+    }
+    function renderTemplates() {
+      document.getElementById('templatesGrid').innerHTML = APP_DATA.templates.map(t => `<div class="card p-4 space-y-2.5 border-2 ${t.border}"><div class="flex items-start justify-between gap-2 border-b border-canvas-200 pb-2"><div><h4 class="text-xs sm:text-sm font-extrabold text-ink-900">${t.title}</h4><p class="text-[11px] text-ink-500">${t.sub}</p></div><button onclick="copyEl('${t.id}','btn-${t.id}')" id="btn-${t.id}" class="no-print px-3 py-1.5 rounded-lg ${t.btnBg} text-white text-xs font-bold shrink-0">Sao chép</button></div><pre id="${t.id}" class="bg-canvas-50 border border-canvas-200 rounded-xl p-3 text-[11.5px] text-ink-800 whitespace-pre-wrap font-sans leading-relaxed">${t.body}</pre></div>`).join('');
+    }
+    function copyEl(elId, btnId) {
+      navigator.clipboard.writeText(document.getElementById(elId).innerText).then(() => {
+        const b = document.getElementById(btnId); const old = b.innerText; b.innerText = 'Đã sao chép!'; setTimeout(() => { b.innerText = old; }, 2200);
+      });
+    }
+    function renderQA() {
+      document.getElementById('qaAccordionContainer').innerHTML = APP_DATA.qaScripts.map((it, i) => `<details class="group rounded-xl border border-canvas-200 bg-canvas-50 open:bg-white open:border-cobalt-300" ${i === 0 ? 'open' : ''}><summary class="cursor-pointer p-3.5 text-xs sm:text-sm font-extrabold text-ink-900 flex items-center justify-between list-none"><span>${it.q}</span><span class="text-cobalt-600 font-black ml-3 shrink-0 group-open:rotate-180 transition-transform">▾</span></summary><div class="px-3.5 pb-3.5 pt-1 text-xs text-ink-700 leading-relaxed border-t border-canvas-200/70">${it.a}</div></details>`).join('');
+    }
+
+    function calcKpiSim() {
+      const weights = { Q1: [0.40, 0.20, 0.40], Q2: [0.20, 0.20, 0.60], Q3: [0.15, 0.20, 0.65], Q4: [0.10, 0.20, 0.70] };
+      const q = document.getElementById('kpiQuarterSel').value;
+      const b1 = parseFloat(document.getElementById('kpiB1').value);
+      const b2 = parseFloat(document.getElementById('kpiB2').value);
+      const b3 = parseFloat(document.getElementById('kpiB3').value);
+      document.getElementById('kpiB1Txt').innerText = b1 + '%';
+      document.getElementById('kpiB2Txt').innerText = b2 + '%';
+      document.getElementById('kpiB3Txt').innerText = b3 + '%';
+      const w = weights[q];
+      const total = w[0] * b1 + w[1] * b2 + w[2] * b3;
+      const el = document.getElementById('kpiTotalScore');
+      const st = document.getElementById('kpiStatusLabel');
+      el.innerText = total.toFixed(1).replace('.', ',') + '%';
+      if (total >= 100) { el.className = 'text-2xl font-black text-emerald-400'; st.innerText = 'Đạt & Vượt chỉ tiêu (≥100%)!'; st.className = 'text-[10px] text-emerald-300 font-semibold'; }
+      else if (total >= 80) { el.className = 'text-2xl font-black text-sky-300'; st.innerText = 'An toàn vượt sàn 80%!'; st.className = 'text-[10px] text-sky-300 font-semibold'; }
+      else { el.className = 'text-2xl font-black text-rose-400'; st.innerText = 'Dưới sàn 80% — cần kích hoạt Re-baseline!'; st.className = 'text-[10px] text-rose-300 font-semibold'; }
+    }
+
+    function renderLadder() {
+      document.getElementById('ladderGrid').innerHTML = APP_DATA.ladderLevels.map(l => {
+        const bg = l.color === 'jade' ? 'bg-jade-50/70 border-jade-600/35' : (l.color === 'cobalt' ? 'bg-cobalt-50/70 border-cobalt-400/50' : 'bg-ochre-50/80 border-ochre-500/40');
+        const bd = l.color === 'jade' ? 'bg-jade-600 text-white' : (l.color === 'cobalt' ? 'bg-cobalt-600 text-white' : 'bg-ochre-600 text-white');
+        return `<div class="p-4 rounded-xl border-2 ${bg} flex flex-col justify-between space-y-3">
+          <div class="space-y-2">
+            <div class="flex items-center justify-between gap-2"><span class="badge-mono text-[10px] font-black text-ink-700">${l.lv}</span><span class="px-2 py-0.5 rounded-full text-[10px] font-bold ${bd}">${l.badge}</span></div>
+            <h4 class="text-sm font-black text-ink-900">${l.title}</h4>
+            <div class="p-2.5 rounded-lg bg-white border border-slate-200 flex items-baseline justify-between"><span class="text-base font-black text-cobalt-900">${l.acv}</span><span class="text-[10.5px] font-mono text-ink-500">${l.spec}</span></div>
+            <ul class="space-y-1.5 text-xs text-ink-700 leading-relaxed">${l.points.map(p => `<li class="flex gap-1.5"><span class="font-black text-cobalt-600">→</span><span>${p}</span></li>`).join('')}</ul>
+          </div>
+        </div>`;
+      }).join('');
+    }
+    function renderB2cB2bShifts() {
+      document.getElementById('b2cB2bShiftBody').innerHTML = APP_DATA.b2cB2bShifts.map(r => `<tr class="hover:bg-canvas-50"><td class="p-3 font-bold text-ink-900">${r[0]}</td><td class="p-3 text-ink-600">${r[1]}</td><td class="p-3 text-ink-800">${r[2]}</td><td class="p-3 bg-jade-50/40 font-semibold text-jade-900">${r[3]}</td></tr>`).join('');
+    }
+    function renderMeddpicc() {
+      document.getElementById('meddpiccList').innerHTML = APP_DATA.meddpiccQs.map(m => `<div class="p-3.5 rounded-xl bg-canvas-50 border border-canvas-200 space-y-1"><strong class="text-cobalt-800 block text-[11px] uppercase">${m.k}</strong><p class="text-ink-900 font-semibold italic leading-relaxed">${m.q}</p><p class="text-[11px] text-jade-800"><strong>Mục đích:</strong> ${m.tip}</p></div>`).join('');
+    }
+
+    function selectOption(code) {
+      currentOption = code;
+      const opt = APP_DATA.options[code];
+      document.getElementById('globalOptionBadge').innerText = 'Đang xem: ' + opt.shortName;
+      ['H1', 'H2', 'H3'].forEach(c => {
+        const card = document.getElementById('opt-card-' + c);
+        if (card) { card.classList.remove('selected-H1', 'selected-H2', 'selected-H3'); if (c === code) card.classList.add('selected-' + c); }
+        const btn = document.getElementById('t8-btn-' + c);
+        if (btn) btn.className = (c === code) ? 'px-3 py-1.5 rounded-lg text-xs font-extrabold border bg-cobalt-600 text-white border-cobalt-600 shadow' : 'px-3 py-1.5 rounded-lg text-xs font-semibold border bg-white text-ink-700 border-slate-300 hover:bg-slate-100';
+      });
+      renderMonthlyCards();
+      updateMonthlyChart();
+    }
+
+    function renderOptionCards() {
+      document.getElementById('optionCardsGrid').innerHTML = ['H1', 'H2', 'H3'].map(code => {
+        const o = APP_DATA.options[code];
+        const tc = code === 'H1' ? 'bg-jade-100 text-jade-900' : (code === 'H2' ? 'bg-cobalt-600 text-white' : 'bg-ochre-100 text-ochre-900');
+        return `<div id="opt-card-${code}" onclick="selectOption('${code}')" class="card opt-card p-5 flex flex-col justify-between space-y-3">
+          <div class="space-y-2.5">
+            <div class="flex items-center justify-between gap-2"><span class="px-2.5 py-0.5 rounded-full text-[10px] font-extrabold ${tc}">${o.badge}</span><span class="badge-mono text-[11px] font-bold text-ink-500">Rủi ro: ${o.dataRisk}/10</span></div>
+            <h4 class="text-sm sm:text-base font-black text-ink-900 leading-snug">${o.title}</h4>
+            <p class="text-xs text-ink-700 leading-relaxed">${o.tagline}</p>
+            <div class="grid grid-cols-2 gap-2 pt-1 text-[11px]">
+              <div class="p-2 rounded-lg bg-white/80 border border-slate-200"><span class="text-ink-500 block text-[10px]">CAPEX / OPEX 2027</span><strong class="text-ink-900 font-extrabold">${o.capex2027}Tr / ${o.opex2027}Tr</strong></div>
+              <div class="p-2 rounded-lg bg-white/80 border border-slate-200"><span class="text-ink-500 block text-[10px]">Giá trị kinh tế C1</span><strong class="text-jade-700 font-extrabold">${o.econNet2027}</strong></div>
+              <div class="p-2 rounded-lg bg-white/80 border border-slate-200"><span class="text-ink-500 block text-[10px]">Doanh thu 2027</span><strong class="text-cobalt-700 font-extrabold">${o.rev2027.total}T (${o.rev2027.c1}+${o.rev2027.c2})</strong></div>
+              <div class="p-2 rounded-lg bg-white/80 border border-slate-200"><span class="text-ink-500 block text-[10px]">Áp lực Burnout</span><strong class="text-ochre-600 font-extrabold">${o.burnoutLoad} / 10</strong></div>
+            </div>
+            <ul class="space-y-1 text-[11px] text-ink-700 pt-1">${o.bullets.map(b => `<li class="flex gap-1.5"><span class="text-cobalt-600 font-bold">▪</span><span>${b}</span></li>`).join('')}</ul>
+          </div>
+          <div class="pt-2 border-t border-slate-200/80 flex items-center justify-between text-[11px] font-bold text-cobalt-700"><span>Hòa vốn: ${o.breakeven}</span><span>Chọn →</span></div>
+        </div>`;
+      }).join('');
+    }
+    function renderOptionMatrix() { document.getElementById('optionMatrixBody').innerHTML = APP_DATA.optionMatrixRows.map(r => `<tr class="hover:bg-canvas-50"><td class="p-3 font-bold text-ink-900">${r[0]}</td><td class="p-3 text-ink-700">${r[1]}</td><td class="p-3 text-ink-900 bg-cobalt-50/40">${r[2]}</td><td class="p-3 text-ink-700">${r[3]}</td></tr>`).join(''); }
+    function renderAuditFixes() { document.getElementById('auditFixesList').innerHTML = APP_DATA.auditFixes.map(f => `<div class="p-3 rounded-xl bg-canvas-50 border border-canvas-200 flex gap-3 items-start"><span class="badge-mono text-[11px] font-black px-2 py-0.5 rounded bg-ink-900 text-amber-400 shrink-0">${f.num}</span><div><strong class="text-ink-900 block">${f.title}</strong><p class="text-ink-700 mt-0.5 leading-relaxed">${f.desc}</p></div></div>`).join(''); }
+
+    function runBreakevenSim() {
+      const opexMo = parseFloat(document.getElementById('simOpexSelect').value);
+      const netPriceK = parseFloat(document.getElementById('simPriceRange').value);
+      document.getElementById('simPriceLabel').innerText = netPriceK + 'k đ/TB';
+      const beTb = Math.round((opexMo * 1000) / netPriceK);
+      const vipNeeded = Math.round(beTb / 1.78);
+      const opexYr = opexMo * 12;
+      const opexSaved = 480 - opexYr;
+      const estRev = opexMo === 18 ? 350 : (opexMo === 24 ? 250 : (opexMo === 30 ? 550 : 500));
+      const estCapex = opexMo === 18 ? 30 : (opexMo === 24 ? 50 : (opexMo === 30 ? 60 : 150));
+      const netEconM = estRev + 4350 - opexYr - estCapex;
+      document.getElementById('simBeTb').innerText = beTb + ' TB';
+      document.getElementById('simBePct').innerText = '~' + vipNeeded + ' KH VIP';
+      document.getElementById('simOpexYr').innerText = opexYr + ' Tr';
+      document.getElementById('simOpexSave').innerText = opexSaved > 0 ? ('Giảm ' + opexSaved + 'Tr vs cũ') : 'Chế độ cũ';
+      document.getElementById('simNetEcon').innerText = '+' + (netEconM / 1000).toFixed(2) + ' Tỷ';
+    }
+
+    function renderBundleMatrix() { document.getElementById('bundleMatrixList').innerHTML = APP_DATA.bundleMatrix.map(b => `<div class="p-3 rounded-xl bg-canvas-50 border border-canvas-200 space-y-1"><strong class="text-cobalt-900 block">${b.s}</strong><p class="text-ink-700"><strong>Giá trị:</strong> ${b.v}</p><p class="text-jade-800 font-medium"><strong>Cơ chế:</strong> ${b.m}</p></div>`).join(''); }
+    function renderLegalTable() { document.getElementById('legalTableBody').innerHTML = APP_DATA.legalMatrix.map(r => `<tr class="hover:bg-canvas-50"><td class="p-3 align-top font-bold text-ink-900">${r.doc}</td><td class="p-3 align-top font-semibold text-cobalt-700">${r.status}</td><td class="p-3 align-top text-ink-700 leading-relaxed">${r.req}</td><td class="p-3 align-top text-jade-800 font-medium leading-relaxed">${r.sales}</td></tr>`).join(''); }
+    function renderRiskPlaybook() { document.getElementById('riskPlaybookGrid').innerHTML = APP_DATA.riskPlaybook.map(r => `<div class="p-3.5 rounded-xl bg-canvas-50 border border-canvas-200 space-y-1"><strong class="text-rose-900 block">${r.t}</strong><p class="text-ink-700 leading-relaxed">${r.d}</p></div>`).join(''); }
+
+    function filterProd(group) {
+      ['ALL', 'CORE', 'COSALE', 'STORAGE'].forEach(k => {
+        const b = document.getElementById('pf-' + k);
+        if (b) b.className = (k === group) ? 'px-2.5 py-1 rounded-md text-xs font-bold bg-cobalt-600 text-white' : 'px-2.5 py-1 rounded-md text-xs font-semibold bg-white border border-slate-300 text-ink-700 hover:bg-slate-100';
+      });
+      const rows = group === 'ALL' ? APP_DATA.productsMatrix : APP_DATA.productsMatrix.filter(x => x.g === group);
+      document.getElementById('prodMatrixBody').innerHTML = rows.map(x => `<tr class="${x.g === 'CORE' ? 'bg-cobalt-50/35' : ''} hover:bg-canvas-50"><td class="p-3 align-top font-extrabold text-ink-900">${x.n}</td><td class="p-3 align-top text-center"><span class="inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-jade-100 text-jade-900">${x.p}</span></td><td class="p-3 align-top text-ink-700 leading-relaxed">${x.s}</td><td class="p-3 align-top text-ink-800 leading-relaxed">${x.u}</td><td class="p-3 align-top text-cobalt-900 font-semibold leading-relaxed">${x.d}</td></tr>`).join('');
+    }
+    function renderFunnelTable() {
+      document.getElementById('funnelTableBody').innerHTML = APP_DATA.funnelRows.map(r => `<tr class="hover:bg-canvas-50"><td class="p-3 font-bold text-ink-900">${r.name}</td><td class="p-3 text-center font-extrabold text-cobalt-700">${r.deals}</td><td class="p-3 text-right">${r.acv}</td><td class="p-3 text-right font-extrabold text-ink-900">${r.rev}</td><td class="p-3 text-center">${r.wr}</td><td class="p-3 text-center text-ink-700">${r.pipe}</td><td class="p-3 text-right font-bold text-jade-700">${r.gp}</td></tr>`).join('') + `<tr class="bg-ink-950 text-white font-black"><td class="p-3">TỔNG CHÂN 2 NĂM 2027 (Khung Cơ Sở 9,50 Tỷ)</td><td class="p-3 text-center text-amber-400">29 HĐ</td><td class="p-3 text-right">328 Tr</td><td class="p-3 text-right text-amber-400">9.500 Tr</td><td class="p-3 text-center">27,9%</td><td class="p-3 text-center text-sky-300">104 Opps / 248 MQL</td><td class="p-3 text-right text-emerald-400">~24,6% • 2.340 Tr</td></tr>`;
+    }
+    function renderTargetAccounts() { document.getElementById('targetAccountsGrid').innerHTML = APP_DATA.targetAccounts.map(a => `<div class="p-4 rounded-xl bg-canvas-50 border border-canvas-200 space-y-1.5"><strong class="text-cobalt-900 block text-xs font-extrabold">${a.seg}</strong><p class="text-ink-700"><strong>Mục tiêu:</strong> ${a.names}</p><p class="text-ink-700"><strong>Chào bán:</strong> ${a.offer}</p><p class="text-jade-800 font-semibold pt-1 border-t border-canvas-200">Kênh: ${a.channel}</p></div>`).join(''); }
+
+    function setRoleFilter(role) {
+      currentRoleFilter = role;
+      ['ALL', 'LEAD', 'TEAM_C2', 'TEAM_C1'].forEach(r => { document.getElementById('rf-' + r).className = (r === role) ? 'px-2.5 py-1 rounded-md font-bold bg-ink-900 text-white' : 'px-2.5 py-1 rounded-md font-semibold bg-white border border-slate-300 text-ink-700 hover:bg-slate-100'; });
+      renderMonthlyCards();
+    }
+    function toggleTask(id) { m14State[id] = !m14State[id]; localStorage.setItem(M14_KEY, JSON.stringify(m14State)); renderMonthlyCards(); }
+    function resetChecklist() { m14State = {}; localStorage.removeItem(M14_KEY); renderMonthlyCards(); }
+    function updateChecklistProgress() {
+      const all = APP_DATA.monthlyPlan.flatMap(m => m.tasks);
+      const done = all.filter(t => m14State[t.id]).length;
+      const pct = Math.round((done / all.length) * 100);
+      document.getElementById('checklistProgressBar').style.width = pct + '%';
+      document.getElementById('checklistProgressText').innerText = pct + '% (' + done + '/' + all.length + ')';
+    }
+    function renderMonthlyCards() {
+      const opt = APP_DATA.options[currentOption];
+      const oc = currentOption === 'H1' ? 'bg-jade-50 border-jade-600/30 text-jade-900' : (currentOption === 'H2' ? 'bg-cobalt-50 border-cobalt-300 text-cobalt-900' : 'bg-ochre-50 border-ochre-400 text-ochre-900');
+      document.getElementById('monthlyCardsContainer').innerHTML = APP_DATA.monthlyPlan.map(m => {
+        const tasks = currentRoleFilter === 'ALL' ? m.tasks : m.tasks.filter(t => t.role === currentRoleFilter);
+        const revBadge = m.revIdx >= 0 ? `<span class="badge-mono text-[10px] font-bold px-2 py-0.5 rounded bg-cobalt-100 text-cobalt-900">Mục tiêu: ${opt.monthlyC2[m.revIdx] + opt.monthlyC1[m.revIdx]}Tr (C2:${opt.monthlyC2[m.revIdx]} + C1:${opt.monthlyC1[m.revIdx]})</span>` : `<span class="badge-mono text-[10px] font-bold px-2 py-0.5 rounded bg-rose-100 text-rose-800">Chuẩn bị &amp; Khóa sổ</span>`;
+        return `<div class="card p-4 sm:p-5 flex flex-col justify-between space-y-3"><div class="space-y-2.5"><div class="flex flex-wrap items-center justify-between gap-2 border-b border-canvas-200 pb-2"><div><span class="text-[10px] font-extrabold uppercase text-ochre-600">${m.tag}</span><h4 class="text-sm font-black text-ink-900">${m.month}</h4></div>${revBadge}</div><p class="text-xs text-ink-700 leading-relaxed"><strong>Trọng tâm:</strong> ${m.common}</p><div class="p-2.5 rounded-lg border text-xs leading-relaxed ${oc}"><strong>Nhánh riêng (${opt.shortName}):</strong> ${m.byOpt[currentOption]}</div><div class="space-y-1 pt-1">${tasks.map(t => `<label class="flex items-start gap-2 text-xs text-ink-800 cursor-pointer p-1.5 rounded hover:bg-canvas-50"><input type="checkbox" onchange="toggleTask('${t.id}')" ${m14State[t.id] ? 'checked' : ''} class="mt-0.5 accent-jade-600 shrink-0" /><span class="${m14State[t.id] ? 'line-through text-slate-400' : ''}">${t.text}</span></label>`).join('')}</div></div><div class="pt-2 border-t border-canvas-200 text-[11px] font-bold text-ink-600 flex justify-between"><span>Cổng nghiệm thu:</span><span class="text-jade-700">${m.gate}</span></div></div>`;
+      }).join('');
+      updateChecklistProgress();
+    }
+    function renderTeamTable() { document.getElementById('teamTransitionBody').innerHTML = APP_DATA.teamTransition.map(t => `<tr class="hover:bg-canvas-50"><td class="p-3 align-top"><strong class="text-ink-900 block">${t.name}</strong><span class="inline-block mt-1 px-2 py-0.5 rounded bg-jade-100 text-jade-900 font-bold text-[10px]">${t.kpi}</span></td><td class="p-3 align-top text-ink-700 leading-relaxed">${t.ach}</td><td class="p-3 align-top text-ink-800 leading-relaxed">${t.role}</td><td class="p-3 align-top text-cobalt-900 bg-cobalt-50/30 leading-relaxed">${t.script}</td></tr>`).join(''); }
+    function renderBMC() { document.getElementById('bmcGrid').innerHTML = APP_DATA.bmcBlocks.map((b, i) => `<div class="p-4 rounded-xl ${i === 2 ? 'bg-cobalt-50 border-2 border-cobalt-500' : (i === 8 ? 'bg-jade-50 border border-jade-600/30' : 'bg-canvas-50 border border-canvas-200')} space-y-1.5"><strong class="text-ink-900 font-extrabold block border-b border-slate-200 pb-1">${b.t}</strong><p class="text-ink-700 leading-relaxed">${b.c}</p></div>`).join(''); }
+
+    function initSlides() {
+      document.getElementById('slideJumpSelect').innerHTML = APP_DATA.slides.map((s, i) => `<option value="${i}">Slide ${s.n}: ${s.tag}</option>`).join('');
+      document.getElementById('slideDots').innerHTML = APP_DATA.slides.map((_, i) => `<button id="sdot-${i}" onclick="goSlide(${i})" class="h-2 rounded-full transition-all"></button>`).join('');
+      renderSlide();
+    }
+    function renderSlide() {
+      const s = APP_DATA.slides[currentSlideIdx];
+      document.getElementById('slideNumBadge').innerText = `Slide ${s.n} / ${APP_DATA.slides.length}`;
+      document.getElementById('slideTopTitle').innerText = s.title;
+      document.getElementById('slideJumpSelect').value = currentSlideIdx;
+      APP_DATA.slides.forEach((_, i) => { document.getElementById('sdot-' + i).className = i === currentSlideIdx ? 'w-9 h-2.5 rounded-full bg-cobalt-600' : 'w-4 h-2 rounded-full bg-slate-300 hover:bg-slate-400'; });
+      document.getElementById('slideStage').innerHTML = `<div class="space-y-2.5 border-b border-canvas-200 pb-4"><div class="flex items-center justify-between"><span class="px-3 py-1 rounded-full bg-cobalt-50 text-cobalt-700 border border-cobalt-200 text-xs font-extrabold uppercase">${s.tag}</span><span class="text-[11px] font-bold text-ink-500">FTI • PKD3 (ODS) • v3.0 (26/11/2026)</span></div><h2 class="text-lg sm:text-2xl font-black text-ink-900 leading-snug">${s.title}</h2><div class="p-3 rounded-lg bg-ochre-50 border-l-4 border-ochre-500 text-xs sm:text-sm text-ochre-900 font-semibold">${s.takeaway}</div></div><div class="grid grid-cols-1 lg:grid-cols-12 gap-5 my-5 items-center flex-grow"><div class="lg:col-span-7 space-y-2.5"><h3 class="text-xs font-extrabold uppercase text-cobalt-700 border-b border-canvas-200 pb-1.5">${s.leftTitle}</h3><ul class="space-y-2 text-xs sm:text-sm text-ink-800 leading-relaxed">${s.left.map(x => `<li class="p-3 rounded-xl bg-canvas-50 border border-canvas-200">${x}</li>`).join('')}</ul></div><div class="lg:col-span-5 grid grid-cols-1 gap-2.5">${s.metrics.map(m => `<div class="p-3.5 rounded-xl bg-ink-950 text-white flex items-center justify-between gap-3 shadow"><div><span class="text-[10px] uppercase text-sky-400 font-bold block">${m.k}</span><span class="text-[11px] text-slate-300 block mt-0.5">${m.s}</span></div><span class="text-sm sm:text-base font-black text-amber-400 shrink-0">${m.v}</span></div>`).join('')}</div></div><div class="border-t border-canvas-200 pt-2.5 flex justify-between text-[11px] text-ink-500"><span>Bản Trình Bày Quyết Sách 3 Hướng, KPI 3 Rổ &amp; Nâng Trình Chân 1 — Phòng KD3</span><span>Trang ${s.n} / ${APP_DATA.slides.length}</span></div>`;
+    }
+    function nextSlide() { currentSlideIdx = (currentSlideIdx + 1) % APP_DATA.slides.length; renderSlide(); }
+    function prevSlide() { currentSlideIdx = (currentSlideIdx - 1 + APP_DATA.slides.length) % APP_DATA.slides.length; renderSlide(); }
+    function goSlide(i) { currentSlideIdx = i; renderSlide(); }
+    function toggleDeckFullscreen() {
+      const el = document.getElementById('deckWrapper');
+      if (!document.fullscreenElement) { el.classList.add('bg-canvas-50', 'p-6', 'overflow-y-auto'); el.requestFullscreen(); }
+      else { el.classList.remove('bg-canvas-50', 'p-6', 'overflow-y-auto'); document.exitFullscreen(); }
+    }
+    function renderSources() { document.getElementById('sourcesLibraryGrid').innerHTML = APP_DATA.sources.map(g => `<div class="p-4 rounded-xl bg-canvas-50 border border-canvas-200 space-y-2"><strong class="text-ink-900 font-extrabold block border-b border-canvas-200 pb-1.5">${g.cat}</strong><ul class="space-y-1.5 text-[11px]">${g.items.map(s => `<li><a href="${s.u}" target="_blank" rel="noopener noreferrer" class="text-cobalt-700 hover:underline font-medium">↗ ${s.t}</a></li>`).join('')}</ul></div>`).join(''); }
+
+    function initAllCharts() {
+      Chart.defaults.font.family = '"Be Vietnam Pro", sans-serif';
+      Chart.defaults.font.size = 11;
+
+      charts.repRamp = new Chart(document.getElementById('chartRepRamp'), {
+        type: 'bar',
+        data: { labels: ['T1 (0%)', 'T2 Tết (20%)', 'T3 (45%)', 'T4 (75%)', 'T5 (100%)', 'T6', 'T7', 'T8', 'T9', 'T10', 'T11', 'T12'], datasets: [{ label: 'Chỉ tiêu / Sale mới (Triệu VNĐ)', data: [0, 31.9, 71.8, 119.7, 159.6, 159.6, 159.6, 159.6, 159.6, 159.6, 159.6, 159.6], backgroundColor: ['#cbd5e1', '#93c5fd', '#60a5fa', '#3b82f6', '#1d4ed8', '#1d4ed8', '#1d4ed8', '#1d4ed8', '#1d4ed8', '#1d4ed8', '#1d4ed8', '#1d4ed8'], borderRadius: 4 }] },
+        options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { position: 'bottom' } }, scales: { y: { beginAtZero: true, title: { display: true, text: 'Triệu VNĐ / Sale' } } } }
+      });
+
+      charts.optFin = new Chart(document.getElementById('chart3OptionsFinance'), {
+        type: 'bar',
+        data: { labels: ['H1: Tối giản', 'H2: Stage-Gate', 'H3: Bundle'], datasets: [{ label: 'CAPEX Gate 0 (Tr)', data: [30, 60, 50], backgroundColor: '#1d4ed8', borderRadius: 4 }, { label: 'OPEX 2027 (Tr)', data: [216, 360, 288], backgroundColor: '#94a3b8', borderRadius: 4 }] },
+        options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { position: 'bottom' } }, scales: { y: { beginAtZero: true, title: { display: true, text: 'Triệu VNĐ' } } } }
+      });
+
+      charts.pricing = new Chart(document.getElementById('chartPricing2026'), {
+        type: 'bar',
+        data: { labels: ['Backblaze B2', 'Wasabi (07/26)', 'FshareStorage', 'GreenNode (VN)', 'FTI VaultBaaS', 'VNPT SmartCloud', 'FPT Cloud 10TB', 'FPT Cloud 2TB', 'AWS SG (Rút 1TB)'], datasets: [{ label: 'Nghìn VNĐ / TB', data: [177, 204, 250, 543, 650, 922, 1000, 1750, 3760], backgroundColor: ['#cbd5e1', '#cbd5e1', '#059669', '#64748b', '#1d4ed8', '#94a3b8', '#94a3b8', '#94a3b8', '#dc2626'], borderRadius: 4 }] },
+        options: { indexAxis: 'y', responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } }, scales: { x: { beginAtZero: true, title: { display: true, text: 'Nghìn VNĐ / TB' } } } }
+      });
+
+      charts.leg2Mix = new Chart(document.getElementById('chartLeg2Mix'), {
+        type: 'bar',
+        data: { labels: ['MS365 Mid-Ent', 'HiGIO Cloud', 'MS365 SME+Bundle', 'Line/Cam/Voice', 'Starlink B2B'], datasets: [{ label: 'Doanh thu 2027 (Tỷ)', data: [4.0, 2.0, 1.5, 1.1, 0.9], backgroundColor: '#1d4ed8', borderRadius: 4 }, { label: 'Lãi gộp ước tính (Tỷ)', data: [0.56, 0.70, 0.42, 0.462, 0.198], backgroundColor: '#059669', borderRadius: 4 }] },
+        options: { indexAxis: 'y', responsive: true, maintainAspectRatio: false, plugins: { legend: { position: 'bottom' } }, scales: { x: { beginAtZero: true, title: { display: true, text: 'Tỷ VNĐ' } } } }
+      });
+
+      charts.renewal = new Chart(document.getElementById('chartRenewalEngine'), {
+        type: 'bar',
+        data: { labels: ['2027 (9,5T)', '2028 (26,5T)', '2029 (42,0T)'], datasets: [{ label: 'Tái ký Carry-over (92%)', data: [0, 7.43, 21.75], backgroundColor: '#0891b2', stack: 'r', borderRadius: 4 }, { label: 'Ký mới cần bán', data: [9.50, 19.07, 20.25], backgroundColor: '#1d4ed8', stack: 'r', borderRadius: 4 }] },
+        options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { position: 'bottom' } }, scales: { x: { stacked: true }, y: { stacked: true, beginAtZero: true, title: { display: true, text: 'Tỷ VNĐ' } } } }
+      });
+
+      updateMonthlyChart();
+    }
+
+    function updateMonthlyChart() {
+      const opt = APP_DATA.options[currentOption];
+      document.getElementById('monthlyCurveTitle').innerText = `Biểu Đồ Mục Tiêu 12 Tháng 2027 — ${opt.title} (Tổng: ${opt.rev2027.total} Tỷ)`;
+      if (charts.monthly) charts.monthly.destroy();
+      charts.monthly = new Chart(document.getElementById('chartMonthlyCurve'), {
+        type: 'bar',
+        data: { labels: ['T1/27', 'T2 (Tết)', 'T3 (G1)', 'T4', 'T5', 'T6 (G2)', 'T7', 'T8', 'T9 (G3)', 'T10', 'T11', 'T12'], datasets: [{ label: 'Chân 2: MS365, HiGIO, Co-sale (Triệu)', data: opt.monthlyC2, backgroundColor: '#1d4ed8', stack: 'm', borderRadius: 3 }, { label: 'Chân 1: Storage (Triệu)', data: opt.monthlyC1, backgroundColor: '#d97706', stack: 'm', borderRadius: 3 }] },
+        options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { position: 'bottom' } }, scales: { x: { stacked: true }, y: { stacked: true, beginAtZero: true, title: { display: true, text: 'Triệu VNĐ' } } } }
+      });
+    }
+  </script>
+</body>
+</html>
+
+<!-- https://gemini.google.com/app/dcce990b3fd28a5e -->
